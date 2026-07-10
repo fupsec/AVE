@@ -5,16 +5,16 @@ avd_id = ""
 other_ids = []
 
 [basic]
-title = "Apache HTTP Server mod_dav 越界读写漏洞"
-description = "Apache HTTP Server 2.4.0至2.4.54版本中的mod_dav模块存在安全漏洞。远程攻击者通过发送特制的If:请求头，可导致堆内存越界读取或写入单个零字节，造成进程崩溃，导致拒绝服务。该漏洞最早由Mark Dowd等在2006年出版的《The Art of Software Security Assessment》一书中描述。"
+title = "Apache HTTP Server mod_dav If:请求头越界读取/写入漏洞"
+description = "精心构造的 If: 请求头可导致池（堆）内存位置中超出所发送标头值的单个零字节的内存读取或写入，从而导致进程崩溃。该漏洞影响 Apache HTTP Server 2.4.54 及更早版本。"
 severity = "HIGH"
 source = "nvd"
 published = "2023-01-17"
-updated = "2023-09-08"
+updated = "2025-02-13"
 
 [score]
-cvss_v2 = 5.0
-cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:N/A:P"
+cvss_v2 = 0.0
+cvss_v2_vector = ""
 cvss_v3 = 7.5
 cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
 cvss_v4 = 0.0
@@ -22,36 +22,36 @@ cvss_v4_vector = ""
 
 [affected]
 vendor = "Apache Software Foundation"
-product = "HTTP Server (mod_dav)"
+product = "Apache HTTP Server"
 
 [exploit]
-poc = []
+poc = [
+  { url = "https://github.com/r1az4r/CVE-2006-20001", description = "CVE-2006-20001 信息与 PoC 参考", source = "github" }
+]
 exp = []
 nuclei_templates = []
 
 [remediation]
-fix = "升级Apache HTTP Server到2.4.55或更高版本。参考Apache官方安全公告。"
-workaround = "如无法升级，可在Web应用防火墙(WAF)层面过滤包含异常If:请求头的HTTP请求。或在httpd配置中禁用mod_dav模块(LoadModule dav_module modules/mod_dav.so)，但需注意这可能影响需要使用WebDAV功能的应用。"
-steps = ["步骤1: 确认Apache HTTP Server版本(httpd -v)", "步骤2: 升级Apache HTTP Server到2.4.55或更高版本", "步骤3: 重启Apache服务使更新生效", "步骤4: 检查漏洞是否已被利用"]
+fix = "升级到 Apache HTTP Server 2.4.55 或更高版本。参考官方安全公告。"
+workaround = "如无法升级，可在 httpd 配置中使用 RequestHeader 指令过滤或限制 If: 请求头。"
+steps = ["步骤1: 确认 Apache HTTP Server 版本", "步骤2: 升级到 2.4.55 或更高版本", "步骤3: 重启 Apache 服务"]
 
 [references]
 nvd = "https://nvd.nist.gov/vuln/detail/CVE-2006-20001"
 avd = ""
 other = [
   "https://httpd.apache.org/security/vulnerabilities_24.html",
-  "https://www.cve.org/CVERecord?id=CVE-2006-20001",
-  "https://security.netapp.com/advisory/ntap-20230316-0005/",
   "https://security.gentoo.org/glsa/202309-01",
-  "https://www.openwall.com/lists/oss-security/2023/01/17/5"
+  "https://security.netapp.com/advisory/ntap-20230316-0005/"
 ]
 
 [tags]
-tags = ["CWE-787", "DoS", "denial-of-service", "apache", "mod_dav", "out-of-bounds"]
+tags = ["CWE-787", "DoS", "HTTP"]
 
 [authenticity]
 cve_confidence = "high"
-poc_confidence = "low"
-notes = "CVE-2006-20001由MITRE官方发布，NVD已分析并分配CVSS v3.1 7.5 HIGH评分。CWE-787(越界写入)分类。该漏洞最早在2006年公开出版的《The Art of Software Security Assessment》一书中被描述，2022年向Apache安全团队报告，2023年1月17日随Apache HTTP Server 2.4.55发布修复。未在GitHub或Exploit-DB等渠道找到公开的PoC/EXP代码，也未发现Nuclei检测模板。CISA评估为无已知在野利用。攻击者向启用了mod_dav的Apache服务器发送包含精心构造If:头部的HTTP请求即可触发。"
+poc_confidence = "medium"
+notes = "CVE 由 Apache 官方确认并修复。GitHub 上有信息性 PoC 仓库但无可执行利用脚本。"
 
 [meta]
 collected_at = "2026-07-10T10:18:58Z"
