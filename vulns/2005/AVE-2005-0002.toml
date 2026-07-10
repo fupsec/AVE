@@ -1,43 +1,25 @@
-[id]
-ave_id = "AVE-2005-0002"
-cve_id = "CVE-2005-1232"
-aliases = ["CVE-2005-1232"]
-other_ids = []
-
 [basic]
-title = "Sun Java System Web Proxy Server 缓冲区溢出漏洞"
-description = "Sun Java System Web Proxy Server（原 Sun ONE Proxy Server）3.6 SP6 版本中存在缓冲区溢出漏洞。远程攻击者可利用该漏洞通过发送特制请求触发缓冲区溢出，成功利用可在目标系统上以服务进程权限执行任意代码，导致系统完全受控。受影响的版本为 3.6 SP6 及更早版本。"
-severity = "HIGH"
-score = 7.5
-published = "2005-05-02"
-updated = "2026-07-10"
-remediation = "升级至 Sun Java System Web Proxy Server 3.6 SP7 或更高版本以修复此漏洞。"
-sources = ["tenable", "nvd"]
-
-[score]
-cvss_v2 = 7.5
-cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:P/A:P"
-cvss_v3 = 0.0
-cvss_v3_vector = ""
-cvss_v4 = 0.0
-cvss_v4_vector = ""
-
-[affected]
-vendor = "Sun Microsystems"
-product = "Java System Web Proxy Server"
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2005-1232"
-urls = [
-    "http://sunsolve.sun.com/search/document.do?assetkey=1-26-57763-1",
-    "http://www.securityfocus.com/bid/82356",
-]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["tenable"]
+title = "CVE-2005-1232 漏洞"
+updated = ""
 
 [exploit]
-poc_urls = []
 exp_urls = []
-nuclei_templates = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2005-1232"]
+ave_id = "AVE-2005-0002"
+cve_id = "CVE-2005-1232"
 
 [meta]
-collected_at = "2026-07-10T11:17:08+00:00"
+collected_at = "2026-07-10T21:13:02.202309003+00:00"
 status = "completed"
+
+[references]
+urls = []
