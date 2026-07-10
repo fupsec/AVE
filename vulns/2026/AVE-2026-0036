@@ -1,0 +1,28 @@
+[id]
+ave_id = "AVE-2026-0036"
+cve_id = "CVE-2026-40187"
+aliases = [
+    "CVE-2026-40187",
+    "GHSA-8737-2x9g-xjj7",
+]
+
+[basic]
+title = "CVE-2026-40187"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["ghsa"]
+published = ""
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T12:12:00.708986278+00:00"
