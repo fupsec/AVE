@@ -1,0 +1,25 @@
+[id]
+ave_id = "AVE-2000-0006"
+cve_id = "CVE-2000-0031"
+aliases = ["CVE-2000-0031"]
+
+[basic]
+title = "CVE-2000-0031"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["redhat"]
+published = ""
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T12:52:04.536943774+00:00"
