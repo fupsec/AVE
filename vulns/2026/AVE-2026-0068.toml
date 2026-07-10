@@ -1,0 +1,61 @@
+[id]
+ave_id = "AVE-2026-0068"
+cve_id = ""
+avd_id = "AVD-2023-1700211"
+other_ids = ["CNVD-2023-12632", "QVD-2023-5012"]
+
+[basic]
+title = "泛微E-Cology9 browser.jsp SQL注入漏洞"
+description = "由于泛微e-cology9中对用户前台输入的数据未做校验，未经身份验证的攻击者通过构造恶意数据包（POST /mobile/plugin/browser.jsp），可以在keyword参数中注入SQL语句，最终获取数据库中的敏感信息（如数据库版本、表数据等）。该漏洞为回显型SQL注入，非盲注。影响版本为泛微e-cology V9 < 10.56。"
+severity = "HIGH"
+source = "nuclei"
+published = "2023-03-01"
+updated = "2023-03-17"
+
+[score]
+cvss_v2 = 7.5
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:P/A:P"
+cvss_v3 = 8.6
+cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:N/A:N"
+cvss_v4 = 0.0
+cvss_v4_vector = ""
+
+[affected]
+vendor = "泛微 (Weaver)"
+product = "e-cology9 (E-Cology V9)"
+
+[exploit]
+poc = [
+  { url = "https://github.com/SharpKean/CNVD-2023-12632_POC", description = "泛微e-cology9 SQL注入批量检测POC（Python）", source = "github" },
+  { url = "https://github.com/bgmaopao/CNVD-2023-12632", description = "泛微e-cology9未授权SQL注入漏洞批量探测工具", source = "github" },
+  { url = "https://github.com/ccongc/e-cology9-sql", description = "泛微e-cology9 SQL注入验证脚本（QVD-2023-5012）", source = "github" },
+  { url = "https://github.com/XiaomingX/data-cve-poc/blob/main/frog-poc/CNVD/2023/CNVD-2023-12632.yaml", description = "Nuclei格式PoC模板（frog-poc）", source = "github" },
+  { url = "https://github.com/kuang-zy/2023-Weaver-pocs", description = "泛微OA系列漏洞PoC集合", source = "github" },
+  { url = "https://www.ddpoc.com/poc/DVB-2023-4075.html", description = "泛微E-Cology9 SQL注入漏洞详情", source = "exploit-db" }
+]
+exp = []
+nuclei_templates = [
+  { url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2023/CNVD-2023-12632.yaml", description = "Nuclei官方检测模板（E-Cology V9 SQL Injection）", source = "nuclei" }
+]
+
+[remediation]
+fix = "升级泛微e-cology至10.56及以上版本。官方已发布安全补丁修复该漏洞，请受影响用户尽快升级。"
+workaround = "如暂时无法升级，可通过WAF对/mobile/plugin/browser.jsp路径的keyword参数进行过滤拦截，或限制该路径的外部访问。"
+steps = ["步骤1: 确认当前泛微e-cology版本是否低于10.56", "步骤2: 下载官方安全补丁（https://www.weaver.com.cn/cs/securityDownload.asp#）", "步骤3: 备份数据库和应用后执行升级操作", "步骤4: 升级后验证漏洞是否已修复"]
+
+[references]
+nvd = ""
+avd = "https://avd.aliyun.com/detail?id=AVD-2023-1700211"
+other = ["https://blog.csdn.net/qq_50854662/article/details/129992329", "https://www.chaosec.com/?p=1373", "https://cn-sec.com/archives/1608338.html", "https://cn-sec.com/archives/1710341.html", "https://www.cnblogs.com/pursue-security/p/17677330.html", "https://www.zhihu.com/tardis/zm/art/625931869?source_id=1003", "https://rivers.chaitin.cn/blog/cqli76h0lnec5jjug6hg"]
+
+[tags]
+tags = ["CWE-89", "SQL注入", "泛微", "e-cology", "CNVD-2023-12632", "未授权"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "high"
+notes = "该漏洞存在多个独立PoC和Nuclei模板，已被广泛验证和利用。泛微官方已确认并发布补丁。"
+
+[meta]
+collected_at = "2026-07-10T12:00:00Z"
+status = "completed"
