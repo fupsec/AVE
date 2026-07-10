@@ -8,7 +8,7 @@ sources = [
     "osv",
     "tenable",
 ]
-title = "Vulnerability in CVE-2002-0906"
+title = "CVE-2002-0906 vulnerability"
 updated = "2026-07-10"
 
 [exploit]
