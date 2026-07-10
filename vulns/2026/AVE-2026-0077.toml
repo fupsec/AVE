@@ -1,58 +1,28 @@
-[id]
-ave_id = "AVE-2026-0077"
-cve_id = "CVE-2026-48597"
-aliases = [
-    "GHSA-h74c-q9j7-mpcm",
-]
-other_ids = [
-    "GHSA-h74c-q9j7-mpcm",
-]
-
 [basic]
-title = "Tesla HTTP 客户端原子表耗尽拒绝服务漏洞"
-description = """
-Tesla Elixir HTTP 客户端库的 Mint 适配器中，open_conn/2 函数将 URL scheme
-通过 String.to_atom/1 直接转换为 BEAM 原子，未经任何白名单验证。
-BEAM 原子永不释放且原子表上限约 1,048,576 个，攻击者可通过控制请求 URL
-的 scheme（如 webhook 转发、SSRF 代理）或通过 FollowRedirects 中间件跟随
-恶意 Location 头，每次请求创建一个新永久原子，最终耗尽原子表导致 BEAM VM
-崩溃。影响 tesla 1.3.0 至 1.18.2 版本。
-"""
-severity = "HIGH"
-score = 8.2
-cvss_v4 = 8.2
-remediation = """
-升级至 tesla 1.18.3 及以上版本；如无法立即升级，应避免在 URL 转发场景中
-使用 Tesla.Adapter.Mint，或禁用 Tesla.Middleware.FollowRedirects 中间件
-以防止攻击者通过重定向响应头触发原子创建。
-"""
-published = "2026-06-02"
-updated = "2026-06-17"
-sources = [
-    "ghsa",
-]
-cwe = ["CWE-770"]
-
-[affected]
-vendor = "elixir-tesla"
-product = "tesla"
-
-[references]
-urls = [
-    "https://nvd.nist.gov/vuln/detail/CVE-2026-48597",
-    "https://github.com/advisories/GHSA-h74c-q9j7-mpcm",
-    "https://github.com/elixir-tesla/tesla/security/advisories/GHSA-h74c-q9j7-mpcm",
-    "https://github.com/elixir-tesla/tesla/commit/4699c3cb3e2fd6078f99f45f11cf7466aeedbf0e",
-    "https://cna.erlef.org/cves/CVE-2026-48597.html",
-    "https://osv.dev/vulnerability/EEF-CVE-2026-48597",
-]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["ghsa"]
+title = "CVE-2026-48597"
+updated = ""
 
 [exploit]
-poc_urls = [
-    "https://github.com/advisories/GHSA-h74c-q9j7-mpcm",
-]
 exp_urls = []
+poc_urls = []
+
+[id]
+aliases = [
+    "CVE-2026-48597",
+    "GHSA-h74c-q9j7-mpcm",
+]
+ave_id = "AVE-2026-0077"
+cve_id = "CVE-2026-48597"
 
 [meta]
-collected_at = "2026-07-11T12:00:00+08:00"
+collected_at = "2026-07-10T21:07:10.700496392+00:00"
 status = "completed"
+
+[references]
+urls = []
