@@ -1,12 +1,12 @@
 [basic]
-description = "MdAlAmin-aol 开发的 Own Health Record（个人健康记录系统）中存在跨站请求伪造（CSRF）漏洞。该漏洞位于 includes/logout.php 文件中，攻击者可远程利用此漏洞构造恶意请求，诱使用户点击后以用户身份执行非授权操作，如注销会话等，影响系统完整性和可用性。受影响的版本包括 0.1-alpha、0.2-alpha、0.3-alpha 和 0.3.1-alpha。"
-published = "2023-12-30"
-remediation = "建议用户升级至 v0.4-alpha 或更高版本以修复该漏洞。官方已在 GitHub 仓库中发布修复补丁（commit 58b413aa），可通过升级组件或应用补丁方式完成修复。"
-score = 8.8
-severity = "HIGH"
-sources = ["avd", "nvd"]
-title = "MdAlAmin-aol Own Health Record logout.php 跨站请求伪造漏洞"
-updated = "2026-06-16"
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["avd"]
+title = "CVE-2018-25096 漏洞"
+updated = ""
 
 [exploit]
 exp_urls = []
@@ -18,16 +18,8 @@ ave_id = "AVE-2018-0026"
 cve_id = "CVE-2018-25096"
 
 [meta]
-collected_at = "2026-07-10T12:52:05.095924578+00:00"
+collected_at = "2026-07-10T21:02:37.555634970+00:00"
 status = "completed"
 
 [references]
-urls = ["https://github.com/MdAlAmin-aol/ownhealthrecord/commit/58b413aa40820b49070782c786c526850ab7748f", "https://github.com/MdAlAmin-aol/ownhealthrecord/releases/tag/v0.4-alpha", "https://vuldb.com/?id.249191", "https://vuldb.com/?ctiid.249191"]
-
-[score]
-cvss_v2 = 5.0
-cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:P/A:N"
-cvss_v3 = 8.8
-cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H"
-cvss_v4 = 0.0
-cvss_v4_vector = ""
+urls = []
