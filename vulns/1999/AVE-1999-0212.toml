@@ -1,35 +1,25 @@
-[id]
-ave_id = "AVE-1999-0212"
-cve_id = "CVE-1999-0003"
-aliases = ["CVE-1999-0003"]
-
 [basic]
-title = "Sun Solaris及其他UNIX系统 ToolTalk RPC服务缓冲区溢出漏洞"
-description = "ToolTalk数据库服务器（rpc.ttdbserverd）在处理RPC请求时存在缓冲区溢出漏洞，远程攻击者无需认证即可通过特制RPC数据包触发溢出，实现以root权限执行任意命令。该漏洞影响Sun Solaris 2.5.1、SGI IRIX、Xi Graphics Maximum CDE 1.2.3及TriTeal TED CDE 4.3等多种UNIX操作系统，是早期互联网上最常被利用的远程溢出漏洞之一。"
-severity = "CRITICAL"
-score = 10.0
-remediation = "及时安装操作系统厂商提供的安全补丁，禁用不必要的ToolTalk RPC服务或通过防火墙限制对rpc.ttdbserverd端口的访问。"
-published = "1998-04-01"
-updated = "2026-06-16"
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
 sources = ["exploitdb"]
-
-[affected]
-vendor = "Sun Microsystems"
-product = "Solaris"
-
-[references]
-urls = [
-    "http://www.securityfocus.com/bid/122",
-    "https://www.exploit-db.com/exploits/19102",
-    "ftp://patches.sgi.com/support/free/security/advisories/19981101-01-A",
-]
+title = "CVE-1999-0003 漏洞"
+updated = ""
 
 [exploit]
-exp_urls = [
-    "https://www.exploit-db.com/exploits/19102",
-]
+exp_urls = []
 poc_urls = []
 
+[id]
+aliases = ["CVE-1999-0003"]
+ave_id = "AVE-1999-0212"
+cve_id = "CVE-1999-0003"
+
 [meta]
-collected_at = "2026-07-11T00:00:00+08:00"
+collected_at = "2026-07-10T20:55:43.101458245+00:00"
 status = "completed"
+
+[references]
+urls = []
