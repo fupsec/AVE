@@ -47,7 +47,9 @@ other = [
   { url = "http://marc.info/?l=bugtraq&m=112499121725662&w=2", description = "Bugtraq 邮件列表 - Portcullis Security Advisory" },
   { url = "https://exchange.xforce.ibmcloud.com/vulnerabilities/21999", description = "IBM X-Force 漏洞数据库" },
   { url = "http://www.securityfocus.com/bid/14662", description = "SecurityFocus BID 14662" },
-  { url = "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2005-2773", description = "CISA KEV 目录" }
+  { url = "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2005-2773", description = "CISA KEV 目录" },
+  { url = "https://www.exploit-db.com/exploits/16887", description = "Exploit-DB - Metasploit 模块 (EDB-16887)" },
+  { url = "https://www.exploit-db.com/exploits/1188", description = "Exploit-DB - C 语言 EXP (EDB-1188)" }
 ]
 
 [tags]
@@ -59,5 +61,5 @@ poc_confidence = "high"
 notes = "CVE-2005-2773 已被 CISA 列入已知被利用漏洞目录（KEV），表明该漏洞在真实环境中已被积极利用。CVSS 3.1 评分 9.8（CRITICAL）。"
 
 [meta]
-collected_at = "2026-07-10T14:21:05Z"
+collected_at = "2026-07-11T02:30:00Z"
 status = "completed"
