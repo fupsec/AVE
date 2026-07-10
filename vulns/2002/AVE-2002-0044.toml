@@ -1,0 +1,35 @@
+[basic]
+description = "Canna 3.5b2 及更早版本中的 irw_through 函数存在缓冲区溢出漏洞。本地攻击者可向 irw_through 函数发送特制输入触发栈缓冲区溢出，从而以 bin 用户身份执行任意代码，导致本地权限提升。"
+published = "2002-12-18"
+remediation = "升级 Canna 至 3.6p1-1 或更高版本。各 Linux 发行版请参考相应安全公告：Debian 升级至 3.5b2-46.2（woody）或 3.6p1-1（sid），Red Hat 参考 RHSA-2002:246/RHSA-2002:261/RHSA-2003:115。"
+score = 7.2
+severity = "HIGH"
+sources = ["osv", "nvd"]
+title = "Canna irw_through 函数缓冲区溢出漏洞"
+updated = "2026-06-16"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2002-1158"]
+ave_id = "AVE-2002-0044"
+cve_id = "CVE-2002-1158"
+
+[meta]
+collected_at = "2026-07-10T21:30:00+00:00"
+status = "completed"
+
+[references]
+urls = [
+    "http://canna.sourceforge.jp/sec/Canna-2002-01.txt",
+    "http://marc.info/?l=bugtraq&m=104041812206344&w=2",
+    "http://www.debian.org/security/2003/dsa-224",
+    "http://www.redhat.com/support/errata/RHSA-2002-246.html",
+    "http://www.redhat.com/support/errata/RHSA-2002-261.html",
+    "http://www.redhat.com/support/errata/RHSA-2003-115.html",
+    "http://www.securityfocus.com/bid/6351",
+    "https://exchange.xforce.ibmcloud.com/vulnerabilities/10831",
+    "https://nvd.nist.gov/vuln/detail/CVE-2002-1158",
+]
