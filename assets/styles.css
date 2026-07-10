@@ -620,6 +620,158 @@ body {
   to { transform: rotate(360deg); }
 }
 
+/* ── Back link ── */
+.back-link {
+  color: #93c5fd;
+  text-decoration: none;
+  font-size: 0.88rem;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  background: #111827;
+  white-space: nowrap;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+/* ── Responsive: mobile & small screens ── */
+@media (max-width: 820px) {
+  .hero {
+    padding: 1.4rem 0.9rem;
+  }
+
+  .hero h1 {
+    font-size: 1.25rem;
+  }
+
+  .hero-lead {
+    font-size: 0.85rem;
+  }
+
+  .layout {
+    grid-template-columns: 1fr;
+    padding: 0 0.6rem 1.2rem;
+    margin: 0.6rem auto;
+  }
+
+  .dashboard {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
+
+  .metric {
+    padding: 0.55rem;
+  }
+
+  .metric h3 {
+    font-size: 0.75rem;
+  }
+
+  .metric p {
+    font-size: 0.95rem;
+  }
+
+  .panel {
+    padding: 0.7rem;
+  }
+
+  .filters input,
+  .filters select {
+    padding: 0.45rem 0.55rem;
+    font-size: 0.85rem;
+  }
+
+  .filter-actions {
+    flex-direction: column;
+  }
+
+  .filter-actions button {
+    width: 100%;
+    padding: 0.45rem;
+  }
+
+  .year-table-wrap {
+    margin: 0 -0.1rem;
+  }
+
+  .project-intro {
+    padding: 0.55rem 0.65rem;
+  }
+
+  .project-intro p {
+    font-size: 0.82rem;
+  }
+
+  .vuln-table thead th,
+  .vuln-table tbody td {
+    padding: 0.45rem 0.5rem;
+    font-size: 0.8rem;
+  }
+
+  .table-title {
+    max-width: 200px;
+  }
+
+  .detail-kv {
+    grid-template-columns: 1fr;
+  }
+
+  .card-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .site-footer {
+    font-size: 0.82rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.4rem;
+  }
+
+  .metric {
+    padding: 0.45rem;
+  }
+
+  .metric h3 {
+    font-size: 0.7rem;
+  }
+
+  .metric p {
+    font-size: 0.88rem;
+  }
+
+  .vuln-table thead th,
+  .vuln-table tbody td {
+    padding: 0.35rem 0.4rem;
+    font-size: 0.75rem;
+  }
+
+  .table-title {
+    max-width: 120px;
+  }
+
+  .hero {
+    padding: 1rem 0.6rem;
+  }
+
+  .hero-top {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .top-nav {
+    align-self: flex-start;
+  }
+}
+}
+
 /* ── Sortable headers ── */
 .vuln-table thead th[data-sort-key] {
   cursor: pointer;
