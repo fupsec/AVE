@@ -1,25 +1,62 @@
 [id]
 ave_id = "AVE-2026-0032"
-cve_id = "NUCLEI-HTTP-CNVD-2019-CNVD-2019-19299-YAML"
-aliases = ["NUCLEI-HTTP-CNVD-2019-CNVD-2019-19299-YAML"]
+cve_id = ""
+avd_id = ""
+other_ids = ["CNVD-2019-19299"]
 
 [basic]
-title = "NUCLEI-HTTP-CNVD-2019-CNVD-2019-19299-YAML"
-description = ""
-severity = "UNKNOWN"
-score = 0.0
-sources = ["nuclei"]
-published = ""
-updated = ""
-remediation = "Refer to vendor advisory and upgrade to fixed version."
+title = "致远A8 OA htmlofficeservlet 远程命令执行漏洞"
+description = "致远A8 OA系统/seeyon/htmlofficeservlet存在任意文件写入漏洞，未经身份验证的远程攻击者可通过发送特制POST请求向服务器写入包含JSP webshell的恶意文件，进而通过访问webshell执行任意系统命令，完全控制服务器。"
+severity = "CRITICAL"
+source = "nuclei"
+published = "2019-06-26"
+updated = "2019-06-26"
 
-[references]
-urls = []
+[score]
+cvss_v2 = 0.0
+cvss_v2_vector = ""
+cvss_v3 = 10.0
+cvss_v3_vector = "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H"
+cvss_v4 = 0.0
+cvss_v4_vector = ""
+
+[affected]
+vendor = "北京致远互联软件股份有限公司"
+product = "致远A8 OA协同管理软件"
 
 [exploit]
-poc_urls = []
-exp_urls = []
+poc = [
+  { url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2019/CNVD-2019-19299.yaml", description = "Nuclei 检测模板", source = "nuclei" },
+  { url = "https://github.com/sectestt/CNVD-2019-19299", description = "Python PoC 利用脚本", source = "github" },
+  { url = "https://raw.githubusercontent.com/sectestt/CNVD-2019-19299/master/seeyou_poc_py3.py", description = "Python3 PoC 批量扫描脚本", source = "github" },
+  { url = "https://raw.githubusercontent.com/sectestt/CNVD-2019-19299/master/seeyon_rce.txt", description = "原始漏洞利用说明与 POST payload", source = "github" }
+]
+exp = []
+nuclei_templates = [
+  { url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2019/CNVD-2019-19299.yaml", description = "Nuclei 检测模板", source = "nuclei" }
+]
+
+[remediation]
+fix = "升级到致远官方提供的修复版本，或联系厂商获取安全补丁。"
+workaround = "如无法升级，可限制对/seeyon/htmlofficeservlet的网络访问，部署WAF规则拦截带有DBSTEP V3.0特征的请求，并排查服务器上是否存在test123456.jsp等恶意文件。"
+steps = ["步骤1: 确认是否使用致远A8 OA系统", "步骤2: 检查/seeyon/htmlofficeservlet是否存在", "步骤3: 升级到官方修复版本或部署缓解措施"]
+
+[references]
+nvd = ""
+avd = ""
+other = [
+  "https://github.com/sectestt/CNVD-2019-19299",
+  "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2019/CNVD-2019-19299.yaml"
+]
+
+[tags]
+tags = ["CWE-77", "RCE", "任意文件写入", "致远OA", "Seeyon", "CNVD"]
+
+[authenticity]
+cve_confidence = "low"
+poc_confidence = "high"
+notes = "该漏洞仅有CNVD编号，无对应CVE编号。Nuclei模板和多个GitHub PoC均可复现，真实性确认。"
 
 [meta]
+collected_at = "2026-07-10T11:13:02Z"
 status = "completed"
-collected_at = "2026-07-10T11:09:28.602868233+00:00"

