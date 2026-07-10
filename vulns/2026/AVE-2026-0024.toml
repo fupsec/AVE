@@ -1,28 +1,25 @@
-[id]
-ave_id = "AVE-2026-0024"
-cve_id = ""
-aliases = ["NUCLEI-FILE-MALWARE-UNIVERSAL-1337-MALWARE-YAML"]
-
 [basic]
-title = "Universal 1337 Stealer 恶意软件检测规则"
-description = "Universal 1337 Stealer 是一种针对 FTP 凭证的窃密恶意软件（Stealer），通过嵌入文件中的特定二进制签名进行识别，包括 [S-P-L-I-T] 分隔符标记和 FTP~ 协议特征串。该恶意软件运行后会窃取受害者系统的 FTP 服务器登录凭据，并将窃取的数据回传至攻击者控制的远程服务器。攻击条件为受害者执行了包含该恶意代码的未信任文件，导致系统被植入窃密后门。此 Nuclei 模板通过匹配文件内容二进制特征实现对该恶意软件的检测，适用于受感染系统的排查扫描。"
-severity = "INFO"
-score = 2.5
-remediation = "建议使用杀毒软件或 EDR 对系统进行全盘扫描以清除该恶意软件，立即更改所有可能已被泄露的 FTP 账户密码，检查系统近期新增的可疑进程和网络连接，避免执行来源不明的可执行文件。"
-published = "2026-07-10"
-updated = "2026-07-10"
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
 sources = ["nuclei"]
-
-[references]
-nvd = ""
-avd = ""
-other = ["https://github.com/projectdiscovery/nuclei-templates/blob/main/file/malware/universal-1337-malware.yaml", "https://github.com/Yara-Rules/rules/blob/master/malware/MALW_Stealer.yar"]
+title = "NUCLEI-FILE-MALWARE-UNIVERSAL-1337-MALWARE-YAML 漏洞"
+updated = ""
 
 [exploit]
-poc_urls = []
 exp_urls = []
-nuclei_templates = ["https://github.com/projectdiscovery/nuclei-templates/blob/main/file/malware/universal-1337-malware.yaml"]
+poc_urls = []
+
+[id]
+aliases = ["NUCLEI-FILE-MALWARE-UNIVERSAL-1337-MALWARE-YAML"]
+ave_id = "AVE-2026-0024"
+cve_id = "NUCLEI-FILE-MALWARE-UNIVERSAL-1337-MALWARE-YAML"
 
 [meta]
-collected_at = "2026-07-10T16:19:24+00:00"
+collected_at = "2026-07-10T20:51:33.496610441+00:00"
 status = "completed"
+
+[references]
+urls = []

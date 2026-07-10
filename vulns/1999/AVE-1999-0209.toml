@@ -10,11 +10,11 @@ poc_confidence = "low"
 [basic]
 description = "GlimpseHTTP（Glimpse 信息检索系统的 HTTP 接口）中的 aglimpse CGI 程序存在远程命令执行漏洞。Glimpse 是亚利桑那大学开发的文件索引和搜索引擎。aglimpse 是 Glimpse 的 Archie 风格 CGI 接口，由于在处理用户提供的查询参数时缺少充分的输入验证，攻击者可通过向 aglimpse CGI 发送特制请求，在目标 Web 服务器上以 Web 服务器进程权限执行任意系统命令。此漏洞影响所有自带 GlimpseHTTP 的 Glimpse 版本。"
 published = "1997-07-01"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
+remediation = "禁用 aglimpse CGI 脚本或升级到 Glimpse 的最新版本。如无法升级，应从 Web 服务器 CGI 目录中移除 aglimpse 可执行文件，或限制对其的访问权限。"
 score = 7.5
 severity = "HIGH"
 source = "nvd"
-sources = ["unknown"]
+sources = ["tenable"]
 title = "GlimpseHTTP aglimpse CGI 远程命令执行漏洞"
 updated = "2026-06-16"
 
