@@ -1,0 +1,25 @@
+[basic]
+description = "Vulnerability identified as HWPOC-2023-000b692b. Please refer to vendor advisory for details."
+published = "2026-07-10"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 5.0
+severity = "MEDIUM"
+sources = ["hwpoc"]
+title = "HWPOC-2023-000b692b"
+updated = "2026-07-10"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["HWPOC-2023-000b692b"]
+ave_id = "AVE-2023-0005"
+cve_id = "HWPOC-2023-000b692b"
+
+[meta]
+collected_at = "2026-07-10T17:56:03.784568954+00:00"
+status = "completed"
+
+[references]
+urls = []

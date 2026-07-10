@@ -1,25 +1,25 @@
+[basic]
+description = "Vulnerability identified as CVE-2007-5659. Please refer to vendor advisory for details."
+published = "2026-07-10"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 5.0
+severity = "MEDIUM"
+sources = ["kev"]
+title = "CVE-2007-5659"
+updated = "2026-07-10"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
 [id]
+aliases = ["CVE-2007-5659"]
 ave_id = "AVE-2007-0003"
 cve_id = "CVE-2007-5659"
-aliases = ["CVE-2007-5659"]
 
-[basic]
-title = "CVE-2007-5659"
-description = ""
-severity = "UNKNOWN"
-score = 0.0
-sources = ["kev"]
-published = ""
-updated = ""
-remediation = "Refer to vendor advisory and upgrade to fixed version."
+[meta]
+collected_at = "2026-07-10T18:07:31.813566+00:00"
+status = "completed"
 
 [references]
 urls = []
-
-[exploit]
-poc_urls = []
-exp_urls = []
-
-[meta]
-status = "completed"
-collected_at = "2026-07-10T15:17:58.361833890+00:00"
