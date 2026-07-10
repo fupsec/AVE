@@ -1,25 +1,25 @@
 [basic]
-description = "Solaris 系统中 rpc.statd（NFS 状态监控守护进程）存在输入验证缺陷，远程攻击者可通过发送特制 RPC 请求创建或删除任意系统文件，导致系统完整性受损。该漏洞曾被 Ramen 蠕虫利用进行传播。"
-published = "1996-04-24"
-remediation = "升级至 Sun 安全公告（Sun Security Bulletin #135）中指定修复版本的 Solaris 系统；如无法升级，应在防火墙上限制对 RPC 端口（111）的访问或禁用 rpc.statd 服务。"
-score = 5.0
-severity = "MEDIUM"
-sources = ["redhat", "nvd"]
-title = "Sun Solaris rpc.statd 文件创建/删除漏洞（Ramen 蠕虫）"
-updated = "2026-06-16"
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["redhat"]
+title = "CVE-1999-0019 漏洞"
+updated = ""
 
 [exploit]
 exp_urls = []
 poc_urls = []
 
 [id]
-aliases = ["CVE-1999-0019", "CVE-1999-0019"]
+aliases = ["CVE-1999-0019"]
 ave_id = "AVE-1999-0210"
 cve_id = "CVE-1999-0019"
 
 [meta]
-collected_at = "2026-07-11T07:51:00+00:00"
+collected_at = "2026-07-10T20:59:05.992305144+00:00"
 status = "completed"
 
 [references]
-urls = ["https://nvd.nist.gov/vuln/detail/CVE-1999-0019", "http://sunsolve.sun.com/pub-cgi/retrieve.pl?doctype=coll&doc=secbull/135"]
+urls = []
