@@ -1,36 +1,28 @@
-[id]
-ave_id = "AVE-1999-0022"
-cve_id = "CVE-1999-0524"
-aliases = ["CVE-1999-0524"]
-
 [basic]
-title = "多种操作系统ICMP网络掩码与时间戳请求信息泄露漏洞"
-description = "ICMP协议允许来自任意主机的网络掩码（ICMP Type 17）和时间戳（ICMP Type 13）请求响应。攻击者可利用此漏洞向目标发送ICMP网络掩码或时间戳请求，远程获取目标系统的子网掩码、网络拓扑结构以及系统运行时间等敏感信息。此类信息可被用于进一步侦察和攻击规划，增加后续攻击的成功概率。该漏洞影响广泛，涵盖Linux、Windows、macOS、Cisco IOS、AIX、Solaris等多种操作系统及网络设备。"
-severity = "MEDIUM"
-score = 4.0
-remediation = "在网络边界防火墙上配置访问控制规则，阻止外部来源的ICMP类型13（时间戳请求）和类型17（网络掩码请求）报文。对于Linux系统，可通过iptables添加规则过滤ICMP时间戳请求，或通过sysctl设置net.ipv4.icmp_echo_ignore_broadcasts=1。对于网络设备，在ACL中拒绝外部发往设备的ICMP时间戳和网络掩码请求。"
-published = "1997-08-01"
-updated = "2026-06-16"
-sources = ["nvd", "redhat", "tenable"]
-
-[affected]
-vendor = "multiple"
-product = "multiple operating systems"
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = [
+    "redhat",
+    "tenable",
+]
+title = "CVE-1999-0524 漏洞"
+updated = ""
 
 [exploit]
-poc_urls = []
 exp_urls = []
+poc_urls = []
 
-[references]
-urls = [
-    "https://nvd.nist.gov/vuln/detail/CVE-1999-0524",
-    "https://access.redhat.com/security/cve/CVE-1999-0524",
-    "https://exchange.xforce.ibmcloud.com/vulnerabilities/306",
-    "https://exchange.xforce.ibmcloud.com/vulnerabilities/322",
-    "https://support.f5.com/csp/article/K15277",
-    "http://kb.juniper.net/InfoCenter/index?page=content&id=JSA10705",
-]
+[id]
+aliases = ["CVE-1999-0524"]
+ave_id = "AVE-1999-0022"
+cve_id = "CVE-1999-0524"
 
 [meta]
+collected_at = "2026-07-10T21:30:58.446150458+00:00"
 status = "completed"
-collected_at = "2026-07-10T20:59:50.659046448Z"
+
+[references]
+urls = []
