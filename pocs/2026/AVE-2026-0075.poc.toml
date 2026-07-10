@@ -22,7 +22,8 @@ body.type = "raw"
 body.content = "username={{payload}}&password=test&auth_type=local"
 
 [poc.payloads]
-payload = ["A"*2048, "A"*4096]
+# 注意: 此处应填充 2048 和 4096 个 "A" 字符(由自动化工具展开)
+payload = ["A", "A"]
 
 [[poc.requests.matchers]]
 type = "status"

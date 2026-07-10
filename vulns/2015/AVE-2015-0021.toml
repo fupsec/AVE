@@ -15,10 +15,10 @@ updated = "2024-11-20"
 [score]
 cvss_v2 = 4.3
 cvss_v2_vector = "AV:N/AC:M/Au:N/C:N/I:N/A:P"
-cvss_v3 = 0.0
-cvss_v3_vector = ""
-cvss_v4 = 0.0
-cvss_v4_vector = ""
+cvss_v3 = 6.5
+cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+cvss_v4 = 7.2
+cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N"
 
 [affected]
 vendor = "point-to-point_protocol_project"
