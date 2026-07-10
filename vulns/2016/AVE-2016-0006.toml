@@ -4,22 +4,46 @@ cve_id = "CVE-2016-9535"
 aliases = ["CVE-2016-9535"]
 
 [basic]
-title = "CVE-2016-9535"
-description = ""
-severity = "UNKNOWN"
-score = 0.0
-sources = ["msrc"]
-published = ""
-updated = ""
-remediation = "Refer to vendor advisory and upgrade to fixed version."
+title = "LibTIFF 4.0.6 tif_predict 堆缓冲区溢出漏洞"
+description = "tif_predict.h 和 tif_predict.c 文件中的 libtiff 4.0.6 版本存在断言问题，在处理异常图块大小（如 YCbCr 子采样）时，调试模式下可导致断言失败，发布模式下可导致缓冲区溢出。该漏洞被报告为 MSVR 35105，又名 Predictor heap-buffer-overflow。"
+severity = "CRITICAL"
+source = "nvd"
+published = "2016-11-22"
+updated = "2026-06-16"
 
-[references]
-urls = []
+[score]
+cvss_v2 = 7.5
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:P/A:P"
+cvss_v3 = 9.8
+cvss_v3_vector = "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+
+[affected]
+vendor = "libtiff"
+product = "libtiff"
 
 [exploit]
-poc_urls = []
-exp_urls = []
+poc = []
+exp = []
+nuclei_templates = []
+
+[remediation]
+fix = "升级到 libtiff 4.0.7 及以上版本。参考官方安全公告。"
+workaround = "避免处理来自不可信来源的 TIFF 文件。"
+steps = ["步骤1: 确认当前 libtiff 版本", "步骤2: 升级到修复版本（4.0.7+）", "步骤3: 重启依赖 libtiff 的服务"]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2016-9535"
+avd = ""
+other = ["http://rhn.redhat.com/errata/RHSA-2017-0225.html", "http://www.debian.org/security/2017/dsa-3844", "http://www.securityfocus.com/bid/94484", "http://www.securityfocus.com/bid/94744", "https://github.com/vadz/libtiff/commit/3ca657a8793dd011bf869695d72ad31c779c3cc1", "https://github.com/vadz/libtiff/commit/6a984bf7905c6621281588431f384e79d11a2e33"]
+
+[tags]
+tags = ["CWE-119", "heap-buffer-overflow"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "low"
+notes = "无公开 PoC/EXP。非 HTTP 协议漏洞（C 库缓冲区溢出），无法生成 HTTP PoC 脚本。漏洞与 libtiff 库处理特制 TIFF 图片相关。补丁在 libtiff 上游代码仓库中可用。"
 
 [meta]
+collected_at = "2026-07-10T12:02:33Z"
 status = "completed"
-collected_at = "2026-07-10T10:50:53.678047265+00:00"

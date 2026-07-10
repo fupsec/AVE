@@ -1,25 +1,57 @@
 [id]
 ave_id = "AVE-2006-0004"
 cve_id = "CVE-2006-2492"
-aliases = ["CVE-2006-2492"]
+other_ids = []
 
 [basic]
-title = "CVE-2006-2492"
-description = ""
-severity = "UNKNOWN"
-score = 0.0
-sources = ["kev"]
-published = ""
-updated = ""
-remediation = "Refer to vendor advisory and upgrade to fixed version."
+title = "Microsoft Word 畸形对象指针远程代码执行漏洞"
+description = "Microsoft Word (Office 2000 SP3、Office XP SP3、Office 2003 SP1/SP2 及 Microsoft Works Suites 至 2006 版本) 中存在缓冲区溢出漏洞，攻击者可通过畸形对象指针诱使用户打开特制 Word 文档，从而执行任意代码。该漏洞已被 CISA 列入已知利用漏洞目录 (KEV)，确认存在野外利用。"
+severity = "HIGH"
+source = "nvd"
+published = "2006-05-19"
+updated = "2026-06-16"
 
-[references]
-urls = []
+[score]
+cvss_v2 = 7.6
+cvss_v2_vector = "AV:N/AC:H/Au:N/C:C/I:C/A:C"
+cvss_v3 = 8.8
+cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H"
+
+[affected]
+vendor = "Microsoft"
+product = "Word"
 
 [exploit]
-poc_urls = []
-exp_urls = []
+poc = []
+exp = []
+nuclei_templates = []
+
+[remediation]
+fix = "安装 Microsoft 安全更新 MS06-027。参考官方安全公告。"
+workaround = "如无法安装更新，不要打开来自不可信来源的 Word 文档，并启用 Microsoft Office 的受保护视图功能。"
+steps = ["步骤1: 确认 Microsoft Office 版本 (Office 2000 SP3 / Office XP SP3 / Office 2003 SP1-SP2 / Works Suites)", "步骤2: 访问 Microsoft Update 网站安装 MS06-027 安全更新", "步骤3: 重启系统使更新生效"]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2006-2492"
+other = [
+  { url = "https://docs.microsoft.com/en-us/security-updates/securitybulletins/2006/ms06-027", description = "Microsoft 安全公告 MS06-027" },
+  { url = "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2006-2492", description = "CISA KEV 目录" },
+  { url = "http://isc.sans.org/diary.php?storyid=1345", description = "ISC SANS 零日攻击报告" },
+  { url = "http://www.us-cert.gov/cas/techalerts/TA06-139A.html", description = "US-CERT 技术警报 TA06-139A" },
+  { url = "http://www.securityfocus.com/bid/18037", description = "SecurityFocus BID 18037" },
+  { url = "http://www.kb.cert.org/vuls/id/446012", description = "CERT/CC 漏洞通告 VU#446012" },
+  { url = "http://secunia.com/advisories/20153", description = "Secunia 安全公告 SA20153" },
+  { url = "https://exchange.xforce.ibmcloud.com/vulnerabilities/26556", description = "IBM X-Force 条目" }
+]
+
+[tags]
+tags = ["CWE-120", "Buffer Overflow", "RCE", "KEV"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "none"
+notes = "CVE 由 NVD 和 CERT/CC 确认，已列入 CISA KEV 目录，确认曾在野外被积极利用。该漏洞为 Microsoft Office Word 桌面应用缓冲区溢出，非 HTTP 协议漏洞，无法生成 HTTP PoC 脚本。未找到公开的 PoC/EXP 脚本仓库或 Nuclei 检测模板。"
 
 [meta]
+collected_at = "2026-07-10T12:21:52Z"
 status = "completed"
-collected_at = "2026-07-10T10:50:52.832935921+00:00"
