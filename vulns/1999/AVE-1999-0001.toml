@@ -21,7 +21,7 @@ ave_id = "AVE-1999-0001"
 cve_id = "CVE-1999-0002"
 
 [meta]
-collected_at = "2026-07-10T20:51:33.497423029+00:00"
+collected_at = "2026-07-10T20:51:33.499747063+00:00"
 status = "completed"
 
 [references]
