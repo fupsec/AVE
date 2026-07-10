@@ -1,0 +1,56 @@
+[id]
+ave_id = "AVE-1999-0023"
+cve_id = "CVE-1999-0029"
+avd_id = ""
+other_ids = []
+
+[basic]
+title = "SGI IRIX 'ordist' 命令缓冲区溢出本地权限提升漏洞"
+description = "SGI IRIX 5.x/6.x 系统中的 ordist 命令存在缓冲区溢出漏洞，本地攻击者可通过对 '-d' 选项传递超长参数（包含精心构造的机器可执行代码），触发缓冲区溢出，从而获取 root 权限。"
+severity = "HIGH"
+source = "cve"
+published = "1997-07-16"
+updated = "2026-06-16"
+
+[score]
+cvss_v2 = 7.2
+cvss_v2_vector = "AV:L/AC:L/Au:N/C:C/I:C/A:C"
+cvss_v3 = 8.4
+cvss_v3_vector = "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+cvss_v4 = 0.0
+cvss_v4_vector = ""
+
+[affected]
+vendor = "Silicon Graphics (SGI)"
+product = "IRIX"
+
+[exploit]
+poc = [
+  { url = "https://www.exploit-db.com/exploits/19317", description = "ordist 缓冲区溢出本地权限提升 PoC 利用代码", source = "exploitdb" }
+]
+exp = [
+  { url = "https://www.exploit-db.com/exploits/19317", description = "ordist 缓冲区溢出本地提权 EXP（C 语言源码）", source = "exploitdb" }
+]
+nuclei_templates = []
+
+[remediation]
+fix = "升级到 SGI IRIX 修复版本或应用官方安全补丁。由于该漏洞年代久远且 SGI 已停止支持，建议迁移到受支持的现代操作系统。"
+workaround = "限制本地用户对 /usr/bsd/ordist 二进制文件的访问权限，移除 setuid root 权限位。"
+steps = ["步骤1: 检查 ordist 二进制文件权限: ls -la /usr/bsd/ordist", "步骤2: 移除 setuid root 位: chmod u-s /usr/bsd/ordist", "步骤3: 评估并迁移到受支持的现代操作系统"]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0029"
+avd = ""
+other = ["https://www.cve.org/CVERecord?id=CVE-1999-0029", "https://exchange.xforce.ibmcloud.com/vulnerabilities/CVE-1999-0029", "https://www.securityfocus.com/bid/415/info"]
+
+[tags]
+tags = ["CWE-125", "CWE-121", "buffer-overflow", "privilege-escalation", "local", "irix", "sgi"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "high"
+notes = "该漏洞为1997年发现的SGI IRIX系统本地权限提升漏洞，缓冲区溢出存在于ordist命令中。Exploit-DB提供完整的C语言利用源码(EDB-ID:19317)。漏洞非HTTP协议，不适用标准PoC脚本生成。"
+
+[meta]
+collected_at = "2026-07-10T10:50:53Z"
+status = "completed"
