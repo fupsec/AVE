@@ -14,7 +14,9 @@ const state = {
   keyword: "",
   severity: "",
   treeCache: null,
+  treeCacheFailed: false,
   assetIndex: null,
+  assetIndexFailed: false,
   lastCards: [],
   sortKey: "ave_id",
   sortDir: "asc",
@@ -115,7 +117,7 @@ function getRepoAssetUrls(index, aveId, type) {
 
 async function ensureAssetIndex() {
   if (state.assetIndex) return state.assetIndex;
-  if (state.assetIndex === null) return null; // previously failed
+  if (state.assetIndexFailed) return null;
 
   try {
     const tree = await gh(`https://api.github.com/repos/${GH.owner}/${GH.repo}/git/trees/${GH.branch}?recursive=1`);
@@ -144,10 +146,10 @@ async function ensureAssetIndex() {
     state.assetIndex = { pocUrlsByAve, expUrlsByAve };
     return state.assetIndex;
   } catch (e) {
+    state.assetIndexFailed = true;
     if (e.status === 403) {
       setStatus("⚠ PoC/EXP 资产索引因 API 限流暂时不可用，列表仍可正常浏览。");
     }
-    state.assetIndex = null; // mark failed so we don't retry
     return null;
   }
 }
@@ -353,7 +355,8 @@ async function searchViaCodeApi(keyword, page) {
 
 async function ensureTreeCache() {
   if (state.treeCache) return state.treeCache;
-  if (state.treeCache === null) return []; // previously failed
+  if (state.treeCacheFailed) return [];
+
   try {
     const tree = await gh(`https://api.github.com/repos/${GH.owner}/${GH.repo}/git/trees/${GH.branch}?recursive=1`);
     const all = (tree.tree || [])
@@ -373,12 +376,15 @@ async function ensureTreeCache() {
     state.treeCache = all;
     return all;
   } catch (e) {
-    state.treeCache = null; // mark failed
+    state.treeCacheFailed = true;
     throw e;
   }
 }
 
 async function searchViaTreeFallback(keyword, page) {
+  if (state.treeCacheFailed) {
+    throw new Error("GitHub API 速率限制已达，无法获取列表数据。请稍后再试。");
+  }
   const all = await ensureTreeCache();
   const kw = (keyword || "").trim().toLowerCase();
   const filtered = kw
