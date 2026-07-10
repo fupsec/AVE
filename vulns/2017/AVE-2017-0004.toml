@@ -1,0 +1,25 @@
+[id]
+ave_id = "AVE-2017-0004"
+cve_id = "CVE-2017-9047"
+aliases = ["CVE-2017-9047"]
+
+[basic]
+title = "libxml2 xmlSnprintfElementContent 栈缓冲区溢出漏洞"
+description = "libxml2 2.9.4版本中的valid.c文件的xmlSnprintfElementContent函数存在栈缓冲区溢出漏洞。当对不可信文档或不可信DTD进行DTD验证时，攻击者可通过构造特制的XML文件触发堆栈缓冲区溢出，导致使用libxml2的应用程序（如PHP）崩溃，造成拒绝服务。"
+severity = "HIGH"
+score = 7.5
+sources = ["nvd", "msrc"]
+published = "2017-05-18"
+updated = "2026-06-16"
+remediation = "升级到修复版本的libxml2。Debian系统参考DSA-3952，Gentoo参考GLSA 201711-01。也可参考补丁：https://bugzilla.gnome.org/show_bug.cgi?id=781333"
+
+[references]
+urls = ["https://nvd.nist.gov/vuln/detail/CVE-2017-9047", "http://www.debian.org/security/2017/dsa-3952", "https://security.gentoo.org/glsa/201711-01", "http://www.securityfocus.com/bid/98599", "http://www.openwall.com/lists/oss-security/2017/05/15/1", "https://bugzilla.gnome.org/show_bug.cgi?id=781333"]
+
+[exploit]
+poc_urls = ["http://www.openwall.com/lists/oss-security/2017/05/15/1"]
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T10:18:58Z"

@@ -1,0 +1,25 @@
+[id]
+ave_id = "AVE-2017-0004"
+cve_id = "CVE-2017-9047"
+aliases = ["CVE-2017-9047"]
+
+[basic]
+title = "CVE-2017-9047"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["msrc"]
+published = ""
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T12:12:12.487075644+00:00"
