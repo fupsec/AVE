@@ -1,65 +1,35 @@
-[affected]
-product = "Linux Kernel (drm/amd/pm GPU 驱动)"
-vendor = "AMD"
-
-[authenticity]
-cve_confidence = "high"
-notes = "该漏洞为 Linux 内核 AMD GPU 驱动的内存泄漏问题，非 HTTP 协议漏洞。NVD 已分配 CVSS 评分，确认漏洞存在。目前无公开 PoC/EXP。"
-poc_confidence = "none"
-
-[basic]
-description = "在 Linux 内核的 drm/amd/pm 驱动中，内存在 renoir_init_smc_tables() 函数中为 gpu_metrics_table 分配，但在 smu_v12_0_fini_smc_tables() 函数中未被释放，导致潜在的内存泄漏。"
-published = "2025-02-26"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 5.5
-severity = "MEDIUM"
-source = "msrc"
-sources = ["unknown"]
-title = "drm/amd/pm: 修复 gpu_metrics_table 潜在的内存泄漏"
-updated = "2026-06-17"
-
-[exploit]
-exp = []
-nuclei_templates = []
-poc = []
-
 [id]
-avd_id = ""
 ave_id = "AVE-2021-0001"
 cve_id = "CVE-2021-47658"
-other_ids = []
+aliases = ["CVE-2021-47658"]
 
-[meta]
-collected_at = "2026-07-10T12:52:01Z"
-status = "completed"
+[basic]
+title = "Linux内核AMD GPU驱动smu_v12_0 gpu_metrics_table内存泄漏漏洞"
+description = "Linux内核AMD GPU驱动（amdgpu）的SMU v12.0电源管理组件中存在内存泄漏漏洞。在renoir_init_smc_tables()函数中为gpu_metrics_table分配了内存，但smu_v12_0_fini_smc_tables()函数未释放该内存，导致内核内存泄漏。本地攻击者可利用此漏洞通过反复加载/卸载驱动触发内存耗尽，造成系统拒绝服务。影响Linux内核5.10至5.17版本之间的AMD Renoir APU平台。"
+severity = "MEDIUM"
+score = 5.5
+remediation = "升级Linux内核至5.17及以上版本，或合入补丁commit 583637d66a70fc7090e12fb0ebbacc33d39e2214。对于已部署AMD Renoir APU的系统，应尽快更新内核以修复内存泄漏问题。"
+published = "2025-02-26"
+updated = "2026-06-17"
+sources = ["nvd", "msrc"]
+
+[affected]
+vendor = "Linux"
+product = "Linux Kernel"
+versions = ["5.10 - 5.17"]
+
+[exploit]
+poc_urls = []
+exp_urls = []
+nuclei_templates = []
 
 [references]
-avd = ""
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2021-47658"
-other = ["https://git.kernel.org/stable/c/583637d66a70fc7090e12fb0ebbacc33d39e2214"]
-
-[remediation]
-fix = "升级 Linux 内核到 5.17 或更高版本，或应用补丁 https://git.kernel.org/stable/c/583637d66a70fc7090e12fb0ebbacc33d39e2214。"
-steps = [
-    "步骤1: 使用 uname -r 确认当前内核版本",
-    "步骤2: 若版本低于 5.17，升级内核到 5.17 或更高版本",
-    "步骤3: 重启系统使新内核生效",
+urls = [
+    "https://nvd.nist.gov/vuln/detail/CVE-2021-47658",
+    "https://git.kernel.org/stable/c/583637d66a70fc7090e12fb0ebbacc33d39e2214",
+    "https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/commit/?id=583637d66a70fc7090e12fb0ebbacc33d39e2214"
 ]
-workaround = "限制本地用户访问 GPU 设备文件（/dev/dri/*），降低被利用风险。"
 
-[score]
-cvss_v2 = 5.0
-cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:N/A:N"
-cvss_v3 = 5.5
-cvss_v3_vector = "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H"
-cvss_v4 = 0.0
-cvss_v4_vector = ""
-
-[tags]
-tags = [
-    "CWE-401",
-    "memory-leak",
-    "kernel",
-    "amd",
-    "gpu",
-]
+[meta]
+status = "completed"
+collected_at = "2026-07-10T19:19:36Z"

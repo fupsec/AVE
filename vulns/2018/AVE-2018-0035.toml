@@ -1,25 +1,34 @@
-[basic]
-description = "Vulnerability identified as CVE-2018-25106. Please refer to vendor advisory for details."
-published = "2026-07-10"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 5.0
-severity = "MEDIUM"
-sources = ["avd"]
-title = "CVE-2018-25106 vulnerability"
-updated = "2026-07-10"
-
-[exploit]
-exp_urls = []
-poc_urls = []
-
 [id]
-aliases = ["CVE-2018-25106"]
 ave_id = "AVE-2018-0035"
 cve_id = "CVE-2018-25106"
+aliases = ["CVE-2018-25106", "VulDB-289163"]
 
-[meta]
-collected_at = "2026-07-10T18:52:33.732545140+00:00"
-status = "completed"
+[basic]
+title = "webuidesigning NebulaX 主题 Legacy.php SQL 注入漏洞"
+description = "NebulaX WordPress 主题 5.0 及之前版本的 libs/Legacy/Legacy.php 中 nebula_send_to_hubspot 函数存在 SQL 注入漏洞。该函数将用户可控的 nebula_id 参数直接拼接进 SQL 查询语句，攻击者可在低权限认证状态下远程注入恶意 SQL 语句，导致数据库信息泄露、数据篡改等安全危害，攻击复杂度低且无需用户交互。"
+severity = "MEDIUM"
+score = 6.3
+cvss_v3 = "AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:L"
+cvss_v4 = "AV:N/AC:L/AT:N/PR:L/UI:N/VC:L/VI:L/VA:L/SC:N/SI:N/SA:N"
+remediation = "升级 NebulaX 主题至 5.0 以上版本，或应用 GitHub 提交 41230a81db0f671c570c2644bc2f80565ca83c5a 补丁。该修复使用 wpdb->prepare 参数化查询替代原始字符串拼接，从根本上消除 SQL 注入风险。"
+published = "2024-12-23"
+updated = "2026-06-16"
+sources = ["nvd", "avd", "github", "vuldb"]
+
+[affected]
+vendor = "webuidesigning"
+product = "NebulaX Theme"
+
+[exploit]
+poc_urls = []
+exp_urls = []
+nuclei_templates = []
 
 [references]
-urls = []
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2018-25106"
+avd = "https://avd.aliyun.com/detail/CVE-2018-25106"
+other = ["https://github.com/webuidesigning/NebulaX/commit/41230a81db0f671c570c2644bc2f80565ca83c5a", "https://vuldb.com/?id.289163", "https://cve.org/CVERecord?id=CVE-2018-25106"]
+
+[meta]
+status = "completed"
+collected_at = "2026-07-11T00:00:00Z"

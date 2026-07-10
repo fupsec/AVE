@@ -1,33 +1,40 @@
-[basic]
-description = "Vulnerability identified as CVE-1999-0025. Please refer to vendor advisory for details."
-published = "2026-07-10"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 7.5
-severity = "HIGH"
-sources = ["exploitdb"]
-title = "CVE-1999-0025 vulnerability"
-updated = "2026-07-10"
-
-[exploit]
-exp_urls = []
-poc_urls = []
-
 [id]
-aliases = ["CVE-1999-0025"]
 ave_id = "AVE-1999-0018"
 cve_id = "CVE-1999-0025"
+aliases = ["CVE-1999-0025"]
 
-[meta]
-collected_at = "2026-07-10T11:13:57.017353734+00:00"
-status = "completed"
+[basic]
+title = "SGI IRIX df命令缓冲区溢出漏洞导致本地权限提升"
+description = "SGI IRIX 5.x和6.x系统中的df命令存在缓冲区溢出漏洞。攻击者通过向df命令的-f选项提供超长参数触发缓冲区溢出，精心构造的包含MIPS机器代码的缓冲区可导致任意代码执行，从而获取root权限。该漏洞允许本地用户利用df程序中的内存破坏缺陷，以root权限执行任意命令。"
+severity = "HIGH"
+score = 7.2
+remediation = "升级SGI IRIX系统至厂商修复版本，安装最新的安全补丁。限制本地用户对df命令的访问权限，遵循最小权限原则降低风险。"
+published = "1997-07-16"
+updated = "2026-06-16"
+sources = ["nvd", "exploitdb"]
+
+[affected]
+vendor = "SGI"
+product = "IRIX"
+
+[exploit]
+poc = [
+  { url = "https://www.exploit-db.com/exploits/19274", description = "SGI IRIX 6.3 df命令本地权限提升PoC", source = "exploitdb" }
+]
+exp = [
+  { url = "https://www.exploit-db.com/exploits/19274", description = "SGI IRIX 6.3 df命令本地权限提升EXP（含完整C源码）", source = "exploitdb" }
+]
+nuclei_templates = []
 
 [references]
-urls = []
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0025"
+other = [
+  "http://www.cert.org/advisories/CA-1997-21.html",
+  "http://www.kb.cert.org/vuls/id/20851",
+  "http://www.securityfocus.com/bid/346",
+  "https://exchange.xforce.ibmcloud.com/vulnerabilities/440"
+]
 
-[score]
-cvss_v2 = 7.8
-cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:N/A:C"
-cvss_v3 = 7.5
-cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
-cvss_v4 = 0.0
-cvss_v4_vector = ""
+[meta]
+collected_at = "2026-07-10T11:15:28+00:00"
+status = "completed"

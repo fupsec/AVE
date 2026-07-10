@@ -21,7 +21,7 @@ ave_id = "AVE-2026-0045"
 cve_id = "CVE-2026-48737"
 
 [meta]
-collected_at = "2026-07-10T18:35:11.897491284+00:00"
+collected_at = "2026-07-10T19:14:37.383616143+00:00"
 status = "completed"
 
 [references]
