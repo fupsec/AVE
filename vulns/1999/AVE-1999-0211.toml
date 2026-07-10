@@ -1,25 +1,35 @@
-[basic]
-description = "Vulnerability identified as CVE-1999-0224. Please refer to vendor advisory for details."
-published = "2026-07-10"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 5.0
-severity = "MEDIUM"
-sources = ["cve"]
-title = "CVE-1999-0224 vulnerability"
-updated = "2026-07-10"
-
-[exploit]
-exp_urls = []
-poc_urls = []
-
 [id]
-aliases = ["CVE-1999-0224"]
 ave_id = "AVE-1999-0211"
 cve_id = "CVE-1999-0224"
+aliases = ["CVE-1999-0224"]
 
-[meta]
-collected_at = "2026-07-10T18:43:37.119017904+00:00"
-status = "completed"
+[basic]
+title = "Microsoft Windows NT 4.0 Messenger 服务长用户名拒绝服务漏洞"
+description = "Windows NT 4.0 Messenger 服务在处理远程消息时存在缓冲区溢出漏洞。远程攻击者可以通过发送包含超长用户名的特制网络消息（通过 NET SEND 或 RPC），触发 Messenger 服务中的缓冲区溢出，导致服务崩溃或系统无响应，造成拒绝服务。该漏洞影响 Windows NT 4.0 及多个服务包版本（SP1-SP5），攻击者无需身份验证即可通过网络利用该漏洞（CVSS v2 访问向量为网络）。"
+severity = "MEDIUM"
+score = 5.0
+cvss_v2 = 5.0
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:N/A:N"
+remediation = "升级到 Windows NT 4.0 Service Pack 6 或更高版本。鉴于 Windows NT 4.0 已停止支持，建议迁移至受支持的 Windows 操作系统版本。也可通过禁用 Messenger 服务（net stop messenger）缓解风险。"
+published = "1999-07-23"
+updated = "2026-06-16"
+sources = ["cve"]
+
+[affected]
+vendor = "Microsoft"
+product = "Windows NT 4.0"
+
+[exploit]
+poc_urls = []
+exp_urls = []
+nuclei_templates = []
 
 [references]
-urls = []
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0224"
+other = [
+    "https://www.cve.org/CVERecord?id=CVE-1999-0224"
+]
+
+[meta]
+collected_at = "2026-07-11T00:00:00Z"
+status = "completed"
