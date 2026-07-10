@@ -1,25 +1,57 @@
 [id]
 ave_id = "AVE-1999-0008"
 cve_id = "CVE-1999-0014"
-aliases = ["CVE-1999-0014"]
+avd_id = ""
+other_ids = []
 
 [basic]
-title = "CVE-1999-0014"
-description = ""
-severity = "UNKNOWN"
-score = 0.0
-sources = ["exploitdb"]
-published = ""
-updated = ""
-remediation = "Refer to vendor advisory and upgrade to fixed version."
+title = "CDE dtappgather 程序符号链接漏洞导致本地权限提升"
+description = "由于不当的权限检查，CDE 桌面环境中的 dtappgather 程序允许本地攻击者通过符号链接攻击或设置 DTUSERSESSION 环境变量覆盖任意文件权限，从而获取提升的权限。受影响系统包括 HP HP-UX 10.20/11.0、IBM AIX 4.3、SCO Unixware 7.0 和 Sun Solaris 2.6。"
+severity = "HIGH"
+source = "nvd"
+published = "1998-01-21"
+updated = "1999-11-03"
 
-[references]
-urls = []
+[score]
+cvss_v2 = 7.2
+cvss_v2_vector = "AV:L/AC:L/Au:N/C:C/I:C/A:C"
+cvss_v3 = 0.0
+cvss_v3_vector = ""
+cvss_v4 = 0.0
+cvss_v4_vector = ""
+
+[affected]
+vendor = "多种Unix厂商"
+product = "CDE (Common Desktop Environment)"
 
 [exploit]
-poc_urls = []
-exp_urls = []
+poc = []
+exp = [
+  { url = "https://www.exploit-db.com/exploits/19108", description = "HP-UX/AIX/SCO/Solaris CDE dtappgather 本地文件权限更改利用", source = "exploitdb" }
+]
+nuclei_templates = []
+
+[remediation]
+fix = "参考厂商安全公告，升级到包含修复的 CDE 版本。"
+workaround = "如无法升级，可移除 dtappgather 程序的 setuid 权限位，限制其执行。"
+steps = ["步骤1: 确认系统是否运行 CDE 桌面环境", "步骤2: 应用厂商安全补丁或升级系统", "步骤3: 如无法升级，移除 dtappgather 的 setuid 位: chmod u-s /usr/dt/bin/dtappgather"]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0014"
+avd = ""
+other = [
+  "http://sunsolve.sun.com/pub-cgi/retrieve.pl?doctype=coll&doc=secbull/185",
+  "http://www1.itrc.hp.com/service/cki/docDisplay.do?docId=HPSBUX9801-075"
+]
+
+[tags]
+tags = ["CWE-59", "CWE-264", "本地提权", "符号链接", "CDE", "Solaris", "HP-UX", "AIX"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "high"
+notes = "NVD已确认，有完整的 Exploit-DB 利用代码和多个厂商安全公告佐证。该漏洞为本地利用，非 HTTP 协议。"
 
 [meta]
+collected_at = "2026-07-10T10:50:52Z"
 status = "completed"
-collected_at = "2026-07-10T10:50:52.509342021+00:00"
