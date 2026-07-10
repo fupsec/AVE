@@ -1,0 +1,58 @@
+[id]
+ave_id = "AVE-2023-0001"
+cve_id = "CVE-2023-3792"
+avd_id = ""
+other_ids = ["VDB-235059"]
+
+[basic]
+title = "网康NS-ASG安全网关存在信息泄露漏洞"
+description = "网康NS-ASG安全网关6.3版本存在信息泄露漏洞，该漏洞位于/admin/test_status.php文件。攻击者可无需认证直接访问该接口，获取设备运行状态等敏感信息。"
+severity = "MEDIUM"
+source = "nvd"
+published = "2023-07-20"
+updated = "2026-06-17"
+
+[score]
+cvss_v2 = 3.3
+cvss_v2_vector = "AV:A/AC:L/Au:N/C:P/I:N/A:N"
+cvss_v3 = 6.5
+cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N"
+cvss_v4 = 0.0
+cvss_v4_vector = ""
+
+[affected]
+vendor = "北京网康科技"
+product = "NS-ASG安全网关"
+
+[exploit]
+poc = [
+  { url = "https://github.com/CYN521/cve/blob/main/NS-ASG.md", description = "信息泄露PoC - 未授权访问/admin/test_status.php", source = "github" }
+]
+exp = []
+nuclei_templates = []
+
+[remediation]
+fix = "联系厂商（北京网康科技）获取修复版本或补丁。官方未对此漏洞做出回应，建议升级到最新版本。"
+workaround = "通过防火墙或WAF限制对/admin/test_status.php的访问，仅允许授权IP访问，或禁用该测试页面。"
+steps = ["步骤1: 确认NS-ASG版本是否为6.3", "步骤2: 使用ACL限制对/admin/路径的访问", "步骤3: 升级到修复版本"]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2023-3792"
+avd = ""
+other = [
+  "https://vuldb.com/?id.235059",
+  "https://vuldb.com/?ctiid.235059",
+  "https://github.com/CYN521/cve/blob/main/NS-ASG.md"
+]
+
+[tags]
+tags = ["CWE-425", "信息泄露", "未授权访问", "Forced-Browsing"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "high"
+notes = "北京网康科技（Netentsec）未对漏洞披露做出回应。PoC已在GitHub公开，允许未授权访问/admin/test_status.php。"
+
+[meta]
+collected_at = "2026-07-10T14:18:58Z"
+status = "completed"
