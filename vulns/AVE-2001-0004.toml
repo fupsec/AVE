@@ -1,0 +1,54 @@
+[id]
+ave_id = "AVE-2001-0004"
+cve_id = "CVE-2001-1413"
+avd_id = ""
+other_ids = []
+
+[basic]
+title = "ncompress comprexx 函数栈缓冲区溢出漏洞"
+description = "ncompress 4.2.4 及更早版本中的 comprexx 函数存在栈缓冲区溢出漏洞。当该函数在跨越安全边界的环境（如 FTP 服务器）中使用时，远程攻击者可通过提供超长文件名参数执行任意代码。"
+severity = "HIGH"
+source = "nvd"
+published = "2004-12-23"
+updated = "2026-06-16"
+
+[score]
+cvss_v2 = 7.5
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:P/A:P"
+
+[affected]
+vendor = "n/a"
+product = "ncompress"
+
+[exploit]
+poc = []
+exp = []
+nuclei_templates = []
+
+[remediation]
+fix = "升级到 ncompress 4.2.4 以上版本。参考 Red Hat 安全公告 RHSA-2004-536 和 Gentoo 安全公告 GLSA 200410-08。"
+workaround = "如无法升级，避免在跨安全边界的环境中使用 ncompress，或限制传递给 comprexx 函数的文件名长度。"
+steps = ["步骤1: 确认 ncompress 版本", "步骤2: 升级到修复版本（4.2.4 以上）"]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2001-1413"
+avd = ""
+other = [
+  "http://seclists.org/lists/vuln-dev/2001/Nov/0202.html",
+  "http://security.gentoo.org/glsa/glsa-200410-08.xml",
+  "http://www.kb.cert.org/vuls/id/176363",
+  "http://www.redhat.com/support/errata/RHSA-2004-536.html",
+  "https://exchange.xforce.ibmcloud.com/vulnerabilities/10619"
+]
+
+[tags]
+tags = ["CWE-121", "buffer-overflow", "stack-overflow", "ncompress", "rce"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "none"
+notes = "该漏洞为 ncompress 库的栈缓冲区溢出，非 HTTP 协议漏洞，无法生成 HTTP PoC。NVD CVSS v2 评分为 7.5（HIGH），无 CVSS v3/v4 评分。未在 GitHub 或 Exploit-DB 中检索到公开 PoC/EXP。"
+
+[meta]
+collected_at = "2026-07-10T10:18:58Z"
+status = "completed"

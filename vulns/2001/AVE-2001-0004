@@ -1,0 +1,25 @@
+[id]
+ave_id = "AVE-2001-0004"
+cve_id = "CVE-2001-1413"
+aliases = ["CVE-2001-1413"]
+
+[basic]
+title = "CVE-2001-1413"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["osv"]
+published = ""
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T12:12:18.026417975+00:00"
