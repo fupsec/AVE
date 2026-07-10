@@ -1,36 +1,25 @@
-[id]
-ave_id = "AVE-2018-0027"
-cve_id = "CVE-2018-25097"
-aliases = ["VDB-249420"]
-
 [basic]
-title = "Acumos Design Studio 跨站脚本漏洞"
-description = "Acumos Design Studio 至 2.0.7 版本存在跨站脚本(XSS)漏洞。该漏洞源于程序未对用户输入进行充分过滤和转义，攻击者可构造恶意载荷注入页面，当其他用户访问受影响页面时脚本在浏览器中执行，可能导致敏感信息泄露或会话劫持。攻击者可通过远程方式利用该漏洞，无需身份认证。升级至2.0.8版本可修复此问题。"
-severity = "MEDIUM"
-score = 6.1
-cvss_v3 = "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N"
-remediation = "升级 Acumos Design Studio 至 2.0.8 或更高版本。管理员应从 GitHub 获取最新版本(v2.0.8)并执行升级，该版本通过正确过滤和转义用户输入修复了跨站脚本漏洞。"
-published = "2024-01-02"
-updated = "2026-06-16"
-sources = ["nvd", "avd", "vuldb"]
-
-[affected]
-vendor = "Acumos"
-product = "Design Studio"
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2018-25097"
-other = [
-    "https://github.com/acumos/design-studio/commit/0df8a5e8722188744973168648e4c74c69ce67fd",
-    "https://github.com/acumos/design-studio/releases/tag/2.0.8",
-    "https://vuldb.com/?id.249420",
-    "https://vuldb.com/?ctiid.249420"
-]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["avd"]
+title = "CVE-2018-25097 漏洞"
+updated = ""
 
 [exploit]
-poc_urls = []
 exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2018-25097"]
+ave_id = "AVE-2018-0027"
+cve_id = "CVE-2018-25097"
 
 [meta]
+collected_at = "2026-07-10T21:07:27.433659801+00:00"
 status = "completed"
-collected_at = "2026-07-11T00:00:00+00:00"
+
+[references]
+urls = []
