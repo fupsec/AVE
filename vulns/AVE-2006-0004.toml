@@ -1,0 +1,63 @@
+[id]
+ave_id = "AVE-2006-0004"
+cve_id = "CVE-2006-2492"
+avd_id = ""
+other_ids = []
+
+[basic]
+title = "Microsoft Word 格式错误对象指针远程代码执行漏洞"
+description = "Microsoft Word及Microsoft Works Suites中存在缓冲区溢出漏洞，攻击者可利用特制Word文档中的格式错误对象指针触发漏洞，导致远程代码执行。该漏洞已被CISA KEV收录，确认在野活跃利用，并在2006年5月以零日攻击方式被广泛利用。"
+severity = "HIGH"
+source = "nvd"
+published = "2006-05-25"
+updated = "2026-07-10"
+
+[score]
+cvss_v2 = 7.6
+cvss_v2_vector = "AV:N/AC:H/Au:N/C:C/I:C/A:C"
+cvss_v3 = 8.8
+cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H"
+cvss_v4 = 0.0
+cvss_v4_vector = ""
+
+[affected]
+vendor = "Microsoft"
+product = "Word"
+
+[exploit]
+poc = [
+  { url = "http://isc.sans.org/diary.php?storyid=1345", description = "SANS ISC 零日攻击分析报告", source = "other" },
+  { url = "http://isc.sans.org/diary.php?storyid=1346", description = "SANS ISC 漏洞技术细节跟进报告", source = "other" }
+]
+exp = []
+nuclei_templates = []
+
+[remediation]
+fix = "安装微软安全公告MS06-027(KB917336)提供的更新补丁，升级Word到修复版本。该漏洞已被CISA KEV收录，应优先修复。"
+workaround = "不要打开来自不可信来源的Microsoft Word文档(.doc)；在邮件服务器层面拦截可疑的Word文档附件。"
+steps = ["步骤1: 确认Microsoft Word/Office版本", "步骤2: 访问Microsoft Update目录安装MS06-027更新", "步骤3: 重启系统使更新生效", "步骤4: 对用户进行安全意识培训，防范钓鱼文档攻击"]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2006-2492"
+avd = ""
+other = [
+  "https://docs.microsoft.com/en-us/security-updates/securitybulletins/2006/ms06-027",
+  "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
+  "https://www.kb.cert.org/vuls/id/446012",
+  "https://exchange.xforce.ibmcloud.com/vulnerabilities/26556",
+  "http://www.securityfocus.com/bid/18037",
+  "http://isc.sans.org/diary.php?storyid=1345",
+  "http://isc.sans.org/diary.php?storyid=1346"
+]
+
+[tags]
+tags = ["CWE-120", "buffer-overflow", "rce", "kev", "word"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "medium"
+notes = "CVE由MITRE官方发布，已纳入CISA KEV目录，确认存在在野利用。CERT/CC确认存在可利用的漏洞利用代码，但原始PoC以二进制Word文档形式传播，未保留在主流公开漏洞库中。CVSS v2.0 7.6评分。CWE-120缓冲区溢出分类。"
+
+[meta]
+collected_at = "2026-07-10T10:50:53Z"
+status = "completed"
