@@ -9,7 +9,10 @@
   <body>
     <header class="hero">
       <div class="hero-inner">
-        <h1>漏洞详情</h1>
+        <div style="display:flex;align-items:center;gap:0.8rem;">
+          <a href="index.html" class="back-link">← 返回列表</a>
+          <h1 style="margin:0;">漏洞详情</h1>
+        </div>
         <p id="detail-subtitle">正在加载 TOML ...</p>
       </div>
     </header>
@@ -35,18 +38,18 @@
             <span class="flag exp-flag" id="d-exp">EXP：无</span>
           </div>
 
-          <details open>
-            <summary>参考链接</summary>
+          <section class="detail-block">
+            <h4>参考链接</h4>
             <div class="links" id="d-refs"></div>
-          </details>
-          <details>
-            <summary>PoC 链接</summary>
+          </section>
+          <section class="detail-block">
+            <h4>PoC 链接</h4>
             <div class="links" id="d-pocs"></div>
-          </details>
-          <details>
-            <summary>EXP 链接</summary>
+          </section>
+          <section class="detail-block">
+            <h4>EXP 链接</h4>
             <div class="links" id="d-exps"></div>
-          </details>
+          </section>
         </article>
       </section>
     </main>

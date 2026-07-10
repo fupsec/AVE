@@ -16,6 +16,8 @@ const state = {
   treeCache: null,
   assetIndex: null,
   lastCards: [],
+  sortKey: "ave_id",
+  sortDir: "asc",
 };
 
 let loadToken = 0;
@@ -167,6 +169,57 @@ function setStatus(t) {
   if (el) el.textContent = t;
 }
 
+function showLoading(on) {
+  const el = document.getElementById("spinner");
+  if (el) el.style.display = on ? "inline-block" : "none";
+}
+
+function saveUrlState() {
+  const params = new URLSearchParams();
+  if (state.keyword) params.set("q", state.keyword);
+  if (state.severity) params.set("sev", state.severity);
+  if (state.page > 1) params.set("p", String(state.page));
+  const str = params.toString();
+  const url = str ? `?${str}` : window.location.pathname;
+  history.replaceState(null, "", url);
+}
+
+function restoreUrlState() {
+  const params = new URLSearchParams(location.search);
+  return {
+    keyword: params.get("q") || "",
+    severity: params.get("sev") || "",
+    page: parseInt(params.get("p") || "1", 10),
+  };
+}
+
+function updateSortIndicators() {
+  document.querySelectorAll("[data-sort-key]").forEach((th) => {
+    const arrow = th.querySelector(".sort-arrow");
+    if (arrow) {
+      arrow.textContent =
+        th.dataset.sortKey === state.sortKey
+          ? state.sortDir === "asc" ? " ▲" : " ▼"
+          : "";
+    }
+  });
+}
+
+function sortCards(cards) {
+  const key = state.sortKey;
+  const dir = state.sortDir === "asc" ? 1 : -1;
+  return [...cards].sort((a, b) => {
+    let va = a[key], vb = b[key];
+    if (va == null) va = "";
+    if (vb == null) vb = "";
+    if (typeof va === "string") va = va.toLowerCase();
+    if (typeof vb === "string") vb = vb.toLowerCase();
+    if (va < vb) return -1 * dir;
+    if (va > vb) return 1 * dir;
+    return 0;
+  });
+}
+
 function renderPager() {
   document.getElementById("page-info").textContent = `第 ${state.page} / ${state.totalPages} 页（共 ${state.total} 条）`;
   document.getElementById("prev-page").disabled = state.page <= 1;
@@ -249,6 +302,7 @@ function filterBySeverity(cards) {
 async function searchViaCodeApi(keyword, page) {
   let q = `repo:${GH.owner}/${GH.repo} path:vulns extension:toml`;
   if (keyword && keyword.trim()) q += ` ${keyword.trim()}`;
+  if (state.severity) q += ` severity:"${state.severity}"`;
   const data = await gh(`https://api.github.com/search/code?q=${enc(q)}&per_page=${PAGE_SIZE}&page=${page}`);
   state.mode = "search";
   state.total = Math.min(data.total_count || 0, 1000);
@@ -303,6 +357,7 @@ async function fetchListPage(keyword, page) {
 async function runPage(page) {
   const token = ++loadToken;
   state.page = Math.max(1, page);
+  showLoading(true);
   setStatus("正在调用 GitHub API 搜索...");
 
   const rawList = await fetchListPage(state.keyword, state.page);
@@ -318,12 +373,14 @@ async function runPage(page) {
   }
   if (token !== loadToken) return;
 
-  cards.sort((a, b) => a.ave_id.localeCompare(b.ave_id));
-  state.lastCards = cards;
+  state.lastCards = sortCards(cards);
   const finalCards = filterBySeverity(state.lastCards);
   state.loaded = true;
   renderList(finalCards);
   renderPager();
+  updateSortIndicators();
+  saveUrlState();
+  showLoading(false);
   setStatus(`已显示第 ${state.page} 页，当前模式：${state.mode === "search" ? "Code Search" : "Tree Fallback"}。`);
 }
 
@@ -336,30 +393,34 @@ function debounce(fn, wait) {
 }
 
 async function boot() {
+  // ── Restore URL state ──
+  const urlState = restoreUrlState();
+  state.keyword = urlState.keyword;
+  state.severity = urlState.severity;
+
   setStatus("等待加载");
 
   const searchInput = document.getElementById("search");
   const severityInput = document.getElementById("severity");
   const loadFirst = document.getElementById("load-first");
   const searchBtn = document.getElementById("search-btn");
+  const intro = document.getElementById("project-intro");
   const prev = document.getElementById("prev-page");
   const next = document.getElementById("next-page");
 
+  // Restore input values from URL
+  if (urlState.keyword) searchInput.value = urlState.keyword;
+  if (urlState.severity) severityInput.value = urlState.severity;
+
   const rerun = debounce(() => {
     state.keyword = searchInput.value || "";
-    state.severity = "";
-    runPage(1).catch((e) => setStatus(`搜索失败：${e.message}`));
-  }, 300);
-
-  const applySeverityLocal = () => {
     state.severity = severityInput.value || "";
-    if (!state.loaded) {
-      setStatus("尚未加载列表，请先点击“开始加载”或“搜索”。");
-      return;
-    }
-    renderList(filterBySeverity(state.lastCards));
-    setStatus("已在当前页本地筛选严重性（未新增 API 请求）。");
-  };
+    runPage(1)
+      .then(() => {
+        if (intro) intro.style.display = "none";
+      })
+      .catch((e) => setStatus(`搜索失败：${e.message}`));
+  }, 300);
 
   searchBtn.addEventListener("click", rerun);
   loadFirst.addEventListener("click", () => {
@@ -368,13 +429,46 @@ async function boot() {
       return;
     }
     state.keyword = "";
+    state.severity = "";
     searchInput.value = "";
-    runPage(1).catch((e) => setStatus(`加载失败：${e.message}`));
+    severityInput.value = "";
+    runPage(1)
+      .then(() => {
+        if (intro) intro.style.display = "none";
+      })
+      .catch((e) => setStatus(`加载失败：${e.message}`));
   });
   searchInput.addEventListener("keydown", (e) => {
     if (e.key === "Enter") rerun();
   });
-  severityInput.addEventListener("change", applySeverityLocal);
+
+  // ── Severity triggers new search (not just local filter) ──
+  severityInput.addEventListener("change", () => {
+    if (!state.loaded) {
+      setStatus("尚未加载列表，请先点击“开始加载”或“搜索”。");
+      return;
+    }
+    rerun();
+  });
+
+  // ── Sort on header click ──
+  document.querySelectorAll("[data-sort-key]").forEach((th) => {
+    th.addEventListener("click", () => {
+      const key = th.dataset.sortKey;
+      if (state.sortKey === key) {
+        state.sortDir = state.sortDir === "asc" ? "desc" : "asc";
+      } else {
+        state.sortKey = key;
+        state.sortDir = "asc";
+      }
+      updateSortIndicators();
+      if (state.loaded && state.lastCards.length) {
+        state.lastCards = sortCards(state.lastCards);
+        renderList(filterBySeverity(state.lastCards));
+      }
+    });
+  });
+
   prev.addEventListener("click", () => {
     if (!state.loaded) {
       setStatus("尚未加载列表，请先点击“开始加载”。");
@@ -390,6 +484,16 @@ async function boot() {
     runPage(state.page + 1).catch((e) => setStatus(`翻页失败：${e.message}`));
   });
   renderPager();
+  updateSortIndicators();
+
+  // ── Auto-load if URL has search params ──
+  if (urlState.keyword || urlState.severity) {
+    runPage(urlState.page)
+      .then(() => {
+        if (intro) intro.style.display = "none";
+      })
+      .catch((e) => setStatus(`搜索失败：${e.message}`));
+  }
 }
 
 boot();
