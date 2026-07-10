@@ -1,88 +1,28 @@
-[affected]
-product = "AUTOMGEN"
-vendor = "IRAI"
-
-[authenticity]
-cve_confidence = "high"
-notes = "漏洞由 Luigi Auriemma 于 2011 年 10 月发现并公开，Exploit-DB 17964 包含完整的 PoC 畸形项目文件。VulnCheck 于 2025 年 11 月分配 CVE 编号。CISA SSVC 评估: exploitation=poc, automatable=no, technicalImpact=partial。NVD CVSS v4.0: 6.9 MEDIUM (CNA: VulnCheck)。PoC 为桌面应用文件解析漏洞，非 HTTP 协议，无法生成标准 HTTP PoC 脚本。"
-poc_confidence = "high"
-
 [basic]
-description = "AUTOMGEN 8.0.0.7及之前版本（也称为8.022）在处理项目文件时存在释放后使用漏洞，当处理某些畸形字段时会释放对象随后解引用悬空指针。攻击者可通过向受害者发送特制的项目文件（.gep/.gepj），在目标系统上触发崩溃，导致拒绝服务。在一定条件下，通过操控内存中的间接调用可能实现远程代码执行。"
-published = "2025-11-12"
-remediation = "厂商未提供官方补丁，建议升级 AUTOMGEN 至 8.0.0.7 之后的安全版本。若无法升级，应避免打开不可信来源的项目文件，并在隔离环境中运行该软件。"
-score = 6.9
-severity = "MEDIUM"
-sources = ["avd", "msrc", "nvd"]
-title = "IRAI AUTOMGEN 8.0.0.7 及更早版本释放后使用漏洞"
-updated = "2026-06-16"
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = [
+    "avd",
+    "msrc",
+]
+title = "CVE-2011-10034 漏洞"
+updated = ""
 
 [exploit]
-exp = []
-nuclei_templates = []
-
-[[exploit.poc]]
-description = "Exploit-DB 17964 - 畸形项目文件 UAF 拒绝服务 PoC"
-source = "exploit-db"
-url = "https://www.exploit-db.com/exploits/17964"
-
-[[exploit.poc]]
-description = "PoC 畸形项目文件（触发 UAF 崩溃）"
-source = "exploit-db"
-url = "https://gitlab.com/exploit-database/exploitdb-bin-sploits/-/raw/main/bin-sploits/17964.zip"
-
-[[exploit.poc]]
-description = "作者 Luigi Auriemma 提供的原始 PoC 畸形项目文件"
-source = "其他"
-url = "http://aluigi.org/poc/automgen_1.zip"
+exp_urls = []
+poc_urls = []
 
 [id]
+aliases = ["CVE-2011-10034"]
 ave_id = "AVE-2011-0001"
 cve_id = "CVE-2011-10034"
-aliases = ["CVE-2011-10034"]
 
 [meta]
-collected_at = "2026-07-11T08:00:00Z"
+collected_at = "2026-07-10T20:59:20.127165326+00:00"
 status = "completed"
 
 [references]
-avd = ""
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2011-10034"
-
-[[references.other]]
-description = "Exploit-DB 17964 - AUTOMGEN UAF PoC"
-url = "https://www.exploit-db.com/exploits/17964"
-
-[[references.other]]
-description = "VulnCheck 安全公告"
-url = "https://www.vulncheck.com/advisories/irai-automgen-use-after-free-remote-dos"
-
-[[references.other]]
-description = "IRAI AUTOMGEN 官方产品页面"
-url = "https://en.iraifrance.com/automgen"
-
-[remediation]
-fix = "厂商 IRAI 已发布新版 AUTOMGEN（如 a8124.exe），建议升级到最新版本。如厂商不再为旧版本提供安全更新，建议隔离运行或迁移至替代产品。"
-steps = [
-    "步骤1: 确认 AUTOMGEN 版本是否为 8.0.0.7 或更早",
-    "步骤2: 从 IRAI 官网下载并安装最新版本 (http://www.irai.com/a8/a8124.exe)",
-    "步骤3: 如无法升级，限制对 AUTOMGEN 项目文件的访问权限",
-]
-workaround = "避免打开来自不可信来源的 AUTOMGEN 项目文件（.gep/.gepj）。在隔离环境中运行 AUTOMGEN。不要以管理员权限运行该软件。"
-
-[score]
-cvss_v2 = 10.0
-cvss_v2_vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C"
-cvss_v3 = 9.8
-cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
-cvss_v4 = 6.9
-cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:A/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N"
-
-[tags]
-tags = [
-    "CWE-416",
-    "Use-After-Free",
-    "DoS",
-    "Desktop",
-    "SCADA",
-]
+urls = []
