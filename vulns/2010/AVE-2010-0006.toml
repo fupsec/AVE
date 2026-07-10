@@ -1,0 +1,54 @@
+[id]
+ave_id = "AVE-2010-0006"
+cve_id = "CVE-2010-0840"
+avd_id = ""
+other_ids = ["ZDI-10-056", "OSVDB-63483", "GHSA-8rrv-3xx7-wmfc"]
+
+[basic]
+title = "Oracle Java Runtime Environment 可信方法链远程代码执行漏洞"
+description = "Oracle Java SE 及 Java for Business 的 Java Runtime Environment（JRE）组件中存在未指定漏洞，影响 Java SE 6 Update 18、5.0 Update 23 及 1.4.2_25 及更早版本。攻击者可通过未知向量远程利用该漏洞，影响机密性、完整性和可用性。该漏洞被称为 Trusted Methods Chaining Remote Code Execution Vulnerability，与 JRE 在执行特权方法时的检查缺陷有关，攻击者可通过 (1) 继承可信类但未修改特定方法的不可信对象，或 (2) 利用接口的类似信任问题来执行任意代码。"
+severity = "CRITICAL"
+source = "nvd"
+published = "2010-04-01"
+updated = "2026-06-16"
+
+[score]
+cvss_v2 = 7.5
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:P/A:P"
+cvss_v3 = 9.8
+cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+cvss_v4 = 0.0
+cvss_v4_vector = ""
+
+[affected]
+vendor = "Oracle"
+product = "Java Runtime Environment (JRE)"
+
+[exploit]
+poc = []
+exp = [
+  { url = "https://www.exploit-db.com/exploits/16297", description = "Java Statement.invoke() Trusted Method Chain Metasploit 模块，通过恶意 Applet 实现远程代码执行", source = "exploit-db" }
+]
+nuclei_templates = []
+
+[remediation]
+fix = "升级 Oracle Java SE 至 6 Update 19、5.0 Update 24 或 1.4.2_26 及更高版本。各 Linux 发行版也已发布相应安全更新（如 RHSA-2010:0337、RHSA-2010:0338、USN-923-1 等）。"
+workaround = "如无法立即升级，可通过浏览器设置禁用 Java 插件，或配置 Java 安全策略限制不受信任的 Applet 执行。"
+steps = ["步骤1: 检查当前安装的 Java 版本（java -version）", "步骤2: 升级至 Oracle Java SE 6 Update 19 或更高版本", "步骤3: 对于 Linux 系统，应用发行版提供的安全补丁（如 yum update java-1.6.0-sun）", "步骤4: 验证升级后版本不再受漏洞影响"]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2010-0840"
+avd = ""
+other = ["https://www.zerodayinitiative.com/advisories/ZDI-10-056", "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2010-0840", "https://github.com/advisories/GHSA-8rrv-3xx7-wmfc", "https://ubuntu.com/security/CVE-2010-0840", "https://www.microsoft.com/en-us/wdsi/threats/malware-encyclopedia-description?Name=Exploit:Java/CVE-2010-0840", "https://bugzilla.redhat.com/show_bug.cgi?id=575846", "https://www.oracle.com/technetwork/topics/security/javacpumar2010-083341.html"]
+
+[tags]
+tags = ["RCE", "CWE-noinfo", "KEV", "java", "applet", "sandbox-escape"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "high"
+notes = "该漏洞已被 CISA 纳入已知被利用漏洞目录（KEV，2022-05-25），在野被积极利用。Metasploit 模块（EDB-16297）可用，Microsoft Defender 将其检测为 Exploit:Java/CVE-2010-0840。"
+
+[meta]
+collected_at = "2026-07-10T00:00:00Z"
+status = "completed"

@@ -1,0 +1,31 @@
+[info]
+id = "POC-AVE-2018-0040"
+name = "Django-Helpdesk os.umask(0) 敏感数据泄露检测"
+author = "AVE"
+severity = "medium"
+tags = ["sensitive-data-exposure", "insecure-permissions", "django"]
+description = "检测 django-helpdesk < 1.0.0 中 models.py 是否存在不安全的 os.umask(0) 调用，该调用会导致文件权限过于宽松，引发敏感数据泄露。"
+vuln_id = ["CVE-2018-25111", "AVE-2018-0040"]
+
+[poc]
+logic = "all"
+
+[[poc.requests]]
+method = "CHECK_FILE_PATTERN"
+path = "{{PYTHON_SITE_PACKAGES}}/helpdesk/models.py"
+
+[[poc.requests.matchers]]
+type = "word"
+part = "file_content"
+words = ["os.umask(0)"]
+expect = true
+
+[[poc.requests]]
+method = "CHECK_FILE_PATTERN"
+path = "{{PYTHON_SITE_PACKAGES}}/helpdesk/management/commands/create_initial_users.py"
+
+[[poc.requests.matchers]]
+type = "word"
+part = "file_content"
+words = ["os.umask(0)"]
+expect = true
