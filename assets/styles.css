@@ -108,6 +108,28 @@ body {
   color: var(--text);
 }
 
+.filter-actions {
+  display: flex;
+  gap: 0.55rem;
+  margin-bottom: 0.55rem;
+}
+
+.filter-actions button {
+  border: 1px solid #334155;
+  border-radius: 8px;
+  background: #111827;
+  color: #e5e7eb;
+  padding: 0.35rem 0.72rem;
+  cursor: pointer;
+}
+
+.filter-tip {
+  margin: 0;
+  color: #93c5fd;
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
 .cards {
   display: grid;
   gap: 0.8rem;
@@ -173,6 +195,8 @@ body {
   border: 1px solid #334155;
   border-radius: 8px;
   padding: 0.2rem 0.5rem;
+  background: #111827;
+  cursor: pointer;
 }
 
 .detail-link:hover {
@@ -271,6 +295,60 @@ details > summary {
 
 .links a:hover {
   text-decoration: underline;
+}
+
+.inline-detail {
+  margin-top: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #0b1424;
+  padding: 0.9rem;
+}
+
+.inline-detail-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+}
+
+.inline-detail-head h3 {
+  margin: 0;
+}
+
+#close-detail {
+  border: 1px solid #334155;
+  border-radius: 8px;
+  background: #111827;
+  color: #e5e7eb;
+  padding: 0.25rem 0.7rem;
+  cursor: pointer;
+}
+
+.detail-meta {
+  color: #bfdbfe;
+  margin: 0.5rem 0;
+}
+
+.detail-desc {
+  color: var(--muted);
+  margin: 0.2rem 0 0.65rem;
+  line-height: 1.5;
+}
+
+.detail-flags {
+  margin-bottom: 0.7rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.detail-links a {
+  display: block;
+  margin: 0.25rem 0;
+  color: var(--accent);
+  text-decoration: none;
+  word-break: break-all;
 }
 
 @media (max-width: 900px) {

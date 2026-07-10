@@ -1,0 +1,25 @@
+[id]
+ave_id = "AVE-2015-0017"
+cve_id = "CVE-2015-10122"
+aliases = ["CVE-2015-10122"]
+
+[basic]
+title = "WordPress Plugin wp-donate SQL注入漏洞(CVE-2015-10122)"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["avd"]
+published = "2023-07-18"
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T06:54:20.153002886+00:00"

@@ -1,0 +1,25 @@
+[id]
+ave_id = "AVE-2015-0020"
+cve_id = "CVE-2015-20109"
+aliases = ["CVE-2015-20109"]
+
+[basic]
+title = "GNU C Library 安全漏洞(CVE-2015-20109)"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["avd"]
+published = "2023-06-26"
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T06:54:25.331496419+00:00"

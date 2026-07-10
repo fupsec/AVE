@@ -1,0 +1,25 @@
+[id]
+ave_id = "AVE-2016-0001"
+cve_id = "CVE-2016-15032"
+aliases = ["CVE-2016-15032"]
+
+[basic]
+title = "mback2k mh_httpbl 跨站脚本漏洞(CVE-2016-15032)"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["avd"]
+published = "2023-06-02"
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T06:54:25.404906187+00:00"

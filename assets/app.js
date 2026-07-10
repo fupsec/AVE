@@ -10,12 +10,56 @@ const state = {
   total: 0,
   totalPages: 1,
   mode: "search", // search | tree
+  loaded: false,
   keyword: "",
   severity: "",
   treeCache: null,
+  lastCards: [],
 };
 
 let loadToken = 0;
+
+function createLinkList(container, links) {
+  container.innerHTML = "";
+  if (!links || !links.length) {
+    const p = document.createElement("p");
+    p.textContent = "（无）";
+    container.appendChild(p);
+    return;
+  }
+  for (const u of links) {
+    const a = document.createElement("a");
+    a.href = u;
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
+    a.textContent = u;
+    container.appendChild(a);
+  }
+}
+
+function renderInlineDetail(c) {
+  const box = document.getElementById("inline-detail");
+  document.getElementById("detail-title").textContent = `${c.ave_id} - ${c.title || "漏洞详情"}`;
+  document.getElementById("detail-meta").textContent = `严重性: ${c.severity} | 评分: ${c.score} | CVE: ${c.cve_id}`;
+  document.getElementById("detail-desc").textContent = c.description || "（无描述）";
+
+  const pocFlag = document.getElementById("detail-poc");
+  const expFlag = document.getElementById("detail-exp");
+  pocFlag.classList.remove("yes");
+  expFlag.classList.remove("yes");
+  pocFlag.textContent = `PoC：${c.has_poc ? "有" : "无"}`;
+  expFlag.textContent = `EXP：${c.has_exp ? "有" : "无"}`;
+  if (c.has_poc) pocFlag.classList.add("yes");
+  if (c.has_exp) expFlag.classList.add("yes");
+
+  createLinkList(document.getElementById("detail-refs"), c.references);
+  createLinkList(document.getElementById("detail-poc-links"), c.poc_urls);
+  createLinkList(document.getElementById("detail-exp-links"), c.exp_urls);
+  createLinkList(document.getElementById("detail-raw"), [c.raw_url]);
+
+  box.hidden = false;
+  box.scrollIntoView({ behavior: "smooth", block: "start" });
+}
 
 function enc(s) {
   return encodeURIComponent(s);
@@ -121,7 +165,7 @@ function renderList(cards) {
     n.querySelector(".meta").textContent = `CVE: ${c.cve_id} | 评分: ${c.score}`;
 
     const detailLink = n.querySelector(".detail-link");
-    detailLink.href = `detail.html?file=${encodeURIComponent(c.file_name)}`;
+    detailLink.addEventListener("click", () => renderInlineDetail(c));
 
     const pocFlag = n.querySelector(".poc-flag");
     const expFlag = n.querySelector(".exp-flag");
@@ -236,7 +280,9 @@ async function runPage(page) {
   if (token !== loadToken) return;
 
   cards.sort((a, b) => a.ave_id.localeCompare(b.ave_id));
-  const finalCards = filterBySeverity(cards);
+  state.lastCards = cards;
+  const finalCards = filterBySeverity(state.lastCards);
+  state.loaded = true;
   renderList(finalCards);
   renderPager();
   setStatus(`已显示第 ${state.page} 页，当前模式：${state.mode === "search" ? "Code Search" : "Tree Fallback"}。`);
@@ -251,29 +297,65 @@ function debounce(fn, wait) {
 }
 
 async function boot() {
-  setStatus("正在加载首批漏洞数据...");
+  setStatus("等待加载");
 
   const searchInput = document.getElementById("search");
   const severityInput = document.getElementById("severity");
+  const loadFirst = document.getElementById("load-first");
+  const searchBtn = document.getElementById("search-btn");
   const prev = document.getElementById("prev-page");
   const next = document.getElementById("next-page");
+  const closeDetail = document.getElementById("close-detail");
 
   const rerun = debounce(() => {
     state.keyword = searchInput.value || "";
-    state.severity = severityInput.value || "";
+    state.severity = "";
     runPage(1).catch((e) => setStatus(`搜索失败：${e.message}`));
-  }, 450);
+  }, 300);
 
-  searchInput.addEventListener("input", rerun);
-  severityInput.addEventListener("change", rerun);
-  prev.addEventListener("click", () => runPage(state.page - 1).catch((e) => setStatus(`翻页失败：${e.message}`)));
-  next.addEventListener("click", () => runPage(state.page + 1).catch((e) => setStatus(`翻页失败：${e.message}`)));
+  const applySeverityLocal = () => {
+    state.severity = severityInput.value || "";
+    if (!state.loaded) {
+      setStatus("尚未加载列表，请先点击“开始加载”或“搜索”。");
+      return;
+    }
+    renderList(filterBySeverity(state.lastCards));
+    setStatus("已在当前页本地筛选严重性（未新增 API 请求）。");
+  };
 
-  try {
-    await runPage(1);
-  } catch (e) {
-    setStatus(`加载失败：${e.message}`);
-  }
+  searchBtn.addEventListener("click", rerun);
+  loadFirst.addEventListener("click", () => {
+    if (state.loaded) {
+      setStatus("列表已加载，可直接搜索或翻页。");
+      return;
+    }
+    state.keyword = "";
+    searchInput.value = "";
+    runPage(1).catch((e) => setStatus(`加载失败：${e.message}`));
+  });
+  searchInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") rerun();
+  });
+  severityInput.addEventListener("change", applySeverityLocal);
+  prev.addEventListener("click", () => {
+    if (!state.loaded) {
+      setStatus("尚未加载列表，请先点击“开始加载”。");
+      return;
+    }
+    runPage(state.page - 1).catch((e) => setStatus(`翻页失败：${e.message}`));
+  });
+  next.addEventListener("click", () => {
+    if (!state.loaded) {
+      setStatus("尚未加载列表，请先点击“开始加载”。");
+      return;
+    }
+    runPage(state.page + 1).catch((e) => setStatus(`翻页失败：${e.message}`));
+  });
+  closeDetail.addEventListener("click", () => {
+    document.getElementById("inline-detail").hidden = true;
+  });
+
+  renderPager();
 }
 
 boot();

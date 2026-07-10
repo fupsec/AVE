@@ -1,0 +1,25 @@
+[id]
+ave_id = "AVE-2015-0019"
+cve_id = "CVE-2015-20108"
+aliases = ["CVE-2015-20108"]
+
+[basic]
+title = "ruby​​-saml 远程代码执行漏洞(CVE-2015-20108)"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["avd"]
+published = "2023-05-28"
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T06:54:24.622320863+00:00"

@@ -1,0 +1,25 @@
+[id]
+ave_id = "AVE-2015-0018"
+cve_id = "CVE-2015-1313"
+aliases = ["CVE-2015-1313"]
+
+[basic]
+title = "teamcity 安全漏洞 (CVE-2015-1313)"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["avd"]
+published = "2023-06-29"
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T06:54:21.718791553+00:00"

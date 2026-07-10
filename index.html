@@ -37,6 +37,10 @@
           <option value="INFO">INFO</option>
           <option value="UNKNOWN">UNKNOWN</option>
         </select>
+        <div class="filter-actions">
+          <button id="load-first" type="button">开始加载</button>
+          <button id="search-btn" type="button">搜索</button>
+        </div>
       </aside>
 
       <section class="panel list-panel">
@@ -48,6 +52,35 @@
           <span id="page-info">第 1 页</span>
           <button id="next-page" type="button">下一页</button>
         </div>
+
+        <section class="inline-detail" id="inline-detail" hidden>
+          <div class="inline-detail-head">
+            <h3 id="detail-title">漏洞详情</h3>
+            <button id="close-detail" type="button">关闭</button>
+          </div>
+          <p id="detail-meta" class="detail-meta"></p>
+          <p id="detail-desc" class="detail-desc"></p>
+          <div class="detail-flags">
+            <span class="flag" id="detail-poc">PoC：无</span>
+            <span class="flag" id="detail-exp">EXP：无</span>
+          </div>
+          <details open>
+            <summary>参考链接</summary>
+            <div id="detail-refs" class="detail-links"></div>
+          </details>
+          <details>
+            <summary>PoC 链接</summary>
+            <div id="detail-poc-links" class="detail-links"></div>
+          </details>
+          <details>
+            <summary>EXP 链接</summary>
+            <div id="detail-exp-links" class="detail-links"></div>
+          </details>
+          <details>
+            <summary>原始文件</summary>
+            <div id="detail-raw" class="detail-links"></div>
+          </details>
+        </section>
       </section>
     </main>
 
@@ -58,7 +91,7 @@
             <strong class="id"></strong>
             <span class="severity"></span>
           </div>
-          <a class="detail-link" target="_blank" rel="noopener noreferrer">查看详情</a>
+          <button class="detail-link" type="button">查看详情</button>
         </div>
         <h3 class="title"></h3>
         <p class="description"></p>

@@ -17,6 +17,7 @@
 ## 搜索架构
 
 - 页面直接使用 GitHub Search API 与 Repository API 检索。
+- 默认直访页面不自动检索；用户点击“开始加载”或“搜索”后才请求 API，以节约配额。
 - 每次 push 后由 GitHub Actions 自动重新部署页面。
 - 漏洞详情页由浏览器端 HTML/JS 直接拉取并解析 `vulns/*.toml` 渲染。
 
