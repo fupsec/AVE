@@ -56,15 +56,7 @@ jobs:
           done
           printf "%-6s %d/%d/%d\\n" "合计" "$TOTAL_E" "$TOTAL_P" "$TOTAL_V" >> /tmp/year_stats.html
           echo '</code></pre>' >> /tmp/year_stats.html
-          python3 << 'PYEOF'
-with open('index.html') as f:
-    html = f.read()
-with open('/tmp/year_stats.html') as f:
-    stats = f.read()
-html = html.replace('<!--YEAR_STATS-->', stats)
-with open('index.html', 'w') as f:
-    f.write(html)
-PYEOF
+          python3 -c "html = open('index.html').read(); stats = open('/tmp/year_stats.html').read(); html = html.replace('<!--YEAR_STATS-->', stats); open('index.html', 'w').write(html)"
           echo "year breakdown updated"
 
       - name: Upload artifact
