@@ -277,10 +277,6 @@ body {
   text-overflow: ellipsis;
 }
 
-.table-cve {
-  color: #cbd5e1;
-}
-
 .table-action {
   white-space: nowrap;
 }
@@ -1120,21 +1116,19 @@ body {
     font-size: 0.68rem;
   }
 
-  /* Hide: CVE(2), Date(5), Score(6), PoC(7), EXP(8) */
-  .vuln-table thead th:nth-child(2),
-  .vuln-table tbody td:nth-child(2),
+  /* Hide: Date(4), Score(5), PoC(6), EXP(7) */
+  .vuln-table thead th:nth-child(4),
+  .vuln-table tbody td:nth-child(4),
   .vuln-table thead th:nth-child(5),
   .vuln-table tbody td:nth-child(5),
   .vuln-table thead th:nth-child(6),
   .vuln-table tbody td:nth-child(6),
   .vuln-table thead th:nth-child(7),
-  .vuln-table tbody td:nth-child(7),
-  .vuln-table thead th:nth-child(8),
-  .vuln-table tbody td:nth-child(8) {
+  .vuln-table tbody td:nth-child(7) {
     display: none;
   }
 
-  /* Remaining columns: AVE(1), Title(3), Severity(4), Action(9) */
+  /* Remaining columns: AVE(1), Title(2), Severity(3), Action(8) */
   .vuln-table thead th:nth-child(1),
   .vuln-table tbody td:nth-child(1) {
     width: 30%;

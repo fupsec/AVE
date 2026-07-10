@@ -323,7 +323,7 @@ function renderList(cards) {
   if (!cards.length) {
     const tr = document.createElement("tr");
     const td = document.createElement("td");
-    td.colSpan = 9;
+    td.colSpan = 8;
     td.className = "table-empty";
     td.textContent = "当前条件下没有结果";
     tr.appendChild(td);
@@ -336,10 +336,6 @@ function renderList(cards) {
 
     const aveTd = document.createElement("td");
     aveTd.textContent = c.ave_id;
-
-    const cveTd = document.createElement("td");
-    cveTd.className = "table-cve";
-    cveTd.textContent = c.cve_id || "无";
 
     const titleTd = document.createElement("td");
     titleTd.className = "table-title";
@@ -384,7 +380,7 @@ function renderList(cards) {
     actionTd.appendChild(detailLink);
 
     tr.className = `sev-row ${sevClass(c.severity).toLowerCase()}`;
-    tr.append(aveTd, cveTd, titleTd, sevTd, dateTd, scoreTd, pocTd, expTd, actionTd);
+    tr.append(aveTd, titleTd, sevTd, dateTd, scoreTd, pocTd, expTd, actionTd);
     tbody.appendChild(tr);
   }
 }
