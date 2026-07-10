@@ -113,6 +113,33 @@ body {
   gap: 0.8rem;
 }
 
+.pager {
+  margin-top: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+}
+
+.pager button {
+  border: 1px solid #334155;
+  border-radius: 8px;
+  background: #111827;
+  color: #e5e7eb;
+  padding: 0.35rem 0.75rem;
+  cursor: pointer;
+}
+
+.pager button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+#page-info {
+  color: #cbd5e1;
+  font-size: 0.9rem;
+}
+
 .status {
   margin-bottom: 0.8rem;
   color: #86efac;
@@ -133,6 +160,25 @@ body {
   gap: 0.4rem;
 }
 
+.head-left {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.detail-link {
+  color: #93c5fd;
+  text-decoration: none;
+  font-size: 0.85rem;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 0.2rem 0.5rem;
+}
+
+.detail-link:hover {
+  text-decoration: underline;
+}
+
 .card h3 {
   margin: 0.6rem 0;
   font-size: 1rem;
@@ -147,6 +193,28 @@ body {
 .meta {
   color: var(--info);
   font-size: 0.9rem;
+}
+
+.flags {
+  margin-top: 0.55rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.flag {
+  font-size: 0.78rem;
+  color: #cbd5e1;
+  border: 1px solid #334155;
+  padding: 0.14rem 0.44rem;
+  border-radius: 999px;
+  background: rgba(51, 65, 85, 0.35);
+}
+
+.flag.yes {
+  color: #86efac;
+  border-color: #166534;
+  background: rgba(22, 101, 52, 0.28);
 }
 
 .severity {

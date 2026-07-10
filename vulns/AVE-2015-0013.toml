@@ -1,0 +1,25 @@
+[id]
+ave_id = "AVE-2015-0013"
+cve_id = "CVE-2015-10118"
+aliases = ["CVE-2015-10118"]
+
+[basic]
+title = "WordPress Plugin WP-CopyProtect 跨站脚本漏洞(CVE-2015-10118)"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["avd"]
+published = "2023-06-12"
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T06:25:00.708914354+00:00"

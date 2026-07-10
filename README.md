@@ -18,17 +18,7 @@
 
 - 页面直接使用 GitHub Search API 与 Repository API 检索。
 - 每次 push 后由 GitHub Actions 自动重新部署页面。
-
-## 初始化独立仓库
-
-```bash
-cd output
-git init -b main
-git add .
-git commit -m "初始化 AVE 公开仓库"
-```
-
-然后添加远程仓库并推送。
+- 漏洞详情页由浏览器端 HTML/JS 直接拉取并解析 `vulns/*.toml` 渲染。
 
 ## GitHub Pages
 

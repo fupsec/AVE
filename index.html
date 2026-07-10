@@ -43,18 +43,30 @@
         <h2>漏洞列表</h2>
         <div id="status" class="status">初始化中...</div>
         <div id="list" class="cards"></div>
+        <div class="pager" id="pager">
+          <button id="prev-page" type="button">上一页</button>
+          <span id="page-info">第 1 页</span>
+          <button id="next-page" type="button">下一页</button>
+        </div>
       </section>
     </main>
 
     <template id="card-template">
       <article class="card">
         <div class="card-head">
-          <strong class="id"></strong>
-          <span class="severity"></span>
+          <div class="head-left">
+            <strong class="id"></strong>
+            <span class="severity"></span>
+          </div>
+          <a class="detail-link" target="_blank" rel="noopener noreferrer">查看详情</a>
         </div>
         <h3 class="title"></h3>
         <p class="description"></p>
         <div class="meta"></div>
+        <div class="flags">
+          <span class="flag poc-flag">PoC：无</span>
+          <span class="flag exp-flag">EXP：无</span>
+        </div>
         <details>
           <summary>参考链接 / PoC / EXP / 原始文件</summary>
           <div class="links"></div>

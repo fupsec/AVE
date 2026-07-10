@@ -1,0 +1,25 @@
+[id]
+ave_id = "AVE-2015-0015"
+cve_id = "CVE-2015-10120"
+aliases = ["CVE-2015-10120"]
+
+[basic]
+title = "WordPress plugin WDS Multisite Aggregate 跨站脚本漏洞(CVE-2015-10120)"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["avd"]
+published = "2023-07-11"
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T06:25:02.128350652+00:00"
