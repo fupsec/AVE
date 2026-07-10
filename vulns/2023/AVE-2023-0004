@@ -1,0 +1,25 @@
+[id]
+ave_id = "AVE-2023-0004"
+cve_id = "HWPOC-2023-000475df"
+aliases = ["HWPOC-2023-000475df"]
+
+[basic]
+title = "HWPOC-2023-000475df"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["hwpoc"]
+published = ""
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T15:15:32.406859423+00:00"

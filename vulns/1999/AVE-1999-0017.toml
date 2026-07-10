@@ -1,25 +1,52 @@
 [id]
 ave_id = "AVE-1999-0017"
 cve_id = "CVE-1999-0428"
-aliases = ["CVE-1999-0428"]
+avd_id = ""
+other_ids = []
 
 [basic]
-title = "CVE-1999-0428"
-description = ""
-severity = "UNKNOWN"
-score = 0.0
-sources = ["redhat"]
-published = ""
-updated = ""
-remediation = "Refer to vendor advisory and upgrade to fixed version."
+title = "OpenSSL 和 SSLeay SSL 会话重用漏洞"
+description = "OpenSSL and SSLeay allow remote attackers to reuse SSL sessions and bypass access controls."
+severity = "HIGH"
+source = "nvd"
+published = "1999-03-22"
+updated = "2026-06-16"
 
-[references]
-urls = []
+[score]
+cvss_v2 = 7.5
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:P/A:P"
+cvss_v3 = 6.5
+cvss_v3_vector = ""
+cvss_v4 = 0.0
+cvss_v4_vector = ""
+
+[affected]
+vendor = "openssl"
+product = "openssl"
 
 [exploit]
-poc_urls = []
-exp_urls = []
+poc = []
+exp = []
+nuclei_templates = []
+
+[remediation]
+fix = "升级到 OpenSSL 0.9.2b 及以上版本。禁用 SSL 会话重用机制或使用更安全的加密协议。"
+workaround = "在无法升级的情况下，禁用 SSL 会话缓存或会话 ID 重用功能。"
+steps = ["步骤1: 确认 OpenSSL 版本", "步骤2: 升级到 OpenSSL 0.9.2b 或更高版本", "步骤3: 重新启动依赖服务"]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0428"
+avd = ""
+other = ["https://access.redhat.com/security/cve/CVE-1999-0428"]
+
+[tags]
+tags = ["CWE-384", "Session Fixation", "SSL", "OpenSSL"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "none"
+notes = "该漏洞为协议层 SSL 会话重用问题，非 HTTP 协议漏洞，无法生成符合 poc.md 规范的 HTTP PoC 脚本。未找到公开 PoC/EXP。"
 
 [meta]
+collected_at = "2026-07-10T11:13:37Z"
 status = "completed"
-collected_at = "2026-07-10T11:11:14.857755819+00:00"
