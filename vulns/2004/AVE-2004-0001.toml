@@ -22,9 +22,12 @@ vendor = "Microsoft"
 product = "Windows NT 4.0 / Windows 2000"
 
 [exploit]
-poc = []
+poc = [
+  { url = "https://www.exploit-db.com/raw/24277", description = "POSIX 子系统本地缓冲区溢出 PoC 源代码 (MS04-020)", source = "exploit-db" }
+]
 exp = [
-  { url = "https://www.exploit-db.com/exploits/24277", description = "Microsoft Windows NT 4.0/2000 POSIX 子系统本地缓冲区溢出权限提升 EXP (MS04-020)", source = "exploit-db" }
+  { url = "https://www.exploit-db.com/exploits/24277", description = "Microsoft Windows NT 4.0/2000 POSIX 子系统本地缓冲区溢出权限提升 EXP (MS04-020)", source = "exploit-db" },
+  { url = "https://www.exploit-db.com/exploits/351", description = "Microsoft Windows 2000 POSIX 子系统权限提升 EXP (MS04-020)", source = "exploit-db" }
 ]
 nuclei_templates = []
 
