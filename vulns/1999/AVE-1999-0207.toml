@@ -10,11 +10,10 @@ poc_confidence = "high"
 [basic]
 description = "ISC BIND 4.9 和 BIND 8 版本在处理反向查询（Inverse Query）时存在缓冲区溢出漏洞。攻击者可以通过向 DNS 服务器发送特制的反向查询请求，触发缓冲区溢出，从而在目标系统上执行任意代码。该漏洞影响了大量运行 BIND 的 DNS 服务器，CVSS v2.0 评分为 10.0，危害极大。"
 published = "1998-04-08"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
+remediation = "升级 ISC BIND 到修复版本（4.9.5-P1 以上或 8.1.1 以上），禁用反向查询功能，限制 TCP 53 端口访问。"
 score = 9.8
 severity = "CRITICAL"
-source = "nvd"
-sources = ["unknown"]
+sources = ["exploitdb", "nvd"]
 title = "ISC BIND 4.9 / 8 反向查询缓冲区溢出漏洞"
 updated = "2026-06-16"
 
@@ -68,8 +67,6 @@ cvss_v2 = 10.0
 cvss_v2_vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C"
 cvss_v3 = 9.8
 cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
-cvss_v4 = 9.9
-cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N"
 
 [tags]
 tags = [

@@ -1,88 +1,37 @@
-[affected]
-product = "libtiff"
-vendor = "libtiff"
-
-[authenticity]
-cve_confidence = "high"
-notes = "NVD CVSS v3 评分 9.8 (CRITICAL)，确认存在远程代码执行风险。暂无公开 PoC 脚本。漏洞为非 HTTP 协议类（C 库），无法生成 HTTP PoC。"
-poc_confidence = "low"
-
-[basic]
-description = "libtiff 4.0.6 中的 tif_predict.h 和 tif_predict.c 存在断言问题，在处理特殊 tile 大小时（如带有子采样的 YCbCr），调试模式下可导致断言失败，发布模式下可导致缓冲区溢出。"
-published = "2016-11-22"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 9.8
-severity = "CRITICAL"
-source = "nvd"
-sources = ["unknown"]
-title = "LibTIFF Predictor 堆缓冲区溢出漏洞"
-updated = "2026-06-16"
-
-[exploit]
-exp = []
-nuclei_templates = []
-poc = []
-
 [id]
-avd_id = ""
 ave_id = "AVE-2016-0006"
 cve_id = "CVE-2016-9535"
-other_ids = ["MSVR-35105"]
+aliases = ["CVE-2016-9535"]
 
-[meta]
-collected_at = "2026-07-11T10:18:58Z"
-status = "completed"
+[basic]
+title = "LibTIFF 堆缓冲区溢出漏洞"
+description = "LibTIFF 4.0.6 版本中的 tif_predict.h 和 tif_predict.c 文件存在堆缓冲区溢出漏洞。当处理具有异常 Tile 尺寸（如 YCbCr 采样）的 TIFF 图像时，调试模式下会触发断言失败，发布模式下则导致堆缓冲区溢出。攻击者可利用特制图像文件触发此漏洞，实现远程代码执行，可能导致系统被完全控制。"
+severity = "CRITICAL"
+score = 9.8
+published = "2016-11-22"
+updated = "2026-06-16"
+remediation = "升级 LibTIFF 至 4.0.7 或更高版本，或应用官方补丁 commit 3ca657a 和 6a984bf。相关 Linux 发行版（如 Red Hat、Debian）已发布安全更新，请及时安装对应补丁。"
+sources = ["nvd", "msrc"]
+
+[affected]
+vendor = "LibTIFF"
+product = "LibTIFF"
 
 [references]
-avd = ""
 nvd = "https://nvd.nist.gov/vuln/detail/CVE-2016-9535"
-
-[[references.other]]
-description = "修复提交 1"
-url = "https://github.com/vadz/libtiff/commit/3ca657a8793dd011bf869695d72ad31c779c3cc1"
-
-[[references.other]]
-description = "修复提交 2"
-url = "https://github.com/vadz/libtiff/commit/6a984bf7905c6621281588431f384e79d11a2e33"
-
-[[references.other]]
-description = "RedHat 安全公告"
-url = "http://rhn.redhat.com/errata/RHSA-2017-0225.html"
-
-[[references.other]]
-description = "Debian 安全公告"
-url = "http://www.debian.org/security/2017/dsa-3844"
-
-[[references.other]]
-description = "Bugtraq"
-url = "http://www.securityfocus.com/bid/94484"
-
-[[references.other]]
-description = "Bugtraq"
-url = "http://www.securityfocus.com/bid/94744"
-
-[remediation]
-fix = "升级到 libtiff 4.0.7 或更高版本。参考官方安全公告 RHSA-2017-0225、DSA-3844。"
-steps = [
-    "步骤1: 确认 libtiff 版本",
-    "步骤2: 升级到 libtiff 4.0.7 或更高版本",
-    "步骤3: 重启依赖 libtiff 的服务",
+other = [
+    "http://rhn.redhat.com/errata/RHSA-2017-0225.html",
+    "http://www.debian.org/security/2017/dsa-3844",
+    "http://www.securityfocus.com/bid/94484",
+    "http://www.securityfocus.com/bid/94744",
+    "https://github.com/vadz/libtiff/commit/3ca657a8793dd011bf869695d72ad31c779c3cc1",
+    "https://github.com/vadz/libtiff/commit/6a984bf7905c6621281588431f384e79d11a2e33",
 ]
-workaround = "如无法升级，避免处理来自不可信来源的特制 TIFF 图像文件。"
 
-[score]
-cvss_v2 = 7.5
-cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:P/A:P"
-cvss_v3 = 9.8
-cvss_v3_vector = "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
-cvss_v4 = 0.0
-cvss_v4_vector = ""
+[exploit]
+poc_urls = []
+exp_urls = []
 
-[tags]
-tags = [
-    "CWE-119",
-    "buffer-overflow",
-    "heap-overflow",
-    "rce",
-    "libtiff",
-]
+[meta]
+status = "completed"
+collected_at = "2026-07-11T00:00:00+00:00"

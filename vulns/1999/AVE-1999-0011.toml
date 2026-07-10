@@ -10,11 +10,11 @@ poc_confidence = "low"
 [basic]
 description = "GNU C Library (glibc) 2.2 之前版本的 manual/search.texi 文件中缺少对删除树根节点时 tdelete 返回值未定义的说明。开发者若未注意到 1999 年的文档更新，可能访问悬垂指针，导致信息泄露、完整性破坏或系统不可用。"
 published = "1999-11-09"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
+remediation = "升级 GNU C Library (glibc) 至 2.2 或更高版本，并在应用程序代码中正确检查 tdelete 函数的返回值，避免访问悬垂指针。"
 score = 9.8
 severity = "CRITICAL"
 source = "cve"
-sources = ["unknown"]
+sources = ["cve", "redhat"]
 title = "GNU C Library (glibc) tdelete 返回值文档缺陷导致悬垂指针风险"
 updated = "2026-06-16"
 
@@ -30,16 +30,16 @@ cve_id = "CVE-1999-0199"
 other_ids = []
 
 [meta]
-collected_at = "2026-07-11T00:00:00Z"
+collected_at = "2026-07-11T16:30:00Z"
 status = "completed"
 
 [references]
 avd = ""
 nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0199"
 other = [
+    "https://access.redhat.com/security/cve/CVE-1999-0199",
     "https://github.com/bminor/glibc/commit/2864e767053317538feafa815046fff89e5a16be#diff-94e8c502f255fdfc346df0e29fd4ef40",
     "https://ftp.gnu.org/gnu/glibc/glibc-2.2.tar.gz",
-    "https://www.cee.studio/tdelete.html",
 ]
 
 [remediation]
