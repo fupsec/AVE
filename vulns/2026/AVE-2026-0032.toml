@@ -1,76 +1,25 @@
-[affected]
-product = "A8协同管理软件"
-vendor = "致远互联"
-
-[authenticity]
-cve_confidence = "low"
-notes = "该漏洞为CNVD编号，无对应CVE编号。PoC已验证可用，存在公开利用脚本。"
-poc_confidence = "high"
-
 [basic]
-description = "致远A8协同管理软件htmlofficeservlet接口存在远程命令执行漏洞。攻击者可通过向/seeyon/htmlofficeservlet发送特制POST请求，利用任意文件写入功能在服务器上写入恶意JSP文件，从而获取服务器控制权，执行任意系统命令。"
-published = "2019-06-26"
+description = "Vulnerability identified as NUCLEI-HTTP-CNVD-2019-CNVD-2019-19299-YAML. Please refer to vendor advisory for details."
+published = "2026-07-10"
 remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 9.8
-severity = "CRITICAL"
-source = "nuclei"
-sources = ["unknown"]
-title = "致远A8 htmlofficeservlet 远程命令执行漏洞"
-updated = "2019-06-26"
+score = 5.0
+severity = "MEDIUM"
+sources = ["nuclei"]
+title = "NUCLEI-HTTP-CNVD-2019-CNVD-2019-19299-YAML"
+updated = "2026-07-10"
 
 [exploit]
-exp = []
-
-[[exploit.nuclei_templates]]
-description = "Nuclei 检测模板"
-source = "nuclei"
-url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2019/CNVD-2019-19299.yaml"
-
-[[exploit.poc]]
-description = "Python PoC 利用脚本"
-source = "github"
-url = "https://github.com/sectestt/CNVD-2019-19299"
+exp_urls = []
+poc_urls = []
 
 [id]
-avd_id = ""
+aliases = ["NUCLEI-HTTP-CNVD-2019-CNVD-2019-19299-YAML"]
 ave_id = "AVE-2026-0032"
-cve_id = ""
-other_ids = ["CNVD-2019-19299"]
+cve_id = "NUCLEI-HTTP-CNVD-2019-CNVD-2019-19299-YAML"
 
 [meta]
-collected_at = "2026-07-11T10:18:58Z"
+collected_at = "2026-07-10T18:35:11.950580355+00:00"
 status = "completed"
 
 [references]
-avd = ""
-nvd = ""
-other = [
-    "https://github.com/sectestt/CNVD-2019-19299",
-    "https://www.cxyzjd.com/article/guangying177/110177339",
-]
-
-[remediation]
-fix = "升级致远A8到最新版本。参考致远官方安全公告。"
-steps = [
-    "步骤1: 确认致远A8版本是否受影响",
-    "步骤2: 联系厂商获取修复补丁或升级到最新版本",
-    "步骤3: 检查服务器是否存在异常JSP文件",
-]
-workaround = "如无法升级，可在WAF/IPS中拦截对/seeyon/htmlofficeservlet的POST请求，或限制该路径的访问权限。"
-
-[score]
-cvss_v2 = 10.0
-cvss_v2_vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C"
-cvss_v3 = 10.0
-cvss_v3_vector = "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H"
-
-[tags]
-tags = [
-    "CWE-77",
-    "CNVD-2019",
-    "rce",
-    "zhiyuan",
-    "seeyon",
-    "致远",
-    "命令执行",
-]
+urls = []
