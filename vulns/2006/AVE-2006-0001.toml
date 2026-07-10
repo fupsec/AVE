@@ -68,8 +68,8 @@ tags = ["CWE-122", "CWE-193", "heap-buffer-overflow", "off-by-one", "perl", "xml
 [authenticity]
 cve_confidence = "high"
 poc_confidence = "medium"
-notes = "CVE 记录由 CPANSec 提交并分配，NVD 已评估 CVSS 3.1 9.8 严重评分（AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H）。漏洞最初于 2006-06-13 在 RT 工单系统 (ID 19860) 中报告，2026-03-19 通过 oss-security 邮件列表公开披露。补丁及深层嵌套验证用例已在 GitHub 公开。虽无独立 PoC 利用工具，但可通过构建 600+ 层嵌套 XML 文件并调用 XML::Parser 解析来复现。"
+notes = "CVE 记录由 CPANSec 提交并分配，NVD 已评估 CVSS 3.1 9.8 严重评分（AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H）。漏洞最初于 2006-06-13 在 RT 工单系统 (ID 19860) 中报告，2026-03-19 通过 oss-security 邮件列表公开披露。补丁及深层嵌套验证用例已在 GitHub 公开。虽无独立 PoC 利用工具，但可通过构建 600+ 层嵌套 XML 文件并调用 XML::Parser 解析来复现。未发现 Exploit-DB、PacketStorm、Sploitus 或 Nuclei 模板中存在公开利用脚本。"
 
 [meta]
-collected_at = "2026-07-10T11:15:00Z"
+collected_at = "2026-07-11T00:00:00Z"
 status = "completed"
