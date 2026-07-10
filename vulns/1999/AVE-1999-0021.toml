@@ -1,25 +1,52 @@
 [id]
 ave_id = "AVE-1999-0021"
 cve_id = "CVE-1999-0523"
-aliases = ["CVE-1999-0523"]
+avd_id = ""
+other_ids = []
 
 [basic]
-title = "CVE-1999-0523"
-description = ""
-severity = "UNKNOWN"
-score = 0.0
-sources = ["redhat"]
-published = ""
-updated = ""
-remediation = "Refer to vendor advisory and upgrade to fixed version."
+title = "ICMP 回显请求（Ping）允许来自任意主机"
+description = "ICMP echo (ping) is allowed from arbitrary hosts. 攻击者可通过发送 ICMP 回显请求探测目标主机是否存活，进而进行网络拓扑发现、主机枚举和信息收集，为后续攻击提供侦察支持。"
+severity = "LOW"
+source = "nvd"
+published = "1999-01-01"
+updated = "2026-06-16"
 
-[references]
-urls = []
+[score]
+cvss_v2 = 0.0
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:N/A:N"
+cvss_v3 = 0.0
+cvss_v3_vector = ""
+cvss_v4 = 0.0
+cvss_v4_vector = ""
+
+[affected]
+vendor = "multiple"
+product = "multiple"
 
 [exploit]
-poc_urls = []
-exp_urls = []
+poc = []
+exp = []
+nuclei_templates = []
+
+[remediation]
+fix = "在网络边界防火墙或主机层面配置规则，阻止来自不可信网络的 ICMP 回显请求（Type 8, Code 0）。在 Linux 系统中可使用 iptables 规则：iptables -A INPUT -p icmp --icmp-type echo-request -j DROP。"
+workaround = "如无法在边界防火墙过滤，可在各主机上配置内核参数禁用 ICMP 回显响应（sysctl -w net.ipv4.icmp_echo_ignore_all=1），但可能影响正常网络连通性测试。"
+steps = ["步骤1: 评估网络中对 ICMP 回显的依赖程度", "步骤2: 在边界防火墙添加过滤规则：iptables -A INPUT -p icmp --icmp-type echo-request -j DROP", "步骤3: 对关键主机禁用 ICMP 回显响应", "步骤4: 使用扫描工具验证防护效果"]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0523"
+avd = ""
+other = ["https://www.cve.org/CVERecord?id=CVE-1999-0523", "https://access.redhat.com/security/cve/CVE-1999-0523"]
+
+[tags]
+tags = ["CWE-200", "ICMP", "Information Disclosure", "Network Reconnaissance"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "none"
+notes = "该漏洞为配置类安全问题，非软件代码漏洞，没有公开的 PoC/EXP 脚本。ICMP 回显请求可用于网络侦察和信息收集，Red Hat 官方声明允许 ICMP 回显本身不存在已知漏洞，建议在网络边界过滤。"
 
 [meta]
+collected_at = "2026-07-10T11:22:14Z"
 status = "completed"
-collected_at = "2026-07-10T11:20:32.923026906+00:00"
