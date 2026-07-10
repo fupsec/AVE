@@ -114,12 +114,6 @@ body {
   color: var(--muted);
 }
 
-.repo-meta {
-  margin-top: 1rem;
-  color: #86efac;
-  font-weight: 600;
-}
-
 .layout {
   max-width: 1240px;
   margin: 1rem auto;
