@@ -1,17 +1,14 @@
 [id]
 ave_id = "AVE-2026-0075"
-cve_id = "CVE-2026-48598"
-aliases = [
-    "CVE-2026-48598",
-    "GHSA-28jh-g32x-v9v4",
-]
+cve_id = "CVE-2026-0300"
+aliases = ["CVE-2026-0300"]
 
 [basic]
-title = "CVE-2026-48598"
+title = "CVE-2026-0300"
 description = ""
 severity = "UNKNOWN"
 score = 0.0
-sources = ["ghsa"]
+sources = ["github"]
 published = ""
 updated = ""
 remediation = "Refer to vendor advisory and upgrade to fixed version."
@@ -25,4 +22,4 @@ exp_urls = []
 
 [meta]
 status = "completed"
-collected_at = "2026-07-10T15:29:20.051918368+00:00"
+collected_at = "2026-07-10T15:31:31.445566551+00:00"

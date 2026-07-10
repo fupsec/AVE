@@ -1,0 +1,33 @@
+[info]
+id = "POC-AVE-2026-0075"
+name = "Palo Alto Networks PAN-OS User-ID 认证门户缓冲区溢出检测"
+author = "AVE"
+severity = "critical"
+tags = ["buffer-overflow", "rce", "pan-os", "captive-portal"]
+description = "检测 Palo Alto Networks PAN-OS User-ID™ 认证门户（Captive Portal）服务是否存在，验证 CVE-2026-0300 缓冲区溢出漏洞的攻击面"
+vuln_id = ["CVE-2026-0300", "AVE-2026-0075"]
+
+[poc]
+logic = "any"
+
+[[poc.requests]]
+method = "GET"
+path = "/auth"
+headers.Host = "{{hostname}}"
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["User-ID", "Authentication Portal", "Captive Portal", "PAN-OS", "Palo Alto"]
+expect = true
+
+[[poc.requests]]
+method = "GET"
+path = "/"
+headers.Host = "{{hostname}}"
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["User-ID", "Authentication Portal", "Captive Portal", "PAN-OS", "Palo Alto"]
+expect = true

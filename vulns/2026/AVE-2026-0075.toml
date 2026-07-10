@@ -1,53 +1,56 @@
 [id]
 ave_id = "AVE-2026-0075"
-cve_id = "CVE-2026-48598"
+cve_id = "CVE-2026-0300"
 avd_id = ""
-other_ids = ["GHSA-28jh-g32x-v9v4"]
+other_ids = []
 
 [basic]
-title = "Tesla 存在 multipart 部分走私漏洞（未转义 Content-Disposition 参数值）"
-description = "Tesla (Elixir HTTP 客户端库) 的 Tesla.Multipart.part_headers_for_disposition/1 函数在构造 Content-Disposition 头时，直接将参数值（如 field name、filename）嵌入到 k=\"v\" 格式中，未对 CR (\\r)、LF (\\n) 及双引号字符进行转义或编码。攻击者通过控制文件名、字段名等 disposition 参数，可利用未转义的双引号注入额外的 disposition 键值对，或利用 CRLF 序列注入额外的 part 头部（如伪造的 Content-Type），甚至通过第二个 CRLF 结束整个 part 头部区块从而在 part 体前追加字节。影响 tesla >= 0.8.0 且 < 1.18.3 版本。"
-severity = "LOW"
-source = "ghsa"
-published = "2026-06-02"
+title = "Palo Alto Networks PAN-OS User-ID™ 认证门户缓冲区溢出漏洞"
+description = "Palo Alto Networks PAN-OS 软件的 User-ID™ 认证门户（又称 Captive Portal）服务中存在缓冲区溢出漏洞（CWE-787）。未经身份验证的攻击者可通过发送特制数据包触发基于栈/堆的缓冲区溢出，覆盖指令指针（EIP/RIP），从而在 PA 系列和 VM 系列防火墙上以 root 权限执行任意代码。Prisma Access、Cloud NGFW 和 Panorama 设备不受影响。该漏洞已在野被积极利用，纳入 CISA KEV 目录。"
+severity = "CRITICAL"
+source = "nvd"
+published = "2026-05-05"
 updated = "2026-06-17"
 
 [score]
-cvss_v4 = 2.1
-cvss_v4_vector = "CVSS:4.0/AV:L/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:N/SC:N/SI:L/SA:N"
+cvss_v3 = 9.8
+cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+cvss_v4 = 9.3
+cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:L/SI:L/SA:N/E:A/AU:Y/R:U/V:C/RE:M/U:Red"
 
 [affected]
-vendor = "elixir-tesla"
-product = "tesla"
+vendor = "Palo Alto Networks"
+product = "PAN-OS"
 
 [exploit]
-poc = []
+poc = [
+  { url = "https://github.com/p3Nt3st3r-sTAr/CVE-2026-0300-POC", description = "CVE-2026-0300 缓冲区溢出 RCE PoC 脚本", source = "github" }
+]
 exp = []
 nuclei_templates = []
 
 [remediation]
-fix = "升级到 tesla 1.18.3 或更高版本。参考 https://github.com/elixir-tesla/tesla/commit/bb1a2c3da2775924d96e3db8e315dcc4d5d2246e"
-workaround = "在调用 Tesla.Multipart.add_field/4、add_file/3 或 add_file_content/4 之前，对 disposition 参数值进行验证，拒绝任何包含 \\r、\\n 或 \" 字符的输入。"
-steps = ["步骤1: 检查项目依赖中 tesla 的版本", "步骤2: 如版本低于 1.18.3，在 mix.exs 中将 tesla 更新至 ~> 1.18.3", "步骤3: 运行 mix deps.update tesla 更新依赖"]
+fix = "升级 PAN-OS 到修复版本：10.2.18-h6 / 10.2.16-h7 / 10.2.13-h21 / 10.2.10-h36 / 10.2.7-h34 / 11.1.15 / 11.1.13-h5 / 11.1.10-h25 / 11.1.7-h6 / 11.1.6-h32 / 11.1.4-h33 / 11.2.12 / 11.2.10-h6 / 11.2.7-h13 / 11.2.4-h17 / 12.1.7 / 12.1.4-h5 或更高版本。Cloud NGFW 和 Prisma Access 无需操作。参考官方安全公告 https://security.paloaltonetworks.com/CVE-2026-0300"
+workaround = "如无法升级，可采取以下缓解措施：1) 将 User-ID™ 认证门户访问限制为仅受信任的内部 IP 地址，禁止暴露到公网；2) 在面向不受信任网络的 L3 接口管理配置文件中禁用 Response Pages；3) 如非必需，直接禁用 User-ID™ 认证门户。具有 Threat Prevention 订阅的客户可启用威胁 ID 510019（需 Applications and Threats 内容版本 9097-10022，且 PAN-OS 11.1 及以上版本）。"
+steps = ["步骤1: 确认 PAN-OS 版本（System > Software）", "步骤2: 检查 User-ID™ 认证门户配置（Device > User Identification > Authentication Portal Settings）", "步骤3: 如版本在受影响范围内，升级到修复版本", "步骤4: 如无法升级，实施缓解措施（限制访问 IP、禁用 Response Pages 或关闭认证门户）", "步骤5: 检查是否有异常日志或可疑活动迹象"]
 
 [references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2026-48598"
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2026-0300"
 avd = ""
 other = [
-  "https://github.com/elixir-tesla/tesla/security/advisories/GHSA-28jh-g32x-v9v4",
-  "https://github.com/elixir-tesla/tesla/commit/bb1a2c3da2775924d96e3db8e315dcc4d5d2246e",
-  "https://github.com/elixir-tesla/tesla/commit/6ebfdb9abe9c6f119408045b933d82462decd351",
-  "https://cna.erlef.org/cves/CVE-2026-48598.html",
-  "https://osv.dev/vulnerability/EEF-CVE-2026-48598"
+  "https://security.paloaltonetworks.com/CVE-2026-0300",
+  "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2026-0300",
+  "https://github.com/p3Nt3st3r-sTAr/CVE-2026-0300-POC",
+  "https://cert-portal.siemens.com/productcert/html/ssa-967325.html"
 ]
 
 [tags]
-tags = ["CWE-116", "multipart", "CRLF注入", "HTTP走私", "Elixir", "Tesla", "Elixir安全"]
+tags = ["CWE-787", "CVE-2026-0300", "PAN-OS", "Palo-Alto", "缓冲区溢出", "RCE", "Captive-Portal", "User-ID", "CISA-KEV"]
 
 [authenticity]
 cve_confidence = "high"
-poc_confidence = "medium"
-notes = "CVE 已由 EEF (Erlang Ecosystem Foundation) 分配，CISA-ADP 已确认并标记 exploitation 状态为 poc。GHSA 安全公告提供了详细 PoC 描述，但未发现独立的公开 PoC 仓库。目前仅 workshops-de/google_gax 项目包含兼容性修复引用。修复版本 1.18.3 已发布。"
+poc_confidence = "high"
+notes = "CVE 已由 Palo Alto Networks 官方分配并发布安全公告。CISA 已将该漏洞加入 Known Exploited Vulnerabilities 目录（2026-05-06），确认存在在野利用。GitHub 上存在公开 PoC 仓库（20 stars，12 forks），提供了完整的利用逻辑说明。官方已发布多个版本的修复补丁。受影响产品还扩展到 Siemens RUGGEDCOM APE1808。漏洞在 2026 年 5 月被 Palo Alto 深度产品安全研究团队发现。"
 
 [meta]
 collected_at = "2026-07-10T18:00:00Z"
