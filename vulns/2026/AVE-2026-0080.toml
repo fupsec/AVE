@@ -1,25 +1,39 @@
+[affected]
+product = "mint"
+vendor = "elixir-mint"
+
 [basic]
-description = "Vulnerability identified as CVE-2026-0828. Please refer to vendor advisory for details."
-published = "2026-07-10"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 5.0
-severity = "MEDIUM"
-sources = ["github"]
-title = "CVE-2026-0828 vulnerability"
-updated = "2026-07-10"
+description = "elixir-mint 的 HTTP/1 请求编码器在 encode_request_line/2 函数中将调用者提供的 method 和 target 参数直接拼接到请求行中，未进行字符校验。攻击者通过控制 method 参数注入 CRLF 序列，可提前终止请求行、注入任意头部并在同一 TCP 连接上走私第二个 HTTP 请求，导致 HTTP 请求走私攻击。受影响版本为 0.1.0 至 1.9.0 之前。"
+published = "2026-06-02"
+remediation = "升级 Mint 至 1.9.0 或更高版本。1.9.0 在 validate_method!/1 中增加了对 method 参数的 RFC 9110 token 校验，拒绝包含 CRLF 及控制字符的请求方法。"
+score = 2.1
+severity = "LOW"
+sources = [
+    "ghsa",
+    "nvd",
+]
+title = "elixir-mint HTTP/1 请求编码器 CRLF 注入漏洞"
+updated = "2026-07-09"
 
 [exploit]
 exp_urls = []
 poc_urls = []
 
 [id]
-aliases = ["CVE-2026-0828"]
+aliases = ["GHSA-2pg6-44cx-c49v"]
 ave_id = "AVE-2026-0080"
-cve_id = "CVE-2026-0828"
+cve_id = "CVE-2026-48861"
 
 [meta]
-collected_at = "2026-07-10T19:14:58.627042463+00:00"
+collected_at = "2026-07-11T00:00:00Z"
 status = "completed"
 
 [references]
-urls = []
+urls = [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-48861",
+    "https://github.com/advisories/GHSA-2pg6-44cx-c49v",
+    "https://github.com/elixir-mint/mint/commit/fad091454cbb7449b19edb8e1fee12ca7cf28c3a",
+    "https://github.com/elixir-mint/mint/commit/8db1acff30b6a9433762c18b1e1f891b8c1f74f7",
+    "https://cna.erlef.org/cves/CVE-2026-48861.html",
+    "https://osv.dev/vulnerability/EEF-CVE-2026-48861",
+]

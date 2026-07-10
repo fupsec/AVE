@@ -1,15 +1,29 @@
+[affected]
+product = "Chameleon SMTPd"
+vendor = "NetManage"
+
+[authenticity]
+cve_confidence = "high"
+notes = "原始 Bugtraq 报告详细描述了多个组件的溢出触发方式，未提供完整利用代码，确认存在拒绝服务条件。"
+poc_confidence = "medium"
+
 [basic]
-description = "Vulnerability identified as CVE-1999-0261. Please refer to vendor advisory for details."
-published = "2026-07-10"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
+description = "NetManage Chameleon 套件中的 SMTPd 服务存在多个缓冲区溢出漏洞。远程攻击者通过向 SMTP 服务发送超长 HELO 主机名（超过 471 字符）或 HELP 主题（超过 514 字符）可触发缓冲区溢出，导致 Dr.Watson 访问冲突异常，服务进程崩溃，造成拒绝服务。该漏洞影响 Chameleon 4.5 及 UnixLink 97 版本，FTP 服务也存在类似溢出问题。"
+published = "1999-03-01"
+remediation = "升级至 NetManage 官方发布的修复版本，或禁用不必要的 SMTP 服务组件。在网络边界防火墙限制对 SMTP 端口（25/TCP）的访问，仅允许可信来源连接。"
 score = 5.0
 severity = "MEDIUM"
-sources = ["cve"]
-title = "CVE-1999-0261 vulnerability"
-updated = "2026-07-10"
+sources = [
+    "bugtraq",
+    "cve",
+    "nvd",
+]
+title = "NetManage Chameleon SMTPd 多个缓冲区溢出导致拒绝服务漏洞"
+updated = "2026-06-16"
 
 [exploit]
 exp_urls = []
+nuclei_templates = []
 poc_urls = []
 
 [id]
@@ -18,8 +32,35 @@ ave_id = "AVE-1999-0027"
 cve_id = "CVE-1999-0261"
 
 [meta]
-collected_at = "2026-07-10T12:52:03.016894160+00:00"
+collected_at = "2026-07-11T12:52:03Z"
 status = "completed"
 
 [references]
-urls = []
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0261"
+other = [
+    "http://www.insecure.org/sploits/netmanage.chameleon.overflows.html",
+    "https://www.cve.org/CVERecord?id=CVE-1999-0261",
+]
+
+[remediation]
+fix = "升级至 NetManage 官方发布的修复版本，或禁用不必要的 SMTP 服务组件。由于该产品已停止维护，建议迁移至替代方案。"
+steps = [
+    "步骤1: 识别运行 NetManage Chameleon SMTPd 的服务器",
+    "步骤2: 若产品仍在支持周期内，联系厂商获取安全补丁",
+    "步骤3: 在网络边界防火墙限制对 SMTP 端口（25/TCP）的访问",
+    "步骤4: 如无法升级，禁用 SMTP 服务或使用替代邮件服务器（如 Exchange、Postfix）",
+]
+workaround = "使用防火墙限制对 SMTP 端口（25/TCP）的访问，仅允许可信来源连接；禁用不必要的 Chameleon 网络服务组件。"
+
+[score]
+cvss_v2 = 5.0
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:N/A:P"
+
+[tags]
+tags = [
+    "CWE-119",
+    "buffer-overflow",
+    "DOS",
+    "SMTP",
+    "Chameleon",
+]

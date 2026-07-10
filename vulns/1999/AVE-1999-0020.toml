@@ -1,16 +1,25 @@
+[affected]
+product = "IRIX"
+vendor = "SGI"
+
 [basic]
-description = "Vulnerability identified as CVE-1999-0026. Please refer to vendor advisory for details."
-published = "2026-07-10"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 7.5
-severity = "HIGH"
-sources = ["exploitdb"]
-title = "CVE-1999-0026 vulnerability"
-updated = "2026-07-10"
+cvss_v2 = 4.6
+description = "SGI IRIX 5.x/6.x 至 6.3 版本中自带的 pset 工具存在缓冲区溢出漏洞。pset 用于配置和管理多处理器系统中的处理器组。攻击者通过向 pset 命令提供特制的长参数作为参数，可覆盖栈上的返回地址，从而以 root 权限执行任意代码，实现本地权限提升。任何拥有系统本地账号的用户均可利用此漏洞获取 root 权限。"
+published = "1997-07-16"
+remediation = "升级到 SGI IRIX 6.4 及以上版本，或应用 SGI 提供的安全补丁。在无法升级的情况下，可通过移除 pset 的 setuid 权限或限制可执行 pset 的用户组来降低风险。"
+score = 4.6
+severity = "MEDIUM"
+sources = [
+    "exploitdb",
+    "nvd",
+]
+title = "SGI IRIX 6.3 pset 命令缓冲区溢出本地权限提升漏洞"
+updated = "2026-06-16"
 
 [exploit]
-exp_urls = []
-poc_urls = []
+exp_urls = ["https://www.exploit-db.com/exploits/19347"]
+nuclei_templates = []
+poc_urls = ["https://www.exploit-db.com/exploits/19347"]
 
 [id]
 aliases = ["CVE-1999-0026"]
@@ -18,16 +27,9 @@ ave_id = "AVE-1999-0020"
 cve_id = "CVE-1999-0026"
 
 [meta]
-collected_at = "2026-07-10T11:18:50.468203060+00:00"
+collected_at = "2026-07-10T11:19:46Z"
 status = "completed"
 
 [references]
-urls = []
-
-[score]
-cvss_v2 = 7.8
-cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:N/A:C"
-cvss_v3 = 7.5
-cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
-cvss_v4 = 0.0
-cvss_v4_vector = ""
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0026"
+other = ["https://exchange.xforce.ibmcloud.com/vulnerabilities/CVE-1999-0026"]

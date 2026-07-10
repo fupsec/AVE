@@ -2,90 +2,40 @@
 product = "multiple"
 vendor = "multiple"
 
-[authenticity]
-cve_confidence = "high"
-notes = "经典 ICMP 信息泄露漏洞，已有多个公开 PoC 脚本验证。"
-poc_confidence = "high"
-
 [basic]
-description = "ICMP 信息（如网络掩码和时间戳）允许来自任意主机的请求，远程攻击者可利用此漏洞获取系统时间信息，进而辅助进行其他攻击。"
+description = "ICMP协议允许来自任意主机的网络掩码请求（类型17）和时间戳请求（类型13）。攻击者可利用此漏洞获取目标网络的子网掩码信息及系统时间，从而推断网络拓扑结构和主机运行状态。该漏洞影响广泛的操作系统，包括Linux、Windows、macOS、Cisco IOS、AIX、HP-UX等多种平台，为攻击者收集目标网络环境信息提供了便利条件。"
 published = "1997-08-01"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 5.5
+remediation = "配置防火墙规则阻止外部ICMP地址掩码请求（类型17）和时间戳请求（类型13）；在边界网络设备上禁用不必要的ICMP响应；对于Linux系统可通过iptables规则过滤相关ICMP报文类型。"
+score = 4.0
 severity = "MEDIUM"
-source = "nvd"
-sources = ["unknown"]
-title = "ICMP 时间戳与网络掩码信息泄露"
+sources = [
+    "redhat",
+    "tenable",
+]
+title = "ICMP网络掩码与时间戳请求信息泄露漏洞"
 updated = "2026-06-16"
 
 [exploit]
-exp = []
+exp_urls = []
 nuclei_templates = []
-
-[[exploit.poc]]
-description = "ICMP 时间戳远程时间泄露工具"
-source = "github"
-url = "https://github.com/noraj/ChronoLeak"
-
-[[exploit.poc]]
-description = "ICMP 时间戳与地址掩码请求检测脚本"
-source = "github"
-url = "https://github.com/threatlabindonesia/CVE-1999-0524-ICMP-Timestamp-and-Address-Mask-Request-Exploit"
-
-[[exploit.poc]]
-description = "ICMP 时间戳请求漏洞检测脚本"
-source = "github"
-url = "https://github.com/b1tsec/CVE-1999-0524"
-
-[[exploit.poc]]
-description = "ICMP 时间戳信息泄露 PoC"
-source = "github"
-url = "https://github.com/Ransc0rp1on/ICMP-Timestamp-POC"
-
-[[exploit.poc]]
-description = "ICMP 时间戳重放检测脚本"
-source = "github"
-url = "https://github.com/S4njer/ICMP-TimeStamp-Replay-3xploit-Scanner"
+poc_urls = []
 
 [id]
-avd_id = ""
+aliases = ["CVE-1999-0524"]
 ave_id = "AVE-1999-0022"
 cve_id = "CVE-1999-0524"
-other_ids = []
 
 [meta]
-collected_at = "2026-07-11T10:18:58Z"
+collected_at = "2026-07-10T17:12:08+00:00"
 status = "completed"
 
 [references]
-avd = ""
 nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0524"
 other = [
+    "https://access.redhat.com/security/cve/CVE-1999-0524",
     "https://exchange.xforce.ibmcloud.com/vulnerabilities/306",
     "https://exchange.xforce.ibmcloud.com/vulnerabilities/322",
     "http://kb.juniper.net/InfoCenter/index?page=content&id=JSA10705",
-    "http://www.osvdb.org/95",
-]
-
-[remediation]
-fix = "在防火墙或系统层面配置规则，阻止入站的 ICMP 时间戳请求（Type 13）和地址掩码请求（Type 17），或禁用 ICMP 时间戳响应。"
-steps = [
-    "步骤1: 确认系统是否响应 ICMP 时间戳请求（使用 hping3/nping 发送 ICMP Type 13 请求）",
-    "步骤2: 在系统或网络层配置策略，禁用 ICMP 时间戳响应",
-    "步骤3: 在网络边界防火墙添加 ACL 规则过滤 ICMP Type 13 和 Type 17",
-]
-workaround = "在网络边界防火墙添加 ACL 规则，丢弃 ICMP Type 13（Timestamp Request）和 Type 17（Address Mask Request）数据包。"
-
-[score]
-cvss_v2 = 2.1
-cvss_v2_vector = "AV:L/AC:L/Au:N/C:P/I:N/A:N"
-cvss_v3 = 4.0
-cvss_v3_vector = "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N"
-
-[tags]
-tags = [
-    "CWE-200",
-    "ICMP",
-    "information-disclosure",
-    "timestamp",
+    "http://kb.vmware.com/selfservice/microsites/search.do?cmd=displayKC&externalId=1434",
+    "https://support.f5.com/csp/article/K15277",
 ]

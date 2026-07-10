@@ -1,0 +1,36 @@
+[affected]
+product = "mint"
+vendor = "elixir-mint"
+
+[basic]
+description = "Mint的HTTP/1请求编码器（lib/mint/http1/request.ex）在处理method和target参数时未进行字符验证，攻击者通过控制HTTP方法字段可注入CRLF字符，终止请求行并注入任意标头，甚至在同一TCP连接上管道传输第二个HTTP请求。该漏洞可导致HTTP请求走私，影响Mint 0.1.0至1.8.0版本，使用Mint作为HTTP客户端的代理或网关应用均可能受影响。"
+published = "2026-06-02"
+remediation = "升级Mint至1.9.0及以上版本（含commit fad091454cbb7449b19edb8e1fee12ca7cf28c3a），或在调用Mint.HTTP.request/5前对method和target参数进行CRLF字符过滤校验。"
+score = 2.1
+severity = "LOW"
+sources = ["ghsa"]
+title = "Mint HTTP/1请求编码器CRLF注入漏洞"
+updated = "2026-06-17"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["GHSA-2pg6-44cx-c49v"]
+ave_id = "AVE-2026-0081"
+cve_id = "CVE-2026-48861"
+
+[meta]
+collected_at = "2026-07-11T12:00:00Z"
+status = "completed"
+
+[references]
+urls = [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-48861",
+    "https://github.com/advisories/GHSA-2pg6-44cx-c49v",
+    "https://github.com/elixir-mint/mint/commit/fad091454cbb7449b19edb8e1fee12ca7cf28c3a",
+    "https://github.com/elixir-mint/mint/commit/8db1acff30b6a9433762c18b1e1f891b8c1f74f7",
+    "https://cna.erlef.org/cves/CVE-2026-48861.html",
+    "https://osv.dev/vulnerability/EEF-CVE-2026-48861",
+]
