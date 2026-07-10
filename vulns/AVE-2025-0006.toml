@@ -1,0 +1,28 @@
+[id]
+ave_id = "AVE-2025-0006"
+cve_id = "CVE-2025-46719"
+aliases = [
+    "CVE-2025-46719",
+    "GHSA-9f4f-jv96-8766",
+]
+
+[basic]
+title = "CVE-2025-46719"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["ghsa"]
+published = ""
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T09:20:46.381925661+00:00"

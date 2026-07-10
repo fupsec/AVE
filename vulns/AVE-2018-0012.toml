@@ -1,0 +1,25 @@
+[id]
+ave_id = "AVE-2018-0012"
+cve_id = "CVE-2018-17559"
+aliases = ["CVE-2018-17559"]
+
+[basic]
+title = "CVE-2018-17559"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["avd"]
+published = ""
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T11:04:19.773293349+00:00"

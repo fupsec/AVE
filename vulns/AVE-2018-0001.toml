@@ -1,0 +1,25 @@
+[id]
+ave_id = "AVE-2018-0001"
+cve_id = "CVE-2018-11103"
+aliases = ["CVE-2018-11103"]
+
+[basic]
+title = "N/A"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["avd"]
+published = "2023-10-30"
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T08:51:24.552769565+00:00"

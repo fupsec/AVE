@@ -1,0 +1,25 @@
+[id]
+ave_id = "AVE-2017-0001"
+cve_id = "CVE-2017-20185"
+aliases = ["CVE-2017-20185"]
+
+[basic]
+title = "Fuzzy SWMP 跨站脚本漏洞(CVE-2017-20185)"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["avd"]
+published = "2023-06-06"
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T08:51:03.771746309+00:00"

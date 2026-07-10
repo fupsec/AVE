@@ -1,0 +1,33 @@
+[id]
+ave_id = "AVE-2016-0005"
+cve_id = "CVE-2016-20022"
+aliases = ["CVE-2016-20022"]
+
+[basic]
+title = "Linux Kernel USB 端点描述符未经验证漏洞(CVE-2016-20022)"
+description = """
+Linux kernel 4.8 之前版本中，drivers/usb/core/config.c 的 usb_parse_endpoint 函数未验证端点描述符的 wMaxPacketSize 字段，可触发越界读取（CWE-125），导致信息泄露或系统崩溃。
+本地攻击者可通过插入恶意 USB 设备触发此漏洞提升权限。
+该漏洞仅影响厂商不再支持的产品。
+"""
+severity = "HIGH"
+score = 8.4
+sources = ["nvd", "avd"]
+published = "2024-06-27"
+updated = "2026-06-16"
+remediation = "升级至 Linux kernel 4.8 及以上版本"
+
+[references]
+urls = [
+  "https://github.com/torvalds/linux/commit/aed9d65ac3278d4febd8665bd7db59ef53e825fe",
+  "https://lore.kernel.org/lkml/1486322541-8206-8-git-send-email-w@1wt.eu/",
+  "https://www.spinics.net/lists/linux-usb/msg144177.html"
+]
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T08:48:36Z"

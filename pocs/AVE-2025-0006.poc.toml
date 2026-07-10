@@ -1,0 +1,26 @@
+[info]
+id = "POC-AVE-2025-0006"
+name = "Open WebUI Stored XSS via Unescaped Markdown Token"
+author = "AVE"
+severity = "high"
+tags = ["xss", "stored-xss", "cwe-79"]
+description = "Open WebUI 0.6.6之前版本存在存储型XSS漏洞(CVE-2025-46719)，攻击者可通过聊天消息注入iframe标签实现JavaScript代码执行"
+vuln_id = ["CVE-2025-46719", "AVE-2025-0006"]
+
+[poc]
+logic = "all"
+
+[[poc.requests]]
+method = "GET"
+path = "/"
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200]
+expect = true
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["open-webui"]
+expect = true

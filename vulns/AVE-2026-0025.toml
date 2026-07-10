@@ -1,0 +1,28 @@
+[id]
+ave_id = "AVE-2026-0025"
+cve_id = "CVE-2026-26192"
+aliases = [
+    "CVE-2026-26192",
+    "GHSA-xc8p-9rr6-97r2",
+]
+
+[basic]
+title = "CVE-2026-26192"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["ghsa"]
+published = ""
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T10:50:50.778473987+00:00"

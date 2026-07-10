@@ -1,18 +1,18 @@
 [id]
-ave_id = "AVE-2011-0001"
-cve_id = "CVE-2011-10034"
-aliases = ["CVE-2011-10034"]
+ave_id = "AVE-1999-0001"
+cve_id = "CVE-1999-0002"
+aliases = ["CVE-1999-0002"]
 
 [basic]
-title = "IRAI AUTOMGEN &lt;= 8.0.0.7 Use-After-Free Remote DoS"
+title = "CVE-1999-0002"
 description = ""
 severity = "UNKNOWN"
 score = 0.0
 sources = [
-    "avd",
-    "msrc",
+    "exploitdb",
+    "redhat",
 ]
-published = "2025-11-14"
+published = ""
 updated = ""
 remediation = "Refer to vendor advisory and upgrade to fixed version."
 
@@ -25,4 +25,4 @@ exp_urls = []
 
 [meta]
 status = "completed"
-collected_at = "2026-07-10T10:50:52.491443278+00:00"
+collected_at = "2026-07-10T10:50:50.835687212+00:00"

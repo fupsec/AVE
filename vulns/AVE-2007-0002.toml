@@ -1,0 +1,25 @@
+[id]
+ave_id = "AVE-2007-0002"
+cve_id = "CVE-2007-3010"
+aliases = ["CVE-2007-3010"]
+
+[basic]
+title = "CVE-2007-3010"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["kev"]
+published = ""
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T11:02:56.040447719+00:00"

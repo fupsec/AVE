@@ -1,0 +1,25 @@
+[id]
+ave_id = "AVE-2004-0002"
+cve_id = "CVE-2004-1464"
+aliases = ["CVE-2004-1464"]
+
+[basic]
+title = "CVE-2004-1464"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["kev"]
+published = ""
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T10:50:50.860330945+00:00"

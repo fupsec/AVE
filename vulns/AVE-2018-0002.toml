@@ -1,0 +1,25 @@
+[id]
+ave_id = "AVE-2018-0002"
+cve_id = "CVE-2018-11816"
+aliases = ["CVE-2018-11816"]
+
+[basic]
+title = "CVE-2018-11816"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["avd"]
+published = ""
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T09:08:47.131144825+00:00"
