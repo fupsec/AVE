@@ -1,14 +1,14 @@
 [id]
-ave_id = "AVE-1999-0034"
-cve_id = "CVE-1999-0044"
-aliases = ["CVE-1999-0044"]
+ave_id = "AVE-2025-0022"
+cve_id = "CVE-2025-32023"
+aliases = ["CVE-2025-32023"]
 
 [basic]
-title = "CVE-1999-0044"
+title = "CVE-2025-32023"
 description = ""
 severity = "UNKNOWN"
 score = 0.0
-sources = ["exploitdb"]
+sources = ["github"]
 published = ""
 updated = ""
 remediation = "Refer to vendor advisory and upgrade to fixed version."
@@ -22,4 +22,4 @@ exp_urls = []
 
 [meta]
 status = "completed"
-collected_at = "2026-07-10T12:52:04.247696278+00:00"
+collected_at = "2026-07-10T12:52:04.247719181+00:00"
