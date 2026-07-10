@@ -1,80 +1,39 @@
-[affected]
-product = "Multiple Unix Systems (IBM AIX 3.2/4.1, SCO Unixware 7.1.1, SGI IRIX 5.3, Sun Solaris 2.4/2.5/2.5.1)"
-vendor = "Multiple"
-
-[authenticity]
-cve_confidence = "high"
-notes = "Exploit-DB 19104 提供了完整的可编译 C 语言利用程序源代码，针对 Solaris 2.5.1 x86 平台。该漏洞影响多种 Unix 操作系统。statd 采用 RPC 协议非 HTTP 协议，无法生成符合 poc.md 规范的 HTTP 类型 PoC 脚本。"
-poc_confidence = "high"
-
-[basic]
-description = "Buffer overflow in statd allows root privileges。statd 是 RPC NFS 状态守护进程，用于与其他服务或主机通信状态信息。多个 Unix 实现中随附的 statd 版本在处理 'SM_MON' RPC 请求时存在缓冲区溢出漏洞，攻击者可通过发送特制的 RPC 请求触发溢出，从而获得目标主机的 root 权限。"
-published = "1997-12-05"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 9.8
-severity = "CRITICAL"
-source = "nvd"
-sources = ["unknown"]
-title = "statd RPC NFS 状态守护进程缓冲区溢出漏洞"
-updated = "2026-06-16"
-
-[exploit]
-nuclei_templates = []
-poc = []
-
-[[exploit.exp]]
-description = "statd 远程缓冲区溢出 root 利用程序（Solaris 2.5.1 x86）"
-source = "exploit-db"
-url = "https://www.exploit-db.com/exploits/19104"
-
-[[exploit.exp]]
-description = "statd 远程缓冲区溢出利用源码"
-source = "exploit-db"
-url = "https://gitlab.com/exploit-database/exploitdb/-/raw/main/exploits/linux/remote/19104.c"
-
 [id]
-avd_id = ""
 ave_id = "AVE-1999-0006"
 cve_id = "CVE-1999-0018"
-other_ids = ["EDB-19104"]
+aliases = ["CVE-1999-0018"]
 
-[meta]
-collected_at = "2026-07-11T10:18:58Z"
-status = "completed"
+[basic]
+title = "Sun Solaris/SCO/AIX/IRIX statd RPC NFS 状态守护进程缓冲区溢出漏洞"
+description = "statd 是 RPC NFS 状态守护进程，用于向其他服务或主机通信状态信息。许多 Unix 实现中 statd 在处理 SM_MON RPC 请求时存在缓冲区溢出漏洞，远程攻击者可通过向目标 statd 服务发送特制的 RPC 请求触发溢出，从而以 root 权限在目标主机上执行任意代码。该漏洞影响 IBM AIX 3.2/4.1、SCO Unixware 7.1.1、SGI IRIX 5.3、Sun Solaris 2.5.1 等多个平台。"
+severity = "CRITICAL"
+score = 10.0
+remediation = "及时安装各厂商提供的安全补丁：AIX 用户可安装 IBM APAR IX68417 补丁，Solaris 用户可安装 Sun 补丁 102726-01，SCO 用户应升级至 Unixware 7.1.2 及以上版本。同时建议在网络层面限制对 statd 服务（端口 111 上的 RPC）的访问。"
+published = "1997-12-05"
+updated = "2024-11-20"
+sources = ["exploitdb", "redhat"]
+
+[affected]
+vendor = "Multiple"
+product = "statd (RPC NFS Status Daemon)"
+
+[exploit]
+poc_urls = [
+    "https://www.exploit-db.com/exploits/19104"
+]
+exp_urls = [
+    "https://www.exploit-db.com/exploits/19104"
+]
+nuclei_templates = []
 
 [references]
-avd = ""
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0018"
-other = [
-    "http://www.securityfocus.com/bid/127",
-    "https://cve.org/CVERecord?id=CVE-1999-0018",
+urls = [
+    "https://nvd.nist.gov/vuln/detail/CVE-1999-0018",
+    "https://www.exploit-db.com/exploits/19104",
     "https://access.redhat.com/security/cve/CVE-1999-0018",
-    "https://security-tracker.debian.org/tracker/CVE-1999-0018",
+    "http://www.securityfocus.com/bid/127"
 ]
 
-[remediation]
-fix = "升级到受影响操作系统厂商提供的修复版本。参考各厂商安全公告。"
-steps = [
-    "步骤1: 确认受影响的 Unix 系统版本",
-    "步骤2: 联系厂商获取安全补丁并升级 statd 服务",
-    "步骤3: 在防火墙层面限制对 RPC 服务的访问",
-]
-workaround = "在无法升级的环境中，可通过防火墙限制对 RPC portmap（111/TCP,UDP）和 statd 端口的访问，仅允许可信主机连接。"
-
-[score]
-cvss_v2 = 10.0
-cvss_v2_vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C"
-cvss_v3 = 9.8
-cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
-cvss_v4 = 9.9
-cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N"
-
-[tags]
-tags = [
-    "CWE-Other",
-    "buffer-overflow",
-    "rpc",
-    "statd",
-    "privilege-escalation",
-    "remote",
-]
+[meta]
+collected_at = "2026-07-10T18:10:52Z"
+status = "completed"

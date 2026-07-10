@@ -1,92 +1,34 @@
-[affected]
-product = "e-Mobile"
-vendor = "泛微"
-
-[authenticity]
-cve_confidence = "low"
-notes = "CNVD编号CNVD-2017-03561，未分配CVE。Nuclei模板标记为verified:true，OGNL表达式算术运算检测可稳定验证漏洞存在。"
-poc_confidence = "high"
-
 [basic]
-description = "泛微e-mobile的login.do和login/login.do页面message参数存在OGNL表达式注入漏洞。攻击者可在无需认证的情况下，通过向message参数注入恶意OGNL表达式，实现远程命令执行，获取服务器完全控制权。"
-published = "2017-01-01"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 7.5
-severity = "HIGH"
-source = "nuclei"
-sources = ["unknown"]
-title = "泛微e-mobile OGNL注入漏洞"
-updated = "2017-01-01"
+description = "泛微 e-Mobile 登录接口存在 OGNL 表达式注入漏洞（CNVD-2017-03561）。未授权攻击者可通过 login.do 或 login/login.do 页面的 message 参数注入恶意 OGNL 表达式，绕过表达式过滤直接调用 Java 方法，实现远程命令执行、获取数据库敏感信息及执行未授权管理操作。该漏洞影响使用 Apache 和 Resin 中间件的泛微 OA e-Mobile 模块，攻击者无需认证即可利用，危害严重。"
+published = "2017-06-30"
+remediation = "升级泛微 e-Mobile 至最新版本，或联系厂商获取安全补丁。同时在 WAF 中添加针对 OGNL 表达式注入的过滤规则，对 message 参数进行严格的输入校验，禁止传入 OGNL 特殊字符及 Java 方法调用语法。"
+score = 9.8
+severity = "CRITICAL"
+sources = ["nuclei", "cnvd"]
+title = "泛微 e-Mobile OGNL 表达式注入漏洞"
+updated = "2017-06-30"
 
 [exploit]
-exp = []
-
-[[exploit.nuclei_templates]]
-description = "Nuclei OGNL注入检测模板"
-source = "nuclei"
-url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2017/CNVD-2017-03561.yaml"
-
-[[exploit.poc]]
-description = "Nuclei OGNL注入检测模板（算术表达式验证）"
-source = "nuclei"
-url = "https://raw.githubusercontent.com/projectdiscovery/nuclei-templates/master/http/cnvd/2017/CNVD-2017-03561.yaml"
-
-[[exploit.poc]]
-description = "OGNL注入验证PoC及详细利用方法（含GET/POST命令执行payload）"
-source = "github"
-url = "https://gitee.com/cute-guy/Penetration_Testing_POC/blob/master/%E6%B3%9B%E5%BE%AEe-mobile%20ognl%E6%B3%A8%E5%85%A5.md"
-
-[[exploit.poc]]
-description = "微信公众号文章 PoC 及利用截图"
-source = "other"
-url = "https://mp.weixin.qq.com/s/EbzjQvHTl7k9flG-7lqAvA"
+exp_urls = []
+nuclei_templates = ["https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2017/CNVD-2017-03561.yaml"]
+poc_urls = ["https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2017/CNVD-2017-03561.yaml", "https://gitee.com/cute-guy/Penetration_Testing_POC/blob/master/%E6%B3%9B%E5%BE%AEe-mobile%20ognl%E6%B3%A8%E5%85%A5.md"]
 
 [id]
-avd_id = ""
+aliases = ["CNVD-2017-03561", "NUCLEI-HTTP-CNVD-2017-CNVD-2017-03561-YAML"]
 ave_id = "AVE-2026-0026"
-cve_id = ""
-other_ids = ["CNVD-2017-03561"]
+cve_id = "CNVD-2017-03561"
 
 [meta]
-collected_at = "2026-07-10T10:50:51.069619304+00:00"
+collected_at = "2026-07-10T16:34:14.667353806+00:00"
 status = "completed"
 
 [references]
-avd = ""
-nvd = ""
-other = [
-    "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2017/CNVD-2017-03561.yaml",
-    "https://gitee.com/cute-guy/Penetration_Testing_POC/blob/master/%E6%B3%9B%E5%BE%AEe-mobile%20ognl%E6%B3%A8%E5%85%A5.md",
-    "https://reconshell.com/vulnerability-research-list/",
-    "https://misakikata.github.io/2018/09/%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B3%A8%E5%85%A5/",
-    "http://sh0w.top/index.php/archives/14/",
-    "http://sh0w.top/index.php/archives/39/",
-]
-
-[remediation]
-fix = "升级泛微e-mobile到最新版本。联系厂商获取安全补丁。"
-steps = [
-    "步骤1: 确认泛微e-mobile是否使用Apache版本",
-    "步骤2: 联系泛微官方获取修复补丁",
-    "步骤3: 部署WAF规则拦截OGNL注入攻击特征",
-    "步骤4: 如非必要，限制/login.do和/login/login.do的互联网暴露",
-]
-workaround = "如无法升级，可配置WAF规则拦截message参数中的OGNL表达式负载，如`@org.apache.commons`、`ognl`、`#_memberAccess`等关键字。限制/login.do和/login/login.do的对外访问。"
+urls = ["https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2017/CNVD-2017-03561.yaml", "https://gitee.com/cute-guy/Penetration_Testing_POC/blob/master/%E6%B3%9B%E5%BE%AEe-mobile%20ognl%E6%B3%A8%E5%85%A5.md"]
 
 [score]
 cvss_v2 = 10.0
 cvss_v2_vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C"
 cvss_v3 = 9.8
 cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
-cvss_v4 = 10.0
-cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N"
-
-[tags]
-tags = [
-    "OGNL注入",
-    "RCE",
-    "CNVD-2017",
-    "泛微",
-    "e-mobile",
-    "表达式注入",
-]
+cvss_v4 = 0.0
+cvss_v4_vector = ""
