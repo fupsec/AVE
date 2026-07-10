@@ -1,30 +1,25 @@
-[id]
-ave_id = "AVE-2025-0040"
-cve_id = "CVE-2025-70795"
-aliases = ["CVE-2025-70795", "CVE-2026-0828"]
-
 [basic]
-title = "Safetica STProcessMonitor 驱动 BYOVD 任意进程终止漏洞"
-description = "Safetica STProcessMonitor 11.11.4.0 内核驱动存在 Improper Privilege Management 漏洞（CWE-269）。具有管理员权限的攻击者可向驱动发送特制的 IOCTL 请求（0xB822200C），由于 IOCTL 处理程序中缺少调用者验证，可终止受保护的第三方进程，造成拒绝服务。该漏洞属于 BYOVD（Bring Your Own Vulnerable Driver）类型，影响系统关键服务的可用性。同一驱动同时影响 CVE-2026-0828，低权限用户亦可利用其他 IOCTL 路径终止系统进程。"
-severity = "MEDIUM"
-score = 5.5
-remediation = "厂商已发布修复版本，建议用户升级至 Safetica STProcessMonitor 11.26.18.0 或更高版本。若无法立即升级，可通过限制非授权驱动加载权限、启用 Windows 驱动程序签名强制策略、监控异常设备 IOCTL 调用行为等方式缓解风险。"
-published = "2026-04-17"
-updated = "2026-07-10"
-sources = ["github", "nvd", "kafan", "cert"]
-
-[affected]
-vendor = "Safetica"
-product = "STProcessMonitor"
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["github"]
+title = "CVE-2025-70795"
+updated = ""
 
 [exploit]
-poc_urls = ["https://github.com/ANYLNK/STProcessMonitorBYOVD"]
 exp_urls = []
-nuclei_templates = []
+poc_urls = []
 
-[references]
-urls = ["https://nvd.nist.gov/vuln/detail/CVE-2025-70795", "https://github.com/ANYLNK/STProcessMonitorBYOVD", "https://bbs.kafan.cn/thread-2287429-1-1.html", "https://github.com/magicsword-io/LOLDrivers/commit/eea8326bf891d810902203e9ac5cfdeaf5a17a1c", "https://github.com/magicsword-io/LOLDrivers/issues/268", "https://www.kb.cert.org/vuls/id/818729"]
+[id]
+aliases = ["CVE-2025-70795"]
+ave_id = "AVE-2025-0040"
+cve_id = "CVE-2025-70795"
 
 [meta]
-collected_at = "2026-07-10T16:23:37.660632593+00:00"
+collected_at = "2026-07-10T20:51:33.496446164+00:00"
 status = "completed"
+
+[references]
+urls = []
