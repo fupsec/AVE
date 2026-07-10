@@ -1,37 +1,25 @@
-[id]
-ave_id = "AVE-1999-0019"
-cve_id = "CVE-1999-0493"
-aliases = ["CVE-1999-0493"]
-
 [basic]
-title = "Sun Solaris rpc.statd 远程命令执行漏洞"
-description = "Solaris 系统中的 rpc.statd 服务（NFS 状态监控器）存在安全漏洞，远程攻击者可通过 SM_MON 和 SM_NOTIFY 命令将恶意 RPC 调用转发到本地操作系统内核。由于 rpc.statd 未正确过滤传入的 RPC 请求，攻击者可利用该漏洞配合 automountd 等其他服务中的缺陷，实现远程代码执行，完全控制目标系统。该漏洞影响 Sun Solaris 2.3/2.4/2.5/2.5.1/2.6 及 SunOS 5.3/5.4/5.5/5.5.1/5.6 等多个版本。"
-severity = "HIGH"
-score = 7.5
-remediation = "立即安装 Sun 安全公告 186 中提供的修补程序，在网络边界防火墙封禁对 rpc.statd 端口（111/TCP、111/UDP）的不必要访问，禁用无需使用的 NFS 相关 RPC 服务，限制可访问 rpc.statd 的源 IP 地址范围。"
-published = "1999-06-07"
-updated = "2026-07-10"
-sources = ["nvd", "redhat"]
-
-[affected]
-vendor = "Sun Microsystems"
-product = "Solaris"
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0493"
-urls = [
-    "https://access.redhat.com/security/cve/CVE-1999-0493",
-    "http://www.cert.org/advisories/CA-99-05-statd-automountd.html",
-    "http://www.securityfocus.com/bid/450",
-    "http://sunsolve.sun.com/pub-cgi/retrieve.pl?doctype=coll&doc=secbull/186&type=0&nav=sec.sba",
-    "http://www.ciac.org/ciac/bulletins/j-045.shtml",
-    "http://marc.info/?l=bugtraq&m=91547759121289&w=2"
-]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["redhat"]
+title = "CVE-1999-0493 漏洞"
+updated = ""
 
 [exploit]
-poc_urls = []
 exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0493"]
+ave_id = "AVE-1999-0019"
+cve_id = "CVE-1999-0493"
 
 [meta]
-collected_at = "2026-07-10T18:51:34.289753394+00:00"
+collected_at = "2026-07-10T21:21:56.677337560+00:00"
 status = "completed"
+
+[references]
+urls = []
