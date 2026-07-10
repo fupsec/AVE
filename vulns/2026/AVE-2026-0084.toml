@@ -1,36 +1,25 @@
-[id]
-ave_id = "AVE-2026-0084"
-cve_id = "CVE-2026-1056"
-aliases = ["CVE-2026-1056"]
-
 [basic]
-title = "Snow Monkey Forms WordPress 插件路径遍历导致任意文件删除"
-description = "Snow Monkey Forms WordPress 插件 12.0.3 及以下版本中存在路径遍历漏洞，位于 generate_user_dirpath 函数中。由于对 form_id 参数缺乏充分的路径验证，未认证的攻击者可通过 REST API 接口 /wp-json/snow-monkey-form/v1/view 发送特制请求，利用 ../ 目录遍历字符串删除服务器上的任意文件。当删除 wp-config.php 等关键配置文件后，可导致远程代码执行。攻击者通过设置 method 参数为 input 即可绕过 CSRF 检查。"
-severity = "CRITICAL"
-score = 9.8
-remediation = "升级 Snow Monkey Forms 插件至 12.0.3 以上版本。官方已在 changeset 3448278 中修复此漏洞，建议同时审查服务器文件权限配置以限制 Web 应用可操作的目录范围。"
-published = "2026-01-28"
-updated = "2026-06-17"
-sources = ["github", "nvd"]
-
-[affected]
-vendor = "inc2734"
-product = "Snow Monkey Forms"
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2026-1056"
-other = [
-    "https://plugins.trac.wordpress.org/browser/snow-monkey-forms/tags/12.0.3/App/Model/Directory.php#L58",
-    "https://plugins.trac.wordpress.org/browser/snow-monkey-forms/tags/12.0.3/App/Rest/Route/View.php#L189",
-    "https://plugins.trac.wordpress.org/browser/snow-monkey-forms/tags/12.0.3/snow-monkey-forms.php#L186",
-    "https://plugins.trac.wordpress.org/changeset/3448278/",
-    "https://www.wordfence.com/threat-intel/vulnerabilities/id/37a8642d-07f5-4b1b-8419-e30589089162?source=cve",
-]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["github"]
+title = "CVE-2026-1056"
+updated = ""
 
 [exploit]
-poc_urls = ["https://github.com/ch4r0nn/CVE-2026-1056-POC"]
-exp_urls = ["https://github.com/ch4r0nn/CVE-2026-1056-POC"]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2026-1056"]
+ave_id = "AVE-2026-0084"
+cve_id = "CVE-2026-1056"
 
 [meta]
-collected_at = "2026-07-11T10:00:00Z"
+collected_at = "2026-07-10T22:40:58.482161507+00:00"
 status = "completed"
+
+[references]
+urls = []
