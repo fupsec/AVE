@@ -1,17 +1,14 @@
 [id]
-ave_id = "AVE-2026-0054"
-cve_id = "CVE-2026-49476"
-aliases = [
-    "CVE-2026-49476",
-    "GHSA-2wc2-fm75-p42x",
-]
+ave_id = "AVE-1999-0091"
+cve_id = "CVE-1999-0069"
+aliases = ["CVE-1999-0069"]
 
 [basic]
-title = "CVE-2026-49476"
+title = "CVE-1999-0069"
 description = ""
 severity = "UNKNOWN"
 score = 0.0
-sources = ["ghsa"]
+sources = ["exploitdb"]
 published = ""
 updated = ""
 remediation = "Refer to vendor advisory and upgrade to fixed version."
@@ -25,4 +22,4 @@ exp_urls = []
 
 [meta]
 status = "completed"
-collected_at = "2026-07-10T12:52:47.767869319+00:00"
+collected_at = "2026-07-10T12:52:47.767739433+00:00"
