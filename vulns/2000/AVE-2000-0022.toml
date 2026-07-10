@@ -1,0 +1,32 @@
+[id]
+ave_id = "AVE-2000-0022"
+cve_id = "CVE-2000-0364"
+aliases = ["CVE-2000-0364"]
+
+[basic]
+title = "screen 和 rxvt TTY 权限配置不当导致本地用户可写入其他 TTY"
+description = "screen and rxvt in Red Hat Linux 6.0 do not properly set the modes of tty devices, which allows local users to write to other ttys."
+severity = "MEDIUM"
+score = 4.6
+sources = ["redhat", "nvd"]
+published = "1999-06-06"
+updated = "2026-06-16"
+remediation = "升级 Red Hat Linux 至修复版本。参考 Red Hat 安全公告 RHSA-1999:014-01。"
+
+[references]
+urls = [
+  "https://nvd.nist.gov/vuln/detail/CVE-2000-0364",
+  "https://access.redhat.com/security/cve/CVE-2000-0364",
+  "http://www.redhat.com/corp/support/errata/RHSA1999014_01.html",
+  "http://www.securityfocus.com/bid/309",
+  "http://marc.info/?l=bugtraq&m=92877527701347&w=2",
+  "http://marc.info/?l=bugtraq&m=92886009012161&w=2"
+]
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T10:18:58Z"

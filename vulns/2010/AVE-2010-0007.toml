@@ -1,0 +1,63 @@
+[id]
+ave_id = "AVE-2010-0007"
+cve_id = "CVE-2010-1297"
+avd_id = ""
+other_ids = ["OSVDB-65141", "BID-40586"]
+
+[basic]
+title = "Adobe Flash Player 内存破坏漏洞（newfunction 无效指针使用）"
+description = "Adobe Flash Player 9.0.277.0之前版本和10.x 10.1.53.64之前版本；Adobe AIR 2.0.2.12610之前版本；以及Windows和Mac OS X上的Adobe Reader和Acrobat 9.x至9.3.3之前版本和8.x至8.2.3之前版本，允许远程攻击者通过精心构造的SWF内容执行任意代码或造成拒绝服务（内存破坏），与authplay.dll和ActionScript虚拟机2（AVM2）newfunction指令相关，于2010年6月在野外被积极利用。"
+severity = "HIGH"
+source = "nvd"
+published = "2010-06-08"
+updated = "2026-06-16"
+
+[score]
+cvss_v2 = 9.3
+cvss_v2_vector = "AV:N/AC:M/Au:N/C:C/I:C/A:C"
+cvss_v3 = 7.8
+cvss_v3_vector = "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H"
+cvss_v4 = 0.0
+cvss_v4_vector = ""
+
+[affected]
+vendor = "Adobe"
+product = "Flash Player, AIR, Reader, Acrobat"
+
+[exploit]
+poc = [
+  { url = "https://www.exploit-db.com/exploits/14853", description = "Adobe Acrobat Reader and Flash Player newclass 无效指针利用（Abysssec）", source = "exploit-db" },
+  { url = "https://www.exploit-db.com/exploits/13787", description = "Adobe Flash and Reader 野外恶意样本 PoC（密码 edb）", source = "exploit-db" },
+  { url = "https://contagiodump.blogspot.com/2010/06/jun-8-cve-2010-1297-poc-by-joshua-j.html", description = "Joshua J. Drake 提供的 CVE-2010-1297 PoC（触发崩溃）", source = "其他" }
+]
+exp = [
+  { url = "https://www.exploit-db.com/exploits/16687", description = "Adobe Flash Player newfunction 无效指针利用 - Metasploit 文件格式模块（生成恶意 PDF）", source = "exploit-db" },
+  { url = "https://www.exploit-db.com/exploits/16614", description = "Adobe Flash Player newfunction 无效指针利用 - Metasploit 浏览器模块（HTTP 服务投递）", source = "exploit-db" },
+  { url = "https://github.com/rapid7/metasploit-framework/blob/master/modules/exploits/windows/fileformat/adobe_flashplayer_newfunction.rb", description = "Metasploit Framework 文件格式利用模块源码", source = "github" },
+  { url = "https://github.com/rapid7/metasploit-framework/blob/master/modules/exploits/windows/browser/adobe_flashplayer_newfunction.rb", description = "Metasploit Framework 浏览器利用模块源码", source = "github" },
+  { url = "https://www.rapid7.com/db/modules/exploit/windows/fileformat/adobe_flashplayer_newfunction/", description = "Rapid7 模块详情 - 文件格式利用", source = "rapid7" },
+  { url = "https://www.rapid7.com/db/modules/exploit/windows/browser/adobe_flashplayer_newfunction/", description = "Rapid7 模块详情 - 浏览器利用", source = "rapid7" }
+]
+nuclei_templates = []
+
+[remediation]
+fix = "升级 Adobe Flash Player 至 10.1.53.64 或 9.0.277.0 及更高版本；升级 Adobe Reader 和 Acrobat 至 9.3.3 或 8.2.3 及更高版本；升级 Adobe AIR 至 2.0.2.12610 及更高版本。注意：Adobe Flash Player 已于 2020 年 12 月 31 日终止支持（EOL），应立即断网并卸载。"
+workaround = "如无法立即升级：1) 在浏览器中禁用 Flash Player 插件；2) 配置 Adobe Reader 的受保护模式和沙箱；3) 避免打开来源不明的 PDF 文件；4) 使用 Windows DEP 和 ASLR 增强防护。"
+steps = ["步骤1: 确认当前 Adobe Flash Player / Reader / Acrobat / AIR 版本", "步骤2: 下载并安装对应产品的安全更新补丁", "步骤3: 由于 Flash Player 已 EOL，建议彻底卸载并替换为其他方案", "步骤4: 验证更新后版本不再受漏洞影响"]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2010-1297"
+avd = ""
+other = ["https://www.adobe.com/support/security/advisories/apsa10-01.html", "https://www.adobe.com/support/security/bulletins/apsb10-15.html", "https://github.com/advisories/GHSA-cv7g-qpjc-66p7", "https://www.zero-day.cz/database/85/", "https://contagiodump.blogspot.com/2010/06/jun-8-cve-2010-1297-poc-by-joshua-j.html", "https://blogs.forcepoint.com/security-labs/adobe-0-day-vulnerability-flash-adobe-reader-and-acrobat", "https://nakedsecurity.sophos.com/2010/06/08/mitigations-flash-vulnerability-cve20101297/"]
+
+[tags]
+tags = ["CWE-787", "RCE", "memory-corruption", "heap-overflow", "swf", "pdf", "kev", "adobe", "flash-player", "eol", "zero-day"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "high"
+notes = "该漏洞于2010年6月在野外被积极利用，是针对台湾政府组织的 Taidoor 攻击活动的一部分。CISA KEV 目录于2022-06-08收录。Adobe Flash Player 已于2020年12月31日终止支持（EOL）。"
+
+[meta]
+collected_at = "2026-07-10T00:00:00Z"
+status = "completed"
