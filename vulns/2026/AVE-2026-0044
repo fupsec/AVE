@@ -1,14 +1,17 @@
 [id]
-ave_id = "AVE-1999-0035"
-cve_id = "CVE-1999-1572"
-aliases = ["CVE-1999-1572"]
+ave_id = "AVE-2026-0044"
+cve_id = "CVE-2026-48598"
+aliases = [
+    "CVE-2026-48598",
+    "GHSA-28jh-g32x-v9v4",
+]
 
 [basic]
-title = "CVE-1999-1572"
+title = "CVE-2026-48598"
 description = ""
 severity = "UNKNOWN"
 score = 0.0
-sources = ["redhat"]
+sources = ["ghsa"]
 published = ""
 updated = ""
 remediation = "Refer to vendor advisory and upgrade to fixed version."
@@ -22,4 +25,4 @@ exp_urls = []
 
 [meta]
 status = "completed"
-collected_at = "2026-07-10T12:52:04.402914888+00:00"
+collected_at = "2026-07-10T12:52:04.403389858+00:00"

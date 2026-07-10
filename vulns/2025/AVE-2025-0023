@@ -1,14 +1,14 @@
 [id]
-ave_id = "AVE-1999-0035"
-cve_id = "CVE-1999-1572"
-aliases = ["CVE-1999-1572"]
+ave_id = "AVE-2025-0023"
+cve_id = "CVE-2025-32756"
+aliases = ["CVE-2025-32756"]
 
 [basic]
-title = "CVE-1999-1572"
+title = "CVE-2025-32756"
 description = ""
 severity = "UNKNOWN"
 score = 0.0
-sources = ["redhat"]
+sources = ["github"]
 published = ""
 updated = ""
 remediation = "Refer to vendor advisory and upgrade to fixed version."
@@ -22,4 +22,4 @@ exp_urls = []
 
 [meta]
 status = "completed"
-collected_at = "2026-07-10T12:52:04.402914888+00:00"
+collected_at = "2026-07-10T12:52:04.405619150+00:00"
