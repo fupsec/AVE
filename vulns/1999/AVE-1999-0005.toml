@@ -1,6 +1,7 @@
 [id]
 ave_id = "AVE-1999-0005"
 cve_id = "CVE-1999-0140"
+avd_id = ""
 other_ids = []
 
 [basic]
@@ -9,7 +10,7 @@ description = "Windows NT 系统中的远程访问服务（RAS）和 PPTP 协议
 severity = "MEDIUM"
 source = "nvd"
 published = "1999-06-30"
-updated = "2024-11-20"
+updated = "2026-06-16"
 
 [score]
 cvss_v2 = 5.0
@@ -43,8 +44,8 @@ tags = ["NVD-CWE-Other", "DoS", "PPTP", "RAS", "Windows-NT", "Remote"]
 [authenticity]
 cve_confidence = "high"
 poc_confidence = "none"
-notes = "漏洞由 MITRE/NVD 收录并确认。公开资料仅有 X-Force 参考链接，未发现公开 PoC 或利用代码。由于该漏洞年代久远且涉及非 HTTP 协议（PPTP），无法生成自动化 PoC 验证脚本。漏洞状态已被微软修复，但由于 Windows NT 已停止支持，仍使用旧系统的用户面临风险。"
+notes = "漏洞由 MITRE/NVD 收录并确认。公开资料仅有 X-Force 参考链接，未发现公开 PoC 或利用代码（搜索 NVD、GitHub、Exploit-DB、Sploitus、PacketStorm 等渠道均无结果）。由于该漏洞年代久远且涉及非 HTTP 协议（PPTP），无法生成自动化 PoC 验证脚本。漏洞状态已被微软修复，但由于 Windows NT 已停止支持，仍使用旧系统的用户面临风险。"
 
 [meta]
-collected_at = "2026-07-10T11:18:32Z"
+collected_at = "2026-07-10T14:09:50Z"
 status = "completed"
