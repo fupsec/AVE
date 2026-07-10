@@ -32,7 +32,7 @@ nuclei_templates = []
 
 [remediation]
 fix = "升级至 Adobe Acrobat/Reader 8.1.2 及以上版本。参考 Adobe 官方安全公告 APSB08-13。"
-workaround = "在受影响版本的 Adobe Reader 中禁用 JavaScript 功能：编辑 > 首选项 > JavaScript > 取消选中"启用 Acrobat JavaScript"。"
+workaround = "在受影响版本的 Adobe Reader 中禁用 JavaScript 功能：编辑 > 首选项 > JavaScript > 取消选中「启用 Acrobat JavaScript」。"
 steps = ["确认 Adobe Acrobat/Reader 版本是否为 8.1.1 及以下", "下载并安装最新安全更新: https://www.adobe.com/support/security/bulletins/apsb08-13.html", "或禁用 JavaScript 作为临时缓解措施"]
 
 [references]

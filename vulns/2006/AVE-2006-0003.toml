@@ -54,5 +54,5 @@ poc_confidence = "none"
 notes = "CVE 由 NVD 确认，已列入 CISA KEV 目录，确认存在野外利用。未找到公开 PoC/EXP 脚本或 Nuclei 检测模板。"
 
 [meta]
-collected_at = "2026-07-10T12:13:41Z"
+collected_at = "2026-07-11T01:00:00Z"
 status = "completed"
