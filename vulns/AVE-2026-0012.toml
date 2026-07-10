@@ -1,0 +1,70 @@
+[affected]
+product = "Cockpit CMS"
+vendor = "agentejo"
+
+[authenticity]
+cve_confidence = "high"
+notes = "PoC 存在于 GitHub Gist，AVD 标注 poc_status 为 none"
+poc_confidence = "medium"
+
+[basic]
+description = '''
+Cockpit CMS 是一款开源的 API 优先内容管理系统（agentejo/cockpit，5.4k GitHub stars），用于为任意网站提供内容管理功能。
+受影响版本中，.htaccess 配置文件中 &lt;Files ~ "\.(yaml|yml)$"&gt; 指令仅对网站根目录下的 YAML 文件起保护作用，其作用域为目录级别而非递归，因此 /config/config.yaml 文件不受该指令保护；此外 nginx 服务器不支持 .htaccess，根本不存在任何配置保护。攻击者可直接通过 HTTP GET 请求 /config/config.yaml 获取包含 SMTP 凭证、API 密钥、数据库配置、用户组权限等敏感信息的配置文件。
+修复版本中通过将配置存储改为 config.php 格式（PHP 文件会被服务器执行而非直接返回内容）并使用递归 RewriteRule 保护配置目录，彻底切断了通过直接 HTTP 请求获取敏感配置的路径。
+'''
+published = "2026-06-29"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "MEDIUM"
+source = "avd"
+sources = ["unknown"]
+title = "Cockpit CMS config.yaml 文件泄露漏洞(CVE-2026-13533)"
+updated = "2026-06-29"
+
+[exploit]
+exp = []
+exp_urls = []
+nuclei_templates = []
+poc_urls = []
+
+[[exploit.poc]]
+description = "Cockpit CMS config.yaml 文件泄露 PoC"
+source = "github"
+url = "https://gist.github.com/nov-1337/3eb0a06c602ced9c3b11b675b53947da"
+
+[id]
+aliases = ["CVE-2026-13533"]
+avd_id = "CVE-2026-13533"
+ave_id = "AVE-2026-0012"
+cve_id = "CVE-2026-13533"
+other_ids = []
+
+[meta]
+collected_at = "2026-07-10T03:28:10Z"
+status = "completed"
+
+[references]
+avd = "https://avd.aliyun.com/detail?id=CVE-2026-13533"
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2026-13533"
+other = []
+urls = []
+
+[remediation]
+fix = "建议您更新当前系统或软件至最新版，完成漏洞的修复。"
+steps = [
+    "步骤1: 确认 Cockpit CMS 版本",
+    "步骤2: 升级到最新版本",
+]
+workaround = "如无法升级，可在服务器配置中手动添加对 /config/ 目录的访问控制规则，或使用 RewriteRule 阻止直接访问 YAML 文件。"
+
+[score]
+cvss_v3 = 5.3
+cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N"
+
+[tags]
+tags = [
+    "CWE-425",
+    "CWE-552",
+    "信息泄露",
+]

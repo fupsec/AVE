@@ -1,0 +1,79 @@
+[affected]
+product = "Hospital Management System"
+vendor = "itsourcecode"
+
+[authenticity]
+cve_confidence = "high"
+notes = "CVE-2026-13531已获NVD确认，来源为VulDB。PoC已验证存在于GitHub Issue #2 (Fomovet/cve)，包含详细sqlmap利用方法(POST方式, 需先登录)。"
+poc_confidence = "high"
+
+[basic]
+description = """
+itsourcecode Hospital Management System V1.0存在SQL注入漏洞，攻击者可通过department.php文件中的editid参数注入恶意SQL代码，从而实现未授权数据库访问、数据泄露或数据篡改。
+受影响版本中，itsourcecode Hospital Management System V1.0版本存在SQL注入漏洞。该系统未对department.php文件中editid参数进行输入过滤或参数化查询处理，当攻击者提交包含SQL语法片段的editid参数值时，恶意SQL代码被直接拼接入数据库查询语句并执行，导致攻击者可窃取敏感数据、篡改数据库内容或造成服务中断。"""
+published = "2026-06-29"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "MEDIUM"
+source = "nvd"
+sources = ["unknown"]
+title = "itsourcecode Hospital Management System SQL注入漏洞(CVE-2026-13531)"
+updated = "2026-06-29"
+
+[exploit]
+exp = []
+exp_urls = []
+nuclei_templates = []
+poc_urls = []
+
+[[exploit.poc]]
+description = "SQL注入PoC验证详情及sqlmap利用方法"
+source = "github"
+url = "https://github.com/Fomovet/cve/issues/2"
+
+[id]
+aliases = ["CVE-2026-13531"]
+avd_id = ""
+ave_id = "AVE-2026-0014"
+cve_id = "CVE-2026-13531"
+other_ids = []
+
+[meta]
+collected_at = "2026-07-10T03:34:53Z"
+status = "completed"
+
+[references]
+avd = "https://avd.aliyun.com/detail?id=CVE-2026-13531"
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2026-13531"
+urls = []
+
+[[references.other]]
+description = "VulDB漏洞条目"
+url = "https://vuldb.com/vuln/374539"
+
+[[references.other]]
+description = "GitHub漏洞详情及PoC"
+url = "https://github.com/Fomovet/cve/issues/2"
+
+[remediation]
+fix = "建议您更新当前系统或软件至最新版，完成漏洞的修复。"
+steps = [
+    "步骤1: 使用预处理语句和参数绑定替代拼接SQL查询",
+    "步骤2: 对用户输入进行严格的验证和过滤",
+    "步骤3: 限制数据库账户权限，避免使用高权限账户运行应用",
+    "步骤4: 定期开展代码和系统安全审计",
+]
+workaround = "如无法升级，建议使用预处理语句(Prepared Statements)和参数绑定对editid等用户可控参数进行输入验证与过滤，限制数据库账户权限，定期开展安全审计以降低SQL注入利用风险。"
+
+[score]
+cvss_v2 = 6.5
+cvss_v2_vector = "AV:N/AC:L/Au:S/C:P/I:P/A:P"
+cvss_v3 = 6.3
+cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:L"
+
+[tags]
+tags = [
+    "CWE-89",
+    "CWE-74",
+    "SQL注入",
+]

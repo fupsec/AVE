@@ -1,0 +1,25 @@
+[id]
+ave_id = "AVE-2015-0008"
+cve_id = "CVE-2015-10113"
+aliases = ["CVE-2015-10113"]
+
+[basic]
+title = "WordPress Plugin WooFramework Tweaks 输入验证错误漏洞(CVE-2015-10113)"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["avd"]
+published = "2023-06-06"
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T05:27:47.127415223+00:00"

@@ -1,0 +1,25 @@
+[id]
+ave_id = "AVE-2026-0002"
+cve_id = "CVE-2026-13541"
+aliases = ["CVE-2026-13541"]
+
+[basic]
+title = "itsourcecode Hospital Management System SQL注入漏洞(CVE-2026-13541)"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["avd"]
+published = "2026-06-29"
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T02:52:27.339041981+00:00"

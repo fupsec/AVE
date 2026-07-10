@@ -1,0 +1,30 @@
+[id]
+ave_id = "AVE-2026-0004"
+cve_id = "CVE-2026-13539"
+aliases = ["CVE-2026-13539"]
+
+[basic]
+title = "Wavlink WL-NU516U1 路由器 Guest_ssid 参数栈缓冲区溢出漏洞(CVE-2026-13539)"
+description = """
+Wavlink WL-NU516U1 路由器的 wireless.cgi 中 sub_407504 函数对 Guest_ssid 参数未进行长度检查，直接通过 sprintf 将用户输入拼接入固定 1028 字节的栈缓冲区，当输入长度超过缓冲区剩余空间时触发栈溢出，远程攻击者可通过该漏洞在设备上执行任意代码。
+受影响版本中，该设备使用 MIPS 架构且固件版本为 M16U1_V240425，Guest_ssid 参数在 POST 请求中作为 sub_4032E4 函数的局部变量 v15 传入 sub_407504，由于 sprintf 未限制输入长度，超长字符串覆盖栈帧中的返回地址寄存器 $ra，配合 MIPS 小端特性可实现远程代码执行。
+修复版本中通过发布新固件（WINSTAR_NU516U1-WO-A-2026-06-22）解决了该问题，官方建议用户升级至该版本或更高版本以消除安全风险。
+解决建议
+建议您更新当前系统或软件至最新版，完成漏洞的修复。"""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["avd"]
+published = "2026-06-29"
+updated = ""
+remediation = "建议您更新当前系统或软件至最新版，完成漏洞的修复。"
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T02:52:28.866199316+00:00"

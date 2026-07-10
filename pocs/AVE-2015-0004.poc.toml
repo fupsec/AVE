@@ -1,0 +1,27 @@
+[info]
+id = "POC-AVE-2015-0004"
+name = "WordPress Plugin Video Playlist and Gallery 跨站请求伪造 PoC"
+author = "AVE"
+severity = "high"
+tags = ["csrf", "wordpress", "cwe-352"]
+description = "检测 WordPress 插件 Video Playlist and Gallery (Cincopa Media Plugin) 是否存在 CSRF 漏洞（CVE-2015-10109），通过读取插件 readme 判断版本是否为 1.136 及以下。"
+vuln_id = ["CVE-2015-10109", "AVE-2015-0004"]
+
+[poc]
+logic = "any"
+
+[[poc.requests]]
+method = "GET"
+path = "/wp-content/plugins/video-playlist-and-gallery-plugin/readme.txt"
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["Stable tag: 1.136"]
+expect = true
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["video-playlist-and-gallery-plugin"]
+expect = true

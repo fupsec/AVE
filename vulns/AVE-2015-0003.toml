@@ -1,0 +1,25 @@
+[id]
+ave_id = "AVE-2015-0003"
+cve_id = "CVE-2015-10108"
+aliases = ["CVE-2015-10108"]
+
+[basic]
+title = "WordPress Plugin meitar Inline Google Spreadsheet Viewer 跨站请求伪造漏洞(CVE-2015-10108)"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["avd"]
+published = "2023-06-01"
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T05:00:26.390950931+00:00"

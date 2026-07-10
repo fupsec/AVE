@@ -1,0 +1,30 @@
+[id]
+ave_id = "AVE-2026-0023"
+cve_id = "CVE-2026-13522"
+aliases = ["CVE-2026-13522"]
+
+[basic]
+title = "Investintech SlimPDFReader PDF File Handler out-of-bounds read vulnerability(CVE-2026-13522)"
+description = """
+Investintech SlimPDFReader 是 Windows 平台闭源商业 PDF 阅读器，用于查看 PDF 文档。攻击者可通过诱骗用户打开恶意 PDF 文件，触发 PDF File Handler 组件中 TeighaDo 函数的越界读取操作，导致程序崩溃或引发信息泄露。
+受影响版本中，Investintech SlimPDFReader 2.0.0 至 2.0.14 所有版本均受 PDF File Handler 组件中 TeighaDo 函数 out-of-bounds read 漏洞影响，攻击者可远程利用此漏洞。
+修复版本中通过停止维护该产品的方式应对，官方未发布安全更新版本，建议受影响用户停止使用该产品并切换至其他仍在维护的 PDF 阅读器。
+解决建议
+建议您更新当前系统或软件至最新版，完成漏洞的修复。"""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["avd"]
+published = "2026-06-29"
+updated = ""
+remediation = "建议您更新当前系统或软件至最新版，完成漏洞的修复。"
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T04:07:17.276762002+00:00"

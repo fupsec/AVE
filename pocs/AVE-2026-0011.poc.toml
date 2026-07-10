@@ -1,0 +1,56 @@
+[info]
+id = "POC-AVE-2026-00011"
+name = "Cherry Studio Memory Cross-Scope Dedup Bypass PoC"
+author = "AVE"
+severity = "medium"
+tags = ["cherry-studio", "cve-2026-13534", "cwe-285", "cwe-639", "memory", "authorization-bypass"]
+description = "Cherry Studio MemoryService.ts内sha256摘要函数仅使用内存文本内容生成去重哈希，未将userId和agentId纳入计算范围。攻击者可通过创建特定内存内容来阻断其他用户的相同内存创建，或在搜索和列表操作中因哈希冲突产生意外的跨作用域数据访问。该PoC检测目标是否为Cherry Studio服务并通过版本API验证是否在受影响版本范围内。"
+vuln_id = ["CVE-2026-13534", "AVE-2026-00011"]
+
+[poc]
+logic = "any"
+
+[[poc.requests]]
+method = "GET"
+path = "/health"
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200]
+expect = true
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["status", "ok"]
+expect = true
+
+[[poc.requests]]
+method = "GET"
+path = "/"
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200]
+expect = true
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["Cherry Studio", "cherry-studio"]
+expect = true
+
+[[poc.requests]]
+method = "GET"
+path = "/api/version"
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200]
+expect = true
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["1.", "0."]
+expect = true

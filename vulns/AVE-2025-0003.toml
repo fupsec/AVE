@@ -1,0 +1,30 @@
+[id]
+ave_id = "AVE-2025-0003"
+cve_id = "CVE-2025-0824"
+aliases = ["CVE-2025-0824"]
+
+[basic]
+title = "Hitachi Virtual Storage Platform One Block 固件更新验证缺失漏洞(CVE-2025-0824)"
+description = """
+Hitachi Virtual Storage Platform One Block 是日立 commercial 商业存储系统解决方案，为企业提供数据存储和管理能力。
+受影响版本中，固件更新功能在处理 DKCMAIN 和 ESM 组件固件包时缺少完整性校验机制，攻击者可通过替换或篡改固件包内容实现恶意代码加载，对系统安全性造成威胁。
+修复版本中通过在固件更新前增加数字签名或完整性校验步骤，确保只有经过验证的合法固件包才能被加载到系统中运行。
+解决建议
+建议您更新当前系统或软件至最新版，完成漏洞的修复。"""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["avd"]
+published = "2026-06-29"
+updated = ""
+remediation = "建议您更新当前系统或软件至最新版，完成漏洞的修复。"
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T02:56:58.536423813+00:00"

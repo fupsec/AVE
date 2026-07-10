@@ -1,0 +1,30 @@
+[id]
+ave_id = "AVE-2026-0016"
+cve_id = "CVE-2026-13529"
+aliases = ["CVE-2026-13529"]
+
+[basic]
+title = "YzmCMS SQL注入漏洞(CVE-2026-13529)"
+description = """
+YzmCMS是一款基于PHP的开源内容管理系统，广泛用于企业网站和个人站长建站。/application/install/index.php的siteurl参数未经过滤直接拼接入SQL UPDATE语句，攻击者可在安装向导页面通过构造报错注入Payload提取数据库用户、版本及管理员凭据等信息。
+受影响版本中，YzmCMS v7.5及之前版本的安装模块存在siteurl参数注入，攻击者可在安装向导的「站点配置」步骤（Step 4）向siteurl字段注入SQL payload，利用单引号绕过和updatexml报错机制读取数据库敏感信息，并可进一步接管后台获得服务器远程代码执行权限。
+修复版本中通过官方渠道尚未发布安全更新，厂商在收到提前通报后未做出任何回应，当前最新版本v7.5仍存在该漏洞。建议通过限制安装向导网络访问、部署WAF防护、对siteurl参数做输入过滤或白名单校验等缓解措施降低风险。
+解决建议
+建议您更新当前系统或软件至最新版，完成漏洞的修复。"""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["avd"]
+published = "2026-06-29"
+updated = ""
+remediation = "建议您更新当前系统或软件至最新版，完成漏洞的修复。"
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = ["https://github.com/drose025/security/blob/main/1.md"]
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T03:39:21.625971651+00:00"

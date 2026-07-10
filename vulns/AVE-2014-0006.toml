@@ -1,0 +1,25 @@
+[id]
+ave_id = "AVE-2014-0006"
+cve_id = "CVE-2014-125106"
+aliases = ["CVE-2014-125106"]
+
+[basic]
+title = "Nanopb 缓冲区错误漏洞(CVE-2014-125106)"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["avd"]
+published = "2023-06-18"
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T04:50:34.663370383+00:00"

@@ -1,0 +1,30 @@
+[id]
+ave_id = "AVE-2026-0022"
+cve_id = "CVE-2026-13523"
+aliases = ["CVE-2026-13523"]
+
+[basic]
+title = "GPAC ISOBMFF 解析器解压缩炸弹漏洞(CVE-2026-13523)"
+description = """
+GPAC 是开源多媒体框架，常用于 MP4/MPEG-4 容器解析与处理。
+受影响版本中，ISOBMFF 解析器在解压压缩盒（如 !six、!csix、!mof 等）时调用 gf_gz_decompress_payload_ex 函数，该函数对 zlib inflate 输出的解压大小缺乏校验。攻击者可构造超压缩数据（解压膨胀比超过 32 倍），导致进程分配远超预期的堆内存，造成内存耗尽和拒绝服务。
+修复版本中通过在 inflate 循环中添加输出大小检查来解决该问题：当 d_stream.total_out 超过输入数据大小的 32 倍时，函数返回 GF_NON_COMPLIANT_BITSTREAM 错误并停止解压，从而阻断超压缩数据的扩展攻击。
+解决建议
+建议您更新当前系统或软件至最新版，完成漏洞的修复。"""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["avd"]
+published = "2026-06-29"
+updated = ""
+remediation = "建议您更新当前系统或软件至最新版，完成漏洞的修复。"
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T04:07:16.511485180+00:00"

@@ -1,0 +1,25 @@
+[id]
+ave_id = "AVE-2006-0001"
+cve_id = "CVE-2006-10003"
+aliases = ["CVE-2006-10003"]
+
+[basic]
+title = "XML::Parser versions through 2.47 for Perl has an off-by-one heap buffer overflow in st_serial_stack"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["avd"]
+published = "2026-03-20"
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T04:08:05.118674017+00:00"

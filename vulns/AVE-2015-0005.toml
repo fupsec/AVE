@@ -1,0 +1,25 @@
+[id]
+ave_id = "AVE-2015-0005"
+cve_id = "CVE-2015-10110"
+aliases = ["CVE-2015-10110"]
+
+[basic]
+title = "WordPress plugin ruddernation TinyChat Room Spy 跨站脚本漏洞(CVE-2015-10110)"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["avd"]
+published = "2023-06-02"
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T05:06:13.409742635+00:00"

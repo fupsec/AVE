@@ -1,0 +1,30 @@
+[id]
+ave_id = "AVE-2026-0013"
+cve_id = "CVE-2026-13532"
+aliases = ["CVE-2026-13532"]
+
+[basic]
+title = "itsourcecode Hospital Management System SQL注入漏洞(CVE-2026-13532)"
+description = """
+itsourcecode Hospital Management System是一套基于PHP开发的医院管理系统，主要用于医疗机构的信息化管理。攻击者通过构造包含SQL代码的deptid参数值发送给/departmentDoctor.php页面，可将恶意SQL代码注入数据库查询语句，从而实现未授权数据库访问、数据窃取或篡改等攻击。
+受影响版本中，/departmentDoctor.php文件的deptid参数未经过滤直接拼接到SQL语句，攻击者可在已登录状态下通过该参数注入任意SQL代码，从而窃取、篡改数据库数据或获取服务器权限。
+修复版本中通过官方尚未发布安全补丁，受影响用户可通过对deptid参数进行严格类型校验、使用参数化查询替代字符串拼接、限制数据库账户权限等方式缓解风险。
+解决建议
+建议您更新当前系统或软件至最新版，完成漏洞的修复。"""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["avd"]
+published = "2026-06-29"
+updated = ""
+remediation = "建议您更新当前系统或软件至最新版，完成漏洞的修复。"
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T03:29:45.572041730+00:00"

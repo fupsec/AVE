@@ -1,0 +1,25 @@
+[id]
+ave_id = "AVE-2014-0002"
+cve_id = "CVE-2014-125102"
+aliases = ["CVE-2014-125102"]
+
+[basic]
+title = "WordPress Plugin Bestwebsoft Relevant 信息泄露漏洞(CVE-2014-125102)"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["avd"]
+published = "2023-05-30"
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T04:29:43.185323598+00:00"

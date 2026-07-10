@@ -1,0 +1,38 @@
+[info]
+id = "POC-AVE-2015-0005"
+name = "WordPress Plugin TinyChat Room Spy 跨站脚本漏洞 PoC"
+author = "AVE"
+severity = "medium"
+tags = ["xss", "wordpress", "cwe-79"]
+description = "检测 WordPress 插件 TinyChat Room Spy 是否存在 XSS 漏洞（CVE-2015-10110），通过读取插件 readme 判断版本是否为 1.2.8 及以下，并验证 room-spy.php 中 room 参数的反射 XSS。"
+vuln_id = ["CVE-2015-10110", "AVE-2015-0005"]
+
+[poc]
+logic = "any"
+
+[[poc.requests]]
+method = "GET"
+path = "/wp-content/plugins/tinychat-roomspy/readme.txt"
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["Stable tag: 1.2.8", "Stable tag: 1.2.7", "Stable tag: 1.2.6", "Stable tag: 1.2.5", "Stable tag: 1.2.4", "Stable tag: 1.2.3", "Stable tag: 1.2.2", "Stable tag: 1.2.1", "Stable tag: 1.2.0"]
+expect = true
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["tinychat", "Room Spy", "room-spy"]
+expect = true
+
+[[poc.requests]]
+method = "GET"
+path = "/wp-content/plugins/tinychat-roomspy/room-spy.php"
+headers = { "X-Forwarded-For" = "127.0.0.1" }
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["room-spy", "Room Spy"]
+expect = true

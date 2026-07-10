@@ -1,0 +1,27 @@
+[info]
+id = "POC-AVE-2015-0006"
+name = "WordPress Watu Quiz SQL注入漏洞 PoC"
+author = "AVE"
+severity = "critical"
+tags = ["sql-injection", "wordpress", "cwe-89"]
+description = "检测 WordPress Watu Quiz 插件是否存在 SQL 注入漏洞（CVE-2015-10111），通过读取插件 readme 确认版本是否为 2.6.7 及以下。"
+vuln_id = ["CVE-2015-10111", "AVE-2015-0006"]
+
+[poc]
+logic = "any"
+
+[[poc.requests]]
+method = "GET"
+path = "/wp-content/plugins/watu/readme.txt"
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["Stable tag: 2.6.7"]
+expect = true
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["Watu Quiz"]
+expect = true

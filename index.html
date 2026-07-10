@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AVE 公开漏洞库</title>
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <div class="hero-inner">
+        <h1>AVE 公开漏洞库</h1>
+        <p>公开漏洞详情、PoC 与 EXP 引用。页面通过 GitHub API 在线检索，不依赖本地汇总 JSON。</p>
+        <div class="repo-meta" id="repo-meta">仪表盘统计为静态展示（更新仓库时手动同步），检索结果由 GitHub API 实时返回。</div>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="dashboard" id="dashboard">
+        <article class="metric"><h3>漏洞总数</h3><p id="m-vulns">42</p></article>
+        <article class="metric"><h3>PoC 数量</h3><p id="m-pocs">24</p></article>
+        <article class="metric"><h3>EXP 数量</h3><p id="m-exps">0</p></article>
+        <article class="metric"><h3>Stars</h3><p id="m-stars">-</p></article>
+        <article class="metric"><h3>Forks</h3><p id="m-forks">-</p></article>
+        <article class="metric"><h3>最近推送</h3><p id="m-push">静态展示</p></article>
+      </section>
+
+      <aside class="panel filters">
+        <h2>搜索</h2>
+        <input id="search" type="search" placeholder="搜索 AVE/CVE/标题/描述" />
+        <select id="severity">
+          <option value="">全部严重性</option>
+          <option value="CRITICAL">CRITICAL</option>
+          <option value="HIGH">HIGH</option>
+          <option value="MEDIUM">MEDIUM</option>
+          <option value="LOW">LOW</option>
+          <option value="INFO">INFO</option>
+          <option value="UNKNOWN">UNKNOWN</option>
+        </select>
+      </aside>
+
+      <section class="panel list-panel">
+        <h2>漏洞列表</h2>
+        <div id="status" class="status">初始化中...</div>
+        <div id="list" class="cards"></div>
+      </section>
+    </main>
+
+    <template id="card-template">
+      <article class="card">
+        <div class="card-head">
+          <strong class="id"></strong>
+          <span class="severity"></span>
+        </div>
+        <h3 class="title"></h3>
+        <p class="description"></p>
+        <div class="meta"></div>
+        <details>
+          <summary>参考链接 / PoC / EXP / 原始文件</summary>
+          <div class="links"></div>
+        </details>
+      </article>
+    </template>
+
+    <script src="assets/app.js"></script>
+  </body>
+</html>

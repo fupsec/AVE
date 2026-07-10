@@ -1,0 +1,59 @@
+[affected]
+product = "Linux Kernel"
+vendor = "Linux"
+
+[authenticity]
+cve_confidence = "high"
+notes = ""
+poc_confidence = "none"
+
+[basic]
+description = """
+Linux kernel是美国Linux基金会的开源操作系统Linux的内核。AGP/amd64是Linux内核中的一个AMD64平台AGP图形端口驱动模块，用于支持AMD64平台的AGP图形加速功能。该驱动为开源内核代码，集成在Linux内核源码树中。
+受影响版本中，当AMD64 AGP驱动在虚拟化环境（如qemu/kvm）中运行时，若不存在物理AMD北桥硬件，cache_nbs()函数会返回-ENODEV错误码。然而agp_amd64_probe()函数中的错误检查使用`== -1`进行精确匹配而非`< 0`进行范围判断，导致负数错误码被错误地当作成功状态。驱动继续执行初始化流程，调用agp_add_bridge()进而执行amd64_fetch_size()，此时node_to_amd_nb(0)返回NULL，对NULL指针的->misc成员进行访问时触发通用保护错误（GPF），造成内核崩溃。
+修复版本中通过将agp_amd64_probe()中cache_nbs()的返回值检查从`== -1`改为`< 0`，确保任何负数错误码（包括-ENODEV）都能被正确捕获并终止初始化流程，从而在硬件不存在时避免驱动继续执行，彻底消除NULL指针解引用的根本原因。"""
+published = "2026-06-29"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+source = "avd"
+sources = ["unknown"]
+title = "Linux kernel AGP/amd64 驱动空指针解引用漏洞"
+updated = ""
+
+[exploit]
+exp = []
+exp_urls = []
+nuclei_templates = []
+poc = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2026-53325"]
+avd_id = ""
+ave_id = "AVE-2026-0006"
+cve_id = "CVE-2026-53325"
+other_ids = []
+
+[meta]
+collected_at = "2026-07-10T02:57:36Z"
+status = "completed"
+
+[references]
+avd = "https://avd.aliyun.com/detail?id=CVE-2026-53325"
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2026-53325"
+other = []
+urls = []
+
+[remediation]
+fix = "将组件 linux:kernel 升级至 6.12.0 及以上版本"
+steps = []
+workaround = ""
+
+[score]
+cvss_v2 = 0.0
+cvss_v3 = 0.0
+cvss_v4 = 0.0
+
+[tags]
+tags = []

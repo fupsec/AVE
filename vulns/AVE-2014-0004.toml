@@ -1,0 +1,25 @@
+[id]
+ave_id = "AVE-2014-0004"
+cve_id = "CVE-2014-125104"
+aliases = ["CVE-2014-125104"]
+
+[basic]
+title = "WordPress plugin VaultPress 代码问题漏洞(CVE-2014-125104)"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["avd"]
+published = "2023-06-01"
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = ["https://github.com/wp-plugins/vaultpress/commit/e3b92b14edca6291c5f998d54c90cbe98a1fb0e3"]
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T04:36:26.801066235+00:00"

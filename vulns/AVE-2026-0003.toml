@@ -1,0 +1,30 @@
+[id]
+ave_id = "AVE-2026-0003"
+cve_id = "CVE-2026-13540"
+aliases = ["CVE-2026-13540"]
+
+[basic]
+title = "GitBucket cloneRepository服务端请求伪造漏洞(CVE-2026-13540)"
+description = """
+GitBucket 是开源 Git 代码托管平台，使用 Scala 语言开发，提供仓库创建、管理等功能。
+受影响版本中，RepositoryCreationService 中 Git.cloneRepository().setURI(url) 在处理用户通过克隆方式创建仓库时，直接将 sourceUrl 参数作为 JGit 克隆 URI 使用而未对 URL 合法性进行校验，导致任何具有仓库创建权限的已认证用户可借助 GitBucket 服务器向任意 URL 发起请求，形成服务端请求伪造（SSRF）漏洞。
+修复版本中通过在 AccountController 的 createRepository 方法中新增 URL 主机地址校验逻辑，使用 HttpClientUtil.isPrivateAddress() 检查目标主机是否为内网地址，并结合系统设置的 IP 白名单进行放行判断，在源头阻断了指向内网资源的克隆请求。
+解决建议
+建议您更新当前系统或软件至最新版，完成漏洞的修复。"""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["avd"]
+published = "2026-06-29"
+updated = ""
+remediation = "建议您更新当前系统或软件至最新版，完成漏洞的修复。"
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T02:52:28.030222639+00:00"

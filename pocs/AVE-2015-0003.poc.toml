@@ -1,0 +1,20 @@
+[info]
+id = "POC-AVE-2015-0003"
+name = "WordPress Inline Google Spreadsheet Viewer CSRF PoC"
+author = "AVE"
+severity = "high"
+tags = ["csrf", "wordpress", "CWE-352"]
+description = "WordPress Plugin meitar Inline Google Spreadsheet Viewer 0.9.6 及之前版本中存在跨站请求伪造漏洞，远程攻击者可通过诱使已认证管理员访问恶意链接，利用 vistable-proxy.php 发送未授权请求，导致拒绝服务。"
+vuln_id = ["CVE-2015-10108", "AVE-2015-0003"]
+
+[poc]
+logic = "all"
+
+[[poc.requests]]
+method = "GET"
+path = "/wp-content/plugins/inline-google-spreadsheet-viewer/vistable-proxy.php"
+
+[[poc.requests.matchers]]
+type = "status"
+status = [404]
+expect = false

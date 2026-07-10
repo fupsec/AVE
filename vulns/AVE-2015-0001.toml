@@ -1,0 +1,25 @@
+[id]
+ave_id = "AVE-2015-0001"
+cve_id = "CVE-2015-10106"
+aliases = ["CVE-2015-10106"]
+
+[basic]
+title = "TYPO3 SQL注入漏洞(CVE-2015-10106)"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["avd"]
+published = "2023-05-28"
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T04:54:34.800474977+00:00"
