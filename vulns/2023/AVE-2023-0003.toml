@@ -5,20 +5,16 @@ avd_id = ""
 other_ids = []
 
 [basic]
-title = "Citrix NetScaler ADC和NetScaler Gateway信息泄露漏洞（Citrix Bleed）"
-description = "NetScaler ADC和NetScaler Gateway在以网关（VPN虚拟服务器、ICA Proxy、CVPN、RDP Proxy）或AAA虚拟服务器配置时存在敏感信息泄露漏洞。攻击者可通过发送特制请求触发缓冲区过度读取，泄露会话令牌等敏感信息，进而绕过身份认证接管用户会话。该漏洞已在CISA Known Exploited Vulnerabilities（KEV）目录中登记，且已被广泛利用。"
-severity = "CRITICAL"
+title = "Citrix NetScaler ADC 和 NetScaler Gateway 信息泄露漏洞（Citrix Bleed）"
+description = "Citrix NetScaler ADC 和 NetScaler Gateway 在配置为网关（VPN 虚拟服务器、ICA 代理、CVPN、RDP 代理）或 AAA 虚拟服务器时存在敏感信息泄露漏洞。未授权的攻击者可通过发送包含超长 Host 头的特制 HTTP 请求，触发内存越界读取，从响应中泄露包含有效会话令牌（NSC_AAAC Cookie）的内存数据，从而劫持已认证的管理员会话，绕过身份验证并访问受保护的网关资源。该漏洞已被 CISA 列入已知被利用漏洞目录（KEV），在野被 LockBit 等勒索软件组织广泛利用。"
+severity = "HIGH"
 source = "nvd"
 published = "2023-10-10"
-updated = "2025-06-17"
+updated = "2026-06-17"
 
 [score]
-cvss_v2 = 0.0
-cvss_v2_vector = ""
 cvss_v3 = 7.5
 cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N"
-cvss_v4 = 0.0
-cvss_v4_vector = ""
 
 [affected]
 vendor = "Citrix"
@@ -26,48 +22,41 @@ product = "NetScaler ADC / NetScaler Gateway"
 
 [exploit]
 poc = [
-  { url = "https://github.com/Chocapikk/CVE-2023-4966", description = "Citrix Bleed会话令牌泄露利用脚本（79★）", source = "github" },
-  { url = "https://github.com/assetnote/exploits/blob/main/citrix/CVE-2023-4966/exploit.py", description = "AssetNote 原始 PoC/EXP 利用脚本", source = "github" },
-  { url = "https://github.com/mlynchcogent/CVE-2023-4966-POC", description = "Citrix Bleed PoC 验证脚本", source = "github" },
-  { url = "https://github.com/dinosn/citrix_cve-2023-4966", description = "并行化的 Citrix Bleed 会话令牌批量提取工具", source = "github" },
-  { url = "https://github.com/RevoltSecurities/CVE-2023-4966", description = "Citrix Bleed 信息泄露漏洞利用框架", source = "github" },
-  { url = "https://github.com/morganwdavis/overread", description = "Citrix Bleed 内存越界读取模拟器（C 语言实现）", source = "github" },
-  { url = "https://github.com/certat/citrix-logchecker", description = "NetScaler 日志检测工具 - 识别 CVE-2023-4966 利用痕迹", source = "github" },
-  { url = "https://github.com/akshthejo/CVE-2023-4966-exploit", description = "Citrix Bleed 利用脚本", source = "github" },
-  { url = "http://packetstormsecurity.com/files/175323/Citrix-Bleed-Session-Token-Leakage-Proof-Of-Concept.html", description = "Citrix Bleed 会话令牌泄露 PoC", source = "packetstorm" }
+  { url = "https://github.com/Chocapikk/CVE-2023-4966", description = "Citrix Bleed 会话令牌泄露 PoC 利用脚本", source = "github" },
+  { url = "https://github.com/RevoltSecurities/CVE-2023-4966", description = "Citrix Bleed 信息泄露漏洞利用脚本", source = "github" },
+  { url = "https://github.com/0xKayala/CVE-2023-4966", description = "NetScaler ADC 和 Gateway 内存泄露利用脚本", source = "github" },
+  { url = "https://github.com/assetnote/exploits/blob/main/citrix/CVE-2023-4966/exploit.py", description = "AssetNote 官方 Citrix Bleed 内存泄露利用脚本", source = "github" },
+  { url = "http://packetstormsecurity.com/files/175323/Citrix-Bleed-Session-Token-Leakage-Proof-Of-Concept.html", description = "PacketStorm Citrix Bleed 会话令牌泄露 PoC", source = "exploit-db" }
 ]
 exp = [
-  { url = "https://github.com/Chocapikk/CVE-2023-4966", description = "Citrix Bleed 会话令牌泄露 EXP - 支持批量检测和会话提取", source = "github" },
-  { url = "https://github.com/dinosn/citrix_cve-2023-4966", description = "并行化批量会话令牌提取工具", source = "github" },
-  { url = "https://github.com/IceBreakerCode/CVE-2023-4966", description = "Citrix Bleed 基础利用脚本", source = "github" }
+  { url = "https://github.com/Chocapikk/CVE-2023-4966", description = "支持会话劫持的完整利用脚本，可提取有效会话令牌访问受保护资源", source = "github" }
 ]
 nuclei_templates = [
-  { url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cves/2023/CVE-2023-4966.yaml", description = "Nuclei检测模板 - Citrix Bleed会话令牌泄露", source = "nuclei" }
+  { url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cves/2023/CVE-2023-4966.yaml", description = "Nuclei 检测模板 - Citrix Bleed 会话令牌泄露", source = "nuclei" }
 ]
 
 [remediation]
-fix = "升级到NetScaler ADC 14.1-8.50、13.1-49.15、13.0-92.19及以上版本，或NetScaler Gateway对应修复版本（14.1-8.50、13.1-49.15、13.0-92.19）。FIPS版本需升级到13.1-37.164，NDcPP版本需升级到12.1-55.300。参考Citrix官方安全公告CTX579459。"
-workaround = "如无法升级，可参考CISA和Citrix建议，在应用补丁后终止所有活跃会话和持久会话，确保泄露的会话令牌无法被利用。通过防火墙限制对NetScaler管理接口的访问。"
-steps = ["步骤1: 确认NetScaler ADC/Gateway版本", "步骤2: 升级到修复版本", "步骤3: 终止所有现有会话", "步骤4: 检查日志确认是否存在利用痕迹"]
+fix = "升级到修复版本：NetScaler ADC 和 NetScaler Gateway 14.1 升级到 14.1-8.50 及以上、13.1 升级到 13.1-49.15 及以上、13.0 升级到 13.0-92.19 及以上。13.1-FIPS 升级到 13.1-37.164 及以上、12.1-FIPS 和 12.1-NDcPP 升级到 55.300 及以上。参考 Citrix 安全公告 CTX579459。"
+workaround = "如无法升级，按照 Citrix 官方指导应用缓解措施。升级后必须清除所有活跃和持久会话，并轮换所有凭据和证书，因会话令牌可能已被泄露。"
+steps = ["步骤1: 确认使用的 NetScaler ADC/Gateway 版本", "步骤2: 升级到修复版本（14.1-8.50+ / 13.1-49.15+ / 13.0-92.19+）", "步骤3: 升级后使用 Citrix 提供的脚本检查日志中是否存在利用痕迹", "步骤4: 清除所有活跃和持久会话，轮换所有管理员凭据、API 密钥、证书"]
 
 [references]
 nvd = "https://nvd.nist.gov/vuln/detail/CVE-2023-4966"
-avd = ""
 other = [
   "https://support.citrix.com/article/CTX579459",
-  "https://www.assetnote.io/resources/research/citrix-bleed-leaking-session-tokens-with-cve-2023-4966",
   "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2023-4966",
+  "https://www.assetnote.io/resources/research/citrix-bleed-leaking-session-tokens-with-cve-2023-4966",
   "https://www.netscaler.com/blog/news/cve-2023-4966-critical-security-update-now-available-for-netscaler-adc-and-netscaler-gateway/"
 ]
 
 [tags]
-tags = ["CWE-119", "CWE-200", "信息泄露", "KEV", "缓冲区过度读取", "会话令牌泄露", "Citrix-Bleed"]
+tags = ["CWE-119", "CWE-200", "信息泄露", "Citrix", "NetScaler", "会话劫持", "KEV", "内存泄露", "缓冲区溢出"]
 
 [authenticity]
 cve_confidence = "high"
 poc_confidence = "high"
-notes = "CVE-2023-4966（Citrix Bleed）已在CISA KEV目录中登记，AssetNote等安全研究机构已公开发布详细分析文章和利用工具。多个GitHub仓库提供了可工作的PoC/EXP脚本。漏洞已被广泛利用于野外攻击。"
+notes = "CISA KEV 已确认在野利用（2023-10-18），EPSS 评分 0.99999（百分位 99.993%），多个独立来源已验证。多家确认 LockBit 勒索软件组织利用该漏洞进行初始访问。"
 
 [meta]
-collected_at = "2026-07-10T15:07:53Z"
+collected_at = "2026-07-10T17:08:00Z"
 status = "completed"
