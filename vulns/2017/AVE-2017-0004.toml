@@ -10,11 +10,11 @@ poc_confidence = "high"
 [basic]
 description = "libxml2 2.9.4 版本中的 valid.c 文件的 xmlSnprintfElementContent 函数存在栈缓冲区溢出漏洞。该函数递归地将元素内容定义转储到大小为 size 的字符缓冲区 buf 中，变量 len 被赋值为 strlen(buf)。当 content->type 为 XML_ELEMENT_CONTENT_ELEMENT 时，先附加 content->prefix 到 buf，然后写入 content->name。然而，检查 content->name 是否适合缓冲区时仍使用了更新前的 len 值而非更新后的 strlen(buf)，导致可向分配内存之外写入约 size 字节的数据。攻击者可通过构造特制的 XML 文件触发 DTD 验证，导致程序崩溃，造成拒绝服务。此漏洞影响使用 libxml2 的程序，如 PHP。"
 published = "2017-05-18"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
+remediation = "升级 libxml2 至 2.9.5 及以上版本，或应用 GNOME Bugzilla（Bug 781333）提供的补丁。参考 Debian DSA-3952、Gentoo GLSA 201711-01 安全公告。对不受信任的 XML 文档禁用 DTD 验证。"
 score = 7.5
 severity = "HIGH"
 source = "nvd"
-sources = ["unknown"]
+sources = ["msrc", "nvd"]
 title = "libxml2 xmlSnprintfElementContent 栈缓冲区溢出漏洞"
 updated = "2026-06-16"
 
@@ -28,9 +28,10 @@ source = "mailing-list"
 url = "http://www.openwall.com/lists/oss-security/2017/05/15/1"
 
 [id]
-avd_id = ""
 ave_id = "AVE-2017-0004"
 cve_id = "CVE-2017-9047"
+aliases = ["CVE-2017-9047"]
+avd_id = ""
 other_ids = []
 
 [meta]
