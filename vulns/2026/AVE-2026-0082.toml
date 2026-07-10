@@ -1,40 +1,25 @@
-[id]
-ave_id = "AVE-2026-0082"
-cve_id = "CVE-2026-0834"
-aliases = ["CVE-2026-0834"]
-
 [basic]
-title = "TP-Link 多款路由器 TDDP 鉴权绕过漏洞"
-description = "TP-Link Archer C20 v5/v6.0、Archer AX53 v1.0 和 TL-WR841N v13 等路由器设备调试协议(TDDP)中存在逻辑漏洞(CWE-290)。未认证攻击者通过发送精心构造的 pktLength=0 的 TDDPv2 UDP 数据包，可导致 DES 解密例程被短路绕过，未加密载荷被直接解释为有效命令。相邻网络攻击者无需凭据即可执行恢复出厂设置、设备重启等管理操作，造成配置丢失和可用性中断。CVSS 评分 8.8，影响广泛。"
-severity = "HIGH"
-score = 8.8
-cvss_v3 = "CVSS:3.1/AV:A/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
-cvss_v4 = "CVSS:4.0/AV:A/AC:L/AT:N/PR:N/UI:N/VC:L/VI:H/VA:H/SC:N/SI:N/SA:N"
-remediation = "升级受影响设备固件至修复版本：Archer C20 v6.0 升级至 V6_251031 及以上，Archer C20 v5 升级至 EU_V5_260317 或 US_V5_260419，Archer AX53 v1.0 升级至 V1_251215，TL-WR841N v13 升级至 0.9.1 Build 20231120 Rel.62366。建议在网络层屏蔽 UDP 1040 端口。"
-published = "2026-01-21"
-updated = "2026-06-17"
-sources = ["nvd", "github", "tp-link"]
-
-[affected]
-vendor = "TP-Link"
-product = "Archer C20 v5/v6.0, Archer AX53 v1.0, TL-WR841N v13"
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2026-0834"
-urls = [
-    "https://mattg.systems/posts/cve-2026-0834/",
-    "https://github.com/mattgsys/CVE-2026-0834",
-    "https://www.tp-link.com/en/support/download/archer-ax53/v1/#Firmware",
-    "https://www.tp-link.com/en/support/download/archer-c20/v6/#Firmware",
-    "https://www.tp-link.com/en/support/download/archer-c20/v5/#Firmware",
-    "https://www.tp-link.com/us/support/download/tl-wr841n/v13/#Firmware",
-    "https://www.tp-link.com/us/support/faq/4905/"
-]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["github"]
+title = "CVE-2026-0834"
+updated = ""
 
 [exploit]
-poc_urls = ["https://github.com/mattgsys/CVE-2026-0834"]
 exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2026-0834"]
+ave_id = "AVE-2026-0082"
+cve_id = "CVE-2026-0834"
 
 [meta]
+collected_at = "2026-07-10T21:30:45.350805793+00:00"
 status = "completed"
-collected_at = "2026-07-11T00:00:00Z"
+
+[references]
+urls = []
