@@ -56,5 +56,5 @@ poc_confidence = "high"
 notes = "此漏洞为 CNVD 收录编号 CNVD-2018-13393，目前未发现对应 CVE 编号。Nuclei 模板已验证可利用。Seebug 文章（paper.seebug.org/676）详细描述了 Metinfo 多个漏洞，包括此 LFI。漏洞影响 Metinfo 米拓建站系统，属于中文 CMS。"
 
 [meta]
-collected_at = "2026-07-10T10:18:58Z"
+collected_at = "2026-07-10T10:50:52Z"
 status = "completed"
