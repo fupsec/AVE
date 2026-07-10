@@ -1,25 +1,59 @@
 [id]
 ave_id = "AVE-1999-0014"
 cve_id = "CVE-1999-0210"
-aliases = ["CVE-1999-0210"]
+avd_id = ""
+other_ids = []
 
 [basic]
-title = "CVE-1999-0210"
-description = ""
-severity = "UNKNOWN"
-score = 0.0
-sources = ["redhat"]
-published = ""
-updated = ""
-remediation = "Refer to vendor advisory and upgrade to fixed version."
+title = "Sun Solaris automountd 守护进程Shell元字符权限提升漏洞"
+description = "Automount守护进程(automountd)存在安全漏洞，允许本地或远程用户通过Shell元字符获取提升的权限。"
+severity = "CRITICAL"
+source = "nvd"
+published = "1997-11-26"
+updated = "2026-06-16"
 
-[references]
-urls = []
+[score]
+cvss_v2 = 10.0
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C"
+cvss_v3 = null
+cvss_v3_vector = ""
+cvss_v4 = null
+cvss_v4_vector = ""
+
+[affected]
+vendor = "Sun Microsystems"
+product = "Solaris automountd"
 
 [exploit]
-poc_urls = []
-exp_urls = []
+poc = []
+exp = []
+nuclei_templates = []
+
+[remediation]
+fix = "升级到受影响版本以上。参考官方安全公告。"
+workaround = "临时缓解措施：禁用automountd服务或限制对RPC端口(111/TCP, 111/UDP)的访问。"
+steps = ["步骤1: 确认系统版本", "步骤2: 应用厂商安全补丁", "步骤3: 重启automountd服务"]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0210"
+avd = ""
+other = [
+  { url = "http://marc.info/?l=bugtraq&m=88053459921223&w=2", description = "Bugtraq 邮件列表讨论", source = "bugtraq" },
+  { url = "http://marc.info/?l=bugtraq&m=91547759121289&w=2", description = "Bugtraq 邮件列表讨论", source = "bugtraq" },
+  { url = "http://www.cert.org/advisories/CA-99-05-statd-automountd.html", description = "CERT 安全公告 CA-99-05", source = "cert" },
+  { url = "http://www.securityfocus.com/bid/235", description = "SecurityFocus BID 235", source = "securityfocus" },
+  { url = "http://www1.itrc.hp.com/service/cki/docDisplay.do?docId=HPSBUX9910-104", description = "HP 安全公告 HPSBUX9910-104", source = "hp" },
+  { url = "https://access.redhat.com/security/cve/CVE-1999-0210", description = "Red Hat CVE 数据库", source = "redhat" }
+]
+
+[tags]
+tags = ["CWE-78", "CWE-20", "privilege-escalation", "rce", "solaris", "automountd"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "none"
+notes = "该漏洞为古老的automountd守护进程Shell元字符注入漏洞，CVSS v2评分为10.0(严重)。由于是非HTTP协议漏洞(RPC服务)，无法生成HTTP PoC脚本。未在GitHub、Exploit-DB等公开渠道找到可用PoC/EXP。"
 
 [meta]
+collected_at = "2026-07-10T10:18:58Z"
 status = "completed"
-collected_at = "2026-07-10T11:02:06.404241183+00:00"
