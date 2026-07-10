@@ -1,38 +1,25 @@
-[id]
-ave_id = "AVE-2020-0001"
-cve_id = "CVE-2020-13949"
-aliases = ["CVE-2020-13949"]
-other_ids = []
-
 [basic]
-title = "Apache Thrift 短消息处理内存分配拒绝服务漏洞"
-description = "Apache Thrift 0.9.3 至 0.13.0 版本中存在拒绝服务漏洞。攻击者可通过构造特制的短消息发送给 RPC 服务端，触发服务端进行过度的内存分配，导致系统资源耗尽和服务不可用。该漏洞无需身份验证即可远程利用，影响所有使用了受影响的 Thrift 库版本的应用系统。"
-severity = "HIGH"
-score = 7.5
-cvss_v3 = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
-cvss_v2 = "AV:N/AC:L/Au:N/C:N/I:N/A:P"
-published = "2021-02-12"
-updated = "2026-06-17"
-remediation = "建议将 Apache Thrift 升级至 0.14.0 及以上版本。如无法立即升级，可限制对 Thrift RPC 服务的网络访问，仅允许受信客户端连接，并配置内存使用上限以降低影响。"
-sources = ["msrc", "nvd"]
-
-[affected]
-vendor = "Apache"
-product = "Thrift"
-
-[references]
-urls = [
-    "https://lists.apache.org/thread.html/r43dc2b2e928e9d845b07ac075634cb759d91bb852421dc282f87a74a%40%3Cdev.thrift.apache.org%3E",
-    "https://nvd.nist.gov/vuln/detail/CVE-2020-13949",
-    "https://security.gentoo.org/glsa/202107-32",
-    "https://www.oracle.com/security-alerts/cpujul2021.html"
-]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["msrc"]
+title = "CVE-2020-13949 漏洞"
+updated = ""
 
 [exploit]
-poc_urls = []
 exp_urls = []
-nuclei_templates = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2020-13949"]
+ave_id = "AVE-2020-0001"
+cve_id = "CVE-2020-13949"
 
 [meta]
-collected_at = "2026-07-10T18:43:24.856073294+00:00"
+collected_at = "2026-07-10T21:22:34.640774370+00:00"
 status = "completed"
+
+[references]
+urls = []
