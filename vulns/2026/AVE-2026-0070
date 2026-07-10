@@ -1,13 +1,13 @@
 [id]
-ave_id = "AVE-2026-0045"
-cve_id = "CVE-2026-48737"
+ave_id = "AVE-2026-0070"
+cve_id = "CVE-2026-26193"
 aliases = [
-    "CVE-2026-48737",
-    "GHSA-m5x5-28jr-gpjj",
+    "CVE-2026-26193",
+    "GHSA-vjm7-m4xh-7wrc",
 ]
 
 [basic]
-title = "CVE-2026-48737"
+title = "CVE-2026-26193"
 description = ""
 severity = "UNKNOWN"
 score = 0.0
@@ -25,4 +25,4 @@ exp_urls = []
 
 [meta]
 status = "completed"
-collected_at = "2026-07-10T12:52:04.537546616+00:00"
+collected_at = "2026-07-10T13:49:53.757981909+00:00"
