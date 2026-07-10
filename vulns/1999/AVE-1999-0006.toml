@@ -1,41 +1,28 @@
-[id]
-ave_id = "AVE-1999-0006"
-cve_id = "CVE-1999-0018"
-aliases = ["CVE-1999-0018"]
-
 [basic]
-title = "UNIX系统NFS状态监控守护进程statd缓冲区溢出漏洞"
-description = "statd是RPC NFS状态监控守护进程，用于在不同主机间通信状态信息。多个UNIX实现中的statd版本在处理SM_MON RPC请求时存在缓冲区溢出漏洞，远程攻击者无需认证即可利用该漏洞发送特制RPC请求触发溢出，从而在目标主机上以root权限执行任意代码。受影响系统包括IBM AIX 3.2/4.1、SCO Unixware 7.1.1、SGI IRIX 5.3、Sun Solaris 2.5.1等多个UNIX操作系统。"
-severity = "CRITICAL"
-score = 10.0
-cvss_v2 = 10.0
-cvss_v2_vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C"
-remediation = "升级操作系统至厂商修复版本，或应用对应安全补丁。如不需要NFS状态监控服务，建议禁用statd守护进程以消除攻击面。"
-published = "1997-12-05"
-updated = "2026-06-16"
-sources = ["exploitdb", "redhat", "nvd"]
-
-[affected]
-vendor = "多厂商"
-product = "UNIX操作系统"
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = [
+    "exploitdb",
+    "redhat",
+]
+title = "CVE-1999-0018 漏洞"
+updated = ""
 
 [exploit]
-poc_urls = [
-    "https://www.exploit-db.com/exploits/19104"
-]
-exp_urls = [
-    "https://www.exploit-db.com/exploits/19104"
-]
-nuclei_templates = []
+exp_urls = []
+poc_urls = []
 
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0018"
-redhat = "https://access.redhat.com/security/cve/CVE-1999-0018"
-other = [
-    "http://www.securityfocus.com/bid/127",
-    "https://www.exploit-db.com/exploits/19104"
-]
+[id]
+aliases = ["CVE-1999-0018"]
+ave_id = "AVE-1999-0006"
+cve_id = "CVE-1999-0018"
 
 [meta]
-collected_at = "2026-07-10T20:59:05.989999195+00:00"
+collected_at = "2026-07-10T21:27:26.994845613+00:00"
 status = "completed"
+
+[references]
+urls = []
