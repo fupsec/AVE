@@ -44,7 +44,7 @@ avd = ""
 other = ["http://ciac.llnl.gov/ciac/bulletins/j-034.shtml", "http://www.cisco.com/warp/public/770/7xxconn-pub.shtml", "https://www.cisco.com/c/en/us/support/docs/csa/cisco-sa-19990311-xxconn.html", "https://www.exploit-db.com/exploits/19919"]
 
 [tags]
-tags = ["dos", "cisco", "telnet", "router", "CWE-20"]
+tags = ["dos", "cisco", "telnet", "router", "CWE-400"]
 
 [authenticity]
 cve_confidence = "high"
