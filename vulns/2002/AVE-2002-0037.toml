@@ -1,40 +1,25 @@
-[id]
-ave_id = "AVE-2002-0037"
-cve_id = "CVE-2002-1049"
-aliases = ["CVE-2002-1049"]
-
 [basic]
-title = "HylaFAX faxgetty 格式化字符串漏洞"
-description = "HylaFAX 4.1.3之前版本中的faxgetty组件存在格式化字符串漏洞。远程攻击者可通过向传真服务器发送特制的TSI数据元素，利用该漏洞触发格式化字符串处理错误，导致faxgetty进程崩溃，造成拒绝服务。该漏洞允许未认证的远程攻击者利用传真协议中的TSI字段执行格式化字符串操作，影响系统可用性。"
-severity = "MEDIUM"
-score = 5.0
-cvss_v2 = 5.0
-published = "2002-10-04"
-updated = "2002-10-04"
-remediation = "升级HylaFAX至4.1.3或更高版本以修复此格式化字符串漏洞。可从Debian等发行版获取更新包或从HylaFAX官网下载最新版本进行安装。同时建议限制对传真服务的网络访问。"
-sources = ["nvd", "osv"]
-
-[affected]
-vendor = "HylaFAX"
-product = "HylaFAX"
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2002-1049"
-other = [
-    "http://www.debian.org/security/2002/dsa-148",
-    "http://www.securityfocus.com/bid/5348",
-    "http://bugs.hylafax.org/bugzilla/show_bug.cgi?id=300",
-    "http://archives.neohapsis.com/archives/bugtraq/2002-07/0358.html",
-    "http://www.osvdb.org/5002",
-    "http://www.iss.net/security_center/static/9728.php",
-    "http://www.mandrakesoft.com/security/advisories?name=MDKSA-2002:055",
-    "http://www.novell.com/linux/security/advisories/2002_035_hylafax.html",
-]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["osv"]
+title = "CVE-2002-1049 漏洞"
+updated = ""
 
 [exploit]
-poc_urls = []
 exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2002-1049"]
+ave_id = "AVE-2002-0037"
+cve_id = "CVE-2002-1049"
 
 [meta]
+collected_at = "2026-07-10T20:56:52.767465374+00:00"
 status = "completed"
-collected_at = "2026-07-11T00:00:00Z"
+
+[references]
+urls = []
