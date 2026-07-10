@@ -1,31 +1,25 @@
 [basic]
-description = "大华 DSS 数字监控系统存在 SQL 注入漏洞，未经身份验证的远程攻击者可以通过向 /portal/attachment_clearTempFile.action 或 /portal/attachment_getAttList.action 接口发送特制请求，利用 EXTRACTVALUE 函数进行错误注入，获取数据库中的敏感信息。"
-published = "2017-04-15"
-remediation = "联系厂商获取安全补丁或升级到最新版本。在网络边界限制对 /portal/attachment_clearTempFile.action 和 /portal/attachment_getAttList.action 接口的访问。"
-score = 7.5
-severity = "HIGH"
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
 sources = ["nuclei"]
-title = "大华 DSS 数字监控系统 SQL 注入漏洞"
-updated = "2017-04-15"
+title = "NUCLEI-HTTP-CNVD-2017-CNVD-2017-06001-YAML 漏洞"
+updated = ""
 
 [exploit]
 exp_urls = []
-poc_urls = ["https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2017/CNVD-2017-06001.yaml"]
+poc_urls = []
 
 [id]
-aliases = ["NUCLEI-HTTP-CNVD-2017-CNVD-2017-06001-YAML", "CNVD-2017-06001"]
+aliases = ["NUCLEI-HTTP-CNVD-2017-CNVD-2017-06001-YAML"]
 ave_id = "AVE-2026-0027"
-cve_id = ""
+cve_id = "NUCLEI-HTTP-CNVD-2017-CNVD-2017-06001-YAML"
 
 [meta]
-collected_at = "2026-07-11T10:18:58Z"
+collected_at = "2026-07-10T20:59:23.035586095+00:00"
 status = "completed"
 
 [references]
-urls = ["https://www.cnvd.org.cn/flaw/show/CNVD-2017-06001", "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2017/CNVD-2017-06001.yaml"]
-
-[score]
-cvss_v2 = 7.5
-cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:P/A:P"
-cvss_v3 = 7.5
-cvss_v3_vector = "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N"
+urls = []
