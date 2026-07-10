@@ -407,22 +407,79 @@ body {
   font-weight: 600;
 }
 
-.year-pre {
-  margin: 0;
-  padding: 0.4rem 0.5rem;
-  background: #0b1220;
-  border: 1px solid #334155;
-  border-radius: 8px;
-  font-size: 0.75rem;
-  line-height: 1.6;
+.year-table-wrap {
   overflow-x: auto;
-  white-space: pre;
 }
 
-.year-pre code {
-  color: #cbd5e1;
-  font-family: "Cascadia Code", "Fira Code", "JetBrains Mono", "Consolas", monospace;
+.year-table {
+  width: 100%;
+  min-width: 200px;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.75rem;
+  border: 1px solid #2a3a55;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #0b1220;
 }
+
+.year-table thead th {
+  text-align: left;
+  padding: 0.32rem 0.45rem;
+  font-weight: 600;
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #94a3b8;
+  background: linear-gradient(180deg, #16233a, #101a2d);
+  border-bottom: 1px solid #2a3a55;
+}
+
+.year-table thead th.num {
+  text-align: right;
+  width: 2.8em;
+}
+
+.year-table tbody tr {
+  transition: background 0.15s;
+}
+
+.year-table tbody tr:hover {
+  background: rgba(52, 211, 153, 0.05);
+}
+
+.year-table tbody td {
+  padding: 0.28rem 0.45rem;
+  color: #cbd5e1;
+  border-bottom: 1px solid rgba(42, 58, 85, 0.35);
+}
+
+.year-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.year-table tbody td.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+}
+
+/* Color-tinted numeric columns */
+.year-table tbody td.num:first-of-type { color: #fca5a5; }  /* EXP */
+.year-table tbody td.num:nth-of-type(2) { color: #86efac; }  /* PoC */
+.year-table tbody td.num:nth-of-type(3) { color: #93c5fd; }  /* 漏洞 */
+
+/* Total row */
+.year-table .total td {
+  border-top: 1px solid #2a3a55 !important;
+  font-weight: 700;
+  color: #e5e7eb;
+  background: rgba(52, 211, 153, 0.07);
+}
+
+.year-table .total td.num:first-of-type { color: #fca5a5; }
+.year-table .total td.num:nth-of-type(2) { color: #86efac; }
+.year-table .total td.num:nth-of-type(3) { color: #93c5fd; }
 
 .severity {
   font-size: 0.8rem;

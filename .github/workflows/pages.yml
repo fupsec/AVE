@@ -42,7 +42,7 @@ jobs:
       - name: Update Year Breakdown
         run: |
           rm -f /tmp/year_stats.html
-          echo '<pre class="year-pre"><code>年份   EXP/PoC/漏洞' > /tmp/year_stats.html
+          echo '<table class="year-table"><thead><tr><th>年份</th><th class="num">EXP</th><th class="num">PoC</th><th class="num">漏洞</th></tr></thead><tbody>' > /tmp/year_stats.html
           TOTAL_V=0; TOTAL_P=0; TOTAL_E=0
           for y in $(ls vulns/ 2>/dev/null | sort); do
             [ -d "vulns/$y" ] || continue
@@ -52,10 +52,10 @@ jobs:
             TOTAL_V=$((TOTAL_V + V))
             TOTAL_P=$((TOTAL_P + P))
             TOTAL_E=$((TOTAL_E + E))
-            printf "%-6s %d/%d/%d\\n" "$y" "$E" "$P" "$V" >> /tmp/year_stats.html
+            echo "<tr><td>${y}</td><td class=\"num\">${E}</td><td class=\"num\">${P}</td><td class=\"num\">${V}</td></tr>" >> /tmp/year_stats.html
           done
-          printf "%-6s %d/%d/%d\\n" "合计" "$TOTAL_E" "$TOTAL_P" "$TOTAL_V" >> /tmp/year_stats.html
-          echo '</code></pre>' >> /tmp/year_stats.html
+          echo "<tr class=\"total\"><td>合计</td><td class=\"num\">${TOTAL_E}</td><td class=\"num\">${TOTAL_P}</td><td class=\"num\">${TOTAL_V}</td></tr>" >> /tmp/year_stats.html
+          echo '</tbody></table>' >> /tmp/year_stats.html
           python3 -c "html = open('index.html').read(); stats = open('/tmp/year_stats.html').read(); html = html.replace('<!--YEAR_STATS-->', stats); open('index.html', 'w').write(html)"
           echo "year breakdown updated"
 
