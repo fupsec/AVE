@@ -1,38 +1,25 @@
-[id]
-ave_id = "AVE-1999-0024"
-cve_id = "CVE-1999-0710"
-aliases = ["CVE-1999-0710"]
-
 [basic]
-title = "Red Hat Linux Squid cachemgr.cgi 开放代理漏洞"
-description = "Red Hat Linux 5.2及6.0等发行版中捆绑的Squid代理软件将cachemgr.cgi脚本安装在公共Web目录下，且未对访问来源进行限制，导致远程攻击者可利用该脚本作为中间代理转发连接请求，实现访问控制和源地址隐藏的绕过，进而发起进一步攻击。"
-severity = "HIGH"
-score = 7.5
-cvss_v2 = 7.5
-published = "1999-07-25"
-updated = "2026-06-16"
-remediation = "升级Squid至修复版本（如RHSA-1999-025提供的更新），或移除cachemgr.cgi脚本的公共Web访问权限，限制仅允许受信任IP地址访问。"
-sources = ["redhat", "nvd"]
-
-[affected]
-vendor = "Red Hat"
-product = "Squid"
-
-[references]
-urls = [
-    "https://nvd.nist.gov/vuln/detail/CVE-1999-0710",
-    "https://access.redhat.com/security/cve/CVE-1999-0710",
-    "http://www.securityfocus.com/bid/2059",
-    "http://www.redhat.com/support/errata/RHSA-1999-025.html",
-    "https://exchange.xforce.ibmcloud.com/vulnerabilities/2385",
-]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["redhat"]
+title = "CVE-1999-0710 漏洞"
+updated = ""
 
 [exploit]
-poc_urls = []
 exp_urls = []
+poc_urls = []
 
-nuclei_templates = []
+[id]
+aliases = ["CVE-1999-0710"]
+ave_id = "AVE-1999-0024"
+cve_id = "CVE-1999-0710"
 
 [meta]
+collected_at = "2026-07-10T21:57:23.953285258+00:00"
 status = "completed"
-collected_at = "2026-07-11T00:00:00+00:00"
+
+[references]
+urls = []
