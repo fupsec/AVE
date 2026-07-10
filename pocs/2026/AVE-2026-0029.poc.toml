@@ -3,8 +3,8 @@ id = "POC-AVE-2026-0029"
 name = "Xiuno BBS 系统重装漏洞 PoC"
 author = "AVE"
 severity = "high"
-tags = ["xiuno", "reinstall", "cwe-284", "bbs", "cnvd-2019-01348"]
-description = "Xiuno BBS（修罗论坛）系统安装完成后未对 /install/ 目录进行有效防护，攻击者可直接访问 /install/ 页面重新安装系统，覆盖数据库配置并获取管理员权限。"
+tags = ["improper-access-control", "xiuno", "bbs", "cnvd"]
+description = "Xiuno BBS 系统在安装后未对安装目录进行保护，攻击者可访问 /install/ 页面进行系统重装。该 PoC 通过检测安装页面是否存在来判断漏洞是否存在。"
 vuln_id = ["CNVD-2019-01348", "AVE-2026-0029"]
 
 [poc]
@@ -23,4 +23,5 @@ expect = true
 type = "word"
 part = "body"
 words = ["/view/js/xiuno.js", "Choose Language (选择语言)"]
+condition = "and"
 expect = true

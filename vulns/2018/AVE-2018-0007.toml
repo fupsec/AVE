@@ -7,7 +7,7 @@ other_ids = []
 [basic]
 title = "CVE-2018-1358（已废弃）"
 description = "此 CVE 编号已被 Fortinet 废弃，原因：Not used（未使用）。不存在实际漏洞信息。"
-severity = "NONE"
+severity = "INFO"
 source = "nvd"
 published = "2025-03-17"
 updated = "2025-03-17"

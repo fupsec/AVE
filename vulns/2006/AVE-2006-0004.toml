@@ -1,6 +1,7 @@
 [id]
 ave_id = "AVE-2006-0004"
 cve_id = "CVE-2006-2492"
+avd_id = ""
 other_ids = []
 
 [basic]

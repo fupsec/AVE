@@ -5,12 +5,12 @@ avd_id = ""
 other_ids = ["CNVD-2019-01348"]
 
 [basic]
-title = "Xiuno BBS 系统重装漏洞（安装目录保护缺失）"
-description = "Xiuno BBS（修罗论坛）系统存在安装目录保护缺失漏洞。系统安装完成后未对 /install/ 目录进行有效防护或过滤，攻击者可直接通过访问安装页面重新安装系统，覆盖数据库配置并获取管理员权限。此漏洞源于系统未在安装后正确创建或检测安装锁文件（install.lock），导致安装页面可被反复访问。"
+title = "Xiuno BBS 系统重装漏洞"
+description = "Xiuno BBS系统在安装后未对安装目录进行保护或过滤，攻击者可通过访问/install/页面直接重装系统，导致系统配置被覆盖。"
 severity = "HIGH"
 source = "nuclei"
-published = "2019-01-31"
-updated = "2019-01-31"
+published = "2019-01-01"
+updated = "2019-01-01"
 
 [score]
 cvss_v3 = 7.5
@@ -18,43 +18,33 @@ cvss_v3_vector = "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
 
 [affected]
 vendor = "Xiuno"
-product = "Xiuno BBS（修罗论坛）"
+product = "Xiuno BBS"
 
 [exploit]
-poc = [
-  { url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2019/CNVD-2019-01348.yaml", description = "Xiuno BBS 系统重装漏洞 Nuclei 检测模板", source = "nuclei" }
-]
+poc = []
 exp = []
 nuclei_templates = [
-  { url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2019/CNVD-2019-01348.yaml", description = "Xiuno BBS 系统重装漏洞 Nuclei 检测模板", source = "nuclei" }
+  { url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2019/CNVD-2019-01348.yaml", description = "Nuclei 检测模板：Xiuno BBS 系统重装漏洞", source = "nuclei" }
 ]
 
 [remediation]
-fix = "升级到 Xiuno BBS 最新版本，或在系统安装完成后手动删除或保护 /install/ 目录。"
-workaround = "在 Web 服务器层面（如 Nginx/Apache）添加访问控制规则，拒绝外部对 /install/ 目录的访问，或手动创建 install.lock 文件阻止重装。"
-steps = [
-  "1. 确认 Xiuno BBS 版本",
-  "2. 升级到 Xiuno BBS 最新安全版本",
-  "3. 如无法升级，在 Web 服务器配置中禁止对 /install/ 目录的访问",
-  "4. 手动在安装目录创建 install.lock 文件阻止重装"
-]
+fix = "升级到最新版本的 Xiuno BBS 或更换为受支持的产品。移除或保护安装目录（/install/），在完成安装后删除 install 目录或设置访问权限。"
+workaround = "删除网站根目录下的 install 目录，或通过 .htaccess 等访问控制措施限制对 /install/ 路径的访问。"
+steps = ["步骤1: 确认网站根目录下存在 /install/ 目录", "步骤2: 删除 install 目录或修改目录权限以防止未授权访问", "步骤3: 升级到 Xiuno BBS 最新版本"]
 
 [references]
 nvd = ""
 avd = ""
-other = [
-  "https://www.cnvd.org.cn/flaw/show/CNVD-2019-01348",
-  "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2019/CNVD-2019-01348.yaml"
-]
+other = ["https://www.cnvd.org.cn/flaw/show/CNVD-2019-01348"]
 
 [tags]
-tags = ["CWE-284", "权限绕过", "重装漏洞", "Xiuno", "BBS"]
+tags = ["CWE-284", "improper-access-control", "xiuno", "bbs", "reinstall"]
 
 [authenticity]
 cve_confidence = "low"
 poc_confidence = "high"
-notes = "此漏洞为 CNVD 收录编号 CNVD-2019-01348，目前未发现对应 CVE 编号。Nuclei 模板已验证可检测。漏洞影响 Xiuno BBS（修罗论坛）系统，属于经典的安装目录保护缺失漏洞。"
+notes = "该漏洞为 CNVD 收录，无对应 CVE 编号。Nuclei 模板可直接用于检测，验证方法明确。"
 
 [meta]
-collected_at = "2026-07-10T10:50:53Z"
+collected_at = "2026-07-11T00:00:00Z"
 status = "completed"

@@ -33,7 +33,8 @@ notes = "NVD已确认，有完整的 Exploit-DB 利用代码和多个厂商安�
 [exploit]
 poc = []
 exp = [
-  { url = "https://www.exploit-db.com/exploits/19108", description = "HP-UX/AIX/SCO/Solaris CDE dtappgather 本地文件权限更改利用", source = "exploitdb" }
+  { url = "https://www.exploit-db.com/exploits/19108", description = "HP-UX/AIX/SCO/Solaris CDE dtappgather 本地文件权限更改利用", source = "exploitdb" },
+  { url = "https://www.exploit-db.com/raw/19108", description = "HP-UX/AIX/SCO/Solaris CDE dtappgather 本地文件权限更改利用（源码）", source = "exploitdb" }
 ]
 nuclei_templates = []
 
@@ -51,5 +52,5 @@ other = ["http://sunsolve.sun.com/pub-cgi/retrieve.pl?doctype=coll&doc=secbull/1
 tags = ["CWE-59", "CWE-264", "本地提权", "符号链接", "CDE", "Solaris", "HP-UX", "AIX"]
 
 [meta]
-collected_at = "2026-07-10T10:50:52Z"
+collected_at = "2026-07-11T10:18:58Z"
 status = "completed"
