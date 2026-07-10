@@ -20,6 +20,28 @@ body.order_id = "1"
 body.cart_id = "1"
 body.status = "paid"
 body.price = "0.01"
+body.transaction_id = "test_tx_001"
+body.currency = "BTC"
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200]
+expect = true
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["PS_OS_PAYMENT", "payment", "success"]
+expect = true
+
+[[poc.requests]]
+method = "GET"
+path = "/index.php?fc=module&module=coingate&controller=callback"
+headers.Connection = "close"
+query.order_id = "1"
+query.cart_id = "1"
+query.status = "paid"
+query.price = "0.01"
 
 [[poc.requests.matchers]]
 type = "status"
