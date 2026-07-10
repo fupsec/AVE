@@ -1,17 +1,14 @@
 [id]
 ave_id = "AVE-2026-0062"
-cve_id = "CVE-2026-49831"
-aliases = [
-    "CVE-2026-49831",
-    "GHSA-v66x-68f2-pxf5",
-]
+cve_id = "NUCLEI-HTTP-CNVD-2022-CNVD-2022-36985-YAML"
+aliases = ["NUCLEI-HTTP-CNVD-2022-CNVD-2022-36985-YAML"]
 
 [basic]
-title = "CVE-2026-49831"
+title = "NUCLEI-HTTP-CNVD-2022-CNVD-2022-36985-YAML"
 description = ""
 severity = "UNKNOWN"
 score = 0.0
-sources = ["ghsa"]
+sources = ["nuclei"]
 published = ""
 updated = ""
 remediation = "Refer to vendor advisory and upgrade to fixed version."
@@ -25,4 +22,4 @@ exp_urls = []
 
 [meta]
 status = "completed"
-collected_at = "2026-07-10T12:52:50.612004256+00:00"
+collected_at = "2026-07-10T12:52:50.645567170+00:00"
