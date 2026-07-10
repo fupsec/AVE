@@ -1,0 +1,65 @@
+[id]
+ave_id = "AVE-2002-0023"
+cve_id = "CVE-2002-0740"
+avd_id = ""
+other_ids = ["BID-4569", "EDB-21408", "XF-8910"]
+
+[basic]
+title = "SLRN slrnpull 缓冲区溢出本地权限提升漏洞"
+description = "SLRN 软件包中的 slrnpull 程序存在缓冲区溢出漏洞。当 slrnpull 以 setuid 或 setgid 权限安装时，本地用户可通过向 -d (SPOOLDIR) 参数传入超长字符串触发缓冲区溢出，从而获取提升的权限。"
+severity = "HIGH"
+source = "nvd"
+published = "2002-04-22"
+updated = "2026-06-16"
+
+[score]
+cvss_v2 = 7.2
+cvss_v2_vector = "AV:L/AC:L/Au:N/C:C/I:C/A:C"
+cvss_v3 = 0
+cvss_v3_vector = ""
+cvss_v4 = 0
+cvss_v4_vector = ""
+
+[affected]
+vendor = "SLRN"
+product = "slrnpull"
+
+[exploit]
+poc = []
+exp = [
+  { url = "https://www.exploit-db.com/exploits/21408", description = "SLRNPull 0.9.6 缓冲区溢出本地提权 EXP", source = "exploit-db" },
+  { url = "https://github.com/alt3kx/CVE-2002-0740", description = "SLRNPull 缓冲区溢出 EXP（Perl 脚本）", source = "github" },
+  { url = "https://packetstormsecurity.com/files/26010/pUll.pl.html", description = "SLRNPull 缓冲区溢出提权 EXP", source = "packetstorm" }
+]
+nuclei_templates = []
+
+[remediation]
+fix = "升级 SLRN 到已修复版本。请参考官方安全公告。"
+workaround = "如无法升级，可移除 slrnpull 的 setuid/setgid 权限位：chmod u-s /usr/bin/slrnpull && chmod g-s /usr/bin/slrnpull"
+steps = ["步骤1: 确认 slrnpull 版本（slrnpull -v）", "步骤2: 升级到修复版本", "步骤3: 或临时移除 slrnpull 的 setuid/setgid 权限位"]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2002-0740"
+avd = ""
+other = [
+  "http://www.securityfocus.com/bid/4569",
+  "http://online.securityfocus.com/archive/1/269667",
+  "http://online.securityfocus.com/archive/1/270235",
+  "http://archives.neohapsis.com/archives/bugtraq/2002-04/0302.html",
+  "http://www.iss.net/security_center/static/8910.php",
+  "https://packetstormsecurity.com/files/25989/slrnpull.overflow.txt.html",
+  "http://www.securiteam.com/unixfocus/5FP0R0K6UC.html",
+  "https://github.com/alt3kx/CVE-2002-0740"
+]
+
+[tags]
+tags = ["CWE-119", "buffer-overflow", "local-privilege-escalation", "setuid"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "high"
+notes = "漏洞信息明确，存在公开可用的 EXP 代码（EDB-21408、GitHub alt3kx、PacketStorm）。非 HTTP 协议漏洞，无法生成 HTTP PoC 脚本。"
+
+[meta]
+collected_at = "2026-07-10T10:18:58Z"
+status = "completed"
