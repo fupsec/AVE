@@ -1,32 +1,25 @@
-[id]
-ave_id = "AVE-1999-0002"
-cve_id = "CVE-1999-0096"
-aliases = ["CVE-1999-0096"]
-
 [basic]
-title = "Sendmail decode 别名远程覆盖敏感文件漏洞"
-description = "Sendmail 的 decode 别名功能存在安全漏洞，远程攻击者可通过向该别名发送邮件，将邮件内容通过管道传递给程序，从而覆盖系统上的敏感文件，导致系统完整性受损。该漏洞影响默认配置的 Sendmail 邮件服务器。"
-severity = "MEDIUM"
-score = 5.0
-cvss_v2 = 5.0
-remediation = "将 /etc/aliases 中的 decode 条目删除或注释掉，然后运行 newaliases 命令重建别名数据库，防止邮件通过管道传递给非法程序。"
-published = "1996-12-10"
-updated = "2026-06-16"
-sources = ["tenable", "nvd"]
-
-[affected]
-vendor = "Sendmail"
-product = "Sendmail"
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0096"
-urls = ["http://sunsolve.sun.com/pub-cgi/retrieve.pl?doctype=coll&doc=secbull/122&type=0&nav=sec.sba"]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["tenable"]
+title = "CVE-1999-0096 漏洞"
+updated = ""
 
 [exploit]
-poc_urls = []
 exp_urls = []
-nuclei_templates = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0096"]
+ave_id = "AVE-1999-0002"
+cve_id = "CVE-1999-0096"
 
 [meta]
+collected_at = "2026-07-10T20:51:33.496821475+00:00"
 status = "completed"
-collected_at = "2026-07-10T16:26:07Z"
+
+[references]
+urls = []

@@ -1,90 +1,51 @@
-[affected]
-product = "tcp_ip"
-vendor = "bsd"
-
-[authenticity]
-cve_confidence = "high"
-notes = "CVE-1999-0001 是历史上第一个 CVE 编号，对应经典 Teardrop IP 分片攻击。该漏洞在 BSD 衍生系统 IP 碎片重组代码中存在输入验证缺陷。Exploit-DB 19078 提供完整的 teardrop.c 拒绝服务利用代码。该漏洞为非 HTTP 协议漏洞，无法生成 HTTP PoC 脚本。"
-poc_confidence = "high"
-
-[basic]
-description = "BSD 衍生 TCP/IP 实现中的 ip_input.c 存在输入验证缺陷，远程攻击者可通过发送精心构造的 IP 分片数据包导致系统崩溃或挂起，造成拒绝服务。该漏洞又称 Teardrop 攻击，是历史上第一个 CVE 编号。"
-published = "1999-12-30"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 5.5
-severity = "MEDIUM"
-source = "nvd"
-sources = ["unknown"]
-title = "BSD 衍生系统 TCP/IP 实现 ip_input.c IP 碎片重组拒绝服务漏洞（Teardrop）"
-updated = "2026-06-16"
-
-[exploit]
-nuclei_templates = []
-
-[[exploit.exp]]
-description = "Teardrop IP 分片拒绝服务利用程序（原始代码）"
-source = "exploit-db"
-url = "https://www.exploit-db.com/raw/19078"
-
-[[exploit.poc]]
-description = "Teardrop IP 分片拒绝服务 PoC"
-source = "exploit-db"
-url = "https://www.exploit-db.com/exploits/19078"
-
-[[exploit.poc]]
-description = "Teardrop 拒绝服务利用程序（ExploitDB 镜像）"
-source = "github"
-url = "https://github.com/offensive-security/exploitdb/blob/master/exploits/bsd/dos/19078.c"
-
-[[exploit.poc]]
-description = "Teardrop IP 分片拒绝服务 PoC"
-source = "packetstorm"
-url = "https://packetstormsecurity.com/files/19078/teardrop.c.html"
-
 [id]
-avd_id = ""
 ave_id = "AVE-1999-0204"
 cve_id = "CVE-1999-0001"
-other_ids = ["OSVDB-5707"]
+aliases = ["CVE-1999-0001"]
 
-[meta]
-collected_at = "2026-07-10T14:01:53Z"
-status = "completed"
-
-[references]
-avd = ""
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0001"
-
-[[references.other]]
-description = "OpenBSD 安全公告"
-url = "http://www.openbsd.org/errata23.html#tcpfix"
-
-[[references.other]]
-description = "OSVDB-5707"
-url = "http://www.osvdb.org/5707"
-
-[remediation]
-fix = "升级到已修复的 BSD 系统版本。参考 OpenBSD 安全公告 http://www.openbsd.org/errata23.html#tcpfix。"
-steps = [
-    "步骤1: 确认系统为受影响版本（BSD/OS 3.1、FreeBSD 1.0-3.0、OpenBSD 2.3-2.4）",
-    "步骤2: 升级到厂商提供的最新安全版本",
-]
-workaround = "在网络边界配置防火墙规则，过滤畸形 TCP/IP 数据包。"
+[basic]
+title = "BSD 衍生系统 TCP/IP 协议栈 ip_input.c 远程拒绝服务漏洞"
+description = "BSD 衍生系统（BSD/OS、FreeBSD、OpenBSD）的 TCP/IP 协议栈实现中，ip_input.c 文件存在输入验证缺陷（CWE-20）。远程攻击者无需认证即可通过网络发送特制的 TCP 数据包，触发系统内核中的 TCP 解码模块异常，导致目标系统崩溃或完全挂起，造成拒绝服务。该漏洞影响 BSD/OS 3.1、FreeBSD 1.0 至 3.0、OpenBSD 2.3 至 2.4 等多个版本。"
+severity = "MEDIUM"
+score = 5.0
+remediation = "升级操作系统到已修复版本。OpenBSD 用户应应用 2.3 errata 002 补丁或升级到 2.4 及以上版本；FreeBSD 用户应升级到 3.0 及以上版本；BSDI 用户应联系厂商获取修复补丁。在网络边界部署防火墙规则，过滤可疑 TCP 数据包可作为临时缓解措施。"
+published = "1999-12-30"
+updated = "2026-06-16"
+sources = ["cve", "nvd"]
 
 [score]
 cvss_v2 = 5.0
 cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:N/A:P"
-cvss_v3 = 5.5
-cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N"
-cvss_v4 = 5.1
-cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:L/VI:N/VA:N/SC:N/SI:N/SA:N"
+
+[affected]
+vendor = "bsd"
+product = "tcp_ip"
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0001"
+avd = ""
+
+[[references.other]]
+url = "http://www.openbsd.org/errata23.html#tcpfix"
+description = "OpenBSD 2.3 Errata 002 - TCP 解码远程锁死漏洞"
+
+[[references.other]]
+url = "http://www.osvdb.org/5707"
+description = "OSVDB-5707"
+
+[exploit]
+poc_urls = []
+exp_urls = []
+nuclei_templates = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T14:01:53Z"
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "none"
+notes = "CVE-1999-0001 是 BSD TCP/IP 协议栈 ip_input.c 中的远程拒绝服务漏洞，非 Teardrop 攻击（Teardrop 为 CVE-1999-0015）。目前无公开 PoC/EXP 代码。"
 
 [tags]
-tags = [
-    "CWE-20",
-    "DoS",
-    "BSD",
-    "TCP/IP",
-    "Teardrop",
-    "IP Fragment",
-]
+tags = ["CWE-20", "DoS", "BSD", "FreeBSD", "OpenBSD", "BSDI", "TCP/IP"]
