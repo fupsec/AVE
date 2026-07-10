@@ -9,13 +9,12 @@ poc_confidence = "high"
 
 [basic]
 description = "AUTOMGEN 8.0.0.7及之前版本（也称为8.022）在处理项目文件时存在释放后使用漏洞，当处理某些畸形字段时会释放对象随后解引用悬空指针。攻击者可通过向受害者发送特制的项目文件（.gep/.gepj），在目标系统上触发崩溃，导致拒绝服务。在一定条件下，通过操控内存中的间接调用可能实现远程代码执行。"
-published = "2011-10-10"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 5.5
+published = "2025-11-12"
+remediation = "厂商未提供官方补丁，建议升级 AUTOMGEN 至 8.0.0.7 之后的安全版本。若无法升级，应避免打开不可信来源的项目文件，并在隔离环境中运行该软件。"
+score = 6.9
 severity = "MEDIUM"
-source = "nvd"
-sources = ["unknown"]
-title = "IRAI AUTOMGEN <= 8.0.0.7 Use-After-Free 远程拒绝服务"
+sources = ["avd", "msrc", "nvd"]
+title = "IRAI AUTOMGEN 8.0.0.7 及更早版本释放后使用漏洞"
 updated = "2026-06-16"
 
 [exploit]
@@ -38,10 +37,9 @@ source = "其他"
 url = "http://aluigi.org/poc/automgen_1.zip"
 
 [id]
-avd_id = ""
 ave_id = "AVE-2011-0001"
 cve_id = "CVE-2011-10034"
-other_ids = []
+aliases = ["CVE-2011-10034"]
 
 [meta]
 collected_at = "2026-07-11T08:00:00Z"
