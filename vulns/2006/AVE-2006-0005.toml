@@ -1,34 +1,25 @@
-[id]
-ave_id = "AVE-2006-0005"
-cve_id = "CVE-2006-20001"
-aliases = ["CVE-2006-20001"]
-
 [basic]
-title = "Apache HTTP Server If: 请求头越界内存读写漏洞"
-description = "Apache HTTP Server 2.4.54及之前版本中存在越界内存读写漏洞（CWE-787）。攻击者可以通过发送精心构造的 If: 请求头，触发堆内存越界读取或写入单个零字节，导致进程崩溃。该漏洞无需认证即可远程利用，CVSS评分7.5，影响所有2.4.54及更早版本。"
-severity = "HIGH"
-score = 7.5
-remediation = "升级 Apache HTTP Server 至 2.4.55 或更高版本。无法立即升级时，可通过配置反向代理或 WAF 规则过滤恶意的 If: 请求头进行临时缓解。"
-published = "2023-01-17"
-updated = "2026-06-16"
-sources = ["tenable", "nvd"]
-
-[affected]
-vendor = "Apache Software Foundation"
-product = "Apache HTTP Server"
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["tenable"]
+title = "CVE-2006-20001 漏洞"
+updated = ""
 
 [exploit]
-poc_urls = ["https://github.com/r1az4r/CVE-2006-20001"]
 exp_urls = []
+poc_urls = []
 
-[references]
-urls = [
-    "https://httpd.apache.org/security/vulnerabilities_24.html",
-    "https://security.gentoo.org/glsa/202309-01",
-    "https://security.netapp.com/advisory/ntap-20230316-0005/",
-    "https://nvd.nist.gov/vuln/detail/CVE-2006-20001"
-]
+[id]
+aliases = ["CVE-2006-20001"]
+ave_id = "AVE-2006-0005"
+cve_id = "CVE-2006-20001"
 
 [meta]
-collected_at = "2026-07-10T18:41:17.596591923+00:00"
+collected_at = "2026-07-10T21:27:04.816771208+00:00"
 status = "completed"
+
+[references]
+urls = []
