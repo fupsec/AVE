@@ -1,0 +1,52 @@
+[id]
+ave_id = "AVE-1999-0202"
+cve_id = "CVE-1999-0417"
+avd_id = ""
+other_ids = ["OSVDB-1001", "JVNDB-1999-000008"]
+
+[basic]
+title = "Sun Solaris 7 procfs 本地拒绝服务漏洞"
+description = "Sun Solaris 7 的 64 位版本中，进程文件系统（procfs）存在本地拒绝服务漏洞。非特权用户可通过执行 `/usr/xpg4/bin/more /proc/self/psinfo` 命令导致系统崩溃（kernel panic），造成拒绝服务。该漏洞在 UE3000、U10、UE450 等 SPARC 平台上已确认可复现，Intel 版本不受影响。"
+severity = "LOW"
+source = "nvd"
+published = "1999-03-09"
+updated = "2008-09-09"
+
+[score]
+cvss_v2 = 2.1
+cvss_v2_vector = "AV:L/AC:L/Au:N/C:N/I:N/A:P"
+cvss_v3 = 0
+cvss_v3_vector = ""
+cvss_v4 = 0
+cvss_v4_vector = ""
+
+[affected]
+vendor = "Sun Microsystems"
+product = "Solaris"
+
+[exploit]
+poc = []
+exp = []
+nuclei_templates = []
+
+[remediation]
+fix = "升级 Solaris 7 至最新补丁集，或联系 Oracle/Sun 获取针对 Bug ID 4219071 的修复补丁。后续版本（Solaris 8 及以上）已修复此问题。"
+workaround = "如无法立即升级，可通过以下方式缓解：1. 限制非特权用户对 /proc 文件系统的访问；2. 使用 chroot 或其他机制隔离用户环境；3. 监控系统日志中的 kernel panic 事件。"
+steps = ["步骤1: 确认系统版本为 Solaris 7 64 位 SPARC 版本", "步骤2: 联系 Oracle/Sun 获取针对 Bug ID 4219071 的补丁", "步骤3: 应用补丁并重启系统"]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0417"
+avd = ""
+other = ["http://www.osvdb.org/1001", "http://www.securityfocus.com/bid/448", "https://seclists.org/bugtraq/1999/Mar/62", "https://seclists.org/bugtraq/1999/Mar/89", "https://seclists.org/bugtraq/1999/Mar/92", "http://jvndb.jvn.jp/ja/contents/1999/JVNDB-1999-000008.html"]
+
+[tags]
+tags = ["local", "dos", "kernel-panic", "solaris", "procfs"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "high"
+notes = "该漏洞为本地拒绝服务漏洞，非 HTTP 协议漏洞，不适用于基于 HTTP 的 PoC 模板。复现方法极其简单（执行 /usr/xpg4/bin/more /proc/self/psinfo），无需复杂 PoC 脚本。CVE、OSVDB、SecurityFocus BID、JVNDB 多源确认漏洞真实性。"
+
+[meta]
+collected_at = "2026-07-10T00:00:00Z"
+status = "completed"
