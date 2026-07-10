@@ -1,25 +1,25 @@
+[basic]
+description = "Vulnerability identified as CVE-2005-2024. Please refer to vendor advisory for details."
+published = "2026-07-10"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 5.0
+severity = "MEDIUM"
+sources = ["tenable"]
+title = "CVE-2005-2024"
+updated = "2026-07-10"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
 [id]
+aliases = ["CVE-2005-2024"]
 ave_id = "AVE-2005-0003"
 cve_id = "CVE-2005-2024"
-aliases = ["CVE-2005-2024"]
 
-[basic]
-title = "CVE-2005-2024"
-description = ""
-severity = "UNKNOWN"
-score = 0.0
-sources = ["tenable"]
-published = ""
-updated = ""
-remediation = "Refer to vendor advisory and upgrade to fixed version."
+[meta]
+collected_at = "2026-07-10T17:57:16.516348539+00:00"
+status = "completed"
 
 [references]
 urls = []
-
-[exploit]
-poc_urls = []
-exp_urls = []
-
-[meta]
-status = "completed"
-collected_at = "2026-07-10T15:15:51.853341810+00:00"
