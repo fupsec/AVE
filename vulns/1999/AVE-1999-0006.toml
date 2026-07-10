@@ -25,10 +25,11 @@ vendor = "Multiple"
 product = "Multiple Unix Systems (IBM AIX 3.2/4.1, SCO Unixware 7.1.1, SGI IRIX 5.3, Sun Solaris 2.4/2.5/2.5.1)"
 
 [exploit]
-poc = [
-  { url = "https://www.exploit-db.com/exploits/19104", description = "statd 远程缓冲区溢出利用程序（Solaris 2.5.1 x86）", source = "exploit-db" }
+poc = []
+exp = [
+  { url = "https://www.exploit-db.com/exploits/19104", description = "statd 远程缓冲区溢出 root 利用程序（Solaris 2.5.1 x86）", source = "exploit-db" },
+  { url = "https://gitlab.com/exploit-database/exploitdb/-/raw/main/exploits/linux/remote/19104.c", description = "statd 远程缓冲区溢出利用源码", source = "exploit-db" }
 ]
-exp = []
 nuclei_templates = []
 
 [remediation]
@@ -41,7 +42,9 @@ nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0018"
 avd = ""
 other = [
   "http://www.securityfocus.com/bid/127",
-  "https://cve.org/CVERecord?id=CVE-1999-0018"
+  "https://cve.org/CVERecord?id=CVE-1999-0018",
+  "https://access.redhat.com/security/cve/CVE-1999-0018",
+  "https://security-tracker.debian.org/tracker/CVE-1999-0018"
 ]
 
 [tags]
@@ -50,8 +53,8 @@ tags = ["CWE-Other", "buffer-overflow", "rpc", "statd", "privilege-escalation", 
 [authenticity]
 cve_confidence = "high"
 poc_confidence = "high"
-notes = "Exploit-DB 19104 提供了完整的可编译 C 语言利用程序源代码，针对 Solaris 2.5.1 x86 平台。该漏洞影响多种 Unix 操作系统。"
+notes = "Exploit-DB 19104 提供了完整的可编译 C 语言利用程序源代码，针对 Solaris 2.5.1 x86 平台。该漏洞影响多种 Unix 操作系统。statd 采用 RPC 协议非 HTTP 协议，无法生成符合 poc.md 规范的 HTTP 类型 PoC 脚本。"
 
 [meta]
-collected_at = "2026-07-10T13:58:23Z"
+collected_at = "2026-07-11T10:18:58Z"
 status = "completed"
