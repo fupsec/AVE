@@ -1,16 +1,19 @@
 [basic]
-description = "Vulnerability identified as CVE-1999-0025. Please refer to vendor advisory for details."
-published = "2026-07-10"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 5.0
-severity = "MEDIUM"
-sources = ["exploitdb"]
-title = "CVE-1999-0025 vulnerability"
-updated = "2026-07-10"
+description = "SGI IRIX 5.x和6.x系统中的df命令存在缓冲区溢出漏洞。攻击者可通过向df命令的-f选项提交超长参数触发缓冲区溢出，精心构造的负载可在目标系统上以root权限执行任意代码，实现本地权限提升。"
+published = "1997-07-16"
+remediation = "升级SGI IRIX系统至厂商发布的安全修复版本，或限制本地用户对df命令的访问权限以降低被利用风险。"
+score = 7.2
+severity = "HIGH"
+sources = [
+    "exploitdb",
+    "nvd",
+]
+title = "SGI IRIX df 命令缓冲区溢出权限提升漏洞"
+updated = "2026-06-16"
 
 [exploit]
-exp_urls = []
-poc_urls = []
+exp_urls = ["https://www.exploit-db.com/exploits/19274"]
+poc_urls = ["https://www.exploit-db.com/exploits/19274"]
 
 [id]
 aliases = ["CVE-1999-0025"]
@@ -18,8 +21,14 @@ ave_id = "AVE-1999-0018"
 cve_id = "CVE-1999-0025"
 
 [meta]
-collected_at = "2026-07-10T19:14:39.687076298+00:00"
+collected_at = "2026-07-10T19:21:50.144113805+00:00"
 status = "completed"
 
 [references]
-urls = []
+urls = [
+    "http://www.cert.org/advisories/CA-1997-21.html",
+    "http://www.kb.cert.org/vuls/id/20851",
+    "http://www.securityfocus.com/bid/346",
+    "https://exchange.xforce.ibmcloud.com/vulnerabilities/440",
+    "https://nvd.nist.gov/vuln/detail/CVE-1999-0025",
+]
