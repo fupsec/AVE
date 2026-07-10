@@ -1,96 +1,53 @@
-[affected]
-product = "qpopper 2.4"
-vendor = "Qualcomm"
-
-[authenticity]
-cve_confidence = "high"
-notes = "存在两个完整利用脚本（EDB-19109 Linux / EDB-19110 FreeBSD/BSDI），均可远程 root 权限执行任意代码。因采用 POP3 协议非 HTTP 协议，无法生成符合 poc.md 规范的 HTTP 类型 PoC 脚本。"
-poc_confidence = "high"
-
-[basic]
-description = "基于 BSD/Qualcomm 的 qpopper POP3 服务器在处理 PASS 命令时存在缓冲区溢出漏洞，远程攻击者通过发送超长的 PASS 命令可触发缓冲区溢出，实现以 root 权限执行任意代码。受影响版本为 qpopper 2.4 及更早版本，覆盖 FreeBSD、BSDI BSD/OS、SGI IRIX 等多个平台。"
-published = "1998-07-14"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 9.8
-severity = "CRITICAL"
-source = "exploitdb"
-sources = ["unknown"]
-title = "Qualcomm qpopper 2.4 - POP Server 缓冲区溢出漏洞"
-updated = "2026-06-16"
-
-[exploit]
-nuclei_templates = []
-
-[[exploit.exp]]
-description = "qpopper 2.4 POP3 缓冲区溢出利用脚本（FreeBSD/BSDI，源码）"
-source = "exploitdb"
-url = "https://www.exploit-db.com/raw/19110"
-
-[[exploit.exp]]
-description = "qpopper 2.4 POP3 缓冲区溢出利用脚本（Linux，源码）"
-source = "exploitdb"
-url = "https://www.exploit-db.com/raw/19109"
-
-[[exploit.exp]]
-description = "qpopper 2.4 POP3 缓冲区溢出利用脚本（GitLab 镜像）"
-source = "exploitdb"
-url = "https://gitlab.com/exploit-database/exploitdb/-/raw/main/exploits/unix/remote/19110.c"
-
-[[exploit.poc]]
-description = "qpopper 2.4 POP3 缓冲区溢出远程 root 利用脚本（FreeBSD/BSDI）"
-source = "exploitdb"
-url = "https://www.exploit-db.com/exploits/19110"
-
-[[exploit.poc]]
-description = "qpopper 2.4 POP3 缓冲区溢出远程 root 利用脚本（Linux）"
-source = "exploitdb"
-url = "https://www.exploit-db.com/exploits/19109"
-
 [id]
-avd_id = ""
 ave_id = "AVE-1999-0004"
 cve_id = "CVE-1999-0006"
-other_ids = [
+aliases = [
+    "CVE-1999-0006",
     "EDB-19109",
     "EDB-19110",
+    "BID-133"
 ]
 
-[meta]
-collected_at = "2026-07-11T17:05:04Z"
-status = "completed"
+[basic]
+title = "Qualcomm qpopper 2.4 POP3服务器缓冲区溢出漏洞"
+description = "Qualcomm qpopper 2.4及之前版本中存在栈缓冲区溢出漏洞。远程攻击者无需身份验证即可通过向POP3服务(端口110)发送特制的PASS命令，触发缓冲区溢出，从而在目标系统上以root权限执行任意代码。该漏洞影响FreeBSD、BSDI、Linux等多款Unix系统。"
+severity = "CRITICAL"
+score = 9.8
+cvss_v3 = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+cvss_v2 = "(AV:N/AC:L/Au:N/C:C/I:C/A:C)"
+published = "1998-07-14"
+updated = "2026-06-16"
+remediation = "升级Qualcomm qpopper至2.5或更高版本。如无法立即升级，应限制POP3服务(端口110)的访问权限，仅允许受信任IP地址连接，并部署入侵检测系统监控异常PASS命令。"
+sources = [
+    "exploitdb",
+    "nvd"
+]
+
+[affected]
+vendor = "Qualcomm"
+product = "qpopper"
 
 [references]
-avd = ""
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0006"
-other = [
+urls = [
+    "https://nvd.nist.gov/vuln/detail/CVE-1999-0006",
+    "https://www.exploit-db.com/exploits/19109",
+    "https://www.exploit-db.com/exploits/19110",
     "http://www.securityfocus.com/bid/133",
-    "ftp://patches.sgi.com/support/free/security/advisories/19980801-01-I",
+    "ftp://patches.sgi.com/support/free/security/advisories/19980801-01-I"
 ]
 
-[remediation]
-fix = "升级 qpopper 到 2.5 或更高版本。参考官方安全公告和 SGI 安全通告 19980801-01-I。"
-steps = [
-    "步骤1: 使用 telnet 检查 POP3 服务器版本标识（telnet <host> 110）",
-    "步骤2: 如版本低于 2.5（含 2.5 beta），立即升级",
-    "步骤3: 应用 SGI 安全补丁（如适用）",
-    "步骤4: 配置防火墙限制 POP3 端口访问",
+[exploit]
+poc_urls = [
+    "https://www.exploit-db.com/exploits/19109",
+    "https://www.exploit-db.com/exploits/19110"
 ]
-workaround = "使用防火墙限制对 POP3 端口（110/tcp）的访问，仅允许可信网络连接；禁用 qpopper 中不必要的功能。"
-
-[score]
-cvss_v2 = 10.0
-cvss_v2_vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C"
-cvss_v3 = 9.8
-cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
-cvss_v4 = 0.0
-cvss_v4_vector = ""
-
-[tags]
-tags = [
-    "CWE-125",
-    "CWE-119",
-    "buffer-overflow",
-    "qpopper",
-    "POP3",
-    "RCE",
+exp_urls = [
+    "https://www.exploit-db.com/exploits/19109",
+    "https://www.exploit-db.com/exploits/19110"
 ]
+nuclei_templates = []
+
+[meta]
+authenticity = { confidence = "high", evidence = "verified exploit code available in Exploit-DB" }
+collected_at = "2026-07-11T00:00:00+00:00"
+status = "completed"
