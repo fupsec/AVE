@@ -1,25 +1,53 @@
 [id]
 ave_id = "AVE-2018-0002"
 cve_id = "CVE-2018-11816"
-aliases = ["CVE-2018-11816"]
+other_ids = []
 
 [basic]
-title = "CVE-2018-11816"
-description = ""
-severity = "UNKNOWN"
-score = 0.0
-sources = ["avd"]
-published = ""
-updated = ""
-remediation = "Refer to vendor advisory and upgrade to fixed version."
+title = "Qualcomm Snapdragon MediaServer 释放后使用漏洞"
+description = "Qualcomm Snapdragon 多款芯片组中的 MediaServer 组件存在释放后使用（Use After Free）漏洞。攻击者通过构造特制的 Binder 请求触发堆释放后使用，导致本地权限提升，可造成信息泄露、系统崩溃或任意代码执行。受影响芯片组包括 SD660、SD670、SD820、SD821、SD835 等多款 Snapdragon 平台。"
+severity = "HIGH"
+source = "avd"
+published = "2018-05-07"
+updated = "2024-11-26"
 
-[references]
-urls = []
+[score]
+cvss_v3 = 7.8
+cvss_v3_vector = "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H"
+
+[affected]
+vendor = "Qualcomm"
+product = "Snapdragon（SD660, SD670, SD820, SD821, SD835, APQ8016, APQ8017, APQ8039, APQ8052, APQ8056, APQ8076, AQT1000, AR6003, 9206 LTE Modem）"
 
 [exploit]
-poc_urls = []
-exp_urls = []
+poc = []
+exp = []
+nuclei_templates = []
+
+[remediation]
+fix = "升级 Qualcomm 安全公告（May 2018）中提供的修复版本。请参考官方安全公告更新固件。"
+workaround = "如无法升级，可限制本地应用的执行权限，避免不受信任的应用运行在受影响设备上。"
+steps = [
+  "确认设备使用的 Qualcomm Snapdragon 芯片组型号",
+  "检查当前固件版本",
+  "联系设备厂商获取包含修复的固件更新",
+  "安装 Qualcomm May 2018 安全公告中指定的补丁"
+]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2018-11816"
+other = [
+  "https://docs.qualcomm.com/product/publicresources/securitybulletin/may-2018-bulletin.html"
+]
+
+[tags]
+tags = ["CWE-416", "Use After Free", "UAF", "MediaServer", "Binder", "Qualcomm", "Snapdragon", "本地提权"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "none"
+notes = "CVE-2018-11816 由 Qualcomm 于 2018 年 5 月安全公告中披露，2024 年 11 月由 NVD 收录。漏洞为 Qualcomm Snapdragon MediaServer 中 Binder 请求处理导致的堆释放后使用，需要本地访问权限。截至 2026 年 7 月，未发现公开 PoC/EXP。NVD 评分 CVSS v3.1 7.8（HIGH），CNA 为 Qualcomm, Inc."
 
 [meta]
+collected_at = "2026-07-11T00:00:00Z"
 status = "completed"
-collected_at = "2026-07-10T09:08:47.131144825+00:00"

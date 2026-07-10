@@ -5,10 +5,8 @@ avd_id = ""
 other_ids = ["GHSA-mc85-72gr-vm9f"]
 
 [basic]
-title = "Tesla HTTP 客户端解压缩炸弹漏洞"
-description = """
-Tesla HTTP 客户端库中的 Tesla.Middleware.DecompressResponse 和 Tesla.Middleware.Compression 中间件在解压缩 HTTP 响应体时存在无大小限制的解压缩炸弹漏洞。decompress_body/2 函数将完整响应体直接传递给 :zlib.gunzip/1 或 :zlib.unzip/1，未对输出大小做任何限制。此外，compression_algorithms/1 按逗号拆分 content-encoding 头，decompress_body/2 对每个 token 递归执行一次解压缩。攻击者通过控制服务器返回 content-encoding: gzip, gzip, gzip, gzip 的响应，触发四层递归解压缩，每层 gzip 可膨胀约 1000 倍，数百字节负载可膨胀至数 GB BEAM 堆内存，导致进程崩溃或节点冻结。
-"""
+title = "Tesla 响应体解压缩炸弹漏洞"
+description = "elixir-tesla/tesla 项目中的 Tesla.Middleware.DecompressResponse 和 Tesla.Middleware.Compression 中间件在处理 HTTP 响应体时，未对解压缩后的数据大小进行限制。攻击者通过控制恶意服务器（或利用重定向），可返回一个经过多层 gzip 压缩的小型 payload（如 284 字节），该 payload 经递归解压后膨胀至数 GB 的 BEAM 堆内存，导致调用进程崩溃或冻结。漏洞影响 tesla 0.6.0 至 1.18.2 版本，已在 1.18.3 中修复。"
 severity = "HIGH"
 source = "ghsa"
 published = "2026-06-02"
@@ -24,44 +22,39 @@ cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:
 
 [affected]
 vendor = "elixir-tesla"
-product = "Tesla"
+product = "tesla"
 
 [exploit]
 poc = [
-  { url = "https://github.com/elixir-tesla/tesla/security/advisories/GHSA-mc85-72gr-vm9f", description = "GitHub 安全公告（含 PoC 描述）", source = "github" }
+  { url = "https://github.com/elixir-tesla/tesla/security/advisories/GHSA-mc85-72gr-vm9f", description = "GitHub Security Advisory 包含 PoC 描述", source = "github" }
 ]
 exp = []
 nuclei_templates = []
 
 [remediation]
-fix = "将 Tesla 升级至 1.18.3 及以上版本。补丁提交 340f75b5 修复了此问题，在 decompress_body/2 中添加了最大解压大小限制（max_decompress_size）。参考官方安全公告 https://github.com/elixir-tesla/tesla/security/advisories/GHSA-mc85-72gr-vm9f。"
-workaround = "如无法立即升级，可在 middleware 管道中移除或禁用 Tesla.Middleware.DecompressResponse 和 Tesla.Middleware.Compression，避免对不可信服务器的响应体进行解压缩。"
-steps = [
-  "步骤1: 检查 mix.exs 中 tesla 的版本依赖，确认是否 >= 0.6.0 且 < 1.18.3",
-  "步骤2: 升级 Tesla 至 1.18.3 或更高版本：`{:tesla, \"~> 1.18.3\"}`",
-  "步骤3: 运行 `mix deps.update tesla` 更新依赖",
-  "步骤4: 如无法升级，确保 middleware 管道中不包含 DecompressResponse 或 Compression"
-]
+fix = "将 tesla 升级到 1.18.3 或以上版本。该版本要求必须设置 :max_body_size 选项，并通过流式解压缩和上限检查防止解压缩炸弹攻击。"
+workaround = "如无法升级，可在 Tesla 客户端中间件管道中移除 Tesla.Middleware.DecompressResponse 和 Tesla.Middleware.Compression。"
+steps = ["步骤1: 确认项目依赖中 tesla 版本为 0.6.0 至 1.18.2", "步骤2: 更新 mix.exs 中 tesla 依赖到 '~> 1.18.3'", "步骤3: 在 Compression 中间件配置中设置 max_body_size 选项，如 {Tesla.Middleware.Compression, format: 'gzip', max_body_size: 32 * 1024 * 1024}", "步骤4: 重新编译并部署"]
 
 [references]
 nvd = "https://nvd.nist.gov/vuln/detail/CVE-2026-48594"
 avd = ""
 other = [
-  "https://github.com/elixir-tesla/tesla/security/advisories/GHSA-mc85-72gr-vm9f",
-  "https://github.com/elixir-tesla/tesla/commit/340f75b5d191dc747ef7ac6365bd002d1cd55a9d",
-  "https://cna.erlef.org/cves/CVE-2026-48594.html",
-  "https://osv.dev/vulnerability/EEF-CVE-2026-48594",
-  "https://hex.pm/packages/tesla"
+  { url = "https://github.com/elixir-tesla/tesla/security/advisories/GHSA-mc85-72gr-vm9f", description = "GitHub Security Advisory" },
+  { url = "https://github.com/elixir-tesla/tesla/commit/340f75b5d191dc747ef7ac6365bd002d1cd55a9d", description = "补丁提交" },
+  { url = "https://github.com/elixir-tesla/tesla/commit/5bd90bb5cf0d15e375edc2a66fa322292940fce2", description = "压缩中间件首次引入提交" },
+  { url = "https://osv.dev/vulnerability/EEF-CVE-2026-48594", description = "OSV 漏洞条目" },
+  { url = "https://cna.erlef.org/cves/CVE-2026-48594.html", description = "Erlang 生态系统基金会 CNA 公告" }
 ]
 
 [tags]
-tags = ["CWE-409", "DoS", "Decompression-Bomb", "Tesla", "Elixir", "BEAM", "GHSA-mc85-72gr-vm9f"]
+tags = ["CWE-409", "DoS", "decompression-bomb", "gzip", "elixir", "tesla"]
 
 [authenticity]
 cve_confidence = "high"
 poc_confidence = "medium"
-notes = "CVE 由 Erlang Ecosystem Foundation (EEF) CNA 分配，CVSS v4.0 8.2 由 EEF 评估。NVD 尚未进行独立评分。PoC 需要搭建恶意 HTTP 服务器，无法通过标准 HTTP 请求方式检测。GitHub 安全公告包含详细漏洞复现步骤，但无独立 PoC 仓库或 Exploit-DB 条目。"
+notes = "PoC 原理已在 GitHub Security Advisory 中详细描述，但无独立可执行的 PoC 脚本仓库。CVSS v4.0 评分由 EEF（Erlang 生态系统基金会）CNA 提供。"
 
 [meta]
-collected_at = "2026-07-10T12:52:03Z"
+collected_at = "2026-07-11T10:18:58Z"
 status = "completed"

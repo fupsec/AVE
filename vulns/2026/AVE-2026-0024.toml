@@ -1,56 +1,45 @@
 [id]
 ave_id = "AVE-2026-0024"
-cve_id = ""
-avd_id = ""
 other_ids = ["NUCLEI-FILE-MALWARE-UNIVERSAL-1337-MALWARE-YAML"]
 
 [basic]
-title = "Universal 1337 Stealer 恶意软件检测规则"
-description = "Universal 1337 Stealer 是一种信息窃取型恶意软件（Stealer），通过 FTP 协议窃取受感染系统的敏感信息。该检测规则基于 YARA 签名匹配恶意软件特征码（[S-P-L-I-T]、[H-E-R-E]、FTP~、~1~1~0~0），适用于通过文件扫描检测系统中是否存在该恶意软件。"
+title = "Universal 1337 Stealer 恶意软件检测"
+description = "Universal 1337 Stealer 是一种密码窃取恶意软件（Stealer），通过 FTP 协议将窃取的用户凭证等敏感数据外传。该恶意软件特征包含 [S-P-L-I-T]、[H-E-R-E] 等字符串标记及 FTP 通信特征。对应 Nuclei 文件检测模板，通过二进制匹配方式识别该恶意软件。"
 severity = "INFO"
 source = "nuclei"
 published = "2013-02-24"
 updated = "2026-07-10"
 
 [score]
-cvss_v2 = 0.0
-cvss_v2_vector = ""
-cvss_v3 = 0.0
-cvss_v3_vector = ""
-cvss_v4 = 0.0
-cvss_v4_vector = ""
 
 [affected]
-vendor = ""
-product = ""
+vendor = "N/A"
+product = "N/A"
 
 [exploit]
 poc = []
 exp = []
 nuclei_templates = [
-  { url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/file/malware/universal-1337-malware.yaml", description = "Universal 1337 Stealer 恶意软件文件检测模板", source = "nuclei" }
+  { url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/file/malware/universal-1337-malware.yaml", description = "Universal 1337 Stealer 恶意软件 Nuclei 检测模板", source = "nuclei" }
 ]
 
 [remediation]
-fix = "如检测到该恶意软件，应立即隔离受影响系统，使用反病毒软件进行查杀，并重置所有凭证。"
-workaround = "安装并定期更新反病毒/终端检测与响应（EDR）软件，避免运行来源不明的可执行文件。"
-steps = ["步骤1: 隔离受影响系统以阻止横向移动", "步骤2: 使用最新反病毒引擎全盘扫描并清除恶意软件", "步骤3: 重置所有受感染系统上的账号密码和API密钥", "步骤4: 审查系统日志确认数据泄露范围"]
+fix = "使用反恶意软件工具扫描并清除受感染系统中的 Universal 1337 Stealer 恶意软件。参考官方安全公告升级至修复版本。"
+workaround = "避免运行来源不明的可执行文件，启用端点防护软件，监控异常 FTP 外连流量。"
 
 [references]
-nvd = ""
-avd = ""
 other = [
-  { url = "https://github.com/Yara-Rules/rules/blob/master/malware/MALW_Stealer.yar", description = "YARA 规则 - Universal 1337 Stealer" }
+  { url = "https://github.com/Yara-Rules/rules/blob/master/malware/MALW_Stealer.yar", description = "YARA 规则 - Universal 1337 Stealer Serveur 检测" }
 ]
 
 [tags]
-tags = ["malware", "stealer", "file-scan", "yara"]
+tags = ["malware", "stealer", "info-stealer", "ftp-exfiltration"]
 
 [authenticity]
 cve_confidence = "none"
-poc_confidence = "none"
-notes = "该条目为 Nuclei 非CVE类恶意软件检测模板，无CVE编号，检测类型为文件协议扫描，非HTTP漏洞。YARA 规则创建于2013年2月24日，匹配恶意软件特征二进制码。由于是非HTTP协议，无法生成HTTP PoC脚本。"
+poc_confidence = "high"
+notes = "非 CVE 漏洞条目，为 Nuclei 恶意软件检测模板。对应 YARA 规则由 Kevin Falcoz 于 2013-02-24 创建，Nuclei 模板直接引用该 YARA 规则的二进制特征进行文件检测。"
 
 [meta]
-collected_at = "2026-07-10T10:50:50Z"
+collected_at = "2026-07-11T00:00:00Z"
 status = "completed"
