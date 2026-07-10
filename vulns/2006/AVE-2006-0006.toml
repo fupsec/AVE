@@ -10,13 +10,13 @@ poc_confidence = "none"
 [basic]
 description = "OpenSSL 0.9.7 之前版本、0.9.7 至 0.9.7k 之前版本、0.9.8 至 0.9.8c 之前版本，在使用指数为 3 的 RSA 密钥时，会在生成哈希之前移除 PKCS-1 填充，从而允许远程攻击者伪造由该 RSA 密钥签名的 PKCS #1 v1.5 签名，并阻止 OpenSSL 正确验证使用 PKCS #1 的 X.509 及其他证书。该漏洞广泛影响使用受影响 OpenSSL 版本的各类下游产品（如 OpenOffice.org、BIND、OpenVPN 等）。"
 published = "2006-09-05"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
+remediation = "升级 OpenSSL 到 0.9.7k、0.9.8c 或更高版本。避免使用指数为 3 的 RSA 证书密钥。"
 score = 5.5
 severity = "MEDIUM"
 source = "nvd"
-sources = ["unknown"]
+sources = ["nvd", "tenable"]
 title = "OpenSSL RSA 签名伪造漏洞（PKCS #1 v1.5）"
-updated = "2026-06-16"
+updated = "2026-07-10"
 
 [exploit]
 exp = []
