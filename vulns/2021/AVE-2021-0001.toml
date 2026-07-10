@@ -1,35 +1,25 @@
-[id]
-ave_id = "AVE-2021-0001"
-cve_id = "CVE-2021-47658"
-aliases = ["CVE-2021-47658"]
-
 [basic]
-title = "Linux内核AMD GPU驱动smu_v12_0 gpu_metrics_table内存泄漏漏洞"
-description = "Linux内核AMD GPU驱动（amdgpu）的SMU v12.0电源管理组件中存在内存泄漏漏洞。在renoir_init_smc_tables()函数中为gpu_metrics_table分配了内存，但smu_v12_0_fini_smc_tables()函数未释放该内存，导致内核内存泄漏。本地攻击者可利用此漏洞通过反复加载/卸载驱动触发内存耗尽，造成系统拒绝服务。影响Linux内核5.10至5.17版本之间的AMD Renoir APU平台。"
+description = "Vulnerability identified as CVE-2021-47658. Please refer to vendor advisory for details."
+published = "2026-07-10"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 5.0
 severity = "MEDIUM"
-score = 5.5
-remediation = "升级Linux内核至5.17及以上版本，或合入补丁commit 583637d66a70fc7090e12fb0ebbacc33d39e2214。对于已部署AMD Renoir APU的系统，应尽快更新内核以修复内存泄漏问题。"
-published = "2025-02-26"
-updated = "2026-06-17"
-sources = ["nvd", "msrc"]
-
-[affected]
-vendor = "Linux"
-product = "Linux Kernel"
-versions = ["5.10 - 5.17"]
+sources = ["msrc"]
+title = "CVE-2021-47658 vulnerability"
+updated = "2026-07-10"
 
 [exploit]
-poc_urls = []
 exp_urls = []
-nuclei_templates = []
+poc_urls = []
 
-[references]
-urls = [
-    "https://nvd.nist.gov/vuln/detail/CVE-2021-47658",
-    "https://git.kernel.org/stable/c/583637d66a70fc7090e12fb0ebbacc33d39e2214",
-    "https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/commit/?id=583637d66a70fc7090e12fb0ebbacc33d39e2214"
-]
+[id]
+aliases = ["CVE-2021-47658"]
+ave_id = "AVE-2021-0001"
+cve_id = "CVE-2021-47658"
 
 [meta]
+collected_at = "2026-07-10T19:14:40.039794871+00:00"
 status = "completed"
-collected_at = "2026-07-10T19:19:36Z"
+
+[references]
+urls = []
