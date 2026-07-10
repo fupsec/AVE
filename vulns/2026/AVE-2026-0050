@@ -1,17 +1,14 @@
 [id]
 ave_id = "AVE-2026-0050"
-cve_id = "CVE-2026-49456"
-aliases = [
-    "CVE-2026-49456",
-    "GHSA-43fc-v873-qw85",
-]
+cve_id = "NUCLEI-HTTP-CNVD-2021-CNVD-2021-15824-YAML"
+aliases = ["NUCLEI-HTTP-CNVD-2021-CNVD-2021-15824-YAML"]
 
 [basic]
-title = "CVE-2026-49456"
+title = "NUCLEI-HTTP-CNVD-2021-CNVD-2021-15824-YAML"
 description = ""
 severity = "UNKNOWN"
 score = 0.0
-sources = ["ghsa"]
+sources = ["nuclei"]
 published = ""
 updated = ""
 remediation = "Refer to vendor advisory and upgrade to fixed version."
@@ -25,4 +22,4 @@ exp_urls = []
 
 [meta]
 status = "completed"
-collected_at = "2026-07-10T12:52:05.158387842+00:00"
+collected_at = "2026-07-10T12:52:05.195470595+00:00"
