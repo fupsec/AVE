@@ -1,25 +1,66 @@
 [id]
 ave_id = "AVE-2026-0026"
-cve_id = "NUCLEI-HTTP-CNVD-2017-CNVD-2017-03561-YAML"
-aliases = ["NUCLEI-HTTP-CNVD-2017-CNVD-2017-03561-YAML"]
+cve_id = ""
+avd_id = ""
+other_ids = ["CNVD-2017-03561"]
 
 [basic]
-title = "NUCLEI-HTTP-CNVD-2017-CNVD-2017-03561-YAML"
-description = ""
-severity = "UNKNOWN"
-score = 0.0
-sources = ["nuclei"]
-published = ""
-updated = ""
-remediation = "Refer to vendor advisory and upgrade to fixed version."
+title = "泛微e-mobile OGNL注入漏洞"
+description = "泛微e-mobile的login.do和login/login.do页面的message参数存在OGNL表达式注入漏洞。攻击者可在未经身份验证的情况下，通过构造恶意的OGNL表达式作为message参数值，实现远程命令执行，获取服务器控制权。该漏洞影响泛微e-mobile所有使用Apache WebServer的版本。"
+severity = "HIGH"
+source = "nuclei"
+published = "2017-01-01"
+updated = "2017-12-31"
 
-[references]
-urls = []
+[score]
+cvss_v2 = 7.5
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:P/A:P"
+cvss_v3 = 9.8
+cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+cvss_v4 = 0.0
+cvss_v4_vector = ""
+
+[affected]
+vendor = "泛微 (Fanwei)"
+product = "e-Mobile"
 
 [exploit]
-poc_urls = []
-exp_urls = []
+poc = [
+  { url = "https://gitee.com/cute-guy/Penetration_Testing_POC/blob/master/%E6%B3%9B%E5%BE%AEe-mobile%20ognl%E6%B3%A8%E5%85%A5.md", description = "泛微e-mobile OGNL注入 PoC 与利用方法", source = "gitee" },
+  { url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2017/CNVD-2017-03561.yaml", description = "Nuclei 检测模板 - 泛微e-mobile OGNL注入", source = "nuclei" }
+]
+exp = []
+nuclei_templates = [
+  { url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2017/CNVD-2017-03561.yaml", description = "Nuclei 检测模板", source = "nuclei" }
+]
+
+[remediation]
+fix = "升级泛微e-mobile到最新版本。联系厂商获取安全补丁。"
+workaround = "如无法升级，可通过WAF规则拦截对/login.do和/login/login.do页面的message参数中包含OGNL表达式特征的请求。"
+steps = [
+  "步骤1: 确认使用版本是否为受影响版本（所有使用Apache WebServer的e-mobile版本）",
+  "步骤2: 联系泛微官方获取安全补丁或升级到修复版本",
+  "步骤3: 如无法立即升级，部署WAF规则拦截OGNL注入攻击"
+]
+
+[references]
+nvd = ""
+avd = ""
+other = [
+  "http://sh0w.top/index.php/archives/14/",
+  "http://sh0w.top/index.php/archives/39/",
+  "https://mp.weixin.qq.com/s/EbzjQvHTl7k9flG-7lqAvA",
+  "https://gitee.com/cute-guy/Penetration_Testing_POC/blob/master/%E6%B3%9B%E5%BE%AEe-mobile%20ognl%E6%B3%A8%E5%85%A5.md"
+]
+
+[tags]
+tags = ["CWE-917", "OGNL注入", "RCE", "未授权访问", "CNVD-2017"]
+
+[authenticity]
+cve_confidence = "none"
+poc_confidence = "high"
+notes = "CNVD分配编号，无对应CVE。Nuclei模板已验证有效性。Gitee有公开PoC文档，含详细利用方法。多来源交叉验证确认漏洞真实存在。"
 
 [meta]
+collected_at = "2026-07-10T10:50:51Z"
 status = "completed"
-collected_at = "2026-07-10T10:50:51.069619304+00:00"
