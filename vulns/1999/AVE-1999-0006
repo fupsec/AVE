@@ -1,28 +1,28 @@
-[id]
-ave_id = "AVE-1999-0006"
-cve_id = "CVE-1999-0018"
-aliases = ["CVE-1999-0018"]
-
 [basic]
-title = "CVE-1999-0018"
-description = ""
-severity = "UNKNOWN"
-score = 0.0
+description = "Vulnerability identified as CVE-1999-0018. Please refer to vendor advisory for details."
+published = "2026-07-10"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 5.0
+severity = "MEDIUM"
 sources = [
     "exploitdb",
     "redhat",
 ]
-published = ""
-updated = ""
-remediation = "Refer to vendor advisory and upgrade to fixed version."
+title = "CVE-1999-0018"
+updated = "2026-07-10"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0018"]
+ave_id = "AVE-1999-0006"
+cve_id = "CVE-1999-0018"
+
+[meta]
+collected_at = "2026-07-10T17:59:39.865278992+00:00"
+status = "completed"
 
 [references]
 urls = []
-
-[exploit]
-poc_urls = []
-exp_urls = []
-
-[meta]
-status = "completed"
-collected_at = "2026-07-10T16:17:33.069525591+00:00"
