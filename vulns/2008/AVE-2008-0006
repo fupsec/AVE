@@ -1,0 +1,25 @@
+[id]
+ave_id = "AVE-2008-0006"
+cve_id = "CVE-2008-0320"
+aliases = ["CVE-2008-0320"]
+
+[basic]
+title = "CVE-2008-0320"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["tenable"]
+published = ""
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T12:52:05.288915078+00:00"
