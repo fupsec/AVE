@@ -1,14 +1,14 @@
 [id]
-ave_id = "AVE-1999-0027"
-cve_id = "CVE-1999-0261"
-aliases = ["CVE-1999-0261"]
+ave_id = "AVE-2022-0002"
+cve_id = "CVE-2022-4743"
+aliases = ["CVE-2022-4743"]
 
 [basic]
-title = "CVE-1999-0261"
+title = "CVE-2022-4743"
 description = ""
 severity = "UNKNOWN"
 score = 0.0
-sources = ["cve"]
+sources = ["msrc"]
 published = ""
 updated = ""
 remediation = "Refer to vendor advisory and upgrade to fixed version."
@@ -22,4 +22,4 @@ exp_urls = []
 
 [meta]
 status = "completed"
-collected_at = "2026-07-10T12:52:03.016894160+00:00"
+collected_at = "2026-07-10T12:52:02.490372697+00:00"

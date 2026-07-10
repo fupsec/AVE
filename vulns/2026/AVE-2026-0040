@@ -1,14 +1,17 @@
 [id]
 ave_id = "AVE-2026-0040"
-cve_id = "NUCLEI-HTTP-CNVD-2020-CNVD-2020-62422-YAML"
-aliases = ["NUCLEI-HTTP-CNVD-2020-CNVD-2020-62422-YAML"]
+cve_id = "CVE-2026-48594"
+aliases = [
+    "CVE-2026-48594",
+    "GHSA-mc85-72gr-vm9f",
+]
 
 [basic]
-title = "NUCLEI-HTTP-CNVD-2020-CNVD-2020-62422-YAML"
+title = "CVE-2026-48594"
 description = ""
 severity = "UNKNOWN"
 score = 0.0
-sources = ["nuclei"]
+sources = ["ghsa"]
 published = ""
 updated = ""
 remediation = "Refer to vendor advisory and upgrade to fixed version."
@@ -22,4 +25,4 @@ exp_urls = []
 
 [meta]
 status = "completed"
-collected_at = "2026-07-10T12:52:02.304720522+00:00"
+collected_at = "2026-07-10T12:52:02.490513313+00:00"
