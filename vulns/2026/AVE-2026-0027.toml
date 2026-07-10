@@ -1,25 +1,54 @@
 [id]
 ave_id = "AVE-2026-0027"
-cve_id = "NUCLEI-HTTP-CNVD-2017-CNVD-2017-06001-YAML"
-aliases = ["NUCLEI-HTTP-CNVD-2017-CNVD-2017-06001-YAML"]
+cve_id = ""
+avd_id = ""
+other_ids = ["CNVD-2017-06001"]
 
 [basic]
-title = "NUCLEI-HTTP-CNVD-2017-CNVD-2017-06001-YAML"
-description = ""
-severity = "UNKNOWN"
-score = 0.0
-sources = ["nuclei"]
-published = ""
-updated = ""
-remediation = "Refer to vendor advisory and upgrade to fixed version."
+title = "大华 DSS 数字监控系统 SQL 注入漏洞"
+description = "大华 DSS 数字监控系统存在 SQL 注入漏洞，未经身份验证的远程攻击者可以通过向 /portal/attachment_clearTempFile.action 或 /portal/attachment_getAttList.action 接口发送特制请求，利用 EXTRACTVALUE 函数进行错误注入，获取数据库中的敏感信息。"
+severity = "HIGH"
+source = "nuclei"
+published = "2017-04-15"
+updated = "2017-04-15"
 
-[references]
-urls = []
+[score]
+cvss_v3 = 7.5
+cvss_v3_vector = "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N"
+cvss_v2 = 7.5
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:P/A:P"
+
+[affected]
+vendor = "大华"
+product = "DSS 数字监控系统"
 
 [exploit]
-poc_urls = []
-exp_urls = []
+poc = [
+  { url = "https://github.com/jisec001/dahua", description = "大华 DSS SQL 注入漏洞检测脚本", source = "github" }
+]
+exp = []
+nuclei_templates = [
+  { url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2017/CNVD-2017-06001.yaml", description = "大华 DSS SQL 注入 Nuclei 检测模板", source = "nuclei" }
+]
+
+[remediation]
+fix = "联系厂商获取安全补丁或升级到最新版本。"
+workaround = "在网络边界限制对 /portal/attachment_clearTempFile.action 和 /portal/attachment_getAttList.action 接口的访问。"
+steps = ["步骤1: 确认是否使用了大华 DSS 数字监控系统", "步骤2: 限制对受影响接口的网络访问", "步骤3: 联系厂商获取修复补丁"]
+
+[references]
+nvd = ""
+avd = ""
+other = ["https://www.cnvd.org.cn/flaw/show/CNVD-2017-06001", "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2017/CNVD-2017-06001.yaml"]
+
+[tags]
+tags = ["CWE-89", "SQLI", "CNVD-2017", "DAHUA"]
+
+[authenticity]
+cve_confidence = "none"
+poc_confidence = "high"
+notes = "该漏洞无对应 CVE 编号，仅有 CNVD 编号。多源验证确认漏洞存在。Nuclei 模板已验证，GitHub 存在 PoC 脚本。"
 
 [meta]
+collected_at = "2026-07-11T10:18:58Z"
 status = "completed"
-collected_at = "2026-07-10T10:50:52.532485759+00:00"
