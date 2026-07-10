@@ -14,7 +14,7 @@ remediation = "Refer to vendor advisory and upgrade to fixed version."
 score = 9.8
 severity = "CRITICAL"
 source = "kev"
-sources = ["unknown"]
+sources = ["kev"]
 title = "Alcatel OmniPCX Enterprise 远程命令执行漏洞"
 updated = "2026-06-16"
 
