@@ -52,8 +52,8 @@ jobs:
             echo "<tr><td>${y}</td><td class=\"num\">${V}</td><td class=\"num\">${P}</td><td class=\"num\">${E}</td></tr>" >> /tmp/year_stats.html
           done
           echo "<tr class=\"total-row\"><td>合计</td><td class=\"num\">${TOTAL_V}</td><td class=\"num\">${TOTAL_P}</td><td class=\"num\">${TOTAL_E}</td></tr></tbody></table>" >> /tmp/year_stats.html
-          sed -i '/<!--YEAR_STATS-->/{r /tmp/year_stats.html' -e 'd}' index.html
-          echo "year breakdown updated" | head -1
+          awk '!/<!--YEAR_STATS-->/{print} /<!--YEAR_STATS-->/{system("cat /tmp/year_stats.html")}' index.html > index_new.html && mv index_new.html index.html
+          echo "year breakdown updated"
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

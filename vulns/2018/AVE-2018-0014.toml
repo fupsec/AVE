@@ -37,7 +37,10 @@ nvd = "https://nvd.nist.gov/vuln/detail/CVE-2018-17879"
 avd = "https://avd.aliyun.com/detail?id=CVE-2018-17879"
 other = [
   "https://sec.maride.cc/posts/abus/#cve-2018-17879",
-  "https://www.ccc.de/en/updates/2019/update-nicht-verfugbar-hersteller-nicht-zu-erreichen"
+  "https://www.ccc.de/en/updates/2019/update-nicht-verfugbar-hersteller-nicht-zu-erreichen",
+  "https://www.heise.de/news/Sicherheitsluecken-in-IP-Kameras-Abus-bietet-Tauschprogramm-4419944.html",
+  "https://www.golem.de/news/abus-ueberwachungskameras-austauschprogramm-statt-update-1905-141133.html",
+  "https://www.spiegel.de/netzwelt/gadgets/abus-kameras-hersteller-bietet-wegen-sicherheitsluecken-austausch-an-a-1266524.html"
 ]
 
 [tags]
