@@ -1,0 +1,25 @@
+[id]
+ave_id = "AVE-2000-0016"
+cve_id = "CVE-2000-0269"
+aliases = ["CVE-2000-0269"]
+
+[basic]
+title = "CVE-2000-0269"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["redhat"]
+published = ""
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T12:52:50.473877317+00:00"
