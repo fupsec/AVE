@@ -1,34 +1,25 @@
-[id]
-ave_id = "AVE-2018-0025"
-cve_id = "CVE-2018-25095"
-aliases = ["CVE-2018-25095"]
-other_ids = []
-
 [basic]
-title = "Duplicator WordPress 插件安装脚本未授权远程代码执行漏洞"
-description = "Duplicator WordPress 插件 1.3.0 之前版本中，安装脚本 installer.php 在替换 WordPress 配置文件 wp-config.php 时未正确转义 url_new 等参数值。若管理员在使用插件复制站点后未及时删除遗留的 installer.php 文件，未经身份验证的远程攻击者可向该脚本发送特制 POST 请求，通过注入 PHP 代码实现任意代码执行，进而完全控制目标服务器。该漏洞影响广泛使用的 WordPress 备份迁移插件，攻击复杂度低且无需认证。"
-severity = "CRITICAL"
-score = 9.8
-cvss_v3 = "AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
-remediation = "立即将 Duplicator 插件升级至 1.3.0 或更高版本，同时检查并删除服务器上遗留的 installer.php 和 installer-backup.php 文件，避免安装脚本被恶意利用。"
-published = "2024-01-08"
-updated = "2024-01-09"
-sources = ["avd", "nvd", "wpscan"]
-
-[affected]
-vendor = "snapcreek"
-product = "duplicator"
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["avd"]
+title = "CVE-2018-25095 漏洞"
+updated = ""
 
 [exploit]
-poc_urls = ["https://wpscan.com/vulnerability/16cc47aa-cb31-4114-b014-7ac5fbc1d3ee"]
 exp_urls = []
-nuclei_templates = []
+poc_urls = []
 
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2018-25095"
-avd = ""
-other = ["https://wpscan.com/vulnerability/16cc47aa-cb31-4114-b014-7ac5fbc1d3ee"]
+[id]
+aliases = ["CVE-2018-25095"]
+ave_id = "AVE-2018-0025"
+cve_id = "CVE-2018-25095"
 
 [meta]
-collected_at = "2026-07-11T12:52:04+00:00"
+collected_at = "2026-07-10T20:58:54.712513803+00:00"
 status = "completed"
+
+[references]
+urls = []

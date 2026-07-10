@@ -11,8 +11,8 @@ poc_confidence = "low"
 description = "Sendmail 8.10.0 之前版本存在拒绝服务漏洞。远程攻击者通过向 SMTP 服务器发送一系列 ETRN 命令后断开连接，导致 Sendmail 在连接终止后继续处理这些命令，从而消耗大量系统资源造成拒绝服务。"
 published = "1999-12-22"
 remediation = "升级 Sendmail 至 8.10.1 或更高版本以修复此漏洞。"
-score = 5.0
-severity = "MEDIUM"
+score = 7.5
+severity = "HIGH"
 source = "nvd"
 sources = ["tenable", "nvd"]
 title = "Sendmail SMTP ETRN 命令处理拒绝服务漏洞"
@@ -58,8 +58,8 @@ cvss_v2 = 5.0
 cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:N/A:P"
 cvss_v3 = 7.5
 cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
-cvss_v4 = 8.2
-cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N"
+cvss_v4 = 0.0
+cvss_v4_vector = ""
 
 [tags]
 tags = [
