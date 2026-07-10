@@ -166,7 +166,7 @@ function toCard(item, text, assetIndex) {
 
   return {
     ave_id: ave,
-    file_name: item.name,
+    file_name: getVulnRelPath(item),
     cve_id: cve,
     title: titleFromToml(text, ave),
     description: descFromToml(text),
@@ -188,6 +188,15 @@ function toCard(item, text, assetIndex) {
     has_exp: repoExps.length > 0,
     raw_url: item.html_url,
   };
+}
+
+function getVulnRelPath(item) {
+  // From GitHub Code Search API — path is like "vulns/2026/AVE-2026-0001.toml"
+  if (item.path) return item.path.replace(/^vulns\//, '');
+  // From tree cache fallback
+  if (item.rel_path) return item.rel_path;
+  // Fallback to filename only
+  return item.name;
 }
 
 function sevClass(s) {
@@ -367,9 +376,11 @@ async function ensureTreeCache() {
       .map((n) => {
         const name = n.path.split("/").pop();
         const stem = name.replace(/\.toml$/i, "");
+        const relPath = n.path.replace(/^vulns\//, '');
         return {
           name,
           stem,
+          rel_path: relPath,
           html_url: `https://github.com/${GH.owner}/${GH.repo}/blob/${GH.branch}/${n.path}`,
           download_url: `https://raw.githubusercontent.com/${GH.owner}/${GH.repo}/${GH.branch}/${n.path}`,
         };
@@ -390,7 +401,7 @@ async function searchViaTreeFallback(keyword, page) {
   const all = await ensureTreeCache();
   const kw = (keyword || "").trim().toLowerCase();
   const filtered = kw
-    ? all.filter((i) => i.name.toLowerCase().includes(kw) || i.stem.toLowerCase().includes(kw))
+    ? all.filter((i) => i.name.toLowerCase().includes(kw) || i.stem.toLowerCase().includes(kw) || (i.rel_path && i.rel_path.toLowerCase().includes(kw)))
     : all;
 
   state.mode = "tree";

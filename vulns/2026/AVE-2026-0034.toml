@@ -1,14 +1,17 @@
 [id]
-ave_id = "AVE-1999-0009"
-cve_id = "CVE-1999-0194"
-aliases = ["CVE-1999-0194"]
+ave_id = "AVE-2026-0034"
+cve_id = "CVE-2026-35361"
+aliases = [
+    "CVE-2026-35361",
+    "GHSA-r9hw-mj3w-phcq",
+]
 
 [basic]
-title = "CVE-1999-0194"
+title = "CVE-2026-35361"
 description = ""
 severity = "UNKNOWN"
 score = 0.0
-sources = ["cve"]
+sources = ["ghsa"]
 published = ""
 updated = ""
 remediation = "Refer to vendor advisory and upgrade to fixed version."
@@ -22,4 +25,4 @@ exp_urls = []
 
 [meta]
 status = "completed"
-collected_at = "2026-07-10T10:50:52.654145378+00:00"
+collected_at = "2026-07-10T11:18:45.288204631+00:00"

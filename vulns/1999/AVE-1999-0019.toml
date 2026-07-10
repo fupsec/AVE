@@ -1,14 +1,14 @@
 [id]
-ave_id = "AVE-2004-0001"
-cve_id = "CVE-2004-0210"
-aliases = ["CVE-2004-0210"]
+ave_id = "AVE-1999-0019"
+cve_id = "CVE-1999-0493"
+aliases = ["CVE-1999-0493"]
 
 [basic]
-title = "CVE-2004-0210"
+title = "CVE-1999-0493"
 description = ""
 severity = "UNKNOWN"
 score = 0.0
-sources = ["kev"]
+sources = ["redhat"]
 published = ""
 updated = ""
 remediation = "Refer to vendor advisory and upgrade to fixed version."
@@ -22,4 +22,4 @@ exp_urls = []
 
 [meta]
 status = "completed"
-collected_at = "2026-07-10T10:49:15.215151642+00:00"
+collected_at = "2026-07-10T11:16:30.576287555+00:00"

@@ -1,14 +1,14 @@
 [id]
-ave_id = "AVE-2004-0002"
-cve_id = "CVE-2004-1464"
-aliases = ["CVE-2004-1464"]
+ave_id = "AVE-2001-0002"
+cve_id = "CVE-2001-0775"
+aliases = ["CVE-2001-0775"]
 
 [basic]
-title = "CVE-2004-1464"
+title = "CVE-2001-0775"
 description = ""
 severity = "UNKNOWN"
 score = 0.0
-sources = ["kev"]
+sources = ["osv"]
 published = ""
 updated = ""
 remediation = "Refer to vendor advisory and upgrade to fixed version."
@@ -22,4 +22,4 @@ exp_urls = []
 
 [meta]
 status = "completed"
-collected_at = "2026-07-10T10:50:50.860330945+00:00"
+collected_at = "2026-07-10T11:21:14.467204634+00:00"

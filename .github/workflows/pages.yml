@@ -26,9 +26,9 @@ jobs:
 
       - name: Update Dashboard Metrics
         run: |
-          VULNS=$(ls vulns/*.toml 2>/dev/null | wc -l)
-          POCS=$(ls pocs/* 2>/dev/null | wc -l)
-          EXPS=$(ls exploits/* 2>/dev/null | wc -l)
+          VULNS=$(find vulns -name "*.toml" -type f 2>/dev/null | wc -l)
+          POCS=$(find pocs -type f 2>/dev/null | wc -l)
+          EXPS=$(find exploits -type f 2>/dev/null | wc -l)
           PUSH_TIME=$(date -u "+%Y-%m-%d %H:%M UTC")
           sed -i 's|<p id="m-vulns">.*</p>|<p id="m-vulns">'"$VULNS"'</p>|' index.html
           sed -i 's|<p id="m-pocs">.*</p>|<p id="m-pocs">'"$POCS"'</p>|' index.html

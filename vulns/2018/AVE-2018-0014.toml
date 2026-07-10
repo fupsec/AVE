@@ -1,0 +1,53 @@
+[id]
+ave_id = "AVE-2018-0014"
+cve_id = "CVE-2018-17879"
+avd_id = "CVE-2018-17879"
+other_ids = []
+
+[basic]
+title = "ABUS TVIP 系列摄像机操作系统命令注入漏洞"
+description = "ABUS TVIP 系列摄像机中的 CGI 脚本未对用户输入进行充分过滤，直接将参数传递给 system() 函数处理。攻击者可通过在参数中注入 shell 元字符（如 $(command)）以 root 权限执行任意命令，从而完全控制设备。受影响机型包括 TVIP10000、TVIP10001、TVIP10005、TVIP20000、TVIP31000 等数十款紧凑型、球型、半球型及枪型摄像机。"
+severity = "CRITICAL"
+source = "nvd"
+published = "2018-12-31"
+updated = "2026-06-16"
+
+[score]
+cvss_v3 = 9.8
+cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+
+[affected]
+vendor = "ABUS"
+product = "TVIP 系列摄像机（TVIP10000/TVIP20000/TVIP31000 等）"
+
+[exploit]
+poc = [
+  { url = "https://sec.maride.cc/posts/abus/#cve-2018-17879", description = "ABUS TVIP 摄像机命令注入 PoC（Python 脚本，注入 UPnP HTTP Port 参数）", source = "github" }
+]
+exp = []
+nuclei_templates = []
+
+[remediation]
+fix = "ABUS 已针对受影响设备推出更换计划（replacement program）。由于相关设备已停产且固件不再更新，建议用户立即停用受影响摄像机，或将其隔离在独立 VLAN/网络中，并实施严格的防火墙规则。"
+workaround = "如无法立即更换设备，可将摄像机隔离在独立网络 VLAN 中，限制其互联网访问，禁用 UPnP 功能，并更改默认管理员密码。"
+steps = ["确认设备型号是否在受影响列表中（TVIP10000/TVIP20000/TVIP31000 等数十款）", "将摄像机隔离在独立网络 VLAN 中，禁止直接暴露在公网", "禁用 UPnP 功能（若设备支持）", "联系 ABUS 客服申请更换计划", "考虑更换为有安全更新的替代设备"]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2018-17879"
+avd = "https://avd.aliyun.com/detail?id=CVE-2018-17879"
+other = [
+  "https://sec.maride.cc/posts/abus/#cve-2018-17879",
+  "https://www.ccc.de/en/updates/2019/update-nicht-verfugbar-hersteller-nicht-zu-erreichen"
+]
+
+[tags]
+tags = ["CWE-78", "OS Command Injection", "RCE", "IoT"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "high"
+notes = "CVE 由 MITRE 官方分配，NVD 已完成 CVSS 评分。PoC 由独立安全研究人员 maride 发布，包含完整的 Python 利用脚本和详细技术分析。CCC（德国混沌计算机俱乐部）参与了披露协调。"
+
+[meta]
+collected_at = "2026-07-10T19:14:00Z"
+status = "completed"

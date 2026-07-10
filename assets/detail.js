@@ -106,8 +106,18 @@ async function loadAssetIndex() {
 
 async function loadToml(fileName) {
   const safeName = fileName.endsWith(".toml") ? fileName : `${fileName}.toml`;
-  const raw = `https://raw.githubusercontent.com/${GH.owner}/${GH.repo}/${GH.branch}/vulns/${safeName}`;
-  const html = `https://github.com/${GH.owner}/${GH.repo}/blob/${GH.branch}/vulns/${safeName}`;
+
+  // Determine vuln subpath — support both:
+  //   "2026/AVE-2026-0001.toml" (new year-subdirectory layout)
+  //   "AVE-2026-0001.toml"      (legacy flat layout — derive year from AVE ID)
+  let vulnPath = safeName;
+  if (!vulnPath.includes('/')) {
+    const yearMatch = vulnPath.match(/AVE-(\d{4})-/);
+    if (yearMatch) vulnPath = `${yearMatch[1]}/${vulnPath}`;
+  }
+
+  const raw = `https://raw.githubusercontent.com/${GH.owner}/${GH.repo}/${GH.branch}/vulns/${vulnPath}`;
+  const html = `https://github.com/${GH.owner}/${GH.repo}/blob/${GH.branch}/vulns/${vulnPath}`;
   const res = await fetch(raw, { cache: "no-cache" });
   if (!res.ok) throw new Error(`获取 TOML 失败：HTTP ${res.status}`);
   const text = await res.text();
