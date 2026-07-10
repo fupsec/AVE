@@ -1,40 +1,28 @@
-[id]
-ave_id = "AVE-2006-0001"
-cve_id = "CVE-2006-10003"
-aliases = ["CVE-2006-10003"]
-
 [basic]
-title = "Perl XML::Parser 模块 st_serial_stack 堆缓冲区越界写入漏洞"
-description = "XML::Parser for Perl 2.47及之前版本中存在越界堆缓冲区溢出漏洞（Off-by-one Heap Buffer Overflow）。该漏洞位于st_serial_stack函数中，当stackptr等于stacksize-1时，栈不会被扩展，随后新值会被写入++stackptr位置，该位置等于stacksize，恰好落在已分配缓冲区之外。攻击者可以通过解析包含深度嵌套元素的特制XML文件触发此漏洞，可能导致应用程序崩溃或远程代码执行。"
-severity = "CRITICAL"
-score = 9.8
-cvss_v3 = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
-published = "2026-03-19"
-updated = "2026-06-29"
-remediation = "升级XML::Parser（XML-Parser）至2.48或更高版本。各Linux发行版用户可通过包管理器更新perl-XML-Parser软件包，Red Hat用户可参考RHSA-2026系列公告安装相应更新。"
-sources = ["nvd", "avd", "msrc"]
-
-[affected]
-vendor = "TODDR"
-product = "XML::Parser"
-
-[references]
-urls = [
-  "https://nvd.nist.gov/vuln/detail/CVE-2006-10003",
-  "http://www.openwall.com/lists/oss-security/2026/03/19/2",
-  "https://github.com/cpan-authors/XML-Parser/commit/3eb9cc95420fa0c3f76947c4708962546bf27cfd.patch",
-  "https://github.com/cpan-authors/XML-Parser/issues/39",
-  "https://rt.cpan.org/Ticket/Display.html?id=19860",
-  "https://lists.debian.org/debian-lts-announce/2026/04/msg00002.html",
-  "https://access.redhat.com/security/cve/CVE-2006-10003",
-  "https://bugzilla.redhat.com/show_bug.cgi?id=2448999",
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = [
+    "avd",
+    "msrc",
 ]
+title = "CVE-2006-10003 漏洞"
+updated = ""
 
 [exploit]
-poc_urls = []
 exp_urls = []
-nuclei_templates = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2006-10003"]
+ave_id = "AVE-2006-0001"
+cve_id = "CVE-2006-10003"
 
 [meta]
+collected_at = "2026-07-10T20:55:49.867902525+00:00"
 status = "completed"
-collected_at = "2026-07-11T10:00:00+08:00"
+
+[references]
+urls = []
