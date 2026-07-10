@@ -67,5 +67,5 @@ poc_confidence = "high"
 notes = "CVE-2025-70795 由卡饭论坛于 2025-12-30 首次披露恶意样本（https://bbs.kafan.cn/thread-2287429-1-1.html），随后由 KOSEC LLC 通过 CERT/CC 正式报告（VU#818729）。CISA-ADP 评估 exploitation 状态为 'poc'（PoC 存在）。NVD 提供 CVSS 3.1 评分 5.5 MEDIUM（CISA-ADP评估）。CVE-2026-0828 为同一驱动中的相关漏洞（未授权进程终止），CVSS 3.1 评分 7.5 HIGH。该驱动已收录于 LOLDrivers 项目。GitHub 上存在多个独立 PoC 仓库，其中 ANYLNK/STProcessMonitorBYOVD 包含完整的利用代码（49星）。由于该漏洞为内核驱动程序漏洞（非HTTP协议），不生成HTTP PoC脚本。"
 
 [meta]
-collected_at = "2026-07-10T16:18:00Z"
+collected_at = "2026-07-11T02:00:00Z"
 status = "completed"
