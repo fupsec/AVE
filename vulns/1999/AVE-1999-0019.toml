@@ -1,25 +1,55 @@
 [id]
 ave_id = "AVE-1999-0019"
 cve_id = "CVE-1999-0493"
-aliases = ["CVE-1999-0493"]
+avd_id = ""
+other_ids = []
 
 [basic]
-title = "CVE-1999-0493"
-description = ""
-severity = "UNKNOWN"
-score = 0.0
-sources = ["redhat"]
-published = ""
-updated = ""
-remediation = "Refer to vendor advisory and upgrade to fixed version."
+title = "Sun Solaris rpc.statd 远程命令执行漏洞"
+description = "rpc.statd 允许远程攻击者通过 SM_MON 和 SM_NOTIFY 命令将 RPC 调用转发到本地操作系统，进而可用于远程利用其他漏洞（如 automountd）。"
+severity = "HIGH"
+source = "nvd"
+published = "1999-06-07"
+updated = "2026-06-16"
 
-[references]
-urls = []
+[score]
+cvss_v2 = 7.5
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:P/A:P"
+cvss_v3 = 0.0
+cvss_v3_vector = ""
+cvss_v4 = 0.0
+cvss_v4_vector = ""
+
+[affected]
+vendor = "Sun"
+product = "Solaris"
 
 [exploit]
-poc_urls = []
-exp_urls = []
+poc = []
+exp = []
+nuclei_templates = []
+
+[remediation]
+fix = "参考 Sun 安全公告 186 升级到受影响版本以上。"
+workaround = "限制对 rpc.statd 服务的网络访问，禁用不必要的 RPC 服务。"
+steps = ["步骤1: 确认系统运行 rpc.statd 服务", "步骤2: 应用 Sun 安全公告 186 提供的补丁", "步骤3: 限制对 RPC 端口 (111) 的网络访问"]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0493"
+avd = ""
+other = [
+  "https://www.cert.org/advisories/CA-99-05-statd-automountd.html",
+  "https://www.securityfocus.com/bid/450"
+]
+
+[tags]
+tags = ["CWE-Other", "RCE", "RPC"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "low"
+notes = "RPC 协议漏洞，非 HTTP，无可用 PoC/EXP 脚本。CVSS v3/v4 未评估。"
 
 [meta]
+collected_at = "2026-07-10T11:18:58Z"
 status = "completed"
-collected_at = "2026-07-10T11:16:30.576287555+00:00"
