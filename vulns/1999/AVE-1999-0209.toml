@@ -1,0 +1,58 @@
+[id]
+ave_id = "AVE-1999-0209"
+cve_id = "CVE-1999-0003"
+avd_id = ""
+other_ids = ["EDB-19101", "EDB-19102"]
+
+[basic]
+title = "ToolTalk RPC 数据库服务器（rpc.ttdbserverd）缓冲区溢出漏洞"
+description = "ToolTalk 数据库服务（rpc.ttdbserverd）是 CDE 桌面环境的 ONC RPC 组件，用于管理 ToolTalk 通信所需的对象。由于对用户输入缺少正确的边界检查，存在栈缓冲区溢出漏洞。远程攻击者可向目标系统的 ToolTalk 服务发送特制的 RPC 消息触发溢出，从而以 root 权限执行任意指令。受影响的系统包括 Sun Solaris 2.5.1、SGI IRIX 5.2-6.5.2、HP-UX、Xi Graphics Maximum CDE 1.2.3 以及 TriTeal TED CDE 4.3 等。服务通过 ONC RPC 程序号 100083 版本 1 注册，由 inetd 或 rpcbind 管理。"
+severity = "CRITICAL"
+source = "nvd"
+published = "1998-04-01"
+updated = "2026-06-16"
+
+[score]
+cvss_v2 = 10.0
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C"
+cvss_v3 = 0.0
+cvss_v3_vector = ""
+cvss_v4 = 0.0
+cvss_v4_vector = ""
+
+[affected]
+vendor = "Multiple"
+product = "CDE ToolTalk (rpc.ttdbserverd)"
+
+[exploit]
+poc = [
+  { url = "https://www.exploit-db.com/exploits/19101", description = "ToolTalk RPC 服务缓冲区溢出 PoC 利用代码（Solaris/IRIX/HP-UX）", source = "exploit-db" },
+  { url = "https://www.exploit-db.com/exploits/19102", description = "ToolTalk RPC 服务缓冲区溢出 PoC 利用代码（IRIX MIPS 架构）", source = "exploit-db" }
+]
+exp = [
+  { url = "https://www.exploit-db.com/exploits/19101", description = "ToolTalk RPC 服务缓冲区溢出 EXP 利用脚本", source = "exploit-db" },
+  { url = "https://www.exploit-db.com/exploits/19102", description = "ToolTalk RPC 服务缓冲区溢出 EXP 利用脚本（IRIX MIPS）", source = "exploit-db" }
+]
+nuclei_templates = []
+
+[remediation]
+fix = "参考厂商安全公告升级到修复版本。禁用不必要的 ToolTalk RPC 服务（rpc.ttdbserverd），或在防火墙上屏蔽 RPC 端口（端口映射 111 及动态 RPC 端口）。"
+workaround = "如无法升级，可在 /etc/inetd.conf 中注释 rpc.ttdbserverd 相关行并重启 inetd 以禁用服务。对于 Solaris 系统，可删除 rpc.ttdbserverd 可执行文件或移除执行权限。"
+steps = ["步骤1: 检查系统是否运行 rpc.ttdbserverd（rpcinfo -p | grep 100083）", "步骤2: 检查受影响系统（Solaris/IRIX/HP-UX）并应用厂商补丁", "步骤3: 如非必需，禁用 ToolTalk 服务", "步骤4: 在防火墙规则中限制 RPC 端口访问"]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0003"
+avd = ""
+other = ["http://www.securityfocus.com/bid/122", "https://www.exploit-db.com/exploits/19101", "https://www.exploit-db.com/exploits/19102", "ftp://patches.sgi.com/support/free/security/advisories/19981101-01-A", "ftp://patches.sgi.com/support/free/security/advisories/19981101-01-PX"]
+
+[tags]
+tags = ["CWE-119", "CWE-121", "Buffer-Overflow", "ToolTalk", "CDE", "RPC", "RCE", "Remote", "Solaris", "IRIX"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "high"
+notes = "CVE-1999-0003 是 CDE ToolTalk 服务中最著名的远程 root 缓冲区溢出漏洞之一。NAI 研究团队和 Last Stage of Delirium（lsd-pl.net）分别发布了独立的利用代码（EDB-19101, EDB-19102），均可在多个 Unix 平台实现远程 root 权限获取。NVD CVSS v2.0 评分为 10.0，真实性确认度高。"
+
+[meta]
+collected_at = "2026-07-11T00:00:00Z"
+status = "completed"
