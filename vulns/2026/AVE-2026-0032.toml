@@ -1,25 +1,25 @@
 [basic]
-description = "Vulnerability identified as NUCLEI-HTTP-CNVD-2019-CNVD-2019-19299-YAML. Please refer to vendor advisory for details."
-published = "2026-07-10"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 5.0
-severity = "MEDIUM"
-sources = ["nuclei"]
-title = "NUCLEI-HTTP-CNVD-2019-CNVD-2019-19299-YAML"
+description = "致远A8协同管理系统的/seeyon/htmlofficeservlet接口存在任意文件写入漏洞（CNVD-2019-19299），攻击者无需认证即可通过构造特制的HTTP POST请求向服务器任意目录写入JSP文件，进而获取WebShell并执行任意系统命令，完全控制服务器。该漏洞影响致远A8所有版本，危害极大，已被大量在野利用。"
+published = "2019-06-26"
+remediation = "升级致远A8至官方修复版本；若无法升级，立即删除或重命名/seeyon/htmlofficeservlet文件并重启中间件服务；同时在WAF层拦截对/seeyon/htmlofficeservlet的POST请求。"
+score = 10.0
+severity = "CRITICAL"
+sources = ["nuclei", "exploit-db", "github"]
+title = "致远A8 htmlofficeservlet 任意文件写入远程代码执行漏洞"
 updated = "2026-07-10"
 
 [exploit]
-exp_urls = []
-poc_urls = []
+exp_urls = ["https://raw.githubusercontent.com/sectestt/CNVD-2019-19299/master/seeyou_poc_py3.py", "https://raw.githubusercontent.com/sectestt/CNVD-2019-19299/master/seeyou_poc_py2.py", "https://raw.githubusercontent.com/sectestt/CNVD-2019-19299/master/seeyon_rce.txt"]
+poc_urls = ["https://github.com/sectestt/CNVD-2019-19299", "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2019/CNVD-2019-19299.yaml"]
 
 [id]
-aliases = ["NUCLEI-HTTP-CNVD-2019-CNVD-2019-19299-YAML"]
+aliases = ["CNVD-2019-19299", "NUCLEI-HTTP-CNVD-2019-CNVD-2019-19299-YAML"]
 ave_id = "AVE-2026-0032"
-cve_id = "NUCLEI-HTTP-CNVD-2019-CNVD-2019-19299-YAML"
+cve_id = ""
 
 [meta]
-collected_at = "2026-07-10T18:35:11.950580355+00:00"
+collected_at = "2026-07-10T18:39:56+00:00"
 status = "completed"
 
 [references]
-urls = []
+urls = ["https://github.com/sectestt/CNVD-2019-19299", "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2019/CNVD-2019-19299.yaml", "https://www.cxyzjd.com/article/guangying177/110177339"]

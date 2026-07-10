@@ -1,0 +1,36 @@
+[id]
+ave_id = "AVE-2002-0042"
+cve_id = "CVE-2002-1154"
+aliases = ["CVE-2002-1154"]
+
+[basic]
+title = "Analog anlgform.pl PROGRESSFREQ 命令未授权访问致拒绝服务漏洞"
+description = "Analog 是一款广泛使用的网站日志分析工具。其 CGI 脚本 anlgform.pl 中的 PROGRESSFREQ 进度更新命令未正确限制远程访问权限，导致攻击者无需认证即可利用该命令频繁请求进度更新，使 Web 服务器持续向错误日志写入大量数据，最终因磁盘空间耗尽而造成拒绝服务。"
+severity = "MEDIUM"
+score = 5.0
+remediation = "升级 Analog 至 5.23 或更高版本，严格限制 anlgform.pl 中 PROGRESSFREQ 命令的调用来源，避免未授权远程触发频繁进度更新导致日志占满磁盘。"
+published = "2002-10-11"
+updated = "2002-10-11"
+sources = ["osv"]
+
+[affected]
+vendor = "Analog Project"
+product = "Analog"
+
+[exploit]
+poc_urls = []
+exp_urls = []
+nuclei_templates = []
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2002-1154"
+other = [
+  "http://www.analog.cx/security5.html",
+  "http://www.iss.net/security_center/static/10344.php",
+  "http://www.osvdb.org/3779",
+  "http://www.redhat.com/support/errata/RHSA-2002-059.html"
+]
+
+[meta]
+status = "completed"
+collected_at = "2026-07-11T12:00:00Z"
