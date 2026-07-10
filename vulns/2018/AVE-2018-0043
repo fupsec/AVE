@@ -1,0 +1,25 @@
+[id]
+ave_id = "AVE-2018-0043"
+cve_id = "CVE-2018-25114"
+aliases = ["CVE-2018-25114"]
+
+[basic]
+title = "CVE-2018-25114"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["avd"]
+published = ""
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T13:36:50.942149431+00:00"
