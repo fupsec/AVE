@@ -1,17 +1,14 @@
 [id]
-ave_id = "AVE-2026-0042"
-cve_id = "CVE-2026-48596"
-aliases = [
-    "CVE-2026-48596",
-    "GHSA-q7jx-v53g-848w",
-]
+ave_id = "AVE-2001-0010"
+cve_id = "CVE-2001-1534"
+aliases = ["CVE-2001-1534"]
 
 [basic]
-title = "CVE-2026-48596"
+title = "CVE-2001-1534"
 description = ""
 severity = "UNKNOWN"
 score = 0.0
-sources = ["ghsa"]
+sources = ["osv"]
 published = ""
 updated = ""
 remediation = "Refer to vendor advisory and upgrade to fixed version."
@@ -25,4 +22,4 @@ exp_urls = []
 
 [meta]
 status = "completed"
-collected_at = "2026-07-10T12:52:03.235715678+00:00"
+collected_at = "2026-07-10T12:52:03.717438742+00:00"
