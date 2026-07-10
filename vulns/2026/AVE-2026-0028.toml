@@ -54,8 +54,8 @@ tags = ["CWE-22", "LFI", "Path Traversal", "信息泄露", "Metinfo"]
 [authenticity]
 cve_confidence = "low"
 poc_confidence = "high"
-notes = "此漏洞为 CNVD 收录编号 CNVD-2018-13393，目前未发现对应 CVE 编号。Nuclei 模板已验证可利用。Seebug 文章（paper.seebug.org/676）详细描述了 Metinfo 多个漏洞，包括此 LFI。漏洞影响 Metinfo 米拓建站系统，属于中文 CMS。"
+notes = "此漏洞为 CNVD 收录编号 CNVD-2018-13393，目前未发现对应 CVE 编号或阿里云 AVD 编号。Nuclei 模板已验证可利用。Seebug 文章（paper.seebug.org/676）详细描述了 Metinfo 多个漏洞，包括此 LFI。漏洞影响 Metinfo 米拓建站系统，属于中文 CMS。经过搜索 NVD、GitHub、Exploit-DB、PacketStorm、Sploitus 等渠道，未发现额外的公开 PoC/EXP 资源。"
 
 [meta]
-collected_at = "2026-07-10T10:50:52Z"
+collected_at = "2026-07-11T10:18:58Z"
 status = "completed"

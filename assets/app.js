@@ -556,9 +556,7 @@ async function boot() {
   const rerun = debounce(() => {
     state.keyword = searchInput.value || "";
     state.severity = severityInput.value || "";
-    runPage(1).then(() => {
-      if (intro) intro.style.display = "none";
-    });
+    runPage(1);
   }, 300);
 
   searchBtn.addEventListener("click", rerun);
@@ -571,9 +569,7 @@ async function boot() {
     state.severity = "";
     searchInput.value = "";
     severityInput.value = "";
-    runPage(1).then(() => {
-      if (intro) intro.style.display = "none";
-    });
+    runPage(1);
   });
   searchInput.addEventListener("keydown", (e) => {
     if (e.key === "Enter") rerun();
@@ -624,9 +620,7 @@ async function boot() {
   updateSortIndicators();
 
   // ── Auto-load on visit (load first page) ──
-  runPage(urlState.page).then(() => {
-    if (intro) intro.style.display = "none";
-  });
+    runPage(urlState.page);
 }
 
 boot();
