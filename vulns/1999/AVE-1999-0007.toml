@@ -1,25 +1,56 @@
 [id]
 ave_id = "AVE-1999-0007"
 cve_id = "CVE-1999-0154"
-aliases = ["CVE-1999-0154"]
+avd_id = ""
+other_ids = []
 
 [basic]
-title = "CVE-1999-0154"
-description = ""
-severity = "UNKNOWN"
-score = 0.0
-sources = ["cve"]
-published = ""
-updated = ""
-remediation = "Refer to vendor advisory and upgrade to fixed version."
+title = "Microsoft IIS 2.0/3.0 ASP 源码泄露漏洞"
+description = "IIS 2.0 和 3.0 允许远程攻击者通过在 URL 末尾附加一个点号（.）来读取 ASP 页面的源代码。"
+severity = "MEDIUM"
+source = "nvd"
+published = "1999-12-31"
+updated = "2026-06-16"
 
-[references]
-urls = []
+[score]
+cvss_v2 = 5.0
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:N/A:N"
+cvss_v3 = 0.0
+cvss_v3_vector = ""
+cvss_v4 = 0.0
+cvss_v4_vector = ""
+
+[affected]
+vendor = "Microsoft"
+product = "Internet Information Server"
 
 [exploit]
-poc_urls = []
-exp_urls = []
+poc = [
+  { url = "https://www.exploit-db.com/exploits/19033", description = "IIS ASP 源码泄露漏洞利用", source = "exploit-db" }
+]
+exp = []
+nuclei_templates = []
+
+[remediation]
+fix = "升级到 Windows 2000 或更高版本操作系统附带的新版 IIS，或安装相关安全更新。"
+workaround = "限制对 ASP 文件的直接访问，或使用 URLScan 等 IIS 安全工具拦截包含异常字符的请求。"
+steps = ["步骤1: 确认 IIS 版本是否为 2.0 或 3.0", "步骤2: 升级操作系统或安装安全更新"]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0154"
+avd = ""
+other = [
+  "https://exchange.xforce.ibmcloud.com/vulnerabilities/CVE-1999-0154"
+]
+
+[tags]
+tags = ["CWE-200", "信息泄露", "IIS", "ASP"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "medium"
+notes = "该漏洞年代久远，IIS 2.0/3.0 已停止支持。PoC 原理简单，但已难以在现代环境复现。"
 
 [meta]
+collected_at = "2026-07-10T11:14:44Z"
 status = "completed"
-collected_at = "2026-07-10T11:12:50.810023194+00:00"
