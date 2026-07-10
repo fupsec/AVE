@@ -1,27 +1,16 @@
-[affected]
-product = "wwwcount"
-vendor = "Muhammad A. Muquit"
-
-[authenticity]
-cve_confidence = "high"
-notes = "CVE-1999-0021是wwwcount 2.3 Count.cgi的远程缓冲区溢出漏洞，存在公开的PoC代码（EDB-19105），CVSS v3评分9.8（CRITICAL），远程未授权攻击者可利用该漏洞执行任意命令。"
-poc_confidence = "high"
-
 [basic]
-description = "wwwcount（Count.cgi）是一个广泛使用的CGI网站访问计数器程序。该程序在处理QUERY_STRING环境变量时存在缓冲区溢出漏洞。远程攻击者可以向Count.cgi发送超长的恶意查询字符串，触发缓冲区溢出，从而覆盖返回地址并执行任意命令。攻击成功后，攻击者可以获取Web服务器的控制权限，执行任意系统命令，完全接管目标服务器。该漏洞影响wwwcount 2.3及更早版本，无需身份验证即可远程利用。"
-published = "1997-11-05"
-remediation = "升级到wwwcount 2.4或更高版本以修复缓冲区溢出问题。如无法升级，建议从Web服务器上移除Count.cgi脚本，或限制对该CGI脚本的访问权限。"
-score = 9.8
-severity = "CRITICAL"
-source = "nvd"
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
 sources = ["exploitdb"]
-title = "Muhammad A. Muquit wwwcount 2.3 Count.cgi 远程缓冲区溢出漏洞"
-updated = "2026-06-16"
+title = "CVE-1999-0021 漏洞"
+updated = ""
 
 [exploit]
-exp = [{description = "wwwcount 2.3 Count.cgi 远程缓冲区溢出利用代码（EDB-19105）", source = "exploitdb", url = "https://www.exploit-db.com/exploits/19105"}]
-nuclei_templates = []
-poc = [{description = "wwwcount 2.3 Count.cgi 远程缓冲区溢出PoC（EDB-19105）", source = "exploitdb", url = "https://www.exploit-db.com/exploits/19105"}]
+exp_urls = []
+poc_urls = []
 
 [id]
 aliases = ["CVE-1999-0021"]
@@ -29,35 +18,8 @@ ave_id = "AVE-1999-0015"
 cve_id = "CVE-1999-0021"
 
 [meta]
-collected_at = "2026-07-11T00:00:00Z"
+collected_at = "2026-07-10T21:31:52.287039911+00:00"
 status = "completed"
 
 [references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0021"
-other = ["http://www.securityfocus.com/bid/128", "https://www.exploit-db.com/exploits/19105"]
-
-[remediation]
-fix = "升级wwwcount到2.4或更高版本，或移除/禁用Count.cgi脚本。"
-steps = [
-    "从https://web.archive.org/web/*/wwwcount.s27.net下载最新版本的wwwcount",
-    "替换服务器上的Count.cgi为修复后的版本",
-    "如无法升级，使用Web服务器配置限制对Count.cgi的访问（如通过.htaccess或Nginx配置）",
-    "考虑使用替代的网站计数器方案",
-]
-workaround = "如无法升级，可在Web服务器配置中限制对cgi-bin/Count.cgi的访问，仅允许受信任的IP地址访问。"
-
-[score]
-cvss_v2 = 7.5
-cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:P/A:P"
-cvss_v3 = 9.8
-cvss_v3_vector = "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
-
-[tags]
-tags = [
-    "NVD-CWE-Other",
-    "buffer-overflow",
-    "rce",
-    "cgi",
-    "remote",
-    "wwwcount",
-]
+urls = []
