@@ -40,7 +40,7 @@ exp = [
   { url = "https://github.com/starfallreverie/winrar-exploit", description = "CVE-2025-8088 C++实现的完整利用工具", source = "github" }
 ]
 nuclei_templates = [
-  { url = "https://github.com/projectdiscovery/nuclei-templates/issues/12888", description": "Nuclei模板Issue #12888 - CVE-2025-8088 WinRAR路径遍历检测（需本地WinRAR环境验证）", source = "nuclei" }
+  { url = "https://github.com/projectdiscovery/nuclei-templates/issues/12888", description = "Nuclei模板Issue #12888 - CVE-2025-8088 WinRAR路径遍历检测（需本地WinRAR环境验证）", source = "nuclei" }
 ]
 
 [remediation]

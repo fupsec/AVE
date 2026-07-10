@@ -1,0 +1,25 @@
+[id]
+ave_id = "AVE-2025-0042"
+cve_id = "CVE-2025-8088"
+aliases = ["CVE-2025-8088"]
+
+[basic]
+title = "CVE-2025-8088"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["github"]
+published = ""
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T13:24:45.399723193+00:00"
