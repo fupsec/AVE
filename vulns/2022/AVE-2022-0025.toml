@@ -1,0 +1,52 @@
+[id]
+ave_id = "AVE-2022-0025"
+cve_id = "CVE-2022-49306"
+avd_id = ""
+other_ids = ["GHSA-5h2r-p6h6-8p2x", "EUVD-2022-54921"]
+
+[basic]
+title = "Linux内核dwc3 USB主机驱动ACPI companion设置错误导致资源泄露漏洞"
+description = "Linux内核dwc3 USB主机驱动中存在ACPI companion处理缺陷。在dwc3主机模式下，驱动错误地设置了ACPI companion，导致fwnode->secondary指针被替换（因为primary fwnode即ACPI companion被共享）。这会引发潜在的副作用，包括资源泄露（resource leaks）。该漏洞影响使用ACPI的dwc3 USB3控制器平台（如Qualcomm、Rockchip、Intel KeemBay等SoC）。"
+severity = "MEDIUM"
+source = "nvd"
+published = "2025-02-26"
+updated = "2026-06-17"
+
+[score]
+cvss_v2 = 0.0
+cvss_v2_vector = ""
+cvss_v3 = 5.5
+cvss_v3_vector = "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H"
+cvss_v4 = 0.0
+cvss_v4_vector = ""
+
+[affected]
+vendor = "Linux"
+product = "Linux Kernel"
+
+[exploit]
+poc = []
+exp = []
+nuclei_templates = []
+
+[remediation]
+fix = "升级Linux内核至5.19-rc1或更高稳定版本。补丁移除了dwc3主机驱动中不必要的ACPI companion设置，改用sysdev指针来分配xHCI端口和USB设备的ACPI companion。"
+workaround = "如无法立即升级，可在内核编译配置中禁用USB_DWC3 ACPI相关功能，或限制对受影响系统的本地访问。"
+steps = ["步骤1: 确认当前内核版本（uname -r）", "步骤2: 检查是否使用dwc3 USB控制器（lsmod | grep dwc3）", "步骤3: 升级至Linux内核5.19或更高版本", "步骤4: 应用补丁（commit 7fd069d65da2e20b1caec3b7bcf9dfbe28c04bb2）", "步骤5: 重启系统并验证ACPI companion处理正常"]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2022-49306"
+avd = ""
+other = ["https://git.kernel.org/stable/c/7fd069d65da2e20b1caec3b7bcf9dfbe28c04bb2", "https://git.kernel.org/stable/c/9c185fde906a48368bd2d2a8c17d4b6fb3d670af", "https://git.kernel.org/stable/c/d7f35934f7ab67bfd9adabc84207e59da9c19108", "https://github.com/advisories/GHSA-5h2r-p6h6-8p2x", "https://lore.kernel.org/linux-cve-announce/2025022635-CVE-2022-49306-a115@gregkh/T", "https://security-tracker.debian.org/tracker/CVE-2022-49306"]
+
+[tags]
+tags = ["CWE-667", "linux-kernel", "usb", "dwc3", "acpi", "resource-leak", "dos"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "none"
+notes = "内核驱动级资源泄露漏洞，非远程可利用。攻击向量为本地（AV:L），需要低权限本地访问。无公开PoC或利用代码。受影响范围为Linux内核5.7至5.18.x版本，已在5.19-rc1中修复。Red Hat Enterprise Linux 9已发布安全公告RHSA-2022:8267。"
+
+[meta]
+collected_at = "2026-07-10T00:00:00Z"
+status = "completed"
