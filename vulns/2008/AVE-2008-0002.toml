@@ -1,42 +1,25 @@
-[id]
-ave_id = "AVE-2008-0002"
-cve_id = "CVE-2008-0655"
-aliases = ["CVE-2008-0655"]
-
 [basic]
-title = "Adobe Acrobat 和 Reader 设计缺陷漏洞"
-description = "Adobe Acrobat 和 Reader 8.1.2 之前版本存在一个未指定的设计缺陷漏洞。攻击者可利用特制的 PDF 文件通过静默打印功能任意次数输出文档，导致敏感信息泄露。该漏洞影响范围广泛，已被 CISA 列入已知被利用漏洞目录（KEV），确认存在在野利用。CVSS v3.1 评分 8.8，属于高危漏洞。"
-severity = "HIGH"
-score = 8.8
-remediation = "升级 Adobe Acrobat/Reader 至 8.1.2 或更高版本。从 Adobe 官方网站下载安全更新，参考安全公告 APSB08-13。如无法升级，建议禁用浏览器 PDF 插件并使用受保护模式阅读器。"
-sources = ["kev", "nvd"]
-published = "2008-02-08"
-updated = "2026-06-16"
-
-[affected]
-vendor = "Adobe"
-product = "Acrobat and Reader"
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2008-0655"
-urls = [
-    "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2008-0655",
-    "http://www.adobe.com/support/security/bulletins/apsb08-13.html",
-    "http://www.securityfocus.com/bid/27641",
-    "http://security.gentoo.org/glsa/glsa-200803-01.xml",
-    "http://www.us-cert.gov/cas/techalerts/TA08-043A.html",
-    "http://securitytracker.com/id?1019346",
-    "http://secunia.com/advisories/29065",
-    "http://secunia.com/advisories/29205",
-    "http://secunia.com/advisories/30840",
-    "https://oval.cisecurity.org/repository/search/definition/oval%3Aorg.mitre.oval%3Adef%3A10299",
-]
+description = "Vulnerability identified as CVE-2008-0655. Please refer to vendor advisory for details."
+published = "2026-07-10"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 5.0
+severity = "MEDIUM"
+sources = ["kev"]
+title = "CVE-2008-0655 vulnerability"
+updated = "2026-07-10"
 
 [exploit]
-poc_urls = []
 exp_urls = []
-nuclei_templates = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2008-0655"]
+ave_id = "AVE-2008-0002"
+cve_id = "CVE-2008-0655"
 
 [meta]
+collected_at = "2026-07-10T19:14:37.384008776+00:00"
 status = "completed"
-collected_at = "2026-07-10T15:45:22.676183413+00:00"
+
+[references]
+urls = []
