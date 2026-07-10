@@ -1,0 +1,52 @@
+[id]
+ave_id = "AVE-2022-0026"
+cve_id = "CVE-2022-49317"
+avd_id = ""
+other_ids = ["EUVD-2022-54910"]
+
+[basic]
+title = "Linux kernel f2fs 刷新节点页面无限循环漏洞"
+description = "Linux 内核的 F2FS（Flash-Friendly File System）文件系统中存在一个无限循环漏洞。在执行 xfstests/generic/475 测试时，持续的 EIO 错误会导致刷新节点页面（flush node pages）时陷入无限循环，造成系统无响应（DoS）。攻击者通过本地低权限即可触发该漏洞，导致系统挂起。受影响文件包括 fs/f2fs/checkpoint.c、fs/f2fs/f2fs.h 和 fs/f2fs/node.c。"
+severity = "MEDIUM"
+source = "nvd"
+published = "2025-02-26"
+updated = "2026-06-17"
+
+[score]
+cvss_v2 = 0.0
+cvss_v2_vector = ""
+cvss_v3 = 5.5
+cvss_v3_vector = "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H"
+cvss_v4 = 0.0
+cvss_v4_vector = ""
+
+[affected]
+vendor = "Linux"
+product = "Linux Kernel"
+
+[exploit]
+poc = []
+exp = []
+nuclei_templates = []
+
+[remediation]
+fix = "升级 Linux 内核至 5.18.4 或更高版本。补丁已合入 5.19-rc1（commit a7b8618aa2f0f926ce85f2486ac835a85c753ca7）和 5.18.4 稳定版（commit bd47ea5d776d8b524fb6f60de3240f95603901dd）。"
+workaround = "如无法立即升级内核，可考虑限制本地用户访问 F2FS 文件系统，或禁用 F2FS 文件系统的使用。"
+steps = ["步骤1: 确认当前内核版本是否在受影响范围内（>= 3.8 且 < 5.18.4）", "步骤2: 升级到 Linux 内核 5.18.4 或更高稳定版本", "步骤3: 应用官方补丁 commit a7b8618aa2f0f926ce85f2486ac835a85c753ca7", "步骤4: 重启系统以使更新生效"]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2022-49317"
+avd = ""
+other = ["https://git.kernel.org/stable/c/a7b8618aa2f0f926ce85f2486ac835a85c753ca7", "https://git.kernel.org/stable/c/bd47ea5d776d8b524fb6f60de3240f95603901dd", "https://bugzilla.redhat.com/show_bug.cgi?id=2347754", "https://github.com/advisories/ghsa-45xf-wh8j-3x9p", "https://security-tracker.debian.org/tracker/CVE-2022-49317", "https://euvd.enisa.europa.eu/vulnerability/EUVD-2022-54910"]
+
+[tags]
+tags = ["CWE-835", "DoS", "kernel", "f2fs", "infinite-loop"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "none"
+notes = "该漏洞为内核本地 DoS 漏洞，无已知公开 PoC 或 EXP。攻击向量为本地（AV:L），不可远程利用。NVD、Red Hat、Debian 等多个来源已确认该漏洞。"
+
+[meta]
+collected_at = "2026-07-10T00:00:00Z"
+status = "completed"

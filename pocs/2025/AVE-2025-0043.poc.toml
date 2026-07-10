@@ -1,0 +1,43 @@
+[info]
+id = "POC-AVE-2025-0043"
+name = "Docker Desktop Engine API 未授权访问检测"
+author = "AVE"
+severity = "critical"
+tags = ["docker", "container-escape", "unauth", "api"]
+description = "检测Docker Desktop容器内是否可通过192.168.65.7:2375未授权访问Docker Engine API，从而判断是否存在容器逃逸漏洞（CVE-2025-9074）。"
+vuln_id = ["CVE-2025-9074", "AVE-2025-0043"]
+
+[poc]
+logic = "all"
+
+[[poc.requests]]
+method = "GET"
+path = "/version"
+headers.Host = "192.168.65.7:2375"
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200]
+expect = true
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["ApiVersion"]
+expect = true
+
+[[poc.requests]]
+method = "GET"
+path = "/containers/json?all=true"
+headers.Host = "192.168.65.7:2375"
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200]
+expect = true
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["Id"]
+expect = true
