@@ -1,93 +1,25 @@
-[affected]
-product = "Office Excel"
-vendor = "Microsoft"
-
-[authenticity]
-cve_confidence = "high"
-notes = "该漏洞在 CISA KEV 中标记为已主动利用，原零日漏洞 Exploit-MSExcel.h 在野用于针对性攻击。CVSS v3.1 评估由 CISA-ADP 提供。未发现公开可用的 PoC/EXP 仓库。"
-poc_confidence = "high"
-
 [basic]
-description = "Microsoft Office Excel 2000、XP、2003 以及 Mac 版 2004 中存在未指定的远程代码执行漏洞。攻击者可利用特制的 Excel 文件，通过电子邮件附件或恶意网站托管的方式诱导用户打开，从而在受影响的系统上执行任意代码。此漏洞已被广泛利用，已纳入 CISA KEV（已知被利用漏洞）目录。该漏洞作为零日漏洞在针对性攻击中使用，原始利用代码名为 Exploit-MSExcel.h。"
-published = "2007-02-02"
+description = ""
+published = ""
 remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 8.8
-severity = "HIGH"
-source = "kev"
+score = 0.0
+severity = "UNKNOWN"
 sources = ["kev"]
-title = "Microsoft Office Excel 远程代码执行漏洞"
-updated = "2026-06-16"
+title = "CVE-2007-0671 漏洞"
+updated = ""
 
 [exploit]
-exp = []
-nuclei_templates = []
-poc = []
+exp_urls = []
+poc_urls = []
 
 [id]
-avd_id = ""
+aliases = ["CVE-2007-0671"]
 ave_id = "AVE-2007-0001"
 cve_id = "CVE-2007-0671"
-other_ids = []
 
 [meta]
-collected_at = "2026-07-11T10:18:58Z"
+collected_at = "2026-07-10T21:16:04.023565259+00:00"
 status = "completed"
 
 [references]
-avd = ""
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2007-0671"
-
-[[references.other]]
-description = "Microsoft 安全公告 MS07-015"
-url = "https://learn.microsoft.com/en-us/security-updates/securitybulletins/2007/ms07-015"
-
-[[references.other]]
-description = "CISA KEV 目录"
-url = "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2007-0671"
-
-[[references.other]]
-description = "CERT/CC 漏洞通告 VU#613740"
-url = "http://www.kb.cert.org/vuls/id/613740"
-
-[[references.other]]
-description = "Microsoft 安全建议 932553"
-url = "http://www.microsoft.com/technet/security/advisory/932553.mspx"
-
-[[references.other]]
-description = "SecurityFocus BID 22383"
-url = "http://www.securityfocus.com/bid/22383"
-
-[[references.other]]
-description = "US-CERT 技术警报 TA07-044A"
-url = "http://www.us-cert.gov/cas/techalerts/TA07-044A.html"
-
-[[references.other]]
-description = "X-Force 漏洞数据库 (32178)"
-url = "https://exchange.xforce.ibmcloud.com/vulnerabilities/32178"
-
-[remediation]
-fix = "安装 Microsoft 安全公告 MS07-015 提供的更新，升级 Microsoft Office 至最新版本。"
-steps = [
-    "步骤1: 确认 Office 版本是否受影响（Excel 2000/XP/2003、Office 2004 for Mac）",
-    "步骤2: 安装 MS07-015 安全更新（https://learn.microsoft.com/en-us/security-updates/securitybulletins/2007/ms07-015）",
-    "步骤3: 重启系统并验证更新生效",
-]
-workaround = "如无法升级，建议不要打开来自不可信来源的 Excel 文件，使用 Microsoft Office 文件隔离功能（Microsoft Office Isolated Conversion Environment - MOICE）处理可疑文件。"
-
-[score]
-cvss_v2 = 9.3
-cvss_v2_vector = "AV:N/AC:M/Au:N/C:C/I:C/A:C"
-cvss_v3 = 8.8
-cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H"
-cvss_v4 = 0.0
-cvss_v4_vector = ""
-
-[tags]
-tags = [
-    "CWE-NOINFO",
-    "RCE",
-    "Excel",
-    "Microsoft-Office",
-    "KEV",
-    "Zero-Day",
-]
+urls = []
