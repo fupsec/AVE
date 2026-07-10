@@ -1,14 +1,14 @@
 [id]
-ave_id = "AVE-1999-0101"
-cve_id = "CVE-1999-0070"
-aliases = ["CVE-1999-0070"]
+ave_id = "AVE-2008-0011"
+cve_id = "CVE-2008-1017"
+aliases = ["CVE-2008-1017"]
 
 [basic]
-title = "CVE-1999-0070"
+title = "CVE-2008-1017"
 description = ""
 severity = "UNKNOWN"
 score = 0.0
-sources = ["exploitdb"]
+sources = ["tenable"]
 published = ""
 updated = ""
 remediation = "Refer to vendor advisory and upgrade to fixed version."
@@ -22,4 +22,4 @@ exp_urls = []
 
 [meta]
 status = "completed"
-collected_at = "2026-07-10T12:52:47.893664302+00:00"
+collected_at = "2026-07-10T12:52:47.921869486+00:00"
