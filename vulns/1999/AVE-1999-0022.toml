@@ -1,23 +1,18 @@
-[affected]
-product = "multiple"
-vendor = "multiple"
-
 [basic]
-description = "ICMP协议允许来自任意主机的网络掩码请求（类型17）和时间戳请求（类型13）。攻击者可利用此漏洞获取目标网络的子网掩码信息及系统时间，从而推断网络拓扑结构和主机运行状态。该漏洞影响广泛的操作系统，包括Linux、Windows、macOS、Cisco IOS、AIX、HP-UX等多种平台，为攻击者收集目标网络环境信息提供了便利条件。"
-published = "1997-08-01"
-remediation = "配置防火墙规则阻止外部ICMP地址掩码请求（类型17）和时间戳请求（类型13）；在边界网络设备上禁用不必要的ICMP响应；对于Linux系统可通过iptables规则过滤相关ICMP报文类型。"
-score = 4.0
-severity = "MEDIUM"
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
 sources = [
     "redhat",
     "tenable",
 ]
-title = "ICMP网络掩码与时间戳请求信息泄露漏洞"
-updated = "2026-06-16"
+title = "CVE-1999-0524 漏洞"
+updated = ""
 
 [exploit]
 exp_urls = []
-nuclei_templates = []
 poc_urls = []
 
 [id]
@@ -26,16 +21,8 @@ ave_id = "AVE-1999-0022"
 cve_id = "CVE-1999-0524"
 
 [meta]
-collected_at = "2026-07-10T17:12:08+00:00"
+collected_at = "2026-07-10T20:58:18.241663108+00:00"
 status = "completed"
 
 [references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0524"
-other = [
-    "https://access.redhat.com/security/cve/CVE-1999-0524",
-    "https://exchange.xforce.ibmcloud.com/vulnerabilities/306",
-    "https://exchange.xforce.ibmcloud.com/vulnerabilities/322",
-    "http://kb.juniper.net/InfoCenter/index?page=content&id=JSA10705",
-    "http://kb.vmware.com/selfservice/microsites/search.do?cmd=displayKC&externalId=1434",
-    "https://support.f5.com/csp/article/K15277",
-]
+urls = []
