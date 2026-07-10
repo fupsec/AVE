@@ -448,11 +448,6 @@ async function searchViaTreeFallback(keyword, page) {
       )
     : all;
 
-  // Shuffle to get roughly newest-first ordering when sorting by date isn't available
-  if (!kw) {
-    filtered.sort(() => Math.random() - 0.5);
-  }
-
   state.mode = "tree";
   state.total = filtered.length;
   state.totalPages = Math.max(1, Math.ceil(state.total / PAGE_SIZE));
@@ -539,7 +534,7 @@ async function boot() {
   state.keyword = urlState.keyword;
   state.severity = urlState.severity;
 
-  setStatus("等待加载");
+  setStatus("正在加载漏洞列表...");
 
   // ── Collapse project-intro on small screens ──
   const intro = document.getElementById("project-intro");
@@ -569,7 +564,7 @@ async function boot() {
   searchBtn.addEventListener("click", rerun);
   loadFirst.addEventListener("click", () => {
     if (state.loaded) {
-      setStatus("列表已加载，可直接搜索或翻页。");
+      setStatus("数据已加载，可直接搜索或翻页。");
       return;
     }
     state.keyword = "";
