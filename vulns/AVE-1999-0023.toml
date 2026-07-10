@@ -1,56 +1,52 @@
 [id]
 ave_id = "AVE-1999-0023"
-cve_id = "CVE-1999-0029"
+cve_id = "CVE-1999-0222"
 avd_id = ""
 other_ids = []
 
 [basic]
-title = "SGI IRIX 'ordist' 命令缓冲区溢出本地权限提升漏洞"
-description = "SGI IRIX 5.x/6.x 系统中的 ordist 命令存在缓冲区溢出漏洞，本地攻击者可通过对 '-d' 选项传递超长参数（包含精心构造的机器可执行代码），触发缓冲区溢出，从而获取 root 权限。"
-severity = "HIGH"
+title = "Cisco IOS Web服务器超长URL拒绝服务漏洞"
+description = "Cisco IOS路由器Web服务器存在拒绝服务漏洞，攻击者可通过发送超长URL（超过8192字节）触发缓冲区错误，导致路由器崩溃并重新启动。该漏洞影响所有启用了HTTP服务的Cisco IOS设备。"
+severity = "MEDIUM"
 source = "cve"
-published = "1997-07-16"
+published = "1999-03-01"
 updated = "2026-06-16"
 
 [score]
-cvss_v2 = 7.2
-cvss_v2_vector = "AV:L/AC:L/Au:N/C:C/I:C/A:C"
-cvss_v3 = 8.4
-cvss_v3_vector = "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+cvss_v2 = 5.0
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:N/A:P"
+cvss_v3 = 0.0
+cvss_v3_vector = ""
 cvss_v4 = 0.0
 cvss_v4_vector = ""
 
 [affected]
-vendor = "Silicon Graphics (SGI)"
-product = "IRIX"
+vendor = "Cisco"
+product = "IOS"
 
 [exploit]
-poc = [
-  { url = "https://www.exploit-db.com/exploits/19317", description = "ordist 缓冲区溢出本地权限提升 PoC 利用代码", source = "exploitdb" }
-]
-exp = [
-  { url = "https://www.exploit-db.com/exploits/19317", description = "ordist 缓冲区溢出本地提权 EXP（C 语言源码）", source = "exploitdb" }
-]
+poc = []
+exp = []
 nuclei_templates = []
 
 [remediation]
-fix = "升级到 SGI IRIX 修复版本或应用官方安全补丁。由于该漏洞年代久远且 SGI 已停止支持，建议迁移到受支持的现代操作系统。"
-workaround = "限制本地用户对 /usr/bsd/ordist 二进制文件的访问权限，移除 setuid root 权限位。"
-steps = ["步骤1: 检查 ordist 二进制文件权限: ls -la /usr/bsd/ordist", "步骤2: 移除 setuid root 位: chmod u-s /usr/bsd/ordist", "步骤3: 评估并迁移到受支持的现代操作系统"]
+fix = "升级到Cisco发布的修复版本。参考Cisco安全公告。"
+workaround = "如无法升级，可在受影响设备上禁用HTTP服务（no ip http server），或通过访问控制列表（ACL）限制对HTTP端口的访问。"
+steps = ["步骤1: 确认设备运行的Cisco IOS版本", "步骤2: 升级到包含漏洞修复的最新IOS版本", "步骤3: 如无法升级，执行 'no ip http server' 禁用HTTP服务", "步骤4: 配置ACL限制对HTTP服务的访问"]
 
 [references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0029"
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0222"
 avd = ""
-other = ["https://www.cve.org/CVERecord?id=CVE-1999-0029", "https://exchange.xforce.ibmcloud.com/vulnerabilities/CVE-1999-0029", "https://www.securityfocus.com/bid/415/info"]
+other = ["https://www.cve.org/CVERecord?id=CVE-1999-0222", "http://www.securityfocus.com/archive/1/60159"]
 
 [tags]
-tags = ["CWE-125", "CWE-121", "buffer-overflow", "privilege-escalation", "local", "irix", "sgi"]
+tags = ["CWE-20", "Cisco", "IOS", "DoS", "denial-of-service", "web-server"]
 
 [authenticity]
 cve_confidence = "high"
-poc_confidence = "high"
-notes = "该漏洞为1997年发现的SGI IRIX系统本地权限提升漏洞，缓冲区溢出存在于ordist命令中。Exploit-DB提供完整的C语言利用源码(EDB-ID:19317)。漏洞非HTTP协议，不适用标准PoC脚本生成。"
+poc_confidence = "low"
+notes = "该漏洞为1999年发现的Cisco IOS Web服务器拒绝服务漏洞，年代久远。NVD仅有CVSS v2评分。由于年份较早，网上未找到公开可用的PoC/EXP脚本或Nuclei模板。PoC通过超长HTTP URL触发路由器重启，属于破坏性利用，不宜提供自动化检测脚本。cve_confidence为high（官方CVE记录），poc_confidence为low（缺乏公开PoC证据）。"
 
 [meta]
-collected_at = "2026-07-10T10:50:53Z"
+collected_at = "2026-07-10T10:18:58Z"
 status = "completed"
