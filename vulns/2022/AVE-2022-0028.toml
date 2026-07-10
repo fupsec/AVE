@@ -1,76 +1,25 @@
-[affected]
-product = "Zentao"
-vendor = "easycorp"
-
-[authenticity]
-cve_confidence = "high"
-notes = "NVD官方认证，有详细分析文章和可利用URL"
-poc_confidence = "high"
-
 [basic]
-description = "禅道(Zentao) Easy Soft ALM 15.0版本存在目录遍历漏洞，攻击者无需认证即可通过mode=getconfig接口获取敏感配置信息，导致数据库配置、系统信息等敏感数据泄露。"
-published = "2022-09-19"
-remediation = "建议升级禅道至最新修复版本，限制未经认证的目录遍历访问，配置WAF规则拦截对mode=getconfig接口的恶意请求。"
-score = 7.5
-severity = "HIGH"
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
 sources = ["hwpoc"]
-title = "禅道 Easy Soft ALM 目录遍历致敏感信息泄露漏洞"
-updated = "2026-07-08"
+title = "CVE-2022-37700"
+updated = ""
 
 [exploit]
-exp = []
-nuclei_templates = []
-
-[[exploit.poc]]
-description = "目录遍历漏洞分析与PoC"
-source = "其他"
-url = "https://medium.com/@sc0p3hacker/cve-2022-37700-directory-transversal-in-zentao-easy-soft-alm-2573c1f0fc21"
-
-[[exploit.poc]]
-description = "漏洞利用URL（获取配置信息）"
-source = "其他"
-url = "https://demo15.zentao.pm/user-login.html/zentao/index.php?mode=getconfig"
+exp_urls = []
+poc_urls = []
 
 [id]
 aliases = ["CVE-2022-37700"]
-avd_id = ""
 ave_id = "AVE-2022-0028"
 cve_id = "CVE-2022-37700"
-other_ids = []
 
 [meta]
-collected_at = "2026-07-11T10:18:58Z"
+collected_at = "2026-07-10T20:51:33.497095317+00:00"
 status = "completed"
 
 [references]
-avd = ""
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2022-37700"
-other = [
-    "https://medium.com/@sc0p3hacker/cve-2022-37700-directory-transversal-in-zentao-easy-soft-alm-2573c1f0fc21",
-    "https://demo15.zentao.pm/user-login.html/zentao/index.php?mode=getconfig",
-]
-
-[remediation]
-fix = "升级到 ZenTao 最新版本。参考官方安全公告进行版本更新。"
-steps = [
-    "步骤1: 确认使用版本是否为 Zentao 15.0 或更早版本",
-    "步骤2: 升级到官方发布的最新修复版本",
-    "步骤3: 检查访问日志，确认是否存在利用痕迹",
-]
-workaround = "如无法升级，建议限制对 /zentao/index.php?mode=getconfig 接口的访问，或通过 WAF 规则拦截相关路径的请求。"
-
-[score]
-cvss_v2 = 7.8
-cvss_v2_vector = "AV:N/AC:L/Au:N/C:C/I:N/A:N"
-cvss_v3 = 7.5
-cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N"
-cvss_v4 = 0.0
-cvss_v4_vector = ""
-
-[tags]
-tags = [
-    "CWE-22",
-    "目录遍历",
-    "信息泄露",
-    "Zentao",
-]
+urls = []
