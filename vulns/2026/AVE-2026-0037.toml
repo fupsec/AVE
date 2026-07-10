@@ -1,51 +1,55 @@
 [id]
 ave_id = "AVE-2026-0037"
-cve_id = "CVE-2026-44342"
+cve_id = ""
 avd_id = ""
-other_ids = ["GHSA-26v7-h57m-gh9m"]
+other_ids = ["CNVD-2020-26585"]
 
 [basic]
-title = "New API 邮箱和微信绑定接口 CSRF 漏洞"
-description = "New API（LLM 网关及 AI 资产管理平台）在 v0.12.0-alpha.1 之前，邮箱和微信账号绑定端点 GET /api/oauth/email/bind 和 GET /api/oauth/wechat/bind 使用 GET 请求执行状态变更操作，允许攻击者在会话 Cookie 可跨站发送的部署环境中，诱使已登录用户的浏览器将攻击者控制的邮箱或 OAuth 身份绑定到用户账户。"
-severity = "MEDIUM"
-source = "ghsa"
-published = "2026-07-07"
-updated = "2026-07-09"
+title = "ShowDoc 2.8.6 以下版本文件上传漏洞"
+description = "ShowDoc 是一款非常适合IT团队的在线API文档、技术文档工具。ShowDoc 2.8.6以下版本存在文件上传漏洞，由于 PageController.class.php 中 allowExts 属性配置错误导致文件后缀过滤失效，且 uploadImg 接口未进行登录验证，攻击者可在未授权情况下通过构造特制 multipart 数据包上传恶意文件，获取服务器权限。"
+severity = "CRITICAL"
+source = "nuclei"
+published = "2020-08-12"
+updated = "2021-01-15"
 
 [score]
-cvss_v3 = 5.3
-cvss_v3_vector = "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:N/I:H/A:N"
+cvss_v3 = 9.9
+cvss_v3_vector = "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:L/A:L"
 
 [affected]
-vendor = "QuantumNous"
-product = "new-api"
+vendor = "star7th"
+product = "ShowDoc"
 
 [exploit]
-poc = []
+poc = [
+  { url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2020/CNVD-2020-26585.yaml", description = "Nuclei 检测模板（文件上传检测）", source = "nuclei" }
+]
 exp = []
-nuclei_templates = []
+nuclei_templates = [
+  { url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2020/CNVD-2020-26585.yaml", description = "Nuclei 文件上传检测模板", source = "nuclei" }
+]
 
 [remediation]
-fix = "升级到 v0.12.0-alpha.1 及以上版本。该版本将邮箱和微信绑定路由从 GET 改为 POST，并从查询参数改为从 JSON 请求体读取参数。"
-workaround = "如无法立即升级，请在反向代理层阻止对 /api/oauth/email/bind 和 /api/oauth/wechat/bind 的 GET 请求，并将会话 Cookie 配置为 SameSite=Strict。"
-steps = ["确认 New API 版本是否低于 v0.12.0-alpha.1", "升级到 v0.12.0-alpha.1 或更高版本", "如无法升级，在反向代理层添加规则阻止 GET 请求访问绑定端点"]
+fix = "升级到 ShowDoc 2.8.6 或更高版本。官方在 PR #1059 中修复了该问题，将 allowExts 修改为正确的 exts 属性并添加了登录验证。"
+workaround = "如无法升级，可在 Web 应用防火墙（WAF）中增加规则，拦截对 /index.php?s=/home/page/uploadImg 的 POST 请求，或限制上传文件后缀。"
+steps = ["确认 ShowDoc 版本是否低于 2.8.6", "升级到 ShowDoc 2.8.6 或更高版本", "如无法升级，在反向代理或 WAF 中拦截 /index.php?s=/home/page/uploadImg 的上传请求"]
 
 [references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2026-44342"
+nvd = ""
 avd = ""
 other = [
-  { url = "https://github.com/QuantumNous/new-api/security/advisories/GHSA-26v7-h57m-gh9m", description = "GitHub Security Advisory" },
-  { url = "https://github.com/QuantumNous/new-api/commit/e099117c61391abdf888fb75e382a582e550bd0e", description = "修复提交" },
-  { url = "https://github.com/QuantumNous/new-api/releases/tag/v0.12.0-alpha.1", description = "修复版本发布" }
+  { url = "https://github.com/star7th/showdoc/pull/1059", description = "官方修复 Pull Request" },
+  { url = "https://blog.csdn.net/qq_48985780/article/details/122211136", description = "漏洞复现文章" },
+  { url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2020/CNVD-2020-26585.yaml", description = "Nuclei 检测模板" }
 ]
 
 [tags]
-tags = ["CWE-352", "CSRF"]
+tags = ["CWE-434", "文件上传", "任意文件上传", "ShowDoc"]
 
 [authenticity]
 cve_confidence = "high"
-poc_confidence = "low"
-notes = "CVE 已由 GitHub 官方分配并通过 GHSA 发布，GitHub 作为 CNA 进行认证，信息可信度高。当前未发现公开可用的 PoC/EXP 脚本，也无 Nuclei 模板。"
+poc_confidence = "high"
+notes = "CNVD 编号已由官方认证，Nuclei 模板已验证漏洞可复现。存在大量漏洞复现文章及实际利用案例。"
 
 [meta]
 collected_at = "2026-07-10T12:00:00Z"
