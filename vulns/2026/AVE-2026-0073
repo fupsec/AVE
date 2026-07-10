@@ -1,17 +1,14 @@
 [id]
 ave_id = "AVE-2026-0073"
-cve_id = "CVE-2026-48596"
-aliases = [
-    "CVE-2026-48596",
-    "GHSA-q7jx-v53g-848w",
-]
+cve_id = "CVE-2026-0047"
+aliases = ["CVE-2026-0047"]
 
 [basic]
-title = "CVE-2026-48596"
+title = "CVE-2026-0047"
 description = ""
 severity = "UNKNOWN"
 score = 0.0
-sources = ["ghsa"]
+sources = ["github"]
 published = ""
 updated = ""
 remediation = "Refer to vendor advisory and upgrade to fixed version."
@@ -25,4 +22,4 @@ exp_urls = []
 
 [meta]
 status = "completed"
-collected_at = "2026-07-10T15:00:30.778658818+00:00"
+collected_at = "2026-07-10T15:03:00.103407437+00:00"
