@@ -1,40 +1,25 @@
-[id]
-ave_id = "AVE-2005-0001"
-cve_id = "CVE-2005-2773"
-aliases = ["CVE-2005-2773"]
-
 [basic]
-title = "HP OpenView Network Node Manager 远程命令执行漏洞"
-description = "HP OpenView Network Node Manager 6.2 至 7.50 版本中存在远程命令执行漏洞。由于 connectedNodes.ovpl、cdpView.ovpl、freeIPaddrs.ovpl 和 ecscmg.ovpl 等脚本未能正确过滤用户输入的 node 参数中的 shell 元字符，未经认证的远程攻击者可通过向这些脚本发送特制请求，注入系统命令并以 Web 服务器进程权限（bin 用户）执行任意命令，从而完全控制受影响系统。"
-severity = "CRITICAL"
-score = 9.8
-cvss_v3 = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
-cvss_v2 = "AV:N/AC:L/Au:N/C:P/I:P/A:P"
-published = "2005-08-25"
-updated = "2026-06-16"
-remediation = "将 HP OpenView Network Node Manager 升级至不受影响的最新版本，或应用厂商提供的安全补丁。同时限制对 OvCgi 目录的访问权限，并部署 Web 应用防火墙对相关脚本的 node 参数进行输入过滤。"
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
 sources = ["kev"]
-
-[affected]
-vendor = "Hewlett Packard (HP)"
-product = "OpenView Network Node Manager"
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2005-2773"
-other = [
-  "http://marc.info/?l=bugtraq&m=112499121725662&w=2",
-  "http://www.securityfocus.com/bid/14662",
-  "http://secunia.com/advisories/16555/",
-  "https://exchange.xforce.ibmcloud.com/vulnerabilities/21999",
-  "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2005-2773"
-]
+title = "CVE-2005-2773 漏洞"
+updated = ""
 
 [exploit]
-poc_urls = ["http://marc.info/?l=bugtraq&m=112499121725662&w=2"]
 exp_urls = []
-nuclei_templates = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2005-2773"]
+ave_id = "AVE-2005-0001"
+cve_id = "CVE-2005-2773"
 
 [meta]
+collected_at = "2026-07-10T21:03:36.394986055+00:00"
 status = "completed"
-collected_at = "2026-07-11T00:00:00+00:00"
-authenticity = { confidence = "high", rationale = "已验证的 CVE 编号，来自 NVD 官方数据库及 CISA KEV 已知被利用漏洞目录，存在 PoC 利用方法" }
+
+[references]
+urls = []

@@ -4,7 +4,7 @@ cve_id = "CVE-2002-0906"
 aliases = ["CVE-2002-0906"]
 
 [basic]
-title = "Sendmail DNS TXT记录查询缓冲区溢出漏洞"
+title = "Sendmail 自定义 DNS 映射 TXT 记录查询缓冲区溢出漏洞"
 description = "Sendmail 8.12.5之前版本中，当配置使用自定义DNS映射（custom DNS map）查询TXT记录时存在缓冲区溢出漏洞。远程攻击者可通过控制恶意DNS服务器，向目标Sendmail服务器发送特制的DNS响应，触发栈缓冲区溢出，导致邮件服务拒绝服务并以邮件服务器权限执行任意代码。该漏洞影响广泛部署的Sendmail邮件传输代理，攻击条件要求Sendmail启用自定义DNS map功能。"
 severity = "HIGH"
 score = 7.5
