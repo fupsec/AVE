@@ -32,9 +32,9 @@ source = "exploitdb"
 url = "https://www.exploit-db.com/exploits/19112"
 
 [id]
-avd_id = ""
 ave_id = "AVE-1999-0207"
 cve_id = "CVE-1999-0009"
+aliases = ["CVE-1999-0009"]
 other_ids = []
 
 [meta]
