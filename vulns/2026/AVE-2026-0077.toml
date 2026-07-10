@@ -1,0 +1,58 @@
+[id]
+ave_id = "AVE-2026-0077"
+cve_id = "CVE-2026-0740"
+avd_id = ""
+other_ids = []
+
+[basic]
+title = "Ninja Forms File Uploads WordPress 插件 <= 3.3.26 未授权任意文件上传漏洞"
+description = "Ninja Forms File Uploads WordPress 插件 3.3.26及之前版本中存在任意文件上传漏洞，由 NF_FU_AJAX_Controllers_Uploads::handle_upload 函数缺少文件类型验证和权限检查导致。未认证攻击者可通过先获取 nonce、然后上传伪装扩展名的文件并服务端重命名为 PHP 文件的方式，上传任意文件到 web 可访问目录 /wp-content/uploads/ninja-forms/tmp/，从而实现远程代码执行。该漏洞在 3.3.25 版本中部分修复，在 3.3.27 版本中完全修复。"
+severity = "CRITICAL"
+source = "nvd"
+published = "2026-04-07"
+updated = "2026-06-17"
+
+[score]
+cvss_v3 = 9.8
+cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+
+[affected]
+vendor = "SaturdayDrive"
+product = "Ninja Forms - File Uploads"
+
+[exploit]
+poc = [
+  { url = "https://github.com/xShadow-Here/CVE-2026-0740", description = "未认证任意文件上传 PoC/EXP 脚本", source = "github" }
+]
+exp = [
+  { url = "https://github.com/xShadow-Here/CVE-2026-0740/blob/main/shadow.py", description = "Python 批量漏洞利用脚本，自动获取 nonce 并上传 webshell", source = "github" }
+]
+nuclei_templates = [
+  { url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cves/2026/CVE-2026-0740.yaml", description = "Nuclei 检测模板", source = "nuclei" }
+]
+
+[remediation]
+fix = "升级 Ninja Forms File Uploads 插件到 3.3.27 或更高版本。参考官方安全公告。"
+workaround = "如无法升级，可采取以下缓解措施：1. 临时禁用 Ninja Forms File Uploads 插件；2. 通过 Web 应用防火墙（WAF）规则阻止对 /wp-admin/admin-ajax.php 的异常上传请求，特别是 action=nf_fu_upload 的请求。"
+steps = ["步骤1: 检查 Ninja Forms File Uploads 插件版本是否 <= 3.3.26", "步骤2: 从 WordPress 插件管理后台更新到 3.3.27 或更高版本", "步骤3: 检查 /wp-content/uploads/ninja-forms/tmp/ 目录下是否存在可疑 PHP 文件", "步骤4: 审查服务器日志中是否有针对 admin-ajax.php 的异常 POST 请求"]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2026-0740"
+avd = ""
+other = [
+  "https://www.wordfence.com/threat-intel/vulnerabilities/id/0b606ded-ab50-486a-9337-97ee9f452f12",
+  "https://ninjaforms.com/extensions/file-uploads/",
+  "https://www.wordfence.com/blog/2026/04/50000-wordpress-sites-affected-by-arbitrary-file-upload-vulnerability-in-ninja-forms-file-upload-wordpress-plugin/"
+]
+
+[tags]
+tags = ["CWE-434", "RCE", "任意文件上传", "WordPress", "Ninja Forms", "CVE-2026-0740"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "high"
+notes = "Wordfence 已确认并分配 CVE 编号，NVD 已收录并分配 CVSS 9.8 评分。存在公开可用的 PoC 仓库和官方 Nuclei 检测模板，真实性确认。"
+
+[meta]
+collected_at = "2026-06-30T10:18:58Z"
+status = "completed"
