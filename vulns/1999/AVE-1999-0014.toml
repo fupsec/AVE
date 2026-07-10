@@ -1,89 +1,38 @@
-[affected]
-product = "Solaris / SunOS automountd"
-vendor = "Sun Microsystems (Oracle)"
-
-[authenticity]
-cve_confidence = "high"
-notes = "1999年公布的古老漏洞，相关信息来自NVD和CERT公告。未在GitHub、Exploit-DB等现代渠道发现可用PoC/EXP。"
-poc_confidence = "none"
-
-[basic]
-description = "Automount守护进程automountd存在shell元字符注入漏洞，远程或本地攻击者可通过构造恶意RPC请求执行任意命令，获取系统最高权限。"
-published = "1997-11-26"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 9.8
-severity = "CRITICAL"
-source = "nvd"
-sources = ["unknown"]
-title = "SunOS/Solaris automountd 远程命令执行漏洞"
-updated = "2026-06-16"
-
-[exploit]
-exp = []
-nuclei_templates = []
-poc = []
-
 [id]
-avd_id = ""
 ave_id = "AVE-1999-0014"
 cve_id = "CVE-1999-0210"
-other_ids = []
+aliases = ["CVE-1999-0210"]
+
+[basic]
+title = "SunOS/Solaris automountd 远程命令执行漏洞"
+description = "Automount守护进程automountd在处理RPC请求时存在shell元字符注入漏洞。攻击者可通过向automountd发送包含shell特殊字符的恶意RPC请求，在目标系统上以root权限执行任意命令，完全控制受影响系统。该漏洞影响运行automountd的SunOS/Solaris及HP-UX系统，无需认证即可远程利用。"
+severity = "CRITICAL"
+score = 9.8
+remediation = "升级操作系统至厂商已修复版本，或禁用automountd服务。在防火墙上限制对RPC端口（111/2049）的访问，仅允许受信网络段连接。建议实施最小权限原则，关闭不必要的RPC服务。"
+sources = ["nvd", "redhat"]
+published = "1997-11-26"
+updated = "2026-06-16"
+
+[affected]
+vendor = "Sun Microsystems"
+product = "Solaris automountd"
+
+[references]
+urls = [
+    "https://nvd.nist.gov/vuln/detail/CVE-1999-0210",
+    "https://access.redhat.com/security/cve/CVE-1999-0210",
+    "http://www.cert.org/advisories/CA-99-05-statd-automountd.html",
+    "http://www.securityfocus.com/bid/235",
+    "http://marc.info/?l=bugtraq&m=88053459921223&w=2",
+    "http://marc.info/?l=bugtraq&m=91547759121289&w=2",
+    "http://www1.itrc.hp.com/service/cki/docDisplay.do?docId=HPSBUX9910-104",
+]
+
+[exploit]
+poc_urls = []
+exp_urls = []
+nuclei_templates = []
 
 [meta]
 collected_at = "2026-07-11T00:00:00Z"
 status = "completed"
-
-[references]
-avd = ""
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0210"
-
-[[references.other]]
-description = "CERT Advisory CA-99-05"
-url = "http://www.cert.org/advisories/CA-99-05-statd-automountd.html"
-
-[[references.other]]
-description = "SecurityFocus BID 235"
-url = "http://www.securityfocus.com/bid/235"
-
-[[references.other]]
-description = "Bugtraq 邮件列表讨论"
-url = "http://marc.info/?l=bugtraq&m=88053459921223&w=2"
-
-[[references.other]]
-description = "Bugtraq 邮件列表讨论"
-url = "http://marc.info/?l=bugtraq&m=91547759121289&w=2"
-
-[[references.other]]
-description = "HP 安全公告 HPSBUX9910-104"
-url = "http://www1.itrc.hp.com/service/cki/docDisplay.do?docId=HPSBUX9910-104"
-
-[[references.other]]
-description = "RedHat 安全公告"
-url = "https://access.redhat.com/security/cve/CVE-1999-0210"
-
-[remediation]
-fix = "升级到受影响版本以上。参考Sun官方安全公告。"
-steps = [
-    "步骤1: 确认系统是否运行automountd服务",
-    "步骤2: 禁用automountd或应用厂商补丁",
-    "步骤3: 限制RPC端口（111/2049）的网络访问",
-]
-workaround = "禁用automountd服务或限制对RPC端口（111）的访问。如无法升级，可通过防火墙限制对portmap/rpcbind的访问。"
-
-[score]
-cvss_v2 = 10.0
-cvss_v2_vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C"
-cvss_v3 = 0.0
-cvss_v3_vector = ""
-cvss_v4 = 0.0
-cvss_v4_vector = ""
-
-[tags]
-tags = [
-    "CWE-78",
-    "CWE-94",
-    "RCE",
-    "command-injection",
-    "automountd",
-    "rpc",
-]

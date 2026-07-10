@@ -15,6 +15,7 @@ score = 10.0
 severity = "CRITICAL"
 source = "nvd"
 sources = [
+    "msrc",
     "nvd",
     "cpansec",
 ]
@@ -27,10 +28,9 @@ nuclei_templates = []
 poc = []
 
 [id]
-avd_id = ""
 ave_id = "AVE-2017-0003"
 cve_id = "CVE-2017-20230"
-other_ids = ["RT-130635"]
+aliases = ["CVE-2017-20230", "RT-130635"]
 
 [meta]
 collected_at = "2026-07-10T10:18:58Z"
