@@ -1,34 +1,25 @@
-[id]
-ave_id = "AVE-1999-0021"
-cve_id = "CVE-1999-0523"
-aliases = ["CVE-1999-0523"]
-
 [basic]
-title = "系统允许ICMP回显请求导致网络探测风险"
-description = "目标系统默认响应ICMP Echo Request（ping）数据包，允许任意远程主机通过发送ICMP请求判断目标主机是否存活。攻击者可以利用此漏洞对目标网络进行主机存活探测和网络拓扑映射，为后续针对性攻击（如端口扫描、漏洞利用）收集信息。该问题通常由网络防火墙或主机配置不当引起，ICMP协议本身非攻击向量，但暴露了主机在网络中的存在。"
-severity = "LOW"
-score = 0.1
-remediation = "在网络边界防火墙上配置规则丢弃入站的ICMP Echo Request数据包，或使用iptables命令添加规则：iptables -A INPUT -p icmp --icmp-type echo-request -j DROP。对Linux系统可设置内核参数net.ipv4.icmp_echo_ignore_all=1禁用ICMP回显响应。"
-sources = ["redhat", "nvd"]
-published = "1999-01-01"
-updated = "2026-06-16"
-
-[affected]
-vendor = "Multiple"
-product = "Multiple"
-
-[references]
-urls = [
-    "https://nvd.nist.gov/vuln/detail/CVE-1999-0523",
-    "https://www.cve.org/CVERecord?id=CVE-1999-0523",
-    "https://access.redhat.com/security/cve/CVE-1999-0523"
-]
+description = "Vulnerability identified as CVE-1999-0523. Please refer to vendor advisory for details."
+published = "2026-07-10"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 5.0
+severity = "MEDIUM"
+sources = ["redhat"]
+title = "CVE-1999-0523 vulnerability"
+updated = "2026-07-10"
 
 [exploit]
-poc_urls = []
 exp_urls = []
-nuclei_templates = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0523"]
+ave_id = "AVE-1999-0021"
+cve_id = "CVE-1999-0523"
 
 [meta]
+collected_at = "2026-07-10T19:14:40.038870603+00:00"
 status = "completed"
-collected_at = "2026-07-11T07:38:28+00:00"
+
+[references]
+urls = []
