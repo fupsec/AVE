@@ -1,6 +1,7 @@
 const GH = {
-  owner: "YOUR_GITHUB_OWNER",
-  repo: "YOUR_PUBLIC_REPO",
+  owner: "adysec",
+  repo: "AVE",
+  branch: "main",
 };
 
 const PAGE_SIZE = 10;
@@ -60,8 +61,35 @@ async function searchTomlList(keyword) {
   if (keyword && keyword.trim()) {
     q += ` ${keyword.trim()}`;
   }
-  const data = await gh(`https://api.github.com/search/code?q=${enc(q)}&per_page=${PAGE_SIZE}`);
-  return data.items || [];
+  try {
+    const data = await gh(`https://api.github.com/search/code?q=${enc(q)}&per_page=${PAGE_SIZE}`);
+    return data.items || [];
+  } catch (e) {
+    // Anonymous Code Search may return 401/403. Fallback to tree listing.
+    const tree = await gh(`https://api.github.com/repos/${GH.owner}/${GH.repo}/git/trees/${GH.branch || "main"}?recursive=1`);
+    const all = (tree.tree || [])
+      .filter((n) => n.type === "blob")
+      .filter((n) => n.path && n.path.startsWith("vulns/") && n.path.endsWith(".toml"))
+      .map((n) => {
+        const name = n.path.split("/").pop();
+        const stem = name.replace(/\.toml$/i, "");
+        return {
+          name,
+          path: n.path,
+          html_url: `https://github.com/${GH.owner}/${GH.repo}/blob/main/${n.path}`,
+          download_url: `https://raw.githubusercontent.com/${GH.owner}/${GH.repo}/main/${n.path}`,
+          stem,
+        };
+      });
+
+    const kw = (keyword || "").trim().toLowerCase();
+    const filtered = kw
+      ? all.filter((i) => i.name.toLowerCase().includes(kw) || i.stem.toLowerCase().includes(kw))
+      : all;
+
+    filtered.sort((a, b) => a.name.localeCompare(b.name));
+    return filtered.slice(0, PAGE_SIZE);
+  }
 }
 
 async function fetchText(item) {
