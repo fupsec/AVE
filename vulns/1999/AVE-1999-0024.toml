@@ -1,53 +1,51 @@
 [id]
 ave_id = "AVE-1999-0024"
-cve_id = "CVE-1999-0034"
+cve_id = "CVE-1999-0223"
 avd_id = ""
 other_ids = []
 
 [basic]
-title = "suidperl (sperl) 缓冲区溢出漏洞"
-description = "Perl 辅助程序 suidperl（也称 sperl）存在缓冲区溢出漏洞。当该程序以 setuid root 权限安装时，攻击者可利用该溢出漏洞实现本地权限提升，获取 root 权限。该漏洞影响 Perl 4.x 和 5.x 版本，涉及 BSD/OS 2.1/3.0、RedHat 4.0/4.1、SGI Freeware 1.0/2.0 等多个平台。"
-severity = "HIGH"
+title = "Solaris syslogd 反向DNS查询拒绝服务漏洞"
+description = "Solaris syslogd crashes when receiving a message from a host that doesn't have an inverse DNS entry."
+severity = "LOW"
 source = "cve"
-published = "1997-05-29"
+published = "1999-03-01"
 updated = "2026-06-16"
 
 [score]
-cvss_v2 = 7.2
-cvss_v2_vector = "AV:L/AC:L/Au:N/C:C/I:C/A:C"
+cvss_v2 = 2.1
+cvss_v2_vector = "AV:L/AC:L/Au:N/C:N/I:N/A:P"
 cvss_v3 = 0.0
 cvss_v3_vector = ""
 cvss_v4 = 0.0
 cvss_v4_vector = ""
 
 [affected]
-vendor = "Perl"
-product = "Perl (suidperl/sperl) 4.x 和 5.x"
+vendor = "Sun"
+product = "Solaris / SunOS 5.4"
 
 [exploit]
-poc = [
-  { url = "https://www.exploit-db.com/exploits/19547", description = "suidperl 本地缓冲区溢出利用脚本", source = "exploit-db" }
-]
+poc = []
 exp = []
 nuclei_templates = []
 
 [remediation]
-fix = "升级到不受影响的 Perl 版本，或移除 suidperl/sperl 的 setuid root 权限。"
-workaround = "如无法升级，移除 suidperl/sperl 的 setuid 位：chmod u-s /usr/bin/suidperl"
-steps = ["步骤1: 确认 suidperl 文件位置和权限：ls -la $(which suidperl 2>/dev/null || which sperl 2>/dev/null)", "步骤2: 移除 setuid root 权限：chmod u-s /path/to/suidperl", "步骤3: 升级到包含修复的最新 Perl 版本"]
+fix = "安装 Sun Patch 103291 修复版本。参考 Sun 安全公告。"
+workaround = "在 syslog 服务器上确保所有连接的主机具有正确的反向DNS（PTR）记录。如无法打补丁，可通过防火墙限制对 syslog UDP 514 端口的访问。"
+steps = ["步骤1: 确认 Solaris 版本: uname -a", "步骤2: 安装 Sun Patch 103291", "步骤3: 确保所有受信任主机具有有效的反向DNS记录", "步骤4: 重启 syslogd 服务: /etc/init.d/syslog restart"]
 
 [references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0034"
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0223"
 avd = ""
-other = ["https://www.cve.org/CVERecord?id=CVE-1999-0034", "https://exchange.xforce.ibmcloud.com/vulnerabilities/CVE-1999-0034", "https://www.exploit-db.com/exploits/19547"]
+other = ["http://www.securityfocus.com/bid/1878", "http://sunsolve.Sun.COM/pub-cgi/retrieve.pl?patchid=103291&collection=fpatches", "https://www.cve.org/CVERecord?id=CVE-1999-0223"]
 
 [tags]
-tags = ["NVD-CWE-Other", "Perl", "suidperl", "sperl", "buffer-overflow", "privilege-escalation", "local"]
+tags = ["NVD-CWE-Other", "Solaris", "SunOS", "syslogd", "denial-of-service", "DNS", "local"]
 
 [authenticity]
 cve_confidence = "high"
-poc_confidence = "high"
-notes = "CVE-1999-0034 是 Perl suidperl/sperl 的本地缓冲区溢出漏洞。NVD 已确认并提供 CVSS v2 7.2 评分。MITRE 和 NVD 均已收录。Exploit-DB 提供 EDB-19547 利用脚本，由 Willy Tarreau 提交。该漏洞为本地利用类型，需要通过 shell 本地访问触发，非 HTTP 协议漏洞。"
+poc_confidence = "low"
+notes = "CVE-1999-0223 是 1999 年发现的 Solaris syslogd 拒绝服务漏洞。NVD 提供 CVSS v2 2.1 评分，CVSS v3/v4 无评分。该漏洞影响 SunOS 5.4，通过向 syslogd 发送来自无反向DNS记录主机的消息触发崩溃。Sun 官方补丁 103291 已修复。由于年代久远且属于非 HTTP 协议漏洞，未找到任何公开 PoC 或 EXP 脚本。"
 
 [meta]
 collected_at = "2026-07-10T10:18:58Z"
