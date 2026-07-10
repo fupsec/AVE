@@ -5,20 +5,20 @@
   aliases = ["CVE-2018-1359"]
 
 [basic]
-  title = "CVE-2018-1359"
-  description = ""
-  severity = "MEDIUM"
-  score = 6.1
-  sources = ["avd"]
-  published = ""
-  updated = ""
-  remediation = "Refer to vendor advisory and upgrade to fixed version."
+  title = "CVE-2018-1359 (Rejected)"
+  description = "CVE-2018-1359 已被 Fortinet 标记为 REJECTED，原因为 'Not used'。该 CVE 编号已被分配方撤回，未与任何真实漏洞关联。"
+  severity = "NONE"
+  score = 0.0
+  sources = ["avd", "nvd"]
+  published = "2025-05-06"
+  updated = "2025-05-06"
+  remediation = ""
 
 [score]
-  cvss_v2 = 4.3
-  cvss_v2_vector = "AV:N/AC:M/Au:N/C:N/I:P/A:N"
-  cvss_v3 = 6.1
-  cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N"
+  cvss_v2 = 0.0
+  cvss_v2_vector = ""
+  cvss_v3 = 0.0
+  cvss_v3_vector = ""
   cvss_v4 = 0.0
   cvss_v4_vector = ""
 
@@ -30,5 +30,5 @@ exp_urls = []
 urls = []
 
 [meta]
-status = "completed"
-collected_at = "2026-07-10T10:50:52.654016261+00:00"
+  status = "completed"
+  collected_at = "2026-07-10T10:50:52.712807081+00:00"

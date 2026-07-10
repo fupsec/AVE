@@ -22,7 +22,8 @@ product = "Catfish CMS（鲶鱼CMS）"
 
 [exploit]
 poc = [
-  { url = "https://github.com/xwlrbh/Catfish/issues/4", description = "CatfishCMS 4.8.54 RCE 漏洞 PoC 披露（含详细利用步骤与截图）", source = "github" }
+  { url = "https://github.com/xwlrbh/Catfish/issues/4", description = "CatfishCMS 4.8.54 RCE 漏洞 PoC 披露（含详细利用步骤与截图）", source = "github" },
+  { url = "https://its401.com/article/yun2diao/91344725", description = "CatfishCMS 4.8.54 RCE 漏洞分析与 PoC（含 filter[]=system 利用方法）", source = "other" }
 ]
 exp = []
 nuclei_templates = [
@@ -45,6 +46,7 @@ avd = ""
 other = [
   "https://github.com/xwlrbh/Catfish/issues/4",
   "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2019/CNVD-2019-06255.yaml",
+  "https://its401.com/article/yun2diao/91344725",
   "https://www.cnvd.org.cn/flaw/show/CNVD-2019-06255"
 ]
 

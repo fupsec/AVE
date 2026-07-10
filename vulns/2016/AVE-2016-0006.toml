@@ -1,13 +1,14 @@
 [id]
 ave_id = "AVE-2016-0006"
 cve_id = "CVE-2016-9535"
-aliases = ["CVE-2016-9535"]
+avd_id = ""
+other_ids = ["MSVR-35105"]
 
 [basic]
-title = "LibTIFF 4.0.6 tif_predict 堆缓冲区溢出漏洞"
-description = "tif_predict.h 和 tif_predict.c 文件中的 libtiff 4.0.6 版本存在断言问题，在处理异常图块大小（如 YCbCr 子采样）时，调试模式下可导致断言失败，发布模式下可导致缓冲区溢出。该漏洞被报告为 MSVR 35105，又名 Predictor heap-buffer-overflow。"
+title = "LibTIFF 预测器堆缓冲区溢出漏洞"
+description = "libtiff 4.0.6 的 tif_predict.h 和 tif_predict.c 中存在不安全的断言机制，在处理 YCbCr 子采样等特殊 Tile 大小时，调试模式下导致断言失败崩溃，发布模式下断言被编译移除，进而引发堆缓冲区溢出，可能被利用实现远程代码执行。由微软 MSRC（Axel Souchet、Vishal Chauhan）报告，编号 MSVR 35105。"
 severity = "CRITICAL"
-source = "nvd"
+source = "msrc"
 published = "2016-11-22"
 updated = "2026-06-16"
 
@@ -15,7 +16,7 @@ updated = "2026-06-16"
 cvss_v2 = 7.5
 cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:P/A:P"
 cvss_v3 = 9.8
-cvss_v3_vector = "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
 
 [affected]
 vendor = "libtiff"
@@ -27,23 +28,29 @@ exp = []
 nuclei_templates = []
 
 [remediation]
-fix = "升级到 libtiff 4.0.7 及以上版本。参考官方安全公告。"
-workaround = "避免处理来自不可信来源的 TIFF 文件。"
-steps = ["步骤1: 确认当前 libtiff 版本", "步骤2: 升级到修复版本（4.0.7+）", "步骤3: 重启依赖 libtiff 的服务"]
+fix = "升级 libtiff 到 4.0.7 及以上版本。各发行版修复版本：Debian 8 (libtiff 4.0.3-12.3+deb8u3), RHEL 7 (libtiff 4.0.3-27.el7_3), Debian 7 (tiff 4.0.2-6+deb7u9)。参考官方安全公告。"
+workaround = "如无法升级，避免处理来自不可信来源的特制 TIFF 文件。"
+steps = ["步骤1: 确认 libtiff 版本（libtiff -a 或 dpkg -l libtiff5）", "步骤2: 更新到修复版本（libtiff >= 4.0.7）", "步骤3: 重启依赖 libtiff 的服务"]
 
 [references]
 nvd = "https://nvd.nist.gov/vuln/detail/CVE-2016-9535"
 avd = ""
-other = ["http://rhn.redhat.com/errata/RHSA-2017-0225.html", "http://www.debian.org/security/2017/dsa-3844", "http://www.securityfocus.com/bid/94484", "http://www.securityfocus.com/bid/94744", "https://github.com/vadz/libtiff/commit/3ca657a8793dd011bf869695d72ad31c779c3cc1", "https://github.com/vadz/libtiff/commit/6a984bf7905c6621281588431f384e79d11a2e33"]
+other = [
+  "https://github.com/vadz/libtiff/commit/3ca657a8793dd011bf869695d72ad31c779c3cc1",
+  "https://github.com/vadz/libtiff/commit/6a984bf7905c6621281588431f384e79d11a2e33",
+  "http://rhn.redhat.com/errata/RHSA-2017-0225.html",
+  "http://www.debian.org/security/2017/dsa-3844",
+  "http://www.securityfocus.com/bid/94484"
+]
 
 [tags]
-tags = ["CWE-119", "heap-buffer-overflow"]
+tags = ["CWE-119", "heap-buffer-overflow", "libtiff", "DoS", "RCE"]
 
 [authenticity]
 cve_confidence = "high"
-poc_confidence = "low"
-notes = "无公开 PoC/EXP。非 HTTP 协议漏洞（C 库缓冲区溢出），无法生成 HTTP PoC 脚本。漏洞与 libtiff 库处理特制 TIFF 图片相关。补丁在 libtiff 上游代码仓库中可用。"
+poc_confidence = "none"
+notes = "无公开 PoC/EXP 可用。漏洞由微软 MSRC 报告（MSVR 35105），修复补丁由上游维护者 Even Rouault 提供。属于库级别内存损坏漏洞，非 HTTP 协议，无法生成 HTTP PoC 脚本。"
 
 [meta]
-collected_at = "2026-07-10T12:02:33Z"
+collected_at = "2026-07-11T00:00:00Z"
 status = "completed"

@@ -1,0 +1,56 @@
+[id]
+ave_id = "AVE-2002-0033"
+cve_id = "CVE-2002-0896"
+avd_id = ""
+other_ids = []
+
+[basic]
+title = "Swatch 节流（Throttle）功能绕过漏洞"
+description = "Swatch 的节流（throttle）功能在以下两种情况下可能无法报告特定事件：(1) 同一类型事件在节流周期后再次发生；(2) 匹配同一 \"watchfor\" 表达式的多个事件未在节流周期内发生。攻击者可利用此漏洞绕过检测机制，隐藏恶意行为。"
+severity = "MEDIUM"
+source = "nvd"
+published = "2002-10-04"
+updated = "2002-10-04"
+
+[score]
+cvss_v2 = 5.0
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:N/A:N"
+cvss_v3 = 0.0
+cvss_v3_vector = ""
+cvss_v4 = 0.0
+cvss_v4_vector = ""
+
+[affected]
+vendor = "Todd Atkins"
+product = "Swatch (Simple Log Watcher)"
+
+[exploit]
+poc = []
+exp = []
+nuclei_templates = []
+
+[remediation]
+fix = "升级到受影响版本以上。参考 Swatch 官方安全公告或 ISS X-Force 公告。"
+workaround = "在 Swatch 配置中避免过度依赖单一节流周期设置，可部署多实例监控或配合其他日志审计工具。"
+steps = ["确认 Swatch 版本", "升级到包含修复的版本", "检查并调整节流（throttle）配置参数"]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2002-0896"
+avd = ""
+other = [
+  { url = "http://online.securityfocus.com/archive/1/272582", description = "Bugtraq 邮件列表 - Swatch 节流绕过漏洞" },
+  { url = "http://www.iss.net/security_center/static/9100.php", description = "ISS X-Force 安全公告" },
+  { url = "http://www.securityfocus.com/bid/4746", description = "SecurityFocus Bugtraq ID 4746" }
+]
+
+[tags]
+tags = ["NVD-CWE-Other", "Swatch", "日志监控", "绕过"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "low"
+notes = "该漏洞为逻辑设计缺陷，非 HTTP 协议漏洞，不存在公开的 PoC/EXP。"
+
+[meta]
+collected_at = "2026-07-11T10:18:58Z"
+status = "completed"

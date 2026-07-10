@@ -1,53 +1,54 @@
-
 [id]
-  ave_id = "AVE-1999-0010"
-  cve_id = "CVE-1999-0015"
-  other_ids = []
+ave_id = "AVE-1999-0010"
+cve_id = "CVE-1999-0015"
+avd_id = ""
+other_ids = ["EDB-19103"]
 
 [basic]
-  title = "Teardrop IP分片重组拒绝服务漏洞"
-  description = "Teardrop IP denial of service。攻击者通过发送两个或多个精心构造的IP分片数据包，利用TCP/IP协议栈在处理IP分片重组时的缺陷，使目标系统在内存不足的情况下崩溃或重启。影响多个操作系统，包括Linux内核、Microsoft Windows 95及Windows NT 4.0、HP-UX 10.34等。"
-  severity = "MEDIUM"
-  source = "nvd"
-  published = "1997-12-16"
-  updated = "2026-06-16"
+title = "Teardrop IP 分片拒绝服务漏洞"
+description = "Teardrop IP 拒绝服务漏洞。通过发送两个或更多特制的 IP 分片数据包，利用多个厂商 TCP/IP 协议栈在分片重组时的缺陷，导致目标系统因内存不足而冻结或重启。影响 HP-UX 10.34、Microsoft Windows 95、Windows NT 3.5.1、Windows NT 4.0 等多个操作系统。"
+severity = "MEDIUM"
+source = "nvd"
+published = "1997-12-16"
+updated = "2026-06-16"
 
 [score]
-  cvss_v2 = 5.0
-  cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:N/A:P"
-  cvss_v3 = 5.5
-  cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N"
-  cvss_v4 = 5.1
-  cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:L/VI:N/VA:N/SC:N/SI:N/SA:N"
+cvss_v2 = 5.0
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:N/A:P"
 
 [affected]
-vendor = "multiple"
-product = "multiple"
+vendor = "Multiple"
+product = "Multiple Operating Systems"
+
+[exploit]
+poc = [
+  { url = "https://www.exploit-db.com/exploits/19103", description = "Teardrop IP 分片拒绝服务攻击 PoC（C 语言源代码）", source = "exploit-db" },
+  { url = "https://github.com/Cchristian42/Teardrop_Anomaly_Analysis", description = "Teardrop 攻击模拟与可视化分析", source = "github" }
+]
+exp = []
+nuclei_templates = []
+
+[remediation]
+fix = "升级到受影响操作系统的最新版本，应用厂商安全补丁。Microsoft 已发布安全公告，HP 已发布 HP-UX 补丁。"
+workaround = "在防火墙或网络边界设备上阻止 IP 分片数据包，或部署入侵检测系统（IDS）检测 Teardrop 攻击特征（重叠 IP 分片偏移）。"
+steps = ["步骤1: 确认操作系统版本", "步骤2: 安装厂商提供的安全更新补丁", "步骤3: 在网络边界配置防火墙规则，限制或监控 IP 分片流量"]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0015"
+avd = ""
+other = [
+  "https://www.exploit-db.com/exploits/19103",
+  "https://oval.cisecurity.org/repository/search/definition/oval%3Aorg.mitre.oval%3Adef%3A5579"
+]
+
+[tags]
+tags = ["CWE-Other", "DoS", "IP-fragment", "teardrop"]
 
 [authenticity]
 cve_confidence = "high"
 poc_confidence = "high"
-notes = "经典的Teardrop IP分片攻击漏洞，已有多平台验证。公开的C源码利用程序（route|daemon9编写）在Exploit-DB上可用。该漏洞涉及网络层IP协议，非HTTP协议，无法生成HTTP PoC验证脚本。"
-
-[exploit]
-poc = []
-exp = [
-  { url = "https://www.exploit-db.com/exploits/19103", description = "Teardrop IP分片拒绝服务利用程序（C源码）", source = "exploitdb" }
-]
-nuclei_templates = []
-
-[remediation]
-fix = "应用操作系统厂商提供的安全补丁，升级到修复版本。参考各厂商安全公告。"
-workaround = "在网络边界过滤恶意的IP分片数据包，使用防火墙规则阻止非预期的分片流量。"
-steps = ["步骤1: 确认操作系统版本", "步骤2: 安装厂商提供的最新安全更新补丁", "步骤3: 重启系统使补丁生效"]
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0015"
-other = ["https://www.exploit-db.com/exploits/19103", "https://oval.cisecurity.org/repository/search/definition/oval%3Aorg.mitre.oval%3Adef%3A5579"]
-
-[tags]
-tags = ["NVD-CWE-Other", "DoS", "Teardrop", "IP-Fragmentation", "Remote"]
+notes = ""
 
 [meta]
-collected_at = "2026-07-10T10:50:52Z"
+collected_at = "2026-07-11T10:18:58Z"
 status = "completed"
