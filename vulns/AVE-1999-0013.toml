@@ -50,3 +50,4 @@ notes = "该漏洞为1999年的老旧漏洞，影响Lucent Ascend路由器远程
 [meta]
 collected_at = "2026-07-10T10:50:53Z"
 status = "completed"
+

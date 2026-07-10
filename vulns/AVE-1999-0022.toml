@@ -1,0 +1,57 @@
+[id]
+ave_id = "AVE-1999-0022"
+cve_id = "CVE-1999-0524"
+avd_id = ""
+other_ids = []
+
+[basic]
+title = "ICMP时间戳和网络掩码信息泄露漏洞"
+description = "ICMP信息泄露漏洞，允许任意主机获取目标系统的(1)网络掩码和(2)时间戳信息。攻击者可通过发送ICMP地址掩码请求和ICMP时间戳请求获取敏感网络信息，包括系统运行时间和子网掩码配置。"
+severity = "LOW"
+source = "cve"
+published = "1997-08-01"
+updated = "2026-06-16"
+
+[score]
+cvss_v2 = 2.1
+cvss_v2_vector = "AV:L/AC:L/Au:N/C:P/I:N/A:N"
+cvss_v3 = 4.0
+cvss_v3_vector = "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N"
+cvss_v4 = 0.0
+cvss_v4_vector = ""
+
+[affected]
+vendor = "Multiple"
+product = "Multiple Operating Systems"
+
+[exploit]
+poc = [
+  { url = "https://github.com/threatlabindonesia/CVE-1999-0524-ICMP-Timestamp-and-Address-Mask-Request-Exploit", description = "ICMP时间戳和地址掩码请求利用脚本", source = "github" },
+  { url = "https://github.com/b1tsec/CVE-1999-0524", description = "ICMP时间戳请求远程日期泄露检测脚本", source = "github" },
+  { url = "https://github.com/Ransc0rp1on/ICMP-Timestamp-POC", description = "ICMP时间戳泄露检测工具", source = "github" },
+  { url = "https://github.com/noraj/ChronoLeak", description = "ICMP时间戳远程时间泄露工具", source = "github" }
+]
+exp = []
+nuclei_templates = []
+
+[remediation]
+fix = "在网络边界防火墙上过滤ICMP时间戳请求（类型13）和ICMP地址掩码请求（类型17）数据包。"
+workaround = "在系统层面禁用ICMP时间戳响应：Linux可通过iptables规则丢弃ICMP类型13和17的请求；Windows可通过注册表禁用。"
+steps = ["步骤1: 在边界防火墙上添加规则阻止入站ICMP时间戳请求(Type 13)和地址掩码请求(Type 17)", "步骤2: 在主机上配置防火墙规则丢弃ICMP时间戳请求", "步骤3: 对于Linux系统，执行 'echo 1 > /proc/sys/net/ipv4/icmp_echo_ignore_all' 并配置iptables规则"]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0524"
+avd = ""
+other = ["https://www.cve.org/CVERecord?id=CVE-1999-0524", "https://exchange.xforce.ibmcloud.com/vulnerabilities/306"]
+
+[tags]
+tags = ["CWE-200", "ICMP", "information-disclosure", "timestamp", "netmask"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "high"
+notes = "该漏洞为1997年发现的老旧ICMP协议信息泄露问题，影响几乎所有主流操作系统。多个公开PoC/EXP脚本可用，均为ICMP协议级别利用。漏洞非HTTP协议，不适用标准PoC脚本生成。"
+
+[meta]
+collected_at = "2026-07-10T10:18:58Z"
+status = "completed"
