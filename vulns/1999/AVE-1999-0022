@@ -1,0 +1,25 @@
+[id]
+ave_id = "AVE-1999-0022"
+cve_id = "CVE-1999-0027"
+aliases = ["CVE-1999-0027"]
+
+[basic]
+title = "CVE-1999-0027"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["exploitdb"]
+published = ""
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T11:54:35.042182441+00:00"
