@@ -1,0 +1,62 @@
+[id]
+ave_id = "AVE-2002-0027"
+cve_id = "CVE-2002-0838"
+avd_id = ""
+other_ids = []
+
+[basic]
+title = "gv/gvv/ggv/gnome-gv/kghostview PDF/PostScript 处理缓冲区溢出漏洞"
+description = "gv 3.5.8 及更早版本、gvv 1.0.2 及更早版本、ggv 1.99.90 及更早版本、gnome-gv 以及 kdegraphics 2.2.2 及更早版本中的 kghostview 存在缓冲区溢出漏洞，攻击者可通过特制的 PDF 或 PostScript 文件（由不安全的 sscanf 调用处理）执行任意代码。"
+severity = "MEDIUM"
+source = "nvd"
+published = "2002-10-10"
+updated = "2024-11-20"
+
+[score]
+cvss_v2 = 4.6
+cvss_v2_vector = "AV:L/AC:L/Au:N/C:P/I:P/A:P"
+
+[affected]
+vendor = "multiple"
+product = "gv, gvv, ggv, gnome-gv, kghostview"
+
+[exploit]
+poc = []
+exp = []
+nuclei_templates = []
+
+[remediation]
+fix = "升级到受影响的软件的最新版本。参考各厂商安全公告：Debian DSA-176/DSA-179/DSA-182、Red Hat RHSA-2002:207/RHSA-2002:212/RHSA-2002:220、KDE Security Advisory 20021008-1。"
+workaround = "避免打开来自不可信来源的 PDF 或 PostScript 文件。"
+steps = ["步骤1: 确认使用的 PDF/PostScript 查看器版本", "步骤2: 升级到修复版本"]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2002-0838"
+avd = ""
+other = [
+  "http://www.debian.org/security/2002/dsa-176",
+  "http://www.debian.org/security/2002/dsa-179",
+  "http://www.debian.org/security/2002/dsa-182",
+  "http://www.kde.org/info/security/advisory-20021008-1.txt",
+  "http://www.redhat.com/support/errata/RHSA-2002-207.html",
+  "http://www.redhat.com/support/errata/RHSA-2002-212.html",
+  "http://www.redhat.com/support/errata/RHSA-2002-220.html",
+  "http://www.securityfocus.com/bid/5808",
+  "http://www.kb.cert.org/vuls/id/600777",
+  "http://www.iss.net/security_center/static/10201.php",
+  "http://marc.info/?l=bugtraq&m=103305615613319&w=2",
+  "http://marc.info/?l=bugtraq&m=103305778615625&w=2",
+  "http://marc.info/?l=bugtraq&m=103487806800388&w=2"
+]
+
+[tags]
+tags = ["CWE-Other", "buffer-overflow", "code-execution"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "none"
+notes = "该漏洞为本地缓冲区溢出，需通过特制 PDF/PostScript 文件触发。经搜索 NVD、GitHub、Exploit-DB、Packet Storm 未发现公开可用的 PoC/EXP 脚本或 Nuclei 模板。由于漏洞涉及非 HTTP 协议的本地文件处理，无法生成 HTTP 类型 PoC。"
+
+[meta]
+collected_at = "2026-07-10T00:00:00Z"
+status = "completed"
