@@ -1,36 +1,25 @@
-[id]
-ave_id = "AVE-1999-0012"
-cve_id = "CVE-1999-0016"
-aliases = ["CVE-1999-0016"]
-
 [basic]
-title = "Land IP拒绝服务漏洞（多厂商TCP/IP协议栈）"
-description = "Land.c是一种经典的拒绝服务攻击利用程序，通过向目标发送源地址和端口与目标地址和端口完全相同的特制TCP SYN数据包，导致存在缺陷的TCP/IP协议栈进入无限循环，最终系统崩溃或挂起。该漏洞影响Windows 95/NT 4.0/XP SP2/Server 2003、HP-UX 9/10/11、FreeBSD 2.x、NetBSD 1、Linux Kernel 2.0.3、Cisco IOS设备及Catalyst交换机等大量操作系统和网络设备。攻击者可远程发起攻击，无需任何认证，利用门槛极低。"
-severity = "HIGH"
-score = 7.5
-remediation = "升级操作系统至厂商修复版本，如Windows安装最新安全补丁、HP-UX更新至11.11以上版本、Linux升级内核至2.0.4以上；在网络边界部署ACL规则过滤源地址等于目标地址的异常IP数据包；在防火墙上启用TCP SYN flood防护功能。"
-published = "1997-12-01"
-updated = "2026-06-16"
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
 sources = ["exploitdb"]
-
-[affected]
-vendor = "Multiple"
-product = "TCP/IP Stack Implementations"
-
-[references]
-urls = [
-    "https://nvd.nist.gov/vuln/detail/CVE-1999-0016",
-    "https://www.exploit-db.com/exploits/20814",
-    "http://www1.itrc.hp.com/service/cki/docDisplay.do?docId=HPSBUX9801-076",
-    "https://security.netapp.com/advisory/ntap-20170815-0001/"
-]
+title = "CVE-1999-0016 漏洞"
+updated = ""
 
 [exploit]
-poc_urls = [
-    "https://www.exploit-db.com/exploits/20814"
-]
 exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0016"]
+ave_id = "AVE-1999-0012"
+cve_id = "CVE-1999-0016"
 
 [meta]
+collected_at = "2026-07-10T21:22:46.837024259+00:00"
 status = "completed"
-collected_at = "2026-07-11T00:00:00+00:00"
+
+[references]
+urls = []
