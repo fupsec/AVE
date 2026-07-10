@@ -1,39 +1,25 @@
-[id]
-ave_id = "AVE-2002-0045"
-cve_id = "CVE-2002-1159"
-aliases = ["CVE-2002-1159"]
-
 [basic]
-title = "Canna 远程请求验证漏洞"
-description = "Canna 3.6 及之前版本中存在请求验证不当漏洞。Canna 是一款日文假名-汉字转换输入系统服务程序，默认监听 UDP 端口。远程攻击者可向服务发送特制请求，由于程序未能正确验证请求合法性，可导致服务崩溃引发拒绝服务，或泄露敏感信息。"
-severity = "MEDIUM"
-score = 6.4
-remediation = "升级 Canna 至 3.7 或更高版本，或参考 Debian DSA-224、RedHat RHSA-2002:246 等安全公告安装对应发行版补丁。"
-published = "2002-12-18"
-updated = "2026-06-16"
-sources = ["osv", "nvd"]
-
-[affected]
-vendor = "Canna Project"
-product = "Canna"
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2002-1159"
-other = [
-    "http://canna.sourceforge.jp/sec/Canna-2002-01.txt",
-    "http://www.debian.org/security/2003/dsa-224",
-    "http://www.redhat.com/support/errata/RHSA-2002-246.html",
-    "http://www.redhat.com/support/errata/RHSA-2002-261.html",
-    "http://www.redhat.com/support/errata/RHSA-2003-115.html",
-    "http://www.securityfocus.com/bid/6354",
-    "https://exchange.xforce.ibmcloud.com/vulnerabilities/10832"
-]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["osv"]
+title = "CVE-2002-1159 漏洞"
+updated = ""
 
 [exploit]
-poc_urls = []
 exp_urls = []
-nuclei_templates = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2002-1159"]
+ave_id = "AVE-2002-0045"
+cve_id = "CVE-2002-1159"
 
 [meta]
-collected_at = "2026-07-11T00:00:00Z"
+collected_at = "2026-07-10T23:18:28.800306497+00:00"
 status = "completed"
+
+[references]
+urls = []
