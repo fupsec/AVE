@@ -1,15 +1,14 @@
 [id]
 ave_id = "AVE-2006-0003"
 cve_id = "CVE-2006-1547"
-avd_id = ""
 other_ids = []
 
 [basic]
 title = "Apache Struts 1 ActionForm 拒绝服务漏洞"
-description = "Apache Struts 1.2.9之前版本中的ActionForm（与BeanUtils 1.7配合使用）存在安全漏洞，远程攻击者可通过提交一个multipart/form-data编码的表单，其参数名引用public getMultipartRequestHandler方法，从而访问CommonsMultipartRequestHandler实现和BeanUtils中的元素，导致拒绝服务（DoS）。该漏洞已被CISA列入已知被利用漏洞目录（KEV），确认存在在野利用。"
+description = "Apache Software Foundation (ASF) Struts 1.2.9 之前版本中的 ActionForm 组件在配合 BeanUtils 1.7 使用时，远程攻击者可通过 multipart/form-data 编码的表单，构造一个引用 public getMultipartRequestHandler 方法的参数名，从而访问 CommonsMultipartRequestHandler 实现及 BeanUtils 中的内部元素，导致服务器拒绝服务（DoS）。该漏洞已被 CISA 列入已知利用漏洞目录（KEV），确认存在野外利用。"
 severity = "HIGH"
 source = "nvd"
-published = "2006-03-30"
+published = "2006-03-29"
 updated = "2026-06-16"
 
 [score]
@@ -17,8 +16,6 @@ cvss_v2 = 7.8
 cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:N/A:C"
 cvss_v3 = 7.5
 cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
-cvss_v4 = 0.0
-cvss_v4_vector = ""
 
 [affected]
 vendor = "Apache"
@@ -30,30 +27,32 @@ exp = []
 nuclei_templates = []
 
 [remediation]
-fix = "升级Apache Struts到1.2.9或更高版本。参考Apache官方安全公告。该漏洞已列入CISA KEV，应优先修复。"
-workaround = "如无法升级，可在Web应用防火墙（WAF）层面过滤恶意的multipart/form-data请求，限制包含特殊参数名的请求。"
-steps = ["步骤1: 确认Apache Struts版本", "步骤2: 升级Apache Struts到1.2.9或更高版本", "步骤3: 重启服务使更新生效", "步骤4: 监控系统日志确认无异常访问"]
+fix = "升级到 Apache Struts 1.2.9 或更高版本。参考官方安全公告和发版说明。"
+workaround = "如无法升级，可禁用 multipart/form-data 请求处理功能，或在 Web 服务器层面限制对 ActionForm 的访问。"
+steps = ["步骤1: 确认 Apache Struts 版本是否低于 1.2.9", "步骤2: 检查是否使用了 BeanUtils 1.7", "步骤3: 升级到 Apache Struts 1.2.9 或更高版本", "步骤4: 重启应用服务器使更新生效"]
 
 [references]
 nvd = "https://nvd.nist.gov/vuln/detail/CVE-2006-1547"
-avd = ""
 other = [
-  "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
-  "http://struts.apache.org/struts-doc-1.2.9/userGuide/release-notes.html",
-  "https://exchange.xforce.ibmcloud.com/vulnerabilities/25613",
-  "http://www.securityfocus.com/bid/17342",
-  "http://securitytracker.com/id?1015856",
-  "http://secunia.com/advisories/19493"
+  { url = "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2006-1547", description = "CISA KEV 目录" },
+  { url = "http://issues.apache.org/bugzilla/show_bug.cgi?id=38534", description = "Apache Bugzilla 工单" },
+  { url = "https://exchange.xforce.ibmcloud.com/vulnerabilities/25613", description = "IBM X-Force 条目" },
+  { url = "http://www.securityfocus.com/bid/17342", description = "SecurityFocus BID" },
+  { url = "http://securitytracker.com/id?1015856", description = "SecurityTracker 条目" },
+  { url = "http://secunia.com/advisories/19493", description = "Secunia 安全公告" },
+  { url = "http://secunia.com/advisories/20117", description = "Secunia 安全公告" },
+  { url = "http://lists.suse.com/archive/suse-security-announce/2006-May/0004.html", description = "SUSE 安全公告" },
+  { url = "http://struts.apache.org/struts-doc-1.2.9/userGuide/release-notes.html", description = "Struts 1.2.9 发版说明" }
 ]
 
 [tags]
-tags = ["CWE-749", "DoS", "denial-of-service", "kev"]
+tags = ["CWE-749", "DoS", "Exposed Dangerous Method or Function", "KEV"]
 
 [authenticity]
 cve_confidence = "high"
-poc_confidence = "low"
-notes = "CVE由MITRE官方发布，NVD已分析并分配CVSS v3.1 7.5 HIGH评分。CWE-749（危险方法或函数暴露）分类。CISA KEV确认存在在野利用。未在GitHub或Exploit-DB找到公开PoC/EXP，但CISA确认该漏洞曾被活跃利用。漏洞为Apache Struts 1 ActionForm DoS，通过构造特殊multipart/form-data请求触发。"
+poc_confidence = "none"
+notes = "CVE 由 NVD 确认，已列入 CISA KEV 目录，确认存在野外利用。未找到公开 PoC/EXP 脚本或 Nuclei 检测模板。"
 
 [meta]
-collected_at = "2026-07-10T10:50:53Z"
+collected_at = "2026-07-10T12:13:41Z"
 status = "completed"
