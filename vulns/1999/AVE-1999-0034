@@ -1,0 +1,25 @@
+[id]
+ave_id = "AVE-1999-0034"
+cve_id = "CVE-1999-0289"
+aliases = ["CVE-1999-0289"]
+
+[basic]
+title = "CVE-1999-0289"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["cve"]
+published = ""
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T12:52:04.222245836+00:00"
