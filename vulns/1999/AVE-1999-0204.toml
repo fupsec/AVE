@@ -1,0 +1,47 @@
+[id]
+ave_id = "AVE-1999-0204"
+cve_id = "CVE-1999-0001"
+avd_id = ""
+other_ids = []
+
+[basic]
+title = "BSD派生TCP/IP实现ip_input.c远程拒绝服务漏洞"
+description = "ip_input.c in BSD-derived TCP/IP implementations allows remote attackers to cause a denial of service (crash or hang) via crafted packets."
+severity = "MEDIUM"
+source = "nvd"
+published = "1999-12-30"
+updated = "2026-06-16"
+
+[score]
+cvss_v2 = 5.0
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:N/A:P"
+
+[affected]
+vendor = "Multiple BSD vendors"
+product = "BSD-derived TCP/IP implementations"
+
+[exploit]
+poc = []
+exp = []
+nuclei_templates = []
+
+[remediation]
+fix = "升级到已修复版本。OpenBSD 2.3 用户请参考官方安全公告并应用 tcpfix 补丁：https://ftp.openbsd.org/pub/OpenBSD/patches/2.3/common/tcpfix.patch"
+workaround = "在网络边界过滤畸形TCP/IP报文，限制对受影响系统的网络访问。"
+steps = ["步骤1: 确认系统使用的BSD版本", "步骤2: 应用厂商提供的安全补丁", "步骤3: 重启网络服务或系统使补丁生效"]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0001"
+other = ["http://www.openbsd.org/errata23.html#tcpfix", "http://www.osvdb.org/5707"]
+
+[tags]
+tags = ["CWE-20", "DoS"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "none"
+notes = "CVE-1999-0001 是一个历史悠久的BSD TCP/IP栈拒绝服务漏洞，存在于ip_input.c中。通过发送精心构造的TCP/IP数据包可导致系统崩溃或挂起。该漏洞年代久远，公开可用的PoC/EXP代码已无法找到。唯一存留的修复参考是OpenBSD 2.3的tcpfix补丁。"
+
+[meta]
+collected_at = "2026-07-10T10:18:58Z"
+status = "completed"
