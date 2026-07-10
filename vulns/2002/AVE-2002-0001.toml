@@ -9,12 +9,11 @@ poc_confidence = "medium"
 
 [basic]
 description = "Windows NT 和 Windows 2000 的 smss.exe 调试子系统未能正确认证连接到其他程序的程序，允许本地用户通过复制特权进程的句柄来获取管理员或 SYSTEM 权限，该漏洞被称为 DebPloit。"
-published = "2002-03-14"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 7.5
+published = "2002-06-25"
+remediation = "安装 Microsoft 安全公告 MS02-024 (KB Q320206) 提供的更新补丁，升级到 Windows 2000 Service Pack 3 或更高版本。"
+score = 7.8
 severity = "HIGH"
-source = "kev"
-sources = ["unknown"]
+sources = ["kev"]
 title = "Microsoft Windows 权限提升漏洞 (DebPloit)"
 updated = "2026-06-16"
 

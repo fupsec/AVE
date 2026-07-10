@@ -10,11 +10,11 @@ poc_confidence = "low"
 [basic]
 description = "XML::Parser 版本 2.45 及之前版本存在堆缓冲区溢出漏洞。在 Perl 中使用 :utf8 PerlIO 层时，parse_stream() 函数（Expat.xs）可能溢出 XML 输入缓冲区，因为 Perl 的 read() 返回解码后的字符，而 SvPV() 返回的 UTF-8 多字节数据可能超过预分配的缓冲区大小，导致堆损坏（double free）和崩溃。"
 published = "2026-03-19"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
+remediation = "升级XML::Parser至2.46或更高版本，该版本修复了解析:utf8 PerlIO层时parse_stream()函数中的堆缓冲区溢出问题。"
 score = 7.5
 severity = "HIGH"
 source = "nvd"
-sources = ["unknown"]
+sources = ["msrc", "nvd"]
 title = "XML::Parser 堆缓冲区溢出漏洞"
 updated = "2026-06-16"
 
@@ -24,6 +24,7 @@ nuclei_templates = []
 poc = []
 
 [id]
+aliases = ["CVE-2006-10002"]
 avd_id = ""
 ave_id = "AVE-2006-0002"
 cve_id = "CVE-2006-10002"
