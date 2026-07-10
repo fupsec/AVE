@@ -1,0 +1,25 @@
+[id]
+aliases = ["CVE-2002-1156"]
+ave_id = "AVE-2002-0043"
+cve_id = "CVE-2002-1156"
+
+[basic]
+description = "Apache HTTP Server 2.0.42 版本中存在信息泄露漏洞。当目录同时启用 WebDAV 和 CGI 功能时，远程攻击者可以通过向该目录发送 POST 请求来获取 CGI 脚本的源代码，导致敏感信息泄露。攻击者无需认证即可远程利用此漏洞，可能获取到数据库凭据、业务逻辑等敏感信息。"
+published = "2002-10-04"
+remediation = "升级 Apache HTTP Server 至 2.0.43 或更高版本以修复此漏洞。如无法立即升级，可考虑禁用 WebDAV 模块或调整目录权限配置，避免 CGI 目录同时启用 WebDAV 功能。"
+score = 5.0
+severity = "MEDIUM"
+sources = ["osv", "nvd"]
+title = "Apache HTTP Server WebDAV CGI 源码泄露漏洞"
+updated = "2002-10-04"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[references]
+urls = ["http://online.securityfocus.com/advisories/4617", "http://www.apache.org/dist/httpd/CHANGES_2.0", "http://www.apacheweek.com/issues/02-10-04", "http://www.kb.cert.org/vuls/id/910713", "http://www.securityfocus.com/bid/6065", "https://exchange.xforce.ibmcloud.com/vulnerabilities/10499", "https://nvd.nist.gov/vuln/detail/CVE-2002-1156"]
+
+[meta]
+collected_at = "2026-07-11T00:00:00+00:00"
+status = "completed"
