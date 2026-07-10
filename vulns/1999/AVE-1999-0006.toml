@@ -2,11 +2,11 @@
 ave_id = "AVE-1999-0006"
 cve_id = "CVE-1999-0018"
 avd_id = ""
-other_ids = ["BID-127"]
+other_ids = ["EDB-19104"]
 
 [basic]
-title = "statd RPC 状态守护进程缓冲区溢出漏洞"
-description = "IBM AIX 3.2/4.1、SCO Unixware 7.1.1、SGI IRIX 5.3、Sun Solaris 2.5.1 等多种 Unix 系统中的 statd（RPC NFS 状态守护进程）存在缓冲区溢出漏洞。远程攻击者通过向 SM_MON RPC 请求发送特制数据，可触发缓冲区溢出，从而在目标系统上以 root 权限执行任意命令。"
+title = "statd RPC NFS 状态守护进程缓冲区溢出漏洞"
+description = "Buffer overflow in statd allows root privileges。statd 是 RPC NFS 状态守护进程，用于与其他服务或主机通信状态信息。多个 Unix 实现中随附的 statd 版本在处理 'SM_MON' RPC 请求时存在缓冲区溢出漏洞，攻击者可通过发送特制的 RPC 请求触发溢出，从而获得目标主机的 root 权限。"
 severity = "CRITICAL"
 source = "nvd"
 published = "1997-12-05"
@@ -22,39 +22,36 @@ cvss_v4_vector = ""
 
 [affected]
 vendor = "Multiple"
-product = "statd (RPC NFS Status Daemon)"
+product = "Multiple Unix Systems (IBM AIX 3.2/4.1, SCO Unixware 7.1.1, SGI IRIX 5.3, Sun Solaris 2.4/2.5/2.5.1)"
 
 [exploit]
 poc = [
-  { url = "https://www.exploit-db.com/exploits/19104", description = "statd SM_MON RPC 请求缓冲区溢出远程利用代码（C语言，适配 Solaris 2.5.1 x86）", source = "exploitdb" }
+  { url = "https://www.exploit-db.com/exploits/19104", description = "statd 远程缓冲区溢出利用程序（Solaris 2.5.1 x86）", source = "exploit-db" }
 ]
-exp = [
-  { url = "https://www.exploit-db.com/exploits/19104", description = "statd 缓冲区溢出完整利用代码，以 root 权限执行任意命令", source = "exploitdb" }
-]
+exp = []
 nuclei_templates = []
 
 [remediation]
-fix = "升级到受影响系统厂商提供的修复版本。参考相应操作系统安全公告获取补丁信息。"
-workaround = "如无法升级，可通过防火墙阻止外部对 RPC 端口（特别是 portmap/rpcbind 和 statd 使用的端口）的访问，或禁用 NFS 及相关 RPC 服务。"
-steps = ["确认运行的 Unix 系统版本", "参考厂商（IBM、SCO、SGI、Sun/Oracle）安全公告获取补丁", "升级到修复版本", "重启 statd 服务或系统"]
+fix = "升级到受影响操作系统厂商提供的修复版本。参考各厂商安全公告。"
+workaround = "在无法升级的环境中，可通过防火墙限制对 RPC portmap（111/TCP,UDP）和 statd 端口的访问，仅允许可信主机连接。"
+steps = ["步骤1: 确认受影响的 Unix 系统版本", "步骤2: 联系厂商获取安全补丁并升级 statd 服务", "步骤3: 在防火墙层面限制对 RPC 服务的访问"]
 
 [references]
 nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0018"
 avd = ""
 other = [
-  "https://www.exploit-db.com/exploits/19104",
-  "https://access.redhat.com/security/cve/CVE-1999-0018",
-  "http://www.securityfocus.com/bid/127"
+  "http://www.securityfocus.com/bid/127",
+  "https://cve.org/CVERecord?id=CVE-1999-0018"
 ]
 
 [tags]
-tags = ["CWE-119", "RCE", "Buffer-Overflow", "RPC", "statd", "NFS"]
+tags = ["CWE-Other", "buffer-overflow", "rpc", "statd", "privilege-escalation", "remote"]
 
 [authenticity]
 cve_confidence = "high"
 poc_confidence = "high"
-notes = "经典 statd 缓冲区溢出漏洞，影响多个 Unix 变种。NVD CVSS v2 评分 10.0，Exploit-DB 提供完整可编译利用代码（ID 19104），多个厂商均受影响。"
+notes = "Exploit-DB 19104 提供了完整的可编译 C 语言利用程序源代码，针对 Solaris 2.5.1 x86 平台。该漏洞影响多种 Unix 操作系统。"
 
 [meta]
-collected_at = "2026-07-10T11:01:41Z"
+collected_at = "2026-07-10T13:58:23Z"
 status = "completed"
