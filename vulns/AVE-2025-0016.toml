@@ -1,0 +1,59 @@
+[id]
+ave_id = "AVE-2025-0016"
+cve_id = "CVE-2025-24367"
+avd_id = ""
+other_ids = ["GHSA-fxrq-fr7h-9rqq"]
+
+[basic]
+title = "Cacti 认证用户图形模板远程代码执行漏洞"
+description = "Cacti 是一个开源性能和故障管理框架。经过认证的 Cacti 用户可以利用图形创建和图形模板功能，通过向 rrdtool 的 --right-axis-label 参数注入换行符绕过转义逻辑，在 Web 根目录中创建任意 PHP 脚本，导致远程代码执行。该漏洞在 1.2.29 版本中修复。"
+severity = "HIGH"
+source = "nvd"
+published = "2025-01-27"
+updated = "2026-06-17"
+
+[score]
+cvss_v3 = 8.8
+cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H"
+cvss_v4 = 8.7
+cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:L/UI:N/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N"
+
+[affected]
+vendor = "Cacti"
+product = "cacti"
+
+[exploit]
+poc = [
+  { url = "https://github.com/TheCyberGeek/CVE-2025-24367-Cacti-PoC", description = "Cacti 认证 RCE 利用脚本（反弹 Shell）", source = "github" }
+]
+exp = [
+  { url = "https://github.com/TheCyberGeek/CVE-2025-24367-Cacti-PoC/blob/main/exploit.py", description = "Cacti 认证 RCE EXP（反弹 Shell）", source = "github" }
+]
+nuclei_templates = []
+
+[remediation]
+fix = "升级到 Cacti 1.2.29 或更高版本。官方安全公告：https://github.com/Cacti/cacti/security/advisories/GHSA-fxrq-fr7h-9rqq"
+workaround = "如无法升级，限制可访问 Cacti 管理界面的 IP 范围，并审核拥有图形模板编辑权限的账户。"
+steps = ["确认当前 Cacti 版本", "升级到 Cacti 1.2.29 或更高版本", "验证升级后图形模板功能正常工作"]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2025-24367"
+avd = ""
+other = [
+  { url = "https://github.com/Cacti/cacti/security/advisories/GHSA-fxrq-fr7h-9rqq", description = "GitHub Security Advisory" },
+  { url = "https://github.com/Cacti/cacti/commit/c7e4ee798d263a3209ae6e7ba182c7b65284d8f0", description = "修复提交" },
+  { url = "https://lists.debian.org/debian-lts-announce/2025/02/msg00010.html", description = "Debian LTS 安全公告" },
+  { url = "https://github.com/TheCyberGeek/CVE-2025-24367-Cacti-PoC", description = "公开 PoC/EXP 仓库" }
+]
+
+[tags]
+tags = ["CWE-20", "CWE-144", "RCE", "rrdtool", "command-injection"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "high"
+notes = "CVE 由 GitHub, Inc. 分配，NVD 已收录，GHSA 有详细分析。存在公开 PoC/EXP 仓库（37 Stars），包含完整利用脚本。CISA SSVC 评估为 poc 级别。Debian LTS 已发布安全公告。"
+
+[meta]
+collected_at = "2026-07-10T12:00:00Z"
+status = "completed"

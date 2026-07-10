@@ -1,0 +1,41 @@
+[info]
+id = "POC-AVE-2025-0016"
+name = "Cacti 图形模板 RCE 检测 PoC"
+author = "AVE"
+severity = "high"
+tags = ["rce", "cve-2025-24367"]
+description = "检测目标是否运行 Cacti。Cacti 1.2.28 及更早版本中，rrdtool --right-axis-label 参数存在换行符注入漏洞（CVE-2025-24367），认证用户可通过图形模板功能在 Web 根目录写入任意 PHP 文件导致远程代码执行。"
+vuln_id = ["CVE-2025-24367", "AVE-2025-0016"]
+
+[poc]
+logic = "any"
+
+[[poc.requests]]
+method = "GET"
+path = "/"
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["Cacti"]
+expect = true
+
+[[poc.requests]]
+method = "GET"
+path = "/cacti/index.php"
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["Cacti"]
+expect = true
+
+[[poc.requests]]
+method = "GET"
+path = "/cacti"
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["Cacti"]
+expect = true
