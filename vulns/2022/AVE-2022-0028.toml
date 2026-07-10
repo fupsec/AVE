@@ -1,0 +1,54 @@
+[id]
+ave_id = "AVE-2022-0028"
+cve_id = "CVE-2022-37700"
+avd_id = ""
+other_ids = []
+
+[basic]
+title = "禅道 Easy Soft ALM 15.0 目录遍历导致敏感信息泄露漏洞"
+description = "禅道（Zentao）Easy Soft ALM 15.0 存在目录遍历漏洞，远程攻击者无需认证即可通过 /zentao/index.php?mode=getconfig 接口获取系统配置信息，造成敏感信息泄露。"
+severity = "HIGH"
+source = "nvd"
+published = "2022-09-19"
+updated = "2026-06-17"
+
+[score]
+cvss_v2 = 0.0
+cvss_v2_vector = ""
+cvss_v3 = 7.5
+cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N"
+cvss_v4 = 0.0
+cvss_v4_vector = ""
+
+[affected]
+vendor = "Easycorp"
+product = "Zentao (禅道) Easy Soft ALM"
+
+[exploit]
+poc = [
+  { url = "https://medium.com/@sc0p3hacker/cve-2022-37700-directory-transversal-in-zentao-easy-soft-alm-2573c1f0fc21", description = "漏洞分析文章（含PoC细节）", source = "其他" }
+]
+exp = []
+nuclei_templates = []
+
+[remediation]
+fix = "升级禅道至最新版本，避免使用 demo15.zentao.pm 等演示环境存储敏感信息。参考官方安全公告进行版本更新。"
+workaround = "限制 /zentao/index.php?mode=getconfig 接口的访问权限，通过 Web 服务器配置（如 Nginx/Apache）添加访问控制规则。"
+steps = ["步骤1: 确认禅道版本是否为 15.0 或更早版本", "步骤2: 升级至官方最新版本", "步骤3: 如无法升级，通过 Web 服务器配置限制 getconfig 接口的访问"]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2022-37700"
+avd = ""
+other = ["https://medium.com/@sc0p3hacker/cve-2022-37700-directory-transversal-in-zentao-easy-soft-alm-2573c1f0fc21", "https://demo15.zentao.pm/user-login.html/zentao/index.php?mode=getconfig"]
+
+[tags]
+tags = ["CWE-22", "目录遍历", "信息泄露", "zentao", "禅道"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "medium"
+notes = "CVE已由MITRE和NVD确认。公开PoC存在于Medium文章和trickest/cve仓库中，包含利用细节。"
+
+[meta]
+collected_at = "2026-07-10T10:18:58Z"
+status = "completed"

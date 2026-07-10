@@ -1,0 +1,28 @@
+[id]
+ave_id = "AVE-1999-0006"
+cve_id = "CVE-1999-0018"
+aliases = ["CVE-1999-0018"]
+
+[basic]
+title = "CVE-1999-0018"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = [
+    "exploitdb",
+    "redhat",
+]
+published = ""
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T13:50:46.139121913+00:00"
