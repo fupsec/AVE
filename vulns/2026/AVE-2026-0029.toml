@@ -8,13 +8,13 @@ notes = "该漏洞为 CNVD 收录，无对应 CVE 编号。Nuclei 模板可直�
 poc_confidence = "high"
 
 [basic]
-description = "Xiuno BBS系统在安装后未对安装目录进行保护或过滤，攻击者可通过访问/install/页面直接重装系统，导致系统配置被覆盖。"
+description = "Xiuno BBS 系统存在系统重装漏洞，该漏洞源于系统安装完成后未对安装目录进行有效的保护或过滤处理。攻击者可通过直接访问 /install/ 页面重新安装系统，导致原有系统配置被覆盖、数据库被重置，存在数据丢失和系统被接管的风险。"
 published = "2019-01-01"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
+remediation = "升级 Xiuno BBS 至最新版本，删除网站根目录下的 install 目录或通过访问控制措施限制对 /install/ 路径的未授权访问。"
 score = 7.5
 severity = "HIGH"
 source = "nuclei"
-sources = ["unknown"]
+sources = ["cnvd", "nuclei"]
 title = "Xiuno BBS 系统重装漏洞"
 updated = "2019-01-01"
 
