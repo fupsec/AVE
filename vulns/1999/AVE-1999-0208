@@ -1,0 +1,25 @@
+[id]
+ave_id = "AVE-1999-0208"
+cve_id = "CVE-1999-0223"
+aliases = ["CVE-1999-0223"]
+
+[basic]
+title = "CVE-1999-0223"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["cve"]
+published = ""
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T15:28:06.094142347+00:00"

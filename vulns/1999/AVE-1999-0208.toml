@@ -1,0 +1,55 @@
+[id]
+ave_id = "AVE-1999-0208"
+cve_id = "CVE-1999-0223"
+avd_id = ""
+other_ids = []
+
+[basic]
+title = "Solaris syslogd 反向 DNS 查询拒绝服务漏洞"
+description = "Solaris syslogd 在处理来自没有反向 DNS 记录的主机的消息时会崩溃，导致拒绝服务。攻击者可通过发送构造的 syslog 消息到目标主机的 syslogd 服务，由于 syslogd 在反向 DNS 查询失败时未正确处理空指针，导致进程崩溃。"
+severity = "LOW"
+source = "cve"
+published = "1999-03-01"
+updated = "2026-06-16"
+
+[score]
+cvss_v2 = 2.1
+cvss_v2_vector = "AV:L/AC:L/Au:N/C:N/I:N/A:P"
+cvss_v3 = 0.0
+cvss_v3_vector = ""
+cvss_v4 = 0.0
+cvss_v4_vector = ""
+
+[affected]
+vendor = "Sun Microsystems"
+product = "Solaris 2.4 / SunOS 5.4"
+
+[exploit]
+poc = []
+exp = []
+nuclei_templates = []
+
+[remediation]
+fix = "安装 Sun 补丁 ID 103291 或升级到修复版本。参考 Sun 安全公告。"
+workaround = "限制 syslog 服务的网络访问，仅允许受信任的主机发送 syslog 消息；或在防火墙上过滤 UDP 514 端口的入站流量。"
+steps = ["步骤1: 确认 Solaris 系统版本", "步骤2: 从 SunSolve 下载并安装补丁 103291", "步骤3: 重启 syslogd 服务使补丁生效"]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0223"
+avd = ""
+other = [
+  "http://www.securityfocus.com/bid/1878",
+  "http://sunsolve.Sun.COM/pub-cgi/retrieve.pl?patchid=103291&collection=fpatches"
+]
+
+[tags]
+tags = ["CWE-Other", "DoS", "Solaris", "SunOS", "syslog", "Denial-of-Service"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "none"
+notes = "CVE-1999-0223 是 Solaris 2.4/SunOS 5.4 syslogd 的拒绝服务漏洞，年代久远（1999年）。无公开 PoC/EXP 可用。属于非 HTTP 协议漏洞（syslog UDP 协议），无法生成 HTTP PoC 脚本。"
+
+[meta]
+collected_at = "2026-07-10T10:18:58Z"
+status = "completed"
