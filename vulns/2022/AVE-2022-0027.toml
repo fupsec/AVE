@@ -1,0 +1,52 @@
+[id]
+ave_id = "AVE-2022-0027"
+cve_id = "CVE-2022-49333"
+avd_id = ""
+other_ids = []
+
+[basic]
+title = "Linux内核mlx5 E-Switch驱动锁不当漏洞"
+description = "Linux内核的mlx5 E-Switch驱动中存在锁不当问题。OFFLOADS配对使用devcom时仅支持LAG的设备才能配对，修复了mlx5_get_next_phys_dev()在未持有接口锁时被调用的问题。本地攻击者可通过该漏洞触发拒绝服务（DoS）。"
+severity = "MEDIUM"
+source = "nvd"
+published = "2025-02-26"
+updated = "2026-06-17"
+
+[score]
+cvss_v2 = 0.0
+cvss_v2_vector = ""
+cvss_v3 = 5.5
+cvss_v3_vector = "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H"
+cvss_v4 = 6.8
+cvss_v4_vector = "CVSS:4.0/AV:L/AC:L/AT:N/PR:L/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N/E:U/U:Clear"
+
+[affected]
+vendor = "Linux Foundation"
+product = "Linux kernel"
+
+[exploit]
+poc = []
+exp = []
+nuclei_templates = []
+
+[remediation]
+fix = "升级到已修复的内核版本：5.17.15、5.18.4或5.19及以上版本。"
+workaround = "如暂时无法升级内核，可禁用mlx5 E-Switch的offloads功能，或限制对devlink接口的本地访问。"
+steps = ["步骤1: 确认当前内核版本及mlx5_core模块版本", "步骤2: 升级到5.17.15、5.18.4或5.19及以上版本", "步骤3: 重启系统或重新加载mlx5_core模块"]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2022-49333"
+avd = ""
+other = ["https://git.kernel.org/stable/c/0cef0b7eb044bb8cfdaff4c1db55a8fd442f6bc9", "https://git.kernel.org/stable/c/3008e6a0049361e731b803c60fe8f3ab44e1d73f", "https://git.kernel.org/stable/c/cdbcdddb8076a09aa6ddaf20fd911fc787dca0e5"]
+
+[tags]
+tags = ["CWE-667", "DoS", "kernel", "mlx5", "linux"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "none"
+notes = "该漏洞为本地DoS，需要本地访问权限和mlx5网卡设备。目前无公开PoC或EXP。"
+
+[meta]
+collected_at = "2026-07-10T00:00:00Z"
+status = "completed"
