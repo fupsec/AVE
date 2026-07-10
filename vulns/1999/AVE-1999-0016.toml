@@ -1,25 +1,33 @@
-[basic]
-description = "Vulnerability identified as CVE-1999-0023. Please refer to vendor advisory for details."
-published = "2026-07-10"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 5.0
-severity = "MEDIUM"
-sources = ["exploitdb"]
-title = "CVE-1999-0023 vulnerability"
-updated = "2026-07-10"
-
-[exploit]
-exp_urls = []
-poc_urls = []
-
 [id]
-aliases = ["CVE-1999-0023"]
 ave_id = "AVE-1999-0016"
 cve_id = "CVE-1999-0023"
+aliases = ["CVE-1999-0023"]
 
-[meta]
-collected_at = "2026-07-10T18:35:11.971869661+00:00"
-status = "completed"
+[basic]
+title = "多款Unix系统rdist工具缓冲区溢出漏洞"
+description = "rdist是一款用于在多台主机间维护文件副本一致性的工具。其lookup()函数存在缓冲区溢出漏洞，本地攻击者可利用此漏洞触发栈溢出，进而以root权限执行任意代码，完全控制系统。该漏洞影响BSDI BSD/OS 2.1、FreeBSD 2.1、IBM AIX 4.2、SGI IRIX 6.4、Sun SunOS 4.1.3等多个Unix操作系统。在部分环境中rdist被设置为setuid root，进一步增加了提权风险。"
+severity = "HIGH"
+score = 7.2
+remediation = "建议用户联系厂商获取对应操作系统的安全补丁，升级rdist至修复版本。如无需使用rdist功能，可移除rdist的setuid权限或直接卸载rdist软件包以减少攻击面。"
+published = "1996-07-24"
+updated = "2026-06-16"
+sources = ["nvd", "exploitdb"]
+
+[affected]
+vendor = "multiple"
+product = "rdist"
 
 [references]
-urls = []
+urls = [
+    "https://nvd.nist.gov/vuln/detail/CVE-1999-0023",
+    "https://www.exploit-db.com/exploits/19106",
+    "https://exchange.xforce.ibmcloud.com/vulnerabilities/CVE-1999-0023"
+]
+
+[exploit]
+poc_urls = ["https://www.exploit-db.com/exploits/19106"]
+exp_urls = ["https://www.exploit-db.com/exploits/19106"]
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T18:47:51.466387457+00:00"
