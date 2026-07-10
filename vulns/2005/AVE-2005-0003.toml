@@ -1,0 +1,55 @@
+[id]
+ave_id = "AVE-2005-0003"
+cve_id = "CVE-2005-2024"
+avd_id = ""
+other_ids = []
+
+[basic]
+title = "Vipul Razor Agents (razor-agents) 拒绝服务漏洞"
+description = "Vipul Razor Agents (razor-agents) 2.70 之前的版本存在拒绝服务漏洞。远程攻击者可以通过发送特制的异常 HTML 消息或畸形 Content-Type 等标头，导致服务崩溃。"
+severity = "MEDIUM"
+source = "nvd"
+published = "2005-06-17"
+updated = "2026-06-16"
+
+[score]
+cvss_v2 = 5.0
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:N/A:P"
+
+[affected]
+vendor = "Vipul"
+product = "razor-agents"
+
+[exploit]
+poc = []
+exp = []
+nuclei_templates = []
+
+[remediation]
+fix = "升级到 razor-agents 2.70 或更高版本。参考 Gentoo GLSA-200506-17、Debian DSA-738 或 SUSE-SA:2005:035 安全公告。"
+workaround = "如无法升级，可配置防火墙限制对 razor-agent 服务的网络访问。"
+steps = ["步骤1: 确认当前 razor-agents 版本", "步骤2: 升级到 2.70 或更高版本", "步骤3: 重启服务并验证"]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2005-2024"
+avd = ""
+other = [
+  "http://security.gentoo.org/glsa/glsa-200506-17.xml",
+  "http://bugs.gentoo.org/show_bug.cgi?id=95492",
+  "http://www.debian.org/security/2005/dsa-738",
+  "http://www.novell.com/linux/security/advisories/2005_35_razor_agents.html",
+  "http://www.securityfocus.com/bid/13984",
+  "http://sourceforge.net/mailarchive/forum.php?thread_id=7520323&forum_id=4259"
+]
+
+[tags]
+tags = ["CWE-Other", "DoS"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "none"
+notes = "该漏洞为 Vipul Razor Agents 中的拒绝服务漏洞，无公开 PoC/EXP 可用。NVD 评分 5.0 MEDIUM，仅影响可用性。"
+
+[meta]
+collected_at = "2026-07-10T12:00:54Z"
+status = "completed"
