@@ -1,57 +1,57 @@
 [id]
 ave_id = "AVE-2026-0074"
-cve_id = "CVE-2026-48597"
+cve_id = "CVE-2026-0073"
 avd_id = ""
-other_ids = ["GHSA-h74c-q9j7-mpcm"]
+other_ids = []
 
 [basic]
-title = "Tesla 存在 URL scheme 未授权原子耗尽漏洞"
-description = "Tesla.Adapter.Mint.open_conn/2 将每次出站请求的 URL scheme 通过 String.to_atom/1 转换为 BEAM 原子，未进行白名单验证。BEAM 原子永不回收，原子表默认约 1,048,576 条目。攻击者如果能影响 Tesla 请求的 URL（通过应用层 URL 转发功能如 webhook、代理、导入器，或通过 Tesla.Middleware.FollowRedirects 中间件跟随 Location 响应头），即可通过不断变化 scheme 字符串注入新的永久原子。原子表被填满后 BEAM VM 崩溃，导致应用程序不可用。"
+title = "Android ADB 无线调试认证绕过漏洞"
+description = "Android adbd (ADB daemon) 的 auth.cpp 文件中 adbd_tls_verify_cert 函数存在逻辑错误，导致无线 ADB 相互认证可被绕过。攻击者通过 TLS 类型混淆（EVP_PKEY_cmp）可绕过证书验证，在无需用户交互的情况下以 shell 用户身份在邻近网络远程执行代码，无需额外执行权限。影响 Android 14/15/16/16 QPR2 版本。"
 severity = "HIGH"
-source = "ghsa"
-published = "2026-06-02"
+source = "nvd"
+published = "2026-05-04"
 updated = "2026-06-17"
 
 [score]
-cvss_v2 = 0.0
-cvss_v2_vector = ""
-cvss_v3 = 0.0
-cvss_v3_vector = ""
-cvss_v4 = 8.2
-cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N"
+cvss_v3 = 8.8
+cvss_v3_vector = "CVSS:3.1/AV:A/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
 
 [affected]
-vendor = "elixir-tesla"
-product = "tesla"
+vendor = "Google"
+product = "Android"
 
 [exploit]
-poc = []
-exp = []
+poc = [
+  { url = "https://github.com/SecTestAnnaQuinn/CVE-2026-0073-Android-adbd-authentication-bypass-POC", description = "Android ADB 认证绕过 PoC 验证脚本", source = "github" },
+  { url = "https://github.com/adityatelange/poc-CVE-2026-0073", description = "ADB 无线互认绕过 PoC", source = "github" },
+  { url = "https://github.com/devtint/CVE-2026-0073", description = "ADB 认证绕过 PoC 演示脚本", source = "github" }
+]
+exp = [
+  { url = "https://github.com/tc4dy/CVE-2026-0073-PoC-Exploit", description = "ADB 无线调试利用工具 — 交互式 Shell + 命令执行 + 网络扫描", source = "github" },
+  { url = "https://github.com/0xbinder/CVE-2026-0073", description = "自动化利用工具 — 内置 mDNS/Zeroconf 发现 + ADB TLS 认证绕过", source = "github" },
+  { url = "https://github.com/MartinPSDev/CVE-2026-0073-Android-ADBD-bypass-POC", description = "ADBD TLS 认证绕过 — 获取未授权 Shell 访问权限", source = "github" },
+  { url = "https://github.com/0xBlackash/CVE-2026-0073", description = "ADB 认证绕过 C++ 利用实现", source = "github" }
+]
 nuclei_templates = []
 
 [remediation]
-fix = "升级到 tesla 1.18.3 或更高版本。参考官方安全公告 https://github.com/elixir-tesla/tesla/security/advisories/GHSA-h74c-q9j7-mpcm"
-workaround = "如无法升级，可采取以下缓解措施：1. 避免在应用层将用户控制的 URL 传递给 Tesla.Adapter.Mint；2. 移除 Tesla.Middleware.FollowRedirects 中间件；3. 在 URL 传递给 Tesla 之前进行 scheme 白名单验证。"
-steps = ["步骤1: 检查项目是否使用 Tesla.Adapter.Mint", "步骤2: 确认项目中 tesla 版本是否在 1.3.0 到 1.18.2 之间", "步骤3: 在 mix.exs 中将 tesla 更新至 1.18.3 或更高版本", "步骤4: 运行 mix deps.update tesla 更新依赖"]
+fix = "升级到 Android 安全公告 2026-05-01 中指定的修复版本。参考 https://source.android.com/docs/security/bulletin/2026/2026-05-01"
+workaround = "如无法升级，可在开发者选项中关闭「无线调试」功能，或确保 Android 设备仅在受信任的网络中启用无线调试。"
+steps = ["步骤1: 进入「设置」→「开发者选项」", "步骤2: 关闭「无线调试」开关", "步骤3: 通过系统更新安装 2026-05-01 安全补丁"]
 
 [references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2026-48597"
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2026-0073"
 avd = ""
-other = [
-  "https://github.com/elixir-tesla/tesla/security/advisories/GHSA-h74c-q9j7-mpcm",
-  "https://github.com/elixir-tesla/tesla/commit/4699c3cb3e2fd6078f99f45f11cf7466aeedbf0e",
-  "https://cna.erlef.org/cves/CVE-2026-48597.html",
-  "https://osv.dev/vulnerability/EEF-CVE-2026-48597"
-]
+other = ["https://source.android.com/docs/security/bulletin/2026/2026-05-01"]
 
 [tags]
-tags = ["CWE-770", "DoS", "Atom Exhaustion", "Elixir", "BEAM", "Tesla"]
+tags = ["CWE-303", "Android", "ADB", "认证绕过", "RCE", "无线调试", "类型混淆"]
 
 [authenticity]
 cve_confidence = "high"
-poc_confidence = "low"
-notes = "CVE 已由 Erlang Ecosystem Foundation CNA 和 GitHub Advisory 确认，CVSS 4.0 评分 8.2（高危）。漏洞本质为 Elixir/BEAM 库层面的逻辑缺陷，需要应用使用 Tesla.Adapter.Mint 并允许用户控制请求 URL。非 HTTP 协议层可直接探测的漏洞，公开渠道未发现可用的 PoC 或利用脚本。"
+poc_confidence = "high"
+notes = "CVE 已由 Google 官方确认，CISA-ADP 已分配 CVSS 3.1 评分 8.8 及 CWE-303。GitHub 上多个公开仓库已验证漏洞可被利用，包括完整交互式 shell 利用工具。Android 安全公告 2026-05-01 已提供修复补丁。"
 
 [meta]
-collected_at = "2026-07-10T15:24:10Z"
+collected_at = "2026-07-10T15:30:00Z"
 status = "completed"
