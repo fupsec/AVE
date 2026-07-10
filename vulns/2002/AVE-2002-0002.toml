@@ -1,41 +1,43 @@
-[affected]
-product = "Sendmail"
-vendor = "Sendmail"
-
-[authenticity]
-cve_confidence = "high"
-notes = "非HTTP协议漏洞（DNS协议缓冲区溢出），无公开可用PoC/EXP。NVD CVSS v2评分7.5，真实性高。"
-poc_confidence = "low"
-
-[basic]
-description = "Sendmail 8.12.5 之前版本中，当配置使用自定义 DNS 映射查询 TXT 记录时，存在缓冲区溢出漏洞。远程攻击者可通过恶意 DNS 服务器造成拒绝服务，甚至可能执行任意代码。"
-published = "2002-10-04"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 7.5
-severity = "HIGH"
-source = "tenable"
-sources = ["unknown"]
-title = "Sendmail DNS TXT 记录处理缓冲区溢出漏洞"
-updated = "2002-09-10"
-
-[exploit]
-exp = []
-nuclei_templates = []
-poc = []
-
 [id]
-avd_id = ""
 ave_id = "AVE-2002-0002"
 cve_id = "CVE-2002-0906"
+aliases = ["CVE-2002-0906"]
+avd_id = ""
 other_ids = []
 
-[meta]
-collected_at = "2026-07-11T00:00:00Z"
-status = "completed"
+[basic]
+title = "Sendmail DNS TXT 记录处理缓冲区溢出漏洞"
+description = "Sendmail 8.12.5 之前版本中，当配置使用自定义 DNS 映射查询 TXT 记录时，存在缓冲区溢出漏洞。远程攻击者可通过恶意 DNS 服务器造成拒绝服务，甚至可能执行任意代码。"
+severity = "HIGH"
+source = "tenable"
+published = "2002-10-04"
+updated = "2002-09-10"
+
+[score]
+cvss_v2 = 7.5
+cvss_v2_vector = "(AV:N/AC:L/Au:N/C:P/I:P/A:P)"
+
+[affected]
+vendor = "Sendmail"
+product = "Sendmail"
+
+[exploit]
+poc = []
+exp = []
+nuclei_templates = []
+
+[remediation]
+fix = "升级到 Sendmail 8.12.5 或更高版本。"
+workaround = "如无法升级，可在非受信环境中禁用自定义 DNS 映射功能。"
+steps = [
+    "确认当前 Sendmail 版本",
+    "升级到 8.12.5 或更高版本",
+    "重启 Sendmail 服务",
+]
 
 [references]
-avd = ""
 nvd = "https://nvd.nist.gov/vuln/detail/CVE-2002-0906"
+avd = ""
 other = [
     "http://www.sendmail.org/8.12.5.html",
     "http://www.securityfocus.com/bid/5122",
@@ -44,27 +46,14 @@ other = [
     "https://oval.cisecurity.org/repository/search/definition/oval%3Aorg.mitre.oval%3Adef%3A2183",
 ]
 
-[remediation]
-fix = "升级到 Sendmail 8.12.5 或更高版本。"
-steps = [
-    "确认当前 Sendmail 版本",
-    "升级到 8.12.5 或更高版本",
-    "重启 Sendmail 服务",
-]
-workaround = "如无法升级，可在非受信环境中禁用自定义 DNS 映射功能。"
-
-[score]
-cvss_v2 = 7.5
-cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:P/A:P"
-cvss_v3 = 7.5
-cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N"
-
 [tags]
-tags = [
-    "CWE-119",
-    "buffer-overflow",
-    "sendmail",
-    "dns",
-    "rce",
-    "dos",
-]
+tags = ["CWE-119", "buffer-overflow", "sendmail", "dns", "rce", "dos"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "low"
+notes = "非HTTP协议漏洞（DNS协议缓冲区溢出），无公开可用PoC/EXP。NVD CVSS v2评分7.5，真实性高。该漏洞涉及Sendmail与DNS服务器之间的SMTP/DNS协议交互，无法生成符合poc.md规范的HTTP类型PoC脚本。"
+
+[meta]
+collected_at = "2026-07-11T00:00:00Z"
+status = "completed"
