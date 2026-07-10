@@ -1,0 +1,25 @@
+[id]
+ave_id = "AVE-2025-0037"
+cve_id = "CVE-2025-54918"
+aliases = ["CVE-2025-54918"]
+
+[basic]
+title = "CVE-2025-54918"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["github"]
+published = ""
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T12:52:50.488978736+00:00"
