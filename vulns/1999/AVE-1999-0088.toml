@@ -5,7 +5,7 @@ remediation = "Refer to vendor advisory and upgrade to fixed version."
 score = 5.0
 severity = "MEDIUM"
 sources = ["cve"]
-title = "Vulnerability in CVE-1999-0379"
+title = "CVE-1999-0379 vulnerability"
 updated = "2026-07-10"
 
 [exploit]

@@ -5,7 +5,7 @@ remediation = "Refer to vendor advisory and upgrade to fixed version."
 score = 5.0
 severity = "MEDIUM"
 sources = ["github"]
-title = "Vulnerability in CVE-2025-49144"
+title = "CVE-2025-49144 vulnerability"
 updated = "2026-07-10"
 
 [exploit]

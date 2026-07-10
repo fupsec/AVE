@@ -14,7 +14,7 @@ pyLoad-ng 的 is_global_address 函数在 src/pyload/core/utils/web/check.py 中
 published = "2026-07-10"
 remediation = "Refer to vendor advisory and upgrade to fixed version."
 score = 4.7
-severity = "MEDIUM"
+severity = "LOW"
 source = "ghsa"
 sources = ["ghsa"]
 title = "pyLoad SSRF 防护绕过漏洞 — IPv6 6to4/NAT64 过渡机制封装内网 IP"
