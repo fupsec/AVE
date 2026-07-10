@@ -1,44 +1,25 @@
-[id]
-ave_id = "AVE-2018-0031"
-cve_id = "CVE-2018-25101"
-aliases = ["CVE-2018-25101"]
-
 [basic]
-title = "l2c2technologies Koha opac-MARCdetail.pl 反射型跨站脚本漏洞"
-description = "l2c2technologies Koha 是一款开源图书馆管理系统，其 opac-MARCdetail.pl 文件中的 biblionumber 参数存在反射型跨站脚本漏洞。攻击者可构造包含恶意脚本的 URL（如 /cgi-bin/koha/opac-MARCdetail.pl?biblionumber=2\"><TEST>）诱使用户访问，导致恶意脚本在用户浏览器中执行，可能造成会话信息泄露或钓鱼攻击。该漏洞影响 Koha 20180108 及之前版本。"
-severity = "LOW"
-score = 3.5
-published = "2024-04-21"
-updated = "2024-04-22"
-sources = ["avd", "nvd"]
-remediation = "建议升级 Koha 系统至最新版本，或应用 GitHub 上的补丁提交 950fc8e，该补丁对 biblionumber 参数进行了正确的输出转义处理，将模板变量从 biblionumber 替换为 biblio.biblionumber 以防范 XSS 攻击。"
-
-[affected]
-vendor = "l2c2technologies"
-product = "Koha"
-
-[score]
-cvss_v2 = 4.0
-cvss_v2_vector = "AV:N/AC:L/Au:S/C:N/I:P/A:N"
-cvss_v3 = 3.5
-cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:U/C:N/I:L/A:N"
-cvss_v4 = 0.0
-cvss_v4_vector = ""
-
-[references]
-urls = [
-    "https://github.com/l2c2technologies/Koha/commit/950fc8e101886821879066b33e389a47fb0a9782",
-    "https://vuldb.com/?id.261677",
-    "https://vuldb.com/?ctiid.261677",
-    "https://nvd.nist.gov/vuln/detail/CVE-2018-25101",
-]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["avd"]
+title = "CVE-2018-25101 漏洞"
+updated = ""
 
 [exploit]
-poc_urls = [
-    "https://github.com/l2c2technologies/Koha/commit/950fc8e101886821879066b33e389a47fb0a9782",
-]
 exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2018-25101"]
+ave_id = "AVE-2018-0031"
+cve_id = "CVE-2018-25101"
 
 [meta]
+collected_at = "2026-07-10T21:25:41.752554656+00:00"
 status = "completed"
-collected_at = "2026-07-11T00:00:00+00:00"
+
+[references]
+urls = []
