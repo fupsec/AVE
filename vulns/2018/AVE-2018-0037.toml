@@ -1,32 +1,25 @@
-[id]
-ave_id = "AVE-2018-0037"
-cve_id = "CVE-2018-25108"
-aliases = ["CVE-2018-25108"]
-
 [basic]
-title = "WAGO 750-8xx 控制器不受控制的资源消耗导致拒绝服务漏洞"
-description = "WAGO 750-8xx 系列控制器（包括 750-8100 PFC100、750-831 BACnet/IP、750-880 ETH、750-889 KNX IP 等型号）存在不受控制的资源消耗漏洞（CWE-770）。未经认证的远程攻击者可通过发送大量网络数据包消耗控制器 CPU 资源，导致设备正常操作受影响、配置的循环周期时间被干扰。当高网络负载消除后设备可恢复正常运行模式。"
-severity = "HIGH"
-score = 7.5
-remediation = "建议在封闭网络中使用设备或通过防火墙防护，同时配置交换机端口限速功能。750-8xx 系列可通过 Web 管理界面的 Ethernet > Misc. Configuration > internal Port > Output Limit Rate 进行限速配置；750-8xxx 系列可在 Network > Ethernet > Switch Configuration > Rate Limit 中设置。"
-published = "2025-01-16"
-updated = "2026-06-16"
-sources = ["avd", "nvd"]
-
-[affected]
-vendor = "WAGO"
-product = "750-8xx 系列控制器"
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2018-25108"
-avd = "https://avd.aixiao.me/vuln/CVE-2018-25108"
-other = ["https://cert.vde.com/en/advisories/VDE-2018-013"]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["avd"]
+title = "CVE-2018-25108 漏洞"
+updated = ""
 
 [exploit]
-poc_urls = []
 exp_urls = []
-nuclei_templates = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2018-25108"]
+ave_id = "AVE-2018-0037"
+cve_id = "CVE-2018-25108"
 
 [meta]
-collected_at = "2026-07-11T00:00:00Z"
+collected_at = "2026-07-10T23:00:04.854865510+00:00"
 status = "completed"
+
+[references]
+urls = []
