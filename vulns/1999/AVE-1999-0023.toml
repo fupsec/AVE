@@ -1,54 +1,52 @@
 [id]
 ave_id = "AVE-1999-0023"
-cve_id = "CVE-1999-0710"
+cve_id = "CVE-1999-0222"
 avd_id = ""
 other_ids = []
 
 [basic]
-title = "Squid cachemgr.cgi 公共访问代理滥用漏洞"
-description = "Red Hat Linux 5.2 和 6.0 及其他发行版中的 Squid 软件包将 cachemgr.cgi 安装在公共 Web 目录中，允许远程攻击者将其作为中介连接到其他系统，造成代理滥用和信息泄露风险。"
-severity = "HIGH"
+title = "Cisco IOS Web服务器超长URL拒绝服务漏洞"
+description = "Cisco IOS的Web服务器在处理超长URL时存在拒绝服务漏洞，攻击者可通过向路由器HTTP服务发送超长URL请求导致IOS进程崩溃并引发路由器重启。"
+severity = "MEDIUM"
 source = "cve"
-published = "1999-07-25"
+published = "1999-03-01"
 updated = "2026-06-16"
 
 [score]
-cvss_v2 = 7.5
-cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:P/A:P"
+cvss_v2 = 5.0
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:N/A:P"
 cvss_v3 = 0.0
 cvss_v3_vector = ""
 cvss_v4 = 0.0
 cvss_v4_vector = ""
 
 [affected]
-vendor = "Squid"
-product = "Squid Proxy (cachemgr.cgi)"
+vendor = "Cisco"
+product = "IOS"
 
 [exploit]
-poc = [
-  { url = "https://www.exploit-db.com/exploits/2059", description = "Squid cachemgr.cgi 代理滥用攻击", source = "exploit-db" }
-]
+poc = []
 exp = []
 nuclei_templates = []
 
 [remediation]
-fix = "升级到 Squid 修复版本或将 cachemgr.cgi 移出公共 Web 目录。参考 Red Hat 安全公告 RHSA-1999-025。"
-workaround = "如无法升级，移除 cachemgr.cgi 文件或限制对 CGI 目录的访问权限。在 Web 服务器配置中添加访问控制规则，仅允许管理 IP 访问 cachemgr.cgi。"
-steps = ["步骤1: 确认 Squid 版本和 cachemgr.cgi 文件位置", "步骤2: 将 cachemgr.cgi 移出公共 Web 目录或限制访问权限", "步骤3: 在 Apache/Nginx 中添加访问控制规则限制对 cachemgr.cgi 的访问", "步骤4: 升级到包含漏洞修复的最新 Squid 版本"]
+fix = "升级到修复版本。参考Cisco安全公告，禁用HTTP服务或升级到不受影响的IOS版本。"
+workaround = "如无法升级，可在Cisco路由器上使用 'no ip http server' 命令关闭HTTP服务。"
+steps = ["登录到Cisco路由器", "进入全局配置模式", "执行命令: no ip http server 禁用HTTP服务", "执行命令: no ip http secure-server 仅启用HTTPS", "执行命令: no ip http access-class 限制HTTP访问"]
 
 [references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0710"
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0222"
 avd = ""
-other = ["https://www.cve.org/CVERecord?id=CVE-1999-0710", "https://access.redhat.com/security/cve/CVE-1999-0710", "http://www.securityfocus.com/bid/2059", "https://exchange.xforce.ibmcloud.com/vulnerabilities/2385", "http://www.redhat.com/support/errata/RHSA-1999-025.html"]
+other = ["http://www.securityfocus.com/archive/1/60159"]
 
 [tags]
-tags = ["NVD-CWE-Other", "Squid", "cachemgr.cgi", "proxy-abuse", "information-disclosure", "SSRF"]
+tags = ["CWE-Other", "DoS", "cisco", "ios", "denial-of-service"]
 
 [authenticity]
 cve_confidence = "high"
-poc_confidence = "low"
-notes = "CVE-1999-0710 是 1999 年发现的 Squid 代理缓存管理 CGI 接口暴露漏洞。NVD 提供 CVSS v2 7.5 评分，CVSS v3/v4 无评分。Red Hat 官方安全公告已确认该漏洞。由于年代久远，公开可用的 PoC 脚本极少，未找到 GitHub 仓库或 Nuclei 模板。PoC 可通过直接访问 cachemgr.cgi 验证。"
+poc_confidence = "medium"
+notes = "该漏洞为1999年发现的Cisco IOS旧漏洞，攻击者通过向路由器HTTP服务发送超长URL即可触发拒绝服务。Cisco官方已确认并在后续IOS版本中修复。未找到公开GitHub PoC仓库或Nuclei模板，但漏洞原理简单，可通过HTTP长URL请求验证。"
 
 [meta]
-collected_at = "2026-07-10T10:18:58Z"
+collected_at = "2026-07-10T12:20:39Z"
 status = "completed"

@@ -1,14 +1,14 @@
 [id]
 ave_id = "AVE-1999-0023"
-cve_id = "CVE-1999-0710"
-aliases = ["CVE-1999-0710"]
+cve_id = "CVE-1999-0222"
+aliases = ["CVE-1999-0222"]
 
 [basic]
-title = "CVE-1999-0710"
+title = "CVE-1999-0222"
 description = ""
 severity = "UNKNOWN"
 score = 0.0
-sources = ["redhat"]
+sources = ["cve"]
 published = ""
 updated = ""
 remediation = "Refer to vendor advisory and upgrade to fixed version."
@@ -22,4 +22,4 @@ exp_urls = []
 
 [meta]
 status = "completed"
-collected_at = "2026-07-10T12:12:26.864750364+00:00"
+collected_at = "2026-07-10T15:13:25.356778796+00:00"
