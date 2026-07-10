@@ -1,0 +1,56 @@
+[info]
+id = "POC-AVE-1999-0023"
+name = "Squid cachemgr.cgi 公共访问检测 PoC"
+author = "AVE"
+severity = "high"
+tags = ["squid", "cachemgr", "proxy-abuse", "exposure"]
+description = "检测 Squid cachemgr.cgi 是否暴露在公共 Web 目录中，攻击者可利用其作为代理中介访问内部系统。"
+vuln_id = ["CVE-1999-0710", "AVE-1999-0023"]
+
+[poc]
+logic = "any"
+
+[[poc.requests]]
+method = "GET"
+path = "/cgi-bin/cachemgr.cgi"
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200]
+expect = true
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["Cache Manager", "cachemgr", "Squid", "cache_object"]
+expect = true
+
+[[poc.requests]]
+method = "GET"
+path = "/squid/cgi-bin/cachemgr.cgi"
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200]
+expect = true
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["Cache Manager", "cachemgr", "Squid", "cache_object"]
+expect = true
+
+[[poc.requests]]
+method = "GET"
+path = "/cachemgr.cgi"
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200]
+expect = true
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["Cache Manager", "cachemgr", "Squid", "cache_object"]
+expect = true
