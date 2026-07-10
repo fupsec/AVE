@@ -1,28 +1,58 @@
 [id]
 ave_id = "AVE-2006-0001"
 cve_id = "CVE-2006-10003"
-aliases = ["CVE-2006-10003"]
+other_ids = []
 
 [basic]
-title = "XML::Parser versions through 2.47 for Perl has an off-by-one heap buffer overflow in st_serial_stack"
-description = ""
-severity = "UNKNOWN"
-score = 0.0
-sources = [
-    "avd",
-    "msrc",
-]
-published = "2026-03-20"
-updated = ""
-remediation = "Refer to vendor advisory and upgrade to fixed version."
+title = "XML::Parser 至 2.47 版本存在 st_serial_stack 越界堆缓冲区溢出漏洞"
+description = "XML::Parser versions through 2.47 for Perl has an off-by-one heap buffer overflow in st_serial_stack. In the case (stackptr == stacksize - 1), the stack will NOT be expanded. Then the new value will be written at location (++stackptr), which equals stacksize and therefore falls just outside the allocated buffer. The bug can be observed when parsing an XML file with very deep element nesting."
+severity = "CRITICAL"
+source = "nvd"
+published = "2026-03-19"
+updated = "2026-06-29"
 
-[references]
-urls = []
+[score]
+cvss_v3 = 9.8
+cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+
+[affected]
+vendor = "TODDR"
+product = "XML::Parser"
 
 [exploit]
-poc_urls = []
-exp_urls = []
+poc = [
+  { url = "https://github.com/cpan-authors/XML-Parser/issues/39", description = "漏洞详情及补丁，含 600 层嵌套 XML 验证用例", source = "github" },
+  { url = "https://github.com/cpan-authors/XML-Parser/commit/3eb9cc95420fa0c3f76947c4708962546bf27cfd.patch", description = "修复补丁及深层嵌套测试用例", source = "github" }
+]
+exp = []
+nuclei_templates = []
+
+[remediation]
+fix = "升级到 XML::Parser 2.48 或更高版本。相关 Red Hat 安全公告：RHSA-2026:7679 等。"
+workaround = "如无法升级，可应用 2006-06-13 以来公开可用的补丁：https://github.com/cpan-authors/XML-Parser/commit/3eb9cc95420fa0c3f76947c4708962546bf27cfd.patch"
+steps = ["步骤1: 确认 XML::Parser 版本号低于 2.48", "步骤2: 升级至 2.48 或更新版本", "步骤3: 重启使用 XML::Parser 的服务"]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2006-10003"
+avd = "https://avd.aliyun.com/detail?id=CVE-2006-10003"
+other = [
+  "http://www.openwall.com/lists/oss-security/2026/03/19/2",
+  "https://github.com/cpan-authors/XML-Parser/issues/39",
+  "https://github.com/cpan-authors/XML-Parser/commit/3eb9cc95420fa0c3f76947c4708962546bf27cfd.patch",
+  "https://rt.cpan.org/Ticket/Display.html?id=19860",
+  "https://lists.debian.org/debian-lts-announce/2026/04/msg00002.html",
+  "https://bugzilla.redhat.com/show_bug.cgi?id=2448999",
+  "https://access.redhat.com/security/cve/CVE-2006-10003"
+]
+
+[tags]
+tags = ["CWE-122", "CWE-193", "heap-buffer-overflow", "off-by-one", "perl"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "medium"
+notes = "CVE 记录由 CPANSec 提交，NVD 已分配 CVSS 3.1 9.8 评分。漏洞最初于 2006-06-13 在 RT 工单系统中报告。补丁和触发测试用例已在 GitHub 公开，但尚无独立 PoC 利用工具。"
 
 [meta]
+collected_at = "2026-07-10T11:15:00Z"
 status = "completed"
-collected_at = "2026-07-10T11:13:00.447198182+00:00"

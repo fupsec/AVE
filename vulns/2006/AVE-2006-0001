@@ -1,0 +1,28 @@
+[id]
+ave_id = "AVE-2006-0001"
+cve_id = "CVE-2006-10003"
+aliases = ["CVE-2006-10003"]
+
+[basic]
+title = "CVE-2006-10003"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = [
+    "avd",
+    "msrc",
+]
+published = ""
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T13:49:42.765322976+00:00"
