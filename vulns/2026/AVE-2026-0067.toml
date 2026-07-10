@@ -1,61 +1,61 @@
 [id]
 ave_id = "AVE-2026-0067"
-cve_id = ""
+cve_id = "CVE-2026-49836"
 avd_id = ""
-other_ids = ["CNVD-2023-08743", "QVD-2023-11385"]
+other_ids = ["GHSA-2rmg-vrx8-9j2f"]
 
 [basic]
-title = "宏景eHR/宏景HCM 人力资源信息管理系统SQL注入漏洞（CNVD-2023-08743）"
-description = "北京宏景世纪软件股份有限公司宏景eHR/宏景HCM人力资源信息管理系统存在SQL注入漏洞（CNVD-2023-08743）。由于系统未对/servlet/codesettree接口的categories参数进行合理处理，未经过身份认证的远程攻击者可利用该漏洞执行任意SQL指令，从而窃取数据库敏感信息，甚至登录后台获取系统控制权限。"
-severity = "CRITICAL"
-source = "cnvd"
-published = "2023-05-11"
-updated = "2023-05-12"
+title = "psd-tools SmartObject路径遍历导致任意文件写入/读取漏洞"
+description = "psd-tools（v1.17.0及之前所有暴露SmartObject API的版本）存在路径遍历漏洞。SmartObject.save()直接使用PSD文件中未经验证的嵌入式智能对象文件名作为写入路径，攻击者可通过构造包含../或绝对路径的恶意PSD文件，将任意字节写入任意目录。SmartObject.open()对外部类型智能对象同样存在任意文件读取漏洞，攻击者可读取系统任意文件并将其内容写入受控输出目录。该漏洞无需认证或特殊配置即可利用，可导致完整性破坏，在特定场景下可升级为远程代码执行。"
+severity = "HIGH"
+source = "ghsa"
+published = "2026-07-09"
+updated = "2026-07-09"
 
 [score]
+cvss_v2 = 7.5
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:P/A:P"
 cvss_v3 = 9.8
-cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+cvss_v3_vector = "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+cvss_v4 = 4.6
+cvss_v4_vector = "CVSS:4.0/AV:L/AC:L/AT:N/PR:N/UI:A/VC:L/VI:L/VA:N/SC:N/SI:N/SA:N"
 
 [affected]
-vendor = "北京宏景世纪软件股份有限公司"
-product = "宏景eHR/宏景HCM人力资源信息管理系统"
+vendor = "psd-tools project"
+product = "psd-tools"
 
 [exploit]
 poc = [
-  { url = "https://github.com/xiaoming-x/HrmsTool-tamper", description = "宏景HCM SQL注入sqlmap tamper脚本，配合HrmsTool实现自动加解密利用", source = "github" },
-  { url = "https://github.com/vaycore/HrmsTool", description = "宏景HCM HRMS加解密工具，用于生成注入payload", source = "github" }
+  { url = "https://github.com/psd-tools/psd-tools/security/advisories/GHSA-2rmg-vrx8-9j2f", description = "官方安全通告，包含完整PoC代码（poc.py），通过构造恶意PSD文件验证任意文件写入", source = "github" }
 ]
 exp = []
-nuclei_templates = [
-  { url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2023/CNVD-2023-08743.yaml", description = "Nuclei检测模板 - 宏景HCM codesettree SQL注入检测", source = "nuclei" }
-]
+nuclei_templates = []
 
 [remediation]
-fix = "升级宏景eHR/宏景HCM至8.2或更高版本。请联系厂商获取安全补丁。"
-workaround = "如暂时无法升级，建议对/servlet/codesettree接口实施访问控制，限制外网直接访问，并在WAF中添加针对categories参数的SQL注入防护规则。"
-steps = ["确认当前宏景eHR/HCM系统版本", "联系厂商获取安全补丁或升级至8.2及以上版本", "升级后验证/servlet/codesettree接口不再响应恶意SQL注入请求", "在WAF或网络层限制对该接口的未授权访问"]
+fix = "升级 psd-tools 至 v1.17.1 或更高版本。修复包括：save() 方法通过 os.path.basename() 去除目录组件，写入限定在调用者指定的 directory 内，并通过 os.path.realpath() + os.path.commonpath() 验证路径不越界；open() 方法在提供 external_dir 时忽略超出目录的 fullPath 解析结果，对 relPath 逃逸目录则抛出 ValueError。"
+workaround = "如无法立即升级，可在调用 SmartObject.save() 前自行校验 smart_object.filename，拒绝包含 ../ 或绝对路径的文件名。对从不可信来源接收的 PSD 文件，在沙箱环境中处理。"
+steps = ["步骤1: 确认当前使用的 psd-tools 版本是否 <= 1.17.0", "步骤2: 升级到 psd-tools >= 1.17.1（pip install psd-tools>=1.17.1）", "步骤3: 对已处理的不可信 PSD 文件输出目录进行安全审计"]
 
 [references]
-nvd = ""
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2026-49836"
 avd = ""
 other = [
-  { url = "https://www.cnvd.org.cn/flaw/show/CNVD-2023-08743", description = "CNVD漏洞通告" },
-  { url = "https://www.secrss.com/articles/54590", description = "奇安信CERT安全通告" },
-  { url = "https://cn-sec.com/archives/1727611.html", description = "长亭科技在野1day风险提示与检测工具" },
-  { url = "https://stack.chaitin.com/vuldb/detail?id=d9dbe920-46b9-47eb-91b2-a10892a250ea", description = "长亭VulDB漏洞详情" },
-  { url = "https://zone.ci/aliyun/ali_highrisk/305868.html", description = "阿里云高危漏洞通告" },
-  { url = "https://pentest-tools.com/vulnerabilities-exploits/hongjing-human-resource-management-system-sql-injection-cnvd-2023-08743_1441", description = "Pentest-Tools漏洞信息" },
-  { url = "https://www.cnblogs.com/pursue-security/p/17704093.html", description = "漏洞复现分析" }
+  "https://github.com/psd-tools/psd-tools/security/advisories/GHSA-2rmg-vrx8-9j2f",
+  "https://github.com/psd-tools/psd-tools/pull/657",
+  "https://github.com/psd-tools/psd-tools/releases/tag/v1.17.1",
+  "https://www.tenable.com/cve/CVE-2026-49836",
+  "https://dbugs.ptsecurity.com/vulnerability/PT-2026-57023",
+  "https://advisories.gitlab.com/pypi/psd-tools/CVE-2026-49836/"
 ]
 
 [tags]
-tags = ["CWE-89", "SQL-Injection", "hongjing", "hcm", "ehr", "hrms", "unauthenticated"]
+tags = ["CWE-22", "CWE-73", "path-traversal", "arbitrary-file-write", "arbitrary-file-read", "python", "psd-tools"]
 
 [authenticity]
 cve_confidence = "high"
 poc_confidence = "high"
-notes = "CNVD-2023-08743已由CNVD平台正式通告，奇安信CERT已复现。存在多个公开PoC（含Nuclei模板、sqlmap tamper脚本、Python检测脚本），CVSS v3评分9.8（Critical）。长亭科技提供了X-RAY远程检测工具。受影响版本为宏景eHR/HCM < 8.2。"
+notes = "官方安全通告中包含完整的PoC验证代码，已确认漏洞存在并修复。该漏洞为本地Python库漏洞（非HTTP服务），PoC需通过Python脚本构造恶意PSD文件触发。"
 
 [meta]
-collected_at = "2026-07-10T12:00:00Z"
+collected_at = "2026-07-10T00:00:00Z"
 status = "completed"
