@@ -1,12 +1,12 @@
 [basic]
-description = "Double Precision Courier e-mail MTA（邮件传输代理）在处理邮件消息时，对年份字段的解析存在缺陷。远程攻击者可以通过发送包含极大值或负数值作为年份的恶意邮件，触发服务器进入紧耦合循环，导致CPU资源被大量消耗，造成拒绝服务（DoS）条件。该漏洞影响Courier MTA所有受影响版本，无需身份验证即可远程利用。"
-published = "2002-10-04"
-remediation = "升级Double Precision Courier MTA到2002年发布的修复版本，从SourceForge获取包含补丁的更新包。具体操作包括：更新courier软件包至修复版本，并重启邮件服务使配置生效，以防止恶意年份值触发CPU耗尽循环。"
+description = "Vulnerability identified as CVE-2002-0914. Please refer to vendor advisory for details."
+published = "2026-07-10"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
 score = 5.0
 severity = "MEDIUM"
-sources = ["osv", "nvd"]
-title = "Double Precision Courier MTA 年份值处理拒绝服务漏洞"
-updated = "2002-10-04"
+sources = ["osv"]
+title = "CVE-2002-0914 vulnerability"
+updated = "2026-07-10"
 
 [exploit]
 exp_urls = []
@@ -18,8 +18,8 @@ ave_id = "AVE-2002-0035"
 cve_id = "CVE-2002-0914"
 
 [meta]
-collected_at = "2026-07-11T00:00:00+00:00"
+collected_at = "2026-07-10T19:14:50.792366277+00:00"
 status = "completed"
 
 [references]
-urls = ["http://www.iss.net/security_center/static/9228.php", "http://www.securityfocus.com/bid/4908", "http://sourceforge.net/project/shownotes.php?release_id=93065", "http://www.osvdb.org/5052"]
+urls = []
