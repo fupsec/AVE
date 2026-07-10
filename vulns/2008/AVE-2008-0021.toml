@@ -6,7 +6,7 @@ other_ids = ["EUVD-2008-5877"]
 
 [basic]
 title = "libpng png_check_keyword 函数内存覆写漏洞"
-description = "libpng 1.0.42 之前版本及 1.2.x 1.2.34 之前版本中的 pngwutil.c 文件的 png_check_keyword 函数存在漏洞，上下文相关的攻击者可能通过创建包含特殊关键字的精心构造的 PNG 文件，将任意内存位置的值设置为零，该漏洞与 '\0' 字符常量到 NULL 指针的隐式转换有关。注意：部分来源错误地将此漏洞报告为双重释放漏洞。Red Hat 认为此漏洞实际影响有限，因为该函数仅在写入 PNG 文件时被调用，而非读取时。"
+description = "libpng 1.0.42 之前版本及 1.2.x 1.2.34 之前版本中的 pngwutil.c 文件的 png_check_keyword 函数存在漏洞，上下文相关的攻击者可能通过创建包含特殊关键字的精心构造的 PNG 文件，将任意内存位置的值设置为零，该漏洞与 '\\0' 字符常量到 NULL 指针的隐式转换有关。注意：部分来源错误地将此漏洞报告为双重释放漏洞。Red Hat 认为此漏洞实际影响有限，因为该函数仅在写入 PNG 文件时被调用，而非读取时。"
 severity = "MEDIUM"
 source = "nvd"
 published = "2009-01-15"

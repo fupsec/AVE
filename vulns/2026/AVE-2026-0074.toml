@@ -1,14 +1,13 @@
 [id]
 ave_id = "AVE-2026-0074"
 cve_id = "CVE-2026-0073"
-avd_id = ""
 other_ids = []
 
 [basic]
-title = "Android ADB 无线调试认证绕过漏洞"
-description = "Android adbd (ADB daemon) 的 auth.cpp 文件中 adbd_tls_verify_cert 函数存在逻辑错误，导致无线 ADB 相互认证可被绕过。攻击者通过 TLS 类型混淆（EVP_PKEY_cmp）可绕过证书验证，在无需用户交互的情况下以 shell 用户身份在邻近网络远程执行代码，无需额外执行权限。影响 Android 14/15/16/16 QPR2 版本。"
+title = "Android ADB 无线调试 TLS 证书验证认证绕过漏洞"
+description = "adbd（Android Debug Bridge Daemon）的 adbd_tls_verify_cert 函数中存在认证绕过漏洞。由于 EVP_PKEY_cmp 类型混淆（type confusion）逻辑错误，攻击者可绕过无线 ADB 双向认证机制，在无需用户交互的情况下，以 shell 用户身份在相邻网络中远程执行代码。"
 severity = "HIGH"
-source = "nvd"
+source = "android"
 published = "2026-05-04"
 updated = "2026-06-17"
 
@@ -22,36 +21,42 @@ product = "Android"
 
 [exploit]
 poc = [
-  { url = "https://github.com/SecTestAnnaQuinn/CVE-2026-0073-Android-adbd-authentication-bypass-POC", description = "Android ADB 认证绕过 PoC 验证脚本", source = "github" },
-  { url = "https://github.com/adityatelange/poc-CVE-2026-0073", description = "ADB 无线互认绕过 PoC", source = "github" },
-  { url = "https://github.com/devtint/CVE-2026-0073", description = "ADB 认证绕过 PoC 演示脚本", source = "github" }
+  { url = "https://github.com/tc4dy/CVE-2026-0073-PoC-Exploit", description = "Android ADB 无线调试利用工具（PoC + EXP）", source = "github" },
+  { url = "https://github.com/SecTestAnnaQuinn/CVE-2026-0073-Android-adbd-authentication-bypass-POC", description = "Android ADB adbd 认证绕过 PoC", source = "github" },
+  { url = "https://github.com/adityatelange/poc-CVE-2026-0073", description = "ADB 无线双向认证绕过 PoC", source = "github" },
+  { url = "https://github.com/MartinPSDev/CVE-2026-0073-Android-ADBD-bypass-POC", description = "adbd TLS 认证绕过 EVP_PKEY_cmp 类型混淆 PoC", source = "github" },
+  { url = "https://github.com/ctnBobong32/CVE-2026-0073-Android-ADBD-bypass-POC_zh_CN", description = "Android ADB adbd 绕过 PoC 汉化版", source = "github" }
 ]
 exp = [
-  { url = "https://github.com/tc4dy/CVE-2026-0073-PoC-Exploit", description = "ADB 无线调试利用工具 — 交互式 Shell + 命令执行 + 网络扫描", source = "github" },
-  { url = "https://github.com/0xbinder/CVE-2026-0073", description = "自动化利用工具 — 内置 mDNS/Zeroconf 发现 + ADB TLS 认证绕过", source = "github" },
-  { url = "https://github.com/MartinPSDev/CVE-2026-0073-Android-ADBD-bypass-POC", description = "ADBD TLS 认证绕过 — 获取未授权 Shell 访问权限", source = "github" },
-  { url = "https://github.com/0xBlackash/CVE-2026-0073", description = "ADB 认证绕过 C++ 利用实现", source = "github" }
+  { url = "https://github.com/0xbinder/CVE-2026-0073", description = "自动化利用工具，内置 mDNS/Zeroconf 扫描器和交互式 PTY Shell", source = "github" },
+  { url = "https://github.com/unnaim/adbHijacker", description = "零点击 RCE 利用工具，支持 Android 11+ 无线调试", source = "github" },
+  { url = "https://github.com/novaek/CVE-2026-0073-Research", description = "CVE-2026-0073 RCE 利用分析研究", source = "github" }
 ]
 nuclei_templates = []
 
 [remediation]
-fix = "升级到 Android 安全公告 2026-05-01 中指定的修复版本。参考 https://source.android.com/docs/security/bulletin/2026/2026-05-01"
-workaround = "如无法升级，可在开发者选项中关闭「无线调试」功能，或确保 Android 设备仅在受信任的网络中启用无线调试。"
-steps = ["步骤1: 进入「设置」→「开发者选项」", "步骤2: 关闭「无线调试」开关", "步骤3: 通过系统更新安装 2026-05-01 安全补丁"]
+fix = "升级到 Android 安全公告 2026-05-01 中对应修复版本。"
+workaround = "禁用无线 ADB 调试功能。进入「设置 > 开发者选项 > 无线调试」并关闭。如必须使用，请确保仅在受信任的封闭网络环境中启用。"
+steps = [
+  "步骤1: 检查 Android 系统版本（受影响版本：Android 14、15、16 及 16 QPR2 Beta）",
+  "步骤2: 进入「设置 > 开发者选项」关闭「无线调试」开关",
+  "步骤3: 升级到 Android 安全公告 2026-05-01 提供的修复版本"
+]
 
 [references]
 nvd = "https://nvd.nist.gov/vuln/detail/CVE-2026-0073"
-avd = ""
-other = ["https://source.android.com/docs/security/bulletin/2026/2026-05-01"]
+other = [
+  "https://source.android.com/docs/security/bulletin/2026/2026-05-01"
+]
 
 [tags]
-tags = ["CWE-303", "Android", "ADB", "认证绕过", "RCE", "无线调试", "类型混淆"]
+tags = ["CWE-303", "Android", "ADB", "认证绕过", "TLS类型混淆", "RCE"]
 
 [authenticity]
 cve_confidence = "high"
 poc_confidence = "high"
-notes = "CVE 已由 Google 官方确认，CISA-ADP 已分配 CVSS 3.1 评分 8.8 及 CWE-303。GitHub 上多个公开仓库已验证漏洞可被利用，包括完整交互式 shell 利用工具。Android 安全公告 2026-05-01 已提供修复补丁。"
+notes = "NVD 已确认 CVE 分配并发布详细信息，CISA-ADP 已完成 CVSS 3.1 评分。多个独立 GitHub 仓库已发布 PoC 和 EXP 代码，漏洞真实性已得到广泛验证。"
 
 [meta]
-collected_at = "2026-07-10T15:30:00Z"
+collected_at = "2026-07-11T00:00:00Z"
 status = "completed"

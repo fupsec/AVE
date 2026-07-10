@@ -15,9 +15,9 @@ updated = "2026-06-16"
 [score]
 cvss_v2 = 10.0
 cvss_v2_vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C"
-cvss_v3 = null
+cvss_v3 = 0.0
 cvss_v3_vector = ""
-cvss_v4 = null
+cvss_v4 = 0.0
 cvss_v4_vector = ""
 
 [affected]
