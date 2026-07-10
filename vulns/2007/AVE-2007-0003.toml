@@ -1,0 +1,55 @@
+[id]
+ave_id = "AVE-2007-0003"
+cve_id = "CVE-2007-5659"
+other_ids = ["CVE-2008-0655"]
+
+[basic]
+title = "Adobe Acrobat and Reader 缓冲区溢出漏洞"
+description = "Adobe Acrobat and Reader 8.1.1 及之前版本存在多个缓冲区溢出漏洞，远程攻击者可通过特制 PDF 文件利用未指定 JavaScript 方法的长参数执行任意代码。此漏洞已被 CISA 列入已知被利用漏洞目录（KEV），并可能与 CVE-2008-0655 存在关联。"
+severity = "HIGH"
+source = "kev"
+published = "2007-10-24"
+updated = "2024-06-28"
+
+[score]
+cvss_v2 = 9.3
+cvss_v2_vector = "AV:N/AC:M/Au:N/C:C/I:C/A:C"
+cvss_v3 = 7.8
+cvss_v3_vector = "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H"
+
+[affected]
+vendor = "Adobe"
+product = "Acrobat and Reader"
+
+[exploit]
+poc = []
+exp = []
+nuclei_templates = []
+
+[remediation]
+fix = "升级至 Adobe Acrobat/Reader 8.1.2 及以上版本。参考 Adobe 官方安全公告 APSB08-13。"
+workaround = "在受影响版本的 Adobe Reader 中禁用 JavaScript 功能：编辑 > 首选项 > JavaScript > 取消选中"启用 Acrobat JavaScript"。"
+steps = ["确认 Adobe Acrobat/Reader 版本是否为 8.1.1 及以下", "下载并安装最新安全更新: https://www.adobe.com/support/security/bulletins/apsb08-13.html", "或禁用 JavaScript 作为临时缓解措施"]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2007-5659"
+other = [
+  { url = "https://www.cisa.gov/known-exploited-vulnerabilities-catalog", description = "CISA KEV 目录 - Adobe Acrobat and Reader 缓冲区溢出漏洞" },
+  { url = "http://www.adobe.com/support/security/advisories/apsa08-01.html", description = "Adobe 安全公告 APSA08-01" },
+  { url = "http://www.adobe.com/support/security/bulletins/apsb08-13.html", description = "Adobe 安全公告 APSB08-13" },
+  { url = "http://www.kb.cert.org/vuls/id/666281", description = "CERT/CC 漏洞说明 VU#666281" },
+  { url = "http://security.gentoo.org/glsa/glsa-200803-01.xml", description = "Gentoo Linux 安全公告 GLSA 200803-01" },
+  { url = "https://oval.cisecurity.org/repository/search/definition/oval%3Aorg.mitre.oval%3Adef%3A9813", description = "OVAL 定义 9813" }
+]
+
+[tags]
+tags = ["CWE-120", "CWE-119", "缓冲区溢出", "远程代码执行", "Adobe", "PDF", "KEV", "已遭利用"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "low"
+notes = "CVE-2007-5659 已被 CISA 列入 KEV 目录，真实性极高。漏洞为 PDF 解析缓冲区溢出，非 HTTP 协议，故无标准 HTTP PoC。此漏洞可能与 CVE-2008-0655 关联或重叠。"
+
+[meta]
+collected_at = "2026-07-10T20:16:00Z"
+status = "completed"
