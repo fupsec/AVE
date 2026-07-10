@@ -46,7 +46,7 @@ nvd = "https://nvd.nist.gov/vuln/detail/CVE-2018-25115"
 other = [
   "https://www.vulncheck.com/advisories/dlink-dir-rce-service-cgi",
   "https://www.exploit-db.com/exploits/43496",
-  "https://github.com/Cr0n1c/dlink_shell_poc/blob/master/dlink_auth_rce",
+  "https://github.com/Cr0n1c/dlink_shell_poc",
   "https://legacy.us.dlink.com/",
   "https://support.dlink.com/EndOfLifePolicy.aspx"
 ]
@@ -60,5 +60,5 @@ poc_confidence = "high"
 notes = "CVE-2018-25115于2025年8月由VulnCheck分配。漏洞在2018年已被公开（Exploit-DB 43496发布于2018-01-10），但由于从未被分配CVE编号，直到2025年Shadowserver Foundation观测到野外利用后才被VulnCheck追溯分配。所有受影响路由器型号已停止支持（End of Life）。CWE-78命令注入，远程未授权RCE。CVSS v4.0评分10.0（严重）。"
 
 [meta]
-collected_at = "2026-07-10T10:18:58Z"
+collected_at = "2026-07-10T14:06:36Z"
 status = "completed"
