@@ -1,17 +1,14 @@
 [id]
-ave_id = "AVE-2026-0055"
-cve_id = "CVE-2026-49477"
-aliases = [
-    "CVE-2026-49477",
-    "GHSA-836r-79rf-4m37",
-]
+ave_id = "AVE-2000-0013"
+cve_id = "CVE-2000-0229"
+aliases = ["CVE-2000-0229"]
 
 [basic]
-title = "CVE-2026-49477"
+title = "CVE-2000-0229"
 description = ""
 severity = "UNKNOWN"
 score = 0.0
-sources = ["ghsa"]
+sources = ["redhat"]
 published = ""
 updated = ""
 remediation = "Refer to vendor advisory and upgrade to fixed version."
@@ -25,4 +22,4 @@ exp_urls = []
 
 [meta]
 status = "completed"
-collected_at = "2026-07-10T12:52:47.830078070+00:00"
+collected_at = "2026-07-10T12:52:47.830180725+00:00"
