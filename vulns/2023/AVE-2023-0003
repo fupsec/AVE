@@ -1,0 +1,25 @@
+[id]
+ave_id = "AVE-2023-0003"
+cve_id = "CVE-2023-4966"
+aliases = ["CVE-2023-4966"]
+
+[basic]
+title = "CVE-2023-4966"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["hwpoc"]
+published = ""
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T15:00:19.076343996+00:00"
