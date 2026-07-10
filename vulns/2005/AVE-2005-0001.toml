@@ -26,9 +26,13 @@ product = "OpenView Network Node Manager"
 
 [exploit]
 poc = [
-  { url = "http://marc.info/?l=bugtraq&m=112499121725662&w=2", description = "Portcullis Security Advisory 05-014 - 原始漏洞公告与 PoC", source = "其他" }
+  { url = "http://marc.info/?l=bugtraq&m=112499121725662&w=2", description = "Portcullis Security Advisory 05-014 - 原始漏洞公告与 PoC", source = "其他" },
+  { url = "https://www.exploit-db.com/exploits/16887", description = "Metasploit 模块 - connectedNodes.ovpl 远程命令执行", source = "exploit-db" },
+  { url = "https://www.exploit-db.com/exploits/1188", description = "C 语言 PoC - HP OpenView NNM 7.50 远程命令执行", source = "exploit-db" }
 ]
-exp = []
+exp = [
+  { url = "https://www.exploit-db.com/exploits/1188", description = "EXP 利用脚本 - 远程命令执行获取交互式 Shell", source = "exploit-db" }
+]
 nuclei_templates = []
 
 [remediation]
