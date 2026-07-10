@@ -1,29 +1,25 @@
-[id]
-ave_id = "AVE-1999-0023"
-cve_id = "CVE-1999-0222"
-aliases = ["CVE-1999-0222"]
-
 [basic]
-title = "Cisco IOS Web服务器长URL导致拒绝服务漏洞"
-description = "Cisco IOS设备中的Web服务器在处理超长URL请求时存在拒绝服务漏洞。远程攻击者无需身份验证即可通过发送精心构造的超长URL，触发目标路由器CPU负载过高并导致系统重启，造成网络服务中断。该漏洞影响运行Cisco IOS软件的多种路由器型号。"
-severity = "MEDIUM"
-score = 5.0
-remediation = "升级Cisco IOS至已修复该漏洞的版本，或在不需要HTTP管理功能时在接口配置中执行'no ip http server'命令禁用Web服务器。"
-published = "1999-03-01"
-updated = "2026-06-16"
-sources = ["cve", "nvd"]
-
-[affected]
-vendor = "Cisco"
-product = "Cisco IOS"
-
-[references]
-urls = ["http://www.securityfocus.com/archive/1/60159"]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["cve"]
+title = "CVE-1999-0222 漏洞"
+updated = ""
 
 [exploit]
-poc_urls = []
 exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0222"]
+ave_id = "AVE-1999-0023"
+cve_id = "CVE-1999-0222"
 
 [meta]
+collected_at = "2026-07-10T21:16:12.698364250+00:00"
 status = "completed"
-collected_at = "2026-07-10T18:00:59.608243246+00:00"
+
+[references]
+urls = []
