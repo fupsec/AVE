@@ -1,14 +1,14 @@
 [id]
 ave_id = "AVE-1999-0205"
-cve_id = "CVE-1999-1109"
-aliases = ["CVE-1999-1109"]
+cve_id = "CVE-1999-0019"
+aliases = ["CVE-1999-0019"]
 
 [basic]
-title = "CVE-1999-1109"
+title = "CVE-1999-0019"
 description = ""
 severity = "UNKNOWN"
 score = 0.0
-sources = ["tenable"]
+sources = ["redhat"]
 published = ""
 updated = ""
 remediation = "Refer to vendor advisory and upgrade to fixed version."
@@ -22,4 +22,4 @@ exp_urls = []
 
 [meta]
 status = "completed"
-collected_at = "2026-07-10T14:03:33.747690131+00:00"
+collected_at = "2026-07-10T14:04:07.078063002+00:00"
