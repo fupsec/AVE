@@ -1,38 +1,25 @@
-[id]
-ave_id = "AVE-1999-0014"
-cve_id = "CVE-1999-0210"
-aliases = ["CVE-1999-0210"]
-
 [basic]
-title = "SunOS/Solaris automountd 远程命令执行漏洞"
-description = "Automount守护进程automountd在处理RPC请求时存在shell元字符注入漏洞。攻击者可通过向automountd发送包含shell特殊字符的恶意RPC请求，在目标系统上以root权限执行任意命令，完全控制受影响系统。该漏洞影响运行automountd的SunOS/Solaris及HP-UX系统，无需认证即可远程利用。"
-severity = "CRITICAL"
-score = 9.8
-remediation = "升级操作系统至厂商已修复版本，或禁用automountd服务。在防火墙上限制对RPC端口（111/2049）的访问，仅允许受信网络段连接。建议实施最小权限原则，关闭不必要的RPC服务。"
-sources = ["nvd", "redhat"]
-published = "1997-11-26"
-updated = "2026-06-16"
-
-[affected]
-vendor = "Sun Microsystems"
-product = "Solaris automountd"
-
-[references]
-urls = [
-    "https://nvd.nist.gov/vuln/detail/CVE-1999-0210",
-    "https://access.redhat.com/security/cve/CVE-1999-0210",
-    "http://www.cert.org/advisories/CA-99-05-statd-automountd.html",
-    "http://www.securityfocus.com/bid/235",
-    "http://marc.info/?l=bugtraq&m=88053459921223&w=2",
-    "http://marc.info/?l=bugtraq&m=91547759121289&w=2",
-    "http://www1.itrc.hp.com/service/cki/docDisplay.do?docId=HPSBUX9910-104",
-]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["redhat"]
+title = "CVE-1999-0210 漏洞"
+updated = ""
 
 [exploit]
-poc_urls = []
 exp_urls = []
-nuclei_templates = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0210"]
+ave_id = "AVE-1999-0014"
+cve_id = "CVE-1999-0210"
 
 [meta]
-collected_at = "2026-07-11T00:00:00Z"
+collected_at = "2026-07-10T21:11:31.690507519+00:00"
 status = "completed"
+
+[references]
+urls = []
