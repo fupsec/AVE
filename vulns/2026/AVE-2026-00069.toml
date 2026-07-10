@@ -1,0 +1,58 @@
+[id]
+ave_id = "AVE-2026-00069"
+cve_id = ""
+avd_id = ""
+other_ids = ["CNVD-2023-48562"]
+
+[basic]
+title = "用友畅捷通T+ GetStoreWarehouseByStore .NET反序列化远程命令执行漏洞"
+description = "用友畅捷通T+存在.NET反序列化远程命令执行漏洞。攻击者可利用GetStoreWarehouseByStore方法通过App_Code.ashx接口注入序列化payload，执行任意系统命令，最终导致服务器敏感信息泄露或被完全控制。该漏洞无需认证即可利用，影响畅捷通T+ 13.0和16.0版本。"
+severity = "CRITICAL"
+source = "cnvd"
+published = "2023-06-14"
+updated = "2023-06-24"
+
+[score]
+cvss_v2 = 9.8
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C"
+cvss_v3 = 9.8
+cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+
+[affected]
+vendor = "用友畅捷通"
+product = "畅捷通T+"
+
+[exploit]
+poc = [
+  { url = "https://github.com/MrWQ/vulnerability-paper/blob/7551f7584bd35039028b1d9473a00201ed18e6b2/bugs/%E7%95%85%E6%8D%B7%E9%80%9A%20T%2B%20%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E.md", description = "畅捷通T+远程命令执行漏洞详细分析及PoC", source = "github" },
+  { url = "https://github.com/ibaiw/2023Hvv/blob/main/%E7%94%A8%E6%9C%89%E7%95%85%E6%8D%B7%E9%80%9AT%2BGetStoreWarehouseByStore%20RCE%E6%BC%8F%E6%B4%9E.md", description = "2023 HVV情报-畅捷通T+ RCE漏洞", source = "github" },
+  { url = "https://github.com/Threekiii/Vulnerability-Wiki/blob/master/docs-base/docs/webapp/%E7%94%A8%E5%8F%8B-%E7%95%85%E6%8D%B7%E9%80%9AT+-GetStoreWarehouseByStore-%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E.md", description = "Vulnerability-Wiki漏洞文档", source = "github" },
+  { url = "https://www.cnblogs.com/pursue-security/p/17703915.html", description = "用友畅捷通T+ GetStoreWarehouseByStore远程命令执行漏洞复现", source = "其他" },
+  { url = "https://cn-sec.com/archives/1828334.html", description = "漏洞归档-用友畅捷通T+ GetStoreWarehouseByStore远程命令执行漏洞", source = "其他" }
+]
+exp = []
+nuclei_templates = [
+  { url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2023/CNVD-2023-48562.yaml", description = "Nuclei检测模板-畅捷通T+ GetStoreWarehouseByStore RCE", source = "nuclei" }
+]
+
+[remediation]
+fix = "目前厂商已发布安全补丁，建议升级至T+ 13.000.001.0404及以上补丁包。"
+workaround = "如无法立即升级，建议使用WAF对/tplus/ajaxpro/路径下的请求进行过滤，阻止包含.NET反序列化payload的请求。避免将畅捷通T+系统直接暴露在互联网上。"
+steps = ["步骤1: 确认当前畅捷通T+版本", "步骤2: 下载并安装官方安全补丁（T+ 13.000.001.0404及以上）", "步骤3: 验证补丁安装后系统正常运行", "步骤4: 如暂时无法升级，配置WAF规则拦截恶意请求"]
+
+[references]
+nvd = ""
+avd = ""
+other = ["https://peiqi.wgpsec.org/wiki/webapp/%E7%94%A8%E5%8F%8B/%E7%94%A8%E5%8F%8B%20%E7%95%85%E6%8D%B7%E9%80%9AT+%20GetStoreWarehouseByStore%20%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E.html", "https://www.ddpoc.com/poc/DVB-2023-4566.html", "https://www.chanjetvip.com/product/goods/"]
+
+[tags]
+tags = ["CNVD-2023-48562", "RCE", "deserialization", "dotnet", "chanjet", "tplus", "CWE-502"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "high"
+notes = "该漏洞CNVD编号为CNVD-2023-48562，未分配CVE编号（CVE-2023-48562为Adobe Experience Manager漏洞，非同一漏洞）。多个安全研究机构已公开漏洞详情和复现步骤，Nuclei模板已收录。"
+
+[meta]
+collected_at = "2026-07-10T00:00:00Z"
+status = "completed"

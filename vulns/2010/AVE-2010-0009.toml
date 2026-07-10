@@ -1,0 +1,68 @@
+[id]
+ave_id = "AVE-2010-0009"
+cve_id = "CVE-2010-1871"
+avd_id = ""
+other_ids = ["RHSA-2010:0564", "BID-41994", "CWE-917"]
+
+[basic]
+title = "Red Hat JBoss Seam 2 表达式语言注入远程代码执行漏洞"
+description = "JBoss Seam 2 (jboss-seam2) 未正确过滤 JBoss 表达式语言（EL）表达式输入。远程攻击者可通过向基于 JBoss Seam 框架的应用程序发送包含特制 EL 表达式的 URL，利用 actionOutcome 参数注入任意 JBoss EL 表达式，通过 Java 反射机制调用 Runtime.exec() 执行任意命令。此漏洞仅在 Java Security Manager 未正确配置时存在。已在野被广泛利用，CISA KEV 已于 2021-12-10 收录。"
+severity = "HIGH"
+source = "nvd"
+published = "2010-07-19"
+updated = "2026-06-16"
+
+[score]
+cvss_v2 = 6.8
+cvss_v2_vector = "AV:N/AC:M/Au:N/C:P/I:P/A:P"
+cvss_v3 = 8.8
+cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H"
+cvss_v4 = 0.0
+cvss_v4_vector = ""
+
+[affected]
+vendor = "Red Hat"
+product = "JBoss Enterprise Application Platform 4.3.0 / JBoss Seam 2"
+
+[exploit]
+poc = [
+  { url = "https://github.com/chaitin/xray/blob/master/pocs/jboss-cve-2010-1871.yml", description = "Xray 漏洞扫描框架 PoC（检测 CVE-2010-1871 EL 注入）", source = "github" },
+  { url = "https://www.exploit-db.com/exploits/36653", description = "Exploit-DB Metasploit 模块（JBoss Seam 2 任意文件上传与执行）", source = "exploit-db" },
+  { url = "http://blog.o0o.nu/2010/07/cve-2010-1871-jboss-seam-framework.html", description = "原始 PoC 发布页面（Meder Kydyraliev 于 2010-07 披露）", source = "其他" }
+]
+exp = [
+  { url = "https://github.com/rapid7/metasploit-framework/blob/master/modules/exploits/multi/http/jboss_seam_upload_exec.rb", description = "Metasploit 框架利用模块（jboss_seam_upload_exec.rb），上传并执行 Meterpreter 载荷", source = "github" },
+  { url = "https://github.com/rapid7/metasploit-framework/blob/master/modules/auxiliary/admin/http/jboss_seam_exec.rb", description = "Metasploit 框架辅助模块（jboss_seam_exec.rb），远程命令执行检测", source = "github" }
+]
+nuclei_templates = []
+
+[remediation]
+fix = "升级 JBoss Seam 2 至 2.2.1.CR2 及以上版本，或安装 Red Hat RHSA-2010:0564 安全更新。相关修复已提交至 JBoss Seam SVN。"
+workaround = "如无法立即升级，可采取以下缓解措施：1) 正确配置 Java Security Manager 可阻止利用；2) 在反向代理或 WAF 层面过滤 actionOutcome 参数中的 EL 表达式特征（如 #{ 等关键字）；3) 限制对 JBoss Seam 应用（如 /seam-booking/、/admin-console/）的网络访问。"
+steps = ["步骤1: 确认 JBoss Seam 版本（查看 jboss-seam2 版本号）", "步骤2: 根据 Red Hat 安全公告 RHSA-2010:0564 获取并安装更新包", "步骤3: 重启 JBoss 服务器使更新生效", "步骤4: 确保 Java Security Manager 正确配置"]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2010-1871"
+avd = ""
+other = [
+  "https://access.redhat.com/errata/RHSA-2010:0564",
+  "https://bugzilla.redhat.com/show_bug.cgi?id=615956",
+  "http://blog.o0o.nu/2010/07/cve-2010-1871-jboss-seam-framework.html",
+  "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2010-1871",
+  "https://security.netapp.com/advisory/ntap-20161017-0001/",
+  "https://exchange.xforce.ibmcloud.com/vulnerabilities/60794",
+  "http://www.securityfocus.com/bid/41994",
+  "http://securitytracker.com/id?1024253"
+]
+
+[tags]
+tags = ["CWE-917", "CWE-20", "RCE", "EL-Injection", "KEV", "JBoss", "Seam", "expression-language", "remote-code-execution"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "high"
+notes = "CISA KEV 于 2021-12-10 收录，要求 2022-06-10 前修复。EPSS 评分约 0.935，处于极高百分位。有活跃的 Metasploit 模块和多个公开 PoC/EXP。原始漏洞发现者为 Meder Kydyraliev（Google Security Team）。"
+
+[meta]
+collected_at = "2026-07-10T00:00:00Z"
+status = "completed"

