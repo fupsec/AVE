@@ -1,0 +1,71 @@
+[id]
+ave_id = "AVE-2025-0040"
+cve_id = "CVE-2025-70795"
+avd_id = ""
+other_ids = ["CVE-2026-0828"]
+
+[basic]
+title = "Safetica STProcessMonitor 驱动程序权限管理不当漏洞（BYOVD）"
+description = "Safetica STProcessMonitor 驱动程序（版本 11.11.4.0）存在权限管理不当漏洞（CWE-269）。由于驱动程序 IOCTL 处理程序对调用者身份验证不足，拥有管理员权限的攻击者可通过发送特制的 IOCTL 请求（0xB822200C）终止受第三方保护的安全进程，导致拒绝服务。该漏洞属于 BYOVD（Bring Your Own Vulnerable Driver）类型，攻击者可将存在漏洞的驱动程序加载到目标系统后利用。漏洞原始披露于卡饭论坛，由 KOSEC LLC 通过 CERT/CC 报告。同一驱动程序中还存在 CVE-2026-0828（未授权进程终止，CVSS 7.5 HIGH），旧版本驱动（v11.11.4.0）无需任何权限即可通过 IOCTL 终止进程。"
+severity = "MEDIUM"
+source = "nvd"
+published = "2026-04-17"
+updated = "2026-06-17"
+
+[score]
+cvss_v2 = 0.0
+cvss_v2_vector = ""
+cvss_v3 = 5.5
+cvss_v3_vector = "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H"
+cvss_v4 = 0.0
+cvss_v4_vector = ""
+
+[affected]
+vendor = "Safetica"
+product = "STProcessMonitor"
+
+[exploit]
+poc = [
+  { url = "https://github.com/ANYLNK/STProcessMonitorBYOVD", description = "CVE-2025-70795/CVE-2026-0828 PoC，包含驱动安装、进程终止等功能（49星，C++）", source = "github" },
+  { url = "https://github.com/oxfemale/KillChain", description = "CVE-2026-0828 内核进程终止利用工具（36星，C）", source = "github" },
+  { url = "https://github.com/DeathShotXD/0xKern3lCrush", description = "CVE-2026-0828 高级PoC与研究代码（45星，C）", source = "github" },
+  { url = "https://github.com/mein-0/cve-2026-0828", description = "CVE-2026-0828 独立C语言PoC", source = "github" },
+  { url = "https://github.com/I3r1h0n/Sigurd", description = "BYOVD技术滥用工具，包含CVE-2026-0828驱动利用（Rust，20星）", source = "github" },
+  { url = "https://github.com/KOSEC-LLC/BYOVD-Research", description = "KOSEC原始研究仓库，包含存在漏洞的驱动和漏洞报告（8星，C）", source = "github" }
+]
+exp = [
+  { url = "https://github.com/ANYLNK/STProcessMonitorBYOVD", description = "完整利用工具，支持安装驱动并终止任意进程（/Kill命令，无需特权）", source = "github" },
+  { url = "https://github.com/oxfemale/KillChain", description = "内核进程终止工具，利用CVE-2026-0828实现进程强制终止", source = "github" }
+]
+nuclei_templates = []
+
+[remediation]
+fix = "升级 Safetica STProcessMonitor 驱动到 11.26.18 或更高版本。新版本驱动（v11.26.18）已增加调用者身份验证，仅允许 NT AUTHORITY\\SYSTEM 发送 IOCTL 请求。用户应从官方渠道获取 Safetica 应用套件更新。"
+workaround = "如无法升级驱动程序，可采取以下缓解措施：1) 启用驱动程序签名强制（Driver Signature Enforcement），阻止加载未签名驱动；2) 使用 Windows Defender Application Control (WDAC) 或 AppLocker 策略阻止加载 STProcessMonitor.sys；3) 监控 IOCTL 0xB822200C 的异常调用；4) 在 Windows 安全中心启用内核隔离（Core Isolation）和内存完整性（Memory Integrity）功能。"
+steps = ["步骤1: 确认当前 STProcessMonitor 驱动版本（检查 %SystemRoot%\\System32\\drivers\\STProcessMonitor.sys 文件属性）", "步骤2: 如版本为 11.11.4.0 或更早，存在漏洞", "步骤3: 从 Safetica 官方渠道获取最新版本应用更新", "步骤4: 更新后确认驱动版本已升级至 11.26.18 或更高", "步骤5: 部署 WDAC/AppLocker 策略，禁止未经签名的内核驱动加载"]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2025-70795"
+avd = ""
+other = [
+  "https://nvd.nist.gov/vuln/detail/CVE-2026-0828",
+  "https://www.kb.cert.org/vuls/id/818729",
+  "https://bbs.kafan.cn/thread-2287429-1-1.html",
+  "https://github.com/magicsword-io/LOLDrivers/issues/268",
+  "https://github.com/magicsword-io/LOLDrivers/commit/eea8326bf891d810902203e9ac5cfdeaf5a17a1c",
+  "https://www.virustotal.com/gui/file/70bcec00c215fe52779700f74e9bd669ff836f594df92381cbfb7ee0568e7a8b",
+  "https://www.virustotal.com/gui/file/9ace6a1e4bee5834be38b4c2fd26780d1fcc18ea9d58224e31d6382c19e53296",
+  "https://www.virustotal.com/gui/file/fc3588482f596a067b65d5d64d21fe62463b38a138fc87d8d2350efa86d34284"
+]
+
+[tags]
+tags = ["CWE-269", "CWE-250", "BYOVD", "kernel-driver", "privilege-escalation", "denial-of-service", "ioctl", "safetica", "process-termination", "windows-kernel", "loldrivers"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "high"
+notes = "CVE-2025-70795 由卡饭论坛于 2025-12-30 首次披露恶意样本（https://bbs.kafan.cn/thread-2287429-1-1.html），随后由 KOSEC LLC 通过 CERT/CC 正式报告（VU#818729）。CISA-ADP 评估 exploitation 状态为 'poc'（PoC 存在）。NVD 提供 CVSS 3.1 评分 5.5 MEDIUM（CISA-ADP评估）。CVE-2026-0828 为同一驱动中的相关漏洞（未授权进程终止），CVSS 3.1 评分 7.5 HIGH。该驱动已收录于 LOLDrivers 项目。GitHub 上存在多个独立 PoC 仓库，其中 ANYLNK/STProcessMonitorBYOVD 包含完整的利用代码（49星）。由于该漏洞为内核驱动程序漏洞（非HTTP协议），不生成HTTP PoC脚本。"
+
+[meta]
+collected_at = "2026-07-10T18:00:00Z"
+status = "completed"
