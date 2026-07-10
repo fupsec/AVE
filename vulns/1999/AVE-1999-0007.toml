@@ -1,31 +1,25 @@
-[id]
-ave_id = "AVE-1999-0007"
-cve_id = "CVE-1999-0154"
-aliases = ["CVE-1999-0154"]
-
 [basic]
-title = "Microsoft IIS 2.0/3.0 ASP 源码泄露漏洞"
-description = "IIS 2.0 和 3.0 存在信息泄露漏洞，远程攻击者通过在 ASP 文件 URL 末尾追加点号（.）即可读取 ASP 页面的源代码，无需任何身份认证。攻击者构造类似 http://target/example.asp. 的请求即可绕过脚本执行逻辑，导致服务器返回源码而非执行结果，可能泄露数据库连接密码、业务逻辑、目录结构等敏感信息。"
-severity = "MEDIUM"
-score = 5.0
-remediation = "升级到 Windows 2000 及以上版本操作系统附带的 IIS 5.0 或更高版本，安装 URLScan 等安全工具拦截包含异常字符的恶意请求。"
-sources = ["cve", "nvd"]
-published = "1999-12-31"
-updated = "2026-06-16"
-
-[references]
-urls = [
-    "https://nvd.nist.gov/vuln/detail/CVE-1999-0154",
-    "https://exchange.xforce.ibmcloud.com/vulnerabilities/CVE-1999-0154",
-    "https://www.exploit-db.com/exploits/20481",
-]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["cve"]
+title = "CVE-1999-0154 漏洞"
+updated = ""
 
 [exploit]
-poc_urls = [
-    "https://www.exploit-db.com/exploits/20481",
-]
 exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0154"]
+ave_id = "AVE-1999-0007"
+cve_id = "CVE-1999-0154"
 
 [meta]
-collected_at = "2026-07-11T10:18:58Z"
+collected_at = "2026-07-10T20:59:14.763086365+00:00"
 status = "completed"
+
+[references]
+urls = []

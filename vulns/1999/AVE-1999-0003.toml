@@ -1,37 +1,25 @@
-[id]
-ave_id = "AVE-1999-0003"
-cve_id = "CVE-1999-0005"
-aliases = ["CVE-1999-0005"]
-
 [basic]
-title = "Netscape Messaging Server 及 UW IMAPD 远程缓冲区溢出漏洞"
-description = "该漏洞存在于 Netscape Messaging Server 3.55 及 University of Washington imapd 10.234 及之前版本的 IMAP 服务中。攻击者可通过向 AUTHENTICATE 命令发送特制的超长认证机制名称字符串触发缓冲区溢出。由于 strcpy 函数将最多 8192 字节的输入复制到仅 1024 字节的栈缓冲区，导致栈溢出，远程攻击者可利用该漏洞以 root 权限执行任意代码，完全控制受影响系统。"
-severity = "CRITICAL"
-score = 10.0
-cvss_v2 = 10.0
-cvss_v2_vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C"
-remediation = "升级 University of Washington imapd 至 10.234 以上版本，或升级 Netscape Messaging Server 至厂商修复版本。若无法升级，应在防火墙层面限制对 IMAP 端口(143/TCP)的访问，仅允许可信来源连接。"
-published = "1998-07-20"
-updated = "1998-07-20"
-sources = ["exploitdb", "nvd"]
-
-[affected]
-vendor = "University of Washington, Netscape"
-product = "imapd, Messaging Server"
-
-[references]
-urls = [
-    "https://nvd.nist.gov/vuln/detail/CVE-1999-0005",
-    "http://www.securityfocus.com/bid/130",
-    "http://sunsolve.sun.com/pub-cgi/retrieve.pl?doctype=coll&doc=secbull/177",
-    "https://www.exploit-db.com/exploits/19107"
-]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["exploitdb"]
+title = "CVE-1999-0005 漏洞"
+updated = ""
 
 [exploit]
-poc_urls = ["https://www.exploit-db.com/exploits/19107"]
-exp_urls = ["https://www.exploit-db.com/exploits/19107"]
-nuclei_templates = []
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0005"]
+ave_id = "AVE-1999-0003"
+cve_id = "CVE-1999-0005"
 
 [meta]
-collected_at = "2026-07-10T16:49:04.480224760+00:00"
+collected_at = "2026-07-10T20:59:01.112306333+00:00"
 status = "completed"
+
+[references]
+urls = []
