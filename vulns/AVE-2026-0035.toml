@@ -1,55 +1,55 @@
 [id]
 ave_id = "AVE-2026-0035"
-cve_id = ""
+cve_id = "CVE-2026-35381"
 avd_id = ""
-other_ids = ["CNVD-2019-32204"]
+other_ids = ["GHSA-pmfc-4wjj-gmhx"]
 
 [basic]
-title = "泛微 e-cology <=9.0 BeanShell 远程代码执行漏洞"
-description = "泛微e-cology OA系统9.0及之前版本中存在BeanShell组件远程代码执行漏洞（CNVD-2019-32204）。远程攻击者可通过未经授权访问BeanShell组件接口（/bsh.servlet.BshServlet），向bsh.script参数注入恶意Java代码，从而在目标服务器上执行任意命令。该漏洞影响范围广泛，已有公开的PoC/EXP。官方已发布安全补丁，建议用户尽快升级。"
-severity = "CRITICAL"
-source = "nuclei"
-published = "2019-01-01"
-updated = "2019-12-31"
+title = "uutils coreutils cut: -s 在 -z -d '' 空分隔符模式下被忽略导致数据泄露"
+description = "uutils coreutils 的 cut 工具中存在逻辑错误，当组合使用 -z（空终止符）和 -d ''（空分隔符）选项时，代码会进入一条特殊的换行分隔符处理路径，该路径忽略了 -s（仅限分隔）标志。与 GNU coreutils 行为不同，uutils cut 会输出完整记录及 NUL 字节而非将其抑制。依赖 cut -s 过滤未分隔数据的自动化管道可能因此处理了本应被过滤的数据，造成数据完整性风险。"
+severity = "LOW"
+source = "nvd"
+published = "2026-04-22"
+updated = "2026-06-17"
 
 [score]
-cvss_v3 = 10.0
-cvss_v3_vector = "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H"
+cvss_v3 = 3.3
+cvss_v3_vector = "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:L/A:N"
 
 [affected]
-vendor = "泛微 (Fanwei)"
-product = "e-cology OA"
+vendor = "uutils"
+product = "coreutils"
 
 [exploit]
 poc = [
-  { url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2019/CNVD-2019-32204.yaml", description = "Nuclei 检测模板 PoC", source = "nuclei" }
+  { url = "https://github.com/uutils/coreutils/pull/11394", description = "漏洞修复 PR，包含复现命令", source = "github" }
 ]
 exp = []
-nuclei_templates = [
-  { url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2019/CNVD-2019-32204.yaml", description = "Nuclei 检测模板", source = "nuclei" }
-]
+nuclei_templates = []
 
 [remediation]
-fix = "升级泛微 e-cology OA 系统至 9.0 以上安全版本。官方已发布安全补丁，请访问泛微官方网站获取最新版本。"
-workaround = "如无法升级，可在 Web 服务器层面限制对 /bsh.servlet.BshServlet 路径的访问，仅允许可信 IP 访问，或直接删除 BeanShell 组件相关文件。"
-steps = ["确认泛微 e-cology OA 系统版本", "备份系统数据", "升级至官方最新安全版本", "验证 BeanShell 接口是否已禁用"]
+fix = "升级 uutils coreutils 至 0.7.0 或更高版本（推荐 0.8.0），该版本合入了修复提交。"
+workaround = "避免在管道中使用 cut -z -d '' -s 的组合；如需过滤未分隔数据，可改用其他方式处理。"
+steps = ["确认当前 uutils coreutils 版本", "使用 cargo 更新：cargo install coreutils 或升级系统包管理器中对应的包", "验证 fix: 执行 printf 'abc' | cut -z -d '' -s -f 1 | od -An -tx1 应无输出"]
 
 [references]
-nvd = ""
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2026-35381"
 avd = ""
 other = [
-  { url = "https://blog.actorsfit.com/a?ID=01500-11a2f7e6-54b0-4a40-9a79-5c56dc6ebd51", description = "漏洞分析文章" },
-  { url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2019/CNVD-2019-32204.yaml", description = "Nuclei 检测模板" }
+  { url = "https://github.com/advisories/GHSA-pmfc-4wjj-gmhx", description = "GitHub Security Advisory" },
+  { url = "https://github.com/uutils/coreutils/pull/11394", description = "修复 Pull Request" },
+  { url = "https://github.com/uutils/coreutils/commit/483f13e91830c468262aa1e010e753d6ae99c898", description = "修复提交" },
+  { url = "https://github.com/uutils/coreutils/releases/tag/0.8.0", description = "修复版本发布" }
 ]
 
 [tags]
-tags = ["CWE-77", "RCE", "BeanShell", "OA"]
+tags = ["CWE-684", "cut", "coreutils", "logic-error"]
 
 [authenticity]
 cve_confidence = "high"
-poc_confidence = "high"
-notes = "CNVD已收录编号CNVD-2019-32204，Nuclei官方模板已验证，存在多个公开PoC，真实性确认。"
+poc_confidence = "medium"
+notes = "CVE 由 Canonical Ltd. 分配，NVD 已收录，修复 PR #11394 已合入 main 分支。PoC 为复现命令而非完整脚本，真实可靠。"
 
 [meta]
-collected_at = "2026-07-10T11:58:56Z"
+collected_at = "2026-07-10T12:00:00Z"
 status = "completed"
