@@ -1,25 +1,48 @@
 [id]
 ave_id = "AVE-2018-0004"
 cve_id = "CVE-2018-11922"
-aliases = ["CVE-2018-11922"]
+other_ids = []
 
 [basic]
-title = "CVE-2018-11922"
-description = ""
-severity = "UNKNOWN"
-score = 0.0
-sources = ["avd"]
-published = ""
-updated = ""
-remediation = "Refer to vendor advisory and upgrade to fixed version."
+title = "Qualcomm闭源组件安全漏洞"
+description = "Wrong configuration in Touch Pal application can collect user behavior data without awareness by the user."
+severity = "CRITICAL"
+source = "avd"
+published = "2024-11-26"
+updated = "2026-06-16"
 
-[references]
-urls = []
+[score]
+cvss_v3 = 9.8
+cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+
+[affected]
+vendor = "Qualcomm"
+product = "Snapdragon"
 
 [exploit]
-poc_urls = []
-exp_urls = []
+poc = [
+  { url = "https://docs.qualcomm.com/product/publicresources/securitybulletin/may-2018-bulletin.html", description = "Qualcomm 2018年5月安全公告", source = "vendor" }
+]
+exp = []
+
+[remediation]
+fix = "参考 Qualcomm 2018年5月安全公告，升级到修复版本。"
+workaround = "限制 Touch Pal 应用的网络权限和敏感数据访问权限。"
+steps = ["确认设备使用的 Qualcomm Snapdragon 芯片型号", "查阅 Qualcomm 2018年5月安全公告确认受影响版本", "升级设备固件到修复版本"]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2018-11922"
+avd = "https://avd.aliyun.com/detail?id=CVE-2018-11922"
+other = []
+
+[tags]
+tags = ["CWE-16", "CWE-200", "信息泄露"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "low"
+notes = "Qualcomm 闭源组件漏洞，无公开 PoC/EXP。Qualcomm CNA 评分为 CVSS 3.1 9.8 CRITICAL，NIST NVD 评分为 5.5 MEDIUM。"
 
 [meta]
+collected_at = "2026-07-11T00:00:00Z"
 status = "completed"
-collected_at = "2026-07-10T09:20:46.747644473+00:00"
