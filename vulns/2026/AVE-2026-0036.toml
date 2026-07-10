@@ -1,35 +1,25 @@
-[id]
-ave_id = "AVE-2026-0036"
-cve_id = ""
-aliases = ["CNVD-2020-23735", "NUCLEI-HTTP-CNVD-2020-CNVD-2020-23735-YAML"]
-
 [basic]
-title = "Xxunchi CMS 本地文件包含漏洞"
-description = "Xxunchi CMS（寻驰CMS）存在本地文件包含漏洞，位于 backup/auto.php 文件。攻击者可利用 password 和 path 参数，通过目录遍历（../）读取服务器任意文件，导致敏感信息泄露。该漏洞源于未对 path 参数进行有效过滤和校验，攻击者无需认证即可远程利用，CVSS 评分 7.5，影响系统机密性。"
-severity = "HIGH"
-score = 7.5
-remediation = "升级 Xxunchi CMS 至最新安全版本；对 backup/auto.php 中 path 参数实施严格的输入验证，禁止包含 ../ 等目录遍历序列，或限制只能访问特定白名单目录下的文件。"
-published = "2020-01-01"
-updated = "2020-01-01"
-sources = ["nuclei", "cnvd"]
-
-[affected]
-vendor = "Xxunchi"
-product = "Xxunchi CMS"
-
-[references]
-nvd = ""
-avd = ""
-other = ["https://www.cnvd.org.cn/flaw/show/2025171", "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2020/CNVD-2020-23735.yaml"]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["nuclei"]
+title = "NUCLEI-HTTP-CNVD-2020-CNVD-2020-23735-YAML 漏洞"
+updated = ""
 
 [exploit]
-poc_urls = ["https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2020/CNVD-2020-23735.yaml"]
 exp_urls = []
+poc_urls = []
 
-[exploit.nuclei_templates]
-url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2020/CNVD-2020-23735.yaml"
-description = "Nuclei template for CNVD-2020-23735: GET /backup/auto.php?password=NzbwpQSdbY06Dngnoteo2wdgiekm7j4N&path=../backup/auto.php"
+[id]
+aliases = ["NUCLEI-HTTP-CNVD-2020-CNVD-2020-23735-YAML"]
+ave_id = "AVE-2026-0036"
+cve_id = "NUCLEI-HTTP-CNVD-2020-CNVD-2020-23735-YAML"
 
 [meta]
-collected_at = "2026-07-10T19:22:05Z"
+collected_at = "2026-07-10T21:47:29.938720081+00:00"
 status = "completed"
+
+[references]
+urls = []
