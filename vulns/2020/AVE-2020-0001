@@ -1,0 +1,25 @@
+[id]
+ave_id = "AVE-2020-0001"
+cve_id = "CVE-2020-13949"
+aliases = ["CVE-2020-13949"]
+
+[basic]
+title = "CVE-2020-13949"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["msrc"]
+published = ""
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T12:29:42.259431831+00:00"
