@@ -12,11 +12,11 @@ description = """
 Tesla (Elixir HTTP 客户端库) 的 FollowRedirects 中间件在跨源重定向时未能正确过滤安全敏感请求头。中间件使用小写字符串列表 @filter_headers ["authorization", "host"] 进行大小写敏感的比较，但 Tesla 会原样保留调用者提供的请求头键名而不进行大小写归一化。当请求头设置为 {"Authorization", "Bearer ..."} (RFC 7235 规范大小写，被几乎所有 HTTP 库和文档采用) 时，不会匹配小写过滤条目 "authorization"，导致 Authorization 头被转发到重定向目标。攻击者通过控制或影响客户端收到的 Location 响应 (通过自己的端点、开放重定向上游或受控来源) 即可在跨域请求中获取 Bearer token 或其他凭证。影响 tesla 1.4.0 至 1.18.2 版本。
 """
 published = "2026-06-02"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
+remediation = "升级 Tesla 至 1.18.3 或更高版本以修复此漏洞。在升级前，使用全小写 authorization 替代 Authorization 设置请求头作为临时缓解措施。"
 score = 7.5
 severity = "HIGH"
 source = "ghsa"
-sources = ["unknown"]
+sources = ["ghsa", "nvd"]
 title = "Tesla FollowRedirects 中间件跨源重定向时 Authorization 请求头泄露漏洞"
 updated = "2026-06-17"
 

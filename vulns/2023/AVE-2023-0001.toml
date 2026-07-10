@@ -1,44 +1,24 @@
-[affected]
-product = "NS-ASG安全网关"
-vendor = "北京网康科技"
-
-[authenticity]
-cve_confidence = "high"
-notes = "北京网康科技（Netentsec）未对漏洞披露做出回应。PoC已在GitHub公开，允许未授权访问/admin/test_status.php。"
-poc_confidence = "high"
-
-[basic]
-description = "网康NS-ASG安全网关6.3版本存在信息泄露漏洞，该漏洞位于/admin/test_status.php文件。攻击者可无需认证直接访问该接口，获取设备运行状态等敏感信息。"
-published = "2023-07-20"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 5.5
-severity = "MEDIUM"
-source = "nvd"
-sources = ["unknown"]
-title = "网康NS-ASG安全网关存在信息泄露漏洞"
-updated = "2026-06-17"
-
-[exploit]
-exp = []
-nuclei_templates = []
-
-[[exploit.poc]]
-description = "信息泄露PoC - 未授权访问/admin/test_status.php"
-source = "github"
-url = "https://github.com/CYN521/cve/blob/main/NS-ASG.md"
-
 [id]
-avd_id = ""
 ave_id = "AVE-2023-0001"
 cve_id = "CVE-2023-3792"
-other_ids = ["VDB-235059"]
+aliases = ["CVE-2023-3792"]
 
-[meta]
-collected_at = "2026-07-10T14:18:58Z"
-status = "completed"
+[basic]
+title = "网康NS-ASG安全网关信息泄露漏洞"
+description = "网康NS-ASG安全网关6.3版本中存在信息泄露漏洞，位于/admin/test_status.php页面。该漏洞属于CWE-425直接请求（强制浏览）类型，攻击者无需任何认证即可直接访问该页面，获取网关敏感配置信息。CVSS评分6.5，攻击复杂度低，无需特权，可能泄露系统运行状态、网络配置等关键数据，为后续渗透攻击提供信息支撑。"
+severity = "MEDIUM"
+score = 6.5
+cvss_v3 = 6.5
+published = "2023-07-20"
+updated = "2026-06-17"
+remediation = "升级网康NS-ASG安全网关至厂商发布的最新修复版本；同时通过防火墙或Web应用防火墙设置访问控制策略，限制对/admin/test_status.php页面的访问，仅允许受信任的管理IP地址访问管理后台路径。"
+sources = ["hwpoc", "vuldb", "nvd"]
+
+[affected]
+vendor = "网康"
+product = "NS-ASG安全网关"
 
 [references]
-avd = ""
 nvd = "https://nvd.nist.gov/vuln/detail/CVE-2023-3792"
 other = [
     "https://vuldb.com/?id.235059",
@@ -46,27 +26,12 @@ other = [
     "https://github.com/CYN521/cve/blob/main/NS-ASG.md",
 ]
 
-[remediation]
-fix = "联系厂商（北京网康科技）获取修复版本或补丁。官方未对此漏洞做出回应，建议升级到最新版本。"
-steps = [
-    "步骤1: 确认NS-ASG版本是否为6.3",
-    "步骤2: 使用ACL限制对/admin/路径的访问",
-    "步骤3: 升级到修复版本",
+[exploit]
+poc_urls = [
+    "https://github.com/CYN521/cve/blob/main/NS-ASG.md",
 ]
-workaround = "通过防火墙或WAF限制对/admin/test_status.php的访问，仅允许授权IP访问，或禁用该测试页面。"
+exp_urls = []
 
-[score]
-cvss_v2 = 3.3
-cvss_v2_vector = "AV:A/AC:L/Au:N/C:P/I:N/A:N"
-cvss_v3 = 6.5
-cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N"
-cvss_v4 = 0.0
-cvss_v4_vector = ""
-
-[tags]
-tags = [
-    "CWE-425",
-    "信息泄露",
-    "未授权访问",
-    "Forced-Browsing",
-]
+[meta]
+status = "completed"
+collected_at = "2026-07-10T16:29:02+00:00"

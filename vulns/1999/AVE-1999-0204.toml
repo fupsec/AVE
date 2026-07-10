@@ -1,51 +1,25 @@
-[id]
-ave_id = "AVE-1999-0204"
-cve_id = "CVE-1999-0001"
-aliases = ["CVE-1999-0001"]
-
 [basic]
-title = "BSD 衍生系统 TCP/IP 协议栈 ip_input.c 远程拒绝服务漏洞"
-description = "BSD 衍生系统（BSD/OS、FreeBSD、OpenBSD）的 TCP/IP 协议栈实现中，ip_input.c 文件存在输入验证缺陷（CWE-20）。远程攻击者无需认证即可通过网络发送特制的 TCP 数据包，触发系统内核中的 TCP 解码模块异常，导致目标系统崩溃或完全挂起，造成拒绝服务。该漏洞影响 BSD/OS 3.1、FreeBSD 1.0 至 3.0、OpenBSD 2.3 至 2.4 等多个版本。"
-severity = "MEDIUM"
-score = 5.0
-remediation = "升级操作系统到已修复版本。OpenBSD 用户应应用 2.3 errata 002 补丁或升级到 2.4 及以上版本；FreeBSD 用户应升级到 3.0 及以上版本；BSDI 用户应联系厂商获取修复补丁。在网络边界部署防火墙规则，过滤可疑 TCP 数据包可作为临时缓解措施。"
-published = "1999-12-30"
-updated = "2026-06-16"
-sources = ["cve", "nvd"]
-
-[score]
-cvss_v2 = 5.0
-cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:N/A:P"
-
-[affected]
-vendor = "bsd"
-product = "tcp_ip"
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0001"
-avd = ""
-
-[[references.other]]
-url = "http://www.openbsd.org/errata23.html#tcpfix"
-description = "OpenBSD 2.3 Errata 002 - TCP 解码远程锁死漏洞"
-
-[[references.other]]
-url = "http://www.osvdb.org/5707"
-description = "OSVDB-5707"
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["cve"]
+title = "CVE-1999-0001 漏洞"
+updated = ""
 
 [exploit]
-poc_urls = []
 exp_urls = []
-nuclei_templates = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0001"]
+ave_id = "AVE-1999-0204"
+cve_id = "CVE-1999-0001"
 
 [meta]
+collected_at = "2026-07-10T20:51:33.499917902+00:00"
 status = "completed"
-collected_at = "2026-07-10T14:01:53Z"
 
-[authenticity]
-cve_confidence = "high"
-poc_confidence = "none"
-notes = "CVE-1999-0001 是 BSD TCP/IP 协议栈 ip_input.c 中的远程拒绝服务漏洞，非 Teardrop 攻击（Teardrop 为 CVE-1999-0015）。目前无公开 PoC/EXP 代码。"
-
-[tags]
-tags = ["CWE-20", "DoS", "BSD", "FreeBSD", "OpenBSD", "BSDI", "TCP/IP"]
+[references]
+urls = []
