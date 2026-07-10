@@ -1,0 +1,64 @@
+[id]
+ave_id = "AVE-2018-0044"
+cve_id = "CVE-2018-25115"
+other_ids = []
+
+[basic]
+title = "D-Link DIR系列路由器 service.cgi OS命令注入漏洞"
+description = "多款D-Link DIR系列路由器（包括DIR-110、DIR-412、DIR-600、DIR-610、DIR-615、DIR-645、DIR-815）固件版本1.03中存在漏洞，位于service.cgi端点。该漏洞源于EVENT=CHECKFW参数在未经过滤的情况下直接传递给系统shell，远程攻击者无需认证即可通过特制的HTTP POST请求注入任意系统命令，以root权限执行，导致设备完全沦陷。上述路由器型号已停止支持。"
+severity = "CRITICAL"
+source = "nvd"
+published = "2025-08-27"
+updated = "2026-06-16"
+
+[score]
+cvss_v3 = 9.8
+cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+cvss_v4 = 10.0
+cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H"
+
+[affected]
+vendor = "D-Link"
+product = "DIR系列路由器（DIR-110, DIR-412, DIR-600, DIR-610, DIR-615, DIR-645, DIR-815）"
+
+[exploit]
+poc = [
+  { url = "https://www.exploit-db.com/exploits/43496", description = "D-Link路由器 service.cgi 任意代码执行Exploit", source = "exploit-db" },
+  { url = "https://github.com/Cr0n1c/dlink_shell_poc/blob/master/dlink_auth_rce", description = "D-Link路由器 service.cgi RCE PoC脚本", source = "github" }
+]
+exp = [
+  { url = "https://www.exploit-db.com/exploits/43496", description = "D-Link路由器 service.cgi 任意代码执行完整利用", source = "exploit-db" }
+]
+nuclei_templates = []
+
+[remediation]
+fix = "上述D-Link DIR系列路由器型号已停止支持，厂商不再提供安全更新。建议立即更换为受支持的最新路由器设备，并确保固件保持最新。"
+workaround = "如无法立即更换设备，可在路由器管理界面禁用远程管理功能，限制对Web管理端口的网络访问（仅允许受信任的内部IP访问），并监控异常流量。"
+steps = [
+  "1. 确认设备型号是否为受影响型号（DIR-110/DIR-412/DIR-600/DIR-610/DIR-615/DIR-645/DIR-815）",
+  "2. 检查固件版本是否为1.03或更早版本",
+  "3. 在防火墙层面限制对路由器管理端口（通常为80/443）的访问",
+  "4. 考虑更换为仍在支持周期内的新型号路由器"
+]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2018-25115"
+other = [
+  "https://www.vulncheck.com/advisories/dlink-dir-rce-service-cgi",
+  "https://www.exploit-db.com/exploits/43496",
+  "https://github.com/Cr0n1c/dlink_shell_poc/blob/master/dlink_auth_rce",
+  "https://legacy.us.dlink.com/",
+  "https://support.dlink.com/EndOfLifePolicy.aspx"
+]
+
+[tags]
+tags = ["CWE-78", "OS Command Injection", "RCE", "未授权访问", "路由器"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "high"
+notes = "CVE-2018-25115于2025年8月由VulnCheck分配。漏洞在2018年已被公开（Exploit-DB 43496发布于2018-01-10），但由于从未被分配CVE编号，直到2025年Shadowserver Foundation观测到野外利用后才被VulnCheck追溯分配。所有受影响路由器型号已停止支持（End of Life）。CWE-78命令注入，远程未授权RCE。CVSS v4.0评分10.0（严重）。"
+
+[meta]
+collected_at = "2026-07-10T10:18:58Z"
+status = "completed"

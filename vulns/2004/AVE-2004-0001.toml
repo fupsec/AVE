@@ -1,25 +1,55 @@
 [id]
 ave_id = "AVE-2004-0001"
 cve_id = "CVE-2004-0210"
-aliases = ["CVE-2004-0210"]
+other_ids = ["MS04-020"]
 
 [basic]
-title = "CVE-2004-0210"
-description = ""
-severity = "UNKNOWN"
-score = 0.0
-sources = ["kev"]
-published = ""
-updated = ""
-remediation = "Refer to vendor advisory and upgrade to fixed version."
+title = "Microsoft Windows POSIX 子系统权限提升漏洞"
+description = "Microsoft Windows NT 4.0 和 Windows 2000 的 POSIX 组件存在缓冲区溢出漏洞，本地攻击者可通过向 POSIX 子系统传递特定参数（如修改消息长度值）触发缓冲区溢出，从而以系统权限执行任意代码，完全控制受影响的系统。"
+severity = "HIGH"
+source = "nvd"
+published = "2004-08-06"
+updated = "2026-06-16"
 
-[references]
-urls = []
+[score]
+cvss_v2 = 7.2
+cvss_v2_vector = "AV:L/AC:L/Au:N/C:C/I:C/A:C"
+cvss_v3 = 7.8
+cvss_v3_vector = "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H"
+
+[affected]
+vendor = "Microsoft"
+product = "Windows NT 4.0 / Windows 2000"
 
 [exploit]
-poc_urls = []
-exp_urls = []
+poc = []
+exp = [
+  { url = "https://www.exploit-db.com/exploits/24277", description = "Microsoft Windows NT 4.0/2000 POSIX 子系统本地缓冲区溢出权限提升 EXP (MS04-020)", source = "exploit-db" }
+]
+nuclei_templates = []
+
+[remediation]
+fix = "安装微软安全公告 MS04-020 提供的更新补丁，升级到受支持的操作系统版本。参考：https://docs.microsoft.com/en-us/security-updates/securitybulletins/2004/ms04-020"
+workaround = "如无法安装补丁，建议禁用 POSIX 子系统（移除或限制对 PSXSS.EXE 的访问），或升级到不再受影响的 Windows 版本。"
+steps = ["步骤1: 确认操作系统版本是否为 Windows NT 4.0 SP6a 或 Windows 2000 SP2-SP4", "步骤2: 访问微软安全公告 MS04-020 获取补丁", "步骤3: 安装相应补丁并重启系统"]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2004-0210"
+avd = ""
+other = [
+  "https://docs.microsoft.com/en-us/security-updates/securitybulletins/2004/ms04-020",
+  "http://www.kb.cert.org/vuls/id/647436",
+  "https://exchange.xforce.ibmcloud.com/vulnerabilities/16590"
+]
+
+[tags]
+tags = ["CWE-120", "buffer-overflow", "privilege-escalation", "local", "KEV"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "high"
+notes = "CVE-2004-0210 已被 CISA KEV 收录，确认存在在野利用。Exploit-DB 存在可用 EXP (24277)，已实现完整利用。"
 
 [meta]
+collected_at = "2026-07-10T11:16:48Z"
 status = "completed"
-collected_at = "2026-07-10T11:15:15.141695252+00:00"
