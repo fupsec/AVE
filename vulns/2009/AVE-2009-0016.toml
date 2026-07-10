@@ -1,0 +1,59 @@
+[id]
+ave_id = "AVE-2009-0016"
+cve_id = "CVE-2009-0040"
+avd_id = ""
+other_ids = ["CNVD-2009-0336"]
+
+[basic]
+title = "libpng 未初始化指针释放漏洞"
+description = "libpng（PNG参考库）1.0.43之前版本和1.2.x 1.2.35之前版本存在漏洞，该漏洞被pngcrush及其他应用所使用。攻击者可借助特制的PNG文件利用该漏洞造成拒绝服务（应用程序崩溃）或执行任意代码，原因是（1）png_read_png函数、（2）pCAL块处理或（3）16位gamma表设置中触发了对未初始化指针的释放操作。"
+severity = "HIGH"
+source = "nvd"
+published = "2009-02-22"
+updated = "2018-10-11"
+
+[score]
+cvss_v2 = 6.8
+cvss_v2_vector = "AV:N/AC:M/Au:N/C:P/I:P/A:P"
+
+[affected]
+vendor = "libpng"
+product = "libpng"
+
+[exploit]
+poc = []
+exp = []
+nuclei_templates = []
+
+[remediation]
+fix = "升级到 libpng 1.0.43 或 1.2.35 及以上版本。"
+workaround = "如无法升级，请从可信来源获取 PNG 文件，避免处理不受信任的图片数据。"
+steps = ["步骤1: 确认当前 libpng 版本（png --version 或 ldconfig -p | grep libpng）", "步骤2: 升级到 libpng 1.0.43+ 或 1.2.35+", "步骤3: 重新编译依赖 libpng 的应用程序"]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2009-0040"
+avd = ""
+other = [
+  "http://downloads.sourceforge.net/libpng/libpng-1.2.34-ADVISORY.txt",
+  "https://access.redhat.com/errata/RHSA-2009-0315",
+  "https://access.redhat.com/errata/RHSA-2009-0325",
+  "https://access.redhat.com/errata/RHSA-2009-0333",
+  "https://access.redhat.com/errata/RHSA-2009-0340",
+  "https://security-tracker.debian.org/tracker/DSA-1750",
+  "https://security-tracker.debian.org/tracker/DSA-1830",
+  "https://security.gentoo.org/glsa/200903-28",
+  "https://exchange.xforce.ibmcloud.com/vulnerabilities/48819",
+  "https://www.securityfocus.com/archive/1/501767/100/0/threaded"
+]
+
+[tags]
+tags = ["CWE-824", "memory-corruption", "rce", "dos", "libpng"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "low"
+notes = "无公开可用的 PoC 或利用代码。Exploit-DB、GitHub、Sploitus 均未收录相关利用。"
+
+[meta]
+collected_at = "2026-07-10T00:00:00Z"
+status = "completed"

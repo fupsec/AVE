@@ -1,53 +1,53 @@
 [id]
 ave_id = "AVE-1999-0203"
-cve_id = "CVE-1999-0118"
+cve_id = "CVE-1999-0418"
 avd_id = ""
-other_ids = ["EDB-19287", "BID-370", "RSI.0011.11-09-98.AIX.INFOD"]
+other_ids = []
 
 [basic]
-title = "IBM AIX infod 本地权限提升漏洞"
-description = "IBM AIX 系统自带的 Info Explorer 守护进程（infod）存在本地权限提升漏洞。该守护进程以 root 权限运行，但未对通过本地 Unix 域 socket 传递的用户凭证进行验证。本地攻击者可伪造 UID/GID 为 0（root），向 infod 发送恶意环境变量，诱使其以 root 权限在攻击者的 X 显示器上启动连接。随后攻击者可通过默认选项菜单将打印机命令修改为 /bin/sh 等任意二进制文件，从而获取 root 权限。"
-severity = "HIGH"
+title = "Sendmail SMTP 应用程序拒绝服务漏洞"
+description = "Sendmail 等 SMTP 应用程序存在拒绝服务漏洞。远程攻击者（如垃圾邮件发送者）可在同一连接中发送大量 RCPT TO 命令，导致服务器资源耗尽，造成拒绝服务。"
+severity = "MEDIUM"
 source = "nvd"
-published = "1998-11-01"
-updated = "2026-04-15"
+published = "1999-03-08"
+updated = "2026-06-16"
 
 [score]
-cvss_v2 = 7.2
-cvss_v2_vector = "AV:L/AC:L/Au:N/C:C/I:C/A:C"
+cvss_v2 = 6.4
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:N/A:P"
 cvss_v3 = 0.0
 cvss_v3_vector = ""
 cvss_v4 = 0.0
 cvss_v4_vector = ""
 
 [affected]
-vendor = "IBM"
-product = "AIX"
+vendor = "Sendmail"
+product = "Sendmail"
 
 [exploit]
-poc = []
-exp = [
-  { url = "https://www.exploit-db.com/exploits/19287", description = "IBM AIX 4.3 infod 本地权限提升 C 利用程序（作者: Repent Security Inc / Arisme）", source = "exploit-db" }
+poc = [
+  { url = "http://marc.info/?l=bugtraq&m=92100018214316&w=2", description = "原始 Bugtraq 邮件列表讨论", source = "其他" }
 ]
+exp = []
 nuclei_templates = []
 
 [remediation]
-fix = "升级到修复版本。IBM 已发布补丁：AIX 4.1.x 升级 IX84640，AIX 4.2.x 升级 IX84641，AIX 4.3.x 升级 IX84642。AIX 3.2.x 建议升级到 AIX 4。"
-workaround = "如暂时无法升级，可禁用 infod 守护进程：运行 stopsrc -s infod 停止服务，rmitab infod 移除启动项，chown root.system /usr/lpp/info/bin/infod 及 chmod 0 /usr/lpp/info/bin/infod 锁定二进制文件。"
-steps = ["确认系统 AIX 版本", "下载并安装对应补丁（IX84640/IX84641/IX84642）", "若无法立即打补丁，执行 stopsrc -s infod、rmitab infod、chmod 0 /usr/lpp/info/bin/infod 禁用守护进程"]
+fix = "升级 Sendmail 到修复版本，或确保 SMTP 服务器对单个连接中的 RCPT TO 命令数量进行限制。"
+workaround = "如无法升级，可在防火墙或 MTA 层面限制单个 SMTP 连接的 RCPT TO 命令数量。"
+steps = ["步骤1: 确认 Sendmail 版本", "步骤2: 升级到修复版本", "步骤3: 配置 SMTP 连接限制策略"]
 
 [references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0118"
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0418"
 avd = ""
-other = ["https://www.exploit-db.com/exploits/19287", "https://seclists.org/bugtraq/1998/Nov/256", "https://marc.info/?l=bugtraq&m=91158980826979&w=2", "http://www.securityfocus.com/bid/370"]
+other = ["https://github.com/advisories/GHSA-h7h2-x82r-79fx", "https://www.cve.org/CVERecord?id=CVE-1999-0418", "http://marc.info/?l=bugtraq&m=92100018214316&w=2"]
 
 [tags]
-tags = ["local", "privilege-escalation", "CWE-269", "aix", "infod"]
+tags = ["DoS", "SMTP", "Sendmail", "RCPT-TO"]
 
 [authenticity]
 cve_confidence = "high"
-poc_confidence = "high"
-notes = "CVE-1999-0118 与 Exploit-DB 19287 完全匹配，均为同一 IBM AIX infod 本地权限提升漏洞。该漏洞为本地 Unix socket 利用，非 HTTP 协议漏洞，因此不适用 HTTP PoC 模板。已有完整 C 源码利用程序。"
+poc_confidence = "low"
+notes = "原始 Bugtraq 邮件列表中仅有描述性报告，无公开 PoC 代码。Nuclei 模板和 Exploit-DB 中均未收录此漏洞。"
 
 [meta]
 collected_at = "2026-07-10T00:00:00Z"
