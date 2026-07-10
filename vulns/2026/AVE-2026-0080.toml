@@ -1,49 +1,25 @@
-[id]
-ave_id = "AVE-2026-0080"
-cve_id = "CVE-2026-0828"
-aliases = [
-    "CVE-2026-0828",
-    "VU#818729"
-]
-
 [basic]
-title = "Safetica Endpoint Client ProcessMonitorDriver.sys 内核驱动 IOCTL 任意进程终止漏洞"
-description = "Safetica Endpoint Client x64 内核驱动 ProcessMonitorDriver.sys 在版本 10.5.75.0 和 11.11.4.0 中存在权限校验缺失漏洞。本地非特权用户可通过 \\.\STProcessMonitorDriver 设备路径发送特制 IOCTL 0xB822200C，利用驱动缺乏调用者权限验证和输入过滤的缺陷，在内核态调用 PsTerminateProcess 终止受保护的系统进程（包括 EDR/AV 进程）。该漏洞属于 BYOVD（Bring Your Own Vulnerable Driver）攻击原语，攻击者可结合恶意驱动禁用安全监控软件，为后续勒索软件部署、数据窃取等恶意活动创造条件。"
-severity = "HIGH"
-score = 7.5
-cvss_v3 = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N"
-remediation = "Safetica 官方尚未发布修复补丁，建议采取以下临时缓解措施：1) 通过 Windows Defender Application Control (WDAC) 或 AppLocker 策略限制 ProcessMonitorDriver.sys 的加载和非授权进程对其的访问；2) 部署 EDR/Sysmon 监控对 \\.\STProcessMonitorDriver 的异常 IOCTL 调用，重点关注 0xB822200C 控制码；3) 关注 Safetica 安全公告并及时升级到修复版本。"
-published = "2026-01-20"
-updated = "2026-06-26"
-sources = [
-    "github",
-    "nvd",
-    "cert-cc"
-]
-
-[affected]
-vendor = "Safetica"
-product = "Endpoint Client"
+description = "Vulnerability identified as CVE-2026-0828. Please refer to vendor advisory for details."
+published = "2026-07-10"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 5.0
+severity = "MEDIUM"
+sources = ["github"]
+title = "CVE-2026-0828 vulnerability"
+updated = "2026-07-10"
 
 [exploit]
-poc_urls = [
-    "https://github.com/DeathShotXD/0xKern3lCrush/blob/main/src/0xPoC.c",
-    "https://github.com/DeathShotXD/0xKern3lCrush"
-]
-exp_urls = [
-    "https://github.com/DeathShotXD/0xKern3lCrush/blob/main/src/0xPoC.c"
-]
-nuclei_templates = []
+exp_urls = []
+poc_urls = []
 
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2026-0828"
-cert = "https://www.kb.cert.org/vuls/id/818729"
-cve = "https://www.cve.org/CVERecord?id=CVE-2026-0828"
-vendor = "https://www.safetica.com/"
-other = [
-    "https://github.com/DeathShotXD/0xKern3lCrush"
-]
+[id]
+aliases = ["CVE-2026-0828"]
+ave_id = "AVE-2026-0080"
+cve_id = "CVE-2026-0828"
 
 [meta]
+collected_at = "2026-07-10T19:14:58.627042463+00:00"
 status = "completed"
-collected_at = "2026-07-11T06:00:00Z"
+
+[references]
+urls = []
