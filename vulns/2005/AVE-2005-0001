@@ -1,0 +1,25 @@
+[id]
+ave_id = "AVE-2005-0001"
+cve_id = "CVE-2005-2773"
+aliases = ["CVE-2005-2773"]
+
+[basic]
+title = "CVE-2005-2773"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["kev"]
+published = ""
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T11:54:21.719787970+00:00"

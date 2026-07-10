@@ -26,9 +26,13 @@ product = "OpenView Network Node Manager"
 
 [exploit]
 poc = [
-  { url = "http://marc.info/?l=bugtraq&m=112499121725662&w=2", description = "Portcullis Security Advisory 05-014 - 原始PoC/漏洞利用", source = "bugtraq" }
+  { url = "http://marc.info/?l=bugtraq&m=112499121725662&w=2", description = "Portcullis Security Advisory 05-014 - 原始PoC/漏洞利用", source = "bugtraq" },
+  { url = "https://www.exploit-db.com/exploits/1188", description = "HP OpenView NNM 7.50 远程命令执行 PoC (C语言)", source = "exploit-db" }
 ]
-exp = []
+exp = [
+  { url = "https://www.exploit-db.com/exploits/16887", description = "Metasploit 模块 - HP OpenView connectedNodes.ovpl 远程命令执行", source = "exploit-db" },
+  { url = "https://www.exploit-db.com/exploits/1188", description = "HP OpenView NNM 7.50 远程命令执行 EXP (C语言, 命令执行+回显)", source = "exploit-db" }
+]
 nuclei_templates = []
 
 [remediation]
@@ -53,7 +57,7 @@ tags = ["CWE-77", "command-injection", "rce", "kev"]
 [authenticity]
 cve_confidence = "high"
 poc_confidence = "high"
-notes = "CVE由MITRE官方发布，NVD已分析并分配CVSS v3.1 9.8 CRITICAL评分。CWE-77命令注入分类。CISA KEV确认存在在野利用。原始PoC由Portcullis Security（Paul J Docherty）在Bugtraq邮件列表公开。未发现GitHub仓库或Exploit-DB独立条目。"
+notes = "CVE由MITRE官方发布，NVD已分析并分配CVSS v3.1 9.8 CRITICAL评分。CWE-77命令注入分类。CISA KEV确认存在在野利用。原始PoC由Portcullis Security在Bugtraq邮件列表公开。Exploit-DB收录两个exploit条目：EDB-1188（C语言PoC）和EDB-16887（Metasploit模块）。"
 
 [meta]
 collected_at = "2026-07-10T10:50:53Z"

