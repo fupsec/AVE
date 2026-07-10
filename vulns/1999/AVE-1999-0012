@@ -1,25 +1,25 @@
+[basic]
+description = "Vulnerability identified as CVE-1999-0016. Please refer to vendor advisory for details."
+published = "2026-07-10"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 5.0
+severity = "MEDIUM"
+sources = ["exploitdb"]
+title = "CVE-1999-0016"
+updated = "2026-07-10"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
 [id]
+aliases = ["CVE-1999-0016"]
 ave_id = "AVE-1999-0012"
 cve_id = "CVE-1999-0016"
-aliases = ["CVE-1999-0016"]
 
-[basic]
-title = "CVE-1999-0016"
-description = ""
-severity = "UNKNOWN"
-score = 0.0
-sources = ["exploitdb"]
-published = ""
-updated = ""
-remediation = "Refer to vendor advisory and upgrade to fixed version."
+[meta]
+collected_at = "2026-07-10T17:54:41.957017470+00:00"
+status = "completed"
 
 [references]
 urls = []
-
-[exploit]
-poc_urls = []
-exp_urls = []
-
-[meta]
-status = "completed"
-collected_at = "2026-07-10T15:29:11.558233964+00:00"
