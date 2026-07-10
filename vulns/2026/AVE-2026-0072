@@ -1,0 +1,25 @@
+[id]
+ave_id = "AVE-2026-0072"
+cve_id = "CVE-2026-0023"
+aliases = ["CVE-2026-0023"]
+
+[basic]
+title = "CVE-2026-0023"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["github"]
+published = ""
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T14:23:25.007609695+00:00"
