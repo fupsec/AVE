@@ -1,0 +1,42 @@
+[id]
+ave_id = "AVE-2026-0083"
+cve_id = "CVE-2026-10104"
+aliases = ["CVE-2026-10104"]
+
+[basic]
+title = "Product Video Gallery for WooCommerce 插件 custom_thumbnail 参数存储型跨站脚本漏洞"
+description = "Product Video Gallery for WooCommerce WordPress 插件 1.5.1.8 及之前版本中存在存储型跨站脚本漏洞。该插件通过 custom_thumbnail POST 参数保存产品视频缩略图信息时，仅使用 sanitize_text_field() 过滤输入，该方法会移除 HTML 标签但不会移除双引号字符。在前端渲染时，该值被直接拼接到 img 标签属性中，未使用 esc_attr() 进行输出转义。认证攻击者（商店管理员及以上权限）可注入包含 onmouseover/onerror 等事件处理器的 payload，当任意用户访问受影响产品页面时触发 JavaScript 执行，可能导致会话 Cookie 劫持、恶意重定向或页面篡改。"
+severity = "MEDIUM"
+score = 4.4
+cvss_v3 = "CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:C/C:L/I:L/A:N"
+published = "2026-07-02"
+updated = "2026-07-02"
+remediation = "升级 Wordfence 已修复的 1.5.1.9 或更高版本。若无法立即升级，在 public/class-rendering.php 的 nickx_get_video_thumbanil_html() 方法中，对 custom_thumbnail 变量使用 esc_attr() 函数进行输出转义，并确保所有拼接处均正确处理。"
+sources = ["github", "wordfence"]
+
+[affected]
+vendor = "nikhilgadhiya"
+product = "Product Video Gallery for WooCommerce"
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2026-10104"
+other = [
+  "https://www.wordfence.com/threat-intel/vulnerabilities/id/f61885bc-b7da-42b8-a0d3-ba5d7d19b536?source=cve",
+  "https://github.com/Ravi-lk/CVE-2026-10104-POC",
+  "https://wordpress.org/plugins/product-video-gallery-slider-for-woocommerce/",
+  "https://www.cve.org/CVERecord?id=CVE-2026-10104",
+  "https://plugins.trac.wordpress.org/changeset?sfp_email=&sfph_mail=&reponame=&old=3591727%40product-video-gallery-slider-for-woocommerce&new=3591727%40product-video-gallery-slider-for-woocommerce",
+  "https://plugins.trac.wordpress.org/browser/product-video-gallery-slider-for-woocommerce/tags/1.5.1.6/admin/class-video-field.php#L310",
+  "https://plugins.trac.wordpress.org/browser/product-video-gallery-slider-for-woocommerce/tags/1.5.1.6/public/class-rendering.php#L365"
+]
+
+[exploit]
+poc_urls = [
+  "https://github.com/Ravi-lk/CVE-2026-10104-POC"
+]
+exp_urls = []
+nuclei_templates = []
+
+[meta]
+collected_at = "2026-07-11T00:00:00+08:00"
+status = "completed"
