@@ -1,17 +1,14 @@
 [id]
-ave_id = "AVE-2026-0039"
-cve_id = "CVE-2026-45016"
-aliases = [
-    "CVE-2026-45016",
-    "GHSA-c8m7-r2jv-rw63",
-]
+ave_id = "AVE-2022-0001"
+cve_id = "CVE-2022-33065"
+aliases = ["CVE-2022-33065"]
 
 [basic]
-title = "CVE-2026-45016"
+title = "CVE-2022-33065"
 description = ""
 severity = "UNKNOWN"
 score = 0.0
-sources = ["ghsa"]
+sources = ["msrc"]
 published = ""
 updated = ""
 remediation = "Refer to vendor advisory and upgrade to fixed version."
@@ -25,4 +22,4 @@ exp_urls = []
 
 [meta]
 status = "completed"
-collected_at = "2026-07-10T12:52:01.556162639+00:00"
+collected_at = "2026-07-10T12:52:01.556535365+00:00"
