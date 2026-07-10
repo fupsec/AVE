@@ -652,23 +652,11 @@ body {
 }
 
 /* ── Responsive: mobile & small screens ── */
-@media (max-width: 820px) {
-  .hero {
-    padding: 1.4rem 0.9rem;
-  }
-
-  .hero h1 {
-    font-size: 1.25rem;
-  }
-
-  .hero-lead {
-    font-size: 0.85rem;
-  }
-
+@media (max-width: 900px) {
   .layout {
     grid-template-columns: 1fr;
-    padding: 0 0.6rem 1.2rem;
-    margin: 0.6rem auto;
+    padding: 0 0.5rem 1rem;
+    margin: 0.5rem auto;
   }
 
   .dashboard {
@@ -676,16 +664,31 @@ body {
     gap: 0.5rem;
   }
 
-  .metric {
-    padding: 0.55rem;
+  .hero-top {
+    flex-direction: column;
+    gap: 0.5rem;
   }
 
-  .metric h3 {
-    font-size: 0.75rem;
+  .top-nav {
+    justify-content: flex-start;
   }
 
-  .metric p {
-    font-size: 0.95rem;
+  .detail-kv {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    padding: 1.2rem 0.8rem;
+  }
+
+  .hero h1 {
+    font-size: 1.2rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .hero-lead {
+    font-size: 0.85rem;
+    line-height: 1.5;
   }
 
   .panel {
@@ -694,7 +697,7 @@ body {
 
   .filters input,
   .filters select {
-    padding: 0.45rem 0.55rem;
+    padding: 0.5rem 0.55rem;
     font-size: 0.85rem;
   }
 
@@ -705,32 +708,46 @@ body {
   .filter-actions button {
     width: 100%;
     padding: 0.45rem;
-  }
-
-  .year-table-wrap {
-    margin: 0 -0.1rem;
+    font-size: 0.88rem;
   }
 
   .project-intro {
-    padding: 0.55rem 0.65rem;
+    padding: 0.5rem 0.6rem;
   }
 
   .project-intro p {
     font-size: 0.82rem;
+    margin: 0.2rem 0;
+  }
+
+  .project-intro ul {
+    padding-left: 1rem;
+  }
+
+  .metric {
+    padding: 0.5rem;
+  }
+
+  .metric h3 {
+    font-size: 0.72rem;
+  }
+
+  .metric p {
+    font-size: 0.95rem;
+  }
+
+  .vuln-table {
+    min-width: 500px;
   }
 
   .vuln-table thead th,
   .vuln-table tbody td {
-    padding: 0.45rem 0.5rem;
-    font-size: 0.8rem;
+    padding: 0.4rem 0.45rem;
+    font-size: 0.78rem;
   }
 
   .table-title {
-    max-width: 200px;
-  }
-
-  .detail-kv {
-    grid-template-columns: 1fr;
+    max-width: 180px;
   }
 
   .card-head {
@@ -739,50 +756,204 @@ body {
     gap: 0.5rem;
   }
 
+  .year-table-wrap {
+    margin: 0 -0.2rem;
+  }
+
   .site-footer {
-    font-size: 0.82rem;
+    font-size: 0.8rem;
+  }
+
+  .footer-inner {
+    padding: 0.7rem 0.8rem;
   }
 }
 
 @media (max-width: 480px) {
+  body {
+    background: var(--bg);
+  }
+
+  .hero {
+    padding: 0.8rem 0.5rem;
+  }
+
+  .hero h1 {
+    font-size: 1rem;
+  }
+
+  .hero-lead {
+    font-size: 0.78rem;
+    margin-top: 0.2rem;
+  }
+
+  .layout {
+    padding: 0 0.4rem 0.8rem;
+    margin: 0.35rem auto;
+    gap: 0.6rem;
+  }
+
   .dashboard {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.4rem;
+    gap: 0.35rem;
   }
 
   .metric {
-    padding: 0.45rem;
+    padding: 0.35rem 0.4rem;
+    border-radius: 8px;
   }
 
   .metric h3 {
-    font-size: 0.7rem;
+    font-size: 0.62rem;
   }
 
   .metric p {
-    font-size: 0.88rem;
+    font-size: 0.82rem;
+    margin-top: 0.15rem;
+  }
+
+  .panel {
+    padding: 0.5rem;
+    border-radius: 8px;
+  }
+
+  /* Hide project intro to free up space — show on demand */
+  .project-intro {
+    padding: 0.4rem 0.5rem;
+  }
+
+  .project-intro h3 {
+    font-size: 0.82rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .project-intro p {
+    font-size: 0.75rem;
+    line-height: 1.4;
+  }
+
+  .project-intro ul {
+    margin-top: 0.25rem;
+  }
+
+  .project-intro ul li {
+    font-size: 0.72rem;
+  }
+
+  .vuln-table {
+    min-width: 420px;
   }
 
   .vuln-table thead th,
   .vuln-table tbody td {
-    padding: 0.35rem 0.4rem;
-    font-size: 0.75rem;
+    padding: 0.3rem 0.35rem;
+    font-size: 0.7rem;
   }
 
   .table-title {
-    max-width: 120px;
+    max-width: 100px;
   }
 
-  .hero {
-    padding: 1rem 0.6rem;
+  .table-cve {
+    display: none;
   }
 
-  .hero-top {
-    flex-direction: column;
-    gap: 0.5rem;
+  .vuln-table thead th:nth-child(2),
+  .vuln-table tbody td:nth-child(2) {
+    display: none;
   }
 
-  .top-nav {
-    align-self: flex-start;
+  .pager {
+    gap: 0.4rem;
+    margin-top: 0.5rem;
+  }
+
+  .pager button {
+    padding: 0.3rem 0.5rem;
+    font-size: 0.8rem;
+  }
+
+  #page-info {
+    font-size: 0.78rem;
+  }
+
+  .filters h2 {
+    font-size: 0.95rem;
+    margin: 0 0 0.4rem;
+  }
+
+  .filters input,
+  .filters select {
+    padding: 0.4rem 0.45rem;
+    font-size: 0.78rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .filter-actions button {
+    padding: 0.35rem;
+    font-size: 0.82rem;
+  }
+
+  .year-breakdown {
+    margin-top: 0.35rem;
+    padding-top: 0.3rem;
+  }
+
+  .year-breakdown h3 {
+    font-size: 0.75rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .year-table {
+    font-size: 0.66rem;
+  }
+
+  .year-table thead th,
+  .year-table tbody td {
+    padding: 0.15rem 0.3rem;
+  }
+
+  .status {
+    font-size: 0.78rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .site-footer {
+    font-size: 0.75rem;
+  }
+
+  .footer-inner {
+    padding: 0.5rem 0.6rem;
+  }
+
+  .footer-brand {
+    font-size: 0.85rem;
+  }
+
+  /* Detail page adjustments */
+  .detail-layout .hero-top {
+    gap: 0.4rem;
+  }
+
+  .back-link {
+    font-size: 0.78rem;
+    padding: 0.15rem 0.4rem;
+  }
+
+  .detail-block h4 {
+    font-size: 0.82rem;
+  }
+
+  .detail-kv p {
+    font-size: 0.78rem;
+  }
+
+  .card h3 {
+    font-size: 0.88rem;
+    margin: 0.4rem 0;
+  }
+
+  .card .description {
+    font-size: 0.82rem;
   }
 }
 
@@ -814,27 +985,4 @@ body {
 .back-link:hover {
   text-decoration: underline;
   background: #1e293b;
-}
-
-@media (max-width: 900px) {
-  .layout {
-    grid-template-columns: 1fr;
-  }
-
-  .dashboard {
-    grid-template-columns: repeat(2, minmax(120px, 1fr));
-  }
-
-  .hero-top {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-  .top-nav {
-    justify-content: flex-start;
-  }
-
-  .detail-kv {
-    grid-template-columns: 1fr;
-  }
 }
