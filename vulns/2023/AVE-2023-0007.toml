@@ -1,30 +1,25 @@
-[id]
-ave_id = "AVE-2023-0007"
-cve_id = ""
-aliases = ["HWPOC-2023-000c9322"]
-
 [basic]
-title = "安恒明御网关远程代码执行漏洞"
-description = "安恒明御网关存在远程代码执行漏洞，攻击者可利用该漏洞在未授权的情况下通过构造特制的HTTP请求包，在目标服务器上执行任意代码，从而获取服务器完全控制权限。该漏洞影响安恒明御网关的多个版本，攻击复杂度较低，无需用户认证，可被远程利用。"
-severity = "CRITICAL"
-score = 9.8
-remediation = "建议升级安恒明御网关至厂商发布的最新安全版本，及时安装安全补丁。同时建议限制网关管理端口的网络访问权限，避免将管理界面直接暴露在公网环境中。"
-published = "2023-08-11"
-updated = "2023-08-11"
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
 sources = ["hwpoc"]
+title = "HWPOC-2023-000c9322"
+updated = ""
 
-[affected]
-vendor = "安恒"
-product = "明御网关"
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["HWPOC-2023-000c9322"]
+ave_id = "AVE-2023-0007"
+cve_id = "HWPOC-2023-000c9322"
+
+[meta]
+collected_at = "2026-07-10T21:58:39.651154600+00:00"
+status = "completed"
 
 [references]
 urls = []
-
-[exploit]
-poc_urls = []
-exp_urls = []
-nuclei_templates = []
-
-[meta]
-status = "completed"
-collected_at = "2026-07-10T20:55:35.751028651+00:00"
