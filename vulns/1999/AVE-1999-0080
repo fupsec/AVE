@@ -1,0 +1,25 @@
+[id]
+ave_id = "AVE-1999-0080"
+cve_id = "CVE-1999-0064"
+aliases = ["CVE-1999-0064"]
+
+[basic]
+title = "CVE-1999-0064"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["exploitdb"]
+published = ""
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T12:52:05.219309876+00:00"
