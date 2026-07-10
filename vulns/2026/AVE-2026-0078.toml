@@ -1,72 +1,28 @@
-[affected]
-product = "tesla"
-vendor = "elixir-tesla"
-
-[authenticity]
-cve_confidence = "high"
-notes = "CVE 已由 EEF CNA 分配，GHSA 官方安全公告确认。CVSS v4.0 评分 2.1（低危）。漏洞为 Tesla Multipart 模块的内容分隔符注入，需要攻击者可以控制传递给 add_field/add_file/add_file_content 的文件名或表单字段名参数。公开渠道暂未发现独立 PoC 仓库。"
-poc_confidence = "low"
-
 [basic]
-description = "Tesla 是一个 Elixir 语言的 HTTP 客户端库。其 Multipart 模块的 part_headers_for_disposition/1 函数在处理 Content-Disposition 参数时将用户输入直接拼接到 #{k}=\"#{v}\" 格式的字符串中，未对 CR、LF 或双引号进行转义或过滤。攻击者可通过控制文件名或表单字段名中的特殊字符注入额外的 part 头部，甚至通过双 CRLF 序列在 part 体前预置字节，实现 multipart smuggling 攻击。该漏洞影响 tesla 0.8.0 至 1.18.2 版本，已在 1.18.3 中修复。"
-published = "2026-06-02"
-remediation = "升级 Tesla 至 1.18.3 及以上版本。无法升级时，在传递给 add_field/4、add_file/3 或 add_file_content/4 之前校验 disposition 参数值，拒绝包含 CR(\r)、LF(\n) 或双引号(\")的输入。"
-score = 2.1
-severity = "LOW"
-source = "ghsa"
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
 sources = ["ghsa"]
-title = "Tesla (Elixir) multipart 头部注入漏洞"
-updated = "2026-06-17"
+title = "CVE-2026-48598"
+updated = ""
 
 [exploit]
-exp = []
-nuclei_templates = []
-poc = []
+exp_urls = []
+poc_urls = []
 
 [id]
-avd_id = ""
+aliases = [
+    "CVE-2026-48598",
+    "GHSA-28jh-g32x-v9v4",
+]
 ave_id = "AVE-2026-0078"
 cve_id = "CVE-2026-48598"
-other_ids = ["GHSA-28jh-g32x-v9v4"]
 
 [meta]
-collected_at = "2026-07-11T00:00:00Z"
+collected_at = "2026-07-10T21:09:39.620709642+00:00"
 status = "completed"
 
 [references]
-avd = ""
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2026-48598"
-other = [
-    "https://github.com/elixir-tesla/tesla/security/advisories/GHSA-28jh-g32x-v9v4",
-    "https://github.com/elixir-tesla/tesla/commit/bb1a2c3da2775924d96e3db8e315dcc4d5d2246e",
-    "https://cna.erlef.org/cves/CVE-2026-48598.html",
-    "https://osv.dev/vulnerability/EEF-CVE-2026-48598",
-]
-
-[remediation]
-fix = "升级 Tesla 至 1.18.3 及以上版本。"
-steps = [
-    "步骤1: 确认当前项目依赖的 Tesla 版本（mix.exs 或 mix.lock）",
-    "步骤2: 更新 mix.exs 中 Tesla 依赖到 \"~> 1.18.3\" 或更高",
-    "步骤3: 运行 mix deps.get 和 mix deps.compile 更新依赖",
-    "步骤4: 重新编译并测试 multipart 上传功能",
-]
-workaround = "若无法立即升级，在传递给 add_field/4、add_file/3 或 add_file_content/4 之前校验 disposition 参数值，拒绝包含 \\r、\\n 或 \" 的输入。"
-
-[score]
-cvss_v2 = 0.0
-cvss_v2_vector = ""
-cvss_v3 = 0.0
-cvss_v3_vector = ""
-cvss_v4 = 2.1
-cvss_v4_vector = "CVSS:4.0/AV:L/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:N/SC:N/SI:L/SA:N"
-
-[tags]
-tags = [
-    "CWE-116",
-    "Multipart",
-    "Content-Disposition",
-    "头部注入",
-    "Part Smuggling",
-    "Elixir",
-]
+urls = []

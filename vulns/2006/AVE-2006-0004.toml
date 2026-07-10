@@ -1,42 +1,25 @@
-[id]
-ave_id = "AVE-2006-0004"
-cve_id = "CVE-2006-2492"
-aliases = ["CVE-2006-2492"]
-
 [basic]
-title = "Microsoft Word 畸形对象指针缓冲区溢出远程代码执行漏洞"
-description = "Microsoft Word 在处理特制文档中的畸形对象指针时存在缓冲区溢出漏洞，影响 Office 2000 SP3、Office XP SP3、Office 2003 SP1/SP2 及 Microsoft Works Suites 至 2006 版本。攻击者可利用此漏洞通过构造恶意的 Word 文档，诱使用户打开后触发溢出，从而在目标系统上以当前用户权限执行任意代码，实现远程控制。该漏洞在 2006 年 5 月已被发现存在零日攻击活动。"
-severity = "HIGH"
-score = 8.8
-cvss_v3 = "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H"
-cvss_v2 = "(AV:N/AC:H/Au:N/C:C/I:C/A:C)"
-remediation = "安装微软 MS06-027 安全更新（KB917345/KB917335/KB917334/KB917346），将 Microsoft Word 及 Office 升级至修复版本。避免打开来源不明的 Word 文档，并在 Outlook 中禁用 Word 作为邮件编辑器以降低攻击面。"
-published = "2006-06-13"
-updated = "2006-07-12"
-sources = ["kev", "nvd", "msrc"]
-
-[affected]
-vendor = "Microsoft"
-product = "Word"
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["kev"]
+title = "CVE-2006-2492 漏洞"
+updated = ""
 
 [exploit]
-poc_urls = []
 exp_urls = []
-nuclei_templates = []
+poc_urls = []
 
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2006-2492"
-msrc = "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2006-2492"
-other = [
-  "https://docs.microsoft.com/en-us/security-updates/securitybulletins/2006/ms06-027",
-  "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2006-2492",
-  "http://www.kb.cert.org/vuls/id/446012",
-  "http://www.securityfocus.com/bid/18037",
-  "http://isc.sans.org/diary.php?storyid=1345",
-  "http://secunia.com/advisories/20153",
-  "https://exchange.xforce.ibmcloud.com/vulnerabilities/26556"
-]
+[id]
+aliases = ["CVE-2006-2492"]
+ave_id = "AVE-2006-0004"
+cve_id = "CVE-2006-2492"
 
 [meta]
-collected_at = "2026-07-10T17:23:25.657710900+00:00"
+collected_at = "2026-07-10T21:11:00.855200159+00:00"
 status = "completed"
+
+[references]
+urls = []
