@@ -1,37 +1,25 @@
-[id]
-ave_id = "AVE-2026-0079"
-cve_id = ""
-aliases = ["CNVD-2019-32204", "NUCLEI-HTTP-CNVD-2019-CNVD-2019-32204-YAML"]
-
 [basic]
-title = "泛微e-cology <=9.0 BeanShell远程命令执行漏洞"
-description = "泛微e-cology OA系统9.0及之前版本中的BeanShell组件存在未授权访问漏洞(CNVD-2019-32204)。攻击者无需身份认证即可通过向/bsh.servlet.BshServlet接口发送特制POST请求，利用bsh.script参数执行任意系统命令。BeanShell组件默认暴露在公网环境中，攻击者可借此完全控制目标服务器，获取敏感数据或进行横向移动。该漏洞影响范围广泛，危害极大。"
-severity = "CRITICAL"
-score = 10.0
-remediation = "立即升级泛微e-cology系统至最新安全版本；临时措施包括删除或禁用BeanShell组件(bsh.servlet.BshServlet)的访问权限，通过Web应用防火墙(WAF)拦截包含bsh.script参数的POST请求，或在反向代理层限制对该路径的访问。"
-published = "2019-08-01"
-updated = "2026-07-10"
-sources = ["nuclei", "cnvd"]
-
-[affected]
-vendor = "泛微 (Fanwei)"
-product = "e-cology OA"
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["nuclei"]
+title = "NUCLEI-HTTP-CNVD-2019-CNVD-2019-32204-YAML 漏洞"
+updated = ""
 
 [exploit]
-poc_urls = [
-  "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2019/CNVD-2019-32204.yaml"
-]
 exp_urls = []
+poc_urls = []
 
-[exploit.nuclei_templates]
-urls = ["https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2019/CNVD-2019-32204.yaml"]
-
-[references]
-urls = [
-  "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2019/CNVD-2019-32204.yaml",
-  "https://blog.actorsfit.com/a?ID=01500-11a2f7e6-54b0-4a40-9a79-5c56dc6ebd51"
-]
+[id]
+aliases = ["NUCLEI-HTTP-CNVD-2019-CNVD-2019-32204-YAML"]
+ave_id = "AVE-2026-0079"
+cve_id = "NUCLEI-HTTP-CNVD-2019-CNVD-2019-32204-YAML"
 
 [meta]
-collected_at = "2026-07-10T18:52:53+00:00"
+collected_at = "2026-07-10T21:27:49.098572765+00:00"
 status = "completed"
+
+[references]
+urls = []
