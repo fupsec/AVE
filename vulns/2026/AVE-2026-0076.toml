@@ -54,6 +54,10 @@ steps = [
 workaround = '如无法升级，在传递给 Tesla.Multipart.add_content_type_param/2 之前验证 Content-Type 参数字符串，拒绝任何包含 \r 或 \n 字符的值。'
 
 [score]
+cvss_v2 = 2.1
+cvss_v2_vector = "AV:N/AC:L/Au:S/C:N/I:P/A:N"
+cvss_v3 = 3.5
+cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:U/C:N/I:L/A:N"
 cvss_v4 = 2.1
 cvss_v4_vector = "CVSS:4.0/AV:L/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:N/SC:N/SI:L/SA:N"
 

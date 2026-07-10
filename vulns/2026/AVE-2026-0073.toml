@@ -70,6 +70,8 @@ steps = [
 workaround = "如无法升级，建议避免在未打补丁的 Android 16 QPR2 Beta 设备上处理敏感信息，并限制安装未知来源应用。"
 
 [score]
+cvss_v2 = 7.8
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:C/I:N/A:N"
 cvss_v3 = 8.4
 cvss_v3_vector = "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
 

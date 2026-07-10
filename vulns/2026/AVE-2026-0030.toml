@@ -67,6 +67,8 @@ steps = [
 workaround = "如无法升级，可在 Web 服务器层面（Nginx/Apache）添加规则，拦截包含 _method=__construct 或 filter[]=system 的请求。"
 
 [score]
+cvss_v2 = 10.0
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C"
 cvss_v3 = 10.0
 cvss_v3_vector = "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H"
 

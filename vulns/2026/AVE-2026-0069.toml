@@ -59,8 +59,8 @@ steps = [
 workaround = "如无法升级，可在 BGP 会话管理中增加额外的输入验证，在消息到达 GoBGP 解码器之前拒绝包含零长度 AS_PATH 属性的 UPDATE 消息。"
 
 [score]
-cvss_v2 = 0.0
-cvss_v2_vector = ""
+cvss_v2 = 5.0
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:N/A:N"
 cvss_v3 = 5.9
 cvss_v3_vector = "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H"
 cvss_v4 = 0.0

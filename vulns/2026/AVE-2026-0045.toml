@@ -58,6 +58,8 @@ steps = [
 workaround = "如无法升级，可在 is_global_address 函数中添加 IPv6 过渡编码形式的嵌入式 IPv4 解包检查，并加入知名嵌入前缀的黑名单（64:ff9b::/96, 64:ff9b:1::/48）进行深度防御。"
 
 [score]
+cvss_v2 = 5.0
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:N/A:N"
 cvss_v3 = 4.7
 cvss_v3_vector = "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:C/C:L/I:N/A:L"
 

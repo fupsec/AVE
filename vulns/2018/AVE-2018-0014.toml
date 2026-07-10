@@ -60,6 +60,8 @@ steps = [
 workaround = "如无法立即更换设备，可将摄像机隔离在独立网络 VLAN 中，限制其互联网访问，禁用 UPnP 功能，并更改默认管理员密码。"
 
 [score]
+cvss_v2 = 10.0
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C"
 cvss_v3 = 9.8
 cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
 

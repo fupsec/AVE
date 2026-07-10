@@ -51,6 +51,8 @@ workaround = "如无法升级，可在防火墙上限制对端口 150 的访问�
 [score]
 cvss_v2 = 5.0
 cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:N/A:P"
+cvss_v3 = 5.5
+cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N"
 
 [tags]
 tags = [

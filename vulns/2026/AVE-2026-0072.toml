@@ -64,8 +64,8 @@ steps = [
 workaround = "如无法升级，建议限制设备上未知来源应用的安装，并启用 Google Play Protect 安全功能。"
 
 [score]
-cvss_v2 = 0.0
-cvss_v2_vector = ""
+cvss_v2 = 7.8
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:C/I:N/A:N"
 cvss_v3 = 7.8
 cvss_v3_vector = "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H"
 cvss_v4 = 0.0

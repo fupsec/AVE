@@ -83,6 +83,8 @@ steps = [
 workaround = "如无法升级，按照 Citrix 官方指导应用缓解措施。升级后必须清除所有活跃和持久会话，并轮换所有凭据和证书，因会话令牌可能已被泄露。"
 
 [score]
+cvss_v2 = 7.8
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:C/I:N/A:N"
 cvss_v3 = 7.5
 cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N"
 

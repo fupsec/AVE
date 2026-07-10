@@ -58,8 +58,8 @@ steps = [
 workaround = "1. 将 User-ID Authentication Portal 访问限制为仅可信内部 IP 地址；2. 禁用未使用的 User-ID Authentication Portal；3. 具有 Threat Prevention 订阅的客户可启用 Threat ID 510019 阻止攻击。"
 
 [score]
-cvss_v2 = 0.0
-cvss_v2_vector = ""
+cvss_v2 = 10.0
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C"
 cvss_v3 = 9.8
 cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
 cvss_v4 = 9.3

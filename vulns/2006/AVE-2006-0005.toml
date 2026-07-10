@@ -56,8 +56,8 @@ steps = [
 workaround = "如无法升级，可在 httpd 配置中使用 RequestHeader 指令过滤或限制 If: 请求头。"
 
 [score]
-cvss_v2 = 0.0
-cvss_v2_vector = ""
+cvss_v2 = 7.8
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:C/I:N/A:N"
 cvss_v3 = 7.5
 cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
 cvss_v4 = 0.0

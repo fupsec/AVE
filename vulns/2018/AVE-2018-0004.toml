@@ -50,6 +50,8 @@ steps = [
 workaround = "限制 Touch Pal 应用的网络权限和敏感数据访问权限。"
 
 [score]
+cvss_v2 = 10.0
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C"
 cvss_v3 = 9.8
 cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
 

@@ -74,8 +74,8 @@ steps = [
 workaround = "如无法升级，可限制对/seeyon/htmlofficeservlet的网络访问，部署WAF规则拦截带有DBSTEP V3.0特征的请求，并排查服务器上是否存在test123456.jsp等恶意文件。"
 
 [score]
-cvss_v2 = 0.0
-cvss_v2_vector = ""
+cvss_v2 = 10.0
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C"
 cvss_v3 = 10.0
 cvss_v3_vector = "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H"
 cvss_v4 = 0.0

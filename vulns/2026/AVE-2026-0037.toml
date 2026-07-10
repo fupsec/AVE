@@ -67,6 +67,8 @@ steps = [
 workaround = "如无法升级，可在 Web 应用防火墙（WAF）中增加规则，拦截对 /index.php?s=/home/page/uploadImg 的 POST 请求，或限制上传文件后缀。"
 
 [score]
+cvss_v2 = 10.0
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C"
 cvss_v3 = 9.9
 cvss_v3_vector = "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:L/A:L"
 

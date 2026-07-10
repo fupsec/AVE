@@ -62,8 +62,8 @@ steps = [
 workaround = "如无法立即升级，可禁用聊天共享功能，或通过反向代理/WAF 规则拦截包含 embeds 属性的请求。同时建议监控对聊天历史修改接口的异常请求。"
 
 [score]
-cvss_v2 = 0
-cvss_v2_vector = ""
+cvss_v2 = 7.8
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:C/I:N/A:N"
 cvss_v3 = 7.3
 cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:U/C:H/I:H/A:N"
 cvss_v4 = 0

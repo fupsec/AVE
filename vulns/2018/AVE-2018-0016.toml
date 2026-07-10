@@ -60,6 +60,8 @@ steps = [
 workaround = "如无法升级，可限制模板预览功能的访问权限，仅允许受信任的管理员访问。同时在 Web 应用防火墙（WAF）层面添加针对 <script> 标签的过滤规则。"
 
 [score]
+cvss_v2 = 5.0
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:N/A:N"
 cvss_v3 = 6.1
 cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N"
 

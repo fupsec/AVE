@@ -52,8 +52,8 @@ steps = [
 workaround = "如无法立即升级，限制本地用户访问运行rtl8192eu驱动的系统，并密切监控系统状态。"
 
 [score]
-cvss_v2 = 0.0
-cvss_v2_vector = ""
+cvss_v2 = 5.0
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:N/A:N"
 cvss_v3 = 5.5
 cvss_v3_vector = "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H"
 cvss_v4 = 0.0

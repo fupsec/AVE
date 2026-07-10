@@ -97,8 +97,8 @@ steps = [
 workaround = "如无法升级驱动程序，可采取以下缓解措施：1) 启用驱动程序签名强制（Driver Signature Enforcement），阻止加载未签名驱动；2) 使用 Windows Defender Application Control (WDAC) 或 AppLocker 策略阻止加载 STProcessMonitor.sys；3) 监控 IOCTL 0xB822200C 的异常调用；4) 在 Windows 安全中心启用内核隔离（Core Isolation）和内存完整性（Memory Integrity）功能。"
 
 [score]
-cvss_v2 = 0.0
-cvss_v2_vector = ""
+cvss_v2 = 5.0
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:N/A:N"
 cvss_v3 = 5.5
 cvss_v3_vector = "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H"
 cvss_v4 = 0.0

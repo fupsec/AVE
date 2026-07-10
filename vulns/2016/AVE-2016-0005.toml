@@ -54,6 +54,8 @@ steps = [
 workaround = "限制物理访问 USB 端口，仅允许信任的 USB 设备接入"
 
 [score]
+cvss_v2 = 7.8
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:C/I:N/A:N"
 cvss_v3 = 8.4
 cvss_v3_vector = "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
 

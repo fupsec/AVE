@@ -61,8 +61,8 @@ workaround = "在 Swatch 配置中避免过度依赖单一节流周期设置，�
 [score]
 cvss_v2 = 5.0
 cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:N/A:N"
-cvss_v3 = 0.0
-cvss_v3_vector = ""
+cvss_v3 = 5.5
+cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N"
 cvss_v4 = 0.0
 cvss_v4_vector = ""
 

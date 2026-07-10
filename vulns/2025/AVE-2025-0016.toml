@@ -71,6 +71,8 @@ steps = [
 workaround = "如无法升级，限制可访问 Cacti 管理界面的 IP 范围，并审核拥有图形模板编辑权限的账户。"
 
 [score]
+cvss_v2 = 7.8
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:C/I:N/A:N"
 cvss_v3 = 8.8
 cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H"
 cvss_v4 = 8.7

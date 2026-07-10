@@ -10,13 +10,10 @@ poc_confidence = "high"
 [basic]
 description = "Teardrop IP 拒绝服务漏洞。通过发送两个或更多特制的 IP 分片数据包，利用多个厂商 TCP/IP 协议栈在分片重组时的缺陷，导致目标系统因内存不足而冻结或重启。影响 HP-UX 10.34、Microsoft Windows 95、Windows NT 3.5.1、Windows NT 4.0 等多个操作系统。"
 published = "1997-12-16"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 5.5
 severity = "MEDIUM"
-source = "nvd"
-sources = ["unknown"]
+source = "exploitdb"
 title = "Teardrop IP 分片拒绝服务漏洞"
-updated = "2026-06-16"
+updated = "2026-07-10"
 
 [exploit]
 exp = []
@@ -32,6 +29,16 @@ description = "Teardrop 攻击模拟与可视化分析"
 source = "github"
 url = "https://github.com/Cchristian42/Teardrop_Anomaly_Analysis"
 
+[[exploit.poc]]
+description = "Teardrop 攻击 Python 实现"
+source = "github"
+url = "https://github.com/C4PIT4L/TearDrop"
+
+[[exploit.poc]]
+description = "Teardrop DoS 攻击与 Sniffer 检测实验室脚本"
+source = "github"
+url = "https://github.com/02loveslollipop/DoS-Sniffer-lab"
+
 [id]
 avd_id = ""
 ave_id = "AVE-1999-0010"
@@ -39,7 +46,7 @@ cve_id = "CVE-1999-0015"
 other_ids = ["EDB-19103"]
 
 [meta]
-collected_at = "2026-07-11T10:18:58Z"
+collected_at = "2026-07-11T16:30:00Z"
 status = "completed"
 
 [references]
@@ -62,6 +69,8 @@ workaround = "在防火墙或网络边界设备上阻止 IP 分片数据包，�
 [score]
 cvss_v2 = 5.0
 cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:N/A:P"
+cvss_v3 = 7.5
+cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
 
 [tags]
 tags = [

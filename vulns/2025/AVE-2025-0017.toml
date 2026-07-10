@@ -97,8 +97,8 @@ steps = [
 workaround = "如无法升级，可采取以下缓解措施：1）禁用 Default Servlet 的写入功能（readonly=true）；2）禁用部分 PUT（partialPut=false）；3）将会话持久化存储位置移出 web 应用可访问目录。"
 
 [score]
-cvss_v2 = 0.0
-cvss_v2_vector = ""
+cvss_v2 = 10.0
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C"
 cvss_v3 = 9.8
 cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
 cvss_v4 = 0.0

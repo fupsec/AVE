@@ -66,6 +66,8 @@ steps = [
 workaround = "如无法立即更换设备，可在路由器管理界面禁用远程管理功能，限制对Web管理端口的网络访问（仅允许受信任的内部IP访问），并监控异常流量。"
 
 [score]
+cvss_v2 = 10.0
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C"
 cvss_v3 = 9.8
 cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
 cvss_v4 = 10.0
