@@ -9,12 +9,12 @@ poc_confidence = "none"
 
 [basic]
 description = "Apache Software Foundation (ASF) Struts 1.2.9 之前版本中的 ActionForm 组件在配合 BeanUtils 1.7 使用时，远程攻击者可通过 multipart/form-data 编码的表单，构造一个引用 public getMultipartRequestHandler 方法的参数名，从而访问 CommonsMultipartRequestHandler 实现及 BeanUtils 中的内部元素，导致服务器拒绝服务（DoS）。该漏洞已被 CISA 列入已知利用漏洞目录（KEV），确认存在野外利用。"
-published = "2006-03-29"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
+published = "2006-03-30"
+remediation = "升级 Apache Struts 至 1.2.9 或更高版本，修复 ActionForm 中 multipart 请求处理的安全问题。"
 score = 7.5
 severity = "HIGH"
 source = "nvd"
-sources = ["unknown"]
+sources = ["kev", "nvd"]
 title = "Apache Struts 1 ActionForm 拒绝服务漏洞"
 updated = "2026-06-16"
 
@@ -26,6 +26,8 @@ poc = []
 [id]
 ave_id = "AVE-2006-0003"
 cve_id = "CVE-2006-1547"
+aliases = ["CVE-2006-1547"]
+avd_id = ""
 other_ids = []
 
 [meta]
