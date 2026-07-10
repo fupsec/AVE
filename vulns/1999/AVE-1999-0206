@@ -1,25 +1,25 @@
-[id]
-ave_id = "AVE-1999-0206"
-cve_id = "CVE-1999-0147"
-aliases = ["CVE-1999-0147"]
-
 [basic]
-title = "CVE-1999-0147"
-description = ""
-severity = "UNKNOWN"
-score = 0.0
-sources = ["tenable"]
-published = ""
-updated = ""
+description = "Vulnerability identified as CVE-1999-0077. Please refer to vendor advisory for details."
+published = "2026-07-10"
 remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 5.0
+severity = "MEDIUM"
+sources = ["redhat"]
+title = "CVE-1999-0077"
+updated = "2026-07-10"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0077"]
+ave_id = "AVE-1999-0206"
+cve_id = "CVE-1999-0077"
+
+[meta]
+collected_at = "2026-07-10T17:53:19.295402129+00:00"
+status = "completed"
 
 [references]
 urls = []
-
-[exploit]
-poc_urls = []
-exp_urls = []
-
-[meta]
-status = "completed"
-collected_at = "2026-07-10T14:25:23.353384052+00:00"
