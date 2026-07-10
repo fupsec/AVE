@@ -1,0 +1,54 @@
+[id]
+ave_id = "AVE-1999-00001"
+cve_id = "CVE-1999-0002"
+other_ids = []
+
+[basic]
+title = "NFS mountd 缓冲区溢出漏洞"
+description = "NFS mountd 存在缓冲区溢出漏洞，远程攻击者可通过发送特制的挂载请求触发溢出，从而获取 root 权限。主要影响 Linux 系统。"
+severity = "CRITICAL"
+source = "nvd"
+published = "1998-10-12"
+updated = "2026-06-16"
+
+[score]
+cvss_v2 = 10.0
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C"
+
+[affected]
+vendor = "n/a"
+product = "NFS mountd"
+
+[exploit]
+poc = [
+  { url = "https://www.exploit-db.com/exploits/19096", description = "RedHat Linux 5.1 / Caldera OpenLinux Standard 1.2 - Mountd 远程缓冲区溢出利用", source = "exploit-db" }
+]
+exp = [
+  { url = "https://www.exploit-db.com/exploits/19096", description = "Mountd 远程 root 权限获取 EXP", source = "exploit-db" }
+]
+
+[remediation]
+fix = "升级到已修复版本的 nfs-utils 或应用 Red Hat/SGI 发布的补丁。"
+workaround = "限制 mountd 服务的网络访问，使用防火墙过滤对 RPC mountd (端口 635) 的访问。"
+steps = ["步骤1: 确认系统运行 mountd 服务", "步骤2: 检查 nfs-utils 版本", "步骤3: 升级到包含修复的版本"]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0002"
+other = [
+  "http://www.securityfocus.com/bid/121",
+  "http://www.ciac.org/ciac/bulletins/j-006.shtml",
+  "ftp://patches.sgi.com/support/free/security/advisories/19981006-01-I",
+  "https://access.redhat.com/security/cve/CVE-1999-0002"
+]
+
+[tags]
+tags = ["CWE-119", "buffer-overflow", "rce", "nfs", "mountd"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "high"
+notes = "该漏洞为经典的 NFS mountd 缓冲区溢出，CVSS v2 评分 10.0，存在公开的远程利用代码。因非 HTTP 协议漏洞，无法生成 HTTP PoC 脚本。"
+
+[meta]
+collected_at = "2026-07-11T00:00:00Z"
+status = "completed"

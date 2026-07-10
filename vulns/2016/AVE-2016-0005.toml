@@ -1,33 +1,58 @@
 [id]
 ave_id = "AVE-2016-0005"
 cve_id = "CVE-2016-20022"
-aliases = ["CVE-2016-20022"]
+other_ids = []
 
 [basic]
-title = "Linux Kernel USB 端点描述符未经验证漏洞(CVE-2016-20022)"
+title = "Linux Kernel USB 端点描述符 wMaxPacketSize 未经验证越界读取漏洞"
 description = """
-Linux kernel 4.8 之前版本中，drivers/usb/core/config.c 的 usb_parse_endpoint 函数未验证端点描述符的 wMaxPacketSize 字段，可触发越界读取（CWE-125），导致信息泄露或系统崩溃。
+Linux kernel 4.8 之前版本中，drivers/usb/core/config.c 的 usb_parse_endpoint 函数未验证端点描述符的 wMaxPacketSize 字段，可触发越界读取（Out-of-bounds Read），导致敏感信息泄露或系统崩溃。
 本地攻击者可通过插入恶意 USB 设备触发此漏洞提升权限。
 该漏洞仅影响厂商不再支持的产品。
 """
 severity = "HIGH"
-score = 8.4
-sources = ["nvd", "avd"]
+source = "nvd"
 published = "2024-06-27"
 updated = "2026-06-16"
-remediation = "升级至 Linux kernel 4.8 及以上版本"
+
+[score]
+cvss_v3 = 8.4
+cvss_v3_vector = "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+
+[affected]
+vendor = "Linux"
+product = "Linux Kernel"
+
+[exploit]
+poc = []
+exp = []
+nuclei_templates = []
+
+[remediation]
+fix = "升级至 Linux kernel 4.8 及以上版本"
+workaround = "限制物理访问 USB 端口，仅允许信任的 USB 设备接入"
+steps = [
+  "确认当前内核版本: uname -r",
+  "升级至 Linux kernel 4.8 及以上版本",
+  "重启系统使新内核生效"
+]
 
 [references]
-urls = [
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2016-20022"
+other = [
   "https://github.com/torvalds/linux/commit/aed9d65ac3278d4febd8665bd7db59ef53e825fe",
   "https://lore.kernel.org/lkml/1486322541-8206-8-git-send-email-w@1wt.eu/",
   "https://www.spinics.net/lists/linux-usb/msg144177.html"
 ]
 
-[exploit]
-poc_urls = []
-exp_urls = []
+[tags]
+tags = ["CWE-125", "CWE-20", "OOB-Read", "USB", "Kernel"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "none"
+notes = "该漏洞为 Linux 内核级漏洞，非 HTTP 协议场景，无法生成 PoC 脚本。截至收集时未发现公开 PoC/EXP。"
 
 [meta]
-status = "completed"
 collected_at = "2026-07-10T08:48:36Z"
+status = "completed"
