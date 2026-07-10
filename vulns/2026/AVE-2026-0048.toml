@@ -1,33 +1,28 @@
 [basic]
-description = "pyLoad 的 EventManager 模块维护一个 Client 实例列表用于事件订阅。get_events API 每次收到唯一 uuid 都会创建新的 Client 实例并追加到 clients 列表中。虽然 EventManager 提供了 clean() 方法用于移除无响应的 Client 实例，但该方法在核心代码中从未被调用。攻击者可发送大量携带不同 uuid 的请求，导致 clients 列表无限增长、内存耗尽，最终造成拒绝服务。"
-published = "2026-07-08"
-remediation = "升级 pyLoad 至 0.5.0b3.dev101 或更高版本。官方修复在 get_events 方法开头调用 self.clean() 以清除无效客户端，同时建议在 getEvents 端点实施速率限制以防止单一客户端发送大量请求。"
-score = 6.5
-severity = "MEDIUM"
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
 sources = ["ghsa"]
-title = "pyLoad EventManager 未清理无效客户端连接导致内存耗尽拒绝服务漏洞"
-updated = "2026-07-10"
+title = "CVE-2026-48987"
+updated = ""
 
 [exploit]
 exp_urls = []
-poc_urls = ["https://github.com/pyload/pyload/security/advisories/GHSA-c2f9-4mc8-j656"]
+poc_urls = []
 
 [id]
-aliases = ["GHSA-c2f9-4mc8-j656"]
+aliases = [
+    "CVE-2026-48987",
+    "GHSA-c2f9-4mc8-j656",
+]
 ave_id = "AVE-2026-0048"
 cve_id = "CVE-2026-48987"
 
 [meta]
-collected_at = "2026-07-10T12:52:04Z"
+collected_at = "2026-07-10T22:17:52.308526502+00:00"
 status = "completed"
 
 [references]
-urls = [
-    "https://github.com/pyload/pyload/security/advisories/GHSA-c2f9-4mc8-j656",
-    "https://github.com/pyload/pyload/commit/1b12dc7",
-    "https://github.com/pyload/pyload/blob/355c3f8d78a91f72d049e58f1edee8a972f845eb/src/pyload/core/managers/event_manager.py#L16-L17",
-]
-
-[score]
-cvss_v3 = 6.5
-cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H"
+urls = []
