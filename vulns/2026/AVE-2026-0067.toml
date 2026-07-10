@@ -1,0 +1,61 @@
+[id]
+ave_id = "AVE-2026-0067"
+cve_id = ""
+avd_id = ""
+other_ids = ["CNVD-2023-08743", "QVD-2023-11385"]
+
+[basic]
+title = "宏景eHR/宏景HCM 人力资源信息管理系统SQL注入漏洞（CNVD-2023-08743）"
+description = "北京宏景世纪软件股份有限公司宏景eHR/宏景HCM人力资源信息管理系统存在SQL注入漏洞（CNVD-2023-08743）。由于系统未对/servlet/codesettree接口的categories参数进行合理处理，未经过身份认证的远程攻击者可利用该漏洞执行任意SQL指令，从而窃取数据库敏感信息，甚至登录后台获取系统控制权限。"
+severity = "CRITICAL"
+source = "cnvd"
+published = "2023-05-11"
+updated = "2023-05-12"
+
+[score]
+cvss_v3 = 9.8
+cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+
+[affected]
+vendor = "北京宏景世纪软件股份有限公司"
+product = "宏景eHR/宏景HCM人力资源信息管理系统"
+
+[exploit]
+poc = [
+  { url = "https://github.com/xiaoming-x/HrmsTool-tamper", description = "宏景HCM SQL注入sqlmap tamper脚本，配合HrmsTool实现自动加解密利用", source = "github" },
+  { url = "https://github.com/vaycore/HrmsTool", description = "宏景HCM HRMS加解密工具，用于生成注入payload", source = "github" }
+]
+exp = []
+nuclei_templates = [
+  { url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2023/CNVD-2023-08743.yaml", description = "Nuclei检测模板 - 宏景HCM codesettree SQL注入检测", source = "nuclei" }
+]
+
+[remediation]
+fix = "升级宏景eHR/宏景HCM至8.2或更高版本。请联系厂商获取安全补丁。"
+workaround = "如暂时无法升级，建议对/servlet/codesettree接口实施访问控制，限制外网直接访问，并在WAF中添加针对categories参数的SQL注入防护规则。"
+steps = ["确认当前宏景eHR/HCM系统版本", "联系厂商获取安全补丁或升级至8.2及以上版本", "升级后验证/servlet/codesettree接口不再响应恶意SQL注入请求", "在WAF或网络层限制对该接口的未授权访问"]
+
+[references]
+nvd = ""
+avd = ""
+other = [
+  { url = "https://www.cnvd.org.cn/flaw/show/CNVD-2023-08743", description = "CNVD漏洞通告" },
+  { url = "https://www.secrss.com/articles/54590", description = "奇安信CERT安全通告" },
+  { url = "https://cn-sec.com/archives/1727611.html", description = "长亭科技在野1day风险提示与检测工具" },
+  { url = "https://stack.chaitin.com/vuldb/detail?id=d9dbe920-46b9-47eb-91b2-a10892a250ea", description = "长亭VulDB漏洞详情" },
+  { url = "https://zone.ci/aliyun/ali_highrisk/305868.html", description = "阿里云高危漏洞通告" },
+  { url = "https://pentest-tools.com/vulnerabilities-exploits/hongjing-human-resource-management-system-sql-injection-cnvd-2023-08743_1441", description = "Pentest-Tools漏洞信息" },
+  { url = "https://www.cnblogs.com/pursue-security/p/17704093.html", description = "漏洞复现分析" }
+]
+
+[tags]
+tags = ["CWE-89", "SQL-Injection", "hongjing", "hcm", "ehr", "hrms", "unauthenticated"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "high"
+notes = "CNVD-2023-08743已由CNVD平台正式通告，奇安信CERT已复现。存在多个公开PoC（含Nuclei模板、sqlmap tamper脚本、Python检测脚本），CVSS v3评分9.8（Critical）。长亭科技提供了X-RAY远程检测工具。受影响版本为宏景eHR/HCM < 8.2。"
+
+[meta]
+collected_at = "2026-07-10T12:00:00Z"
+status = "completed"

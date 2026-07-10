@@ -1,0 +1,52 @@
+[id]
+ave_id = "AVE-2018-0041"
+cve_id = "CVE-2018-25112"
+avd_id = "CVE-2018-25112"
+other_ids = ["VDE-2018-012"]
+
+[basic]
+title = "Phoenix Contact ILC 1x1 拒绝服务漏洞"
+description = "Phoenix Contact ILC 1x1 系列工业控制器存在未受控资源消耗漏洞。未经身份验证的远程攻击者可通过在 IEC 61131 程序中创建大量网络流量，导致设备资源耗尽，造成拒绝服务。该漏洞影响所有固件版本的 ILC 131、ILC 151、ILC 171 和 ILC 191 ETH 控制器。"
+severity = "HIGH"
+source = "nvd"
+published = "2018-08-13"
+updated = "2025-06-04"
+
+[score]
+cvss_v2 = 0
+cvss_v2_vector = ""
+cvss_v3 = 7.5
+cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+cvss_v4 = 0
+cvss_v4_vector = ""
+
+[affected]
+vendor = "Phoenix Contact"
+product = "ILC 1x1"
+
+[exploit]
+poc = []
+exp = []
+nuclei_templates = []
+
+[remediation]
+fix = "Phoenix Contact 建议在封闭网络中运行 ILC 1x1 设备，或使用合适的防火墙进行保护。"
+workaround = "将设备部署在隔离的工业网络中，通过防火墙限制外部访问。"
+steps = ["步骤1: 确认设备型号和固件版本", "步骤2: 配置防火墙限制网络访问", "步骤3: 将设备部署在封闭网络环境中"]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2018-25112"
+avd = "https://avd.aliyun.com/detail?id=CVE-2018-25112"
+other = ["https://certvde.com/en/advisories/VDE-2018-012/"]
+
+[tags]
+tags = ["CWE-770", "DoS", "ICS"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "low"
+notes = "CVE 编号与 AVE 输入提供的 AVD ID 一致（CVE-2018-25112）。未发现公开 PoC 或利用代码。"
+
+[meta]
+collected_at = "2026-07-10T00:00:00Z"
+status = "completed"
