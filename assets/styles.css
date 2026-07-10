@@ -135,6 +135,63 @@ body {
   gap: 0.8rem;
 }
 
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #0f172a;
+}
+
+.vuln-table {
+  width: 100%;
+  min-width: 980px;
+  border-collapse: collapse;
+}
+
+.vuln-table thead th {
+  text-align: left;
+  color: #bfdbfe;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 0.65rem 0.7rem;
+  border-bottom: 1px solid #334155;
+  background: #0b1220;
+}
+
+.vuln-table tbody td {
+  padding: 0.58rem 0.7rem;
+  border-bottom: 1px solid rgba(51, 65, 85, 0.45);
+  vertical-align: top;
+  font-size: 0.9rem;
+}
+
+.vuln-table tbody tr:hover {
+  background: rgba(30, 41, 59, 0.5);
+}
+
+.table-title {
+  color: #e5e7eb;
+  max-width: 320px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.table-cve {
+  color: #cbd5e1;
+}
+
+.table-action {
+  white-space: nowrap;
+}
+
+.table-empty {
+  color: #94a3b8;
+  text-align: center;
+}
+
 .pager {
   margin-top: 0.9rem;
   display: flex;
@@ -297,34 +354,6 @@ details > summary {
   text-decoration: underline;
 }
 
-.inline-detail {
-  margin-top: 1rem;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  background: #0b1424;
-  padding: 0.9rem;
-}
-
-.inline-detail-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.8rem;
-}
-
-.inline-detail-head h3 {
-  margin: 0;
-}
-
-#close-detail {
-  border: 1px solid #334155;
-  border-radius: 8px;
-  background: #111827;
-  color: #e5e7eb;
-  padding: 0.25rem 0.7rem;
-  cursor: pointer;
-}
-
 .detail-meta {
   color: #bfdbfe;
   margin: 0.5rem 0;
@@ -334,6 +363,29 @@ details > summary {
   color: var(--muted);
   margin: 0.2rem 0 0.65rem;
   line-height: 1.5;
+}
+
+.detail-remediation {
+  margin: 0 0 0.65rem;
+  color: #fcd34d;
+  line-height: 1.5;
+}
+
+.detail-kv {
+  margin: 0.25rem 0 0.6rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(180px, 1fr));
+  gap: 0.35rem 0.8rem;
+}
+
+.detail-kv p {
+  margin: 0;
+  color: #cbd5e1;
+  font-size: 0.9rem;
+}
+
+.detail-kv strong {
+  color: #bfdbfe;
 }
 
 .detail-flags {
@@ -358,5 +410,9 @@ details > summary {
 
   .dashboard {
     grid-template-columns: repeat(2, minmax(120px, 1fr));
+  }
+
+  .detail-kv {
+    grid-template-columns: 1fr;
   }
 }

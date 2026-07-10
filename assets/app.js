@@ -20,48 +20,6 @@ const state = {
 
 let loadToken = 0;
 
-function createLinkList(container, links) {
-  container.innerHTML = "";
-  if (!links || !links.length) {
-    const p = document.createElement("p");
-    p.textContent = "（无）";
-    container.appendChild(p);
-    return;
-  }
-  for (const u of links) {
-    const a = document.createElement("a");
-    a.href = u;
-    a.target = "_blank";
-    a.rel = "noopener noreferrer";
-    a.textContent = u;
-    container.appendChild(a);
-  }
-}
-
-function renderInlineDetail(c) {
-  const box = document.getElementById("inline-detail");
-  document.getElementById("detail-title").textContent = `${c.ave_id} - ${c.title || "漏洞详情"}`;
-  document.getElementById("detail-meta").textContent = `严重性: ${c.severity} | 评分: ${c.score} | CVE: ${c.cve_id}`;
-  document.getElementById("detail-desc").textContent = c.description || "（无描述）";
-
-  const pocFlag = document.getElementById("detail-poc");
-  const expFlag = document.getElementById("detail-exp");
-  pocFlag.classList.remove("yes");
-  expFlag.classList.remove("yes");
-  pocFlag.textContent = `PoC：${c.has_poc ? "有" : "无"}`;
-  expFlag.textContent = `EXP：${c.has_exp ? "有" : "无"}`;
-  if (c.has_poc) pocFlag.classList.add("yes");
-  if (c.has_exp) expFlag.classList.add("yes");
-
-  createLinkList(document.getElementById("detail-refs"), c.references);
-  createLinkList(document.getElementById("detail-poc-links"), c.repo_poc_urls);
-  createLinkList(document.getElementById("detail-exp-links"), c.repo_exp_urls);
-  createLinkList(document.getElementById("detail-raw"), [c.raw_url]);
-
-  box.hidden = false;
-  box.scrollIntoView({ behavior: "smooth", block: "start" });
-}
-
 function enc(s) {
   return encodeURIComponent(s);
 }
@@ -100,6 +58,18 @@ function linksFromToml(text, key) {
   let m;
   while ((m = strRe.exec(arr[1])) !== null) out.push(m[1]);
   return out;
+}
+
+function textField(text, key, fallback = "") {
+  const one = text.match(new RegExp(`^${key}\\s*=\\s*\"([^\"]*)\"`, "m"));
+  if (one?.[1] !== undefined) return one[1];
+  const multi = text.match(new RegExp(`^${key}\\s*=\\s*\"\"\"([\\s\\S]*?)\"\"\"`, "m"));
+  if (multi?.[1] !== undefined) return multi[1].trim();
+  return fallback;
+}
+
+function listField(text, key) {
+  return linksFromToml(text, key);
 }
 
 async function gh(url) {
@@ -156,7 +126,7 @@ async function ensureAssetIndex() {
 
 function toCard(item, text, assetIndex) {
   const ave = item.name.replace(/\.toml$/i, "");
-  const cve = text.match(/^cve_id\s*=\s*"([^"]+)"/m)?.[1] || "无";
+  const cve = textField(text, "cve_id", "无");
   const pocs = linksFromToml(text, "poc_urls");
   const exps = linksFromToml(text, "exp_urls");
   const repoPocs = getRepoAssetUrls(assetIndex, ave, "poc");
@@ -170,6 +140,13 @@ function toCard(item, text, assetIndex) {
     description: descFromToml(text),
     severity: severityFromToml(text),
     score: scoreFromToml(text),
+    aliases: listField(text, "aliases"),
+    sources: listField(text, "sources"),
+    published: textField(text, "published", ""),
+    updated: textField(text, "updated", ""),
+    remediation: textField(text, "remediation", ""),
+    status: textField(text, "status", ""),
+    collected_at: textField(text, "collected_at", ""),
     references: linksFromToml(text, "urls"),
     poc_urls: pocs,
     exp_urls: exps,
@@ -197,58 +174,70 @@ function renderPager() {
 }
 
 function renderList(cards) {
-  const list = document.getElementById("list");
-  const tpl = document.getElementById("card-template");
-  list.innerHTML = "";
+  const tbody = document.getElementById("list-body");
+  tbody.innerHTML = "";
+
+  if (!cards.length) {
+    const tr = document.createElement("tr");
+    const td = document.createElement("td");
+    td.colSpan = 8;
+    td.className = "table-empty";
+    td.textContent = "当前条件下没有结果";
+    tr.appendChild(td);
+    tbody.appendChild(tr);
+    return;
+  }
 
   for (const c of cards) {
-    const n = tpl.content.firstElementChild.cloneNode(true);
-    n.querySelector(".id").textContent = c.ave_id;
-    const s = n.querySelector(".severity");
-    s.textContent = c.severity;
-    s.classList.add(sevClass(c.severity));
-    n.querySelector(".title").textContent = c.title || c.cve_id;
-    n.querySelector(".description").textContent = c.description;
-    n.querySelector(".meta").textContent = `CVE: ${c.cve_id} | 评分: ${c.score}`;
+    const tr = document.createElement("tr");
 
-    const detailLink = n.querySelector(".detail-link");
-    detailLink.addEventListener("click", () => renderInlineDetail(c));
+    const aveTd = document.createElement("td");
+    aveTd.textContent = c.ave_id;
 
-    const pocFlag = n.querySelector(".poc-flag");
-    const expFlag = n.querySelector(".exp-flag");
-    pocFlag.textContent = `PoC：${c.has_poc ? "有" : "无"}`;
-    expFlag.textContent = `EXP：${c.has_exp ? "有" : "无"}`;
+    const cveTd = document.createElement("td");
+    cveTd.className = "table-cve";
+    cveTd.textContent = c.cve_id || "无";
+
+    const titleTd = document.createElement("td");
+    titleTd.className = "table-title";
+    titleTd.title = c.title || "";
+    titleTd.textContent = c.title || c.cve_id || c.ave_id;
+
+    const sevTd = document.createElement("td");
+    const sev = document.createElement("span");
+    sev.className = `severity ${sevClass(c.severity)}`;
+    sev.textContent = c.severity;
+    sevTd.appendChild(sev);
+
+    const scoreTd = document.createElement("td");
+    scoreTd.textContent = String(c.score ?? 0);
+
+    const pocTd = document.createElement("td");
+    const pocFlag = document.createElement("span");
+    pocFlag.className = "flag";
+    pocFlag.textContent = c.has_poc ? "有" : "无";
     if (c.has_poc) pocFlag.classList.add("yes");
+    pocTd.appendChild(pocFlag);
+
+    const expTd = document.createElement("td");
+    const expFlag = document.createElement("span");
+    expFlag.className = "flag";
+    expFlag.textContent = c.has_exp ? "有" : "无";
     if (c.has_exp) expFlag.classList.add("yes");
+    expTd.appendChild(expFlag);
 
-    const links = n.querySelector(".links");
-    const groups = [
-      ["参考链接", c.references],
-      ["PoC（公开）", c.repo_poc_urls],
-      ["EXP（公开）", c.repo_exp_urls],
-      ["原始 TOML", [c.raw_url]],
-    ];
+    const actionTd = document.createElement("td");
+    actionTd.className = "table-action";
+    const detailLink = document.createElement("a");
+    detailLink.className = "detail-link";
+    detailLink.href = `detail.html?file=${encodeURIComponent(c.file_name)}`;
+    detailLink.target = "_blank";
+    detailLink.rel = "noopener noreferrer";
+    detailLink.textContent = "查看详情";
+    actionTd.appendChild(detailLink);
 
-    for (const [label, arr] of groups) {
-      const h = document.createElement("strong");
-      h.textContent = label;
-      links.appendChild(h);
-      if (!arr.length) {
-        const p = document.createElement("p");
-        p.textContent = "（无）";
-        links.appendChild(p);
-      } else {
-        for (const u of arr) {
-          const a = document.createElement("a");
-          a.href = u;
-          a.target = "_blank";
-          a.rel = "noopener noreferrer";
-          a.textContent = u;
-          links.appendChild(a);
-        }
-      }
-    }
-    list.appendChild(n);
+    tr.append(aveTd, cveTd, titleTd, sevTd, scoreTd, pocTd, expTd, actionTd);
+    tbody.appendChild(tr);
   }
 }
 
@@ -355,7 +344,6 @@ async function boot() {
   const searchBtn = document.getElementById("search-btn");
   const prev = document.getElementById("prev-page");
   const next = document.getElementById("next-page");
-  const closeDetail = document.getElementById("close-detail");
 
   const rerun = debounce(() => {
     state.keyword = searchInput.value || "";
@@ -401,10 +389,6 @@ async function boot() {
     }
     runPage(state.page + 1).catch((e) => setStatus(`翻页失败：${e.message}`));
   });
-  closeDetail.addEventListener("click", () => {
-    document.getElementById("inline-detail").hidden = true;
-  });
-
   renderPager();
 }
 

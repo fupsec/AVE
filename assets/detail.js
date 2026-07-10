@@ -63,6 +63,10 @@ function severityClass(sev) {
   return ["CRITICAL", "HIGH", "MEDIUM", "LOW", "INFO", "UNKNOWN"].includes(s) ? s : "UNKNOWN";
 }
 
+function listField(text, key) {
+  return linksFromToml(text, key);
+}
+
 function extractAveId(value) {
   const m = String(value || "").match(/AVE-\d{4}-\d+/i);
   return m ? m[0].toUpperCase() : "";
@@ -117,6 +121,13 @@ function render(toml, fileName, rawUrl, htmlUrl, assetIndex) {
   const desc = textField(toml, "description", "");
   const sev = severityClass(textField(toml, "severity", "UNKNOWN"));
   const score = numField(toml, "score", 0);
+  const aliases = listField(toml, "aliases");
+  const sources = listField(toml, "sources");
+  const published = textField(toml, "published", "");
+  const updated = textField(toml, "updated", "");
+  const remediation = textField(toml, "remediation", "");
+  const status = textField(toml, "status", "");
+  const collectedAt = textField(toml, "collected_at", "");
 
   const refs = linksFromToml(toml, "urls");
   const pocs = assetIndex.pocUrlsByAve.get(ave) || [];
@@ -130,6 +141,28 @@ function render(toml, fileName, rawUrl, htmlUrl, assetIndex) {
   document.getElementById("d-title").textContent = title;
   document.getElementById("d-desc").textContent = desc;
   document.getElementById("d-meta").textContent = `CVE: ${cve} | 评分: ${score}`;
+
+  const extra = document.getElementById("d-extra");
+  extra.innerHTML = "";
+  const pairs = [
+    ["别名", aliases.join(", ") || "无"],
+    ["来源", sources.join(", ") || "无"],
+    ["发布时间", published || "无"],
+    ["更新时间", updated || "无"],
+    ["采集状态", status || "无"],
+    ["采集时间", collectedAt || "无"],
+  ];
+  for (const [k, v] of pairs) {
+    const p = document.createElement("p");
+    const s = document.createElement("strong");
+    s.textContent = `${k}: `;
+    p.appendChild(s);
+    p.append(document.createTextNode(v));
+    extra.appendChild(p);
+  }
+
+  const rem = document.getElementById("d-remediation");
+  rem.textContent = remediation ? `修复建议: ${remediation}` : "";
 
   const pocFlag = document.getElementById("d-poc");
   const expFlag = document.getElementById("d-exp");

@@ -46,66 +46,30 @@
       <section class="panel list-panel">
         <h2>漏洞列表</h2>
         <div id="status" class="status">初始化中...</div>
-        <div id="list" class="cards"></div>
+        <div class="table-wrap">
+          <table class="vuln-table">
+            <thead>
+              <tr>
+                <th>AVE</th>
+                <th>CVE</th>
+                <th>标题</th>
+                <th>严重性</th>
+                <th>评分</th>
+                <th>PoC</th>
+                <th>EXP</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody id="list-body"></tbody>
+          </table>
+        </div>
         <div class="pager" id="pager">
           <button id="prev-page" type="button">上一页</button>
           <span id="page-info">第 1 页</span>
           <button id="next-page" type="button">下一页</button>
         </div>
-
-        <section class="inline-detail" id="inline-detail" hidden>
-          <div class="inline-detail-head">
-            <h3 id="detail-title">漏洞详情</h3>
-            <button id="close-detail" type="button">关闭</button>
-          </div>
-          <p id="detail-meta" class="detail-meta"></p>
-          <p id="detail-desc" class="detail-desc"></p>
-          <div class="detail-flags">
-            <span class="flag" id="detail-poc">PoC：无</span>
-            <span class="flag" id="detail-exp">EXP：无</span>
-          </div>
-          <details open>
-            <summary>参考链接</summary>
-            <div id="detail-refs" class="detail-links"></div>
-          </details>
-          <details>
-            <summary>PoC 链接</summary>
-            <div id="detail-poc-links" class="detail-links"></div>
-          </details>
-          <details>
-            <summary>EXP 链接</summary>
-            <div id="detail-exp-links" class="detail-links"></div>
-          </details>
-          <details>
-            <summary>原始文件</summary>
-            <div id="detail-raw" class="detail-links"></div>
-          </details>
-        </section>
       </section>
     </main>
-
-    <template id="card-template">
-      <article class="card">
-        <div class="card-head">
-          <div class="head-left">
-            <strong class="id"></strong>
-            <span class="severity"></span>
-          </div>
-          <button class="detail-link" type="button">查看详情</button>
-        </div>
-        <h3 class="title"></h3>
-        <p class="description"></p>
-        <div class="meta"></div>
-        <div class="flags">
-          <span class="flag poc-flag">PoC：无</span>
-          <span class="flag exp-flag">EXP：无</span>
-        </div>
-        <details>
-          <summary>参考链接 / PoC / EXP / 原始文件</summary>
-          <div class="links"></div>
-        </details>
-      </article>
-    </template>
 
     <script src="assets/app.js"></script>
   </body>
