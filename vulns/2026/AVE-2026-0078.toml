@@ -1,65 +1,72 @@
 [affected]
-product = "Langflow"
-vendor = "Langflow"
+product = "tesla"
+vendor = "elixir-tesla"
 
 [authenticity]
 cve_confidence = "high"
-notes = "ZDI 官方通告（ZDI-26-036），GitHub 公开 PoC 已验证"
-poc_confidence = "high"
+notes = "CVE 已由 EEF CNA 分配，GHSA 官方安全公告确认。CVSS v4.0 评分 2.1（低危）。漏洞为 Tesla Multipart 模块的内容分隔符注入，需要攻击者可以控制传递给 add_field/add_file/add_file_content 的文件名或表单字段名参数。公开渠道暂未发现独立 PoC 仓库。"
+poc_confidence = "low"
 
 [basic]
-description = "Langflow 的 validate 端点中 exec_globals 参数存在远程代码执行漏洞。该漏洞允许未经身份验证的远程攻击者在受影响的 Langflow 实例上执行任意代码。漏洞源于 validate_code() 函数使用 exec() 执行用户提供的 Python 代码时未进行沙箱隔离，攻击者可通过构造恶意的函数默认参数实现任意命令执行。"
-published = "2026-01-22"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 9.8
-severity = "CRITICAL"
-source = "zdi"
-sources = ["unknown"]
-title = "Langflow exec_globals 远程代码执行漏洞"
+description = "Tesla 是一个 Elixir 语言的 HTTP 客户端库。其 Multipart 模块的 part_headers_for_disposition/1 函数在处理 Content-Disposition 参数时将用户输入直接拼接到 #{k}=\"#{v}\" 格式的字符串中，未对 CR、LF 或双引号进行转义或过滤。攻击者可通过控制文件名或表单字段名中的特殊字符注入额外的 part 头部，甚至通过双 CRLF 序列在 part 体前预置字节，实现 multipart smuggling 攻击。该漏洞影响 tesla 0.8.0 至 1.18.2 版本，已在 1.18.3 中修复。"
+published = "2026-06-02"
+remediation = "升级 Tesla 至 1.18.3 及以上版本。无法升级时，在传递给 add_field/4、add_file/3 或 add_file_content/4 之前校验 disposition 参数值，拒绝包含 CR(\r)、LF(\n) 或双引号(\")的输入。"
+score = 2.1
+severity = "LOW"
+source = "ghsa"
+sources = ["ghsa"]
+title = "Tesla (Elixir) multipart 头部注入漏洞"
 updated = "2026-06-17"
 
 [exploit]
 exp = []
-
-[[exploit.nuclei_templates]]
-description = "Langflow RCE Nuclei 检测模板"
-source = "nuclei"
-url = "https://github.com/affix/CVE-2026-0770-PoC/blob/main/nuclei-template/CVE-2026-0770.yaml"
-
-[[exploit.poc]]
-description = "Langflow 远程代码执行 PoC 利用脚本"
-source = "github"
-url = "https://github.com/affix/CVE-2026-0770-PoC"
+nuclei_templates = []
+poc = []
 
 [id]
+avd_id = ""
 ave_id = "AVE-2026-0078"
-cve_id = "CVE-2026-0770"
-other_ids = ["ZDI-CAN-27325"]
+cve_id = "CVE-2026-48598"
+other_ids = ["GHSA-28jh-g32x-v9v4"]
 
 [meta]
-collected_at = "2026-07-11T12:00:00Z"
+collected_at = "2026-07-11T00:00:00Z"
 status = "completed"
 
 [references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2026-0770"
-other = ["https://www.zerodayinitiative.com/advisories/ZDI-26-036/"]
+avd = ""
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2026-48598"
+other = [
+    "https://github.com/elixir-tesla/tesla/security/advisories/GHSA-28jh-g32x-v9v4",
+    "https://github.com/elixir-tesla/tesla/commit/bb1a2c3da2775924d96e3db8e315dcc4d5d2246e",
+    "https://cna.erlef.org/cves/CVE-2026-48598.html",
+    "https://osv.dev/vulnerability/EEF-CVE-2026-48598",
+]
 
 [remediation]
-fix = "升级 Langflow 到修复版本。参考官方安全公告及时更新。"
+fix = "升级 Tesla 至 1.18.3 及以上版本。"
 steps = [
-    "步骤1: 确认 Langflow 版本",
-    "步骤2: 升级到修复版本",
-    "步骤3: 重启服务",
+    "步骤1: 确认当前项目依赖的 Tesla 版本（mix.exs 或 mix.lock）",
+    "步骤2: 更新 mix.exs 中 Tesla 依赖到 \"~> 1.18.3\" 或更高",
+    "步骤3: 运行 mix deps.get 和 mix deps.compile 更新依赖",
+    "步骤4: 重新编译并测试 multipart 上传功能",
 ]
-workaround = "如无法升级，可采取以下缓解措施：1. 禁用 AUTO_LOGIN=true 默认配置；2. 限制 /api/v1/validate/code 端点的访问权限；3. 在网络层面限制对 Langflow 服务的访问。"
+workaround = "若无法立即升级，在传递给 add_field/4、add_file/3 或 add_file_content/4 之前校验 disposition 参数值，拒绝包含 \\r、\\n 或 \" 的输入。"
 
 [score]
-cvss_v3 = 9.8
-cvss_v3_vector = "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+cvss_v2 = 0.0
+cvss_v2_vector = ""
+cvss_v3 = 0.0
+cvss_v3_vector = ""
+cvss_v4 = 2.1
+cvss_v4_vector = "CVSS:4.0/AV:L/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:N/SC:N/SI:L/SA:N"
 
 [tags]
 tags = [
-    "CWE-829",
-    "RCE",
-    "Langflow",
+    "CWE-116",
+    "Multipart",
+    "Content-Disposition",
+    "头部注入",
+    "Part Smuggling",
+    "Elixir",
 ]

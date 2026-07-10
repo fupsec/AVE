@@ -1,93 +1,42 @@
-[affected]
-product = "Word"
-vendor = "Microsoft"
-
-[authenticity]
-cve_confidence = "high"
-notes = "CVE 由 NVD 和 CERT/CC 确认，已列入 CISA KEV 目录，确认曾在野外被积极利用。该漏洞为 Microsoft Office Word 桌面应用缓冲区溢出，非 HTTP 协议漏洞，无法生成 HTTP PoC 脚本。未找到公开的 PoC/EXP 脚本仓库或 Nuclei 检测模板。"
-poc_confidence = "none"
-
-[basic]
-description = "Microsoft Word (Office 2000 SP3、Office XP SP3、Office 2003 SP1/SP2 及 Microsoft Works Suites 至 2006 版本) 中存在缓冲区溢出漏洞，攻击者可通过畸形对象指针诱使用户打开特制 Word 文档，从而执行任意代码。该漏洞已被 CISA 列入已知利用漏洞目录 (KEV)，确认存在野外利用。"
-published = "2006-05-19"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 7.5
-severity = "HIGH"
-source = "nvd"
-sources = ["unknown"]
-title = "Microsoft Word 畸形对象指针远程代码执行漏洞"
-updated = "2026-06-16"
-
-[exploit]
-exp = []
-nuclei_templates = []
-poc = []
-
 [id]
-avd_id = ""
 ave_id = "AVE-2006-0004"
 cve_id = "CVE-2006-2492"
-other_ids = []
+aliases = ["CVE-2006-2492"]
 
-[meta]
-collected_at = "2026-07-10T12:21:52Z"
-status = "completed"
+[basic]
+title = "Microsoft Word 畸形对象指针缓冲区溢出远程代码执行漏洞"
+description = "Microsoft Word 在处理特制文档中的畸形对象指针时存在缓冲区溢出漏洞，影响 Office 2000 SP3、Office XP SP3、Office 2003 SP1/SP2 及 Microsoft Works Suites 至 2006 版本。攻击者可利用此漏洞通过构造恶意的 Word 文档，诱使用户打开后触发溢出，从而在目标系统上以当前用户权限执行任意代码，实现远程控制。该漏洞在 2006 年 5 月已被发现存在零日攻击活动。"
+severity = "HIGH"
+score = 8.8
+cvss_v3 = "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H"
+cvss_v2 = "(AV:N/AC:H/Au:N/C:C/I:C/A:C)"
+remediation = "安装微软 MS06-027 安全更新（KB917345/KB917335/KB917334/KB917346），将 Microsoft Word 及 Office 升级至修复版本。避免打开来源不明的 Word 文档，并在 Outlook 中禁用 Word 作为邮件编辑器以降低攻击面。"
+published = "2006-06-13"
+updated = "2006-07-12"
+sources = ["kev", "nvd", "msrc"]
+
+[affected]
+vendor = "Microsoft"
+product = "Word"
+
+[exploit]
+poc_urls = []
+exp_urls = []
+nuclei_templates = []
 
 [references]
-avd = ""
 nvd = "https://nvd.nist.gov/vuln/detail/CVE-2006-2492"
-
-[[references.other]]
-description = "Microsoft 安全公告 MS06-027"
-url = "https://docs.microsoft.com/en-us/security-updates/securitybulletins/2006/ms06-027"
-
-[[references.other]]
-description = "CISA KEV 目录"
-url = "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2006-2492"
-
-[[references.other]]
-description = "ISC SANS 零日攻击报告"
-url = "http://isc.sans.org/diary.php?storyid=1345"
-
-[[references.other]]
-description = "US-CERT 技术警报 TA06-139A"
-url = "http://www.us-cert.gov/cas/techalerts/TA06-139A.html"
-
-[[references.other]]
-description = "SecurityFocus BID 18037"
-url = "http://www.securityfocus.com/bid/18037"
-
-[[references.other]]
-description = "CERT/CC 漏洞通告 VU#446012"
-url = "http://www.kb.cert.org/vuls/id/446012"
-
-[[references.other]]
-description = "Secunia 安全公告 SA20153"
-url = "http://secunia.com/advisories/20153"
-
-[[references.other]]
-description = "IBM X-Force 条目"
-url = "https://exchange.xforce.ibmcloud.com/vulnerabilities/26556"
-
-[remediation]
-fix = "安装 Microsoft 安全更新 MS06-027。参考官方安全公告。"
-steps = [
-    "步骤1: 确认 Microsoft Office 版本 (Office 2000 SP3 / Office XP SP3 / Office 2003 SP1-SP2 / Works Suites)",
-    "步骤2: 访问 Microsoft Update 网站安装 MS06-027 安全更新",
-    "步骤3: 重启系统使更新生效",
+msrc = "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2006-2492"
+other = [
+  "https://docs.microsoft.com/en-us/security-updates/securitybulletins/2006/ms06-027",
+  "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2006-2492",
+  "http://www.kb.cert.org/vuls/id/446012",
+  "http://www.securityfocus.com/bid/18037",
+  "http://isc.sans.org/diary.php?storyid=1345",
+  "http://secunia.com/advisories/20153",
+  "https://exchange.xforce.ibmcloud.com/vulnerabilities/26556"
 ]
-workaround = "如无法安装更新，不要打开来自不可信来源的 Word 文档，并启用 Microsoft Office 的受保护视图功能。"
 
-[score]
-cvss_v2 = 7.6
-cvss_v2_vector = "AV:N/AC:H/Au:N/C:C/I:C/A:C"
-cvss_v3 = 8.8
-cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H"
-
-[tags]
-tags = [
-    "CWE-120",
-    "Buffer Overflow",
-    "RCE",
-    "KEV",
-]
+[meta]
+collected_at = "2026-07-10T17:23:25.657710900+00:00"
+status = "completed"
