@@ -1,0 +1,25 @@
+[id]
+ave_id = "AVE-2018-0024"
+cve_id = "CVE-2018-25094"
+aliases = ["CVE-2018-25094"]
+
+[basic]
+title = "CVE-2018-25094"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["avd"]
+published = ""
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T12:52:04.748305666+00:00"
