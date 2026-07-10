@@ -1,132 +1,39 @@
-[affected]
-product = "Acrobat and Reader"
-vendor = "Adobe"
-
-[authenticity]
-cve_confidence = "high"
-notes = "CVE-2007-5659 已被 CISA 列入 KEV 目录（2022-06-08 添加），真实性极高。Exploit-DB 存在公开 PoC（EDB-ID 31114），包含完整的 JavaScript heapspray + Collab.collectEmailInfo 触发代码。漏洞通过特制 PDF 文件中未指定 JavaScript 方法的长参数触发缓冲区溢出，非 HTTP 协议，故不生成标准 HTTP PoC 脚本。此漏洞可能与 CVE-2008-0655 关联或重叠。"
-poc_confidence = "high"
-
-[basic]
-description = "Adobe Acrobat and Reader 8.1.1 及之前版本存在多个缓冲区溢出漏洞，远程攻击者可通过特制 PDF 文件利用未指定 JavaScript 方法的长参数执行任意代码。此漏洞已被 CISA 列入已知被利用漏洞目录（KEV），并可能与 CVE-2008-0655 存在关联。"
-published = "2007-10-24"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 7.5
-severity = "HIGH"
-source = "kev"
-sources = ["unknown"]
-title = "Adobe Acrobat and Reader 缓冲区溢出漏洞"
-updated = "2024-06-28"
-
-[exploit]
-exp = []
-nuclei_templates = []
-
-[[exploit.poc]]
-description = "Adobe Acrobat and Reader 8.1.1 远程代码执行 PoC（JavaScript heapspray + Collab.collectEmailInfo 触发）"
-source = "exploit-db"
-url = "https://www.exploit-db.com/exploits/31114"
-
-[[exploit.poc]]
-description = "Exploit-DB 原始 PoC 文件（JavaScript 代码）"
-source = "exploit-db"
-url = "https://gitlab.com/exploit-database/exploitdb/-/raw/main/exploits/windows/dos/31114.txt"
-
-[[exploit.poc]]
-description = "SecurityFocus BID 27641 - Adobe Acrobat and Reader 多个远程代码执行漏洞"
-source = "其他"
-url = "https://www.securityfocus.com/bid/27641"
-
 [id]
 ave_id = "AVE-2007-0003"
 cve_id = "CVE-2007-5659"
-other_ids = ["CVE-2008-0655"]
+aliases = ["CVE-2007-5659"]
 
-[meta]
-collected_at = "2026-07-10T20:16:00Z"
-status = "completed"
+[basic]
+title = "Adobe Acrobat 和 Reader 缓冲区溢出漏洞"
+description = "Adobe Acrobat 和 Reader 8.1.1 及更早版本中存在多处缓冲区溢出漏洞。远程攻击者可以通过构造特制的PDF文件，向未指定的JavaScript方法传递超长参数，触发缓冲区溢出，进而导致任意代码执行。该漏洞已被CISA列入已知被利用漏洞目录(KEV)，曾在真实攻击中被积极利用。"
+severity = "HIGH"
+score = 7.8
+cvss_v3 = "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H"
+cvss_v2 = "(AV:N/AC:M/Au:N/C:C/I:C/A:C)"
+remediation = "升级 Adobe Acrobat/Reader 至 8.1.2 或更高版本，按照供应商安全公告 APSB08-13 的说明安装补丁，禁用 PDF 中的 JavaScript 执行作为缓解措施。"
+published = "2008-02-12"
+updated = "2026-06-16"
+sources = ["kev", "nvd"]
+
+[affected]
+vendor = "Adobe"
+product = "Acrobat and Reader"
+
+[exploit]
+poc_urls = []
+exp_urls = []
+nuclei_templates = []
 
 [references]
 nvd = "https://nvd.nist.gov/vuln/detail/CVE-2007-5659"
-
-[[references.other]]
-description = "CISA KEV 目录 - Adobe Acrobat and Reader 缓冲区溢出漏洞"
-url = "https://www.cisa.gov/known-exploited-vulnerabilities-catalog"
-
-[[references.other]]
-description = "Adobe 安全公告 APSA08-01"
-url = "http://www.adobe.com/support/security/advisories/apsa08-01.html"
-
-[[references.other]]
-description = "Adobe 安全公告 APSB08-13"
-url = "http://www.adobe.com/support/security/bulletins/apsb08-13.html"
-
-[[references.other]]
-description = "CERT/CC 漏洞说明 VU#666281"
-url = "http://www.kb.cert.org/vuls/id/666281"
-
-[[references.other]]
-description = "Gentoo Linux 安全公告 GLSA 200803-01"
-url = "http://security.gentoo.org/glsa/glsa-200803-01.xml"
-
-[[references.other]]
-description = "OVAL 定义 9813"
-url = "https://oval.cisecurity.org/repository/search/definition/oval%3Aorg.mitre.oval%3Adef%3A9813"
-
-[[references.other]]
-description = "Exploit-DB PoC 代码"
-url = "https://www.exploit-db.com/exploits/31114"
-
-[[references.other]]
-description = "iDefense 漏洞报告"
-url = "http://labs.idefense.com/intelligence/vulnerabilities/display.php?id=657"
-
-[[references.other]]
-description = "Secunia Advisory SA29065"
-url = "http://secunia.com/advisories/29065"
-
-[[references.other]]
-description = "Secunia Advisory SA29205"
-url = "http://secunia.com/advisories/29205"
-
-[[references.other]]
-description = "Secunia Advisory SA30840"
-url = "http://secunia.com/advisories/30840"
-
-[[references.other]]
-description = "RedHat 安全公告 RHSA-2008-0144"
-url = "http://www.redhat.com/support/errata/RHSA-2008-0144.html"
-
-[[references.other]]
-description = "US-CERT 技术警报 TA08-043A"
-url = "http://www.us-cert.gov/cas/techalerts/TA08-043A.html"
-
-[remediation]
-fix = "升级至 Adobe Acrobat/Reader 8.1.2 及以上版本。参考 Adobe 官方安全公告 APSB08-13。"
-steps = [
-    "确认 Adobe Acrobat/Reader 版本是否为 8.1.1 及以下",
-    "下载并安装最新安全更新: https://www.adobe.com/support/security/bulletins/apsb08-13.html",
-    "或禁用 JavaScript 作为临时缓解措施",
+other = [
+    "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2007-5659",
+    "http://www.adobe.com/support/security/advisories/apsa08-01.html",
+    "http://www.adobe.com/support/security/bulletins/apsb08-13.html",
+    "http://www.kb.cert.org/vuls/id/666281",
+    "http://www.us-cert.gov/cas/techalerts/TA08-043A.html",
 ]
-workaround = "在受影响版本的 Adobe Reader 中禁用 JavaScript 功能：编辑 > 首选项 > JavaScript > 取消选中「启用 Acrobat JavaScript」。"
 
-[score]
-cvss_v2 = 9.3
-cvss_v2_vector = "AV:N/AC:M/Au:N/C:C/I:C/A:C"
-cvss_v3 = 7.8
-cvss_v3_vector = "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H"
-
-[tags]
-tags = [
-    "CWE-120",
-    "缓冲区溢出",
-    "远程代码执行",
-    "Adobe",
-    "Acrobat",
-    "Reader",
-    "PDF",
-    "JavaScript",
-    "KEV",
-    "已遭利用",
-    "CISA-KEV",
-]
+[meta]
+status = "completed"
+collected_at = "2026-07-11T00:00:00+00:00"
