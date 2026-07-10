@@ -1,0 +1,53 @@
+[id]
+ave_id = "AVE-2002-0036"
+cve_id = "CVE-2002-0916"
+aliases = ["CVE-2002-0916"]
+
+[basic]
+title = "Squid msntauth 认证模块格式字符串漏洞"
+description = "Squid 2.4.STABLE6及更早版本中Stellar-X msntauth认证模块的allowuser代码存在格式字符串漏洞。远程攻击者可通过向Squid服务发送包含特制格式字符串的用户名，在syslog调用中触发该漏洞，导致任意代码执行、信息泄露或服务拒绝。该漏洞影响Squid代理服务器的身份认证功能，攻击者无需认证即可利用。"
+severity = "HIGH"
+score = 7.5
+published = "2002-10-04"
+updated = "2026-06-16"
+sources = ["osv", "nvd"]
+remediation = "升级Squid至2.4.STABLE7或更高版本，该版本修复了msntauth认证模块allowuser代码中格式字符串未正确处理的漏洞。如无法升级，可禁用msntauth认证模块或限制对Squid服务的网络访问。"
+
+[affected]
+vendor = "Squid"
+product = "Squid 2.4.STABLE6及更早版本"
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2002-0916"
+others = [
+    "http://www.iss.net/security_center/static/9248.php",
+    "http://www.securityfocus.com/bid/4929",
+    "http://archives.neohapsis.com/archives/vulnwatch/2002-q2/0087.html",
+    "http://online.securityfocus.com/archive/1/275347",
+    "http://www.squid-cache.org/Versions/v2/2.4/diff-2.4.STABLE6-2.4.STABLE7.gz",
+]
+
+[exploit]
+poc = []
+exp = []
+nuclei_templates = []
+
+[meta]
+collected_at = "2026-07-11T00:00:00Z"
+status = "completed"
+
+[score]
+cvss_v2 = 7.5
+cvss_v2_vector = "(AV:N/AC:L/Au:N/C:P/I:P/A:P)"
+
+[authenticity]
+cve_confidence = "high"
+notes = "CVE由NVD官方收录且有多源确认。Squid官方发布了版本差异补丁(diff-2.4.STABLE6-2.4.STABLE7.gz)。因年代久远，未在GitHub、Exploit-DB等平台找到可用PoC仓库或EXP脚本。"
+
+[tags]
+tags = [
+    "CWE-134",
+    "REMOTE",
+    "CODE-EXECUTION",
+    "FORMAT-STRING",
+]
