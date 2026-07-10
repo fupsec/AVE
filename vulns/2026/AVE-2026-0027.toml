@@ -1,73 +1,31 @@
-[affected]
-product = "DSS 数字监控系统"
-vendor = "大华"
-
-[authenticity]
-cve_confidence = "none"
-notes = "该漏洞无对应 CVE 编号，仅有 CNVD 编号。多源验证确认漏洞存在。Nuclei 模板已验证，GitHub 存在 PoC 脚本。"
-poc_confidence = "high"
-
 [basic]
 description = "大华 DSS 数字监控系统存在 SQL 注入漏洞，未经身份验证的远程攻击者可以通过向 /portal/attachment_clearTempFile.action 或 /portal/attachment_getAttList.action 接口发送特制请求，利用 EXTRACTVALUE 函数进行错误注入，获取数据库中的敏感信息。"
 published = "2017-04-15"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
+remediation = "联系厂商获取安全补丁或升级到最新版本。在网络边界限制对 /portal/attachment_clearTempFile.action 和 /portal/attachment_getAttList.action 接口的访问。"
 score = 7.5
 severity = "HIGH"
-source = "nuclei"
-sources = ["unknown"]
+sources = ["nuclei"]
 title = "大华 DSS 数字监控系统 SQL 注入漏洞"
 updated = "2017-04-15"
 
 [exploit]
-exp = []
-
-[[exploit.nuclei_templates]]
-description = "大华 DSS SQL 注入 Nuclei 检测模板"
-source = "nuclei"
-url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2017/CNVD-2017-06001.yaml"
-
-[[exploit.poc]]
-description = "大华 DSS SQL 注入漏洞检测脚本"
-source = "github"
-url = "https://github.com/jisec001/dahua"
+exp_urls = []
+poc_urls = ["https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2017/CNVD-2017-06001.yaml"]
 
 [id]
-avd_id = ""
+aliases = ["NUCLEI-HTTP-CNVD-2017-CNVD-2017-06001-YAML", "CNVD-2017-06001"]
 ave_id = "AVE-2026-0027"
 cve_id = ""
-other_ids = ["CNVD-2017-06001"]
 
 [meta]
 collected_at = "2026-07-11T10:18:58Z"
 status = "completed"
 
 [references]
-avd = ""
-nvd = ""
-other = [
-    "https://www.cnvd.org.cn/flaw/show/CNVD-2017-06001",
-    "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2017/CNVD-2017-06001.yaml",
-]
-
-[remediation]
-fix = "联系厂商获取安全补丁或升级到最新版本。"
-steps = [
-    "步骤1: 确认是否使用了大华 DSS 数字监控系统",
-    "步骤2: 限制对受影响接口的网络访问",
-    "步骤3: 联系厂商获取修复补丁",
-]
-workaround = "在网络边界限制对 /portal/attachment_clearTempFile.action 和 /portal/attachment_getAttList.action 接口的访问。"
+urls = ["https://www.cnvd.org.cn/flaw/show/CNVD-2017-06001", "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2017/CNVD-2017-06001.yaml"]
 
 [score]
 cvss_v2 = 7.5
 cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:P/A:P"
 cvss_v3 = 7.5
 cvss_v3_vector = "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N"
-
-[tags]
-tags = [
-    "CWE-89",
-    "SQLI",
-    "CNVD-2017",
-    "DAHUA",
-]
