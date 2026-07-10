@@ -9,6 +9,8 @@
 !/.nojekyll
 !/assets/
 !/assets/**
+!/scripts/
+!/scripts/update_dashboard_counts.py
 !/.github/
 !/.github/**
 !/vulns/
