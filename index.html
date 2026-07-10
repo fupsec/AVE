@@ -53,6 +53,10 @@
           <h3>📅 年份统计</h3>
           <div class="year-table-wrap"><!--YEAR_STATS--></div>
         </section>
+        <section class="sev-distribution">
+          <h3>严重性分布</h3>
+          <div id="sev-bar" class="sev-bar-container"></div>
+        </section>
       </aside>
 
       <section class="panel list-panel" id="vuln-list">
@@ -79,6 +83,7 @@
                 <th data-sort-key="cve_id">CVE <span class="sort-arrow"></span></th>
                 <th data-sort-key="title">标题 <span class="sort-arrow"></span></th>
                 <th data-sort-key="severity">严重性 <span class="sort-arrow"></span></th>
+                <th data-sort-key="published">日期 <span class="sort-arrow"></span></th>
                 <th data-sort-key="score">评分 <span class="sort-arrow"></span></th>
                 <th>PoC</th>
                 <th>EXP</th>

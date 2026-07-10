@@ -562,6 +562,109 @@ body {
 .year-table .total td.num:nth-of-type(2) { color: #86efac; }
 .year-table .total td.num:nth-of-type(3) { color: #93c5fd; }
 
+/* ── Severity distribution bar ── */
+.sev-distribution {
+  margin-top: 0.45rem;
+  border-top: 1px solid var(--line);
+  padding-top: 0.4rem;
+}
+
+.sev-distribution h3 {
+  margin: 0 0 0.35rem;
+  font-size: 0.8rem;
+  color: #bfdbfe;
+  font-weight: 600;
+}
+
+.sev-bar-container {
+  min-height: 18px;
+}
+
+.sev-bar {
+  display: flex;
+  height: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+  background: rgba(51, 65, 85, 0.3);
+}
+
+.sev-bar-seg {
+  height: 100%;
+  transition: width 0.4s ease;
+}
+
+.sev-bar-seg.critical { background: #fca5a5; }
+.sev-bar-seg.high { background: #fdba74; }
+.sev-bar-seg.medium { background: #fde68a; }
+.sev-bar-seg.low { background: #93c5fd; }
+.sev-bar-seg.info { background: #94a3b8; }
+.sev-bar-seg.unknown { background: #64748b; }
+
+.sev-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.5rem;
+  margin-top: 0.35rem;
+  font-size: 0.65rem;
+  color: #94a3b8;
+}
+
+.sev-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.sev-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.sev-dot.critical { background: #fca5a5; }
+.sev-dot.high { background: #fdba74; }
+.sev-dot.medium { background: #fde68a; }
+.sev-dot.low { background: #93c5fd; }
+.sev-dot.info { background: #94a3b8; }
+.sev-dot.unknown { background: #64748b; }
+
+/* ── Row severity indicator ── */
+.sev-row {
+  position: relative;
+}
+
+.sev-row td:first-child {
+  position: relative;
+  padding-left: 0.9rem;
+}
+
+.sev-row td:first-child::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 4px;
+  bottom: 4px;
+  width: 3px;
+  border-radius: 3px;
+}
+
+.sev-row.critical td:first-child::before { background: #fca5a5; }
+.sev-row.high td:first-child::before { background: #fdba74; }
+.sev-row.medium td:first-child::before { background: #fde68a; }
+.sev-row.low td:first-child::before { background: #93c5fd; }
+.sev-row.info td:first-child::before { background: #94a3b8; }
+.sev-row.unknown td:first-child::before { background: #64748b; }
+
+/* ── Date column ── */
+.table-date {
+  color: #94a3b8;
+  font-size: 0.82rem;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
 .severity {
   font-size: 0.8rem;
   font-weight: 700;
@@ -1017,7 +1120,7 @@ body {
     font-size: 0.68rem;
   }
 
-  /* Hide: CVE(2), Score(5), PoC(6), EXP(7) */
+  /* Hide: CVE(2), Date(5), Score(6), PoC(7), EXP(8) */
   .vuln-table thead th:nth-child(2),
   .vuln-table tbody td:nth-child(2),
   .vuln-table thead th:nth-child(5),
@@ -1025,11 +1128,13 @@ body {
   .vuln-table thead th:nth-child(6),
   .vuln-table tbody td:nth-child(6),
   .vuln-table thead th:nth-child(7),
-  .vuln-table tbody td:nth-child(7) {
+  .vuln-table tbody td:nth-child(7),
+  .vuln-table thead th:nth-child(8),
+  .vuln-table tbody td:nth-child(8) {
     display: none;
   }
 
-  /* Remaining columns: AVE(1), Title(3), Severity(4), Action(8) */
+  /* Remaining columns: AVE(1), Title(3), Severity(4), Action(9) */
   .vuln-table thead th:nth-child(1),
   .vuln-table tbody td:nth-child(1) {
     width: 30%;

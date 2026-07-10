@@ -18,8 +18,8 @@ const state = {
   assetIndex: null,
   assetIndexFailed: false,
   lastCards: [],
-  sortKey: "ave_id",
-  sortDir: "asc",
+  sortKey: "published",
+  sortDir: "desc",
 };
 
 let loadToken = 0;
@@ -203,6 +203,35 @@ function sevClass(s) {
   return ["CRITICAL", "HIGH", "MEDIUM", "LOW", "INFO", "UNKNOWN"].includes(s) ? s : "UNKNOWN";
 }
 
+const SEV_ORDER = ["CRITICAL", "HIGH", "MEDIUM", "LOW", "INFO", "UNKNOWN"];
+
+function renderSeverityBar(cards) {
+  const el = document.getElementById("sev-bar");
+  if (!el) return;
+  const counts = {};
+  SEV_ORDER.forEach(s => counts[s] = 0);
+  let total = 0;
+  for (const c of cards) {
+    const s = sevClass(c.severity);
+    counts[s] = (counts[s] || 0) + 1;
+    total++;
+  }
+  if (!total) { el.innerHTML = ''; return; }
+  let html = '<div class="sev-bar">';
+  SEV_ORDER.forEach(s => {
+    if (!counts[s]) return;
+    const pct = (counts[s] / total * 100).toFixed(1);
+    html += `<span class="sev-bar-seg ${s.toLowerCase()}" style="width:${pct}%" title="${s}: ${counts[s]} (${pct}%)"></span>`;
+  });
+  html += '</div><div class="sev-legend">';
+  SEV_ORDER.forEach(s => {
+    if (!counts[s]) return;
+    html += `<span class="sev-legend-item"><span class="sev-dot ${s.toLowerCase()}"></span>${s} ${counts[s]}</span>`;
+  });
+  html += '</div>';
+  el.innerHTML = html;
+}
+
 function setStatus(t) {
   const el = document.getElementById("status");
   if (el) el.textContent = t;
@@ -249,6 +278,12 @@ function sortCards(cards) {
   const dir = state.sortDir === "asc" ? 1 : -1;
   return [...cards].sort((a, b) => {
     let va = a[key], vb = b[key];
+    // Sort dates as timestamps
+    if (key === "published" || key === "updated") {
+      const da = va ? new Date(va).getTime() : 0;
+      const db = vb ? new Date(vb).getTime() : 0;
+      return (da - db) * dir;
+    }
     if (va == null) va = "";
     if (vb == null) vb = "";
     if (typeof va === "string") va = va.toLowerCase();
@@ -264,7 +299,7 @@ function renderError(msg) {
   if (tbody) tbody.innerHTML = "";
   const tr = document.createElement("tr");
   const td = document.createElement("td");
-  td.colSpan = 8;
+  td.colSpan = 9;
   td.className = "table-empty";
   td.style.color = "#fca5a5";
   td.textContent = msg;
@@ -288,7 +323,7 @@ function renderList(cards) {
   if (!cards.length) {
     const tr = document.createElement("tr");
     const td = document.createElement("td");
-    td.colSpan = 8;
+    td.colSpan = 9;
     td.className = "table-empty";
     td.textContent = "当前条件下没有结果";
     tr.appendChild(td);
@@ -317,6 +352,10 @@ function renderList(cards) {
     sev.textContent = c.severity;
     sevTd.appendChild(sev);
 
+    const dateTd = document.createElement("td");
+    dateTd.className = "table-date";
+    dateTd.textContent = c.published || c.updated || "-";
+
     const scoreTd = document.createElement("td");
     scoreTd.textContent = String(c.score ?? 0);
 
@@ -344,7 +383,8 @@ function renderList(cards) {
     detailLink.textContent = "查看详情";
     actionTd.appendChild(detailLink);
 
-    tr.append(aveTd, cveTd, titleTd, sevTd, scoreTd, pocTd, expTd, actionTd);
+    tr.className = `sev-row ${sevClass(c.severity).toLowerCase()}`;
+    tr.append(aveTd, cveTd, titleTd, sevTd, dateTd, scoreTd, pocTd, expTd, actionTd);
     tbody.appendChild(tr);
   }
 }
@@ -401,8 +441,17 @@ async function searchViaTreeFallback(keyword, page) {
   const all = await ensureTreeCache();
   const kw = (keyword || "").trim().toLowerCase();
   const filtered = kw
-    ? all.filter((i) => i.name.toLowerCase().includes(kw) || i.stem.toLowerCase().includes(kw) || (i.rel_path && i.rel_path.toLowerCase().includes(kw)))
+    ? all.filter((i) =>
+        i.name.toLowerCase().includes(kw) ||
+        i.stem.toLowerCase().includes(kw) ||
+        (i.rel_path && i.rel_path.toLowerCase().includes(kw))
+      )
     : all;
+
+  // Shuffle to get roughly newest-first ordering when sorting by date isn't available
+  if (!kw) {
+    filtered.sort(() => Math.random() - 0.5);
+  }
 
   state.mode = "tree";
   state.total = filtered.length;
@@ -469,6 +518,7 @@ async function runPage(page) {
   state.loaded = true;
   renderList(finalCards);
   renderPager();
+  renderSeverityBar(finalCards);
   updateSortIndicators();
   saveUrlState();
   showLoading(false);
@@ -578,12 +628,10 @@ async function boot() {
   renderPager();
   updateSortIndicators();
 
-  // ── Auto-load if URL has search params ──
-  if (urlState.keyword || urlState.severity) {
-    runPage(urlState.page).then(() => {
-      if (intro) intro.style.display = "none";
-    });
-  }
+  // ── Auto-load on visit (load first page) ──
+  runPage(urlState.page).then(() => {
+    if (intro) intro.style.display = "none";
+  });
 }
 
 boot();

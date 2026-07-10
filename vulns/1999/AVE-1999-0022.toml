@@ -27,7 +27,8 @@ poc = [
   { url = "https://github.com/noraj/ChronoLeak", description = "ICMP 时间戳远程时间泄露工具", source = "github" },
   { url = "https://github.com/threatlabindonesia/CVE-1999-0524-ICMP-Timestamp-and-Address-Mask-Request-Exploit", description = "ICMP 时间戳与地址掩码请求检测脚本", source = "github" },
   { url = "https://github.com/b1tsec/CVE-1999-0524", description = "ICMP 时间戳请求漏洞检测脚本", source = "github" },
-  { url = "https://github.com/Ransc0rp1on/ICMP-Timestamp-POC", description = "ICMP 时间戳信息泄露 PoC", source = "github" }
+  { url = "https://github.com/Ransc0rp1on/ICMP-Timestamp-POC", description = "ICMP 时间戳信息泄露 PoC", source = "github" },
+  { url = "https://github.com/S4njer/ICMP-TimeStamp-Replay-3xploit-Scanner", description = "ICMP 时间戳重放检测脚本", source = "github" }
 ]
 exp = []
 nuclei_templates = []
