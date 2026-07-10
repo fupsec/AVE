@@ -1,25 +1,52 @@
 [id]
 ave_id = "AVE-2018-0006"
 cve_id = "CVE-2018-13372"
-aliases = ["CVE-2018-13372"]
+avd_id = ""
+other_ids = []
 
 [basic]
-title = "CVE-2018-13372"
-description = ""
+title = "CVE-2018-13372（已拒绝）"
+description = "CVE-2018-13372 由 Fortinet, Inc. 提交至 NVD 后被标记为 REJECTED，拒绝原因为 \"Not used\"，该编号未关联任何实际漏洞。"
 severity = "UNKNOWN"
-score = 0.0
-sources = ["avd"]
-published = ""
-updated = ""
-remediation = "Refer to vendor advisory and upgrade to fixed version."
+source = "avd"
+published = "2025-04-28"
+updated = "2025-04-28"
 
-[references]
-urls = []
+[score]
+cvss_v2 = 0.0
+cvss_v2_vector = ""
+cvss_v3 = 0.0
+cvss_v3_vector = ""
+cvss_v4 = 0.0
+cvss_v4_vector = ""
+
+[affected]
+vendor = ""
+product = ""
 
 [exploit]
-poc_urls = []
-exp_urls = []
+poc = []
+exp = []
+nuclei_templates = []
+
+[remediation]
+fix = "N/A - CVE 已拒绝，无需修复"
+workaround = "N/A"
+steps = []
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2018-13372"
+avd = ""
+other = []
+
+[tags]
+tags = []
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "none"
+notes = "CVE-2018-13372 已被 CNA (Fortinet, Inc.) 拒绝，拒绝原因为 'Not used'。不存在与之关联的漏洞描述、CVSS 评分、受影响产品或 PoC/EXP。非 HTTP 协议不适用，无需生成 PoC 脚本。"
 
 [meta]
+collected_at = "2026-07-11T00:00:00Z"
 status = "completed"
-collected_at = "2026-07-10T10:50:50.978169818+00:00"

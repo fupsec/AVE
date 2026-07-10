@@ -1,0 +1,38 @@
+[id]
+ave_id = "AVE-2026-0076"
+cve_id = "CVE-2026-48596"
+aliases = ["CVE-2026-48596", "GHSA-q7jx-v53g-848w"]
+
+[basic]
+title = "Tesla Multipart.add_content_type_param CRLF注入漏洞(CVE-2026-48596)"
+description = """
+Tesla 是 Elixir 语言的 HTTP 客户端库。Tesla.Multipart.add_content_type_param/2 函数在构造 multipart Content-Type 请求头时未对用户输入的参数值进行 CR(\r)LF(\n) 过滤，直接将参数值拼接到 Content-Type 头中。攻击者通过传入包含 \r\n 的 content-type 参数值可向 HTTP 请求中注入任意请求头，可能导致 HTTP 请求走私等安全问题。
+
+影响范围: tesla 0.8.0 <= version < 1.18.3
+
+在 1.18.3 版本中，通过对 add_content_type_param 传入的参数值进行 \r\n 字符过滤来修复该漏洞。
+"""
+severity = "LOW"
+score = 2.1
+sources = ["ghsa", "nvd"]
+published = "2026-06-02"
+updated = "2026-06-17"
+remediation = "升级到 tesla 1.18.3 或以上版本。如无法升级，在使用 add_content_type_param 前对参数值进行 \r\n 字符校验。"
+
+[references]
+urls = [
+  "https://github.com/elixir-tesla/tesla/security/advisories/GHSA-q7jx-v53g-848w",
+  "https://github.com/elixir-tesla/tesla/commit/23601edac5d22ba9407b427967b5bdbda201aec2",
+  "https://github.com/elixir-tesla/tesla/commit/6ebfdb9abe9c6f119408045b933d82462decd351",
+  "https://nvd.nist.gov/vuln/detail/CVE-2026-48596",
+  "https://cna.erlef.org/cves/CVE-2026-48596.html",
+  "https://osv.dev/vulnerability/EEF-CVE-2026-48596"
+]
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-11T00:00:00Z"

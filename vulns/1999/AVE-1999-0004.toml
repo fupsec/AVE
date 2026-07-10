@@ -1,25 +1,56 @@
 [id]
 ave_id = "AVE-1999-0004"
 cve_id = "CVE-1999-0006"
-aliases = ["CVE-1999-0006"]
+avd_id = ""
+other_ids = ["EDB-19110"]
 
 [basic]
-title = "CVE-1999-0006"
-description = ""
-severity = "UNKNOWN"
-score = 0.0
-sources = ["exploitdb"]
-published = ""
-updated = ""
-remediation = "Refer to vendor advisory and upgrade to fixed version."
+title = "Qualcomm qpopper 2.4 - POP Server 缓冲区溢出漏洞"
+description = "基于 BSD/Qualcomm 的 qpopper POP3 服务器在处理 PASS 命令时存在缓冲区溢出漏洞，远程攻击者通过发送超长的 PASS 命令可触发缓冲区溢出，实现以 root 权限执行任意代码。受影响版本为 qpopper 2.4 及更早版本，覆盖 FreeBSD、BSDI BSD/OS、SGI IRIX 等多个平台。"
+severity = "CRITICAL"
+source = "exploitdb"
+published = "1998-07-14"
+updated = "2026-06-16"
 
-[references]
-urls = []
+[score]
+cvss_v2 = 10.0
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C"
+cvss_v3 = 9.8
+cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+
+[affected]
+vendor = "Qualcomm"
+product = "qpopper 2.4"
 
 [exploit]
-poc_urls = []
-exp_urls = []
+poc = []
+exp = [
+  { url = "https://www.exploit-db.com/exploits/19110", description = "qpopper 2.4 POP3 缓冲区溢出远程 root 利用脚本", source = "exploitdb" },
+  { url = "https://www.exploit-db.com/raw/19110", description = "qpopper 2.4 POP3 缓冲区溢出利用脚本（源码）", source = "exploitdb" }
+]
+nuclei_templates = []
+
+[remediation]
+fix = "升级 qpopper 到 2.5 或更高版本。参考官方安全公告和 SGI 安全通告 19980801-01-I。"
+workaround = "使用防火墙限制对 POP3 端口（110/tcp）的访问，仅允许可信网络连接；禁用 qpopper 中不必要的功能。"
+steps = ["步骤1: 使用 telnet 检查 POP3 服务器版本标识（telnet <host> 110）", "步骤2: 如版本低于 2.5（含 2.5 beta），立即升级", "步骤3: 应用 SGI 安全补丁（如适用）", "步骤4: 配置防火墙限制 POP3 端口访问"]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0006"
+avd = ""
+other = [
+  "http://www.securityfocus.com/bid/133",
+  "ftp://patches.sgi.com/support/free/security/advisories/19980801-01-I"
+]
+
+[tags]
+tags = ["CWE-125", "CWE-119", "buffer-overflow", "qpopper", "POP3", "RCE"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "high"
+notes = "存在完整利用脚本（EDB-19110），可远程 root 权限执行任意代码。因采用 POP3 协议非 HTTP 协议，无法生成符合 poc.md 规范的 HTTP 类型 PoC 脚本。"
 
 [meta]
+collected_at = "2026-07-11T10:18:58Z"
 status = "completed"
-collected_at = "2026-07-10T10:50:50.778253114+00:00"
