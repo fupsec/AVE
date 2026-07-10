@@ -1,16 +1,47 @@
-[id]
-ave_id = "AVE-2018-0009"
-cve_id = "CVE-2018-1472"
-avd_id = "CVE-2018-1472"
-other_ids = []
+[affected]
+product = ""
+vendor = ""
+
+[authenticity]
+cve_confidence = "none"
+notes = "CVE编号已被HCL Software于2025-04-01正式撤销，属于无效编号，不存在实际漏洞。"
+poc_confidence = "none"
 
 [basic]
-title = "CVE-2018-1472（已撤销）"
 description = "该CVE编号已被HCL Software撤销。撤销原因：此CVE ID被其CNA（HCL Software）撤销，因为另一厂商错误地将该编号与一个开源漏洞关联。此编号为无效编号，不存在对应的实际漏洞。"
+published = "2025-04-01"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 5.0
 severity = "NONE"
 source = "nvd"
-published = "2025-04-01"
+sources = ["unknown"]
+title = "CVE-2018-1472（已撤销）"
 updated = "2025-04-01"
+
+[exploit]
+exp = []
+nuclei_templates = []
+poc = []
+
+[id]
+avd_id = "CVE-2018-1472"
+ave_id = "AVE-2018-0009"
+cve_id = "CVE-2018-1472"
+other_ids = []
+
+[meta]
+collected_at = "2026-07-11T10:18:58Z"
+status = "completed"
+
+[references]
+avd = "https://avd.aliyun.com/detail?id=CVE-2018-1472"
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2018-1472"
+other = []
+
+[remediation]
+fix = ""
+steps = []
+workaround = ""
 
 [score]
 cvss_v2 = 0.0
@@ -20,33 +51,5 @@ cvss_v3_vector = ""
 cvss_v4 = 0.0
 cvss_v4_vector = ""
 
-[affected]
-vendor = ""
-product = ""
-
-[exploit]
-poc = []
-exp = []
-nuclei_templates = []
-
-[remediation]
-fix = ""
-workaround = ""
-steps = []
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2018-1472"
-avd = "https://avd.aliyun.com/detail?id=CVE-2018-1472"
-other = []
-
 [tags]
 tags = []
-
-[authenticity]
-cve_confidence = "none"
-poc_confidence = "none"
-notes = "CVE编号已被HCL Software于2025-04-01正式撤销，属于无效编号，不存在实际漏洞。"
-
-[meta]
-collected_at = "2026-07-11T10:18:58Z"
-status = "completed"

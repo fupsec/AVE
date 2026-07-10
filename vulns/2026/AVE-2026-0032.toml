@@ -1,74 +1,76 @@
-[id]
-ave_id = "AVE-2026-0032"
-cve_id = ""
-avd_id = ""
-other_ids = ["CNVD-2019-19299"]
+[affected]
+product = "A8协同管理软件"
+vendor = "致远互联"
+
+[authenticity]
+cve_confidence = "low"
+notes = "该漏洞为CNVD编号，无对应CVE编号。PoC已验证可用，存在公开利用脚本。"
+poc_confidence = "high"
 
 [basic]
-title = "致远A8 OA htmlofficeservlet 远程命令执行漏洞"
-description = "致远A8 OA系统/seeyon/htmlofficeservlet存在任意文件写入漏洞，未经身份验证的远程攻击者可通过发送特制POST请求（包含DBSTEP V3.0协议数据）向服务器写入包含JSP webshell的恶意文件，进而通过访问webshell执行任意系统命令，完全控制服务器。该漏洞影响致远A8 V7.0、V7.1等多版本。"
+description = "致远A8协同管理软件htmlofficeservlet接口存在远程命令执行漏洞。攻击者可通过向/seeyon/htmlofficeservlet发送特制POST请求，利用任意文件写入功能在服务器上写入恶意JSP文件，从而获取服务器控制权，执行任意系统命令。"
+published = "2019-06-26"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 9.8
 severity = "CRITICAL"
 source = "nuclei"
-published = "2019-06-26"
+sources = ["unknown"]
+title = "致远A8 htmlofficeservlet 远程命令执行漏洞"
 updated = "2019-06-26"
+
+[exploit]
+exp = []
+
+[[exploit.nuclei_templates]]
+description = "Nuclei 检测模板"
+source = "nuclei"
+url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2019/CNVD-2019-19299.yaml"
+
+[[exploit.poc]]
+description = "Python PoC 利用脚本"
+source = "github"
+url = "https://github.com/sectestt/CNVD-2019-19299"
+
+[id]
+avd_id = ""
+ave_id = "AVE-2026-0032"
+cve_id = ""
+other_ids = ["CNVD-2019-19299"]
+
+[meta]
+collected_at = "2026-07-11T10:18:58Z"
+status = "completed"
+
+[references]
+avd = ""
+nvd = ""
+other = [
+    "https://github.com/sectestt/CNVD-2019-19299",
+    "https://www.cxyzjd.com/article/guangying177/110177339",
+]
+
+[remediation]
+fix = "升级致远A8到最新版本。参考致远官方安全公告。"
+steps = [
+    "步骤1: 确认致远A8版本是否受影响",
+    "步骤2: 联系厂商获取修复补丁或升级到最新版本",
+    "步骤3: 检查服务器是否存在异常JSP文件",
+]
+workaround = "如无法升级，可在WAF/IPS中拦截对/seeyon/htmlofficeservlet的POST请求，或限制该路径的访问权限。"
 
 [score]
 cvss_v2 = 10.0
 cvss_v2_vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C"
 cvss_v3 = 10.0
 cvss_v3_vector = "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H"
-cvss_v4 = 0.0
-cvss_v4_vector = ""
-
-[affected]
-vendor = "北京致远互联软件股份有限公司"
-product = "致远A8 OA协同管理软件"
-
-[exploit]
-poc = [
-  { url = "https://github.com/sectestt/CNVD-2019-19299", description = "Python PoC 利用脚本", source = "github" },
-  { url = "https://raw.githubusercontent.com/sectestt/CNVD-2019-19299/master/seeyou_poc_py3.py", description = "Python3 PoC 批量扫描脚本", source = "github" },
-  { url = "https://raw.githubusercontent.com/sectestt/CNVD-2019-19299/master/seeyon_rce.txt", description = "原始漏洞利用说明与 POST payload", source = "github" },
-  { url = "https://github.com/RayScri/A8-OA-seeyon-RCE", description = "Python PoC 远程命令执行脚本（Windows）", source = "github" },
-  { url = "https://raw.githubusercontent.com/RayScri/A8-OA-seeyon-RCE/master/A8-OA-seeyon-RCE.py", description = "Python 命令执行 PoC", source = "github" },
-  { url = "https://github.com/Mr-xn/Penetration_Testing_POC", description = "渗透测试 POC/EXP 集合（含该漏洞）", source = "github" },
-]
-exp = [
-  { url = "https://github.com/FeiNiao/seeyou-A8-HTMLOFFICESERVLET-fileload-getshell-exp", description = "Python EXP Getshell 利用脚本", source = "github" },
-]
-nuclei_templates = [
-  { url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2019/CNVD-2019-19299.yaml", description = "Nuclei 检测模板", source = "nuclei" },
-]
-
-[remediation]
-fix = "升级到致远官方提供的修复版本（V7.0 SP3及以上），或联系厂商获取安全补丁。官方已在后续版本中修复了htmlofficeservlet的未授权文件写入问题。"
-workaround = "如无法升级，可采取以下缓解措施：1）限制对/seeyon/htmlofficeservlet的网络访问，仅允许可信IP；2）部署WAF规则拦截带有DBSTEP V3.0特征的POST请求；3）排查服务器web目录下是否存在恶意JSP文件（如test123456.jsp、test123.jsp等）；4）删除或重命名htmlofficeservlet相关组件。"
-steps = [
-  "步骤1: 确认是否使用致远A8 OA系统（查看/seeyon目录是否存在）",
-  "步骤2: 检查/seeyon/htmlofficeservlet是否存在",
-  "步骤3: 检查web目录下是否存在异常JSP文件",
-  "步骤4: 升级到官方修复版本或部署WAF缓解措施",
-]
-
-[references]
-nvd = ""
-avd = ""
-other = [
-  "https://github.com/sectestt/CNVD-2019-19299",
-  "https://github.com/RayScri/A8-OA-seeyon-RCE",
-  "https://github.com/FeiNiao/seeyou-A8-HTMLOFFICESERVLET-fileload-getshell-exp",
-  "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2019/CNVD-2019-19299.yaml",
-  "https://github.com/Mr-xn/Penetration_Testing_POC",
-]
 
 [tags]
-tags = ["CWE-77", "RCE", "任意文件写入", "致远OA", "Seeyon", "CNVD", "未授权访问", "webshell"]
-
-[authenticity]
-cve_confidence = "low"
-poc_confidence = "high"
-notes = "该漏洞仅有CNVD编号（CNVD-2019-19299），无对应CVE编号。多个独立来源的Nuclei模板和GitHub PoC/EXP均可成功复现，漏洞真实性确认可靠。"
-
-[meta]
-collected_at = "2026-07-10T18:18:58Z"
-status = "completed"
+tags = [
+    "CWE-77",
+    "CNVD-2019",
+    "rce",
+    "zhiyuan",
+    "seeyon",
+    "致远",
+    "命令执行",
+]

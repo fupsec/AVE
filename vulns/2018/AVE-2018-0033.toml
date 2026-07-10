@@ -1,0 +1,69 @@
+[affected]
+product = "CoinGate PrestaShop Plugin"
+vendor = "CoinGate"
+
+[authenticity]
+cve_confidence = "high"
+notes = "CVE-2018-25104 由 VulDB 于 2024-10-17 收录。漏洞影响 CoinGate PrestaShop Plugin ≤ 1.2.7。修复版本 v1.2.8 中通过增加 cart_id 与 order_id 的校验修复了该逻辑缺陷。截至 2026 年 7 月，未发现公开 PoC/EXP 或 Nuclei 模板，但可根据补丁差异编写 PoC 脚本进行验证。"
+poc_confidence = "medium"
+
+[basic]
+description = "CoinGate PrestaShop 支付插件 1.2.7 及之前版本中存在业务逻辑漏洞，位于 modules/coingate/controllers/front/callback.php 文件的 postProcess 函数中。支付回调处理过程中未验证订单 ID（order_id）与购物车 ID（cart_id）的一致性，攻击者可构造特制的回调请求，在未实际完成支付的情况下将订单状态标记为已支付，造成商户经济损失。"
+published = "2024-10-17"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 5.5
+severity = "MEDIUM"
+source = "nvd"
+sources = ["unknown"]
+title = "CoinGate 插件支付回调 postProcess 逻辑错误"
+updated = "2026-06-16"
+
+[exploit]
+exp = []
+nuclei_templates = []
+poc = []
+
+[id]
+ave_id = "AVE-2018-0033"
+cve_id = "CVE-2018-25104"
+other_ids = []
+
+[meta]
+collected_at = "2026-07-11T18:00:00Z"
+status = "completed"
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2018-25104"
+other = [
+    "https://github.com/coingate/prestashop-plugin/commit/0a3097db0aec7c5d66686c142c6abaa1e126ca16",
+    "https://github.com/coingate/prestashop-plugin/releases/tag/v1.2.8",
+    "https://vuldb.com/?id.280358",
+    "https://vuldb.com/?ctiid.280358",
+]
+
+[remediation]
+fix = "升级至 CoinGate PrestaShop Plugin v1.2.8 及以上版本。"
+steps = [
+    "确认当前使用的 CoinGate PrestaShop Plugin 版本",
+    "将插件升级至 v1.2.8 或更高版本（https://github.com/coingate/prestashop-plugin/releases/tag/v1.2.8）",
+    "确认修复提交 0a3097db0aec7c5d66686c142c6abaa1e126ca16 已应用",
+]
+workaround = "在官方补丁无法立即部署的情况下，可临时在 callback.php 的 postProcess 函数中增加 order_id 与 cart_id 的校验逻辑，或配置 Web 应用防火墙（WAF）对回调接口进行额外验证。"
+
+[score]
+cvss_v2 = 4.0
+cvss_v2_vector = "(AV:N/AC:L/Au:S/C:N/I:P/A:N)"
+cvss_v3 = 4.3
+cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:L/A:N"
+cvss_v4 = 5.3
+cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:L/UI:N/VC:N/VI:L/VA:N/SC:N/SI:N/SA:N"
+
+[tags]
+tags = [
+    "CWE-840",
+    "Business Logic Errors",
+    "Payment Bypass",
+    "CoinGate",
+    "PrestaShop",
+    "Order Manipulation",
+]

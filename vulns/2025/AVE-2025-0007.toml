@@ -5,7 +5,7 @@ remediation = "Refer to vendor advisory and upgrade to fixed version."
 score = 7.8
 severity = "HIGH"
 sources = ["github"]
-title = "CVE-2025-1097"
+title = "Security vulnerability (CVE-2025-1097)"
 updated = "2026-07-10"
 
 [exploit]

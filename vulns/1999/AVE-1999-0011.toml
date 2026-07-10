@@ -1,16 +1,55 @@
-[id]
-ave_id = "AVE-1999-0011"
-cve_id = "CVE-1999-0199"
-avd_id = ""
-other_ids = []
+[affected]
+product = "glibc"
+vendor = "gnu"
+
+[authenticity]
+cve_confidence = "high"
+notes = "该漏洞为 glibc tdelete 函数文档缺陷，非可直接远程利用的 HTTP 漏洞。NVD 列出 cee.studio/tdelete.html 作为 exploit 链接但已不可访问，当前无可用 PoC/EXP。"
+poc_confidence = "low"
 
 [basic]
-title = "GNU C Library (glibc) tdelete 返回值文档缺陷导致悬垂指针风险"
 description = "GNU C Library (glibc) 2.2 之前版本的 manual/search.texi 文件中缺少对删除树根节点时 tdelete 返回值未定义的说明。开发者若未注意到 1999 年的文档更新，可能访问悬垂指针，导致信息泄露、完整性破坏或系统不可用。"
+published = "1999-11-09"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 9.8
 severity = "CRITICAL"
 source = "cve"
-published = "1999-11-09"
+sources = ["unknown"]
+title = "GNU C Library (glibc) tdelete 返回值文档缺陷导致悬垂指针风险"
 updated = "2026-06-16"
+
+[exploit]
+exp = []
+nuclei_templates = []
+poc = []
+
+[id]
+avd_id = ""
+ave_id = "AVE-1999-0011"
+cve_id = "CVE-1999-0199"
+other_ids = []
+
+[meta]
+collected_at = "2026-07-11T00:00:00Z"
+status = "completed"
+
+[references]
+avd = ""
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0199"
+other = [
+    "https://github.com/bminor/glibc/commit/2864e767053317538feafa815046fff89e5a16be#diff-94e8c502f255fdfc346df0e29fd4ef40",
+    "https://ftp.gnu.org/gnu/glibc/glibc-2.2.tar.gz",
+    "https://www.cee.studio/tdelete.html",
+]
+
+[remediation]
+fix = "升级到 glibc 2.2 及以上版本，该版本修正了 tdelete 函数的文档说明。"
+steps = [
+    "1: 确认当前 glibc 版本",
+    "2: 升级到 glibc 2.2 或更高版本",
+    "3: 检查使用 tdelete 的应用程序代码，确保正确处理返回值",
+]
+workaround = "该漏洞为文档缺陷，无法通过配置缓解。请升级到修复版本。"
 
 [score]
 cvss_v2 = 7.5
@@ -18,37 +57,10 @@ cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:P/A:P"
 cvss_v3 = 9.8
 cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
 
-[affected]
-vendor = "gnu"
-product = "glibc"
-
-[exploit]
-poc = []
-exp = []
-nuclei_templates = []
-
-[remediation]
-fix = "升级到 glibc 2.2 及以上版本，该版本修正了 tdelete 函数的文档说明。"
-workaround = "该漏洞为文档缺陷，无法通过配置缓解。请升级到修复版本。"
-steps = ["1: 确认当前 glibc 版本", "2: 升级到 glibc 2.2 或更高版本", "3: 检查使用 tdelete 的应用程序代码，确保正确处理返回值"]
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0199"
-avd = ""
-other = [
-  "https://github.com/bminor/glibc/commit/2864e767053317538feafa815046fff89e5a16be#diff-94e8c502f255fdfc346df0e29fd4ef40",
-  "https://ftp.gnu.org/gnu/glibc/glibc-2.2.tar.gz",
-  "https://www.cee.studio/tdelete.html"
-]
-
 [tags]
-tags = ["CWE-252", "dangling-pointer", "glibc", "use-after-free"]
-
-[authenticity]
-cve_confidence = "high"
-poc_confidence = "low"
-notes = "该漏洞为 glibc tdelete 函数文档缺陷，非可直接远程利用的 HTTP 漏洞。NVD 列出 cee.studio/tdelete.html 作为 exploit 链接但已不可访问，当前无可用 PoC/EXP。"
-
-[meta]
-collected_at = "2026-07-11T00:00:00Z"
-status = "completed"
+tags = [
+    "CWE-252",
+    "dangling-pointer",
+    "glibc",
+    "use-after-free",
+]

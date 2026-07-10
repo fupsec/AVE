@@ -14,6 +14,7 @@ remediation = "Refer to vendor advisory and upgrade to fixed version."
 score = 9.8
 severity = "CRITICAL"
 source = "nvd"
+sources = ["unknown"]
 title = "statd RPC NFS 状态守护进程缓冲区溢出漏洞"
 updated = "2026-06-16"
 

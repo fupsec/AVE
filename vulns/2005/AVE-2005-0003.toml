@@ -1,16 +1,58 @@
-[id]
-ave_id = "AVE-2005-0003"
-cve_id = "CVE-2005-2024"
-avd_id = ""
-other_ids = []
+[affected]
+product = "Razor Agents"
+vendor = "Vipul"
+
+[authenticity]
+cve_confidence = "high"
+notes = "该漏洞为非 HTTP 协议漏洞（razor-agent 分布式垃圾邮件检测客户端），无法生成 HTTP 协议的 PoC 脚本。未发现公开可用的 PoC/EXP。"
+poc_confidence = "none"
 
 [basic]
-title = "Vipul Razor Agents 拒绝服务漏洞"
 description = "Vipul Razor Agents（razor-agents）2.70之前版本存在拒绝服务漏洞，远程攻击者可通过发送异常HTML消息或恶意的Content-Type等畸形标头导致服务拒绝。"
+published = "2005-06-17"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 5.5
 severity = "MEDIUM"
 source = "nvd"
-published = "2005-06-17"
+sources = ["unknown"]
+title = "Vipul Razor Agents 拒绝服务漏洞"
 updated = "2005-06-21"
+
+[exploit]
+exp = []
+nuclei_templates = []
+poc = []
+
+[id]
+avd_id = ""
+ave_id = "AVE-2005-0003"
+cve_id = "CVE-2005-2024"
+other_ids = []
+
+[meta]
+collected_at = "2025-07-11T10:18:58Z"
+status = "completed"
+
+[references]
+avd = ""
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2005-2024"
+other = [
+    "http://www.debian.org/security/2005/dsa-738",
+    "http://security.gentoo.org/glsa/glsa-200506-17.xml",
+    "http://bugs.gentoo.org/show_bug.cgi?id=95492",
+    "http://www.securityfocus.com/bid/13984",
+    "http://sourceforge.net/mailarchive/forum.php?thread_id=7520323&forum_id=4259",
+    "http://www.novell.com/linux/security/advisories/2005_35_razor_agents.html",
+]
+
+[remediation]
+fix = "升级 razor-agents 至 2.70 或更高版本。参考 Debian DSA-738 和 Gentoo GLSA-200506-17。"
+steps = [
+    "步骤1: 确认当前 razor-agents 版本",
+    "步骤2: 升级到 2.70 或更高版本",
+    "步骤3: 重启服务使更新生效",
+]
+workaround = "暂无已知缓解措施。"
 
 [score]
 cvss_v2 = 5.0
@@ -20,40 +62,8 @@ cvss_v3_vector = ""
 cvss_v4 = 0.0
 cvss_v4_vector = ""
 
-[affected]
-vendor = "Vipul"
-product = "Razor Agents"
-
-[exploit]
-poc = []
-exp = []
-nuclei_templates = []
-
-[remediation]
-fix = "升级 razor-agents 至 2.70 或更高版本。参考 Debian DSA-738 和 Gentoo GLSA-200506-17。"
-workaround = "暂无已知缓解措施。"
-steps = ["步骤1: 确认当前 razor-agents 版本", "步骤2: 升级到 2.70 或更高版本", "步骤3: 重启服务使更新生效"]
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2005-2024"
-avd = ""
-other = [
-  "http://www.debian.org/security/2005/dsa-738",
-  "http://security.gentoo.org/glsa/glsa-200506-17.xml",
-  "http://bugs.gentoo.org/show_bug.cgi?id=95492",
-  "http://www.securityfocus.com/bid/13984",
-  "http://sourceforge.net/mailarchive/forum.php?thread_id=7520323&forum_id=4259",
-  "http://www.novell.com/linux/security/advisories/2005_35_razor_agents.html"
-]
-
 [tags]
-tags = ["CWE-Other", "DoS"]
-
-[authenticity]
-cve_confidence = "high"
-poc_confidence = "none"
-notes = "该漏洞为非 HTTP 协议漏洞（razor-agent 分布式垃圾邮件检测客户端），无法生成 HTTP 协议的 PoC 脚本。未发现公开可用的 PoC/EXP。"
-
-[meta]
-collected_at = "2025-07-11T10:18:58Z"
-status = "completed"
+tags = [
+    "CWE-Other",
+    "DoS",
+]

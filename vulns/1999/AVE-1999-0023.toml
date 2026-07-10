@@ -1,16 +1,53 @@
-[id]
-ave_id = "AVE-1999-0023"
-cve_id = "CVE-1999-0222"
-avd_id = ""
-other_ids = []
+[affected]
+product = "IOS"
+vendor = "Cisco"
+
+[authenticity]
+cve_confidence = "high"
+notes = "该漏洞为1999年发现的Cisco IOS旧漏洞，攻击者通过向路由器HTTP服务发送超长URL即可触发拒绝服务。Cisco官方已确认并在后续IOS版本中修复。未找到公开GitHub PoC仓库或Nuclei模板，且此漏洞原理简单但需Cisco路由器专有环境验证。"
+poc_confidence = "low"
 
 [basic]
-title = "Cisco IOS Web服务器超长URL拒绝服务漏洞"
 description = "Cisco IOS的Web服务器在处理超长URL时存在拒绝服务漏洞，攻击者可通过向路由器HTTP服务发送超长URL请求导致IOS进程崩溃并引发路由器重启。"
+published = "1999-03-01"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 5.5
 severity = "MEDIUM"
 source = "cve"
-published = "1999-03-01"
+sources = ["unknown"]
+title = "Cisco IOS Web服务器超长URL拒绝服务漏洞"
 updated = "2026-06-16"
+
+[exploit]
+exp = []
+nuclei_templates = []
+poc = []
+
+[id]
+avd_id = ""
+ave_id = "AVE-1999-0023"
+cve_id = "CVE-1999-0222"
+other_ids = []
+
+[meta]
+collected_at = "2026-07-11T00:00:00Z"
+status = "completed"
+
+[references]
+avd = ""
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0222"
+other = ["http://www.securityfocus.com/archive/1/60159"]
+
+[remediation]
+fix = "升级到修复版本。参考Cisco安全公告，升级到不受影响的IOS版本。"
+steps = [
+    "登录到Cisco路由器",
+    "进入全局配置模式",
+    "执行命令: no ip http server 禁用HTTP服务",
+    "或执行命令: no ip http secure-server 仅启用HTTPS",
+    "执行命令: no ip http access-class 限制HTTP访问来源",
+]
+workaround = "如无法升级，可在Cisco路由器上使用 'no ip http server' 命令关闭HTTP服务，或使用访问控制列表限制对HTTP服务的访问。"
 
 [score]
 cvss_v2 = 5.0
@@ -20,33 +57,6 @@ cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L"
 cvss_v4 = 5.1
 cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N"
 
-[affected]
-vendor = "Cisco"
-product = "IOS"
-
-[exploit]
-poc = []
-exp = []
-nuclei_templates = []
-
-[remediation]
-fix = "升级到修复版本。参考Cisco安全公告，升级到不受影响的IOS版本。"
-workaround = "如无法升级，可在Cisco路由器上使用 'no ip http server' 命令关闭HTTP服务，或使用访问控制列表限制对HTTP服务的访问。"
-steps = [
-    "登录到Cisco路由器",
-    "进入全局配置模式",
-    "执行命令: no ip http server 禁用HTTP服务",
-    "或执行命令: no ip http secure-server 仅启用HTTPS",
-    "执行命令: no ip http access-class 限制HTTP访问来源",
-]
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0222"
-avd = ""
-other = [
-    "http://www.securityfocus.com/archive/1/60159",
-]
-
 [tags]
 tags = [
     "CWE-Other",
@@ -55,12 +65,3 @@ tags = [
     "ios",
     "denial-of-service",
 ]
-
-[authenticity]
-cve_confidence = "high"
-poc_confidence = "low"
-notes = "该漏洞为1999年发现的Cisco IOS旧漏洞，攻击者通过向路由器HTTP服务发送超长URL即可触发拒绝服务。Cisco官方已确认并在后续IOS版本中修复。未找到公开GitHub PoC仓库或Nuclei模板，且此漏洞原理简单但需Cisco路由器专有环境验证。"
-
-[meta]
-collected_at = "2026-07-11T00:00:00Z"
-status = "completed"

@@ -5,7 +5,7 @@ remediation = "Refer to vendor advisory and upgrade to fixed version."
 score = 7.5
 severity = "HIGH"
 sources = ["exploitdb"]
-title = "CVE-1999-0026"
+title = "Security vulnerability (CVE-1999-0026)"
 updated = "2026-07-10"
 
 [exploit]

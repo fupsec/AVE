@@ -1,0 +1,68 @@
+[affected]
+product = "Diagnostics / Vantage (HardwareScanAddin)"
+vendor = "Lenovo"
+
+[authenticity]
+cve_confidence = "high"
+notes = "CVE 由 Lenovo 官方发布，NVD 已收录；PoC 由 ZeroMemoryEx 发布，包含完整利用代码与截图"
+poc_confidence = "high"
+
+[basic]
+description = "Lenovo Diagnostics 及 Lenovo Vantage 中使用的 HardwareScanAddin 在安装或执行硬件扫描期间，存在一个因未正确模拟用户权限而导致的任意文件写入漏洞。本地认证用户可通过创建 NTFS  junction 将目标文件写入任意路径，从而以 SYSTEM 权限执行任意文件写入操作。"
+published = "2026-04-15"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 7.5
+severity = "HIGH"
+source = "nvd"
+sources = ["unknown"]
+title = "Lenovo Diagnostics 与 Lenovo Vantage HardwareScanAddin 任意文件写入漏洞"
+updated = "2026-06-17"
+
+[exploit]
+exp = []
+nuclei_templates = []
+
+[[exploit.poc]]
+description = "NTFS Junction 任意文件写入本地提权 PoC（C#）"
+source = "github"
+url = "https://github.com/ZeroMemoryEx/CVE-2026-0827"
+
+[id]
+avd_id = ""
+ave_id = "AVE-2026-0079"
+cve_id = "CVE-2026-0827"
+other_ids = []
+
+[meta]
+collected_at = "2026-07-11T07:00:00Z"
+status = "completed"
+
+[references]
+avd = ""
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2026-0827"
+other = ["https://support.lenovo.com/us/en/product_security/LEN-210693"]
+
+[remediation]
+fix = "升级 Lenovo Diagnostics 至 5.26.0 及以上版本，升级 Lenovo Vantage HardwareScanAddin 至 4.7.1.4 及以上版本。参考 Lenovo 官方安全公告。"
+steps = [
+    "步骤 1: 确认当前安装的 Lenovo Diagnostics / Vantage 版本",
+    "步骤 2: 访问 Lenovo 支持网站下载并安装最新版本",
+    "步骤 3: 重启系统确保更新生效",
+]
+workaround = '限制低权限用户对 C:\ProgramData\Lenovo\LDE 目录的写入权限，或禁用硬件扫描功能。'
+
+[score]
+cvss_v2 = 0.0
+cvss_v2_vector = ""
+cvss_v3 = 7.1
+cvss_v3_vector = "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:H/A:H"
+cvss_v4 = 6.9
+cvss_v4_vector = "CVSS:4.0/AV:L/AC:L/AT:N/PR:L/UI:N/VC:N/VI:H/VA:H/SC:N/SI:N/SA:N"
+
+[tags]
+tags = [
+    "CWE-59",
+    "LPE",
+    "NTFS-Junction",
+    "Arbitrary-File-Write",
+]

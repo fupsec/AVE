@@ -5,7 +5,7 @@ remediation = "Refer to vendor advisory and upgrade to fixed version."
 score = 8.8
 severity = "HIGH"
 sources = ["ghsa"]
-title = "CVE-2026-34225"
+title = "Security vulnerability (CVE-2026-34225)"
 updated = "2026-07-10"
 
 [exploit]

@@ -15,7 +15,7 @@ score = 8.8
 severity = "HIGH"
 source = "avd"
 sources = ["unknown"]
-title = "CVE-2018-11881"
+title = "此 CVE ID 已被其 CVE 编号管理机构（CNA）拒绝或撤销。该 CVE ID 未使用，任何引用都应被忽略。"
 updated = "2024-11-26"
 
 [exploit]

@@ -1,33 +1,69 @@
+[affected]
+product = "rdist"
+vendor = "multiple"
+
+[authenticity]
+cve_confidence = "high"
+notes = "Exploit-DB 提供完整利用代码（EDB-19106）"
+poc_confidence = "high"
+
 [basic]
-description = "Vulnerability identified as CVE-1999-0023. Please refer to vendor advisory for details."
-published = "2026-07-10"
+description = "rdist 在 lookup() 函数中存在缓冲区溢出漏洞，本地用户可利用该漏洞获取 root 权限。"
+published = "1996-07-03"
 remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 7.8
+score = 7.5
 severity = "HIGH"
-sources = ["exploitdb"]
-title = "CVE-1999-0023"
-updated = "2026-07-10"
+source = "nvd"
+sources = ["unknown"]
+title = "rdist lookup() 缓冲区溢出漏洞"
+updated = "2026-06-16"
 
 [exploit]
-exp_urls = []
-poc_urls = []
+nuclei_templates = []
+poc = []
+
+[[exploit.exp]]
+description = "rdist lookup() 缓冲区溢出本地提权 EXP"
+source = "exploitdb"
+url = "https://www.exploit-db.com/exploits/19106"
 
 [id]
-aliases = ["CVE-1999-0023"]
+avd_id = ""
 ave_id = "AVE-1999-0016"
 cve_id = "CVE-1999-0023"
+other_ids = []
 
 [meta]
-collected_at = "2026-07-10T11:07:54.027620984+00:00"
+collected_at = "2026-07-11T00:00:00Z"
 status = "completed"
 
 [references]
-urls = []
+avd = ""
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0023"
+other = ["https://exchange.xforce.ibmcloud.com/vulnerabilities/CVE-1999-0023"]
+
+[remediation]
+fix = "升级到受影响版本以上。参考官方安全公告。"
+steps = [
+    "步骤1: 确认系统是否安装 rdist",
+    "步骤2: 移除 rdist setuid root 权限: chmod u-s /usr/bin/rdist",
+    "步骤3: 升级到包含修复的版本",
+]
+workaround = "如无法升级，可移除 rdist 的 setuid root 权限或限制本地用户访问。"
 
 [score]
 cvss_v2 = 7.2
 cvss_v2_vector = "AV:L/AC:L/Au:N/C:C/I:C/A:C"
-cvss_v3 = 7.8
-cvss_v3_vector = "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H"
+cvss_v3 = 0.0
+cvss_v3_vector = ""
 cvss_v4 = 0.0
 cvss_v4_vector = ""
+
+[tags]
+tags = [
+    "CWE-120",
+    "buffer-overflow",
+    "rdist",
+    "privilege-escalation",
+    "local",
+]

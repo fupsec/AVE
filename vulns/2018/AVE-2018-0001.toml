@@ -5,7 +5,7 @@ remediation = "Refer to vendor advisory and upgrade to fixed version."
 score = 5.5
 severity = "MEDIUM"
 sources = ["avd"]
-title = "Security vulnerability in CVE-2018-11103"
+title = "Security vulnerability (CVE-2018-11103)"
 updated = "2026-07-10"
 
 [exploit]

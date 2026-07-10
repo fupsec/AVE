@@ -1,59 +1,77 @@
-[id]
-ave_id = "AVE-1999-0012"
-cve_id = "CVE-1999-0016"
-avd_id = ""
-other_ids = []
+[affected]
+product = "multiple"
+vendor = "multiple"
+
+[authenticity]
+cve_confidence = "high"
+notes = "经典 Land 攻击漏洞，已在多个平台被证实。存在多个 PoC 实现（C、Python），均为验证性脚本。该漏洞为非 HTTP 协议漏洞，无法生成符合 poc.md 规范的 HTTP 类型 PoC 脚本。"
+poc_confidence = "high"
 
 [basic]
-title = "Land IP 拒绝服务漏洞"
 description = "Land IP denial of service. 通过发送源地址和目标地址相同的 TCP SYN 数据包，导致受影响系统进入无限循环并崩溃。该漏洞影响多种操作系统和网络设备，包括 HP-UX 9/10/11、Windows NT 4.0/95、Windows Server 2003、Cisco IOS、NetBSD 1.0/1.1、SunOS 4.1.3/4.1.4 等。"
+published = "1997-12-01"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 5.5
 severity = "MEDIUM"
 source = "nvd"
-published = "1997-12-01"
+sources = ["unknown"]
+title = "Land IP 拒绝服务漏洞"
 updated = "2026-06-16"
+
+[exploit]
+exp = []
+nuclei_templates = []
+
+[[exploit.poc]]
+description = "Land.c 循环拒绝服务利用代码 (C)"
+source = "exploitdb"
+url = "https://www.exploit-db.com/exploits/20814"
+
+[[exploit.poc]]
+description = "Land 攻击 Python PoC (Scapy)"
+source = "github"
+url = "https://github.com/pexmee/CVE-1999-0016-Land-DOS-tool"
+
+[[exploit.poc]]
+description = "Land 攻击 Python PoC"
+source = "github"
+url = "https://github.com/Pommaq/CVE-1999-0016-POC"
+
+[id]
+avd_id = ""
+ave_id = "AVE-1999-0012"
+cve_id = "CVE-1999-0016"
+other_ids = []
+
+[meta]
+collected_at = "2026-07-11T10:18:58Z"
+status = "completed"
+
+[references]
+avd = ""
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0016"
+other = [
+    "http://www1.itrc.hp.com/service/cki/docDisplay.do?docId=HPSBUX9801-076",
+    "https://security.netapp.com/advisory/ntap-20170815-0001/",
+]
+
+[remediation]
+fix = "升级操作系统或网络设备到修复版本。参考厂商安全公告。"
+steps = [
+    "步骤1: 确认受影响系统版本",
+    "步骤2: 应用厂商安全补丁",
+    "步骤3: 配置网络设备过滤异常 TCP SYN 包",
+]
+workaround = "在边界防火墙上过滤源地址和目标地址相同的 TCP SYN 数据包。"
 
 [score]
 cvss_v2 = 5.0
 cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:N/A:P"
 
-[affected]
-vendor = "multiple"
-product = "multiple"
-
-[exploit]
-poc = [
-  { url = "https://www.exploit-db.com/exploits/20814", description = "Land.c 循环拒绝服务利用代码 (C)", source = "exploitdb" },
-  { url = "https://github.com/pexmee/CVE-1999-0016-Land-DOS-tool", description = "Land 攻击 Python PoC (Scapy)", source = "github" },
-  { url = "https://github.com/Pommaq/CVE-1999-0016-POC", description = "Land 攻击 Python PoC", source = "github" }
-]
-exp = []
-nuclei_templates = []
-
-[remediation]
-fix = "升级操作系统或网络设备到修复版本。参考厂商安全公告。"
-workaround = "在边界防火墙上过滤源地址和目标地址相同的 TCP SYN 数据包。"
-steps = [
-  "步骤1: 确认受影响系统版本",
-  "步骤2: 应用厂商安全补丁",
-  "步骤3: 配置网络设备过滤异常 TCP SYN 包"
-]
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0016"
-avd = ""
-other = [
-  "http://www1.itrc.hp.com/service/cki/docDisplay.do?docId=HPSBUX9801-076",
-  "https://security.netapp.com/advisory/ntap-20170815-0001/"
-]
-
 [tags]
-tags = ["NVD-CWE-Other", "DoS", "Land-Attack", "TCP"]
-
-[authenticity]
-cve_confidence = "high"
-poc_confidence = "high"
-notes = "经典 Land 攻击漏洞，已在多个平台被证实。存在多个 PoC 实现（C、Python），均为验证性脚本。该漏洞为非 HTTP 协议漏洞，无法生成符合 poc.md 规范的 HTTP 类型 PoC 脚本。"
-
-[meta]
-collected_at = "2026-07-11T10:18:58Z"
-status = "completed"
+tags = [
+    "NVD-CWE-Other",
+    "DoS",
+    "Land-Attack",
+    "TCP",
+]

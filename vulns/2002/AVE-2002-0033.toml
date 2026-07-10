@@ -14,7 +14,10 @@ remediation = "升级 Swatch 到 3.0.4-1 或更高版本（Debian unstable），
 score = 5.0
 severity = "MEDIUM"
 source = "nvd"
-sources = ["osv", "nvd"]
+sources = [
+    "osv",
+    "nvd",
+]
 title = "Swatch 日志监控工具节流绕过漏洞"
 updated = "2026-06-16"
 

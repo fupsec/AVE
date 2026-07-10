@@ -1,54 +1,71 @@
-[id]
-ave_id = "AVE-2026-0077"
-cve_id = "CVE-2026-48597"
-avd_id = ""
-other_ids = ["GHSA-h74c-q9j7-mpcm"]
+[affected]
+product = "tesla"
+vendor = "elixir-tesla"
+
+[authenticity]
+cve_confidence = "high"
+notes = "CVE 由 EEF (Erlang Ecosystem Foundation) 分配并已验证。GHSA 安全公告由维护者发布并提供补丁提交。漏洞详情清晰，影响版本明确。暂无公开可用的自动化 PoC 脚本，但漏洞原理简单明确（String.to_atom/1 滥用），技术上可复现。EPSS 评分为 0.301%（第 22 百分位）。"
+poc_confidence = "low"
 
 [basic]
-title = "Tesla HTTP 客户端存在通过未受信 URL Scheme 导致的原子表耗尽漏洞"
 description = "Elixir Tesla HTTP 客户端库的 Mint 适配器中，Tesla.Adapter.Mint.open_conn/2 函数将每个出站请求的 URL scheme 通过 String.to_atom/1 转换为 BEAM 原子，且没有白名单验证。BEAM 原子不会被垃圾回收，原子表有上限（默认约 1,048,576 个）。攻击者可以通过变化 URL scheme 字符串（如在 webhook 代理、链接预览、SSRF 代理等场景中），或利用 Tesla.Middleware.FollowRedirects 中间件在重定向上设置恶意的 Location 头，每次请求创建一个新原子，最终耗尽原子表导致 BEAM VM 崩溃，造成拒绝服务。"
+published = "2026-06-02"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 7.5
 severity = "HIGH"
 source = "ghsa"
-published = "2026-06-02"
+sources = ["unknown"]
+title = "Tesla HTTP 客户端存在通过未受信 URL Scheme 导致的原子表耗尽漏洞"
 updated = "2026-06-17"
+
+[exploit]
+exp = []
+nuclei_templates = []
+poc = []
+
+[id]
+avd_id = ""
+ave_id = "AVE-2026-0077"
+cve_id = "CVE-2026-48597"
+other_ids = ["GHSA-h74c-q9j7-mpcm"]
+
+[meta]
+collected_at = "2026-07-11T12:00:00Z"
+status = "completed"
+
+[references]
+avd = ""
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2026-48597"
+other = [
+    "https://github.com/elixir-tesla/tesla/security/advisories/GHSA-h74c-q9j7-mpcm",
+    "https://github.com/elixir-tesla/tesla/commit/4699c3cb3e2fd6078f99f45f11cf7466aeedbf0e",
+    "https://github.com/elixir-tesla/tesla/commit/ccd0823d4ba37581a37d8f6108f9a81b263237ef",
+    "https://cna.erlef.org/cves/CVE-2026-48597.html",
+    "https://osv.dev/vulnerability/EEF-CVE-2026-48597",
+]
+
+[remediation]
+fix = "将 Tesla 升级到 1.18.3 或更高版本。参考 GitHub 安全公告：https://github.com/elixir-tesla/tesla/security/advisories/GHSA-h74c-q9j7-mpcm"
+steps = [
+    "步骤1: 确认项目使用的 Tesla 版本（在 mix.exs 中检查 tesla 依赖版本）",
+    "步骤2: 如果版本 >= 1.3.0 且 < 1.18.3，则存在此漏洞",
+    "步骤3: 在 mix.exs 中将 tesla 依赖更新为 '~> 1.18.3' 或更高版本",
+    "步骤4: 运行 mix deps.update tesla 更新依赖",
+    "步骤5: 检查代码中是否使用了 Tesla.Adapter.Mint，考虑替换为其他适配器",
+    "步骤6: 如果使用了 Tesla.Middleware.FollowRedirects，评估是否需要额外的 scheme 校验",
+]
+workaround = "如无法升级，可采取以下缓解措施：1. 避免使用 Tesla.Adapter.Mint 适配器，改用 Tesla.Adapter.Httpc 或 Tesla.Adapter.Finch 等其他适配器；2. 如果必须使用 Mint 适配器，在将 URL 传递给 Tesla 之前对 URL scheme 进行白名单验证（仅允许 http/https）；3. 从中间件栈中移除 Tesla.Middleware.FollowRedirects，或使用自定义重定向处理逻辑进行 scheme 校验；4. 通过 Elixir 的 System.monotonic_time 监控原子表使用率。"
 
 [score]
 cvss_v4 = 8.2
 cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N"
 
-[affected]
-vendor = "elixir-tesla"
-product = "tesla"
-
-[exploit]
-poc = []
-exp = []
-nuclei_templates = []
-
-[remediation]
-fix = "将 Tesla 升级到 1.18.3 或更高版本。参考 GitHub 安全公告：https://github.com/elixir-tesla/tesla/security/advisories/GHSA-h74c-q9j7-mpcm"
-workaround = "如无法升级，可采取以下缓解措施：1. 避免使用 Tesla.Adapter.Mint 适配器，改用 Tesla.Adapter.Httpc 或 Tesla.Adapter.Finch 等其他适配器；2. 如果必须使用 Mint 适配器，在将 URL 传递给 Tesla 之前对 URL scheme 进行白名单验证（仅允许 http/https）；3. 从中间件栈中移除 Tesla.Middleware.FollowRedirects，或使用自定义重定向处理逻辑进行 scheme 校验；4. 通过 Elixir 的 System.monotonic_time 监控原子表使用率。"
-steps = ["步骤1: 确认项目使用的 Tesla 版本（在 mix.exs 中检查 tesla 依赖版本）", "步骤2: 如果版本 >= 1.3.0 且 < 1.18.3，则存在此漏洞", "步骤3: 在 mix.exs 中将 tesla 依赖更新为 '~> 1.18.3' 或更高版本", "步骤4: 运行 mix deps.update tesla 更新依赖", "步骤5: 检查代码中是否使用了 Tesla.Adapter.Mint，考虑替换为其他适配器", "步骤6: 如果使用了 Tesla.Middleware.FollowRedirects，评估是否需要额外的 scheme 校验"]
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2026-48597"
-avd = ""
-other = [
-  "https://github.com/elixir-tesla/tesla/security/advisories/GHSA-h74c-q9j7-mpcm",
-  "https://github.com/elixir-tesla/tesla/commit/4699c3cb3e2fd6078f99f45f11cf7466aeedbf0e",
-  "https://github.com/elixir-tesla/tesla/commit/ccd0823d4ba37581a37d8f6108f9a81b263237ef",
-  "https://cna.erlef.org/cves/CVE-2026-48597.html",
-  "https://osv.dev/vulnerability/EEF-CVE-2026-48597"
-]
-
 [tags]
-tags = ["CWE-770", "DoS", "atom-exhaustion", "elixir", "tesla", "mint"]
-
-[authenticity]
-cve_confidence = "high"
-poc_confidence = "low"
-notes = "CVE 由 EEF (Erlang Ecosystem Foundation) 分配并已验证。GHSA 安全公告由维护者发布并提供补丁提交。漏洞详情清晰，影响版本明确。暂无公开可用的自动化 PoC 脚本，但漏洞原理简单明确（String.to_atom/1 滥用），技术上可复现。EPSS 评分为 0.301%（第 22 百分位）。"
-
-[meta]
-collected_at = "2026-07-11T12:00:00Z"
-status = "completed"
+tags = [
+    "CWE-770",
+    "DoS",
+    "atom-exhaustion",
+    "elixir",
+    "tesla",
+    "mint",
+]

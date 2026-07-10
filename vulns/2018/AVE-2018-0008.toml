@@ -1,16 +1,47 @@
-[id]
-ave_id = "AVE-2018-0008"
-cve_id = "CVE-2018-1359"
-avd_id = ""
-other_ids = []
+[affected]
+product = ""
+vendor = ""
+
+[authenticity]
+cve_confidence = "none"
+notes = "CVE-2018-1359 由 Fortinet 预留后于 2025-05-06 撤回，原因：not used。无实际漏洞存在，无 PoC。"
+poc_confidence = "none"
 
 [basic]
-title = "CVE-2018-1359 (已废弃)"
 description = "CVE-2018-1359 已被分配方 Fortinet 标记为 REJECTED，原因为 'Not used'。该编号从未关联任何真实漏洞。"
+published = "2025-05-06"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 1.0
 severity = "INFO"
 source = "nvd"
-published = "2025-05-06"
+sources = ["unknown"]
+title = "CVE-2018-1359 (已废弃)"
 updated = "2025-05-06"
+
+[exploit]
+exp = []
+nuclei_templates = []
+poc = []
+
+[id]
+avd_id = ""
+ave_id = "AVE-2018-0008"
+cve_id = "CVE-2018-1359"
+other_ids = []
+
+[meta]
+collected_at = "2026-07-10T10:50:52Z"
+status = "completed"
+
+[references]
+avd = ""
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2018-1359"
+other = []
+
+[remediation]
+fix = "该 CVE 编号已被撤回，无需修复。"
+steps = []
+workaround = ""
 
 [score]
 cvss_v2 = 0.0
@@ -20,33 +51,5 @@ cvss_v3_vector = ""
 cvss_v4 = 0.0
 cvss_v4_vector = ""
 
-[affected]
-vendor = ""
-product = ""
-
-[exploit]
-poc = []
-exp = []
-nuclei_templates = []
-
-[remediation]
-fix = "该 CVE 编号已被撤回，无需修复。"
-workaround = ""
-steps = []
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2018-1359"
-avd = ""
-other = []
-
 [tags]
 tags = ["REJECTED"]
-
-[authenticity]
-cve_confidence = "none"
-poc_confidence = "none"
-notes = "CVE-2018-1359 由 Fortinet 预留后于 2025-05-06 撤回，原因：not used。无实际漏洞存在，无 PoC。"
-
-[meta]
-collected_at = "2026-07-10T10:50:52Z"
-status = "completed"

@@ -14,7 +14,10 @@ remediation = "Refer to vendor advisory and upgrade to Storable 3.05 or later."
 score = 10.0
 severity = "CRITICAL"
 source = "nvd"
-sources = ["nvd", "cpansec"]
+sources = [
+    "nvd",
+    "cpansec",
+]
 title = "Perl Storable 模块 retrieve_hook 函数栈溢出漏洞"
 updated = "2026-06-16"
 

@@ -5,7 +5,7 @@ remediation = "Refer to vendor advisory and upgrade to fixed version."
 score = 7.5
 severity = "HIGH"
 sources = ["ghsa"]
-title = "CVE-2026-35341"
+title = "Security vulnerability (CVE-2026-35341)"
 updated = "2026-07-10"
 
 [exploit]

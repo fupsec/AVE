@@ -1,50 +1,65 @@
+[affected]
+product = "Langflow"
+vendor = "Langflow"
+
+[authenticity]
+cve_confidence = "high"
+notes = "ZDI 官方通告（ZDI-26-036），GitHub 公开 PoC 已验证"
+poc_confidence = "high"
+
+[basic]
+description = "Langflow 的 validate 端点中 exec_globals 参数存在远程代码执行漏洞。该漏洞允许未经身份验证的远程攻击者在受影响的 Langflow 实例上执行任意代码。漏洞源于 validate_code() 函数使用 exec() 执行用户提供的 Python 代码时未进行沙箱隔离，攻击者可通过构造恶意的函数默认参数实现任意命令执行。"
+published = "2026-01-22"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 9.8
+severity = "CRITICAL"
+source = "zdi"
+sources = ["unknown"]
+title = "Langflow exec_globals 远程代码执行漏洞"
+updated = "2026-06-17"
+
+[exploit]
+exp = []
+
+[[exploit.nuclei_templates]]
+description = "Langflow RCE Nuclei 检测模板"
+source = "nuclei"
+url = "https://github.com/affix/CVE-2026-0770-PoC/blob/main/nuclei-template/CVE-2026-0770.yaml"
+
+[[exploit.poc]]
+description = "Langflow 远程代码执行 PoC 利用脚本"
+source = "github"
+url = "https://github.com/affix/CVE-2026-0770-PoC"
+
 [id]
 ave_id = "AVE-2026-0078"
 cve_id = "CVE-2026-0770"
 other_ids = ["ZDI-CAN-27325"]
 
-[basic]
-title = "Langflow exec_globals 远程代码执行漏洞"
-description = "Langflow 的 validate 端点中 exec_globals 参数存在远程代码执行漏洞。该漏洞允许未经身份验证的远程攻击者在受影响的 Langflow 实例上执行任意代码。漏洞源于 validate_code() 函数使用 exec() 执行用户提供的 Python 代码时未进行沙箱隔离，攻击者可通过构造恶意的函数默认参数实现任意命令执行。"
-severity = "CRITICAL"
-source = "zdi"
-published = "2026-01-22"
-updated = "2026-06-17"
-
-[score]
-cvss_v3 = 9.8
-cvss_v3_vector = "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
-
-[affected]
-vendor = "Langflow"
-product = "Langflow"
-
-[exploit]
-poc = [
-  { url = "https://github.com/affix/CVE-2026-0770-PoC", description = "Langflow 远程代码执行 PoC 利用脚本", source = "github" }
-]
-exp = []
-nuclei_templates = [
-  { url = "https://github.com/affix/CVE-2026-0770-PoC/blob/main/nuclei-template/CVE-2026-0770.yaml", description = "Langflow RCE Nuclei 检测模板", source = "nuclei" }
-]
-
-[remediation]
-fix = "升级 Langflow 到修复版本。参考官方安全公告及时更新。"
-workaround = "如无法升级，可采取以下缓解措施：1. 禁用 AUTO_LOGIN=true 默认配置；2. 限制 /api/v1/validate/code 端点的访问权限；3. 在网络层面限制对 Langflow 服务的访问。"
-steps = ["步骤1: 确认 Langflow 版本", "步骤2: 升级到修复版本", "步骤3: 重启服务"]
+[meta]
+collected_at = "2026-07-11T12:00:00Z"
+status = "completed"
 
 [references]
 nvd = "https://nvd.nist.gov/vuln/detail/CVE-2026-0770"
 other = ["https://www.zerodayinitiative.com/advisories/ZDI-26-036/"]
 
+[remediation]
+fix = "升级 Langflow 到修复版本。参考官方安全公告及时更新。"
+steps = [
+    "步骤1: 确认 Langflow 版本",
+    "步骤2: 升级到修复版本",
+    "步骤3: 重启服务",
+]
+workaround = "如无法升级，可采取以下缓解措施：1. 禁用 AUTO_LOGIN=true 默认配置；2. 限制 /api/v1/validate/code 端点的访问权限；3. 在网络层面限制对 Langflow 服务的访问。"
+
+[score]
+cvss_v3 = 9.8
+cvss_v3_vector = "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+
 [tags]
-tags = ["CWE-829", "RCE", "Langflow"]
-
-[authenticity]
-cve_confidence = "high"
-poc_confidence = "high"
-notes = "ZDI 官方通告（ZDI-26-036），GitHub 公开 PoC 已验证"
-
-[meta]
-collected_at = "2026-07-11T12:00:00Z"
-status = "completed"
+tags = [
+    "CWE-829",
+    "RCE",
+    "Langflow",
+]
