@@ -1,52 +1,55 @@
 [id]
 ave_id = "AVE-2026-0036"
-cve_id = "CVE-2026-40187"
+cve_id = ""
 avd_id = ""
-other_ids = ["GHSA-8737-2x9g-xjj7"]
+other_ids = ["CNVD-2020-23735"]
 
 [basic]
-title = "EGroupware 恶意 eTemplate 上传致远程命令执行漏洞"
-description = "EGroupware 的 Widget::expand_name() 方法在处理模板 widget 属性值时，仅对双引号进行转义后传入 PHP eval() 调用，未对反引号字符进行转义。PHP 中反引号在双引号 eval() 字符串内会执行 shell 命令，允许认证管理员通过上传恶意 eTemplate XML 文件（.xet）到 VFS /etemplates 挂载点，实现 OS 级远程命令执行。"
+title = "迅优cms任意文件读取漏洞"
+description = "衡水迅驰互联网信息服务有限公司迅优cms存在任意文件读取漏洞。攻击者可通过/backup/auto.php页面的path参数进行目录遍历，读取服务器上任意文件，获取敏感信息。"
 severity = "HIGH"
-source = "ghsa"
-published = "2026-07-06"
-updated = "2026-07-07"
+source = "nuclei"
+published = "2020-04-25"
+updated = "2020-04-25"
 
 [score]
-cvss_v4 = 8.6
-cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:H/UI:N/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N"
+cvss_v3 = 7.5
+cvss_v3_vector = "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N"
 
 [affected]
-vendor = "EGroupware"
-product = "EGroupware"
+vendor = "衡水迅驰互联网信息服务有限公司"
+product = "迅优cms"
 
 [exploit]
 poc = [
-  { url = "https://github.com/EGroupware/egroupware/security/advisories/GHSA-8737-2x9g-xjj7", description = "GHSA 公告包含完整 PoC 步骤说明", source = "github" }
+  { url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2020/CNVD-2020-23735.yaml", description = "Nuclei 检测模板 - 任意文件读取", source = "nuclei" },
+  { url = "https://github.com/chaitin/xray/blob/master/pocs/xunchi-cnvd-2020-23735-file-read.yml", description = "xray PoC - 任意文件读取", source = "github" }
 ]
 exp = []
-nuclei_templates = []
+nuclei_templates = [
+  { url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2020/CNVD-2020-23735.yaml", description = "Nuclei 检测模板", source = "nuclei" }
+]
 
 [remediation]
-fix = "升级 EGroupware 至 26.4.20260413 或 23.1.20260601 及以上版本。参考官方安全公告 GHSA-8737-2x9g-xjj7。"
-workaround = "在 php.ini 中设置 disable_functions = exec,passthru,shell_exec,system,proc_open,popen 以阻止反引号执行。避免将管理员凭据暴露给不可信用户。"
-steps = ["确认当前 EGroupware 版本", "升级到修复版本 26.4.20260413（26.x 分支）或 23.1.20260601（23.x 分支）", "如无法升级，在 php.ini 中添加 disable_functions 限制并重启 Web 服务器"]
+fix = "厂商尚未提供漏洞修补方案，请关注厂商主页及时更新：http://www.cnxunchi.com/"
+workaround = "限制对/backup/auto.php文件的访问权限，或移除该文件。使用Web应用防火墙(WAF)拦截目录遍历攻击。"
+steps = ["确认是否使用了受影响版本迅优cms V2.3及以上", "联系厂商获取修复方案", "如无法联系厂商，建议限制/backup/auto.php的访问或迁移至其他CMS"]
 
 [references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2026-40187"
+nvd = ""
 avd = ""
 other = [
-  { url = "https://github.com/advisories/GHSA-8737-2x9g-xjj7", description = "GitHub Security Advisory" },
-  { url = "https://github.com/EGroupware/egroupware", description = "EGroupware 源代码仓库" }
+  { url = "https://www.cnvd.org.cn/flaw/show/CNVD-2020-23735", description = "CNVD 漏洞详情页" },
+  { url = "http://www.cnxunchi.com/", description = "厂商主页" }
 ]
 
 [tags]
-tags = ["CWE-78", "CWE-95", "RCE", "eval-injection", "command-injection"]
+tags = ["CWE-22", "LFI", "Path-Traversal", "File-Read"]
 
 [authenticity]
-cve_confidence = "high"
+cve_confidence = "low"
 poc_confidence = "high"
-notes = "CVE 由 GitHub 分配，GHSA 已审核发布。漏洞详情详尽，包含完整 PoC 步骤。官方 Docker 部署因 disable_functions 不受影响。"
+notes = "该漏洞没有CVE编号，仅有CNVD编号。Nuclei和xray均包含可用PoC，PoC可信度高。厂商未提供官方修复方案。"
 
 [meta]
 collected_at = "2026-07-10T12:00:00Z"
