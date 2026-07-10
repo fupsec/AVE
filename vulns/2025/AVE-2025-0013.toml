@@ -1,34 +1,33 @@
-
-[id]
-  ave_id = "AVE-2025-0013"
-  cve_id = "CVE-2025-24071"
-  aliases = ["CVE-2025-24071"]
-
 [basic]
-  title = "CVE-2025-24071"
-  description = ""
-  severity = "MEDIUM"
-  score = 5.5
-  sources = ["github"]
-  published = ""
-  updated = ""
-  remediation = "Refer to vendor advisory and upgrade to fixed version."
-
-[score]
-  cvss_v2 = 3.6
-  cvss_v2_vector = "AV:L/AC:L/Au:N/C:P/I:N/A:N"
-  cvss_v3 = 5.5
-  cvss_v3_vector = "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N"
-  cvss_v4 = 0.0
-  cvss_v4_vector = ""
+description = "Vulnerability identified as CVE-2025-24071. Please refer to vendor advisory for details."
+published = "2026-07-10"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 5.5
+severity = "MEDIUM"
+sources = ["github"]
+title = "CVE-2025-24071"
+updated = "2026-07-10"
 
 [exploit]
-poc_urls = []
 exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2025-24071"]
+ave_id = "AVE-2025-0013"
+cve_id = "CVE-2025-24071"
+
+[meta]
+collected_at = "2026-07-10T11:12:19.070764453+00:00"
+status = "completed"
 
 [references]
 urls = []
 
-[meta]
-status = "completed"
-collected_at = "2026-07-10T11:12:19.070764453+00:00"
+[score]
+cvss_v2 = 3.6
+cvss_v2_vector = "AV:L/AC:L/Au:N/C:P/I:N/A:N"
+cvss_v3 = 5.5
+cvss_v3_vector = "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N"
+cvss_v4 = 0.0
+cvss_v4_vector = ""

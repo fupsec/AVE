@@ -1,62 +1,98 @@
+[affected]
+product = "Android"
+vendor = "Google"
+
+[authenticity]
+cve_confidence = "high"
+notes = "NVD 已确认 CVE 分配并发布详细信息，CISA-ADP 已完成 CVSS 3.1 评分。多个独立 GitHub 仓库已发布 PoC 和 EXP 代码，漏洞真实性已得到广泛验证。"
+poc_confidence = "high"
+
+[basic]
+description = "adbd（Android Debug Bridge Daemon）的 adbd_tls_verify_cert 函数中存在认证绕过漏洞。由于 EVP_PKEY_cmp 类型混淆（type confusion）逻辑错误，攻击者可绕过无线 ADB 双向认证机制，在无需用户交互的情况下，以 shell 用户身份在相邻网络中远程执行代码。"
+published = "2026-05-04"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 7.5
+severity = "HIGH"
+source = "android"
+sources = ["unknown"]
+title = "Android ADB 无线调试 TLS 证书验证认证绕过漏洞"
+updated = "2026-06-17"
+
+[exploit]
+nuclei_templates = []
+
+[[exploit.exp]]
+description = "自动化利用工具，内置 mDNS/Zeroconf 扫描器和交互式 PTY Shell"
+source = "github"
+url = "https://github.com/0xbinder/CVE-2026-0073"
+
+[[exploit.exp]]
+description = "零点击 RCE 利用工具，支持 Android 11+ 无线调试"
+source = "github"
+url = "https://github.com/unnaim/adbHijacker"
+
+[[exploit.exp]]
+description = "CVE-2026-0073 RCE 利用分析研究"
+source = "github"
+url = "https://github.com/novaek/CVE-2026-0073-Research"
+
+[[exploit.poc]]
+description = "Android ADB 无线调试利用工具（PoC + EXP）"
+source = "github"
+url = "https://github.com/tc4dy/CVE-2026-0073-PoC-Exploit"
+
+[[exploit.poc]]
+description = "Android ADB adbd 认证绕过 PoC"
+source = "github"
+url = "https://github.com/SecTestAnnaQuinn/CVE-2026-0073-Android-adbd-authentication-bypass-POC"
+
+[[exploit.poc]]
+description = "ADB 无线双向认证绕过 PoC"
+source = "github"
+url = "https://github.com/adityatelange/poc-CVE-2026-0073"
+
+[[exploit.poc]]
+description = "adbd TLS 认证绕过 EVP_PKEY_cmp 类型混淆 PoC"
+source = "github"
+url = "https://github.com/MartinPSDev/CVE-2026-0073-Android-ADBD-bypass-POC"
+
+[[exploit.poc]]
+description = "Android ADB adbd 绕过 PoC 汉化版"
+source = "github"
+url = "https://github.com/ctnBobong32/CVE-2026-0073-Android-ADBD-bypass-POC_zh_CN"
+
 [id]
 ave_id = "AVE-2026-0074"
 cve_id = "CVE-2026-0073"
 other_ids = []
 
-[basic]
-title = "Android ADB 无线调试 TLS 证书验证认证绕过漏洞"
-description = "adbd（Android Debug Bridge Daemon）的 adbd_tls_verify_cert 函数中存在认证绕过漏洞。由于 EVP_PKEY_cmp 类型混淆（type confusion）逻辑错误，攻击者可绕过无线 ADB 双向认证机制，在无需用户交互的情况下，以 shell 用户身份在相邻网络中远程执行代码。"
-severity = "HIGH"
-source = "android"
-published = "2026-05-04"
-updated = "2026-06-17"
+[meta]
+collected_at = "2026-07-11T00:00:00Z"
+status = "completed"
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2026-0073"
+other = ["https://source.android.com/docs/security/bulletin/2026/2026-05-01"]
+
+[remediation]
+fix = "升级到 Android 安全公告 2026-05-01 中对应修复版本。"
+steps = [
+    "步骤1: 检查 Android 系统版本（受影响版本：Android 14、15、16 及 16 QPR2 Beta）",
+    "步骤2: 进入「设置 > 开发者选项」关闭「无线调试」开关",
+    "步骤3: 升级到 Android 安全公告 2026-05-01 提供的修复版本",
+]
+workaround = "禁用无线 ADB 调试功能。进入「设置 > 开发者选项 > 无线调试」并关闭。如必须使用，请确保仅在受信任的封闭网络环境中启用。"
 
 [score]
 cvss_v3 = 8.8
 cvss_v3_vector = "CVSS:3.1/AV:A/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
 
-[affected]
-vendor = "Google"
-product = "Android"
-
-[exploit]
-poc = [
-  { url = "https://github.com/tc4dy/CVE-2026-0073-PoC-Exploit", description = "Android ADB 无线调试利用工具（PoC + EXP）", source = "github" },
-  { url = "https://github.com/SecTestAnnaQuinn/CVE-2026-0073-Android-adbd-authentication-bypass-POC", description = "Android ADB adbd 认证绕过 PoC", source = "github" },
-  { url = "https://github.com/adityatelange/poc-CVE-2026-0073", description = "ADB 无线双向认证绕过 PoC", source = "github" },
-  { url = "https://github.com/MartinPSDev/CVE-2026-0073-Android-ADBD-bypass-POC", description = "adbd TLS 认证绕过 EVP_PKEY_cmp 类型混淆 PoC", source = "github" },
-  { url = "https://github.com/ctnBobong32/CVE-2026-0073-Android-ADBD-bypass-POC_zh_CN", description = "Android ADB adbd 绕过 PoC 汉化版", source = "github" }
-]
-exp = [
-  { url = "https://github.com/0xbinder/CVE-2026-0073", description = "自动化利用工具，内置 mDNS/Zeroconf 扫描器和交互式 PTY Shell", source = "github" },
-  { url = "https://github.com/unnaim/adbHijacker", description = "零点击 RCE 利用工具，支持 Android 11+ 无线调试", source = "github" },
-  { url = "https://github.com/novaek/CVE-2026-0073-Research", description = "CVE-2026-0073 RCE 利用分析研究", source = "github" }
-]
-nuclei_templates = []
-
-[remediation]
-fix = "升级到 Android 安全公告 2026-05-01 中对应修复版本。"
-workaround = "禁用无线 ADB 调试功能。进入「设置 > 开发者选项 > 无线调试」并关闭。如必须使用，请确保仅在受信任的封闭网络环境中启用。"
-steps = [
-  "步骤1: 检查 Android 系统版本（受影响版本：Android 14、15、16 及 16 QPR2 Beta）",
-  "步骤2: 进入「设置 > 开发者选项」关闭「无线调试」开关",
-  "步骤3: 升级到 Android 安全公告 2026-05-01 提供的修复版本"
-]
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2026-0073"
-other = [
-  "https://source.android.com/docs/security/bulletin/2026/2026-05-01"
-]
-
 [tags]
-tags = ["CWE-303", "Android", "ADB", "认证绕过", "TLS类型混淆", "RCE"]
-
-[authenticity]
-cve_confidence = "high"
-poc_confidence = "high"
-notes = "NVD 已确认 CVE 分配并发布详细信息，CISA-ADP 已完成 CVSS 3.1 评分。多个独立 GitHub 仓库已发布 PoC 和 EXP 代码，漏洞真实性已得到广泛验证。"
-
-[meta]
-collected_at = "2026-07-11T00:00:00Z"
-status = "completed"
+tags = [
+    "CWE-303",
+    "Android",
+    "ADB",
+    "认证绕过",
+    "TLS类型混淆",
+    "RCE",
+]

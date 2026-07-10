@@ -1,34 +1,41 @@
-
-[id]
-  ave_id = "AVE-2026-0007"
-  cve_id = "CVE-2026-13538"
-  aliases = ["CVE-2026-13538"]
-
 [basic]
-  title = "Wavlink WL-NU516U1 路由器 wireless.cgi 命令注入漏洞(CVE-2026-13538)"
-  description = "Wavlink WL-NU516U1是一款面向家庭和小型办公场景的无线路由器设备。\n受影响版本中，该设备对SSID2G2、SSID5G2、AuthMethod2、WPAPSK12等POST参数缺少严格的输入过滤。sub_4074A0函数仅拦截反引号和管道符，未拦截$(cmd)命令替换语法。攻击者通过构造包含命令替换的SSID参数值，可使sprintf将恶意命令拼接至set_bss.sh脚本并通过system()执行，实现任意命令注入。远程攻击者可直接利用该漏洞获取设备最高权限。\n修复版本中通过更新至2026年6月22日发布的固件版本，堵住了命令替换的绕过路径，消除了sprintf拼接导致的命令注入根因。\n解决建议\n建议您更新当前系统或软件至最新版，完成漏洞的修复。"
-  severity = "CRITICAL"
-  score = 9.8
-  sources = ["avd"]
-  published = "2026-06-29"
-  updated = ""
-  remediation = "建议您更新当前系统或软件至最新版，完成漏洞的修复。"
-
-[score]
-  cvss_v2 = 10.0
-  cvss_v2_vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C"
-  cvss_v3 = 9.8
-  cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
-  cvss_v4 = 9.9
-  cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N"
+description = """
+Wavlink WL-NU516U1是一款面向家庭和小型办公场景的无线路由器设备。
+受影响版本中，该设备对SSID2G2、SSID5G2、AuthMethod2、WPAPSK12等POST参数缺少严格的输入过滤。sub_4074A0函数仅拦截反引号和管道符，未拦截$(cmd)命令替换语法。攻击者通过构造包含命令替换的SSID参数值，可使sprintf将恶意命令拼接至set_bss.sh脚本并通过system()执行，实现任意命令注入。远程攻击者可直接利用该漏洞获取设备最高权限。
+修复版本中通过更新至2026年6月22日发布的固件版本，堵住了命令替换的绕过路径，消除了sprintf拼接导致的命令注入根因。
+解决建议
+建议您更新当前系统或软件至最新版，完成漏洞的修复。"""
+published = "2026-06-29"
+remediation = "建议您更新当前系统或软件至最新版，完成漏洞的修复。"
+score = 9.8
+severity = "CRITICAL"
+sources = ["avd"]
+title = "Wavlink WL-NU516U1 路由器 wireless.cgi 命令注入漏洞(CVE-2026-13538)"
+updated = "2026-07-10"
 
 [exploit]
-poc_urls = ["https://github.com/Svigo-o/Wavlink_vul/tree/main/wavlink-wl-nu516u1-wireless-multissid-ssid2g2-command-injection", "https://github.com/Svigo-o/Wavlink_vul/tree/main/wavlink-wl-nu516u1-wireless-multissid-ssid5g2-command-injection"]
 exp_urls = []
+poc_urls = [
+    "https://github.com/Svigo-o/Wavlink_vul/tree/main/wavlink-wl-nu516u1-wireless-multissid-ssid2g2-command-injection",
+    "https://github.com/Svigo-o/Wavlink_vul/tree/main/wavlink-wl-nu516u1-wireless-multissid-ssid5g2-command-injection",
+]
+
+[id]
+aliases = ["CVE-2026-13538"]
+ave_id = "AVE-2026-0007"
+cve_id = "CVE-2026-13538"
+
+[meta]
+collected_at = "2026-07-10T03:03:00.762851078+00:00"
+status = "completed"
 
 [references]
 urls = []
 
-[meta]
-status = "completed"
-collected_at = "2026-07-10T03:03:00.762851078+00:00"
+[score]
+cvss_v2 = 10.0
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C"
+cvss_v3 = 9.8
+cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+cvss_v4 = 9.9
+cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N"

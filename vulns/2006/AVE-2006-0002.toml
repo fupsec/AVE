@@ -1,16 +1,57 @@
-[id]
-ave_id = "AVE-2006-0002"
-cve_id = "CVE-2006-10002"
-avd_id = ""
-other_ids = []
+[affected]
+product = "XML::Parser"
+vendor = "TODDR"
+
+[authenticity]
+cve_confidence = "high"
+notes = "该漏洞为非 HTTP 协议的 Perl 库堆缓冲区溢出漏洞，无公开 PoC 脚本或 EXP 利用脚本。补丁于 2006 年已在 CPAN Request Tracker 中提供。"
+poc_confidence = "low"
 
 [basic]
-title = "XML::Parser 堆缓冲区溢出漏洞"
 description = "XML::Parser 版本 2.45 及之前版本存在堆缓冲区溢出漏洞。在 Perl 中使用 :utf8 PerlIO 层时，parse_stream() 函数（Expat.xs）可能溢出 XML 输入缓冲区，因为 Perl 的 read() 返回解码后的字符，而 SvPV() 返回的 UTF-8 多字节数据可能超过预分配的缓冲区大小，导致堆损坏（double free）和崩溃。"
+published = "2026-03-19"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 7.5
 severity = "HIGH"
 source = "nvd"
-published = "2026-03-19"
+sources = ["unknown"]
+title = "XML::Parser 堆缓冲区溢出漏洞"
 updated = "2026-06-16"
+
+[exploit]
+exp = []
+nuclei_templates = []
+poc = []
+
+[id]
+avd_id = ""
+ave_id = "AVE-2006-0002"
+cve_id = "CVE-2006-10002"
+other_ids = []
+
+[meta]
+collected_at = "2026-07-11T00:00:00Z"
+status = "completed"
+
+[references]
+avd = ""
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2006-10002"
+other = [
+    "http://www.openwall.com/lists/oss-security/2026/03/19/1",
+    "http://www.openwall.com/lists/oss-security/2026/03/22/3",
+    "https://github.com/cpan-authors/XML-Parser/issues/64",
+    "https://github.com/cpan-authors/XML-Parser/commit/56b0509dfc6b559cd7555ea81ee62e3622069255.patch",
+    "https://metacpan.org/release/TODDR/XML-Parser-2.46/changes",
+    "https://rt.cpan.org/Ticket/Display.html?id=19859",
+]
+
+[remediation]
+fix = "升级到 XML::Parser 2.48 或更高版本。"
+steps = [
+    "步骤 1: 确认当前 XML::Parser 版本",
+    "步骤 2: 升级到 2.48 或更高版本，或应用官方补丁",
+]
+workaround = "应用自 2006-06-13 起公开可用的补丁：https://github.com/cpan-authors/XML-Parser/commit/56b0509dfc6b559cd7555ea81ee62e3622069255"
 
 [score]
 cvss_v2 = 0.0
@@ -20,40 +61,11 @@ cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
 cvss_v4 = 0.0
 cvss_v4_vector = ""
 
-[affected]
-vendor = "TODDR"
-product = "XML::Parser"
-
-[exploit]
-poc = []
-exp = []
-nuclei_templates = []
-
-[remediation]
-fix = "升级到 XML::Parser 2.48 或更高版本。"
-workaround = "应用自 2006-06-13 起公开可用的补丁：https://github.com/cpan-authors/XML-Parser/commit/56b0509dfc6b559cd7555ea81ee62e3622069255"
-steps = ["步骤 1: 确认当前 XML::Parser 版本", "步骤 2: 升级到 2.48 或更高版本，或应用官方补丁"]
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2006-10002"
-avd = ""
-other = [
-  "http://www.openwall.com/lists/oss-security/2026/03/19/1",
-  "http://www.openwall.com/lists/oss-security/2026/03/22/3",
-  "https://github.com/cpan-authors/XML-Parser/issues/64",
-  "https://github.com/cpan-authors/XML-Parser/commit/56b0509dfc6b559cd7555ea81ee62e3622069255.patch",
-  "https://metacpan.org/release/TODDR/XML-Parser-2.46/changes",
-  "https://rt.cpan.org/Ticket/Display.html?id=19859"
-]
-
 [tags]
-tags = ["CWE-122", "CWE-176", "heap-overflow", "perl", "xml"]
-
-[authenticity]
-cve_confidence = "high"
-poc_confidence = "low"
-notes = "该漏洞为非 HTTP 协议的 Perl 库堆缓冲区溢出漏洞，无公开 PoC 脚本或 EXP 利用脚本。补丁于 2006 年已在 CPAN Request Tracker 中提供。"
-
-[meta]
-collected_at = "2026-07-11T00:00:00Z"
-status = "completed"
+tags = [
+    "CWE-122",
+    "CWE-176",
+    "heap-overflow",
+    "perl",
+    "xml",
+]

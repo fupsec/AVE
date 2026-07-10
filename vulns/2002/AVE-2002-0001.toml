@@ -1,15 +1,60 @@
-[id]
-ave_id = "AVE-2002-0001"
-cve_id = "CVE-2002-0367"
-aliases = ["CVE-2002-0367"]
+[affected]
+product = "Windows NT 4.0 / Windows 2000"
+vendor = "Microsoft"
+
+[authenticity]
+cve_confidence = "high"
+notes = "CVE 由 NVD 官方收录且 CISA KEV 确认已遭活跃利用。原始 DebPloit 漏洞利用代码于 2002 年 3 月通过 Bugtraq 邮件列表发布，当前存档链接已失效。因年代久远，未在 GitHub、Exploit-DB、PacketStorm 等平台找到可用 PoC 仓库或 EXP 脚本。该漏洞为非 HTTP 协议本地提权漏洞，无法生成 HTTP PoC 脚本。"
+poc_confidence = "medium"
 
 [basic]
-title = "Microsoft Windows 权限提升漏洞 (DebPloit)"
 description = "Windows NT 和 Windows 2000 的 smss.exe 调试子系统未能正确认证连接到其他程序的程序，允许本地用户通过复制特权进程的句柄来获取管理员或 SYSTEM 权限，该漏洞被称为 DebPloit。"
+published = "2002-03-14"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 7.5
 severity = "HIGH"
 source = "kev"
-published = "2002-03-14"
+sources = ["unknown"]
+title = "Microsoft Windows 权限提升漏洞 (DebPloit)"
 updated = "2026-06-16"
+
+[exploit]
+exp = []
+
+[[exploit.poc]]
+description = "DebPloit 原始漏洞利用代码（Bugtraq 邮件列表）"
+source = "其他"
+url = "http://www.securityfocus.com/archive/1/262074"
+
+[id]
+aliases = ["CVE-2002-0367"]
+ave_id = "AVE-2002-0001"
+cve_id = "CVE-2002-0367"
+
+[meta]
+collected_at = "2026-07-11T00:00:00Z"
+status = "completed"
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2002-0367"
+others = [
+    "https://docs.microsoft.com/en-us/security-updates/securitybulletins/2002/ms02-024",
+    "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2002-0367",
+    "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2002-0367",
+    "http://www.securityfocus.com/bid/4287",
+    "https://oval.cisecurity.org/repository/search/definition/oval%3Aorg.mitre.oval%3Adef%3A158",
+    "https://oval.cisecurity.org/repository/search/definition/oval%3Aorg.mitre.oval%3Adef%3A76",
+]
+
+[remediation]
+fix = "安装 Microsoft 安全公告 MS02-024 (KB Q320206) 提供的更新补丁，升级到 Windows 2000 Service Pack 3 或更高版本。"
+steps = [
+    "确认操作系统版本：Windows NT 4.0 / Windows 2000",
+    "从 Microsoft 下载并安装 MS02-024 (KB Q320206) 补丁",
+    "如无法安装补丁，升级到 Windows 2000 Service Pack 3 或更高版本",
+    "限制不必要的用户账户的本地登录权限",
+]
+workaround = "限制本地用户交互式登录权限，限制不受信任用户对系统的物理或终端访问。"
 
 [score]
 cvss_v2 = 7.2
@@ -17,45 +62,10 @@ cvss_v2_vector = "(AV:L/AC:L/Au:N/C:C/I:C/A:C)"
 cvss_v3 = 7.8
 cvss_v3_vector = "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H"
 
-[affected]
-vendor = "Microsoft"
-product = "Windows NT 4.0 / Windows 2000"
-
-[exploit]
-poc = [
-  { url = "http://www.securityfocus.com/archive/1/262074", description = "DebPloit 原始漏洞利用代码（Bugtraq 邮件列表）", source = "其他" }
-]
-exp = []
-
-[remediation]
-fix = "安装 Microsoft 安全公告 MS02-024 (KB Q320206) 提供的更新补丁，升级到 Windows 2000 Service Pack 3 或更高版本。"
-workaround = "限制本地用户交互式登录权限，限制不受信任用户对系统的物理或终端访问。"
-steps = [
-  "确认操作系统版本：Windows NT 4.0 / Windows 2000",
-  "从 Microsoft 下载并安装 MS02-024 (KB Q320206) 补丁",
-  "如无法安装补丁，升级到 Windows 2000 Service Pack 3 或更高版本",
-  "限制不必要的用户账户的本地登录权限"
-]
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2002-0367"
-others = [
-  "https://docs.microsoft.com/en-us/security-updates/securitybulletins/2002/ms02-024",
-  "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2002-0367",
-  "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2002-0367",
-  "http://www.securityfocus.com/bid/4287",
-  "https://oval.cisecurity.org/repository/search/definition/oval%3Aorg.mitre.oval%3Adef%3A158",
-  "https://oval.cisecurity.org/repository/search/definition/oval%3Aorg.mitre.oval%3Adef%3A76"
-]
-
 [tags]
-tags = ["CWE-269", "LOCAL", "PRIVILEGE-ESCALATION", "KEV"]
-
-[authenticity]
-cve_confidence = "high"
-poc_confidence = "medium"
-notes = "CVE 由 NVD 官方收录且 CISA KEV 确认已遭活跃利用。原始 DebPloit 漏洞利用代码于 2002 年 3 月通过 Bugtraq 邮件列表发布，当前存档链接已失效。因年代久远，未在 GitHub、Exploit-DB、PacketStorm 等平台找到可用 PoC 仓库或 EXP 脚本。该漏洞为非 HTTP 协议本地提权漏洞，无法生成 HTTP PoC 脚本。"
-
-[meta]
-collected_at = "2026-07-11T00:00:00Z"
-status = "completed"
+tags = [
+    "CWE-269",
+    "LOCAL",
+    "PRIVILEGE-ESCALATION",
+    "KEV",
+]

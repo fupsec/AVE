@@ -1,56 +1,79 @@
-[id]
-ave_id = "AVE-2026-0037"
-cve_id = ""
-avd_id = ""
-other_ids = ["CNVD-2020-26585"]
+[affected]
+product = "ShowDoc"
+vendor = "star7th"
+
+[authenticity]
+cve_confidence = "high"
+notes = "CNVD 编号已由官方认证，Nuclei 模板已验证漏洞可复现。存在大量漏洞复现文章及实际利用案例。"
+poc_confidence = "high"
 
 [basic]
-title = "ShowDoc 2.8.6 以下版本文件上传漏洞"
 description = "ShowDoc 是一款非常适合IT团队的在线API文档、技术文档工具。ShowDoc 2.8.6以下版本存在文件上传漏洞，由于 PageController.class.php 中 allowExts 属性配置错误导致文件后缀过滤失效，且 uploadImg 接口未进行登录验证，攻击者可在未授权情况下通过构造特制 multipart 数据包上传恶意文件，获取服务器权限。"
+published = "2020-08-12"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 9.8
 severity = "CRITICAL"
 source = "nuclei"
-published = "2020-08-12"
+sources = ["unknown"]
+title = "ShowDoc 2.8.6 以下版本文件上传漏洞"
 updated = "2021-01-15"
+
+[exploit]
+exp = []
+
+[[exploit.nuclei_templates]]
+description = "Nuclei 文件上传检测模板"
+source = "nuclei"
+url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2020/CNVD-2020-26585.yaml"
+
+[[exploit.poc]]
+description = "Nuclei 检测模板（文件上传检测）"
+source = "nuclei"
+url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2020/CNVD-2020-26585.yaml"
+
+[id]
+avd_id = ""
+ave_id = "AVE-2026-0037"
+cve_id = ""
+other_ids = ["CNVD-2020-26585"]
+
+[meta]
+collected_at = "2026-07-10T12:00:00Z"
+status = "completed"
+
+[references]
+avd = ""
+nvd = ""
+
+[[references.other]]
+description = "官方修复 Pull Request"
+url = "https://github.com/star7th/showdoc/pull/1059"
+
+[[references.other]]
+description = "漏洞复现文章"
+url = "https://blog.csdn.net/qq_48985780/article/details/122211136"
+
+[[references.other]]
+description = "Nuclei 检测模板"
+url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2020/CNVD-2020-26585.yaml"
+
+[remediation]
+fix = "升级到 ShowDoc 2.8.6 或更高版本。官方在 PR #1059 中修复了该问题，将 allowExts 修改为正确的 exts 属性并添加了登录验证。"
+steps = [
+    "确认 ShowDoc 版本是否低于 2.8.6",
+    "升级到 ShowDoc 2.8.6 或更高版本",
+    "如无法升级，在反向代理或 WAF 中拦截 /index.php?s=/home/page/uploadImg 的上传请求",
+]
+workaround = "如无法升级，可在 Web 应用防火墙（WAF）中增加规则，拦截对 /index.php?s=/home/page/uploadImg 的 POST 请求，或限制上传文件后缀。"
 
 [score]
 cvss_v3 = 9.9
 cvss_v3_vector = "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:L/A:L"
 
-[affected]
-vendor = "star7th"
-product = "ShowDoc"
-
-[exploit]
-poc = [
-  { url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2020/CNVD-2020-26585.yaml", description = "Nuclei 检测模板（文件上传检测）", source = "nuclei" }
-]
-exp = []
-nuclei_templates = [
-  { url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2020/CNVD-2020-26585.yaml", description = "Nuclei 文件上传检测模板", source = "nuclei" }
-]
-
-[remediation]
-fix = "升级到 ShowDoc 2.8.6 或更高版本。官方在 PR #1059 中修复了该问题，将 allowExts 修改为正确的 exts 属性并添加了登录验证。"
-workaround = "如无法升级，可在 Web 应用防火墙（WAF）中增加规则，拦截对 /index.php?s=/home/page/uploadImg 的 POST 请求，或限制上传文件后缀。"
-steps = ["确认 ShowDoc 版本是否低于 2.8.6", "升级到 ShowDoc 2.8.6 或更高版本", "如无法升级，在反向代理或 WAF 中拦截 /index.php?s=/home/page/uploadImg 的上传请求"]
-
-[references]
-nvd = ""
-avd = ""
-other = [
-  { url = "https://github.com/star7th/showdoc/pull/1059", description = "官方修复 Pull Request" },
-  { url = "https://blog.csdn.net/qq_48985780/article/details/122211136", description = "漏洞复现文章" },
-  { url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2020/CNVD-2020-26585.yaml", description = "Nuclei 检测模板" }
-]
-
 [tags]
-tags = ["CWE-434", "文件上传", "任意文件上传", "ShowDoc"]
-
-[authenticity]
-cve_confidence = "high"
-poc_confidence = "high"
-notes = "CNVD 编号已由官方认证，Nuclei 模板已验证漏洞可复现。存在大量漏洞复现文章及实际利用案例。"
-
-[meta]
-collected_at = "2026-07-10T12:00:00Z"
-status = "completed"
+tags = [
+    "CWE-434",
+    "文件上传",
+    "任意文件上传",
+    "ShowDoc",
+]

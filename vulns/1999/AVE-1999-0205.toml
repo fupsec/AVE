@@ -1,16 +1,57 @@
-[id]
-ave_id = "AVE-1999-0205"
-cve_id = "CVE-1999-1109"
-avd_id = ""
-other_ids = []
+[affected]
+product = "Sendmail"
+vendor = "Sendmail Consortium"
+
+[authenticity]
+cve_confidence = "high"
+notes = "CVE 于 1999 年发布，NVD 及多个来源确认漏洞存在。未发现公开 PoC/EXP 代码。"
+poc_confidence = "low"
 
 [basic]
-title = "Sendmail ETRN 命令处理拒绝服务漏洞"
 description = "Sendmail 8.10.0 之前版本存在拒绝服务漏洞。远程攻击者通过向 SMTP 服务器发送一系列 ETRN 命令后断开连接，导致 Sendmail 在连接终止后继续处理这些命令，从而消耗大量系统资源造成拒绝服务。"
+published = "1999-12-22"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 7.5
 severity = "HIGH"
 source = "nvd"
-published = "1999-12-22"
+sources = ["unknown"]
+title = "Sendmail ETRN 命令处理拒绝服务漏洞"
 updated = "2026-06-16"
+
+[exploit]
+exp = []
+nuclei_templates = []
+poc = []
+
+[id]
+avd_id = ""
+ave_id = "AVE-1999-0205"
+cve_id = "CVE-1999-1109"
+other_ids = []
+
+[meta]
+collected_at = "2026-07-10T14:07:47Z"
+status = "completed"
+
+[references]
+avd = ""
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-1109"
+other = [
+    "http://www.securityfocus.com/bid/904",
+    "http://marc.info/?l=bugtraq&m=94632241202626&w=2",
+    "http://marc.info/?l=bugtraq&m=94780566911948&w=2",
+    "http://www.iss.net/security_center/static/7760.php",
+]
+
+[remediation]
+fix = "升级到 Sendmail 8.10.1 或更高版本。"
+steps = [
+    "步骤1: 确认当前 Sendmail 版本",
+    "步骤2: 下载 Sendmail 8.10.1 或更高版本",
+    "步骤3: 编译并安装更新版本",
+    "步骤4: 重启 Sendmail 服务",
+]
+workaround = "如无法升级，可在 SMTP 服务器的访问控制列表中限制 ETRN 命令的执行权限，或禁用 ETRN 命令。"
 
 [score]
 cvss_v2 = 5.0
@@ -20,38 +61,11 @@ cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
 cvss_v4 = 8.2
 cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N"
 
-[affected]
-vendor = "Sendmail Consortium"
-product = "Sendmail"
-
-[exploit]
-poc = []
-exp = []
-nuclei_templates = []
-
-[remediation]
-fix = "升级到 Sendmail 8.10.1 或更高版本。"
-workaround = "如无法升级，可在 SMTP 服务器的访问控制列表中限制 ETRN 命令的执行权限，或禁用 ETRN 命令。"
-steps = ["步骤1: 确认当前 Sendmail 版本", "步骤2: 下载 Sendmail 8.10.1 或更高版本", "步骤3: 编译并安装更新版本", "步骤4: 重启 Sendmail 服务"]
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-1109"
-avd = ""
-other = [
-  "http://www.securityfocus.com/bid/904",
-  "http://marc.info/?l=bugtraq&m=94632241202626&w=2",
-  "http://marc.info/?l=bugtraq&m=94780566911948&w=2",
-  "http://www.iss.net/security_center/static/7760.php"
-]
-
 [tags]
-tags = ["CWE-Other", "Denial-of-Service", "Sendmail", "SMTP", "ETRN"]
-
-[authenticity]
-cve_confidence = "high"
-poc_confidence = "low"
-notes = "CVE 于 1999 年发布，NVD 及多个来源确认漏洞存在。未发现公开 PoC/EXP 代码。"
-
-[meta]
-collected_at = "2026-07-10T14:07:47Z"
-status = "completed"
+tags = [
+    "CWE-Other",
+    "Denial-of-Service",
+    "Sendmail",
+    "SMTP",
+    "ETRN",
+]

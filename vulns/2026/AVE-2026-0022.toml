@@ -1,34 +1,38 @@
-
-[id]
-  ave_id = "AVE-2026-0022"
-  cve_id = "CVE-2026-13523"
-  aliases = ["CVE-2026-13523"]
-
 [basic]
-  title = "GPAC ISOBMFF 解析器解压缩炸弹漏洞(CVE-2026-13523)"
-  description = "GPAC 是开源多媒体框架，常用于 MP4/MPEG-4 容器解析与处理。\n受影响版本中，ISOBMFF 解析器在解压压缩盒（如 !six、!csix、!mof 等）时调用 gf_gz_decompress_payload_ex 函数，该函数对 zlib inflate 输出的解压大小缺乏校验。攻击者可构造超压缩数据（解压膨胀比超过 32 倍），导致进程分配远超预期的堆内存，造成内存耗尽和拒绝服务。\n修复版本中通过在 inflate 循环中添加输出大小检查来解决该问题：当 d_stream.total_out 超过输入数据大小的 32 倍时，函数返回 GF_NON_COMPLIANT_BITSTREAM 错误并停止解压，从而阻断超压缩数据的扩展攻击。\n解决建议\n建议您更新当前系统或软件至最新版，完成漏洞的修复。"
-  severity = "MEDIUM"
-  score = 5.5
-  sources = ["avd"]
-  published = "2026-06-29"
-  updated = ""
-  remediation = "建议您更新当前系统或软件至最新版，完成漏洞的修复。"
-
-[score]
-  cvss_v2 = 5.0
-  cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:N/A:P"
-  cvss_v3 = 5.5
-  cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L"
-  cvss_v4 = 6.9
-  cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N"
+description = """
+GPAC 是开源多媒体框架，常用于 MP4/MPEG-4 容器解析与处理。
+受影响版本中，ISOBMFF 解析器在解压压缩盒（如 !six、!csix、!mof 等）时调用 gf_gz_decompress_payload_ex 函数，该函数对 zlib inflate 输出的解压大小缺乏校验。攻击者可构造超压缩数据（解压膨胀比超过 32 倍），导致进程分配远超预期的堆内存，造成内存耗尽和拒绝服务。
+修复版本中通过在 inflate 循环中添加输出大小检查来解决该问题：当 d_stream.total_out 超过输入数据大小的 32 倍时，函数返回 GF_NON_COMPLIANT_BITSTREAM 错误并停止解压，从而阻断超压缩数据的扩展攻击。
+解决建议
+建议您更新当前系统或软件至最新版，完成漏洞的修复。"""
+published = "2026-06-29"
+remediation = "建议您更新当前系统或软件至最新版，完成漏洞的修复。"
+score = 5.5
+severity = "MEDIUM"
+sources = ["avd"]
+title = "GPAC ISOBMFF 解析器解压缩炸弹漏洞(CVE-2026-13523)"
+updated = "2026-07-10"
 
 [exploit]
-poc_urls = []
 exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2026-13523"]
+ave_id = "AVE-2026-0022"
+cve_id = "CVE-2026-13523"
+
+[meta]
+collected_at = "2026-07-10T04:07:16.511485180+00:00"
+status = "completed"
 
 [references]
 urls = []
 
-[meta]
-status = "completed"
-collected_at = "2026-07-10T04:07:16.511485180+00:00"
+[score]
+cvss_v2 = 5.0
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:N/A:P"
+cvss_v3 = 5.5
+cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L"
+cvss_v4 = 6.9
+cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N"

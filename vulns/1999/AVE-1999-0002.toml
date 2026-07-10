@@ -1,53 +1,66 @@
-
-[id]
-  ave_id = "AVE-1999-0002"
-  cve_id = "CVE-1999-0096"
-  avd_id = ""
-  other_ids = []
-
-[basic]
-  title = "Sendmail decode 别名远程文件覆盖漏洞"
-  description = "Sendmail decode 别名功能存在安全漏洞，远程攻击者可通过向 decode 别名发送邮件，将邮件内容传递给程序执行，从而覆盖系统敏感文件。"
-  severity = "MEDIUM"
-  source = "nvd"
-  published = "1996-12-10"
-  updated = "2026-06-16"
-
-[score]
-  cvss_v2 = 5.0
-  cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:P/A:N"
-  cvss_v3 = 5.5
-  cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N"
-  cvss_v4 = 5.1
-  cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:L/VI:N/VA:N/SC:N/SI:N/SA:N"
-
 [affected]
-vendor = "sendmail"
 product = "sendmail"
+vendor = "sendmail"
 
 [authenticity]
 cve_confidence = "high"
-poc_confidence = "none"
 notes = "PoC/EXP 未公开收录，漏洞年代久远（1996年），经搜索 NVD、GitHub、Exploit-DB、PacketStorm、Sploitus 均未发现公开 PoC/EXP。非 HTTP 协议漏洞（SMTP），不生成 PoC 脚本。"
+poc_confidence = "none"
+
+[basic]
+description = "Sendmail decode 别名功能存在安全漏洞，远程攻击者可通过向 decode 别名发送邮件，将邮件内容传递给程序执行，从而覆盖系统敏感文件。"
+published = "1996-12-10"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 5.5
+severity = "MEDIUM"
+source = "nvd"
+sources = ["unknown"]
+title = "Sendmail decode 别名远程文件覆盖漏洞"
+updated = "2026-06-16"
 
 [exploit]
-poc = []
 exp = []
 nuclei_templates = []
+poc = []
 
-[remediation]
-fix = "移除 /etc/aliases 中的 decode 条目，并重启 Sendmail 服务。"
-workaround = "如无法立即升级，可临时禁用 decode 别名，移除 /etc/aliases 中 decode 条目后执行 newaliases 命令。"
-steps = ["步骤1: 编辑 /etc/aliases 文件", "步骤2: 移除或注释包含 decode 的行", "步骤3: 执行 newaliases 命令使配置生效", "步骤4: 重启 Sendmail 服务"]
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0096"
-avd = ""
-other = ["http://sunsolve.sun.com/pub-cgi/retrieve.pl?doctype=coll&doc=secbull/122&type=0&nav=sec.sba"]
-
-[tags]
-tags = ["CWE-Other", "sendmail", "SMTP", "file-overwrite", "mail"]
+[id]
+avd_id = ""
+ave_id = "AVE-1999-0002"
+cve_id = "CVE-1999-0096"
+other_ids = []
 
 [meta]
 collected_at = "2026-07-11T14:30:00Z"
 status = "completed"
+
+[references]
+avd = ""
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0096"
+other = ["http://sunsolve.sun.com/pub-cgi/retrieve.pl?doctype=coll&doc=secbull/122&type=0&nav=sec.sba"]
+
+[remediation]
+fix = "移除 /etc/aliases 中的 decode 条目，并重启 Sendmail 服务。"
+steps = [
+    "步骤1: 编辑 /etc/aliases 文件",
+    "步骤2: 移除或注释包含 decode 的行",
+    "步骤3: 执行 newaliases 命令使配置生效",
+    "步骤4: 重启 Sendmail 服务",
+]
+workaround = "如无法立即升级，可临时禁用 decode 别名，移除 /etc/aliases 中 decode 条目后执行 newaliases 命令。"
+
+[score]
+cvss_v2 = 5.0
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:P/A:N"
+cvss_v3 = 5.5
+cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N"
+cvss_v4 = 5.1
+cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:L/VI:N/VA:N/SC:N/SI:N/SA:N"
+
+[tags]
+tags = [
+    "CWE-Other",
+    "sendmail",
+    "SMTP",
+    "file-overwrite",
+    "mail",
+]

@@ -1,52 +1,65 @@
-
-[id]
-  ave_id = "AVE-1999-0005"
-  cve_id = "CVE-1999-0140"
-  avd_id = ""
-  other_ids = []
-
-[basic]
-  title = "Windows NT RAS/PPTP 远程拒绝服务漏洞"
-  description = "Windows NT 系统中的远程访问服务（RAS）和 PPTP 协议实现存在拒绝服务漏洞。远程攻击者无需认证即可通过网络发送特制数据包，导致 RAS/PPTP 服务崩溃或停止响应，从而中断 VPN 和远程访问连接服务。该漏洞影响 Windows NT 4.0 及此前版本。"
-  severity = "MEDIUM"
-  source = "nvd"
-  published = "1999-06-30"
-  updated = "2026-06-16"
-
-[score]
-  cvss_v2 = 5.0
-  cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:N/A:P"
-  cvss_v3 = 5.5
-  cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N"
-  cvss_v4 = 5.1
-  cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:L/VI:N/VA:N/SC:N/SI:N/SA:N"
-
 [affected]
-vendor = "Microsoft"
 product = "Windows NT"
+vendor = "Microsoft"
 
 [authenticity]
 cve_confidence = "high"
-poc_confidence = "none"
 notes = "漏洞由 MITRE/NVD 收录并确认。公开资料仅有 X-Force 参考链接，未发现公开 PoC 或利用代码（搜索 NVD、GitHub、Exploit-DB、Sploitus、PacketStorm 等渠道均无结果）。由于该漏洞年代久远且涉及非 HTTP 协议（PPTP），无法生成自动化 PoC 验证脚本。漏洞状态已被微软修复，但由于 Windows NT 已停止支持，仍使用旧系统的用户面临风险。"
+poc_confidence = "none"
+
+[basic]
+description = "Windows NT 系统中的远程访问服务（RAS）和 PPTP 协议实现存在拒绝服务漏洞。远程攻击者无需认证即可通过网络发送特制数据包，导致 RAS/PPTP 服务崩溃或停止响应，从而中断 VPN 和远程访问连接服务。该漏洞影响 Windows NT 4.0 及此前版本。"
+published = "1999-06-30"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 5.5
+severity = "MEDIUM"
+source = "nvd"
+sources = ["unknown"]
+title = "Windows NT RAS/PPTP 远程拒绝服务漏洞"
+updated = "2026-06-16"
 
 [exploit]
-poc = []
 exp = []
 nuclei_templates = []
+poc = []
 
-[remediation]
-fix = "微软已发布安全补丁修复此问题。由于 Windows NT 已停止支持，建议升级到受支持的 Windows 版本（如 Windows Server 2016/2019/2022 或 Windows 10/11）。"
-workaround = "在网络边界防火墙处限制对 PPTP 端口（TCP 1723）和 RAS 相关端口的访问，仅允许已知可信 IP 地址连接。"
-steps = ["步骤1: 在网络防火墙上限制 TCP 端口 1723（PPTP）的入站访问", "步骤2: 如不需要远程访问服务，在服务管理器中禁用 RAS 服务", "步骤3: 升级到受支持的 Windows 版本以获取持续安全更新"]
+[id]
+avd_id = ""
+ave_id = "AVE-1999-0005"
+cve_id = "CVE-1999-0140"
+other_ids = []
+
+[meta]
+collected_at = "2026-07-10T14:09:50Z"
+status = "completed"
 
 [references]
 nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0140"
 other = ["https://exchange.xforce.ibmcloud.com/vulnerabilities/CVE-1999-0140"]
 
-[tags]
-tags = ["NVD-CWE-Other", "DoS", "PPTP", "RAS", "Windows-NT", "Remote"]
+[remediation]
+fix = "微软已发布安全补丁修复此问题。由于 Windows NT 已停止支持，建议升级到受支持的 Windows 版本（如 Windows Server 2016/2019/2022 或 Windows 10/11）。"
+steps = [
+    "步骤1: 在网络防火墙上限制 TCP 端口 1723（PPTP）的入站访问",
+    "步骤2: 如不需要远程访问服务，在服务管理器中禁用 RAS 服务",
+    "步骤3: 升级到受支持的 Windows 版本以获取持续安全更新",
+]
+workaround = "在网络边界防火墙处限制对 PPTP 端口（TCP 1723）和 RAS 相关端口的访问，仅允许已知可信 IP 地址连接。"
 
-[meta]
-collected_at = "2026-07-10T14:09:50Z"
-status = "completed"
+[score]
+cvss_v2 = 5.0
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:N/A:P"
+cvss_v3 = 5.5
+cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N"
+cvss_v4 = 5.1
+cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:L/VI:N/VA:N/SC:N/SI:N/SA:N"
+
+[tags]
+tags = [
+    "NVD-CWE-Other",
+    "DoS",
+    "PPTP",
+    "RAS",
+    "Windows-NT",
+    "Remote",
+]

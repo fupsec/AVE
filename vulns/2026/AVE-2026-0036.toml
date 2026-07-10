@@ -1,56 +1,80 @@
-[id]
-ave_id = "AVE-2026-0036"
-cve_id = ""
-avd_id = ""
-other_ids = ["CNVD-2020-23735"]
+[affected]
+product = "迅优cms"
+vendor = "衡水迅驰互联网信息服务有限公司"
+
+[authenticity]
+cve_confidence = "low"
+notes = "该漏洞没有CVE编号，仅有CNVD编号。Nuclei和xray均包含可用PoC，PoC可信度高。厂商未提供官方修复方案。"
+poc_confidence = "high"
 
 [basic]
-title = "迅优cms任意文件读取漏洞"
 description = "衡水迅驰互联网信息服务有限公司迅优cms存在任意文件读取漏洞。攻击者可通过/backup/auto.php页面的path参数进行目录遍历，读取服务器上任意文件，获取敏感信息。"
+published = "2020-04-25"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 7.5
 severity = "HIGH"
 source = "nuclei"
-published = "2020-04-25"
+sources = ["unknown"]
+title = "迅优cms任意文件读取漏洞"
 updated = "2020-04-25"
+
+[exploit]
+exp = []
+
+[[exploit.nuclei_templates]]
+description = "Nuclei 检测模板"
+source = "nuclei"
+url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2020/CNVD-2020-23735.yaml"
+
+[[exploit.poc]]
+description = "Nuclei 检测模板 - 任意文件读取"
+source = "nuclei"
+url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2020/CNVD-2020-23735.yaml"
+
+[[exploit.poc]]
+description = "xray PoC - 任意文件读取"
+source = "github"
+url = "https://github.com/chaitin/xray/blob/master/pocs/xunchi-cnvd-2020-23735-file-read.yml"
+
+[id]
+avd_id = ""
+ave_id = "AVE-2026-0036"
+cve_id = ""
+other_ids = ["CNVD-2020-23735"]
+
+[meta]
+collected_at = "2026-07-10T12:00:00Z"
+status = "completed"
+
+[references]
+avd = ""
+nvd = ""
+
+[[references.other]]
+description = "CNVD 漏洞详情页"
+url = "https://www.cnvd.org.cn/flaw/show/CNVD-2020-23735"
+
+[[references.other]]
+description = "厂商主页"
+url = "http://www.cnxunchi.com/"
+
+[remediation]
+fix = "厂商尚未提供漏洞修补方案，请关注厂商主页及时更新：http://www.cnxunchi.com/"
+steps = [
+    "确认是否使用了受影响版本迅优cms V2.3及以上",
+    "联系厂商获取修复方案",
+    "如无法联系厂商，建议限制/backup/auto.php的访问或迁移至其他CMS",
+]
+workaround = "限制对/backup/auto.php文件的访问权限，或移除该文件。使用Web应用防火墙(WAF)拦截目录遍历攻击。"
 
 [score]
 cvss_v3 = 7.5
 cvss_v3_vector = "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N"
 
-[affected]
-vendor = "衡水迅驰互联网信息服务有限公司"
-product = "迅优cms"
-
-[exploit]
-poc = [
-  { url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2020/CNVD-2020-23735.yaml", description = "Nuclei 检测模板 - 任意文件读取", source = "nuclei" },
-  { url = "https://github.com/chaitin/xray/blob/master/pocs/xunchi-cnvd-2020-23735-file-read.yml", description = "xray PoC - 任意文件读取", source = "github" }
-]
-exp = []
-nuclei_templates = [
-  { url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2020/CNVD-2020-23735.yaml", description = "Nuclei 检测模板", source = "nuclei" }
-]
-
-[remediation]
-fix = "厂商尚未提供漏洞修补方案，请关注厂商主页及时更新：http://www.cnxunchi.com/"
-workaround = "限制对/backup/auto.php文件的访问权限，或移除该文件。使用Web应用防火墙(WAF)拦截目录遍历攻击。"
-steps = ["确认是否使用了受影响版本迅优cms V2.3及以上", "联系厂商获取修复方案", "如无法联系厂商，建议限制/backup/auto.php的访问或迁移至其他CMS"]
-
-[references]
-nvd = ""
-avd = ""
-other = [
-  { url = "https://www.cnvd.org.cn/flaw/show/CNVD-2020-23735", description = "CNVD 漏洞详情页" },
-  { url = "http://www.cnxunchi.com/", description = "厂商主页" }
-]
-
 [tags]
-tags = ["CWE-22", "LFI", "Path-Traversal", "File-Read"]
-
-[authenticity]
-cve_confidence = "low"
-poc_confidence = "high"
-notes = "该漏洞没有CVE编号，仅有CNVD编号。Nuclei和xray均包含可用PoC，PoC可信度高。厂商未提供官方修复方案。"
-
-[meta]
-collected_at = "2026-07-10T12:00:00Z"
-status = "completed"
+tags = [
+    "CWE-22",
+    "LFI",
+    "Path-Traversal",
+    "File-Read",
+]

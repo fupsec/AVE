@@ -1,58 +1,85 @@
-[id]
-ave_id = "AVE-2026-0073"
-cve_id = "CVE-2026-0047"
-avd_id = ""
-other_ids = []
+[affected]
+product = "Android 16 QPR2 Beta (Baklava)"
+vendor = "Google"
+
+[authenticity]
+cve_confidence = "high"
+notes = "CVE 已由 Google 官方确认并修复，CISA-ADP 已分配 CVSS 3.1 评分 8.4（HIGH），GitHub 仓库 mobilehackinglab/CVE-2026-0047-poc（13 stars）提供完整可验证的 PoC 代码、APK 和利用脚本。已搜索 Exploit-DB、PacketStorm、Sploitus 等渠道，未发现任何公开条目。由于该漏洞为 Android Binder 协议层漏洞（非 HTTP 协议），不存在也不适用 Nuclei HTTP 模板。未发现其他编号关联此漏洞（无 AVD、CNVD 等）。Mobile Hacking Lab 发表了漏洞分析博客（链接见 references）。"
+poc_confidence = "high"
 
 [basic]
-title = "Android ActivityManagerService.dumpBitmapsProto 权限检查缺失漏洞"
 description = "Android ActivityManagerService 的 dumpBitmapsProto 方法存在权限检查缺失漏洞（CWE-280），应用程序无需任何权限即可通过 Binder 事务码 #117 触发该方法，窃取其他正在运行应用的 UI 位图信息。该漏洞可导致本地权限提升（LPE），攻击者无需额外执行权限，无需用户交互。"
+published = "2026-03-02"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 7.5
 severity = "HIGH"
 source = "nvd"
-published = "2026-03-02"
+sources = ["unknown"]
+title = "Android ActivityManagerService.dumpBitmapsProto 权限检查缺失漏洞"
 updated = "2026-06-17"
+
+[exploit]
+nuclei_templates = []
+
+[[exploit.exp]]
+description = "一键利用脚本 — 通过 Binder transact() 绕过权限检查窃取所有应用 UI 位图"
+source = "github"
+url = "https://github.com/mobilehackinglab/CVE-2026-0047-poc/blob/main/exploit.sh"
+
+[[exploit.poc]]
+description = "Android ActivityManagerService 位图窃取 PoC — 包含 PoC APK、模拟攻击应用及完整复现说明"
+source = "github"
+url = "https://github.com/mobilehackinglab/CVE-2026-0047-poc"
+
+[[exploit.poc]]
+description = "预编译 PoC APK — 可直接安装到 Android 16 QPR2 Beta 模拟器进行验证"
+source = "github"
+url = "https://github.com/mobilehackinglab/CVE-2026-0047-poc/raw/main/apk/cve-2026-0047-poc.apk"
+
+[[exploit.poc]]
+description = "模拟攻击者应用 APK — 零权限声明、后台静默窃取所有应用 UI 位图"
+source = "github"
+url = "https://github.com/mobilehackinglab/CVE-2026-0047-poc/raw/main/apk/flashlight-pro-attacker.apk"
+
+[id]
+avd_id = ""
+ave_id = "AVE-2026-0073"
+cve_id = "CVE-2026-0047"
+other_ids = []
+
+[meta]
+collected_at = "2026-07-11T00:00:00Z"
+status = "completed"
+
+[references]
+avd = ""
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2026-0047"
+other = [
+    "https://source.android.com/docs/security/bulletin/2026/2026-03-01",
+    "https://cwe.mitre.org/data/definitions/280.html",
+    "https://www.mobilehackingcourse.com/cve-2026-0047-activitymanager-eop/",
+]
+
+[remediation]
+fix = "升级到 Android 安全公告 2026-03-01 中指定的修复版本。Google 已添加 enforceCallingOrSelfPermission(DUMP) 权限检查。参考 https://source.android.com/docs/security/bulletin/2026/2026-03-01"
+steps = [
+    "步骤1: 进入 设置 > 系统 > 系统更新 检查安全补丁级别",
+    "步骤2: 安装 2026-03-01 或更新的安全补丁",
+    "步骤3: 重启设备并验证安全补丁级别是否 ≥ 2026-03-01",
+]
+workaround = "如无法升级，建议避免在未打补丁的 Android 16 QPR2 Beta 设备上处理敏感信息，并限制安装未知来源应用。"
 
 [score]
 cvss_v3 = 8.4
 cvss_v3_vector = "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
 
-[affected]
-vendor = "Google"
-product = "Android 16 QPR2 Beta (Baklava)"
-
-[exploit]
-poc = [
-  { url = "https://github.com/mobilehackinglab/CVE-2026-0047-poc", description = "Android ActivityManagerService 位图窃取 PoC — 包含 PoC APK、模拟攻击应用及完整复现说明", source = "github" },
-  { url = "https://github.com/mobilehackinglab/CVE-2026-0047-poc/raw/main/apk/cve-2026-0047-poc.apk", description = "预编译 PoC APK — 可直接安装到 Android 16 QPR2 Beta 模拟器进行验证", source = "github" },
-  { url = "https://github.com/mobilehackinglab/CVE-2026-0047-poc/raw/main/apk/flashlight-pro-attacker.apk", description = "模拟攻击者应用 APK — 零权限声明、后台静默窃取所有应用 UI 位图", source = "github" }
-]
-exp = [
-  { url = "https://github.com/mobilehackinglab/CVE-2026-0047-poc/blob/main/exploit.sh", description = "一键利用脚本 — 通过 Binder transact() 绕过权限检查窃取所有应用 UI 位图", source = "github" }
-]
-nuclei_templates = []
-
-[remediation]
-fix = "升级到 Android 安全公告 2026-03-01 中指定的修复版本。Google 已添加 enforceCallingOrSelfPermission(DUMP) 权限检查。参考 https://source.android.com/docs/security/bulletin/2026/2026-03-01"
-workaround = "如无法升级，建议避免在未打补丁的 Android 16 QPR2 Beta 设备上处理敏感信息，并限制安装未知来源应用。"
-steps = ["步骤1: 进入 设置 > 系统 > 系统更新 检查安全补丁级别", "步骤2: 安装 2026-03-01 或更新的安全补丁", "步骤3: 重启设备并验证安全补丁级别是否 ≥ 2026-03-01"]
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2026-0047"
-avd = ""
-other = [
-  "https://source.android.com/docs/security/bulletin/2026/2026-03-01",
-  "https://cwe.mitre.org/data/definitions/280.html",
-  "https://www.mobilehackingcourse.com/cve-2026-0047-activitymanager-eop/"
-]
-
 [tags]
-tags = ["CWE-280", "Android", "LPE", "权限检查缺失", "信息泄露", "Binder", "ActivityManagerService"]
-
-[authenticity]
-cve_confidence = "high"
-poc_confidence = "high"
-notes = "CVE 已由 Google 官方确认并修复，CISA-ADP 已分配 CVSS 3.1 评分 8.4（HIGH），GitHub 仓库 mobilehackinglab/CVE-2026-0047-poc（13 stars）提供完整可验证的 PoC 代码、APK 和利用脚本。已搜索 Exploit-DB、PacketStorm、Sploitus 等渠道，未发现任何公开条目。由于该漏洞为 Android Binder 协议层漏洞（非 HTTP 协议），不存在也不适用 Nuclei HTTP 模板。未发现其他编号关联此漏洞（无 AVD、CNVD 等）。Mobile Hacking Lab 发表了漏洞分析博客（链接见 references）。"
-
-[meta]
-collected_at = "2026-07-11T00:00:00Z"
-status = "completed"
+tags = [
+    "CWE-280",
+    "Android",
+    "LPE",
+    "权限检查缺失",
+    "信息泄露",
+    "Binder",
+    "ActivityManagerService",
+]

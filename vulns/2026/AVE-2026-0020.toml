@@ -1,16 +1,61 @@
-[id]
-ave_id = "AVE-2026-0020"
-cve_id = "CVE-2026-13525"
-avd_id = "CVE-2026-13525"
-other_ids = []
+[affected]
+product = "Human Resource Management System"
+vendor = "CodeAstro"
+
+[authenticity]
+cve_confidence = "high"
+notes = "NVD已收录，存在公开PoC"
+poc_confidence = "high"
 
 [basic]
-title = "CodeAstro Human Resource Management System SQL注入漏洞"
 description = "CodeAstro Human Resource Management System是面向企业的人力资源管理系统，本次漏洞发生在更新Earn Leave功能的接口中。受影响版本中，Employee_model.php文件中emselectByCode()函数处理emid参数时，直接将该参数拼接入SQL查询语句而未进行任何过滤或参数化处理。攻击者通过在emid参数中注入SQLpayload，可绕过认证或提取数据库中的员工信息，严重时可导致数据库完全失陷。"
+published = "2026-06-28"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 5.5
 severity = "MEDIUM"
 source = "avd"
-published = "2026-06-28"
+sources = ["unknown"]
+title = "CodeAstro Human Resource Management System SQL注入漏洞"
 updated = "2026-06-29"
+
+[exploit]
+exp = []
+nuclei_templates = []
+
+[[exploit.poc]]
+description = "基于时间的盲SQL注入PoC"
+source = "github"
+url = "https://github.com/ashikmd0507/CVE/tree/main/Time-Based%20Blind%20SQL%20Injection%20in%20Update_Earn_Leave%20via%20emid%20Parameter"
+
+[id]
+avd_id = "CVE-2026-13525"
+ave_id = "AVE-2026-0020"
+cve_id = "CVE-2026-13525"
+other_ids = []
+
+[meta]
+collected_at = "2026-07-10T03:56:20Z"
+status = "completed"
+
+[references]
+avd = "https://avd.aliyun.com/detail?id=CVE-2026-13525"
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2026-13525"
+
+[[references.other]]
+description = "VulDB条目"
+url = "https://vuldb.com/cve/CVE-2026-13525"
+
+[[references.other]]
+description = "GitHub PoC仓库"
+url = "https://github.com/ashikmd0507/CVE/tree/main/Time-Based%20Blind%20SQL%20Injection%20in%20Update_Earn_Leave%20via%20emid%20Parameter"
+
+[remediation]
+fix = "建议您更新当前系统或软件至最新版，完成漏洞的修复。"
+steps = [
+    "升级CodeAstro Human Resource Management System至最新版本",
+    "使用参数化查询替代字符串拼接方式修复SQL注入问题",
+]
+workaround = ""
 
 [score]
 cvss_v2 = 6.5
@@ -20,38 +65,9 @@ cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:L"
 cvss_v4 = 2.1
 cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:L/UI:N/VC:L/VI:L/VA:L/SC:N/SI:N/SA:N/E:P"
 
-[affected]
-vendor = "CodeAstro"
-product = "Human Resource Management System"
-
-[exploit]
-poc = [
-  { url = "https://github.com/ashikmd0507/CVE/tree/main/Time-Based%20Blind%20SQL%20Injection%20in%20Update_Earn_Leave%20via%20emid%20Parameter", description = "基于时间的盲SQL注入PoC", source = "github" }
-]
-exp = []
-nuclei_templates = []
-
-[remediation]
-fix = "建议您更新当前系统或软件至最新版，完成漏洞的修复。"
-workaround = ""
-steps = ["升级CodeAstro Human Resource Management System至最新版本", "使用参数化查询替代字符串拼接方式修复SQL注入问题"]
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2026-13525"
-avd = "https://avd.aliyun.com/detail?id=CVE-2026-13525"
-other = [
-  { url = "https://vuldb.com/cve/CVE-2026-13525", description = "VulDB条目" },
-  { url = "https://github.com/ashikmd0507/CVE/tree/main/Time-Based%20Blind%20SQL%20Injection%20in%20Update_Earn_Leave%20via%20emid%20Parameter", description = "GitHub PoC仓库" }
-]
-
 [tags]
-tags = ["CWE-89", "SQL注入", "Time-Based Blind SQLI"]
-
-[authenticity]
-cve_confidence = "high"
-poc_confidence = "high"
-notes = "NVD已收录，存在公开PoC"
-
-[meta]
-collected_at = "2026-07-10T03:56:20Z"
-status = "completed"
+tags = [
+    "CWE-89",
+    "SQL注入",
+    "Time-Based Blind SQLI",
+]

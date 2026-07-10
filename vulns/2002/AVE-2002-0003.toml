@@ -1,15 +1,74 @@
+[affected]
+product = "Diffie-Hellman 密钥交换协议实现（TLS/SSH/VPN）"
+vendor = "多个厂商"
+
+[authenticity]
+cve_confidence = "high"
+notes = "CVE 由 MITRE 官方收录，NVD 详细分析并分配 CVSS 评分。多种可用的 PoC 实现（GitHub/GitLab）已验证漏洞存在。IEEE 已发表完整技术论文（DOI: 10.1109/ACCESS.2023.3346318）。"
+poc_confidence = "high"
+
+[basic]
+description = "D(HE)at 是一种针对有限域 Diffie-Hellman (DH) 密钥交换协议的拒绝服务 (DoS) 攻击（CVE-2002-20001）。远程未授权攻击者通过 TLS/SSH 连接向服务器发送非公钥的任意数字，强制服务器使用 DHE 密钥交换并进行昂贵的模幂运算，导致服务器 CPU 资源耗尽。攻击者只需极少的 CPU 资源和网络带宽即可发起大规模拒绝服务攻击。该漏洞影响多种 TLS/SSH 实现及 VPN 产品。"
+published = "2021-11-11"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 7.5
+severity = "HIGH"
+source = "nvd"
+sources = ["unknown"]
+title = "D(HE)at 攻击 - Diffie-Hellman 密钥交换协议拒绝服务漏洞"
+updated = "2026-06-16"
+
+[exploit]
+exp = []
+
+[[exploit.poc]]
+description = "D(HE)ater PoC 实现 - C 语言编写的 D(HE)at 攻击验证工具，支持 TLS 和 SSH 协议检测"
+source = "github"
+url = "https://github.com/Balasys/dheater"
+
+[[exploit.poc]]
+description = "D(HE)ater PoC 实现（官方镜像）- 跨平台 DHE 拒绝服务攻击验证工具"
+source = "gitlab"
+url = "https://gitlab.com/dheatattack/dheater"
+
 [id]
 ave_id = "AVE-2002-0003"
 cve_id = "CVE-2002-20001"
-other_ids = ["CVE-2022-40735", "CVE-2024-41996"]
+other_ids = [
+    "CVE-2022-40735",
+    "CVE-2024-41996",
+]
 
-[basic]
-title = "D(HE)at 攻击 - Diffie-Hellman 密钥交换协议拒绝服务漏洞"
-description = "D(HE)at 是一种针对有限域 Diffie-Hellman (DH) 密钥交换协议的拒绝服务 (DoS) 攻击（CVE-2002-20001）。远程未授权攻击者通过 TLS/SSH 连接向服务器发送非公钥的任意数字，强制服务器使用 DHE 密钥交换并进行昂贵的模幂运算，导致服务器 CPU 资源耗尽。攻击者只需极少的 CPU 资源和网络带宽即可发起大规模拒绝服务攻击。该漏洞影响多种 TLS/SSH 实现及 VPN 产品。"
-severity = "HIGH"
-source = "nvd"
-published = "2021-11-11"
-updated = "2026-06-16"
+[meta]
+collected_at = "2026-07-10T11:02:19.745206911+00:00"
+status = "completed"
+
+[references]
+avd = ""
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2002-20001"
+others = [
+    "https://dheatattack.com",
+    "https://dheatattack.gitlab.io/",
+    "https://ieeexplore.ieee.org/document/10374117",
+    "https://www.openssl.org/blog/blog/2022/10/21/tls-groups-configuration/",
+    "https://cert-portal.siemens.com/productcert/pdf/ssa-506569.pdf",
+    "https://support.f5.com/csp/article/K83120834",
+    "https://www.arubanetworks.com/assets/alert/ARUBA-PSA-2022-004.txt",
+    "https://www.suse.com/support/kb/doc/?id=000020510",
+    "https://github.com/mozilla/ssl-config-generator/issues/162",
+    "https://www.researchgate.net/profile/Anton-Stiglic-2/publication/2401745_Security_Issues_in_the_Diffie-Hellman_Key_Agreement_Protocol",
+]
+
+[remediation]
+fix = "升级 TLS/SSH 库到修复版本，禁用 DHE 临时密钥交换或优先使用 ECDHE。参考各厂商安全公告。"
+steps = [
+    "检查服务器是否支持 DHE 密码套件（可使用 CryptoLyzer、ssh-audit 等工具检测）",
+    "在 TLS 配置中移除 DHE 相关密码套件，仅保留 ECDHE 套件",
+    "升级 OpenSSL 到最新版本，参考 OpenSSL 安全公告配置 groups 参数",
+    "如使用 F5、Siemens、HPE Aruba 等产品，参考各厂商安全公告进行修复",
+    "对于 SSH 服务，限制 diffie-hellman-group-exchange 算法",
+]
+workaround = "如无法升级，可在服务器端禁用 DHE 密码套件，仅允许 ECDHE 密钥交换；限制 TLS 会话以降低攻击面。"
 
 [score]
 cvss_v2 = 5.0
@@ -17,52 +76,13 @@ cvss_v2_vector = "(AV:N/AC:L/Au:N/C:N/I:N/A:P)"
 cvss_v3 = 7.5
 cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
 
-[affected]
-vendor = "多个厂商"
-product = "Diffie-Hellman 密钥交换协议实现（TLS/SSH/VPN）"
-
-[exploit]
-poc = [
-  { url = "https://github.com/Balasys/dheater", description = "D(HE)ater PoC 实现 - C 语言编写的 D(HE)at 攻击验证工具，支持 TLS 和 SSH 协议检测", source = "github" },
-  { url = "https://gitlab.com/dheatattack/dheater", description = "D(HE)ater PoC 实现（官方镜像）- 跨平台 DHE 拒绝服务攻击验证工具", source = "gitlab" }
-]
-exp = []
-
-[remediation]
-fix = "升级 TLS/SSH 库到修复版本，禁用 DHE 临时密钥交换或优先使用 ECDHE。参考各厂商安全公告。"
-workaround = "如无法升级，可在服务器端禁用 DHE 密码套件，仅允许 ECDHE 密钥交换；限制 TLS 会话以降低攻击面。"
-steps = [
-  "检查服务器是否支持 DHE 密码套件（可使用 CryptoLyzer、ssh-audit 等工具检测）",
-  "在 TLS 配置中移除 DHE 相关密码套件，仅保留 ECDHE 套件",
-  "升级 OpenSSL 到最新版本，参考 OpenSSL 安全公告配置 groups 参数",
-  "如使用 F5、Siemens、HPE Aruba 等产品，参考各厂商安全公告进行修复",
-  "对于 SSH 服务，限制 diffie-hellman-group-exchange 算法"
-]
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2002-20001"
-avd = ""
-others = [
-  "https://dheatattack.com",
-  "https://dheatattack.gitlab.io/",
-  "https://ieeexplore.ieee.org/document/10374117",
-  "https://www.openssl.org/blog/blog/2022/10/21/tls-groups-configuration/",
-  "https://cert-portal.siemens.com/productcert/pdf/ssa-506569.pdf",
-  "https://support.f5.com/csp/article/K83120834",
-  "https://www.arubanetworks.com/assets/alert/ARUBA-PSA-2022-004.txt",
-  "https://www.suse.com/support/kb/doc/?id=000020510",
-  "https://github.com/mozilla/ssl-config-generator/issues/162",
-  "https://www.researchgate.net/profile/Anton-Stiglic-2/publication/2401745_Security_Issues_in_the_Diffie-Hellman_Key_Agreement_Protocol"
-]
-
 [tags]
-tags = ["CWE-400", "DoS", "DENIAL-OF-SERVICE", "CRYPTOGRAPHIC", "TLS", "SSH", "DH"]
-
-[authenticity]
-cve_confidence = "high"
-poc_confidence = "high"
-notes = "CVE 由 MITRE 官方收录，NVD 详细分析并分配 CVSS 评分。多种可用的 PoC 实现（GitHub/GitLab）已验证漏洞存在。IEEE 已发表完整技术论文（DOI: 10.1109/ACCESS.2023.3346318）。"
-
-[meta]
-collected_at = "2026-07-10T11:02:19.745206911+00:00"
-status = "completed"
+tags = [
+    "CWE-400",
+    "DoS",
+    "DENIAL-OF-SERVICE",
+    "CRYPTOGRAPHIC",
+    "TLS",
+    "SSH",
+    "DH",
+]

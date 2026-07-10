@@ -1,59 +1,69 @@
-[id]
-ave_id = "AVE-2017-0003"
-cve_id = "CVE-2017-20230"
-avd_id = ""
-other_ids = ["RT-130635"]
+[affected]
+product = "Storable"
+vendor = "NWCLARK"
+
+[authenticity]
+cve_confidence = "high"
+notes = "该漏洞由 AFL 模糊测试发现，通过 Perl RT #130635 报告。官方无公开可用的 PoC 脚本。CVSS 评分由 CISA-ADP 分配。由于漏洞存在于 Perl 库反序列化逻辑中，非 HTTP 协议漏洞，因此不生成 PoC 脚本。"
+poc_confidence = "none"
 
 [basic]
-title = "Perl Storable 模块 retrieve_hook 函数栈溢出漏洞"
 description = "Storable versions before 3.05 for Perl 存在栈溢出漏洞。retrieve_hook 函数将类名长度存储为有符号整数，但在读取操作中将该长度作为无符号整数处理。攻击者可构造特制数据触发栈溢出，导致拒绝服务或远程代码执行。"
+published = "2017-01-24"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 9.8
 severity = "CRITICAL"
 source = "nvd"
-published = "2017-01-24"
+sources = ["unknown"]
+title = "Perl Storable 模块 retrieve_hook 函数栈溢出漏洞"
 updated = "2026-06-16"
+
+[exploit]
+exp = []
+nuclei_templates = []
+poc = []
+
+[id]
+avd_id = ""
+ave_id = "AVE-2017-0003"
+cve_id = "CVE-2017-20230"
+other_ids = ["RT-130635"]
+
+[meta]
+collected_at = "2026-07-10T10:18:58Z"
+status = "completed"
+
+[references]
+avd = ""
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2017-20230"
+other = [
+    "https://github.com/Perl/perl5/commit/a258c17c6937f79529c8319a829310e09cdbd216.patch",
+    "https://github.com/Perl/perl5/issues/15831",
+    "https://metacpan.org/release/RURBAN/Storable-3.05/changes",
+    "https://www.nntp.perl.org/group/perl.perl5.porters/2017/01/msg242533.html",
+    "https://www.nntp.perl.org/group/perl.perl5.porters/2017/01/msg242703.html",
+    "http://www.openwall.com/lists/oss-security/2026/04/21/5",
+]
+
+[remediation]
+fix = "升级 Storable 到 3.05 或更高版本。参考 CPAN 发布说明：https://metacpan.org/release/RURBAN/Storable-3.05/changes"
+steps = [
+    "确认当前 Storable 版本：perl -MStorable -e 'print $Storable::VERSION'",
+    "升级 Storable 到 3.05 或更高版本：cpan -i Storable",
+    "升级 Perl 至包含修复的版本",
+]
+workaround = "避免对不可信数据使用 Storable::retrieve 或 Storable::thaw。如果必须使用，在反序列化前对数据进行完整性校验。"
 
 [score]
 cvss_v3 = 10.0
 cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H"
 
-[affected]
-vendor = "NWCLARK"
-product = "Storable"
-
-[exploit]
-poc = []
-exp = []
-nuclei_templates = []
-
-[remediation]
-fix = "升级 Storable 到 3.05 或更高版本。参考 CPAN 发布说明：https://metacpan.org/release/RURBAN/Storable-3.05/changes"
-workaround = "避免对不可信数据使用 Storable::retrieve 或 Storable::thaw。如果必须使用，在反序列化前对数据进行完整性校验。"
-steps = [
-  "确认当前 Storable 版本：perl -MStorable -e 'print $Storable::VERSION'",
-  "升级 Storable 到 3.05 或更高版本：cpan -i Storable",
-  "升级 Perl 至包含修复的版本"
-]
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2017-20230"
-avd = ""
-other = [
-  "https://github.com/Perl/perl5/commit/a258c17c6937f79529c8319a829310e09cdbd216.patch",
-  "https://github.com/Perl/perl5/issues/15831",
-  "https://metacpan.org/release/RURBAN/Storable-3.05/changes",
-  "https://www.nntp.perl.org/group/perl.perl5.porters/2017/01/msg242533.html",
-  "https://www.nntp.perl.org/group/perl.perl5.porters/2017/01/msg242703.html",
-  "http://www.openwall.com/lists/oss-security/2026/04/21/5"
-]
-
 [tags]
-tags = ["CWE-121", "CWE-190", "stack-overflow", "integer-overflow", "deserialization", "perl"]
-
-[authenticity]
-cve_confidence = "high"
-poc_confidence = "none"
-notes = "该漏洞由 AFL 模糊测试发现，通过 Perl RT #130635 报告。官方无公开可用的 PoC 脚本。CVSS 评分由 CISA-ADP 分配。由于漏洞存在于 Perl 库反序列化逻辑中，非 HTTP 协议漏洞，因此不生成 PoC 脚本。"
-
-[meta]
-collected_at = "2026-07-10T10:18:58Z"
-status = "completed"
+tags = [
+    "CWE-121",
+    "CWE-190",
+    "stack-overflow",
+    "integer-overflow",
+    "deserialization",
+    "perl",
+]

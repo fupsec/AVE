@@ -13,7 +13,7 @@ itsourcecode Hospital Management System V1.0存在SQL注入漏洞，攻击者可
 受影响版本中，itsourcecode Hospital Management System V1.0版本存在SQL注入漏洞。该系统未对department.php文件中editid参数进行输入过滤或参数化查询处理，当攻击者提交包含SQL语法片段的editid参数值时，恶意SQL代码被直接拼接入数据库查询语句并执行，导致攻击者可窃取敏感数据、篡改数据库内容或造成服务中断。"""
 published = "2026-06-29"
 remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 0.0
+score = 5.5
 severity = "MEDIUM"
 source = "nvd"
 sources = ["unknown"]

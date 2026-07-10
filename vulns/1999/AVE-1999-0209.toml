@@ -1,55 +1,72 @@
-
-[id]
-  ave_id = "AVE-1999-0209"
-  cve_id = "CVE-1999-0147"
-  avd_id = ""
-  other_ids = []
-
-[basic]
-  title = "GlimpseHTTP aglimpse CGI 远程命令执行漏洞"
-  description = "GlimpseHTTP（Glimpse 信息检索系统的 HTTP 接口）中的 aglimpse CGI 程序存在远程命令执行漏洞。Glimpse 是亚利桑那大学开发的文件索引和搜索引擎。aglimpse 是 Glimpse 的 Archie 风格 CGI 接口，由于在处理用户提供的查询参数时缺少充分的输入验证，攻击者可通过向 aglimpse CGI 发送特制请求，在目标 Web 服务器上以 Web 服务器进程权限执行任意系统命令。此漏洞影响所有自带 GlimpseHTTP 的 Glimpse 版本。"
-  severity = "HIGH"
-  source = "nvd"
-  published = "1997-07-01"
-  updated = "2026-06-16"
-
-[score]
-  cvss_v2 = 7.5
-  cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:P/A:P"
-  cvss_v3 = 5.5
-  cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N"
-  cvss_v4 = 5.1
-  cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:L/VI:N/VA:N/SC:N/SI:N/SA:N"
-
 [affected]
-vendor = "University of Arizona"
 product = "GlimpseHTTP (aglimpse CGI)"
+vendor = "University of Arizona"
 
 [authenticity]
 cve_confidence = "high"
-poc_confidence = "low"
 notes = "CVE-1999-0147 是 Glimpse 信息检索系统中 aglimpse CGI 脚本的远程命令执行漏洞。NVD CVSS v2.0 评分为 7.5。该漏洞发布于 1997 年，年代久远，缺乏公开可用的 PoC/EXP 代码，仅能从 Nessus 插件和 X-Force 条目确认漏洞存在。由于 aglimpse 是 HTTP CGI 程序，可通过构造特定 HTTP 请求进行命令注入验证。"
+poc_confidence = "low"
+
+[basic]
+description = "GlimpseHTTP（Glimpse 信息检索系统的 HTTP 接口）中的 aglimpse CGI 程序存在远程命令执行漏洞。Glimpse 是亚利桑那大学开发的文件索引和搜索引擎。aglimpse 是 Glimpse 的 Archie 风格 CGI 接口，由于在处理用户提供的查询参数时缺少充分的输入验证，攻击者可通过向 aglimpse CGI 发送特制请求，在目标 Web 服务器上以 Web 服务器进程权限执行任意系统命令。此漏洞影响所有自带 GlimpseHTTP 的 Glimpse 版本。"
+published = "1997-07-01"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 7.5
+severity = "HIGH"
+source = "nvd"
+sources = ["unknown"]
+title = "GlimpseHTTP aglimpse CGI 远程命令执行漏洞"
+updated = "2026-06-16"
 
 [exploit]
-poc = [
-  { url = "https://exchange.xforce.ibmcloud.com/vulnerabilities/CVE-1999-0147", description = "CVE-1999-0147 X-Force 漏洞条目", source = "其他" }
-]
 exp = []
 nuclei_templates = []
 
-[remediation]
-fix = "禁用 aglimpse CGI 脚本或升级到 Glimpse 的最新版本。参考厂商安全公告。"
-workaround = "从 Web 服务器 CGI 目录中移除或重命名 aglimpse 可执行文件，或限制对其的访问。"
-steps = ["步骤1: 检查 Web 服务器 CGI 目录中是否存在 aglimpse 脚本", "步骤2: 从 CGI 目录中移除 aglimpse 脚本或修改文件权限", "步骤3: 重启 Web 服务器使更改生效", "步骤4: 如需要 Glimpse 搜索功能，使用更安全的替代方案"]
+[[exploit.poc]]
+description = "CVE-1999-0147 X-Force 漏洞条目"
+source = "其他"
+url = "https://exchange.xforce.ibmcloud.com/vulnerabilities/CVE-1999-0147"
 
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0147"
-avd = ""
-other = ["https://exchange.xforce.ibmcloud.com/vulnerabilities/CVE-1999-0147"]
-
-[tags]
-tags = ["CWE-78", "CWE-20", "OS-Command-Injection", "CGI", "RCE", "Glimpse", "Remote"]
+[id]
+avd_id = ""
+ave_id = "AVE-1999-0209"
+cve_id = "CVE-1999-0147"
+other_ids = []
 
 [meta]
 collected_at = "2026-07-11T00:00:00Z"
 status = "completed"
+
+[references]
+avd = ""
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0147"
+other = ["https://exchange.xforce.ibmcloud.com/vulnerabilities/CVE-1999-0147"]
+
+[remediation]
+fix = "禁用 aglimpse CGI 脚本或升级到 Glimpse 的最新版本。参考厂商安全公告。"
+steps = [
+    "步骤1: 检查 Web 服务器 CGI 目录中是否存在 aglimpse 脚本",
+    "步骤2: 从 CGI 目录中移除 aglimpse 脚本或修改文件权限",
+    "步骤3: 重启 Web 服务器使更改生效",
+    "步骤4: 如需要 Glimpse 搜索功能，使用更安全的替代方案",
+]
+workaround = "从 Web 服务器 CGI 目录中移除或重命名 aglimpse 可执行文件，或限制对其的访问。"
+
+[score]
+cvss_v2 = 7.5
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:P/A:P"
+cvss_v3 = 5.5
+cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N"
+cvss_v4 = 5.1
+cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:L/VI:N/VA:N/SC:N/SI:N/SA:N"
+
+[tags]
+tags = [
+    "CWE-78",
+    "CWE-20",
+    "OS-Command-Injection",
+    "CGI",
+    "RCE",
+    "Glimpse",
+    "Remote",
+]

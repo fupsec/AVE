@@ -1,68 +1,143 @@
-
-[id]
-  ave_id = "AVE-2025-0043"
-  cve_id = "CVE-2025-9074"
-  avd_id = ""
-  other_ids = ["GHSA-4xcq-3fjf-xfqw", "EUVD-2025-25308"]
-
-[basic]
-  title = "Docker Desktop 容器逃逸漏洞（Docker Engine API 未授权访问）"
-  description = "Docker Desktop存在一个安全漏洞，本地运行的Linux容器可通过配置的Docker子网（默认192.168.65.7:2375）访问Docker Engine API。该漏洞在启用或未启用增强容器隔离（ECI）以及在tcp://localhost:2375上暴露守护进程（不使用TLS）选项的情况下均存在。攻击者可利用该漏洞执行大量特权Engine API命令，包括控制其他容器、创建新容器、管理镜像等。在某些情况下（如Windows平台使用WSL后端的Docker Desktop），还可挂载与运行Docker Desktop用户相同权限的主机驱动器，实现容器逃逸。"
-  severity = "CRITICAL"
-  source = "nvd"
-  published = "2025-08-20"
-  updated = "2026-06-17"
-
-[score]
-  cvss_v2 = 10.0
-  cvss_v2_vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C"
-  cvss_v3 = 9.8
-  cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
-  cvss_v4 = 9.3
-  cvss_v4_vector = "CVSS:4.0/AV:L/AC:L/AT:N/PR:N/UI:P/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H"
-
 [affected]
-vendor = "Docker"
 product = "Docker Desktop"
+vendor = "Docker"
 
 [authenticity]
 cve_confidence = "high"
-poc_confidence = "high"
 notes = "CVE-2025-9074由Felix Boulet和Philippe Dugré发现。Docker官方已确认漏洞并发布修复版本4.44.3。GitHub上存在多个独立PoC验证仓库（BridgerAlderson、zenzue、j3r1ch0123等），CISA SSVC标记为PoC利用状态。该漏洞曾被用于HackTheBox MonitorsFour CTF挑战。NVD尚未提供CVSS v2/v3评分，仅有CNA提供的CVSS v4评分（9.3 CRITICAL）。"
+poc_confidence = "high"
+
+[basic]
+description = "Docker Desktop存在一个安全漏洞，本地运行的Linux容器可通过配置的Docker子网（默认192.168.65.7:2375）访问Docker Engine API。该漏洞在启用或未启用增强容器隔离（ECI）以及在tcp://localhost:2375上暴露守护进程（不使用TLS）选项的情况下均存在。攻击者可利用该漏洞执行大量特权Engine API命令，包括控制其他容器、创建新容器、管理镜像等。在某些情况下（如Windows平台使用WSL后端的Docker Desktop），还可挂载与运行Docker Desktop用户相同权限的主机驱动器，实现容器逃逸。"
+published = "2025-08-20"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 9.8
+severity = "CRITICAL"
+source = "nvd"
+sources = ["unknown"]
+title = "Docker Desktop 容器逃逸漏洞（Docker Engine API 未授权访问）"
+updated = "2026-06-17"
 
 [exploit]
-poc = [
-  { url = "https://github.com/BridgerAlderson/CVE-2025-9074-PoC", description = "Docker Desktop容器逃逸PoC，通过Docker Engine API挂载主机文件系统实现RCE（48星）", source = "github" },
-  { url = "https://github.com/zenzue/CVE-2025-9074", description = "容器到主机文件写入PoC，利用Docker API未授权访问（10星）", source = "github" },
-  { url = "https://github.com/j3r1ch0123/CVE-2025-9074", description = "Docker Remote API实验环境PoC（8星）", source = "github" },
-  { url = "https://github.com/PtechAmanja/CVE-2025-9074-Docker-Desktop-Container-Escape", description = "Docker Desktop容器逃逸利用脚本，支持反弹Shell", source = "github" },
-  { url = "https://github.com/x0da6h/POC-for-CVE-2025-9074", description = "CVE-2025-9074 PoC利用脚本", source = "github" },
-  { url = "https://github.com/Shaoshi17/-CVE-2025-9074-Docker-Exploit", description = "Docker Remote API漏洞利用工具", source = "github" },
-  { url = "https://github.com/zaydbf/CVE-2025-9074-Poc", description = "CVE-2025-9074 PoC脚本", source = "github" },
-  { url = "https://github.com/3rendil/CVE-2025-9074-POC", description = "CVE-2025-9074 PoC验证脚本", source = "github" },
-  { url = "https://github.com/pppxo/CVE-2025-9074-PoC-Bash", description = "Bash实现的CVE-2025-9074 PoC", source = "github" }
-]
-exp = [
-  { url = "https://github.com/fsoc-ghost-0x/CVE-2025-9074_DAEMON_KILLER", description = "Docker Desktop漏洞利用工具，实现完整容器逃逸", source = "github" },
-  { url = "https://github.com/PtechAmanja/CVE-2025-9074-Docker-Desktop-Container-Escape", description = "容器逃逸利用脚本，支持反弹Shell", source = "github" },
-  { url = "https://github.com/Shaoshi17/-CVE-2025-9074-Docker-Exploit", description = "Docker Remote API完整漏洞利用工具", source = "github" },
-  { url = "https://github.com/xwpdx0/poc-2025-9074", description = "CVE-2025-9074漏洞利用框架，带交互式Shell", source = "github" }
-]
 nuclei_templates = []
 
-[remediation]
-fix = "升级Docker Desktop到4.44.3或更高版本。Docker Desktop不会自动更新，需手动下载安装。Linux原生安装不受影响（使用Unix socket而非TCP）。"
-workaround = "如无法立即升级：1) 限制容器网络访问，禁止容器访问192.168.65.7:2375；2) 使用防火墙规则阻止容器对Docker Engine API端口的访问；3) 启用Docker Desktop的Secure Mode。注意：启用增强容器隔离（ECI）不能缓解此漏洞。"
-steps = ["步骤1: 确认当前Docker Desktop版本（右键Docker图标 -> About Docker Desktop）", "步骤2: 如版本在4.25至4.44.3之间，存在漏洞", "步骤3: 下载Docker Desktop 4.44.3或更高版本（https://docs.docker.com/desktop/release-notes/）", "步骤4: 安装新版本并重启Docker Desktop", "步骤5: 验证版本已更新至安全版本"]
+[[exploit.exp]]
+description = "Docker Desktop漏洞利用工具，实现完整容器逃逸"
+source = "github"
+url = "https://github.com/fsoc-ghost-0x/CVE-2025-9074_DAEMON_KILLER"
 
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2025-9074"
-avd = ""
-other = ["https://github.com/advisories/GHSA-4xcq-3fjf-xfqw", "https://docs.docker.com/desktop/release-notes/#4443", "https://blog.qwertysecurity.com/Articles/blog3", "https://pvotal.tech/breaking-dockers-isolation-using-docker-cve-2025-9074/", "https://www.bleepingcomputer.com/news/security/critical-docker-desktop-flaw-lets-attackers-hijack-windows-hosts/", "https://euvd.enisa.europa.eu/vulnerability/CVE-2025-9074", "https://www.vicarius.io/vsociety/posts/cve-2025-9074-detect-docker-desktop-vulnerability"]
+[[exploit.exp]]
+description = "容器逃逸利用脚本，支持反弹Shell"
+source = "github"
+url = "https://github.com/PtechAmanja/CVE-2025-9074-Docker-Desktop-Container-Escape"
 
-[tags]
-tags = ["CWE-668", "container-escape", "docker", "rce", "privilege-escalation", "ssrf", "unauthenticated-access"]
+[[exploit.exp]]
+description = "Docker Remote API完整漏洞利用工具"
+source = "github"
+url = "https://github.com/Shaoshi17/-CVE-2025-9074-Docker-Exploit"
+
+[[exploit.exp]]
+description = "CVE-2025-9074漏洞利用框架，带交互式Shell"
+source = "github"
+url = "https://github.com/xwpdx0/poc-2025-9074"
+
+[[exploit.poc]]
+description = "Docker Desktop容器逃逸PoC，通过Docker Engine API挂载主机文件系统实现RCE（48星）"
+source = "github"
+url = "https://github.com/BridgerAlderson/CVE-2025-9074-PoC"
+
+[[exploit.poc]]
+description = "容器到主机文件写入PoC，利用Docker API未授权访问（10星）"
+source = "github"
+url = "https://github.com/zenzue/CVE-2025-9074"
+
+[[exploit.poc]]
+description = "Docker Remote API实验环境PoC（8星）"
+source = "github"
+url = "https://github.com/j3r1ch0123/CVE-2025-9074"
+
+[[exploit.poc]]
+description = "Docker Desktop容器逃逸利用脚本，支持反弹Shell"
+source = "github"
+url = "https://github.com/PtechAmanja/CVE-2025-9074-Docker-Desktop-Container-Escape"
+
+[[exploit.poc]]
+description = "CVE-2025-9074 PoC利用脚本"
+source = "github"
+url = "https://github.com/x0da6h/POC-for-CVE-2025-9074"
+
+[[exploit.poc]]
+description = "Docker Remote API漏洞利用工具"
+source = "github"
+url = "https://github.com/Shaoshi17/-CVE-2025-9074-Docker-Exploit"
+
+[[exploit.poc]]
+description = "CVE-2025-9074 PoC脚本"
+source = "github"
+url = "https://github.com/zaydbf/CVE-2025-9074-Poc"
+
+[[exploit.poc]]
+description = "CVE-2025-9074 PoC验证脚本"
+source = "github"
+url = "https://github.com/3rendil/CVE-2025-9074-POC"
+
+[[exploit.poc]]
+description = "Bash实现的CVE-2025-9074 PoC"
+source = "github"
+url = "https://github.com/pppxo/CVE-2025-9074-PoC-Bash"
+
+[id]
+avd_id = ""
+ave_id = "AVE-2025-0043"
+cve_id = "CVE-2025-9074"
+other_ids = [
+    "GHSA-4xcq-3fjf-xfqw",
+    "EUVD-2025-25308",
+]
 
 [meta]
 collected_at = "2026-07-10T00:00:00Z"
 status = "completed"
+
+[references]
+avd = ""
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2025-9074"
+other = [
+    "https://github.com/advisories/GHSA-4xcq-3fjf-xfqw",
+    "https://docs.docker.com/desktop/release-notes/#4443",
+    "https://blog.qwertysecurity.com/Articles/blog3",
+    "https://pvotal.tech/breaking-dockers-isolation-using-docker-cve-2025-9074/",
+    "https://www.bleepingcomputer.com/news/security/critical-docker-desktop-flaw-lets-attackers-hijack-windows-hosts/",
+    "https://euvd.enisa.europa.eu/vulnerability/CVE-2025-9074",
+    "https://www.vicarius.io/vsociety/posts/cve-2025-9074-detect-docker-desktop-vulnerability",
+]
+
+[remediation]
+fix = "升级Docker Desktop到4.44.3或更高版本。Docker Desktop不会自动更新，需手动下载安装。Linux原生安装不受影响（使用Unix socket而非TCP）。"
+steps = [
+    "步骤1: 确认当前Docker Desktop版本（右键Docker图标 -> About Docker Desktop）",
+    "步骤2: 如版本在4.25至4.44.3之间，存在漏洞",
+    "步骤3: 下载Docker Desktop 4.44.3或更高版本（https://docs.docker.com/desktop/release-notes/）",
+    "步骤4: 安装新版本并重启Docker Desktop",
+    "步骤5: 验证版本已更新至安全版本",
+]
+workaround = "如无法立即升级：1) 限制容器网络访问，禁止容器访问192.168.65.7:2375；2) 使用防火墙规则阻止容器对Docker Engine API端口的访问；3) 启用Docker Desktop的Secure Mode。注意：启用增强容器隔离（ECI）不能缓解此漏洞。"
+
+[score]
+cvss_v2 = 10.0
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C"
+cvss_v3 = 9.8
+cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+cvss_v4 = 9.3
+cvss_v4_vector = "CVSS:4.0/AV:L/AC:L/AT:N/PR:N/UI:P/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H"
+
+[tags]
+tags = [
+    "CWE-668",
+    "container-escape",
+    "docker",
+    "rce",
+    "privilege-escalation",
+    "ssrf",
+    "unauthenticated-access",
+]

@@ -1,51 +1,64 @@
-
-[id]
-  ave_id = "AVE-1999-0015"
-  cve_id = "CVE-1999-0222"
-  aliases = ["CVE-1999-0222"]
-
-[basic]
-  title = "Cisco IOS Web服务器超长URL拒绝服务漏洞"
-  description = "Cisco IOS的Web服务器在处理超长URL时存在拒绝服务漏洞，攻击者可通过向路由器HTTP服务发送超长URL请求导致IOS进程崩溃并引发路由器重启。"
-  severity = "MEDIUM"
-  source = "nvd"
-  published = "1999-03-01"
-  updated = "2026-06-16"
-
-[score]
-  cvss_v2 = 5.0
-  cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:N/A:P"
-  cvss_v3 = 5.5
-  cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N"
-  cvss_v4 = 5.1
-  cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:L/VI:N/VA:N/SC:N/SI:N/SA:N"
-
 [affected]
-vendor = "Cisco"
 product = "IOS"
+vendor = "Cisco"
 
 [authenticity]
 cve_confidence = "high"
-poc_confidence = "low"
 notes = "该漏洞为1999年发现的Cisco IOS旧漏洞，未找到公开可用的PoC/EXP和Nuclei模板。漏洞验证需要实际Cisco IOS环境。已确认CVE数据源与NVD记录一致性。"
+poc_confidence = "low"
+
+[basic]
+description = "Cisco IOS的Web服务器在处理超长URL时存在拒绝服务漏洞，攻击者可通过向路由器HTTP服务发送超长URL请求导致IOS进程崩溃并引发路由器重启。"
+published = "1999-03-01"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 5.5
+severity = "MEDIUM"
+source = "nvd"
+sources = ["unknown"]
+title = "Cisco IOS Web服务器超长URL拒绝服务漏洞"
+updated = "2026-06-16"
 
 [exploit]
-poc = []
 exp = []
 nuclei_templates = []
+poc = []
 
-[remediation]
-fix = "升级到修复版本。参考Cisco安全公告，禁用HTTP服务或升级到不受影响的IOS版本。"
-workaround = "如无法升级，可在Cisco路由器上使用 'no ip http server' 命令关闭HTTP服务。"
-steps = ["登录到Cisco路由器", "进入全局配置模式", "执行命令: no ip http server 禁用HTTP服务", "执行命令: ip http secure-server 仅启用HTTPS", "执行命令: no ip http access-class 限制HTTP访问"]
+[id]
+aliases = ["CVE-1999-0222"]
+ave_id = "AVE-1999-0015"
+cve_id = "CVE-1999-0222"
+
+[meta]
+collected_at = "2026-07-10T11:03:30Z"
+status = "completed"
 
 [references]
 nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0222"
 other = ["http://www.securityfocus.com/archive/1/60159"]
 
-[tags]
-tags = ["NVD-CWE-Other", "DoS", "cisco", "ios"]
+[remediation]
+fix = "升级到修复版本。参考Cisco安全公告，禁用HTTP服务或升级到不受影响的IOS版本。"
+steps = [
+    "登录到Cisco路由器",
+    "进入全局配置模式",
+    "执行命令: no ip http server 禁用HTTP服务",
+    "执行命令: ip http secure-server 仅启用HTTPS",
+    "执行命令: no ip http access-class 限制HTTP访问",
+]
+workaround = "如无法升级，可在Cisco路由器上使用 'no ip http server' 命令关闭HTTP服务。"
 
-[meta]
-collected_at = "2026-07-10T11:03:30Z"
-status = "completed"
+[score]
+cvss_v2 = 5.0
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:N/A:P"
+cvss_v3 = 5.5
+cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N"
+cvss_v4 = 5.1
+cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:L/VI:N/VA:N/SC:N/SI:N/SA:N"
+
+[tags]
+tags = [
+    "NVD-CWE-Other",
+    "DoS",
+    "cisco",
+    "ios",
+]

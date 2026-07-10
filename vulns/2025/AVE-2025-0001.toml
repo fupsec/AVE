@@ -1,34 +1,43 @@
-
-[id]
-  ave_id = "AVE-2025-0001"
-  cve_id = "CVE-2025-7386"
-  aliases = ["CVE-2025-7386"]
-
 [basic]
-  title = "Hitachi Storage Navigator信息泄露漏洞(CVE-2025-7386)"
-  description = "Hitachi Storage Navigator是日立推出的企业级存储系统管理界面，用于配置和监控Virtual Storage Platform系列存储设备。\n受影响版本中，当启用外部认证功能时，系统存在信息泄露缺陷。攻击者可通过构造特定请求获取认证相关的敏感信息，可能导致未授权访问风险。\n修复版本中通过升级微程序版本至DKCMAIN Ver. 90-09-24-00/00、SVP Ver. 90-09-24/00及相应版本，消除了认证信息暴露路径。\n解决建议\n将组件 hitachi:storage-navigator 升级至 90-09-24-00/00 及以上版本\n将组件 hitachi:storage-navigator 升级至 90-08-86-00/00 及以上版本\n将组件 hitachi:storage-navigator 升级至 80-06-96-00/00 及以上版本"
-  severity = "HIGH"
-  score = 7.5
-  sources = ["avd"]
-  published = "2026-06-29"
-  updated = ""
-  remediation = "将组件 hitachi:storage-navigator 升级至 90-09-24-00/00 及以上版本\n将组件 hitachi:storage-navigator 升级至 90-08-86-00/00 及以上版本\n将组件 hitachi:storage-navigator 升级至 80-06-96-00/00 及以上版本"
-
-[score]
-  cvss_v2 = 7.8
-  cvss_v2_vector = "AV:N/AC:L/Au:N/C:C/I:N/A:N"
-  cvss_v3 = 7.5
-  cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N"
-  cvss_v4 = 8.6
-  cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N"
+description = """
+Hitachi Storage Navigator是日立推出的企业级存储系统管理界面，用于配置和监控Virtual Storage Platform系列存储设备。
+受影响版本中，当启用外部认证功能时，系统存在信息泄露缺陷。攻击者可通过构造特定请求获取认证相关的敏感信息，可能导致未授权访问风险。
+修复版本中通过升级微程序版本至DKCMAIN Ver. 90-09-24-00/00、SVP Ver. 90-09-24/00及相应版本，消除了认证信息暴露路径。
+解决建议
+将组件 hitachi:storage-navigator 升级至 90-09-24-00/00 及以上版本
+将组件 hitachi:storage-navigator 升级至 90-08-86-00/00 及以上版本
+将组件 hitachi:storage-navigator 升级至 80-06-96-00/00 及以上版本"""
+published = "2026-06-29"
+remediation = """
+将组件 hitachi:storage-navigator 升级至 90-09-24-00/00 及以上版本
+将组件 hitachi:storage-navigator 升级至 90-08-86-00/00 及以上版本
+将组件 hitachi:storage-navigator 升级至 80-06-96-00/00 及以上版本"""
+score = 7.5
+severity = "HIGH"
+sources = ["avd"]
+title = "Hitachi Storage Navigator信息泄露漏洞(CVE-2025-7386)"
+updated = "2026-07-10"
 
 [exploit]
-poc_urls = []
 exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2025-7386"]
+ave_id = "AVE-2025-0001"
+cve_id = "CVE-2025-7386"
+
+[meta]
+collected_at = "2026-07-10T02:52:29.087186463+00:00"
+status = "completed"
 
 [references]
 urls = []
 
-[meta]
-status = "completed"
-collected_at = "2026-07-10T02:52:29.087186463+00:00"
+[score]
+cvss_v2 = 7.8
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:C/I:N/A:N"
+cvss_v3 = 7.5
+cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N"
+cvss_v4 = 8.6
+cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N"

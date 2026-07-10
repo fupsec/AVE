@@ -1,19 +1,67 @@
-[id]
-ave_id = "AVE-2026-0072"
-cve_id = "CVE-2026-0023"
-avd_id = ""
-other_ids = []
+[affected]
+product = "Android"
+vendor = "Google"
+
+[authenticity]
+cve_confidence = "high"
+notes = "CVE-2026-0023 已获 Google Android 官方确认并分配，NVD 已分析并分配 CVSS 3.1 评分 7.8。GitHub 上存在已验证的 PoC 仓库 (QM4RS/CVE-2026-0023-Update-Ownership-PoC)。"
+poc_confidence = "high"
 
 [basic]
-title = "Google Android PackageInstallerService 权限提升漏洞"
 description = """
 Google Android 的 PackageInstallerService.java 中的 createSessionInternal 函数存在权限检查缺失漏洞。应用程序可在未经许可的情况下更新其所有权，导致本地权限提升。攻击者无需额外执行权限，无需用户交互即可利用此漏洞。
 受影响版本：Android 14、15、16、16-qpr2。
 """
+published = "2026-03-02"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 7.5
 severity = "HIGH"
 source = "nvd"
-published = "2026-03-02"
+sources = ["unknown"]
+title = "Google Android PackageInstallerService 权限提升漏洞"
 updated = "2026-06-17"
+
+[exploit]
+exp = []
+exp_urls = []
+nuclei_templates = []
+poc_urls = ["https://github.com/QM4RS/CVE-2026-0023-Update-Ownership-PoC"]
+
+[[exploit.poc]]
+description = "Update Ownership PoC，通过缺失权限检查实现应用所有权更新，验证本地权限提升"
+source = "github"
+url = "https://github.com/QM4RS/CVE-2026-0023-Update-Ownership-PoC"
+
+[id]
+avd_id = ""
+ave_id = "AVE-2026-0072"
+cve_id = "CVE-2026-0023"
+other_ids = []
+
+[meta]
+collected_at = "2026-07-11T06:00:00Z"
+status = "completed"
+
+[references]
+avd = ""
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2026-0023"
+
+[[references.other]]
+description = "Android 安全公告 2026-03-01"
+url = "https://source.android.com/docs/security/bulletin/2026/2026-03-01"
+
+[[references.other]]
+description = "GitHub PoC 仓库"
+url = "https://github.com/QM4RS/CVE-2026-0023-Update-Ownership-PoC"
+
+[remediation]
+fix = "升级到 Android 安全公告 2026-03-01 中提供的修复版本。参考官方安全公告。"
+steps = [
+    "步骤1: 确认 Android 系统版本（设置 > 关于手机 > Android 版本）",
+    "步骤2: 访问系统更新（设置 > 系统 > 系统更新）",
+    "步骤3: 安装 2026 年 3 月或更新的安全补丁",
+]
+workaround = "如无法升级，建议限制设备上未知来源应用的安装，并启用 Google Play Protect 安全功能。"
 
 [score]
 cvss_v2 = 0.0
@@ -23,44 +71,10 @@ cvss_v3_vector = "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H"
 cvss_v4 = 0.0
 cvss_v4_vector = ""
 
-[affected]
-vendor = "Google"
-product = "Android"
-
-[exploit]
-poc = [
-  { url = "https://github.com/QM4RS/CVE-2026-0023-Update-Ownership-PoC", description = "Update Ownership PoC，通过缺失权限检查实现应用所有权更新，验证本地权限提升", source = "github" }
-]
-exp = []
-poc_urls = ["https://github.com/QM4RS/CVE-2026-0023-Update-Ownership-PoC"]
-exp_urls = []
-nuclei_templates = []
-
-[remediation]
-fix = "升级到 Android 安全公告 2026-03-01 中提供的修复版本。参考官方安全公告。"
-workaround = "如无法升级，建议限制设备上未知来源应用的安装，并启用 Google Play Protect 安全功能。"
-steps = [
-  "步骤1: 确认 Android 系统版本（设置 > 关于手机 > Android 版本）",
-  "步骤2: 访问系统更新（设置 > 系统 > 系统更新）",
-  "步骤3: 安装 2026 年 3 月或更新的安全补丁",
-]
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2026-0023"
-avd = ""
-other = [
-  { url = "https://source.android.com/docs/security/bulletin/2026/2026-03-01", description = "Android 安全公告 2026-03-01" },
-  { url = "https://github.com/QM4RS/CVE-2026-0023-Update-Ownership-PoC", description = "GitHub PoC 仓库" },
-]
-
 [tags]
-tags = ["CWE-269", "LPE", "Android", "PrivilegeEscalation"]
-
-[authenticity]
-cve_confidence = "high"
-poc_confidence = "high"
-notes = "CVE-2026-0023 已获 Google Android 官方确认并分配，NVD 已分析并分配 CVSS 3.1 评分 7.8。GitHub 上存在已验证的 PoC 仓库 (QM4RS/CVE-2026-0023-Update-Ownership-PoC)。"
-
-[meta]
-collected_at = "2026-07-11T06:00:00Z"
-status = "completed"
+tags = [
+    "CWE-269",
+    "LPE",
+    "Android",
+    "PrivilegeEscalation",
+]

@@ -14,7 +14,7 @@ GotoHTTP 是一款商业远程控制平台，通过浏览器实现对远程计�
 修复版本中通过移除源代码中不必要的参数回显逻辑消除了该 XSS 风险，但当前尚无明确修复版本号，厂商计划在下一版本中一并部署。"""
 published = "2026-06-29"
 remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 0.0
+score = 5.5
 severity = "MEDIUM"
 source = "nvd"
 sources = ["unknown"]

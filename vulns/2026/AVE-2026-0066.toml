@@ -1,16 +1,56 @@
-[id]
-ave_id = "AVE-2026-0066"
-cve_id = "CVE-2026-49834"
-avd_id = ""
-other_ids = ["GHSA-9vcr-p3rj-q5q6"]
+[affected]
+product = "sigstore-go"
+vendor = "sigstore"
+
+[authenticity]
+cve_confidence = "high"
+notes = "CVE 已由 GitHub Advisory 确认，CVSS 3.1 评分 5.9（中）。漏洞本质为 Go 库的逻辑缺陷，需要攻击者控制透明日志或 CT 日志，且需要使用该库并配置多日志阈值验证的应用程序。公开渠道未发现可用的 PoC 或利用脚本，因该漏洞属于密码学验证逻辑层面缺陷，非 HTTP 协议层可直接探测的漏洞。"
+poc_confidence = "low"
 
 [basic]
-title = "sigstore-go 多日志阈值绕过漏洞"
 description = "sigstore-go 是一个用于 Sigstore 签名和验证的 Go 语言库。当验证器配置 WithTransparencyLog(N>1) 或 WithSignedCertificateTimestamps(N>1) 时，预期对单一日志实例被攻破提供纵深防御。然而，阈值计数逻辑按每条目或每个验证路径而非按每个日志授权来计数已验证的见证者。因此，单个被攻破的透明日志可以伪造具有不同索引的多个条目，单个被攻破的 CT 日志可以多次验证（跨多个证书链或通过多个嵌入的 SCT），完全满足多日志阈值要求并绕过多日志策略。注意此漏洞不影响 Cosign，因为 Cosign 的阈值设置为 1。"
+published = "2026-06-04"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 5.5
 severity = "MEDIUM"
 source = "ghsa"
-published = "2026-06-04"
+sources = ["unknown"]
+title = "sigstore-go 多日志阈值绕过漏洞"
 updated = "2026-06-04"
+
+[exploit]
+exp = []
+nuclei_templates = []
+poc = []
+
+[id]
+avd_id = ""
+ave_id = "AVE-2026-0066"
+cve_id = "CVE-2026-49834"
+other_ids = ["GHSA-9vcr-p3rj-q5q6"]
+
+[meta]
+collected_at = "2026-06-30T10:18:58Z"
+status = "completed"
+
+[references]
+avd = ""
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2026-49834"
+other = [
+    "https://github.com/sigstore/sigstore-go/security/advisories/GHSA-9vcr-p3rj-q5q6",
+    "https://github.com/sigstore/sigstore-go/releases",
+    "https://github.com/sigstore/sigstore-go/compare/v1.1.4...v1.2.0",
+]
+
+[remediation]
+fix = "升级到 sigstore-go v1.1.5 或更高版本（v1.2.0 为 patched 版本）。"
+steps = [
+    "步骤1: 确认当前项目依赖的 sigstore-go 版本",
+    "步骤2: 升级 go.mod 中 github.com/sigstore/sigstore-go 到 v1.2.0 或更高",
+    "步骤3: 运行 go mod tidy 和 go mod verify 确保依赖正确",
+    "步骤4: 重新编译并测试验证逻辑",
+]
+workaround = "无临时缓解措施，除依赖受信任的日志外。"
 
 [score]
 cvss_v2 = 0.0
@@ -20,37 +60,10 @@ cvss_v3_vector = "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:N"
 cvss_v4 = 0.0
 cvss_v4_vector = ""
 
-[affected]
-vendor = "sigstore"
-product = "sigstore-go"
-
-[exploit]
-poc = []
-exp = []
-nuclei_templates = []
-
-[remediation]
-fix = "升级到 sigstore-go v1.1.5 或更高版本（v1.2.0 为 patched 版本）。"
-workaround = "无临时缓解措施，除依赖受信任的日志外。"
-steps = ["步骤1: 确认当前项目依赖的 sigstore-go 版本", "步骤2: 升级 go.mod 中 github.com/sigstore/sigstore-go 到 v1.2.0 或更高", "步骤3: 运行 go mod tidy 和 go mod verify 确保依赖正确", "步骤4: 重新编译并测试验证逻辑"]
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2026-49834"
-avd = ""
-other = [
-  "https://github.com/sigstore/sigstore-go/security/advisories/GHSA-9vcr-p3rj-q5q6",
-  "https://github.com/sigstore/sigstore-go/releases",
-  "https://github.com/sigstore/sigstore-go/compare/v1.1.4...v1.2.0"
-]
-
 [tags]
-tags = ["CWE-693", "多日志阈值绕过", "签名验证", "供应链安全"]
-
-[authenticity]
-cve_confidence = "high"
-poc_confidence = "low"
-notes = "CVE 已由 GitHub Advisory 确认，CVSS 3.1 评分 5.9（中）。漏洞本质为 Go 库的逻辑缺陷，需要攻击者控制透明日志或 CT 日志，且需要使用该库并配置多日志阈值验证的应用程序。公开渠道未发现可用的 PoC 或利用脚本，因该漏洞属于密码学验证逻辑层面缺陷，非 HTTP 协议层可直接探测的漏洞。"
-
-[meta]
-collected_at = "2026-06-30T10:18:58Z"
-status = "completed"
+tags = [
+    "CWE-693",
+    "多日志阈值绕过",
+    "签名验证",
+    "供应链安全",
+]

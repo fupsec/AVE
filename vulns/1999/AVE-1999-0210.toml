@@ -1,49 +1,66 @@
+[affected]
+product = "Solaris"
+vendor = "Sun Microsystems"
 
-[id]
-ave_id = "AVE-1999-0210"
-cve_id = "CVE-1999-0019"
-avd_id = ""
-other_ids = []
+[authenticity]
+cve_confidence = "high"
+notes = "1996年的古老漏洞，rpc.statd 基于 ONC RPC/SunRPC 协议（非 HTTP），不具备 HTTP PoC 生成条件。未在 GitHub、Exploit-DB、PacketStorm 等渠道找到单独标为 CVE-1999-0019 的 PoC/EXP 仓库或条目。该漏洞曾被 Ramen 蠕虫用于传播。"
+poc_confidence = "low"
 
 [basic]
-title = "Sun Solaris rpc.statd 文件创建/删除漏洞"
 description = "Solaris 系统中 rpc.statd（NFS 状态监控守护进程）存在输入验证缺陷，远程攻击者可通过发送特制 RPC 请求创建或删除任意系统文件，导致系统完整性受损。该漏洞曾被 Ramen 蠕虫利用。"
+published = "1996-04-24"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 5.5
 severity = "MEDIUM"
 source = "nvd"
-published = "1996-04-24"
+sources = ["unknown"]
+title = "Sun Solaris rpc.statd 文件创建/删除漏洞"
 updated = "2026-06-16"
+
+[exploit]
+exp = []
+nuclei_templates = []
+
+[[exploit.poc]]
+description = "rpc.statd 相关利用代码汇总（Packet Storm）"
+source = "其他"
+url = "https://packetstormsecurity.com/search/?q=statd"
+
+[id]
+avd_id = ""
+ave_id = "AVE-1999-0210"
+cve_id = "CVE-1999-0019"
+other_ids = []
+
+[meta]
+collected_at = "2026-07-11T07:51:00Z"
+status = "completed"
+
+[references]
+avd = ""
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0019"
+other = ["http://sunsolve.sun.com/pub-cgi/retrieve.pl?doctype=coll&doc=secbull/135"]
+
+[remediation]
+fix = "升级到 Sun 安全公告中指定的修复版本。参考 http://sunsolve.sun.com/pub-cgi/retrieve.pl?doctype=coll&doc=secbull/135"
+steps = [
+    "步骤1: 确认系统运行 Solaris 且 rpc.statd 服务已启用",
+    "步骤2: 应用 Sun 提供的安全补丁",
+    "步骤3: 如无法升级，在防火墙上限制对 RPC 端口的访问",
+]
+workaround = "禁用 rpc.statd 服务或限制对 RPC 端口（111）的访问，使用防火墙过滤来自不可信网络的 RPC 流量。"
 
 [score]
 cvss_v2 = 5.0
 cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:P/A:N"
 
-[affected]
-vendor = "Sun Microsystems"
-product = "Solaris"
-
-[authenticity]
-cve_confidence = "high"
-poc_confidence = "low"
-notes = "1996年的古老漏洞，rpc.statd 基于 ONC RPC/SunRPC 协议（非 HTTP），不具备 HTTP PoC 生成条件。未在 GitHub、Exploit-DB、PacketStorm 等渠道找到单独标为 CVE-1999-0019 的 PoC/EXP 仓库或条目。该漏洞曾被 Ramen 蠕虫用于传播。"
-
-[exploit]
-poc = [{ url = "https://packetstormsecurity.com/search/?q=statd", description = "rpc.statd 相关利用代码汇总（Packet Storm）", source = "其他" }]
-exp = []
-nuclei_templates = []
-
-[remediation]
-fix = "升级到 Sun 安全公告中指定的修复版本。参考 http://sunsolve.sun.com/pub-cgi/retrieve.pl?doctype=coll&doc=secbull/135"
-workaround = "禁用 rpc.statd 服务或限制对 RPC 端口（111）的访问，使用防火墙过滤来自不可信网络的 RPC 流量。"
-steps = ["步骤1: 确认系统运行 Solaris 且 rpc.statd 服务已启用", "步骤2: 应用 Sun 提供的安全补丁", "步骤3: 如无法升级，在防火墙上限制对 RPC 端口的访问"]
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0019"
-avd = ""
-other = ["http://sunsolve.sun.com/pub-cgi/retrieve.pl?doctype=coll&doc=secbull/135"]
-
 [tags]
-tags = ["CWE-20", "Solaris", "rpc.statd", "RPC", "NFS", "Ramen"]
-
-[meta]
-collected_at = "2026-07-11T07:51:00Z"
-status = "completed"
+tags = [
+    "CWE-20",
+    "Solaris",
+    "rpc.statd",
+    "RPC",
+    "NFS",
+    "Ramen",
+]

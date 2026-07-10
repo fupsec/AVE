@@ -1,57 +1,85 @@
-
-[id]
-  ave_id = "AVE-2005-0004"
-  cve_id = "CVE-2005-2025"
-  avd_id = ""
-  other_ids = []
-
-[basic]
-  title = "Cisco VPN 3000 Concentrator IKE Aggressive Mode 组名信息泄露漏洞"
-  description = "Cisco VPN 3000 Concentrator 4.1.7.F 之前版本存在信息泄露漏洞。远程攻击者通过向 IKE Aggressive Mode 数据包的 ID 字段发送组名，根据是否收到响应来判断 VPN 组名是否存在，从而获取有效组名信息用于后续暴力破解攻击。"
-  severity = "MEDIUM"
-  source = "nvd"
-  published = "2005-06-21"
-  updated = "2005-06-21"
-
-[score]
-  cvss_v2 = 5.0
-  cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:N/A:N"
-  cvss_v3 = 7.5
-  cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N"
-  cvss_v4 = 8.6
-  cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N"
-
 [affected]
-vendor = "Cisco"
 product = "VPN 3000 Concentrator Series Software"
+vendor = "Cisco"
 
 [authenticity]
 cve_confidence = "high"
-poc_confidence = "medium"
 notes = "CVE 由 MITRE 官方发布，NVD 已分析并分配 CVSS v2 5.0 MEDIUM 评分。NVD 未分配具体 CWE，根据漏洞特征归入 CWE-200（信息泄露）和 CWE-203（可观测差异）。原始研究由 NTA Monitor 发布并开发了 ike-scan 工具，该工具可用于 IKE 服务发现和组名枚举。Tenable 已集成对应的 Nessus 检测插件。截至 2026 年，未发现独立的 PoC 脚本或 Metasploit 模块，利用需借助 ike-scan 等 IKE 扫描工具。该漏洞为 IKE 协议层漏洞（UDP 500），非 HTTP 协议，无法生成 HTTP PoC 脚本。经搜索 GitHub、Exploit-DB、PacketStorm、Sploitus 等渠道，均未发现针对该漏洞的独立 PoC/EXP。"
+poc_confidence = "medium"
+
+[basic]
+description = "Cisco VPN 3000 Concentrator 4.1.7.F 之前版本存在信息泄露漏洞。远程攻击者通过向 IKE Aggressive Mode 数据包的 ID 字段发送组名，根据是否收到响应来判断 VPN 组名是否存在，从而获取有效组名信息用于后续暴力破解攻击。"
+published = "2005-06-21"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 5.5
+severity = "MEDIUM"
+source = "nvd"
+sources = ["unknown"]
+title = "Cisco VPN 3000 Concentrator IKE Aggressive Mode 组名信息泄露漏洞"
+updated = "2005-06-21"
 
 [exploit]
-poc = [
-  { url = "http://www.nta-monitor.com/news/vpn-flaws/cisco/VPN-Concentrator/index.htm", description = "NTA Monitor 原始研究公告 - 包含 IKE Aggressive Mode 组名枚举技术细节", source = "其他" },
-  { url = "https://github.com/royhills/ike-scan", description = "ike-scan - IKE 服务发现与指纹识别工具，可用于验证 IKE Aggressive Mode 组名枚举", source = "github" },
-  { url = "http://www.securityfocus.com/bid/13992", description = "SecurityFocus BID 13992 - 漏洞详情与讨论", source = "其他" }
-]
 exp = []
 nuclei_templates = []
 
-[remediation]
-fix = "升级 Cisco VPN 3000 Concentrator 到 4.1.7.F 及以上版本。参考 Cisco 安全公告及官方文档。"
-workaround = "如无法升级，可在 VPN 集中器上禁用 IKE Aggressive Mode，仅使用 Main Mode 进行 IKE 协商。"
-steps = ["步骤1: 确认 Cisco VPN 3000 Concentrator 当前版本", "步骤2: 下载并安装 Cisco 官方发布的安全更新 (4.1.7.F 或更高版本)", "步骤3: 如无法升级，禁用 IKE Aggressive Mode，使用 Main Mode 替代", "步骤4: 监控 VPN 设备日志，检查是否存在异常的 IKE 探测行为"]
+[[exploit.poc]]
+description = "NTA Monitor 原始研究公告 - 包含 IKE Aggressive Mode 组名枚举技术细节"
+source = "其他"
+url = "http://www.nta-monitor.com/news/vpn-flaws/cisco/VPN-Concentrator/index.htm"
 
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2005-2025"
-avd = ""
-other = ["http://www.securityfocus.com/bid/13992", "http://www.nta-monitor.com/news/vpn-flaws/cisco/VPN-Concentrator/index.htm", "http://www.vupen.com/english/advisories/2005/0822", "http://www.cisco.com/univercd/cc/td/doc/product/vpn/vpn3000/4_7/471con3k.htm"]
+[[exploit.poc]]
+description = "ike-scan - IKE 服务发现与指纹识别工具，可用于验证 IKE Aggressive Mode 组名枚举"
+source = "github"
+url = "https://github.com/royhills/ike-scan"
 
-[tags]
-tags = ["CWE-200", "CWE-203", "information-disclosure", "ike", "vpn"]
+[[exploit.poc]]
+description = "SecurityFocus BID 13992 - 漏洞详情与讨论"
+source = "其他"
+url = "http://www.securityfocus.com/bid/13992"
+
+[id]
+avd_id = ""
+ave_id = "AVE-2005-0004"
+cve_id = "CVE-2005-2025"
+other_ids = []
 
 [meta]
 collected_at = "2026-07-10T12:30:00Z"
 status = "completed"
+
+[references]
+avd = ""
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2005-2025"
+other = [
+    "http://www.securityfocus.com/bid/13992",
+    "http://www.nta-monitor.com/news/vpn-flaws/cisco/VPN-Concentrator/index.htm",
+    "http://www.vupen.com/english/advisories/2005/0822",
+    "http://www.cisco.com/univercd/cc/td/doc/product/vpn/vpn3000/4_7/471con3k.htm",
+]
+
+[remediation]
+fix = "升级 Cisco VPN 3000 Concentrator 到 4.1.7.F 及以上版本。参考 Cisco 安全公告及官方文档。"
+steps = [
+    "步骤1: 确认 Cisco VPN 3000 Concentrator 当前版本",
+    "步骤2: 下载并安装 Cisco 官方发布的安全更新 (4.1.7.F 或更高版本)",
+    "步骤3: 如无法升级，禁用 IKE Aggressive Mode，使用 Main Mode 替代",
+    "步骤4: 监控 VPN 设备日志，检查是否存在异常的 IKE 探测行为",
+]
+workaround = "如无法升级，可在 VPN 集中器上禁用 IKE Aggressive Mode，仅使用 Main Mode 进行 IKE 协商。"
+
+[score]
+cvss_v2 = 5.0
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:N/A:N"
+cvss_v3 = 7.5
+cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N"
+cvss_v4 = 8.6
+cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N"
+
+[tags]
+tags = [
+    "CWE-200",
+    "CWE-203",
+    "information-disclosure",
+    "ike",
+    "vpn",
+]

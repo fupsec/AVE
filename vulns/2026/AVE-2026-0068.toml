@@ -1,16 +1,61 @@
-[id]
-ave_id = "AVE-2026-0068"
-cve_id = "CVE-2026-49837"
-avd_id = ""
-other_ids = ["GHSA-gjrg-jjr3-56cm"]
+[affected]
+product = "GoBGP"
+vendor = "osrg"
+
+[authenticity]
+cve_confidence = "high"
+notes = "NVD 尚未收录此 CVE（显示 CVE ID Not Found），但 GHSA 安全公告及修复提交均已确认漏洞存在。PoC 为解析器级别验证（无需完整 BGP 会话），由安全公告作者提供。无已知的野外利用或 exploit-db/sploitus 公开利用脚本。"
+poc_confidence = "medium"
 
 [basic]
-title = "GoBGP BGP OPEN Capability 解析器越界读取漏洞"
 description = "GoBGP 的 BGP OPEN 消息 Capability 解析器存在边界校验缺陷。多个具体 Capability 解码器（CapFourOctetASNumber、CapMultiProtocol、CapGracefulRestart、CapFQDN、CapSoftwareVersion）在调用 DefaultParameterCapability.DecodeFromBytes 后直接使用 data[2:] 全量缓冲区进行解析，而非限制在声明的 CapLen 边界内。攻击者可构造 CapLen=0 的畸形 Capability，使解析器将后续 Capability 的字节误读为当前 Capability 的值。最严重的场景是 4-octet AS Number Capability（Code 65）：CapLen=0 时，紧跟其后的 4 字节会被解析为 AS 号并流入 ValidateOpenMsg 进行 peer AS 验证，从而影响 BGP 会话建立时的 AS 验证逻辑。"
+published = "2026-06-02"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 5.5
 severity = "MEDIUM"
 source = "ghsa"
-published = "2026-06-02"
+sources = ["unknown"]
+title = "GoBGP BGP OPEN Capability 解析器越界读取漏洞"
 updated = "2026-06-02"
+
+[exploit]
+exp = []
+nuclei_templates = []
+
+[[exploit.poc]]
+description = "官方安全公告包含解析器级别 PoC 示例（CapLen=0 + 4字节偏移读取 AS 65000）"
+source = "github"
+url = "https://github.com/osrg/gobgp/security/advisories/GHSA-gjrg-jjr3-56cm"
+
+[id]
+avd_id = ""
+ave_id = "AVE-2026-0068"
+cve_id = "CVE-2026-49837"
+other_ids = ["GHSA-gjrg-jjr3-56cm"]
+
+[meta]
+collected_at = "2026-07-10T00:00:00Z"
+status = "completed"
+
+[references]
+avd = ""
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2026-49837"
+other = [
+    "https://github.com/osrg/gobgp/security/advisories/GHSA-gjrg-jjr3-56cm",
+    "https://github.com/osrg/gobgp/commit/f02ca397821f6ca182ef4eb492c3cbc459552d7c",
+    "https://vulert.com/vuln-db/--4591",
+    "https://www.tenable.com/plugins/nessus/318736",
+]
+
+[remediation]
+fix = "升级 GoBGP 至 4.6.0 或更高版本。补丁提交 f02ca397821f6ca182ef4eb492c3cbc459552d7c 修复了所有受影响的 Capability 解码器，改为从 DefaultParameterCapability.CapValue（已由基类按 CapLen 裁剪的切片）读取，并校验 CapLen 必须匹配所需大小。"
+steps = [
+    "步骤1: 确认 GoBGP 版本，受影响版本为 <= 4.5.0",
+    "步骤2: 升级至 GoBGP >= 4.6.0（github.com/osrg/gobgp/v4）",
+    "步骤3: 若为 Debian/Ubuntu 系统发行版包管理安装，等待或手动编译新版本",
+    "步骤4: 限制 BGP TCP 179 端口的网络访问，仅允许受信任 peer",
+]
+workaround = "如无法立即升级，可通过防火墙限制 BGP 端口（TCP 179）仅允许受信任的 peer 连接，或使用 BGP TCP MD5/AO 认证机制限制会话建立来源。"
 
 [score]
 cvss_v2 = 0.0
@@ -20,45 +65,11 @@ cvss_v3_vector = "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:N"
 cvss_v4 = 0.0
 cvss_v4_vector = ""
 
-[affected]
-vendor = "osrg"
-product = "GoBGP"
-
-[exploit]
-poc = [
-  { url = "https://github.com/osrg/gobgp/security/advisories/GHSA-gjrg-jjr3-56cm", description = "官方安全公告包含解析器级别 PoC 示例（CapLen=0 + 4字节偏移读取 AS 65000）", source = "github" }
-]
-exp = []
-nuclei_templates = []
-
-[remediation]
-fix = "升级 GoBGP 至 4.6.0 或更高版本。补丁提交 f02ca397821f6ca182ef4eb492c3cbc459552d7c 修复了所有受影响的 Capability 解码器，改为从 DefaultParameterCapability.CapValue（已由基类按 CapLen 裁剪的切片）读取，并校验 CapLen 必须匹配所需大小。"
-workaround = "如无法立即升级，可通过防火墙限制 BGP 端口（TCP 179）仅允许受信任的 peer 连接，或使用 BGP TCP MD5/AO 认证机制限制会话建立来源。"
-steps = [
-  "步骤1: 确认 GoBGP 版本，受影响版本为 <= 4.5.0",
-  "步骤2: 升级至 GoBGP >= 4.6.0（github.com/osrg/gobgp/v4）",
-  "步骤3: 若为 Debian/Ubuntu 系统发行版包管理安装，等待或手动编译新版本",
-  "步骤4: 限制 BGP TCP 179 端口的网络访问，仅允许受信任 peer"
-]
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2026-49837"
-avd = ""
-other = [
-  "https://github.com/osrg/gobgp/security/advisories/GHSA-gjrg-jjr3-56cm",
-  "https://github.com/osrg/gobgp/commit/f02ca397821f6ca182ef4eb492c3cbc459552d7c",
-  "https://vulert.com/vuln-db/--4591",
-  "https://www.tenable.com/plugins/nessus/318736"
-]
-
 [tags]
-tags = ["CWE-125", "OOB-Read", "BGP", "GoBGP", "protocol-parsing"]
-
-[authenticity]
-cve_confidence = "high"
-poc_confidence = "medium"
-notes = "NVD 尚未收录此 CVE（显示 CVE ID Not Found），但 GHSA 安全公告及修复提交均已确认漏洞存在。PoC 为解析器级别验证（无需完整 BGP 会话），由安全公告作者提供。无已知的野外利用或 exploit-db/sploitus 公开利用脚本。"
-
-[meta]
-collected_at = "2026-07-10T00:00:00Z"
-status = "completed"
+tags = [
+    "CWE-125",
+    "OOB-Read",
+    "BGP",
+    "GoBGP",
+    "protocol-parsing",
+]

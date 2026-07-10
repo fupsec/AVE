@@ -1,48 +1,59 @@
-[id]
-ave_id = "AVE-1999-0013"
-cve_id = "CVE-1999-0221"
-avd_id = ""
-other_ids = []
+[affected]
+product = "Ascend Routers"
+vendor = "Lucent"
+
+[authenticity]
+cve_confidence = "high"
+notes = "未找到公开可用的 PoC/EXP 资源"
+poc_confidence = "none"
 
 [basic]
-title = "Ascend 路由器远程管理端口拒绝服务漏洞"
 description = "Ascend 路由器通过端口 150 进行远程管理时存在拒绝服务漏洞，远程攻击者可发送特制请求导致设备拒绝服务。"
+published = "1999-03-01"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 5.5
 severity = "MEDIUM"
 source = "nvd"
-published = "1999-03-01"
+sources = ["unknown"]
+title = "Ascend 路由器远程管理端口拒绝服务漏洞"
 updated = "2026-06-16"
+
+[exploit]
+exp = []
+nuclei_templates = []
+poc = []
+
+[id]
+avd_id = ""
+ave_id = "AVE-1999-0013"
+cve_id = "CVE-1999-0221"
+other_ids = []
+
+[meta]
+collected_at = "2026-07-11T00:00:00Z"
+status = "completed"
+
+[references]
+avd = ""
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0221"
+other = []
+
+[remediation]
+fix = "升级到受影响版本以上。参考厂商安全公告。"
+steps = [
+    "确认 Ascend 路由器型号及当前软件版本",
+    "联系厂商获取修复版本或补丁",
+    "升级到修复版本",
+    "如无法升级，配置 ACL 限制端口 150 的访问来源",
+]
+workaround = "如无法升级，可在防火墙上限制对端口 150 的访问，仅允许可信 IP 进行远程管理。"
 
 [score]
 cvss_v2 = 5.0
 cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:N/A:P"
 
-[affected]
-vendor = "Lucent"
-product = "Ascend Routers"
-
-[exploit]
-poc = []
-exp = []
-nuclei_templates = []
-
-[remediation]
-fix = "升级到受影响版本以上。参考厂商安全公告。"
-workaround = "如无法升级，可在防火墙上限制对端口 150 的访问，仅允许可信 IP 进行远程管理。"
-steps = ["确认 Ascend 路由器型号及当前软件版本", "联系厂商获取修复版本或补丁", "升级到修复版本", "如无法升级，配置 ACL 限制端口 150 的访问来源"]
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0221"
-avd = ""
-other = []
-
 [tags]
-tags = ["NVD-CWE-Other", "DoS"]
-
-[authenticity]
-cve_confidence = "high"
-poc_confidence = "none"
-notes = "未找到公开可用的 PoC/EXP 资源"
-
-[meta]
-collected_at = "2026-07-11T00:00:00Z"
-status = "completed"
+tags = [
+    "NVD-CWE-Other",
+    "DoS",
+]

@@ -1,16 +1,59 @@
-[id]
-ave_id = "AVE-2006-0005"
-cve_id = "CVE-2006-20001"
-avd_id = ""
-other_ids = []
+[affected]
+product = "Apache HTTP Server"
+vendor = "Apache Software Foundation"
+
+[authenticity]
+cve_confidence = "high"
+notes = "CVE 由 Apache 官方确认并修复。GitHub 上有信息性 PoC 仓库但无可执行利用脚本。"
+poc_confidence = "medium"
 
 [basic]
-title = "Apache HTTP Server mod_dav If:请求头越界读取/写入漏洞"
 description = "精心构造的 If: 请求头可导致池（堆）内存位置中超出所发送标头值的单个零字节的内存读取或写入，从而导致进程崩溃。该漏洞影响 Apache HTTP Server 2.4.54 及更早版本。"
+published = "2023-01-17"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 7.5
 severity = "HIGH"
 source = "nvd"
-published = "2023-01-17"
+sources = ["unknown"]
+title = "Apache HTTP Server mod_dav If:请求头越界读取/写入漏洞"
 updated = "2025-02-13"
+
+[exploit]
+exp = []
+nuclei_templates = []
+
+[[exploit.poc]]
+description = "CVE-2006-20001 信息与 PoC 参考"
+source = "github"
+url = "https://github.com/r1az4r/CVE-2006-20001"
+
+[id]
+avd_id = ""
+ave_id = "AVE-2006-0005"
+cve_id = "CVE-2006-20001"
+other_ids = []
+
+[meta]
+collected_at = "2026-07-10T10:18:58Z"
+status = "completed"
+
+[references]
+avd = ""
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2006-20001"
+other = [
+    "https://httpd.apache.org/security/vulnerabilities_24.html",
+    "https://security.gentoo.org/glsa/202309-01",
+    "https://security.netapp.com/advisory/ntap-20230316-0005/",
+]
+
+[remediation]
+fix = "升级到 Apache HTTP Server 2.4.55 或更高版本。参考官方安全公告。"
+steps = [
+    "步骤1: 确认 Apache HTTP Server 版本",
+    "步骤2: 升级到 2.4.55 或更高版本",
+    "步骤3: 重启 Apache 服务",
+]
+workaround = "如无法升级，可在 httpd 配置中使用 RequestHeader 指令过滤或限制 If: 请求头。"
 
 [score]
 cvss_v2 = 0.0
@@ -20,39 +63,9 @@ cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
 cvss_v4 = 0.0
 cvss_v4_vector = ""
 
-[affected]
-vendor = "Apache Software Foundation"
-product = "Apache HTTP Server"
-
-[exploit]
-poc = [
-  { url = "https://github.com/r1az4r/CVE-2006-20001", description = "CVE-2006-20001 信息与 PoC 参考", source = "github" }
-]
-exp = []
-nuclei_templates = []
-
-[remediation]
-fix = "升级到 Apache HTTP Server 2.4.55 或更高版本。参考官方安全公告。"
-workaround = "如无法升级，可在 httpd 配置中使用 RequestHeader 指令过滤或限制 If: 请求头。"
-steps = ["步骤1: 确认 Apache HTTP Server 版本", "步骤2: 升级到 2.4.55 或更高版本", "步骤3: 重启 Apache 服务"]
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2006-20001"
-avd = ""
-other = [
-  "https://httpd.apache.org/security/vulnerabilities_24.html",
-  "https://security.gentoo.org/glsa/202309-01",
-  "https://security.netapp.com/advisory/ntap-20230316-0005/"
-]
-
 [tags]
-tags = ["CWE-787", "DoS", "HTTP"]
-
-[authenticity]
-cve_confidence = "high"
-poc_confidence = "medium"
-notes = "CVE 由 Apache 官方确认并修复。GitHub 上有信息性 PoC 仓库但无可执行利用脚本。"
-
-[meta]
-collected_at = "2026-07-10T10:18:58Z"
-status = "completed"
+tags = [
+    "CWE-787",
+    "DoS",
+    "HTTP",
+]

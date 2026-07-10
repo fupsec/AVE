@@ -1,16 +1,80 @@
-[id]
-ave_id = "AVE-1999-0022"
-cve_id = "CVE-1999-0524"
-avd_id = ""
-other_ids = []
+[affected]
+product = "multiple"
+vendor = "multiple"
+
+[authenticity]
+cve_confidence = "high"
+notes = "经典 ICMP 信息泄露漏洞，已有多个公开 PoC 脚本验证。"
+poc_confidence = "high"
 
 [basic]
-title = "ICMP 时间戳与网络掩码信息泄露"
 description = "ICMP 信息（如网络掩码和时间戳）允许来自任意主机的请求，远程攻击者可利用此漏洞获取系统时间信息，进而辅助进行其他攻击。"
+published = "1997-08-01"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 5.5
 severity = "MEDIUM"
 source = "nvd"
-published = "1997-08-01"
+sources = ["unknown"]
+title = "ICMP 时间戳与网络掩码信息泄露"
 updated = "2026-06-16"
+
+[exploit]
+exp = []
+nuclei_templates = []
+
+[[exploit.poc]]
+description = "ICMP 时间戳远程时间泄露工具"
+source = "github"
+url = "https://github.com/noraj/ChronoLeak"
+
+[[exploit.poc]]
+description = "ICMP 时间戳与地址掩码请求检测脚本"
+source = "github"
+url = "https://github.com/threatlabindonesia/CVE-1999-0524-ICMP-Timestamp-and-Address-Mask-Request-Exploit"
+
+[[exploit.poc]]
+description = "ICMP 时间戳请求漏洞检测脚本"
+source = "github"
+url = "https://github.com/b1tsec/CVE-1999-0524"
+
+[[exploit.poc]]
+description = "ICMP 时间戳信息泄露 PoC"
+source = "github"
+url = "https://github.com/Ransc0rp1on/ICMP-Timestamp-POC"
+
+[[exploit.poc]]
+description = "ICMP 时间戳重放检测脚本"
+source = "github"
+url = "https://github.com/S4njer/ICMP-TimeStamp-Replay-3xploit-Scanner"
+
+[id]
+avd_id = ""
+ave_id = "AVE-1999-0022"
+cve_id = "CVE-1999-0524"
+other_ids = []
+
+[meta]
+collected_at = "2026-07-11T10:18:58Z"
+status = "completed"
+
+[references]
+avd = ""
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0524"
+other = [
+    "https://exchange.xforce.ibmcloud.com/vulnerabilities/306",
+    "https://exchange.xforce.ibmcloud.com/vulnerabilities/322",
+    "http://kb.juniper.net/InfoCenter/index?page=content&id=JSA10705",
+    "http://www.osvdb.org/95",
+]
+
+[remediation]
+fix = "在防火墙或系统层面配置规则，阻止入站的 ICMP 时间戳请求（Type 13）和地址掩码请求（Type 17），或禁用 ICMP 时间戳响应。"
+steps = [
+    "步骤1: 确认系统是否响应 ICMP 时间戳请求（使用 hping3/nping 发送 ICMP Type 13 请求）",
+    "步骤2: 在系统或网络层配置策略，禁用 ICMP 时间戳响应",
+    "步骤3: 在网络边界防火墙添加 ACL 规则过滤 ICMP Type 13 和 Type 17",
+]
+workaround = "在网络边界防火墙添加 ACL 规则，丢弃 ICMP Type 13（Timestamp Request）和 Type 17（Address Mask Request）数据包。"
 
 [score]
 cvss_v2 = 2.1
@@ -18,44 +82,10 @@ cvss_v2_vector = "AV:L/AC:L/Au:N/C:P/I:N/A:N"
 cvss_v3 = 4.0
 cvss_v3_vector = "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N"
 
-[affected]
-vendor = "multiple"
-product = "multiple"
-
-[exploit]
-poc = [
-  { url = "https://github.com/noraj/ChronoLeak", description = "ICMP 时间戳远程时间泄露工具", source = "github" },
-  { url = "https://github.com/threatlabindonesia/CVE-1999-0524-ICMP-Timestamp-and-Address-Mask-Request-Exploit", description = "ICMP 时间戳与地址掩码请求检测脚本", source = "github" },
-  { url = "https://github.com/b1tsec/CVE-1999-0524", description = "ICMP 时间戳请求漏洞检测脚本", source = "github" },
-  { url = "https://github.com/Ransc0rp1on/ICMP-Timestamp-POC", description = "ICMP 时间戳信息泄露 PoC", source = "github" },
-  { url = "https://github.com/S4njer/ICMP-TimeStamp-Replay-3xploit-Scanner", description = "ICMP 时间戳重放检测脚本", source = "github" }
-]
-exp = []
-nuclei_templates = []
-
-[remediation]
-fix = "在防火墙或系统层面配置规则，阻止入站的 ICMP 时间戳请求（Type 13）和地址掩码请求（Type 17），或禁用 ICMP 时间戳响应。"
-workaround = "在网络边界防火墙添加 ACL 规则，丢弃 ICMP Type 13（Timestamp Request）和 Type 17（Address Mask Request）数据包。"
-steps = ["步骤1: 确认系统是否响应 ICMP 时间戳请求（使用 hping3/nping 发送 ICMP Type 13 请求）", "步骤2: 在系统或网络层配置策略，禁用 ICMP 时间戳响应", "步骤3: 在网络边界防火墙添加 ACL 规则过滤 ICMP Type 13 和 Type 17"]
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0524"
-avd = ""
-other = [
-  "https://exchange.xforce.ibmcloud.com/vulnerabilities/306",
-  "https://exchange.xforce.ibmcloud.com/vulnerabilities/322",
-  "http://kb.juniper.net/InfoCenter/index?page=content&id=JSA10705",
-  "http://www.osvdb.org/95"
-]
-
 [tags]
-tags = ["CWE-200", "ICMP", "information-disclosure", "timestamp"]
-
-[authenticity]
-cve_confidence = "high"
-poc_confidence = "high"
-notes = "经典 ICMP 信息泄露漏洞，已有多个公开 PoC 脚本验证。"
-
-[meta]
-collected_at = "2026-07-11T10:18:58Z"
-status = "completed"
+tags = [
+    "CWE-200",
+    "ICMP",
+    "information-disclosure",
+    "timestamp",
+]

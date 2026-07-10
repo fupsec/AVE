@@ -1,16 +1,67 @@
-[id]
-ave_id = "AVE-1999-0001"
-cve_id = "CVE-1999-0002"
-avd_id = ""
-other_ids = ["EDB-19096"]
+[affected]
+product = "NFS mountd"
+vendor = "Linux"
+
+[authenticity]
+cve_confidence = "high"
+notes = "存在完整利用脚本（EDB-19096），可远程 root 权限执行任意代码。因采用 RPC 协议非 HTTP 协议，无法生成符合 poc.md 规范的 HTTP 类型 PoC 脚本。"
+poc_confidence = "high"
 
 [basic]
-title = "RedHat Linux 5.1 / Caldera OpenLinux Standard 1.2 - mountd 远程缓冲区溢出漏洞"
 description = "NFS mountd 守护进程存在缓冲区溢出漏洞，远程攻击者通过发送特制的 RPC 请求可触发缓冲区溢出，实现以 root 权限执行任意代码。该漏洞影响 Red Hat Linux（2.0-5.1）、Caldera OpenLinux Standard 1.2、BSDI BSD/OS 1.1 及 SGI IRIX 等系统。"
+published = "1998-10-12"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 9.8
 severity = "CRITICAL"
 source = "exploitdb"
-published = "1998-10-12"
+sources = ["unknown"]
+title = "RedHat Linux 5.1 / Caldera OpenLinux Standard 1.2 - mountd 远程缓冲区溢出漏洞"
 updated = "2024-11-20"
+
+[exploit]
+nuclei_templates = []
+poc = []
+
+[[exploit.exp]]
+description = "mountd 远程 root 利用脚本"
+source = "exploitdb"
+url = "https://www.exploit-db.com/exploits/19096"
+
+[[exploit.exp]]
+description = "mountd 远程 root 利用脚本（源码）"
+source = "exploitdb"
+url = "https://www.exploit-db.com/raw/19096"
+
+[id]
+avd_id = ""
+ave_id = "AVE-1999-0001"
+cve_id = "CVE-1999-0002"
+other_ids = ["EDB-19096"]
+
+[meta]
+collected_at = "2026-07-11T10:18:58Z"
+status = "completed"
+
+[references]
+avd = ""
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0002"
+other = [
+    "http://www.securityfocus.com/bid/121",
+    "http://www.ciac.org/ciac/bulletins/j-006.shtml",
+    "ftp://patches.sgi.com/support/free/security/advisories/19981006-01-I",
+    "https://github.com/advisories/GHSA-222m-mgc9-9mqv",
+    "https://access.redhat.com/security/cve/CVE-1999-0002",
+]
+
+[remediation]
+fix = "升级 nfs-utils 到修复版本，或应用操作系统厂商提供的安全补丁。Red Hat Linux 及 Caldera OpenLinux 均已发布修复版本。"
+steps = [
+    "步骤1: 确认系统是否运行 mountd 服务",
+    "步骤2: 应用厂商安全补丁或升级 nfs-utils",
+    "步骤3: 配置防火墙限制 RPC 服务访问",
+    "步骤4: 重启 NFS 服务",
+]
+workaround = "使用防火墙限制对 RPC portmap（端口 111）和 mountd 端口的访问，仅允许可信网络；使用 tcp_wrappers（hosts.allow/hosts.deny）限制 mountd 访问来源。"
 
 [score]
 cvss_v2 = 10.0
@@ -20,42 +71,11 @@ cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
 cvss_v4 = 9.3
 cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:N/SC:N/SI:N/SA:N"
 
-[affected]
-vendor = "Linux"
-product = "NFS mountd"
-
-[exploit]
-poc = []
-exp = [
-  { url = "https://www.exploit-db.com/exploits/19096", description = "mountd 远程 root 利用脚本", source = "exploitdb" },
-  { url = "https://www.exploit-db.com/raw/19096", description = "mountd 远程 root 利用脚本（源码）", source = "exploitdb" }
-]
-nuclei_templates = []
-
-[remediation]
-fix = "升级 nfs-utils 到修复版本，或应用操作系统厂商提供的安全补丁。Red Hat Linux 及 Caldera OpenLinux 均已发布修复版本。"
-workaround = "使用防火墙限制对 RPC portmap（端口 111）和 mountd 端口的访问，仅允许可信网络；使用 tcp_wrappers（hosts.allow/hosts.deny）限制 mountd 访问来源。"
-steps = ["步骤1: 确认系统是否运行 mountd 服务", "步骤2: 应用厂商安全补丁或升级 nfs-utils", "步骤3: 配置防火墙限制 RPC 服务访问", "步骤4: 重启 NFS 服务"]
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0002"
-avd = ""
-other = [
-  "http://www.securityfocus.com/bid/121",
-  "http://www.ciac.org/ciac/bulletins/j-006.shtml",
-  "ftp://patches.sgi.com/support/free/security/advisories/19981006-01-I",
-  "https://github.com/advisories/GHSA-222m-mgc9-9mqv",
-  "https://access.redhat.com/security/cve/CVE-1999-0002"
-]
-
 [tags]
-tags = ["CWE-119", "RCE", "buffer-overflow", "mountd", "NFS"]
-
-[authenticity]
-cve_confidence = "high"
-poc_confidence = "high"
-notes = "存在完整利用脚本（EDB-19096），可远程 root 权限执行任意代码。因采用 RPC 协议非 HTTP 协议，无法生成符合 poc.md 规范的 HTTP 类型 PoC 脚本。"
-
-[meta]
-collected_at = "2026-07-11T10:18:58Z"
-status = "completed"
+tags = [
+    "CWE-119",
+    "RCE",
+    "buffer-overflow",
+    "mountd",
+    "NFS",
+]

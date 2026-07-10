@@ -1,34 +1,38 @@
-
-[id]
-  ave_id = "AVE-2026-0023"
-  cve_id = "CVE-2026-13522"
-  aliases = ["CVE-2026-13522"]
-
 [basic]
-  title = "Investintech SlimPDFReader PDF File Handler out-of-bounds read vulnerability(CVE-2026-13522)"
-  description = "Investintech SlimPDFReader 是 Windows 平台闭源商业 PDF 阅读器，用于查看 PDF 文档。攻击者可通过诱骗用户打开恶意 PDF 文件，触发 PDF File Handler 组件中 TeighaDo 函数的越界读取操作，导致程序崩溃或引发信息泄露。\n受影响版本中，Investintech SlimPDFReader 2.0.0 至 2.0.14 所有版本均受 PDF File Handler 组件中 TeighaDo 函数 out-of-bounds read 漏洞影响，攻击者可远程利用此漏洞。\n修复版本中通过停止维护该产品的方式应对，官方未发布安全更新版本，建议受影响用户停止使用该产品并切换至其他仍在维护的 PDF 阅读器。\n解决建议\n建议您更新当前系统或软件至最新版，完成漏洞的修复。"
-  severity = "HIGH"
-  score = 7.5
-  sources = ["avd"]
-  published = "2026-06-29"
-  updated = ""
-  remediation = "建议您更新当前系统或软件至最新版，完成漏洞的修复。"
-
-[score]
-  cvss_v2 = 7.8
-  cvss_v2_vector = "AV:N/AC:L/Au:N/C:C/I:N/A:N"
-  cvss_v3 = 7.5
-  cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N"
-  cvss_v4 = 8.6
-  cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N"
+description = """
+Investintech SlimPDFReader 是 Windows 平台闭源商业 PDF 阅读器，用于查看 PDF 文档。攻击者可通过诱骗用户打开恶意 PDF 文件，触发 PDF File Handler 组件中 TeighaDo 函数的越界读取操作，导致程序崩溃或引发信息泄露。
+受影响版本中，Investintech SlimPDFReader 2.0.0 至 2.0.14 所有版本均受 PDF File Handler 组件中 TeighaDo 函数 out-of-bounds read 漏洞影响，攻击者可远程利用此漏洞。
+修复版本中通过停止维护该产品的方式应对，官方未发布安全更新版本，建议受影响用户停止使用该产品并切换至其他仍在维护的 PDF 阅读器。
+解决建议
+建议您更新当前系统或软件至最新版，完成漏洞的修复。"""
+published = "2026-06-29"
+remediation = "建议您更新当前系统或软件至最新版，完成漏洞的修复。"
+score = 7.5
+severity = "HIGH"
+sources = ["avd"]
+title = "Investintech SlimPDFReader PDF File Handler out-of-bounds read vulnerability(CVE-2026-13522)"
+updated = "2026-07-10"
 
 [exploit]
-poc_urls = []
 exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2026-13522"]
+ave_id = "AVE-2026-0023"
+cve_id = "CVE-2026-13522"
+
+[meta]
+collected_at = "2026-07-10T04:07:17.276762002+00:00"
+status = "completed"
 
 [references]
 urls = []
 
-[meta]
-status = "completed"
-collected_at = "2026-07-10T04:07:17.276762002+00:00"
+[score]
+cvss_v2 = 7.8
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:C/I:N/A:N"
+cvss_v3 = 7.5
+cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N"
+cvss_v4 = 8.6
+cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N"

@@ -1,54 +1,67 @@
-[id]
-ave_id = "AVE-2026-0076"
-cve_id = "CVE-2026-48596"
-avd_id = ""
-other_ids = ["GHSA-q7jx-v53g-848w"]
+[affected]
+product = "tesla"
+vendor = "elixir-tesla"
+
+[authenticity]
+cve_confidence = "high"
+notes = "CVE 已由 EEF 确认并在 NVD 发布。PoC 仅在 GHSA 公告中以文字描述存在，暂无公开可执行 PoC 脚本。此漏洞为库级漏洞，需要在 Elixir 环境中通过 API 调用触发，无法通过外部 HTTP 请求直接探测。"
+poc_confidence = "low"
 
 [basic]
-title = "Tesla Multipart Content-Type 头部 CRLF 注入漏洞"
-description = "Tesla.Multipart.add_content_type_param/2 在追加调用者提供的字符串到 multipart Content-Type 头部时未进行 CR (\\r) 或 LF (\\n) 字符过滤。Tesla.Multipart.headers/1 随后将这些参数原样用 \"; \" 拼接构造出站 Content-Type 头部值。包含 \\r\\n 的参数会分裂头部行，从而允许在出站 HTTP 请求中注入任意头部。任何将不可信输入传递给 add_content_type_param/2 的应用（如接收用户提供的 charset 或参数值）均受影响。"
+description = 'Tesla.Multipart.add_content_type_param/2 在追加调用者提供的字符串到 multipart Content-Type 头部时未进行 CR (\r) 或 LF (\n) 字符过滤。Tesla.Multipart.headers/1 随后将这些参数原样用 "; " 拼接构造出站 Content-Type 头部值。包含 \r\n 的参数会分裂头部行，从而允许在出站 HTTP 请求中注入任意头部。任何将不可信输入传递给 add_content_type_param/2 的应用（如接收用户提供的 charset 或参数值）均受影响。'
+published = "2026-06-02"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 3.5
 severity = "LOW"
 source = "ghsa"
-published = "2026-06-02"
+sources = ["unknown"]
+title = "Tesla Multipart Content-Type 头部 CRLF 注入漏洞"
 updated = "2026-07-10"
+
+[exploit]
+exp = []
+nuclei_templates = []
+poc = []
+
+[id]
+avd_id = ""
+ave_id = "AVE-2026-0076"
+cve_id = "CVE-2026-48596"
+other_ids = ["GHSA-q7jx-v53g-848w"]
+
+[meta]
+collected_at = "2026-07-11T00:00:00Z"
+status = "completed"
+
+[references]
+avd = ""
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2026-48596"
+other = [
+    "https://github.com/elixir-tesla/tesla/security/advisories/GHSA-q7jx-v53g-848w",
+    "https://github.com/elixir-tesla/tesla/commit/23601edac5d22ba9407b427967b5bdbda201aec2",
+    "https://cna.erlef.org/cves/CVE-2026-48596.html",
+    "https://osv.dev/vulnerability/EEF-CVE-2026-48596",
+    "https://github.com/elixir-tesla/tesla/commit/6ebfdb9abe9c6f119408045b933d82462decd351",
+]
+
+[remediation]
+fix = "升级到 tesla 1.18.3 或以上版本。参考官方安全公告：https://github.com/elixir-tesla/tesla/security/advisories/GHSA-q7jx-v53g-848w"
+steps = [
+    "步骤1: 确认使用的 tesla 版本",
+    "步骤2: 将 tesla 升级到 1.18.3 或以上版本",
+    "步骤3: 如无法升级，在应用层对 add_content_type_param 的输入参数进行 CR/LF 过滤",
+]
+workaround = '如无法升级，在传递给 Tesla.Multipart.add_content_type_param/2 之前验证 Content-Type 参数字符串，拒绝任何包含 \r 或 \n 字符的值。'
 
 [score]
 cvss_v4 = 2.1
 cvss_v4_vector = "CVSS:4.0/AV:L/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:N/SC:N/SI:L/SA:N"
 
-[affected]
-vendor = "elixir-tesla"
-product = "tesla"
-
-[exploit]
-poc = []
-exp = []
-nuclei_templates = []
-
-[remediation]
-fix = "升级到 tesla 1.18.3 或以上版本。参考官方安全公告：https://github.com/elixir-tesla/tesla/security/advisories/GHSA-q7jx-v53g-848w"
-workaround = "如无法升级，在传递给 Tesla.Multipart.add_content_type_param/2 之前验证 Content-Type 参数字符串，拒绝任何包含 \\r 或 \\n 字符的值。"
-steps = ["步骤1: 确认使用的 tesla 版本", "步骤2: 将 tesla 升级到 1.18.3 或以上版本", "步骤3: 如无法升级，在应用层对 add_content_type_param 的输入参数进行 CR/LF 过滤"]
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2026-48596"
-avd = ""
-other = [
-  "https://github.com/elixir-tesla/tesla/security/advisories/GHSA-q7jx-v53g-848w",
-  "https://github.com/elixir-tesla/tesla/commit/23601edac5d22ba9407b427967b5bdbda201aec2",
-  "https://cna.erlef.org/cves/CVE-2026-48596.html",
-  "https://osv.dev/vulnerability/EEF-CVE-2026-48596",
-  "https://github.com/elixir-tesla/tesla/commit/6ebfdb9abe9c6f119408045b933d82462decd351"
-]
-
 [tags]
-tags = ["CWE-93", "CWE-113", "CRLF-Injection", "HTTP-Header-Injection", "Elixir"]
-
-[authenticity]
-cve_confidence = "high"
-poc_confidence = "low"
-notes = "CVE 已由 EEF 确认并在 NVD 发布。PoC 仅在 GHSA 公告中以文字描述存在，暂无公开可执行 PoC 脚本。此漏洞为库级漏洞，需要在 Elixir 环境中通过 API 调用触发，无法通过外部 HTTP 请求直接探测。"
-
-[meta]
-collected_at = "2026-07-11T00:00:00Z"
-status = "completed"
+tags = [
+    "CWE-93",
+    "CWE-113",
+    "CRLF-Injection",
+    "HTTP-Header-Injection",
+    "Elixir",
+]

@@ -1,16 +1,62 @@
-[id]
-ave_id = "AVE-2026-0067"
-cve_id = "CVE-2026-49836"
-avd_id = ""
-other_ids = ["GHSA-2rmg-vrx8-9j2f"]
+[affected]
+product = "psd-tools"
+vendor = "psd-tools project"
+
+[authenticity]
+cve_confidence = "high"
+notes = "官方安全通告中包含完整的PoC验证代码，已确认漏洞存在并修复。该漏洞为本地Python库漏洞（非HTTP服务），PoC需通过Python脚本构造恶意PSD文件触发。"
+poc_confidence = "high"
 
 [basic]
-title = "psd-tools SmartObject路径遍历导致任意文件写入/读取漏洞"
 description = "psd-tools（v1.17.0及之前所有暴露SmartObject API的版本）存在路径遍历漏洞。SmartObject.save()直接使用PSD文件中未经验证的嵌入式智能对象文件名作为写入路径，攻击者可通过构造包含../或绝对路径的恶意PSD文件，将任意字节写入任意目录。SmartObject.open()对外部类型智能对象同样存在任意文件读取漏洞，攻击者可读取系统任意文件并将其内容写入受控输出目录。该漏洞无需认证或特殊配置即可利用，可导致完整性破坏，在特定场景下可升级为远程代码执行。"
+published = "2026-07-09"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 7.5
 severity = "HIGH"
 source = "ghsa"
-published = "2026-07-09"
+sources = ["unknown"]
+title = "psd-tools SmartObject路径遍历导致任意文件写入/读取漏洞"
 updated = "2026-07-09"
+
+[exploit]
+exp = []
+nuclei_templates = []
+
+[[exploit.poc]]
+description = "官方安全通告，包含完整PoC代码（poc.py），通过构造恶意PSD文件验证任意文件写入"
+source = "github"
+url = "https://github.com/psd-tools/psd-tools/security/advisories/GHSA-2rmg-vrx8-9j2f"
+
+[id]
+avd_id = ""
+ave_id = "AVE-2026-0067"
+cve_id = "CVE-2026-49836"
+other_ids = ["GHSA-2rmg-vrx8-9j2f"]
+
+[meta]
+collected_at = "2026-07-10T00:00:00Z"
+status = "completed"
+
+[references]
+avd = ""
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2026-49836"
+other = [
+    "https://github.com/psd-tools/psd-tools/security/advisories/GHSA-2rmg-vrx8-9j2f",
+    "https://github.com/psd-tools/psd-tools/pull/657",
+    "https://github.com/psd-tools/psd-tools/releases/tag/v1.17.1",
+    "https://www.tenable.com/cve/CVE-2026-49836",
+    "https://dbugs.ptsecurity.com/vulnerability/PT-2026-57023",
+    "https://advisories.gitlab.com/pypi/psd-tools/CVE-2026-49836/",
+]
+
+[remediation]
+fix = "升级 psd-tools 至 v1.17.1 或更高版本。修复包括：save() 方法通过 os.path.basename() 去除目录组件，写入限定在调用者指定的 directory 内，并通过 os.path.realpath() + os.path.commonpath() 验证路径不越界；open() 方法在提供 external_dir 时忽略超出目录的 fullPath 解析结果，对 relPath 逃逸目录则抛出 ValueError。"
+steps = [
+    "步骤1: 确认当前使用的 psd-tools 版本是否 <= 1.17.0",
+    "步骤2: 升级到 psd-tools >= 1.17.1（pip install psd-tools>=1.17.1）",
+    "步骤3: 对已处理的不可信 PSD 文件输出目录进行安全审计",
+]
+workaround = "如无法立即升级，可在调用 SmartObject.save() 前自行校验 smart_object.filename，拒绝包含 ../ 或绝对路径的文件名。对从不可信来源接收的 PSD 文件，在沙箱环境中处理。"
 
 [score]
 cvss_v2 = 7.5
@@ -20,42 +66,13 @@ cvss_v3_vector = "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
 cvss_v4 = 4.6
 cvss_v4_vector = "CVSS:4.0/AV:L/AC:L/AT:N/PR:N/UI:A/VC:L/VI:L/VA:N/SC:N/SI:N/SA:N"
 
-[affected]
-vendor = "psd-tools project"
-product = "psd-tools"
-
-[exploit]
-poc = [
-  { url = "https://github.com/psd-tools/psd-tools/security/advisories/GHSA-2rmg-vrx8-9j2f", description = "官方安全通告，包含完整PoC代码（poc.py），通过构造恶意PSD文件验证任意文件写入", source = "github" }
-]
-exp = []
-nuclei_templates = []
-
-[remediation]
-fix = "升级 psd-tools 至 v1.17.1 或更高版本。修复包括：save() 方法通过 os.path.basename() 去除目录组件，写入限定在调用者指定的 directory 内，并通过 os.path.realpath() + os.path.commonpath() 验证路径不越界；open() 方法在提供 external_dir 时忽略超出目录的 fullPath 解析结果，对 relPath 逃逸目录则抛出 ValueError。"
-workaround = "如无法立即升级，可在调用 SmartObject.save() 前自行校验 smart_object.filename，拒绝包含 ../ 或绝对路径的文件名。对从不可信来源接收的 PSD 文件，在沙箱环境中处理。"
-steps = ["步骤1: 确认当前使用的 psd-tools 版本是否 <= 1.17.0", "步骤2: 升级到 psd-tools >= 1.17.1（pip install psd-tools>=1.17.1）", "步骤3: 对已处理的不可信 PSD 文件输出目录进行安全审计"]
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2026-49836"
-avd = ""
-other = [
-  "https://github.com/psd-tools/psd-tools/security/advisories/GHSA-2rmg-vrx8-9j2f",
-  "https://github.com/psd-tools/psd-tools/pull/657",
-  "https://github.com/psd-tools/psd-tools/releases/tag/v1.17.1",
-  "https://www.tenable.com/cve/CVE-2026-49836",
-  "https://dbugs.ptsecurity.com/vulnerability/PT-2026-57023",
-  "https://advisories.gitlab.com/pypi/psd-tools/CVE-2026-49836/"
-]
-
 [tags]
-tags = ["CWE-22", "CWE-73", "path-traversal", "arbitrary-file-write", "arbitrary-file-read", "python", "psd-tools"]
-
-[authenticity]
-cve_confidence = "high"
-poc_confidence = "high"
-notes = "官方安全通告中包含完整的PoC验证代码，已确认漏洞存在并修复。该漏洞为本地Python库漏洞（非HTTP服务），PoC需通过Python脚本构造恶意PSD文件触发。"
-
-[meta]
-collected_at = "2026-07-10T00:00:00Z"
-status = "completed"
+tags = [
+    "CWE-22",
+    "CWE-73",
+    "path-traversal",
+    "arbitrary-file-write",
+    "arbitrary-file-read",
+    "python",
+    "psd-tools",
+]

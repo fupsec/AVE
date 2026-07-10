@@ -14,7 +14,7 @@ CodeAstro Human Resource Management System是一款面向企业人力资源管�
 修复版本中通过采用CodeIgniter框架的ORM查询构造器或预处理语句对用户输入进行参数绑定,切断用户可控数据与SQL语句的直接连接,避免注入攻击。"""
 published = "2026-06-29"
 remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 0.0
+score = 5.5
 severity = "MEDIUM"
 source = "avd"
 sources = ["unknown"]

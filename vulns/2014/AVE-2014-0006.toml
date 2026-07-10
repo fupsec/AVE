@@ -1,34 +1,33 @@
-
-[id]
-  ave_id = "AVE-2014-0006"
-  cve_id = "CVE-2014-125106"
-  aliases = ["CVE-2014-125106"]
-
 [basic]
-  title = "Nanopb 缓冲区错误漏洞(CVE-2014-125106)"
-  description = ""
-  severity = "HIGH"
-  score = 7.8
-  sources = ["avd"]
-  published = "2023-06-18"
-  updated = ""
-  remediation = "Refer to vendor advisory and upgrade to fixed version."
-
-[score]
-  cvss_v2 = 7.2
-  cvss_v2_vector = "AV:L/AC:L/Au:N/C:C/I:C/A:C"
-  cvss_v3 = 7.8
-  cvss_v3_vector = "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H"
-  cvss_v4 = 7.6
-  cvss_v4_vector = "CVSS:4.0/AV:L/AC:L/AT:N/PR:L/UI:N/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N"
+description = "Vulnerability identified as CVE-2014-125106. Please refer to vendor advisory for details."
+published = "2023-06-18"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 7.8
+severity = "HIGH"
+sources = ["avd"]
+title = "Nanopb 缓冲区错误漏洞(CVE-2014-125106)"
+updated = "2026-07-10"
 
 [exploit]
-poc_urls = []
 exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2014-125106"]
+ave_id = "AVE-2014-0006"
+cve_id = "CVE-2014-125106"
+
+[meta]
+collected_at = "2026-07-10T04:50:34.663370383+00:00"
+status = "completed"
 
 [references]
 urls = []
 
-[meta]
-status = "completed"
-collected_at = "2026-07-10T04:50:34.663370383+00:00"
+[score]
+cvss_v2 = 7.2
+cvss_v2_vector = "AV:L/AC:L/Au:N/C:C/I:C/A:C"
+cvss_v3 = 7.8
+cvss_v3_vector = "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H"
+cvss_v4 = 7.6
+cvss_v4_vector = "CVSS:4.0/AV:L/AC:L/AT:N/PR:L/UI:N/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N"

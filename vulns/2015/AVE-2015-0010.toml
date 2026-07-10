@@ -1,34 +1,33 @@
-
-[id]
-  ave_id = "AVE-2015-0010"
-  cve_id = "CVE-2015-10115"
-  aliases = ["CVE-2015-10115"]
-
 [basic]
-  title = "WordPress Plugin WooSidebars Sidebar Manager Converter 输入验证错误漏洞(CVE-2015-10115)"
-  description = ""
-  severity = "MEDIUM"
-  score = 5.4
-  sources = ["avd"]
-  published = "2023-06-06"
-  updated = ""
-  remediation = "Refer to vendor advisory and upgrade to fixed version."
-
-[score]
-  cvss_v2 = 4.0
-  cvss_v2_vector = "AV:N/AC:L/Au:S/C:P/I:N/A:N"
-  cvss_v3 = 5.4
-  cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:U/C:L/I:L/A:N"
-  cvss_v4 = 5.1
-  cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:L/UI:A/VC:L/VI:L/VA:N/SC:N/SI:N/SA:N"
+description = "Vulnerability identified as CVE-2015-10115. Please refer to vendor advisory for details."
+published = "2023-06-06"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 5.4
+severity = "MEDIUM"
+sources = ["avd"]
+title = "WordPress Plugin WooSidebars Sidebar Manager Converter 输入验证错误漏洞(CVE-2015-10115)"
+updated = "2026-07-10"
 
 [exploit]
-poc_urls = []
 exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2015-10115"]
+ave_id = "AVE-2015-0010"
+cve_id = "CVE-2015-10115"
+
+[meta]
+collected_at = "2026-07-10T06:24:54.783274520+00:00"
+status = "completed"
 
 [references]
 urls = []
 
-[meta]
-status = "completed"
-collected_at = "2026-07-10T06:24:54.783274520+00:00"
+[score]
+cvss_v2 = 4.0
+cvss_v2_vector = "AV:N/AC:L/Au:S/C:P/I:N/A:N"
+cvss_v3 = 5.4
+cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:U/C:L/I:L/A:N"
+cvss_v4 = 5.1
+cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:L/UI:A/VC:L/VI:L/VA:N/SC:N/SI:N/SA:N"

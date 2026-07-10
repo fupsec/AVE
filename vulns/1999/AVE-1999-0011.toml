@@ -1,16 +1,51 @@
-[id]
-ave_id = "AVE-1999-0011"
-cve_id = "CVE-1999-0199"
-avd_id = ""
-other_ids = []
+[affected]
+product = "glibc"
+vendor = "gnu"
+
+[authenticity]
+cve_confidence = "high"
+notes = "该漏洞实为 glibc 文档缺陷，非代码逻辑漏洞。Red Hat 不认为存在实际可利用的安全风险。CVSS v3 9.8 为 NVD 评分，可能偏高。搜索 GitHub、Exploit-DB、PacketStorm、Sploitus 等渠道均未发现公开 PoC/EXP。"
+poc_confidence = "low"
 
 [basic]
-title = "GNU C Library (glibc) 2.2 之前版本 tdelete() 函数返回值未文档化漏洞"
 description = "GNU C Library（又名 glibc）2.2 之前的版本中，manual/search.texi 缺少关于删除树根节点时 tdelete 返回值为未指定的说明，这可能导致开发者在不知情的情况下访问悬垂指针，从而可能被攻击者利用。"
+published = "1999-11-09"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 9.8
 severity = "CRITICAL"
 source = "nvd"
-published = "1999-11-09"
+sources = ["unknown"]
+title = "GNU C Library (glibc) 2.2 之前版本 tdelete() 函数返回值未文档化漏洞"
 updated = "2026-06-16"
+
+[exploit]
+exp = []
+nuclei_templates = []
+poc = []
+
+[id]
+avd_id = ""
+ave_id = "AVE-1999-0011"
+cve_id = "CVE-1999-0199"
+other_ids = []
+
+[meta]
+collected_at = "2026-07-11T00:00:00Z"
+status = "completed"
+
+[references]
+avd = ""
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0199"
+other = [
+    "https://ftp.gnu.org/gnu/glibc/glibc-2.2.tar.gz",
+    "https://github.com/bminor/glibc/commit/2864e767053317538feafa815046fff89e5a16be",
+    "https://www.cee.studio/tdelete.html",
+]
+
+[remediation]
+fix = "升级到 glibc 2.2 及以上版本"
+steps = []
+workaround = ""
 
 [score]
 cvss_v2 = 7.5
@@ -18,37 +53,9 @@ cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:P/A:P"
 cvss_v3 = 9.8
 cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
 
-[affected]
-vendor = "gnu"
-product = "glibc"
-
-[exploit]
-poc = []
-exp = []
-nuclei_templates = []
-
-[remediation]
-fix = "升级到 glibc 2.2 及以上版本"
-workaround = ""
-steps = []
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0199"
-avd = ""
-other = [
-  "https://ftp.gnu.org/gnu/glibc/glibc-2.2.tar.gz",
-  "https://github.com/bminor/glibc/commit/2864e767053317538feafa815046fff89e5a16be",
-  "https://www.cee.studio/tdelete.html"
-]
-
 [tags]
-tags = ["CWE-252", "glibc", "dangling-pointer"]
-
-[authenticity]
-cve_confidence = "high"
-poc_confidence = "low"
-notes = "该漏洞实为 glibc 文档缺陷，非代码逻辑漏洞。Red Hat 不认为存在实际可利用的安全风险。CVSS v3 9.8 为 NVD 评分，可能偏高。搜索 GitHub、Exploit-DB、PacketStorm、Sploitus 等渠道均未发现公开 PoC/EXP。"
-
-[meta]
-collected_at = "2026-07-11T00:00:00Z"
-status = "completed"
+tags = [
+    "CWE-252",
+    "glibc",
+    "dangling-pointer",
+]

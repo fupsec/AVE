@@ -1,62 +1,90 @@
-
-[id]
-  ave_id = "AVE-1999-0204"
-  cve_id = "CVE-1999-0001"
-  avd_id = ""
-  other_ids = ["OSVDB-5707"]
-
-[basic]
-  title = "BSD 衍生系统 TCP/IP 实现 ip_input.c IP 碎片重组拒绝服务漏洞（Teardrop）"
-  description = "BSD 衍生 TCP/IP 实现中的 ip_input.c 存在输入验证缺陷，远程攻击者可通过发送精心构造的 IP 分片数据包导致系统崩溃或挂起，造成拒绝服务。该漏洞又称 Teardrop 攻击，是历史上第一个 CVE 编号。"
-  severity = "MEDIUM"
-  source = "nvd"
-  published = "1999-12-30"
-  updated = "2026-06-16"
-
-[score]
-  cvss_v2 = 5.0
-  cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:N/A:P"
-  cvss_v3 = 5.5
-  cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N"
-  cvss_v4 = 5.1
-  cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:L/VI:N/VA:N/SC:N/SI:N/SA:N"
-
 [affected]
-vendor = "bsd"
 product = "tcp_ip"
+vendor = "bsd"
 
 [authenticity]
 cve_confidence = "high"
-poc_confidence = "high"
 notes = "CVE-1999-0001 是历史上第一个 CVE 编号，对应经典 Teardrop IP 分片攻击。该漏洞在 BSD 衍生系统 IP 碎片重组代码中存在输入验证缺陷。Exploit-DB 19078 提供完整的 teardrop.c 拒绝服务利用代码。该漏洞为非 HTTP 协议漏洞，无法生成 HTTP PoC 脚本。"
+poc_confidence = "high"
+
+[basic]
+description = "BSD 衍生 TCP/IP 实现中的 ip_input.c 存在输入验证缺陷，远程攻击者可通过发送精心构造的 IP 分片数据包导致系统崩溃或挂起，造成拒绝服务。该漏洞又称 Teardrop 攻击，是历史上第一个 CVE 编号。"
+published = "1999-12-30"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 5.5
+severity = "MEDIUM"
+source = "nvd"
+sources = ["unknown"]
+title = "BSD 衍生系统 TCP/IP 实现 ip_input.c IP 碎片重组拒绝服务漏洞（Teardrop）"
+updated = "2026-06-16"
 
 [exploit]
-poc = [
-  { url = "https://www.exploit-db.com/exploits/19078", description = "Teardrop IP 分片拒绝服务 PoC", source = "exploit-db" },
-  { url = "https://github.com/offensive-security/exploitdb/blob/master/exploits/bsd/dos/19078.c", description = "Teardrop 拒绝服务利用程序（ExploitDB 镜像）", source = "github" },
-  { url = "https://packetstormsecurity.com/files/19078/teardrop.c.html", description = "Teardrop IP 分片拒绝服务 PoC", source = "packetstorm" }
-]
-exp = [
-  { url = "https://www.exploit-db.com/raw/19078", description = "Teardrop IP 分片拒绝服务利用程序（原始代码）", source = "exploit-db" }
-]
 nuclei_templates = []
 
-[remediation]
-fix = "升级到已修复的 BSD 系统版本。参考 OpenBSD 安全公告 http://www.openbsd.org/errata23.html#tcpfix。"
-workaround = "在网络边界配置防火墙规则，过滤畸形 TCP/IP 数据包。"
-steps = ["步骤1: 确认系统为受影响版本（BSD/OS 3.1、FreeBSD 1.0-3.0、OpenBSD 2.3-2.4）", "步骤2: 升级到厂商提供的最新安全版本"]
+[[exploit.exp]]
+description = "Teardrop IP 分片拒绝服务利用程序（原始代码）"
+source = "exploit-db"
+url = "https://www.exploit-db.com/raw/19078"
 
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0001"
-avd = ""
-other = [
-  { url = "http://www.openbsd.org/errata23.html#tcpfix", description = "OpenBSD 安全公告" },
-  { url = "http://www.osvdb.org/5707", description = "OSVDB-5707" }
-]
+[[exploit.poc]]
+description = "Teardrop IP 分片拒绝服务 PoC"
+source = "exploit-db"
+url = "https://www.exploit-db.com/exploits/19078"
 
-[tags]
-tags = ["CWE-20", "DoS", "BSD", "TCP/IP", "Teardrop", "IP Fragment"]
+[[exploit.poc]]
+description = "Teardrop 拒绝服务利用程序（ExploitDB 镜像）"
+source = "github"
+url = "https://github.com/offensive-security/exploitdb/blob/master/exploits/bsd/dos/19078.c"
+
+[[exploit.poc]]
+description = "Teardrop IP 分片拒绝服务 PoC"
+source = "packetstorm"
+url = "https://packetstormsecurity.com/files/19078/teardrop.c.html"
+
+[id]
+avd_id = ""
+ave_id = "AVE-1999-0204"
+cve_id = "CVE-1999-0001"
+other_ids = ["OSVDB-5707"]
 
 [meta]
 collected_at = "2026-07-10T14:01:53Z"
 status = "completed"
+
+[references]
+avd = ""
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0001"
+
+[[references.other]]
+description = "OpenBSD 安全公告"
+url = "http://www.openbsd.org/errata23.html#tcpfix"
+
+[[references.other]]
+description = "OSVDB-5707"
+url = "http://www.osvdb.org/5707"
+
+[remediation]
+fix = "升级到已修复的 BSD 系统版本。参考 OpenBSD 安全公告 http://www.openbsd.org/errata23.html#tcpfix。"
+steps = [
+    "步骤1: 确认系统为受影响版本（BSD/OS 3.1、FreeBSD 1.0-3.0、OpenBSD 2.3-2.4）",
+    "步骤2: 升级到厂商提供的最新安全版本",
+]
+workaround = "在网络边界配置防火墙规则，过滤畸形 TCP/IP 数据包。"
+
+[score]
+cvss_v2 = 5.0
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:N/A:P"
+cvss_v3 = 5.5
+cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N"
+cvss_v4 = 5.1
+cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:L/VI:N/VA:N/SC:N/SI:N/SA:N"
+
+[tags]
+tags = [
+    "CWE-20",
+    "DoS",
+    "BSD",
+    "TCP/IP",
+    "Teardrop",
+    "IP Fragment",
+]

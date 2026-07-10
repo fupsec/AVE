@@ -1,16 +1,86 @@
-[id]
-ave_id = "AVE-2018-0043"
-cve_id = "CVE-2018-25114"
-avd_id = "CVE-2018-25114"
-other_ids = ["EUVD-2018-21601", "GHSA-7hjh-7hp4-wr4c"]
+[affected]
+product = "Online Merchant"
+vendor = "osCommerce"
+
+[authenticity]
+cve_confidence = "high"
+notes = "CVE编号由多个权威来源确认（NVD、AVD、GitHub Advisory、VulnCheck），CVSS v4评分9.3（严重）。存在Metasploit模块、Nuclei模板及多个Exploit-Db PoC。已在VulnCheck KEV中被收录，确认存在野外利用。原始CVE公开时间为2025年7月，但漏洞本身自2018年已被公开利用。"
+poc_confidence = "high"
 
 [basic]
-title = "osCommerce 2.3.4.1安装程序未经验证的配置文件注入PHP代码执行"
 description = "osCommerce Online Merchant 2.3.4.1版本存在远程代码执行漏洞，该漏洞源于默认配置不安全且安装程序工作流中缺少身份验证。默认情况下，/install/目录在安装完成后仍可访问。未经验证的攻击者可调用install_4.php，提交经过构造的POST数据，将任意PHP代码注入configure.php文件。当应用程序后续包含该文件时，注入的有效载荷将被执行，导致服务器端完全沦陷。"
+published = "2018-03-27"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 9.8
 severity = "CRITICAL"
 source = "nvd"
-published = "2018-03-27"
+sources = ["unknown"]
+title = "osCommerce 2.3.4.1安装程序未经验证的配置文件注入PHP代码执行"
 updated = "2026-06-16"
+
+[[exploit.exp]]
+description = "osCommerce 2.3.4.1 远程代码执行利用（支持交互式命令执行）"
+source = "exploit-db"
+url = "https://www.exploit-db.com/exploits/50128"
+
+[[exploit.exp]]
+description = "Metasploit 框架 osCommerce 安装程序未授权代码执行模块"
+source = "metasploit"
+url = "https://raw.githubusercontent.com/rapid7/metasploit-framework/master/modules/exploits/multi/http/oscommerce_installer_unauth_code_exec.rb"
+
+[[exploit.exp]]
+description = "osCommerce 2.3.4 远程命令执行完整利用脚本"
+source = "github"
+url = "https://github.com/nobodyatall648/osCommerce-2.3.4-Remote-Command-Execution"
+
+[[exploit.nuclei_templates]]
+description = "Nuclei 检测模板，通过install_4.php注入PHP代码并验证执行结果"
+source = "nuclei"
+url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cves/2018/CVE-2018-25114.yaml"
+
+[[exploit.poc]]
+description = "osCommerce 2.3.4.1 远程代码执行 PoC（Simon Scannell 原始Python利用脚本）"
+source = "exploit-db"
+url = "https://www.exploit-db.com/exploits/44374"
+
+[[exploit.poc]]
+description = "osCommerce 2.3.4 远程命令执行 PoC 脚本，通过install.php注入PHP payload至configure.php"
+source = "github"
+url = "https://github.com/nobodyatall648/osCommerce-2.3.4-Remote-Command-Execution"
+
+[id]
+avd_id = "CVE-2018-25114"
+ave_id = "AVE-2018-0043"
+cve_id = "CVE-2018-25114"
+other_ids = [
+    "EUVD-2018-21601",
+    "GHSA-7hjh-7hp4-wr4c",
+]
+
+[meta]
+collected_at = "2026-07-10T15:00:00Z"
+status = "completed"
+
+[references]
+avd = "https://avd.aliyun.com/detail?id=CVE-2018-25114"
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2018-25114"
+other = [
+    "https://github.com/advisories/GHSA-7hjh-7hp4-wr4c",
+    "https://www.exploit-db.com/exploits/44374",
+    "https://www.exploit-db.com/exploits/50128",
+    "https://www.rapid7.com/db/modules/exploit/multi/http/oscommerce_installer_unauth_code_exec/",
+    "https://www.vulncheck.com/advisories/oscommerce-installer-unauth-config-file-injection-php-code-execution",
+]
+
+[remediation]
+fix = "安装完成后立即删除 /install/ 目录，并升级到已修补版本。"
+steps = [
+    "步骤1: 确认 osCommerce 版本是否为 2.3.4.1",
+    "步骤2: 检查 /install/ 目录是否存在且可访问",
+    "步骤3: 删除 /install/ 目录或配置 Web 服务器禁止访问",
+    "步骤4: 升级到最新版本",
+]
+workaround = "如无法立即升级，应确保 /install/ 目录在安装完成后被删除或通过 Web 服务器配置禁止访问。"
 
 [score]
 cvss_v2 = 7.5
@@ -20,48 +90,12 @@ cvss_v3_vector = "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
 cvss_v4 = 9.3
 cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N"
 
-[affected]
-vendor = "osCommerce"
-product = "Online Merchant"
-
-[exploit]
-poc = [
-  { url = "https://www.exploit-db.com/exploits/44374", description = "osCommerce 2.3.4.1 远程代码执行 PoC（Simon Scannell 原始Python利用脚本）", source = "exploit-db" },
-  { url = "https://github.com/nobodyatall648/osCommerce-2.3.4-Remote-Command-Execution", description = "osCommerce 2.3.4 远程命令执行 PoC 脚本，通过install.php注入PHP payload至configure.php", source = "github" }
-]
-exp = [
-  { url = "https://www.exploit-db.com/exploits/50128", description = "osCommerce 2.3.4.1 远程代码执行利用（支持交互式命令执行）", source = "exploit-db" },
-  { url = "https://raw.githubusercontent.com/rapid7/metasploit-framework/master/modules/exploits/multi/http/oscommerce_installer_unauth_code_exec.rb", description = "Metasploit 框架 osCommerce 安装程序未授权代码执行模块", source = "metasploit" },
-  { url = "https://github.com/nobodyatall648/osCommerce-2.3.4-Remote-Command-Execution", description = "osCommerce 2.3.4 远程命令执行完整利用脚本", source = "github" }
-]
-nuclei_templates = [
-  { url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cves/2018/CVE-2018-25114.yaml", description = "Nuclei 检测模板，通过install_4.php注入PHP代码并验证执行结果", source = "nuclei" }
-]
-
-[remediation]
-fix = "安装完成后立即删除 /install/ 目录，并升级到已修补版本。"
-workaround = "如无法立即升级，应确保 /install/ 目录在安装完成后被删除或通过 Web 服务器配置禁止访问。"
-steps = ["步骤1: 确认 osCommerce 版本是否为 2.3.4.1", "步骤2: 检查 /install/ 目录是否存在且可访问", "步骤3: 删除 /install/ 目录或配置 Web 服务器禁止访问", "步骤4: 升级到最新版本"]
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2018-25114"
-avd = "https://avd.aliyun.com/detail?id=CVE-2018-25114"
-other = [
-  "https://github.com/advisories/GHSA-7hjh-7hp4-wr4c",
-  "https://www.exploit-db.com/exploits/44374",
-  "https://www.exploit-db.com/exploits/50128",
-  "https://www.rapid7.com/db/modules/exploit/multi/http/oscommerce_installer_unauth_code_exec/",
-  "https://www.vulncheck.com/advisories/oscommerce-installer-unauth-config-file-injection-php-code-execution"
-]
-
 [tags]
-tags = ["CWE-94", "CWE-434", "RCE", "code-injection", "oscommerce", "installer-abuse"]
-
-[authenticity]
-cve_confidence = "high"
-poc_confidence = "high"
-notes = "CVE编号由多个权威来源确认（NVD、AVD、GitHub Advisory、VulnCheck），CVSS v4评分9.3（严重）。存在Metasploit模块、Nuclei模板及多个Exploit-Db PoC。已在VulnCheck KEV中被收录，确认存在野外利用。原始CVE公开时间为2025年7月，但漏洞本身自2018年已被公开利用。"
-
-[meta]
-collected_at = "2026-07-10T15:00:00Z"
-status = "completed"
+tags = [
+    "CWE-94",
+    "CWE-434",
+    "RCE",
+    "code-injection",
+    "oscommerce",
+    "installer-abuse",
+]

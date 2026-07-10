@@ -1,34 +1,33 @@
-
-[id]
-  ave_id = "AVE-2015-0015"
-  cve_id = "CVE-2015-10120"
-  aliases = ["CVE-2015-10120"]
-
 [basic]
-  title = "WordPress plugin WDS Multisite Aggregate 跨站脚本漏洞(CVE-2015-10120)"
-  description = ""
-  severity = "MEDIUM"
-  score = 6.1
-  sources = ["avd"]
-  published = "2023-07-11"
-  updated = ""
-  remediation = "Refer to vendor advisory and upgrade to fixed version."
-
-[score]
-  cvss_v2 = 4.3
-  cvss_v2_vector = "AV:N/AC:M/Au:N/C:N/I:P/A:N"
-  cvss_v3 = 6.1
-  cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N"
-  cvss_v4 = 5.1
-  cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:A/VC:L/VI:L/VA:N/SC:N/SI:N/SA:N"
+description = "Vulnerability identified as CVE-2015-10120. Please refer to vendor advisory for details."
+published = "2023-07-11"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 6.1
+severity = "MEDIUM"
+sources = ["avd"]
+title = "WordPress plugin WDS Multisite Aggregate 跨站脚本漏洞(CVE-2015-10120)"
+updated = "2026-07-10"
 
 [exploit]
-poc_urls = []
 exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2015-10120"]
+ave_id = "AVE-2015-0015"
+cve_id = "CVE-2015-10120"
+
+[meta]
+collected_at = "2026-07-10T06:25:02.128350652+00:00"
+status = "completed"
 
 [references]
 urls = []
 
-[meta]
-status = "completed"
-collected_at = "2026-07-10T06:25:02.128350652+00:00"
+[score]
+cvss_v2 = 4.3
+cvss_v2_vector = "AV:N/AC:M/Au:N/C:N/I:P/A:N"
+cvss_v3 = 6.1
+cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N"
+cvss_v4 = 5.1
+cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:A/VC:L/VI:L/VA:N/SC:N/SI:N/SA:N"

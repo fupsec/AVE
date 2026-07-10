@@ -1,61 +1,78 @@
-[id]
-ave_id = "AVE-2026-0028"
-cve_id = ""
-avd_id = ""
-other_ids = ["CNVD-2018-13393"]
+[affected]
+product = "米拓建站系统（Metinfo CMS）"
+vendor = "Metinfo"
+
+[authenticity]
+cve_confidence = "low"
+notes = "此漏洞为 CNVD 收录编号 CNVD-2018-13393，目前未发现对应 CVE 编号或阿里云 AVD 编号。Nuclei 模板已验证可利用。Seebug 文章（paper.seebug.org/676）详细描述了 Metinfo 多个漏洞，包括此 LFI。漏洞影响 Metinfo 米拓建站系统，属于中文 CMS。经过搜索 NVD、GitHub、Exploit-DB、PacketStorm、Sploitus 等渠道，未发现额外的公开 PoC/EXP 资源。"
+poc_confidence = "high"
 
 [basic]
-title = "Metinfo（米拓建站系统）include/thumb.php 本地文件包含漏洞"
-description = "Metinfo（米拓建站系统）的 /include/thumb.php 文件中存在本地文件包含漏洞。攻击者可通过构造特制的 dir 参数（如 http\\..\\admin\\login\\login_check.php），利用路径遍历读取服务器上的任意 PHP 文件源码，从而获取敏感信息，包括数据库配置、管理员凭据等。此漏洞源于对 dir 参数过滤不严，允许攻击者绕过路径限制读取受限文件。"
+description = 'Metinfo（米拓建站系统）的 /include/thumb.php 文件中存在本地文件包含漏洞。攻击者可通过构造特制的 dir 参数（如 http\..\admin\login\login_check.php），利用路径遍历读取服务器上的任意 PHP 文件源码，从而获取敏感信息，包括数据库配置、管理员凭据等。此漏洞源于对 dir 参数过滤不严，允许攻击者绕过路径限制读取受限文件。'
+published = "2018-07-11"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 7.5
 severity = "HIGH"
 source = "nuclei"
-published = "2018-07-11"
+sources = ["unknown"]
+title = "Metinfo（米拓建站系统）include/thumb.php 本地文件包含漏洞"
 updated = "2018-07-11"
+
+[exploit]
+exp = []
+
+[[exploit.nuclei_templates]]
+description = "Metinfo include/thumb.php 本地文件包含 Nuclei 检测模板"
+source = "nuclei"
+url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2018/CNVD-2018-13393.yaml"
+
+[[exploit.poc]]
+description = "Metinfo include/thumb.php 本地文件包含 Nuclei 检测模板"
+source = "nuclei"
+url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2018/CNVD-2018-13393.yaml"
+
+[[exploit.poc]]
+description = "Seebug 文章：Metinfo 多个漏洞分析（含此 LFI）"
+source = "其他"
+url = "https://paper.seebug.org/676/"
+
+[id]
+avd_id = ""
+ave_id = "AVE-2026-0028"
+cve_id = ""
+other_ids = ["CNVD-2018-13393"]
+
+[meta]
+collected_at = "2026-07-11T10:18:58Z"
+status = "completed"
+
+[references]
+avd = ""
+nvd = ""
+other = [
+    "https://paper.seebug.org/676/",
+    "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2018/CNVD-2018-13393.yaml",
+    "https://www.cnvd.org.cn/flaw/show/CNVD-2018-13393",
+]
+
+[remediation]
+fix = "升级到 Metinfo 最新版本，厂商已在后续版本中修复了 thumb.php 的路径过滤问题。"
+steps = [
+    "1. 确认 Metinfo 版本是否受影响",
+    "2. 升级到 Metinfo 官方最新版本",
+    "3. 如无法升级，在 Web 服务器添加访问控制规则，限制对 /include/thumb.php 的访问",
+]
+workaround = "如无法升级，可在 Web 服务器层面（如 Nginx/Apache）配置规则，拦截对 /include/thumb.php 的异常 dir 参数请求。"
 
 [score]
 cvss_v3 = 8.6
 cvss_v3_vector = "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:N/A:N"
 
-[affected]
-vendor = "Metinfo"
-product = "米拓建站系统（Metinfo CMS）"
-
-[exploit]
-poc = [
-  { url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2018/CNVD-2018-13393.yaml", description = "Metinfo include/thumb.php 本地文件包含 Nuclei 检测模板", source = "nuclei" },
-  { url = "https://paper.seebug.org/676/", description = "Seebug 文章：Metinfo 多个漏洞分析（含此 LFI）", source = "其他" }
-]
-exp = []
-nuclei_templates = [
-  { url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2018/CNVD-2018-13393.yaml", description = "Metinfo include/thumb.php 本地文件包含 Nuclei 检测模板", source = "nuclei" }
-]
-
-[remediation]
-fix = "升级到 Metinfo 最新版本，厂商已在后续版本中修复了 thumb.php 的路径过滤问题。"
-workaround = "如无法升级，可在 Web 服务器层面（如 Nginx/Apache）配置规则，拦截对 /include/thumb.php 的异常 dir 参数请求。"
-steps = [
-  "1. 确认 Metinfo 版本是否受影响",
-  "2. 升级到 Metinfo 官方最新版本",
-  "3. 如无法升级，在 Web 服务器添加访问控制规则，限制对 /include/thumb.php 的访问"
-]
-
-[references]
-nvd = ""
-avd = ""
-other = [
-  "https://paper.seebug.org/676/",
-  "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2018/CNVD-2018-13393.yaml",
-  "https://www.cnvd.org.cn/flaw/show/CNVD-2018-13393"
-]
-
 [tags]
-tags = ["CWE-22", "LFI", "Path Traversal", "信息泄露", "Metinfo"]
-
-[authenticity]
-cve_confidence = "low"
-poc_confidence = "high"
-notes = "此漏洞为 CNVD 收录编号 CNVD-2018-13393，目前未发现对应 CVE 编号或阿里云 AVD 编号。Nuclei 模板已验证可利用。Seebug 文章（paper.seebug.org/676）详细描述了 Metinfo 多个漏洞，包括此 LFI。漏洞影响 Metinfo 米拓建站系统，属于中文 CMS。经过搜索 NVD、GitHub、Exploit-DB、PacketStorm、Sploitus 等渠道，未发现额外的公开 PoC/EXP 资源。"
-
-[meta]
-collected_at = "2026-07-11T10:18:58Z"
-status = "completed"
+tags = [
+    "CWE-22",
+    "LFI",
+    "Path Traversal",
+    "信息泄露",
+    "Metinfo",
+]

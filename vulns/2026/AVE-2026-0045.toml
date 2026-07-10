@@ -1,60 +1,72 @@
-[id]
-ave_id = "AVE-2026-0045"
-cve_id = "CVE-2026-48737"
-avd_id = ""
-other_ids = ["GHSA-m5x5-28jr-gpjj"]
+[affected]
+product = "pyLoad-ng (pyload-ng)"
+vendor = "pyLoad"
+
+[authenticity]
+cve_confidence = "high"
+notes = "CVE仍处于RESERVED状态（NVD未发布），但GHSA安全公告提供了完整的漏洞描述、复现步骤和PoC链接，修复提交已合并到主分支。PoC脚本位于pyload仓库的research_wave5目录中。"
+poc_confidence = "high"
 
 [basic]
-title = "pyLoad SSRF防护绕过漏洞 - IPv6 6to4/NAT64过渡封装"
 description = """
 pyLoad (pyload-ng) 的 is_global_address 函数在 src/pyload/core/utils/web/check.py 中使用 Python ipaddress.ip_address(value).is_global 判断 IP 是否为全局可路由地址，作为 SSRF 防护的核心检查。但 Python 的 IPv6Address.is_global 将 NAT64 知名前缀 (64:ff9b::/96) 以及 Python 3.9-3.11 上的 6to4 前缀 (2002::/16) 中嵌入了内网 IPv4 地址（如 127.0.0.1、10.0.0.1、169.254.169.254）的地址均归类为"全局可路由"，导致 SSRF 防护被绕过。攻击者可利用此漏洞，通过构造包含 IPv6 过渡编码地址的下载 URL，绕过 is_global_address/is_global_host 检查，使 pycurl PREREQFUNC 允许连接到内部网络端点，实现服务端请求伪造。影响所有声明 python_requires >= 3.9 的 pyLoad-ng 部署。
 """
+published = "2026-05-22"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 5.5
 severity = "MEDIUM"
 source = "ghsa"
-published = "2026-05-22"
+sources = ["unknown"]
+title = "pyLoad SSRF防护绕过漏洞 - IPv6 6to4/NAT64过渡封装"
 updated = "2026-07-10"
+
+[exploit]
+exp = []
+nuclei_templates = []
+
+[[exploit.poc]]
+description = "SSRF绕过验证PoC脚本"
+source = "github"
+url = "https://github.com/pyload/pyload/blob/1b12dc7f348db8c144e0f39215680415e90ca4d2/research_wave5/poc/pyload_ipv6_ssrf/poc.py"
+
+[id]
+avd_id = ""
+ave_id = "AVE-2026-0045"
+cve_id = "CVE-2026-48737"
+other_ids = ["GHSA-m5x5-28jr-gpjj"]
+
+[meta]
+collected_at = "2026-07-10T12:52:04Z"
+status = "completed"
+
+[references]
+avd = ""
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2026-48737"
+other = [
+    "https://github.com/pyload/pyload/security/advisories/GHSA-m5x5-28jr-gpjj",
+    "https://github.com/pyload/pyload/commit/ba7491046b2d430732be490913e4cbf1f1e899c2",
+    "https://github.com/pyload/pyload/blob/1b12dc7f348db8c144e0f39215680415e90ca4d2/src/pyload/core/utils/web/check.py",
+]
+
+[remediation]
+fix = "升级到包含修复提交 ba7491046b2d430732be490913e4cbf1f1e899c2 的版本。参考官方安全公告 GHSA-m5x5-28jr-gpjj。"
+steps = [
+    "确认当前 pyLoad 版本，检查 src/pyload/core/utils/web/check.py 中 is_global_address 的实现",
+    "更新至包含修复提交 ba7491046b2d430732be490913e4cbf1f1e899c2 的版本",
+    "如无法立即升级，手动应用补丁：添加 is_embedded_ipv4 函数解包 IPv6 过渡地址中的嵌入式 IPv4，并在 is_global_address 中对 IPv6 地址先解包再判断",
+]
+workaround = "如无法升级，可在 is_global_address 函数中添加 IPv6 过渡编码形式的嵌入式 IPv4 解包检查，并加入知名嵌入前缀的黑名单（64:ff9b::/96, 64:ff9b:1::/48）进行深度防御。"
 
 [score]
 cvss_v3 = 4.7
 cvss_v3_vector = "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:C/C:L/I:N/A:L"
 
-[affected]
-vendor = "pyLoad"
-product = "pyLoad-ng (pyload-ng)"
-
-[exploit]
-poc = [
-  { url = "https://github.com/pyload/pyload/blob/1b12dc7f348db8c144e0f39215680415e90ca4d2/research_wave5/poc/pyload_ipv6_ssrf/poc.py", description = "SSRF绕过验证PoC脚本", source = "github" }
-]
-exp = []
-nuclei_templates = []
-
-[remediation]
-fix = "升级到包含修复提交 ba7491046b2d430732be490913e4cbf1f1e899c2 的版本。参考官方安全公告 GHSA-m5x5-28jr-gpjj。"
-workaround = "如无法升级，可在 is_global_address 函数中添加 IPv6 过渡编码形式的嵌入式 IPv4 解包检查，并加入知名嵌入前缀的黑名单（64:ff9b::/96, 64:ff9b:1::/48）进行深度防御。"
-steps = [
-  "确认当前 pyLoad 版本，检查 src/pyload/core/utils/web/check.py 中 is_global_address 的实现",
-  "更新至包含修复提交 ba7491046b2d430732be490913e4cbf1f1e899c2 的版本",
-  "如无法立即升级，手动应用补丁：添加 is_embedded_ipv4 函数解包 IPv6 过渡地址中的嵌入式 IPv4，并在 is_global_address 中对 IPv6 地址先解包再判断"
-]
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2026-48737"
-avd = ""
-other = [
-  "https://github.com/pyload/pyload/security/advisories/GHSA-m5x5-28jr-gpjj",
-  "https://github.com/pyload/pyload/commit/ba7491046b2d430732be490913e4cbf1f1e899c2",
-  "https://github.com/pyload/pyload/blob/1b12dc7f348db8c144e0f39215680415e90ca4d2/src/pyload/core/utils/web/check.py"
-]
-
 [tags]
-tags = ["CWE-918", "SSRF", "IPv6", "NAT64", "6to4", "pyLoad"]
-
-[authenticity]
-cve_confidence = "high"
-poc_confidence = "high"
-notes = "CVE仍处于RESERVED状态（NVD未发布），但GHSA安全公告提供了完整的漏洞描述、复现步骤和PoC链接，修复提交已合并到主分支。PoC脚本位于pyload仓库的research_wave5目录中。"
-
-[meta]
-collected_at = "2026-07-10T12:52:04Z"
-status = "completed"
+tags = [
+    "CWE-918",
+    "SSRF",
+    "IPv6",
+    "NAT64",
+    "6to4",
+    "pyLoad",
+]

@@ -1,60 +1,82 @@
-[id]
-ave_id = "AVE-2023-0002"
-cve_id = "CVE-2023-46747"
-avd_id = ""
-other_ids = []
+[affected]
+product = "BIG-IP"
+vendor = "F5"
+
+[authenticity]
+cve_confidence = "high"
+notes = "该漏洞已被CISA KEV收录，有公开的PoC/EXP和Metasploit模块，真实性确凿。"
+poc_confidence = "high"
 
 [basic]
-title = "F5 BIG-IP 配置实用程序认证绕过漏洞"
 description = "F5 BIG-IP 配置实用程序（TMUI）存在认证绕过漏洞，未经身份验证的远程攻击者可通过管理端口或自IP地址发送特制请求，绕过配置实用程序的身份验证，通过AJP协议走私（AJP Smuggling）执行任意系统命令。该漏洞已被CISA列入已知被利用漏洞目录（KEV），且已在野被积极利用。"
+published = "2023-10-26"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 9.8
 severity = "CRITICAL"
 source = "nvd"
-published = "2023-10-26"
+sources = ["unknown"]
+title = "F5 BIG-IP 配置实用程序认证绕过漏洞"
 updated = "2026-06-17"
+
+[[exploit.exp]]
+description = "Metasploit 远程命令执行模块"
+source = "github"
+url = "https://github.com/rapid7/metasploit-framework/tree/master/modules/exploits/linux/http/f5_bigip_tmui_ajp_smuggling"
+
+[[exploit.nuclei_templates]]
+description = "Nuclei 检测模板"
+source = "nuclei"
+url = "https://github.com/adysec/nuclei_poc/blob/ce5a47e163f5440c84dbfc0adb073ab35f562154/poc/cve/CVE-2023-46747.yaml"
+
+[[exploit.nuclei_templates]]
+description = "Nuclei 官方检测模板"
+source = "nuclei"
+url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cves/2023/CVE-2023-46747.yaml"
+
+[[exploit.poc]]
+description = "F5 BIG-IP TMUI AJP走私远程命令执行PoC"
+source = "exploit-db"
+url = "http://packetstormsecurity.com/files/175673/F5-BIG-IP-TMUI-AJP-Smuggling-Remote-Command-Execution.html"
+
+[id]
+avd_id = ""
+ave_id = "AVE-2023-0002"
+cve_id = "CVE-2023-46747"
+other_ids = []
+
+[meta]
+collected_at = "2026-07-11T00:00:00Z"
+status = "completed"
+
+[references]
+avd = ""
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2023-46747"
+other = [
+    "https://my.f5.com/manage/s/article/K000137353",
+    "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
+    "http://packetstormsecurity.com/files/175673/F5-BIG-IP-TMUI-AJP-Smuggling-Remote-Command-Execution.html",
+    "https://www.secpod.com/blog/f5-issues-warning-big-ip-vulnerability-used-in-active-exploit-chain/",
+]
+
+[remediation]
+fix = "升级到以下修复版本：BIG-IP 17.1.0.3.0.75.4、17.1.1.0.2.6、16.1.4.1.0.50.5、15.1.10.2.0.44.2、14.1.5.6.0.10.6 或 13.1.5.1.0.20.2。参考F5官方安全公告 K000137353。"
+steps = [
+    "步骤1: 确认BIG-IP版本",
+    "步骤2: 访问F5官方公告 K000137353 获取修复版本",
+    "步骤3: 升级BIG-IP到修复版本",
+    "步骤4: 如无法升级，限制管理端口和自IP地址的网络访问权限",
+]
+workaround = "如无法升级，可限制对BIG-IP管理端口和自IP地址的访问，仅允许受信任的网络访问配置实用程序。"
 
 [score]
 cvss_v3 = 9.8
 cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
 
-[affected]
-vendor = "F5"
-product = "BIG-IP"
-
-[exploit]
-poc = [
-  { url = "http://packetstormsecurity.com/files/175673/F5-BIG-IP-TMUI-AJP-Smuggling-Remote-Command-Execution.html", description = "F5 BIG-IP TMUI AJP走私远程命令执行PoC", source = "exploit-db" }
-]
-exp = [
-  { url = "https://github.com/rapid7/metasploit-framework/tree/master/modules/exploits/linux/http/f5_bigip_tmui_ajp_smuggling", description = "Metasploit 远程命令执行模块", source = "github" }
-]
-nuclei_templates = [
-  { url = "https://github.com/adysec/nuclei_poc/blob/ce5a47e163f5440c84dbfc0adb073ab35f562154/poc/cve/CVE-2023-46747.yaml", description = "Nuclei 检测模板", source = "nuclei" },
-  { url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cves/2023/CVE-2023-46747.yaml", description = "Nuclei 官方检测模板", source = "nuclei" }
-]
-
-[remediation]
-fix = "升级到以下修复版本：BIG-IP 17.1.0.3.0.75.4、17.1.1.0.2.6、16.1.4.1.0.50.5、15.1.10.2.0.44.2、14.1.5.6.0.10.6 或 13.1.5.1.0.20.2。参考F5官方安全公告 K000137353。"
-workaround = "如无法升级，可限制对BIG-IP管理端口和自IP地址的访问，仅允许受信任的网络访问配置实用程序。"
-steps = ["步骤1: 确认BIG-IP版本", "步骤2: 访问F5官方公告 K000137353 获取修复版本", "步骤3: 升级BIG-IP到修复版本", "步骤4: 如无法升级，限制管理端口和自IP地址的网络访问权限"]
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2023-46747"
-avd = ""
-other = [
-  "https://my.f5.com/manage/s/article/K000137353",
-  "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
-  "http://packetstormsecurity.com/files/175673/F5-BIG-IP-TMUI-AJP-Smuggling-Remote-Command-Execution.html",
-  "https://www.secpod.com/blog/f5-issues-warning-big-ip-vulnerability-used-in-active-exploit-chain/"
-]
-
 [tags]
-tags = ["CWE-306", "CWE-288", "RCE", "AJP-Smuggling", "Authentication-Bypass"]
-
-[authenticity]
-cve_confidence = "high"
-poc_confidence = "high"
-notes = "该漏洞已被CISA KEV收录，有公开的PoC/EXP和Metasploit模块，真实性确凿。"
-
-[meta]
-collected_at = "2026-07-11T00:00:00Z"
-status = "completed"
+tags = [
+    "CWE-306",
+    "CWE-288",
+    "RCE",
+    "AJP-Smuggling",
+    "Authentication-Bypass",
+]

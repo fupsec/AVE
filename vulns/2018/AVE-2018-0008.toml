@@ -1,34 +1,36 @@
-
-[id]
-  ave_id = "AVE-2018-0008"
-  cve_id = "CVE-2018-1359"
-  aliases = ["CVE-2018-1359"]
-
 [basic]
-  title = "CVE-2018-1359 (Rejected)"
-  description = "CVE-2018-1359 已被 Fortinet 标记为 REJECTED，原因为 'Not used'。该 CVE 编号已被分配方撤回，未与任何真实漏洞关联。"
-  severity = "NONE"
-  score = 0.0
-  sources = ["avd", "nvd"]
-  published = "2025-05-06"
-  updated = "2025-05-06"
-  remediation = ""
-
-[score]
-  cvss_v2 = 0.0
-  cvss_v2_vector = ""
-  cvss_v3 = 0.0
-  cvss_v3_vector = ""
-  cvss_v4 = 0.0
-  cvss_v4_vector = ""
+description = "CVE-2018-1359 已被 Fortinet 标记为 REJECTED，原因为 'Not used'。该 CVE 编号已被分配方撤回，未与任何真实漏洞关联。"
+published = "2025-05-06"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 5.0
+severity = "NONE"
+sources = [
+    "avd",
+    "nvd",
+]
+title = "CVE-2018-1359 (Rejected)"
+updated = "2025-05-06"
 
 [exploit]
-poc_urls = []
 exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2018-1359"]
+ave_id = "AVE-2018-0008"
+cve_id = "CVE-2018-1359"
+
+[meta]
+collected_at = "2026-07-10T10:50:52.712807081+00:00"
+status = "completed"
 
 [references]
 urls = []
 
-[meta]
-  status = "completed"
-  collected_at = "2026-07-10T10:50:52.712807081+00:00"
+[score]
+cvss_v2 = 0.0
+cvss_v2_vector = ""
+cvss_v3 = 0.0
+cvss_v3_vector = ""
+cvss_v4 = 0.0
+cvss_v4_vector = ""

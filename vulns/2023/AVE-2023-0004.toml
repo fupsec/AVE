@@ -1,54 +1,77 @@
-[id]
-ave_id = "AVE-2023-0004"
-cve_id = "CVE-2023-5142"
-avd_id = ""
-other_ids = ["HWPOC-2023-000475df"]
+[affected]
+product = "ER系列G2路由器（ER3200G2/ER2200G2/ER3260G2/ER5100G2/ER5200G2/ER6300G2 等）"
+vendor = "H3C"
+
+[authenticity]
+cve_confidence = "high"
+notes = "CVE-2023-5142 经 NVD 确认，VulDB 编号 VDB-240238，多来源交叉验证。PoC 已在 GitHub (CJCniubi666/H3C-ER, kuangxiaotu/CVE-H3C-Report) 上公开可用，利用难度较高但无需认证即可远程利用。"
+poc_confidence = "high"
 
 [basic]
-title = "H3C ER系列G2路由器路径遍历信息泄露漏洞"
 description = "H3C GR-1100-P、GR-1108-P、GR-1200W、GR-1800AX、GR-2200、GR-3200、GR-5200、GR-8300、ER2100n、ER2200G2、ER3200G2、ER3260G2、ER5100G2、ER5200G2、ER6300G2 路由器存在路径遍历漏洞。攻击者可利用 /userLogin.asp 的路径遍历漏洞构造特制请求下载路由器配置文件，获取包含密码在内的敏感信息，严重威胁网络安全。"
+published = "2023-09-24"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 5.5
 severity = "MEDIUM"
 source = "nvd"
-published = "2023-09-24"
+sources = ["unknown"]
+title = "H3C ER系列G2路由器路径遍历信息泄露漏洞"
 updated = "2026-06-17"
+
+[exploit]
+exp = []
+nuclei_templates = []
+
+[[exploit.poc]]
+description = "H3C ER 系列路由器路径遍历漏洞 PoC，通过 /userLogin.asp 路径遍历下载配置文件"
+source = "github"
+url = "https://github.com/CJCniubi666/H3C-ER"
+
+[[exploit.poc]]
+description = "CVE-2023-5142 H3C ER 系列路由器信息泄露漏洞报告"
+source = "github"
+url = "https://github.com/kuangxiaotu/CVE-H3C-Report"
+
+[id]
+avd_id = ""
+ave_id = "AVE-2023-0004"
+cve_id = "CVE-2023-5142"
+other_ids = ["HWPOC-2023-000475df"]
+
+[meta]
+collected_at = "2026-07-10T17:30:00Z"
+status = "completed"
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2023-5142"
+other = [
+    "https://vuldb.com/?id.240238",
+    "https://github.com/CJCniubi666/H3C-ER",
+    "https://github.com/kuangxiaotu/CVE-H3C-Report",
+]
+
+[remediation]
+fix = "联系 H3C 官方获取安全修复固件补丁。升级到受影响版本以上的最新固件版本。"
+steps = [
+    "步骤1: 确认路由器型号和固件版本",
+    "步骤2: 联系 H3C 官方获取修复固件",
+    "步骤3: 升级到修复版本",
+    "步骤4: 升级后修改管理密码，并检查配置文件中是否已泄露敏感信息",
+]
+workaround = "限制对路由器管理页面（/userLogin.asp）的访问，通过 ACL 限定可访问的管理 IP 范围，或将管理端口仅开放给内网可信网段。"
 
 [score]
 cvss_v3 = 5.3
 cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N"
 
-[affected]
-vendor = "H3C"
-product = "ER系列G2路由器（ER3200G2/ER2200G2/ER3260G2/ER5100G2/ER5200G2/ER6300G2 等）"
-
-[exploit]
-poc = [
-  { url = "https://github.com/CJCniubi666/H3C-ER", description = "H3C ER 系列路由器路径遍历漏洞 PoC，通过 /userLogin.asp 路径遍历下载配置文件", source = "github" },
-  { url = "https://github.com/kuangxiaotu/CVE-H3C-Report", description = "CVE-2023-5142 H3C ER 系列路由器信息泄露漏洞报告", source = "github" }
-]
-exp = []
-nuclei_templates = []
-
-[remediation]
-fix = "联系 H3C 官方获取安全修复固件补丁。升级到受影响版本以上的最新固件版本。"
-workaround = "限制对路由器管理页面（/userLogin.asp）的访问，通过 ACL 限定可访问的管理 IP 范围，或将管理端口仅开放给内网可信网段。"
-steps = ["步骤1: 确认路由器型号和固件版本", "步骤2: 联系 H3C 官方获取修复固件", "步骤3: 升级到修复版本", "步骤4: 升级后修改管理密码，并检查配置文件中是否已泄露敏感信息"]
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2023-5142"
-other = [
-  "https://vuldb.com/?id.240238",
-  "https://github.com/CJCniubi666/H3C-ER",
-  "https://github.com/kuangxiaotu/CVE-H3C-Report"
-]
-
 [tags]
-tags = ["CWE-22", "CWE-200", "H3C", "ER3200G2", "路径遍历", "信息泄露", "路由器", "未授权访问"]
-
-[authenticity]
-cve_confidence = "high"
-poc_confidence = "high"
-notes = "CVE-2023-5142 经 NVD 确认，VulDB 编号 VDB-240238，多来源交叉验证。PoC 已在 GitHub (CJCniubi666/H3C-ER, kuangxiaotu/CVE-H3C-Report) 上公开可用，利用难度较高但无需认证即可远程利用。"
-
-[meta]
-collected_at = "2026-07-10T17:30:00Z"
-status = "completed"
+tags = [
+    "CWE-22",
+    "CWE-200",
+    "H3C",
+    "ER3200G2",
+    "路径遍历",
+    "信息泄露",
+    "路由器",
+    "未授权访问",
+]

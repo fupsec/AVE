@@ -1,55 +1,72 @@
-
-[id]
-  ave_id = "AVE-1999-0203"
-  cve_id = "CVE-1999-0418"
-  avd_id = ""
-  other_ids = []
-
-[basic]
-  title = "Sendmail SMTP 应用程序拒绝服务漏洞"
-  description = "Sendmail 等 SMTP 应用程序存在拒绝服务漏洞。远程攻击者（如垃圾邮件发送者）可在同一连接中发送大量 RCPT TO 命令，导致服务器资源耗尽，造成拒绝服务。"
-  severity = "MEDIUM"
-  source = "nvd"
-  published = "1999-03-08"
-  updated = "2026-06-16"
-
-[score]
-  cvss_v2 = 6.4
-  cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:N/A:P"
-  cvss_v3 = 5.5
-  cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N"
-  cvss_v4 = 5.1
-  cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:L/VI:N/VA:N/SC:N/SI:N/SA:N"
-
 [affected]
-vendor = "Sendmail"
 product = "Sendmail"
+vendor = "Sendmail"
 
 [authenticity]
 cve_confidence = "high"
-poc_confidence = "low"
 notes = "原始 Bugtraq 邮件列表中仅有描述性报告，无公开 PoC 代码。Nuclei 模板和 Exploit-DB 中均未收录此漏洞。"
+poc_confidence = "low"
+
+[basic]
+description = "Sendmail 等 SMTP 应用程序存在拒绝服务漏洞。远程攻击者（如垃圾邮件发送者）可在同一连接中发送大量 RCPT TO 命令，导致服务器资源耗尽，造成拒绝服务。"
+published = "1999-03-08"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 5.5
+severity = "MEDIUM"
+source = "nvd"
+sources = ["unknown"]
+title = "Sendmail SMTP 应用程序拒绝服务漏洞"
+updated = "2026-06-16"
 
 [exploit]
-poc = [
-  { url = "http://marc.info/?l=bugtraq&m=92100018214316&w=2", description = "原始 Bugtraq 邮件列表讨论", source = "其他" }
-]
 exp = []
 nuclei_templates = []
 
-[remediation]
-fix = "升级 Sendmail 到修复版本，或确保 SMTP 服务器对单个连接中的 RCPT TO 命令数量进行限制。"
-workaround = "如无法升级，可在防火墙或 MTA 层面限制单个 SMTP 连接的 RCPT TO 命令数量。"
-steps = ["步骤1: 确认 Sendmail 版本", "步骤2: 升级到修复版本", "步骤3: 配置 SMTP 连接限制策略"]
+[[exploit.poc]]
+description = "原始 Bugtraq 邮件列表讨论"
+source = "其他"
+url = "http://marc.info/?l=bugtraq&m=92100018214316&w=2"
 
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0418"
-avd = ""
-other = ["https://github.com/advisories/GHSA-h7h2-x82r-79fx", "https://www.cve.org/CVERecord?id=CVE-1999-0418", "http://marc.info/?l=bugtraq&m=92100018214316&w=2"]
-
-[tags]
-tags = ["DoS", "SMTP", "Sendmail", "RCPT-TO"]
+[id]
+avd_id = ""
+ave_id = "AVE-1999-0203"
+cve_id = "CVE-1999-0418"
+other_ids = []
 
 [meta]
 collected_at = "2026-07-10T00:00:00Z"
 status = "completed"
+
+[references]
+avd = ""
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0418"
+other = [
+    "https://github.com/advisories/GHSA-h7h2-x82r-79fx",
+    "https://www.cve.org/CVERecord?id=CVE-1999-0418",
+    "http://marc.info/?l=bugtraq&m=92100018214316&w=2",
+]
+
+[remediation]
+fix = "升级 Sendmail 到修复版本，或确保 SMTP 服务器对单个连接中的 RCPT TO 命令数量进行限制。"
+steps = [
+    "步骤1: 确认 Sendmail 版本",
+    "步骤2: 升级到修复版本",
+    "步骤3: 配置 SMTP 连接限制策略",
+]
+workaround = "如无法升级，可在防火墙或 MTA 层面限制单个 SMTP 连接的 RCPT TO 命令数量。"
+
+[score]
+cvss_v2 = 6.4
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:N/A:P"
+cvss_v3 = 5.5
+cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N"
+cvss_v4 = 5.1
+cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:L/VI:N/VA:N/SC:N/SI:N/SA:N"
+
+[tags]
+tags = [
+    "DoS",
+    "SMTP",
+    "Sendmail",
+    "RCPT-TO",
+]

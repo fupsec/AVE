@@ -1,53 +1,65 @@
-
-[id]
-  ave_id = "AVE-2000-0024"
-  cve_id = "CVE-2000-0373"
-  avd_id = ""
-  other_ids = ["EUVD-2000-0372"]
-
-[basic]
-  title = "KDE kvt 终端程序本地提权漏洞"
-  description = "KDE kvt 终端程序存在安全漏洞，本地用户可以利用该漏洞获取 root 权限。"
-  severity = "HIGH"
-  source = "redhat"
-  published = "1999-06-01"
-  updated = "2024-08-08"
-
-[score]
-  cvss_v2 = 7.2
-  cvss_v2_vector = "AV:L/AC:L/Au:N/C:C/I:C/A:C"
-  cvss_v3 = 5.5
-  cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N"
-  cvss_v4 = 5.1
-  cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:L/VI:N/VA:N/SC:N/SI:N/SA:N"
-
 [affected]
-vendor = "KDE"
 product = "kvt"
+vendor = "KDE"
 
 [authenticity]
 cve_confidence = "high"
-poc_confidence = "low"
 notes = "该漏洞为本地权限提升漏洞，无公开可用的 PoC 或 EXP 利用代码。CVE 已被多个安全数据库收录，NVD 给予 CVSS v2 7.2 HIGH 评分。"
+poc_confidence = "low"
+
+[basic]
+description = "KDE kvt 终端程序存在安全漏洞，本地用户可以利用该漏洞获取 root 权限。"
+published = "1999-06-01"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 7.5
+severity = "HIGH"
+source = "redhat"
+sources = ["unknown"]
+title = "KDE kvt 终端程序本地提权漏洞"
+updated = "2024-08-08"
 
 [exploit]
-poc = []
 exp = []
 nuclei_templates = []
+poc = []
 
-[remediation]
-fix = "升级到 KDE kvt 已修复版本。建议迁移到 konsole 等现代终端仿真器。"
-workaround = "限制对 kvt 终端程序的本地访问权限。"
-steps = ["步骤1: 检查当前使用的 KDE kvt 版本", "步骤2: 升级到已修复版本或迁移到 konsole"]
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2000-0373"
-avd = ""
-other = ["http://www.redhat.com/support/errata/RHSA1999015_01.html", "https://exchange.xforce.ibmcloud.com/vulnerabilities/2266"]
-
-[tags]
-tags = ["local-privilege-escalation", "kde", "kvt"]
+[id]
+avd_id = ""
+ave_id = "AVE-2000-0024"
+cve_id = "CVE-2000-0373"
+other_ids = ["EUVD-2000-0372"]
 
 [meta]
 collected_at = "2026-07-10T00:00:00Z"
 status = "completed"
+
+[references]
+avd = ""
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2000-0373"
+other = [
+    "http://www.redhat.com/support/errata/RHSA1999015_01.html",
+    "https://exchange.xforce.ibmcloud.com/vulnerabilities/2266",
+]
+
+[remediation]
+fix = "升级到 KDE kvt 已修复版本。建议迁移到 konsole 等现代终端仿真器。"
+steps = [
+    "步骤1: 检查当前使用的 KDE kvt 版本",
+    "步骤2: 升级到已修复版本或迁移到 konsole",
+]
+workaround = "限制对 kvt 终端程序的本地访问权限。"
+
+[score]
+cvss_v2 = 7.2
+cvss_v2_vector = "AV:L/AC:L/Au:N/C:C/I:C/A:C"
+cvss_v3 = 5.5
+cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N"
+cvss_v4 = 5.1
+cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:L/VI:N/VA:N/SC:N/SI:N/SA:N"
+
+[tags]
+tags = [
+    "local-privilege-escalation",
+    "kde",
+    "kvt",
+]

@@ -1,52 +1,71 @@
-
-[id]
-  ave_id = "AVE-2002-0032"
-  cve_id = "CVE-2002-0875"
-  aliases = ["CVE-2002-0875"]
-  other_ids = []
-
-[basic]
-  title = "FAM（File Alteration Monitor）未授权文件名称信息泄露漏洞"
-  description = "FAM 2.6.8、2.6.6 及其他版本中存在漏洞，允许非特权用户获取本应仅限 root 组访问的文件名称。"
-  severity = "LOW"
-  source = "nvd"
-  published = "2002-09-05"
-  updated = "2026-06-16"
-
-[score]
-  cvss_v2 = 2.1
-  cvss_v2_vector = "AV:L/AC:L/Au:N/C:P/I:N/A:N"
-  cvss_v3 = 7.5
-  cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N"
-  cvss_v4 = 8.6
-  cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N"
-
 [affected]
-vendor = "SGI"
 product = "FAM (File Alteration Monitor)"
+vendor = "SGI"
 
 [authenticity]
 cve_confidence = "high"
-poc_confidence = "low"
 notes = "CVE 由 NVD 官方收录。CVSS v2 评分 2.1 (LOW)。该漏洞为 FAM（File Alteration Monitor）中的文件名称信息泄露漏洞，属于本地信息泄露问题。FAM 通过 famd 守护进程监听本地端口（默认 TCP 900 端口），但漏洞不涉及 HTTP 协议，属于本地非 HTTP 漏洞。经搜索 GitHub、Exploit-DB、PacketStorm、Sploitus 等平台，未检索到公开 PoC/EXP 脚本。无法生成 HTTP PoC 检测脚本。"
+poc_confidence = "low"
+
+[basic]
+description = "FAM 2.6.8、2.6.6 及其他版本中存在漏洞，允许非特权用户获取本应仅限 root 组访问的文件名称。"
+published = "2002-09-05"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 3.5
+severity = "LOW"
+source = "nvd"
+sources = ["unknown"]
+title = "FAM（File Alteration Monitor）未授权文件名称信息泄露漏洞"
+updated = "2026-06-16"
 
 [exploit]
-poc = []
 exp = []
 nuclei_templates = []
+poc = []
 
-[remediation]
-fix = "升级到 FAM 2.7.0 或更高版本。参考各发行版安全公告：Debian DSA-154、Red Hat RHSA-2005:005。"
-workaround = "限制非特权用户对 FAM 守护进程的访问。通过 iptables 或 hosts.allow/hosts.deny 限制对 FAM 端口的访问。"
-steps = ["确认 FAM 版本：fam -v 或 dpkg -l fam", "从各发行版获取修复版本：Debian 升级到 2.7.0-3，Red Hat 升级到 2.7.0-8", "升级后重启 FAM 服务"]
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2002-0875"
-others = ["http://www.debian.org/security/2002/dsa-154", "http://www.securityfocus.com/bid/5487", "http://www.iss.net/security_center/static/9880.php", "http://www.redhat.com/support/errata/RHSA-2005-005.html", "ftp://ftp.freebsd.org/pub/FreeBSD/CERT/advisories/FreeBSD-SN-02:05.asc", "ftp://patches.sgi.com/support/free/security/advisories/20000301-03-I"]
-
-[tags]
-tags = ["CWE-Other", "INFO-DISCLOSURE", "LOCAL", "FAM", "FILE-ALTERATION"]
+[id]
+aliases = ["CVE-2002-0875"]
+ave_id = "AVE-2002-0032"
+cve_id = "CVE-2002-0875"
+other_ids = []
 
 [meta]
 collected_at = "2026-07-11T00:00:00Z"
 status = "completed"
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2002-0875"
+others = [
+    "http://www.debian.org/security/2002/dsa-154",
+    "http://www.securityfocus.com/bid/5487",
+    "http://www.iss.net/security_center/static/9880.php",
+    "http://www.redhat.com/support/errata/RHSA-2005-005.html",
+    "ftp://ftp.freebsd.org/pub/FreeBSD/CERT/advisories/FreeBSD-SN-02:05.asc",
+    "ftp://patches.sgi.com/support/free/security/advisories/20000301-03-I",
+]
+
+[remediation]
+fix = "升级到 FAM 2.7.0 或更高版本。参考各发行版安全公告：Debian DSA-154、Red Hat RHSA-2005:005。"
+steps = [
+    "确认 FAM 版本：fam -v 或 dpkg -l fam",
+    "从各发行版获取修复版本：Debian 升级到 2.7.0-3，Red Hat 升级到 2.7.0-8",
+    "升级后重启 FAM 服务",
+]
+workaround = "限制非特权用户对 FAM 守护进程的访问。通过 iptables 或 hosts.allow/hosts.deny 限制对 FAM 端口的访问。"
+
+[score]
+cvss_v2 = 2.1
+cvss_v2_vector = "AV:L/AC:L/Au:N/C:P/I:N/A:N"
+cvss_v3 = 7.5
+cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N"
+cvss_v4 = 8.6
+cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N"
+
+[tags]
+tags = [
+    "CWE-Other",
+    "INFO-DISCLOSURE",
+    "LOCAL",
+    "FAM",
+    "FILE-ALTERATION",
+]

@@ -1,50 +1,65 @@
-[id]
-ave_id = "AVE-2026-0029"
-cve_id = ""
-avd_id = ""
-other_ids = ["CNVD-2019-01348"]
+[affected]
+product = "Xiuno BBS"
+vendor = "Xiuno"
+
+[authenticity]
+cve_confidence = "low"
+notes = "该漏洞为 CNVD 收录，无对应 CVE 编号。Nuclei 模板可直接用于检测，验证方法明确。"
+poc_confidence = "high"
 
 [basic]
-title = "Xiuno BBS 系统重装漏洞"
 description = "Xiuno BBS系统在安装后未对安装目录进行保护或过滤，攻击者可通过访问/install/页面直接重装系统，导致系统配置被覆盖。"
+published = "2019-01-01"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 7.5
 severity = "HIGH"
 source = "nuclei"
-published = "2019-01-01"
+sources = ["unknown"]
+title = "Xiuno BBS 系统重装漏洞"
 updated = "2019-01-01"
+
+[exploit]
+exp = []
+poc = []
+
+[[exploit.nuclei_templates]]
+description = "Nuclei 检测模板：Xiuno BBS 系统重装漏洞"
+source = "nuclei"
+url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2019/CNVD-2019-01348.yaml"
+
+[id]
+avd_id = ""
+ave_id = "AVE-2026-0029"
+cve_id = ""
+other_ids = ["CNVD-2019-01348"]
+
+[meta]
+collected_at = "2026-07-11T00:00:00Z"
+status = "completed"
+
+[references]
+avd = ""
+nvd = ""
+other = ["https://www.cnvd.org.cn/flaw/show/CNVD-2019-01348"]
+
+[remediation]
+fix = "升级到最新版本的 Xiuno BBS 或更换为受支持的产品。移除或保护安装目录（/install/），在完成安装后删除 install 目录或设置访问权限。"
+steps = [
+    "步骤1: 确认网站根目录下存在 /install/ 目录",
+    "步骤2: 删除 install 目录或修改目录权限以防止未授权访问",
+    "步骤3: 升级到 Xiuno BBS 最新版本",
+]
+workaround = "删除网站根目录下的 install 目录，或通过 .htaccess 等访问控制措施限制对 /install/ 路径的访问。"
 
 [score]
 cvss_v3 = 7.5
 cvss_v3_vector = "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
 
-[affected]
-vendor = "Xiuno"
-product = "Xiuno BBS"
-
-[exploit]
-poc = []
-exp = []
-nuclei_templates = [
-  { url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2019/CNVD-2019-01348.yaml", description = "Nuclei 检测模板：Xiuno BBS 系统重装漏洞", source = "nuclei" }
-]
-
-[remediation]
-fix = "升级到最新版本的 Xiuno BBS 或更换为受支持的产品。移除或保护安装目录（/install/），在完成安装后删除 install 目录或设置访问权限。"
-workaround = "删除网站根目录下的 install 目录，或通过 .htaccess 等访问控制措施限制对 /install/ 路径的访问。"
-steps = ["步骤1: 确认网站根目录下存在 /install/ 目录", "步骤2: 删除 install 目录或修改目录权限以防止未授权访问", "步骤3: 升级到 Xiuno BBS 最新版本"]
-
-[references]
-nvd = ""
-avd = ""
-other = ["https://www.cnvd.org.cn/flaw/show/CNVD-2019-01348"]
-
 [tags]
-tags = ["CWE-284", "improper-access-control", "xiuno", "bbs", "reinstall"]
-
-[authenticity]
-cve_confidence = "low"
-poc_confidence = "high"
-notes = "该漏洞为 CNVD 收录，无对应 CVE 编号。Nuclei 模板可直接用于检测，验证方法明确。"
-
-[meta]
-collected_at = "2026-07-11T00:00:00Z"
-status = "completed"
+tags = [
+    "CWE-284",
+    "improper-access-control",
+    "xiuno",
+    "bbs",
+    "reinstall",
+]

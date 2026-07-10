@@ -1,52 +1,68 @@
-
-[id]
-  ave_id = "AVE-2002-0030"
-  cve_id = "CVE-2002-0847"
-  aliases = ["CVE-2002-0847"]
-  other_ids = []
-
-[basic]
-  title = "tinyproxy HTTP代理双释放远程代码执行漏洞"
-  description = "tinyproxy HTTP代理 1.5.0、1.4.3 及更早版本存在双释放（double-free）漏洞，远程攻击者可通过精心构造的请求触发内存两次释放，从而导致任意代码执行。"
-  severity = "HIGH"
-  source = "nvd"
-  published = "2002-08-12"
-  updated = "2026-06-16"
-
-[score]
-  cvss_v2 = 7.5
-  cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:P/A:P"
-  cvss_v3 = 9.8
-  cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
-  cvss_v4 = 9.9
-  cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N"
-
 [affected]
-vendor = "tinyproxy"
 product = "tinyproxy 1.5.0 / 1.4.3 及更早版本"
+vendor = "tinyproxy"
 
 [authenticity]
 cve_confidence = "high"
-poc_confidence = "low"
 notes = "CVE 由 NVD 官方收录。CVSS v2 评分 7.5 (HIGH)。该漏洞为 tinyproxy HTTP 代理中的双释放（double-free）内存损坏漏洞，属于 C 语言内存管理缺陷，远程可利用但无公开 PoC/EXP 脚本。由于年代久远且为内存破坏类漏洞，未在 GitHub、Exploit-DB、PacketStorm 等平台检索到可用 PoC 仓库或 EXP 脚本。该漏洞为底层内存损坏问题，无法生成可靠的 HTTP 检测 PoC。"
+poc_confidence = "low"
+
+[basic]
+description = "tinyproxy HTTP代理 1.5.0、1.4.3 及更早版本存在双释放（double-free）漏洞，远程攻击者可通过精心构造的请求触发内存两次释放，从而导致任意代码执行。"
+published = "2002-08-12"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 7.5
+severity = "HIGH"
+source = "nvd"
+sources = ["unknown"]
+title = "tinyproxy HTTP代理双释放远程代码执行漏洞"
+updated = "2026-06-16"
 
 [exploit]
-poc = []
 exp = []
 nuclei_templates = []
+poc = []
 
-[remediation]
-fix = "升级到 tinyproxy 1.5.1 或更高版本。参考 Debian 安全公告 DSA-145。"
-workaround = "如无法升级，限制对 tinyproxy 服务的网络访问，仅允许可信来源连接。"
-steps = ["确认 tinyproxy 版本：tinyproxy -v", "从 SourceForge 下载 tinyproxy 1.5.1 或更新版本：http://sourceforge.net/project/shownotes.php?release_id=88790", "升级后重启 tinyproxy 服务"]
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2002-0847"
-others = ["https://www.debian.org/security/2002/dsa-145", "http://www.securityfocus.com/bid/4731", "http://www.iss.net/security_center/static/9079.php", "http://sourceforge.net/project/shownotes.php?release_id=88790"]
-
-[tags]
-tags = ["CWE-415", "DOUBLE-FREE", "RCE", "PROXY"]
+[id]
+aliases = ["CVE-2002-0847"]
+ave_id = "AVE-2002-0030"
+cve_id = "CVE-2002-0847"
+other_ids = []
 
 [meta]
 collected_at = "2026-07-11T00:00:00Z"
 status = "completed"
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2002-0847"
+others = [
+    "https://www.debian.org/security/2002/dsa-145",
+    "http://www.securityfocus.com/bid/4731",
+    "http://www.iss.net/security_center/static/9079.php",
+    "http://sourceforge.net/project/shownotes.php?release_id=88790",
+]
+
+[remediation]
+fix = "升级到 tinyproxy 1.5.1 或更高版本。参考 Debian 安全公告 DSA-145。"
+steps = [
+    "确认 tinyproxy 版本：tinyproxy -v",
+    "从 SourceForge 下载 tinyproxy 1.5.1 或更新版本：http://sourceforge.net/project/shownotes.php?release_id=88790",
+    "升级后重启 tinyproxy 服务",
+]
+workaround = "如无法升级，限制对 tinyproxy 服务的网络访问，仅允许可信来源连接。"
+
+[score]
+cvss_v2 = 7.5
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:P/A:P"
+cvss_v3 = 9.8
+cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+cvss_v4 = 9.9
+cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N"
+
+[tags]
+tags = [
+    "CWE-415",
+    "DOUBLE-FREE",
+    "RCE",
+    "PROXY",
+]

@@ -1,16 +1,51 @@
-[id]
-ave_id = "AVE-2021-0001"
-cve_id = "CVE-2021-47658"
-avd_id = ""
-other_ids = []
+[affected]
+product = "Linux Kernel (drm/amd/pm GPU 驱动)"
+vendor = "AMD"
+
+[authenticity]
+cve_confidence = "high"
+notes = "该漏洞为 Linux 内核 AMD GPU 驱动的内存泄漏问题，非 HTTP 协议漏洞。NVD 已分配 CVSS 评分，确认漏洞存在。目前无公开 PoC/EXP。"
+poc_confidence = "none"
 
 [basic]
-title = "drm/amd/pm: 修复 gpu_metrics_table 潜在的内存泄漏"
 description = "在 Linux 内核的 drm/amd/pm 驱动中，内存在 renoir_init_smc_tables() 函数中为 gpu_metrics_table 分配，但在 smu_v12_0_fini_smc_tables() 函数中未被释放，导致潜在的内存泄漏。"
+published = "2025-02-26"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 5.5
 severity = "MEDIUM"
 source = "msrc"
-published = "2025-02-26"
+sources = ["unknown"]
+title = "drm/amd/pm: 修复 gpu_metrics_table 潜在的内存泄漏"
 updated = "2026-06-17"
+
+[exploit]
+exp = []
+nuclei_templates = []
+poc = []
+
+[id]
+avd_id = ""
+ave_id = "AVE-2021-0001"
+cve_id = "CVE-2021-47658"
+other_ids = []
+
+[meta]
+collected_at = "2026-07-10T12:52:01Z"
+status = "completed"
+
+[references]
+avd = ""
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2021-47658"
+other = ["https://git.kernel.org/stable/c/583637d66a70fc7090e12fb0ebbacc33d39e2214"]
+
+[remediation]
+fix = "升级 Linux 内核到 5.17 或更高版本，或应用补丁 https://git.kernel.org/stable/c/583637d66a70fc7090e12fb0ebbacc33d39e2214。"
+steps = [
+    "步骤1: 使用 uname -r 确认当前内核版本",
+    "步骤2: 若版本低于 5.17，升级内核到 5.17 或更高版本",
+    "步骤3: 重启系统使新内核生效",
+]
+workaround = "限制本地用户访问 GPU 设备文件（/dev/dri/*），降低被利用风险。"
 
 [score]
 cvss_v2 = 0.0
@@ -20,33 +55,11 @@ cvss_v3_vector = "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H"
 cvss_v4 = 0.0
 cvss_v4_vector = ""
 
-[affected]
-vendor = "AMD"
-product = "Linux Kernel (drm/amd/pm GPU 驱动)"
-
-[exploit]
-poc = []
-exp = []
-nuclei_templates = []
-
-[remediation]
-fix = "升级 Linux 内核到 5.17 或更高版本，或应用补丁 https://git.kernel.org/stable/c/583637d66a70fc7090e12fb0ebbacc33d39e2214。"
-workaround = "限制本地用户访问 GPU 设备文件（/dev/dri/*），降低被利用风险。"
-steps = ["步骤1: 使用 uname -r 确认当前内核版本", "步骤2: 若版本低于 5.17，升级内核到 5.17 或更高版本", "步骤3: 重启系统使新内核生效"]
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2021-47658"
-avd = ""
-other = ["https://git.kernel.org/stable/c/583637d66a70fc7090e12fb0ebbacc33d39e2214"]
-
 [tags]
-tags = ["CWE-401", "memory-leak", "kernel", "amd", "gpu"]
-
-[authenticity]
-cve_confidence = "high"
-poc_confidence = "none"
-notes = "该漏洞为 Linux 内核 AMD GPU 驱动的内存泄漏问题，非 HTTP 协议漏洞。NVD 已分配 CVSS 评分，确认漏洞存在。目前无公开 PoC/EXP。"
-
-[meta]
-collected_at = "2026-07-10T12:52:01Z"
-status = "completed"
+tags = [
+    "CWE-401",
+    "memory-leak",
+    "kernel",
+    "amd",
+    "gpu",
+]

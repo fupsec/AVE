@@ -1,53 +1,77 @@
-
-[id]
-  ave_id = "AVE-2002-0020"
-  cve_id = "CVE-2002-0714"
-  avd_id = ""
-  other_ids = ["XFDB-9479", "OSVDB-5924", "EUVD-2002-0706"]
-
-[basic]
-  title = "Squid FTP代理IP地址验证绕过漏洞"
-  description = "Squid 2.4.STABLE6之前的FTP代理未验证FTP服务器的控制连接与数据连接的IP地址是否一致，攻击者可利用该漏洞绕过防火墙规则或伪造FTP服务器响应。"
-  severity = "HIGH"
-  source = "nvd"
-  published = "2002-07-26"
-  updated = "2024-08-08"
-
-[score]
-  cvss_v2 = 7.5
-  cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:P/A:P"
-  cvss_v3 = 7.5
-  cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N"
-  cvss_v4 = 8.6
-  cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N"
-
 [affected]
-vendor = "Squid-cache"
 product = "Squid"
+vendor = "Squid-cache"
 
 [authenticity]
 cve_confidence = "high"
-poc_confidence = "low"
 notes = "该漏洞为2002年历史漏洞，无公开PoC/EXP代码或Nuclei检测模板。CVSS v2评分7.5（高），但NVD未提供CVSS v3/v4评分。"
+poc_confidence = "low"
+
+[basic]
+description = "Squid 2.4.STABLE6之前的FTP代理未验证FTP服务器的控制连接与数据连接的IP地址是否一致，攻击者可利用该漏洞绕过防火墙规则或伪造FTP服务器响应。"
+published = "2002-07-26"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 7.5
+severity = "HIGH"
+source = "nvd"
+sources = ["unknown"]
+title = "Squid FTP代理IP地址验证绕过漏洞"
+updated = "2024-08-08"
 
 [exploit]
-poc = []
 exp = []
 nuclei_templates = []
+poc = []
 
-[remediation]
-fix = "升级到 Squid 2.4.STABLE6 或更高版本。"
-workaround = "如无法立即升级，建议在防火墙层面限制FTP数据连接，或禁用FTP代理功能。"
-steps = ["步骤1: 确认当前 Squid 版本（squid -v）", "步骤2: 若版本低于 2.4.STABLE6，升级到修复版本或更高版本", "步骤3: 重启 Squid 服务使更改生效"]
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2002-0714"
-avd = ""
-other = ["http://www.squid-cache.org/Advisories/SQUID-2002_3.txt", "http://www.securityfocus.com/bid/5158", "http://www.osvdb.org/5924", "http://rhn.redhat.com/errata/RHSA-2002-051.html", "http://rhn.redhat.com/errata/RHSA-2002-130.html", "http://www.linux-mandrake.com/en/security/2002/MDKSA-2002-044.php", "http://www.iss.net/security_center/static/9479.php", "http://www.squid-cache.org/Versions/v2/2.4/bugs/"]
-
-[tags]
-tags = ["firewall-bypass", "ftp-proxy", "ip-spoofing", "CWE-290"]
+[id]
+avd_id = ""
+ave_id = "AVE-2002-0020"
+cve_id = "CVE-2002-0714"
+other_ids = [
+    "XFDB-9479",
+    "OSVDB-5924",
+    "EUVD-2002-0706",
+]
 
 [meta]
 collected_at = "2026-07-09T10:18:58Z"
 status = "completed"
+
+[references]
+avd = ""
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2002-0714"
+other = [
+    "http://www.squid-cache.org/Advisories/SQUID-2002_3.txt",
+    "http://www.securityfocus.com/bid/5158",
+    "http://www.osvdb.org/5924",
+    "http://rhn.redhat.com/errata/RHSA-2002-051.html",
+    "http://rhn.redhat.com/errata/RHSA-2002-130.html",
+    "http://www.linux-mandrake.com/en/security/2002/MDKSA-2002-044.php",
+    "http://www.iss.net/security_center/static/9479.php",
+    "http://www.squid-cache.org/Versions/v2/2.4/bugs/",
+]
+
+[remediation]
+fix = "升级到 Squid 2.4.STABLE6 或更高版本。"
+steps = [
+    "步骤1: 确认当前 Squid 版本（squid -v）",
+    "步骤2: 若版本低于 2.4.STABLE6，升级到修复版本或更高版本",
+    "步骤3: 重启 Squid 服务使更改生效",
+]
+workaround = "如无法立即升级，建议在防火墙层面限制FTP数据连接，或禁用FTP代理功能。"
+
+[score]
+cvss_v2 = 7.5
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:P/A:P"
+cvss_v3 = 7.5
+cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N"
+cvss_v4 = 8.6
+cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N"
+
+[tags]
+tags = [
+    "firewall-bypass",
+    "ftp-proxy",
+    "ip-spoofing",
+    "CWE-290",
+]
