@@ -1,28 +1,28 @@
 [id]
 ave_id = "AVE-1999-0024"
-cve_id = "CVE-1999-0223"
+cve_id = "CVE-1999-0710"
 avd_id = ""
 other_ids = []
 
 [basic]
-title = "Solaris syslogd 反向DNS查询拒绝服务漏洞"
-description = "Solaris syslogd crashes when receiving a message from a host that doesn't have an inverse DNS entry."
-severity = "LOW"
-source = "cve"
-published = "1999-03-01"
+title = "Squid cachemgr.cgi 公共目录暴露代理滥用漏洞"
+description = "Red Hat Linux 5.2 和 6.0 及其他发行版中的 Squid 软件包将 cachemgr.cgi 安装在公共 Web 目录中，允许远程攻击者将其作为中介连接到其他系统，造成代理滥用和信息泄露风险。"
+severity = "HIGH"
+source = "nvd"
+published = "1999-07-25"
 updated = "2026-06-16"
 
 [score]
-cvss_v2 = 2.1
-cvss_v2_vector = "AV:L/AC:L/Au:N/C:N/I:N/A:P"
+cvss_v2 = 7.5
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:P/A:P"
 cvss_v3 = 0.0
 cvss_v3_vector = ""
 cvss_v4 = 0.0
 cvss_v4_vector = ""
 
 [affected]
-vendor = "Sun"
-product = "Solaris / SunOS 5.4"
+vendor = "Squid"
+product = "Squid Proxy (cachemgr.cgi)"
 
 [exploit]
 poc = []
@@ -30,22 +30,22 @@ exp = []
 nuclei_templates = []
 
 [remediation]
-fix = "安装 Sun Patch 103291 修复版本。参考 Sun 安全公告。"
-workaround = "在 syslog 服务器上确保所有连接的主机具有正确的反向DNS（PTR）记录。如无法打补丁，可通过防火墙限制对 syslog UDP 514 端口的访问。"
-steps = ["步骤1: 确认 Solaris 版本: uname -a", "步骤2: 安装 Sun Patch 103291", "步骤3: 确保所有受信任主机具有有效的反向DNS记录", "步骤4: 重启 syslogd 服务: /etc/init.d/syslog restart"]
+fix = "升级到 Squid 修复版本，或将 cachemgr.cgi 移出公共 Web 目录。参考 Red Hat 安全公告 RHSA-1999-025。"
+workaround = "如无法升级，移除 cachemgr.cgi 文件或限制对 CGI 目录的访问权限。在 Web 服务器配置中添加访问控制规则，仅允许管理 IP 访问 cachemgr.cgi。"
+steps = ["步骤1: 确认 Squid 版本和 cachemgr.cgi 文件位置", "步骤2: 将 cachemgr.cgi 移出公共 Web 目录或限制访问权限", "步骤3: 在 Apache/Nginx 中添加访问控制规则限制对 cachemgr.cgi 的访问", "步骤4: 升级到包含漏洞修复的最新 Squid 版本"]
 
 [references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0223"
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0710"
 avd = ""
-other = ["http://www.securityfocus.com/bid/1878", "http://sunsolve.Sun.COM/pub-cgi/retrieve.pl?patchid=103291&collection=fpatches", "https://www.cve.org/CVERecord?id=CVE-1999-0223"]
+other = ["https://www.cve.org/CVERecord?id=CVE-1999-0710", "https://access.redhat.com/security/cve/CVE-1999-0710", "http://www.securityfocus.com/bid/2059", "https://exchange.xforce.ibmcloud.com/vulnerabilities/2385", "http://www.redhat.com/support/errata/RHSA-1999-025.html"]
 
 [tags]
-tags = ["NVD-CWE-Other", "Solaris", "SunOS", "syslogd", "denial-of-service", "DNS", "local"]
+tags = ["NVD-CWE-Other", "Squid", "cachemgr.cgi", "proxy-abuse", "information-disclosure", "SSRF"]
 
 [authenticity]
 cve_confidence = "high"
 poc_confidence = "low"
-notes = "CVE-1999-0223 是 1999 年发现的 Solaris syslogd 拒绝服务漏洞。NVD 提供 CVSS v2 2.1 评分，CVSS v3/v4 无评分。该漏洞影响 SunOS 5.4，通过向 syslogd 发送来自无反向DNS记录主机的消息触发崩溃。Sun 官方补丁 103291 已修复。由于年代久远且属于非 HTTP 协议漏洞，未找到任何公开 PoC 或 EXP 脚本。"
+notes = "CVE-1999-0710 是 1999 年发现的 Squid 代理缓存管理 CGI 接口暴露漏洞。NVD 提供 CVSS v2 7.5 评分，CVSS v3/v4 无评分。Red Hat 官方安全公告已确认该漏洞。由于年代久远，公开可用的 PoC 脚本极少，未找到 GitHub 仓库或 Nuclei 模板。PoC 可通过直接访问 cachemgr.cgi 验证。"
 
 [meta]
 collected_at = "2026-07-10T10:18:58Z"
