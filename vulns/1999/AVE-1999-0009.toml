@@ -1,67 +1,30 @@
-[affected]
-product = "in.comsat (biff/comsat 服务)"
-vendor = "n/a"
-
-[authenticity]
-cve_confidence = "high"
-notes = "CVE-1999-0194 由 MITRE 于 1999 年发布，NVD 已确认，CVSS v2 评分 5.0 MEDIUM。该漏洞为 UDP 非 HTTP 协议漏洞，未发现公开 PoC/EXP 代码，受影响组件为 Unix 系统中的 in.comsat (biff/comsat) 服务。"
-poc_confidence = "none"
-
-[basic]
-description = "in.comsat (biff/comsat 服务) 存在拒绝服务漏洞，攻击者可通过向 UDP 512 端口发送伪造的邮件通知消息，导致服务崩溃，造成拒绝服务。该服务用于向用户发送新邮件到达通知，默认运行在类 Unix 系统的 inetd 超级守护进程下。"
-published = "1999-05-01"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 5.5
-severity = "MEDIUM"
-source = "nvd"
-sources = ["unknown"]
-title = "in.comsat (biff/comsat 服务) 拒绝服务漏洞"
-updated = "2026-06-16"
-
-[exploit]
-exp = []
-nuclei_templates = []
-poc = []
-
 [id]
-avd_id = ""
 ave_id = "AVE-1999-0009"
 cve_id = "CVE-1999-0194"
-other_ids = []
+aliases = ["CVE-1999-0194"]
 
-[meta]
-collected_at = "2026-07-11T10:18:58Z"
-status = "completed"
+[basic]
+title = "Unix in.comsat 守护进程拒绝服务漏洞"
+description = "Unix系统中的in.comsat守护进程（biff服务）存在拒绝服务漏洞。该守护进程监听UDP 512端口，用于接收邮件到达通知并将消息显示给用户终端。攻击者可以通过网络向目标主机发送精心构造的UDP数据包，in.comsat会处理这些伪造消息并持续向用户终端输出，大量伪造消息将耗尽系统资源或淹没用户终端，导致邮件通知服务不可用。该漏洞无需身份验证即可远程触发，影响范围涵盖多种Unix变种系统。"
+severity = "MEDIUM"
+score = 5.0
+remediation = "升级系统至厂商已修复版本，或直接禁用in.comsat/biff服务，具体操作为注释/etc/inetd.conf中的comsat行并重启inetd进程，同时配置防火墙规则限制外部对UDP 512端口的访问。"
+published = "1999-05-01"
+updated = "2026-06-16"
+sources = ["cve"]
+
+[affected]
+vendor = "n/a"
+product = "in.comsat"
 
 [references]
-avd = ""
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0194"
-other = ["https://www.cve.org/CVERecord?id=CVE-1999-0194"]
+urls = ["https://www.cve.org/CVERecord?id=CVE-1999-0194"]
 
-[remediation]
-fix = "禁用 in.comsat (biff) 服务，或在防火墙上限制对 UDP 512 端口的访问。参考各 Unix 厂商安全公告。"
-steps = [
-    "步骤1: 确认系统是否运行 comsat/biff 服务: grep comsat /etc/inetd.conf",
-    "步骤2: 临时禁用 biff 服务，在 inetd.conf 中注释掉 comsat 行并重启 inetd 进程",
-    "步骤3: 在防火墙规则中限制对 UDP 512 端口的访问",
-]
-workaround = "如业务需要保留 biff 服务，建议限制可信来源 IP 对 UDP 512 端口的访问，或配置防火墙规则阻止外部访问。"
+[exploit]
+poc_urls = []
+exp_urls = []
+nuclei_templates = []
 
-[score]
-cvss_v2 = 5.0
-cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:N/A:P"
-cvss_v3 = 5.5
-cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N"
-cvss_v4 = 5.1
-cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:L/VI:N/VA:N/SC:N/SI:N/SA:N"
-
-[tags]
-tags = [
-    "DoS",
-    "拒绝服务",
-    "UDP",
-    "comsat",
-    "biff",
-    "in.comsat",
-    "CWE-Other",
-]
+[meta]
+collected_at = "2026-07-10T17:10:48+00:00"
+status = "completed"
