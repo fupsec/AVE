@@ -1,11 +1,11 @@
 [basic]
-description = "Vulnerability identified as CVE-2026-0740. Please refer to vendor advisory for details."
+description = "Vulnerability identified as CVE-2026-48597. Please refer to vendor advisory for details."
 published = "2026-07-10"
 remediation = "Refer to vendor advisory and upgrade to fixed version."
 score = 5.0
 severity = "MEDIUM"
-sources = ["github"]
-title = "CVE-2026-0740"
+sources = ["ghsa"]
+title = "CVE-2026-48597"
 updated = "2026-07-10"
 
 [exploit]
@@ -13,12 +13,15 @@ exp_urls = []
 poc_urls = []
 
 [id]
-aliases = ["CVE-2026-0740"]
+aliases = [
+    "CVE-2026-48597",
+    "GHSA-h74c-q9j7-mpcm",
+]
 ave_id = "AVE-2026-0077"
-cve_id = "CVE-2026-0740"
+cve_id = "CVE-2026-48597"
 
 [meta]
-collected_at = "2026-07-10T17:53:32.313106246+00:00"
+collected_at = "2026-07-10T17:54:51.560734572+00:00"
 status = "completed"
 
 [references]
