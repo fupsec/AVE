@@ -1,25 +1,42 @@
 [id]
 ave_id = "AVE-2018-0003"
 cve_id = "CVE-2018-11881"
-aliases = ["CVE-2018-11881"]
+other_ids = []
 
 [basic]
 title = "CVE-2018-11881"
-description = ""
+description = "此 CVE ID 已被其 CVE 编号管理机构（CNA）拒绝或撤销。该 CVE ID 未使用，任何引用都应被忽略。"
 severity = "UNKNOWN"
-score = 0.0
-sources = ["avd"]
-published = ""
-updated = ""
-remediation = "Refer to vendor advisory and upgrade to fixed version."
+source = "avd"
+published = "2024-11-26"
+updated = "2024-11-26"
 
-[references]
-urls = []
+[affected]
+vendor = "Qualcomm"
+product = "未知"
 
 [exploit]
-poc_urls = []
-exp_urls = []
+poc = []
+exp = []
+nuclei_templates = []
+
+[remediation]
+fix = "此 CVE 编号已被拒绝，无需采取修复措施。"
+workaround = ""
+steps = []
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2018-11881"
+other = []
+
+[tags]
+tags = ["REJECTED"]
+
+[authenticity]
+cve_confidence = "low"
+poc_confidence = "none"
+notes = "CVE-2018-11881 已被 Qualcomm 拒绝，原因是该 CVE ID 未使用且任何引用都应被忽略。不存在实际漏洞信息。原始保留日期为2018-06-07，于2024-11-26发布并立即被拒绝。"
 
 [meta]
+collected_at = "2026-07-11T00:00:00Z"
 status = "completed"
-collected_at = "2026-07-10T09:13:58.124096277+00:00"
