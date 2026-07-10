@@ -1,0 +1,25 @@
+[id]
+ave_id = "AVE-2001-0007"
+cve_id = "CVE-2001-1494"
+aliases = ["CVE-2001-1494"]
+
+[basic]
+title = "CVE-2001-1494"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["osv"]
+published = ""
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T12:52:01.539655146+00:00"

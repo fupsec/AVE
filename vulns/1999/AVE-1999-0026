@@ -1,0 +1,26 @@
+[id]
+ave_id = "AVE-1999-0026"
+cve_id = "CVE-1999-0804"
+aliases = ["CVE-1999-0804"]
+
+[basic]
+title = "CVE-1999-0804"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["redhat"]
+published = ""
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T12:52:01.548984545+00:00"
+0"
