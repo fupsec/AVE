@@ -28,7 +28,7 @@ product = "AUTOMGEN"
 poc = [
   { url = "https://www.exploit-db.com/exploits/17964", description = "Exploit-DB 漏洞利用条目", source = "exploit-db" },
   { url = "https://gitlab.com/exploit-database/exploitdb-bin-sploits/-/raw/main/bin-sploits/17964.zip", description = "PoC 畸形项目文件（触发 UAF 崩溃）", source = "exploit-db" },
-  { url = "https://aluigi.altervista.org/poc/automgen_1.zip", description = "PoC 畸形项目文件（作者: Luigi Auriemma）", source = "exploit-db" }
+  { url = "http://aluigi.org/poc/automgen_1.zip", description = "PoC 畸形项目文件（作者: Luigi Auriemma）", source = "其他" }
 ]
 exp = []
 nuclei_templates = []
@@ -53,7 +53,7 @@ tags = ["CWE-416", "Use-After-Free", "DoS", "Desktop"]
 [authenticity]
 cve_confidence = "high"
 poc_confidence = "high"
-notes = "漏洞由 Luigi Auriemma 于2011年10月发现并公开，Exploit-DB 17964 包含完整的 PoC 文件。VulnCheck 于2025年分配 CVE 编号。CISA SSVC 评估显示 exploitation 状态为 poc，技术影响为 partial。"
+notes = "漏洞由 Luigi Auriemma 于2011年10月发现并公开，Exploit-DB 17964 包含完整的 PoC 文件。VulnCheck 于2025年分配 CVE 编号。CISA SSVC 评估: exploitation=poc, automatable=no, technicalImpact=partial。"
 
 [meta]
 collected_at = "2026-07-10T14:21:00Z"
