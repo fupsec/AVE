@@ -1,0 +1,28 @@
+[id]
+ave_id = "AVE-2026-0037"
+cve_id = "CVE-2026-44342"
+aliases = [
+    "CVE-2026-44342",
+    "GHSA-26v7-h57m-gh9m",
+]
+
+[basic]
+title = "CVE-2026-44342"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["ghsa"]
+published = ""
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T12:30:39.028097496+00:00"
