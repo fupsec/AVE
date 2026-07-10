@@ -4,7 +4,7 @@ cve_id = "CVE-2011-10034"
 aliases = ["CVE-2011-10034"]
 
 [basic]
-title = "IRAI AUTOMGEN &lt;= 8.0.0.7 Use-After-Free Remote DoS"
+title = "CVE-2011-10034"
 description = ""
 severity = "UNKNOWN"
 score = 0.0
@@ -12,7 +12,7 @@ sources = [
     "avd",
     "msrc",
 ]
-published = "2025-11-14"
+published = ""
 updated = ""
 remediation = "Refer to vendor advisory and upgrade to fixed version."
 
@@ -25,4 +25,4 @@ exp_urls = []
 
 [meta]
 status = "completed"
-collected_at = "2026-07-10T14:18:10.500255355+00:00"
+collected_at = "2026-07-10T14:18:10.497916771+00:00"
