@@ -10,11 +10,10 @@ poc_confidence = "high"
 [basic]
 description = "禅道(Zentao) Easy Soft ALM 15.0版本存在目录遍历漏洞，攻击者无需认证即可通过mode=getconfig接口获取敏感配置信息，导致数据库配置、系统信息等敏感数据泄露。"
 published = "2022-09-19"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
+remediation = "建议升级禅道至最新修复版本，限制未经认证的目录遍历访问，配置WAF规则拦截对mode=getconfig接口的恶意请求。"
 score = 7.5
 severity = "HIGH"
-source = "nvd"
-sources = ["unknown"]
+sources = ["hwpoc"]
 title = "禅道 Easy Soft ALM 目录遍历致敏感信息泄露漏洞"
 updated = "2026-07-08"
 
@@ -33,6 +32,7 @@ source = "其他"
 url = "https://demo15.zentao.pm/user-login.html/zentao/index.php?mode=getconfig"
 
 [id]
+aliases = ["CVE-2022-37700"]
 avd_id = ""
 ave_id = "AVE-2022-0028"
 cve_id = "CVE-2022-37700"
