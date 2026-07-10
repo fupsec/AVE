@@ -1,32 +1,25 @@
-[id]
-ave_id = "AVE-2018-0036"
-cve_id = "CVE-2018-25107"
-aliases = ["CVE-2018-25107"]
-
 [basic]
-title = "Perl Crypt::Random::Source 随机数生成器弱加密漏洞"
-description = "Perl 的 Crypt::Random::Source 包在 0.13 版本之前存在安全缺陷，当无法获取系统安全随机源时会回退使用 Perl 内置的 rand() 函数。该函数为弱伪随机数生成器（PRNG），产生的随机数可被预测，攻击者可能利用此漏洞获取会话密钥等敏感信息。攻击者无需认证即可通过网络远程利用，具备高机密性影响。"
-severity = "HIGH"
-score = 7.5
-remediation = "升级 Crypt::Random::Source 至 0.13 或更高版本。可通过 CPAN 安装修复版本：cpanm Crypt::Random::Source，或更新 Perl 环境中相关依赖包至包含安全修复的最新版本。"
-published = "2024-12-29"
-updated = "2026-06-16"
-sources = ["avd", "nvd"]
-
-[affected]
-vendor = "Perl"
-product = "Crypt::Random::Source"
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2018-25107"
-avd = ""
-other = ["https://github.com/karenetheridge/Crypt-Random-Source/pull/3", "https://metacpan.org/release/ETHER/Crypt-Random-Source-0.13/changes"]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["avd"]
+title = "CVE-2018-25107 漏洞"
+updated = ""
 
 [exploit]
-poc_urls = []
 exp_urls = []
-nuclei_templates = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2018-25107"]
+ave_id = "AVE-2018-0036"
+cve_id = "CVE-2018-25107"
 
 [meta]
-collected_at = "2026-07-10T12:52:50.648258229+00:00"
+collected_at = "2026-07-10T21:36:34.668679989+00:00"
 status = "completed"
+
+[references]
+urls = []
