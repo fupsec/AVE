@@ -1,0 +1,25 @@
+[id]
+ave_id = "AVE-2026-0024"
+cve_id = "NUCLEI-FILE-MALWARE-UNIVERSAL-1337-MALWARE-YAML"
+aliases = ["NUCLEI-FILE-MALWARE-UNIVERSAL-1337-MALWARE-YAML"]
+
+[basic]
+title = "NUCLEI-FILE-MALWARE-UNIVERSAL-1337-MALWARE-YAML"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["nuclei"]
+published = ""
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T13:49:42.773524738+00:00"

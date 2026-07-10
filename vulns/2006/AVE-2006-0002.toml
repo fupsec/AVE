@@ -1,25 +1,62 @@
 [id]
 ave_id = "AVE-2006-0002"
 cve_id = "CVE-2006-10002"
-aliases = ["CVE-2006-10002"]
+other_ids = []
 
 [basic]
-title = "CVE-2006-10002"
-description = ""
-severity = "UNKNOWN"
-score = 0.0
-sources = ["msrc"]
-published = ""
-updated = ""
-remediation = "Refer to vendor advisory and upgrade to fixed version."
+title = "XML::Parser 至 2.45 版本 parse_stream 函数存在堆缓冲区溢出漏洞"
+description = "XML::Parser 2.45 及更早版本在 parse_stream() 函数（Expat.xs）中，当使用 :utf8 PerlIO 层时，由于 Perl 的 read() 返回解码后的字符，而 SvPV() 返回的多字节 UTF-8 字节数可能超过预分配的缓冲区大小，导致堆缓冲区溢出（double free 或 corruption），造成程序崩溃。"
+severity = "HIGH"
+source = "nvd"
+published = "2026-03-19"
+updated = "2026-06-16"
 
-[references]
-urls = []
+[score]
+cvss_v3 = 7.5
+cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+
+[affected]
+vendor = "TODDR"
+product = "XML::Parser"
 
 [exploit]
-poc_urls = []
-exp_urls = []
+poc = [
+  { url = "https://github.com/cpan-authors/XML-Parser/issues/64", description = "漏洞详情及触发用例，含 UTF-8 XML 解析崩溃复现步骤", source = "github" },
+  { url = "https://github.com/cpan-authors/XML-Parser/commit/56b0509dfc6b559cd7555ea81ee62e3622069255.patch", description = "修复补丁：在 Expat.xs 中修正缓冲区大小计算", source = "github" }
+]
+exp = []
+nuclei_templates = []
+
+[remediation]
+fix = "升级到 XML::Parser 2.46 或更高版本（推荐 2.48，包含额外修复）。"
+workaround = "如无法升级，可在输入流上设置字节模式 binmode(STDIN, ':bytes')，或避免使用 :utf8 PerlIO 层进行 XML 解析。"
+steps = ["步骤1: 确认 XML::Parser 版本号：perl -MXML::Parser -e 'print $XML::Parser::VERSION'", "步骤2: 若版本低于 2.46，升级至 2.46 或更新版本", "步骤3: 重启使用 XML::Parser 的服务"]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2006-10002"
+avd = ""
+other = [
+  "http://www.openwall.com/lists/oss-security/2026/03/19/1",
+  "http://www.openwall.com/lists/oss-security/2026/03/22/3",
+  "https://github.com/cpan-authors/XML-Parser/issues/64",
+  "https://github.com/cpan-authors/XML-Parser/commit/56b0509dfc6b559cd7555ea81ee62e3622069255.patch",
+  "https://github.com/cpan-authors/XML-Parser/commit/5361c2b7f48599718cdecbe50c5fdd88b28ffd79",
+  "https://github.com/advisories/GHSA-h943-hrx6-86cq",
+  "https://rt.cpan.org/Ticket/Display.html?id=19859",
+  "https://metacpan.org/release/TODDR/XML-Parser-2.46/changes",
+  "https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=378411",
+  "https://security-tracker.debian.org/tracker/CVE-2006-10002",
+  "https://bugzilla.redhat.com/show_bug.cgi?id=1473368"
+]
+
+[tags]
+tags = ["CWE-122", "CWE-176", "heap-buffer-overflow", "double-free", "utf8", "perl", "xml"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "medium"
+notes = "CVE 由 CPANSec 提交并分配。漏洞最初于 2006-06-13 在 RT 工单系统 (#19859) 中报告，2026 年正式分配 CVE 编号。触发该漏洞的 UTF-8 XML 用例和补丁已在 GitHub 公开，但无独立 PoC 利用工具。NVD 评分为 7.5 HIGH，CISA-ADP 评分为 9.8 CRITICAL。"
 
 [meta]
+collected_at = "2026-07-10T11:20:00Z"
 status = "completed"
-collected_at = "2026-07-10T11:07:41.143871480+00:00"
