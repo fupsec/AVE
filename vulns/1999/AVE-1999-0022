@@ -8,7 +8,10 @@ title = "CVE-1999-0524"
 description = ""
 severity = "UNKNOWN"
 score = 0.0
-sources = ["redhat"]
+sources = [
+    "redhat",
+    "tenable",
+]
 published = ""
 updated = ""
 remediation = "Refer to vendor advisory and upgrade to fixed version."
@@ -22,4 +25,4 @@ exp_urls = []
 
 [meta]
 status = "completed"
-collected_at = "2026-07-10T11:54:59.904173778+00:00"
+collected_at = "2026-07-10T13:49:42.774512825+00:00"

@@ -1,62 +1,66 @@
 [id]
 ave_id = "AVE-1999-0022"
-cve_id = "CVE-1999-0027"
+cve_id = "CVE-1999-0524"
 avd_id = ""
-other_ids = ["BID-351"]
+other_ids = []
 
 [basic]
-title = "SGI IRIX 6.2 eject 命令本地权限提升漏洞"
-description = "SGI IRIX 6.2 的 eject 程序存在缓冲区溢出漏洞。eject 用于弹出可移动介质，被设置为 setuid root 以允许控制台用户执行弹出操作。通过向 eject 程序提供超长参数，可以覆盖栈上的返回地址，以 root 权限执行任意代码。"
-severity = "HIGH"
+title = "ICMP 时间戳和地址掩码请求信息泄露漏洞"
+description = "ICMP 协议允许来自任意主机的网络掩码（类型 17）和/或时间戳（类型 13）信息请求。攻击者可利用此漏洞获取系统运行时间及网络拓扑信息，有助于绕过防火墙规则或进行进一步攻击。"
+severity = "MEDIUM"
 source = "nvd"
-published = "1997-05-25"
+published = "1997-08-01"
 updated = "2026-06-16"
 
 [score]
-cvss_v2 = 7.2
-cvss_v2_vector = "AV:L/AC:L/Au:N/C:C/I:C/A:C"
-cvss_v3 = 0.0
-cvss_v3_vector = ""
+cvss_v2 = 2.1
+cvss_v2_vector = "AV:L/AC:L/Au:N/C:P/I:N/A:N"
+cvss_v3 = 4.0
+cvss_v3_vector = "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N"
 cvss_v4 = 0.0
 cvss_v4_vector = ""
 
 [affected]
-vendor = "Silicon Graphics (SGI)"
-product = "IRIX 6.2"
+vendor = "Multiple"
+product = "Multiple"
 
 [exploit]
 poc = [
-  { url = "https://www.exploit-db.com/exploits/19276", description = "SGI IRIX 6.2 eject 本地权限提升 EXP (1)", source = "exploit-db" },
-  { url = "https://www.exploit-db.com/exploits/19277", description = "SGI IRIX 6.2 eject 本地权限提升 EXP (2)", source = "exploit-db" }
+  { url = "https://github.com/threatlabindonesia/CVE-1999-0524-ICMP-Timestamp-and-Address-Mask-Request-Exploit", description = "ICMP 时间戳和地址掩码请求信息泄露 PoC（Python）", source = "github" },
+  { url = "https://github.com/b1tsec/CVE-1999-0524", description = "ICMP 时间戳请求远程日期泄露检测脚本（Bash）", source = "github" },
+  { url = "https://github.com/Ransc0rp1on/ICMP-Timestamp-POC", description = "ICMP 时间戳信息泄露检测工具（Shell）", source = "github" },
+  { url = "https://github.com/noraj/ChronoLeak", description = "ICMP 时间戳远程时间泄露工具（Ruby）", source = "github" }
 ]
-exp = [
-  { url = "https://www.exploit-db.com/exploits/19276", description = "SGI IRIX 6.2 eject 本地权限提升 EXP (1)", source = "exploit-db" },
-  { url = "https://www.exploit-db.com/exploits/19277", description = "SGI IRIX 6.2 eject 本地权限提升 EXP (2)", source = "exploit-db" }
-]
+exp = []
 nuclei_templates = []
 
 [remediation]
-fix = "升级到 IRIX 6.3 或更高版本，该版本不受 eject 缓冲区溢出漏洞影响。"
-workaround = "如无法升级，可移除 eject 的 setuid root 权限位：chmod u-s /usr/sbin/eject。注意此操作将限制 eject 只能由 root 用户执行。"
-steps = ["步骤1: 确认 IRIX 系统版本", "步骤2: 升级到 IRIX 6.3 或更高版本", "步骤3: 如无法升级，执行 chmod u-s /usr/sbin/eject 移除 setuid 权限"]
+fix = "配置防火墙规则，阻止来自不可信主机的 ICMP 时间戳（类型 13）和地址掩码（类型 17）请求。参考操作系统及网络安全设备官方文档配置 ICMP 过滤规则。"
+workaround = "如无法升级或修改配置，可在网络边界防火墙处过滤 ICMP 类型 13（Timestamp）和类型 17（Address Mask Request）数据包。"
+steps = [
+  "步骤1: 识别需要防护的目标系统上启用的 ICMP 响应类型",
+  "步骤2: 在网络边界防火墙配置 ACL 规则，阻止入站 ICMP 类型 13 和类型 17",
+  "步骤3: 在主机层面配置系统防火墙（如 iptables、pf、Windows 防火墙）拦截相应 ICMP 类型",
+  "步骤4: 测试规则生效情况，确保不影响正常业务通信"
+]
 
 [references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0027"
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0524"
 avd = ""
 other = [
-  "https://www.cve.org/CVERecord?id=CVE-1999-0027",
-  "https://www.securityfocus.com/bid/351",
-  "https://exchange.xforce.ibmcloud.com/vulnerabilities/CVE-1999-0027"
+  "https://exchange.xforce.ibmcloud.com/vulnerabilities/306",
+  "https://exchange.xforce.ibmcloud.com/vulnerabilities/322",
+  "https://access.redhat.com/security/cve/CVE-1999-0524"
 ]
 
 [tags]
-tags = ["CWE-119", "buffer-overflow", "privilege-escalation", "local", "irix", "sgi"]
+tags = ["CWE-200", "ICMP", "Information Disclosure", "Network"]
 
 [authenticity]
 cve_confidence = "high"
 poc_confidence = "high"
-notes = "该漏洞为 SGI IRIX 6.2 本地缓冲区溢出漏洞，存在两个公开的 Exploit-DB 利用脚本（EDB-19276, EDB-19277）。漏洞非 HTTP 协议，不适用标准 PoC 脚本生成。"
+notes = "广泛认可的基础网络漏洞，多平台受影响，多个已验证的 PoC 实现可用。"
 
 [meta]
-collected_at = "2026-07-10T10:50:53Z"
+collected_at = "2026-07-10T11:59:41Z"
 status = "completed"
