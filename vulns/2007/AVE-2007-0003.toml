@@ -22,7 +22,11 @@ vendor = "Adobe"
 product = "Acrobat and Reader"
 
 [exploit]
-poc = []
+poc = [
+  { url = "https://www.exploit-db.com/exploits/31114", description = "Adobe Acrobat and Reader 8.1.1 远程代码执行 PoC（JavaScript heapspray + Collab.collectEmailInfo 触发）", source = "exploit-db" },
+  { url = "https://gitlab.com/exploit-database/exploitdb/-/raw/main/exploits/windows/dos/31114.txt", description = "Exploit-DB 原始 PoC 文件（JavaScript 代码）", source = "exploit-db" },
+  { url = "https://www.securityfocus.com/bid/27641", description = "SecurityFocus BID 27641 - Adobe Acrobat and Reader 多个远程代码执行漏洞", source = "其他" }
+]
 exp = []
 nuclei_templates = []
 
@@ -39,16 +43,23 @@ other = [
   { url = "http://www.adobe.com/support/security/bulletins/apsb08-13.html", description = "Adobe 安全公告 APSB08-13" },
   { url = "http://www.kb.cert.org/vuls/id/666281", description = "CERT/CC 漏洞说明 VU#666281" },
   { url = "http://security.gentoo.org/glsa/glsa-200803-01.xml", description = "Gentoo Linux 安全公告 GLSA 200803-01" },
-  { url = "https://oval.cisecurity.org/repository/search/definition/oval%3Aorg.mitre.oval%3Adef%3A9813", description = "OVAL 定义 9813" }
+  { url = "https://oval.cisecurity.org/repository/search/definition/oval%3Aorg.mitre.oval%3Adef%3A9813", description = "OVAL 定义 9813" },
+  { url = "https://www.exploit-db.com/exploits/31114", description = "Exploit-DB PoC 代码" },
+  { url = "http://labs.idefense.com/intelligence/vulnerabilities/display.php?id=657", description = "iDefense 漏洞报告" },
+  { url = "http://secunia.com/advisories/29065", description = "Secunia Advisory SA29065" },
+  { url = "http://secunia.com/advisories/29205", description = "Secunia Advisory SA29205" },
+  { url = "http://secunia.com/advisories/30840", description = "Secunia Advisory SA30840" },
+  { url = "http://www.redhat.com/support/errata/RHSA-2008-0144.html", description = "RedHat 安全公告 RHSA-2008-0144" },
+  { url = "http://www.us-cert.gov/cas/techalerts/TA08-043A.html", description = "US-CERT 技术警报 TA08-043A" }
 ]
 
 [tags]
-tags = ["CWE-120", "CWE-119", "缓冲区溢出", "远程代码执行", "Adobe", "PDF", "KEV", "已遭利用"]
+tags = ["CWE-120", "缓冲区溢出", "远程代码执行", "Adobe", "Acrobat", "Reader", "PDF", "JavaScript", "KEV", "已遭利用", "CISA-KEV"]
 
 [authenticity]
 cve_confidence = "high"
-poc_confidence = "low"
-notes = "CVE-2007-5659 已被 CISA 列入 KEV 目录，真实性极高。漏洞为 PDF 解析缓冲区溢出，非 HTTP 协议，故无标准 HTTP PoC。此漏洞可能与 CVE-2008-0655 关联或重叠。"
+poc_confidence = "high"
+notes = "CVE-2007-5659 已被 CISA 列入 KEV 目录（2022-06-08 添加），真实性极高。Exploit-DB 存在公开 PoC（EDB-ID 31114），包含完整的 JavaScript heapspray + Collab.collectEmailInfo 触发代码。漏洞通过特制 PDF 文件中未指定 JavaScript 方法的长参数触发缓冲区溢出，非 HTTP 协议，故不生成标准 HTTP PoC 脚本。此漏洞可能与 CVE-2008-0655 关联或重叠。"
 
 [meta]
 collected_at = "2026-07-10T20:16:00Z"
