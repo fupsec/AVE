@@ -63,6 +63,43 @@ function severityClass(sev) {
   return ["CRITICAL", "HIGH", "MEDIUM", "LOW", "INFO", "UNKNOWN"].includes(s) ? s : "UNKNOWN";
 }
 
+function extractAveId(value) {
+  const m = String(value || "").match(/AVE-\d{4}-\d+/i);
+  return m ? m[0].toUpperCase() : "";
+}
+
+async function loadAssetIndex() {
+  const tree = await fetch(`https://api.github.com/repos/${GH.owner}/${GH.repo}/git/trees/${GH.branch}?recursive=1`, {
+    headers: { Accept: "application/vnd.github+json" },
+  });
+  if (!tree.ok) throw new Error(`获取仓库文件索引失败：HTTP ${tree.status}`);
+  const data = await tree.json();
+
+  const pocUrlsByAve = new Map();
+  const expUrlsByAve = new Map();
+
+  for (const node of data.tree || []) {
+    if (node.type !== "blob" || !node.path) continue;
+    if (!node.path.startsWith("pocs/") && !node.path.startsWith("exploits/")) continue;
+
+    const ave = extractAveId(node.path.split("/").pop());
+    if (!ave) continue;
+    const raw = `https://raw.githubusercontent.com/${GH.owner}/${GH.repo}/${GH.branch}/${node.path}`;
+
+    if (node.path.startsWith("pocs/")) {
+      const arr = pocUrlsByAve.get(ave) || [];
+      arr.push(raw);
+      pocUrlsByAve.set(ave, arr);
+    } else {
+      const arr = expUrlsByAve.get(ave) || [];
+      arr.push(raw);
+      expUrlsByAve.set(ave, arr);
+    }
+  }
+
+  return { pocUrlsByAve, expUrlsByAve };
+}
+
 async function loadToml(fileName) {
   const safeName = fileName.endsWith(".toml") ? fileName : `${fileName}.toml`;
   const raw = `https://raw.githubusercontent.com/${GH.owner}/${GH.repo}/${GH.branch}/vulns/${safeName}`;
@@ -73,7 +110,7 @@ async function loadToml(fileName) {
   return { text, raw, html, safeName };
 }
 
-function render(toml, fileName, rawUrl, htmlUrl) {
+function render(toml, fileName, rawUrl, htmlUrl, assetIndex) {
   const ave = textField(toml, "ave_id", fileName.replace(/\.toml$/i, ""));
   const cve = textField(toml, "cve_id", "无");
   const title = textField(toml, "title", ave);
@@ -82,8 +119,8 @@ function render(toml, fileName, rawUrl, htmlUrl) {
   const score = numField(toml, "score", 0);
 
   const refs = linksFromToml(toml, "urls");
-  const pocs = linksFromToml(toml, "poc_urls");
-  const exps = linksFromToml(toml, "exp_urls");
+  const pocs = assetIndex.pocUrlsByAve.get(ave) || [];
+  const exps = assetIndex.expUrlsByAve.get(ave) || [];
 
   document.getElementById("detail-subtitle").textContent = `${ave} / ${cve}`;
   document.getElementById("d-ave").textContent = ave;
@@ -121,8 +158,9 @@ async function boot() {
 
   setStatus("正在拉取并解析 TOML ...");
   try {
+    const assetIndex = await loadAssetIndex();
     const { text, raw, html, safeName } = await loadToml(file);
-    render(text, safeName, raw, html);
+    render(text, safeName, raw, html, assetIndex);
     setStatus("已完成 TOML 解析。")
   } catch (e) {
     setStatus(`加载失败：${e.message}`);

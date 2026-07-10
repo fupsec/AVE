@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AVE 漏洞详情</title>
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <div class="hero-inner">
+        <h1>漏洞详情</h1>
+        <p id="detail-subtitle">正在加载 TOML ...</p>
+      </div>
+    </header>
+
+    <main class="layout" style="grid-template-columns: 1fr;">
+      <section class="panel">
+        <div id="status" class="status">初始化中...</div>
+        <article class="card" id="detail-card" style="display:none;">
+          <div class="card-head">
+            <div class="head-left">
+              <strong class="id" id="d-ave">-</strong>
+              <span class="severity" id="d-sev">UNKNOWN</span>
+            </div>
+            <a class="detail-link" id="d-raw" target="_blank" rel="noopener noreferrer">查看原始 TOML</a>
+          </div>
+          <h3 class="title" id="d-title"></h3>
+          <p class="description" id="d-desc"></p>
+          <div class="meta" id="d-meta"></div>
+          <div class="flags">
+            <span class="flag poc-flag" id="d-poc">PoC：无</span>
+            <span class="flag exp-flag" id="d-exp">EXP：无</span>
+          </div>
+
+          <details open>
+            <summary>参考链接</summary>
+            <div class="links" id="d-refs"></div>
+          </details>
+          <details>
+            <summary>PoC 链接</summary>
+            <div class="links" id="d-pocs"></div>
+          </details>
+          <details>
+            <summary>EXP 链接</summary>
+            <div class="links" id="d-exps"></div>
+          </details>
+        </article>
+      </section>
+    </main>
+
+    <script src="assets/detail.js"></script>
+  </body>
+</html>

@@ -14,6 +14,7 @@ const state = {
   keyword: "",
   severity: "",
   treeCache: null,
+  assetIndex: null,
   lastCards: [],
 };
 
@@ -53,8 +54,8 @@ function renderInlineDetail(c) {
   if (c.has_exp) expFlag.classList.add("yes");
 
   createLinkList(document.getElementById("detail-refs"), c.references);
-  createLinkList(document.getElementById("detail-poc-links"), c.poc_urls);
-  createLinkList(document.getElementById("detail-exp-links"), c.exp_urls);
+  createLinkList(document.getElementById("detail-poc-links"), c.repo_poc_urls);
+  createLinkList(document.getElementById("detail-exp-links"), c.repo_exp_urls);
   createLinkList(document.getElementById("detail-raw"), [c.raw_url]);
 
   box.hidden = false;
@@ -111,11 +112,55 @@ async function fetchText(item) {
   return (await fetch(item.download_url, { cache: "no-cache" })).text();
 }
 
-function toCard(item, text) {
+function extractAveId(value) {
+  const m = String(value || "").match(/AVE-\d{4}-\d+/i);
+  return m ? m[0].toUpperCase() : "";
+}
+
+function getRepoAssetUrls(index, aveId, type) {
+  if (!index || !aveId) return [];
+  if (type === "poc") return index.pocUrlsByAve.get(aveId) || [];
+  if (type === "exp") return index.expUrlsByAve.get(aveId) || [];
+  return [];
+}
+
+async function ensureAssetIndex() {
+  if (state.assetIndex) return state.assetIndex;
+
+  const tree = await gh(`https://api.github.com/repos/${GH.owner}/${GH.repo}/git/trees/${GH.branch}?recursive=1`);
+  const pocUrlsByAve = new Map();
+  const expUrlsByAve = new Map();
+
+  for (const node of tree.tree || []) {
+    if (node.type !== "blob" || !node.path) continue;
+    if (!node.path.startsWith("pocs/") && !node.path.startsWith("exploits/")) continue;
+
+    const ave = extractAveId(node.path.split("/").pop());
+    if (!ave) continue;
+
+    const raw = `https://raw.githubusercontent.com/${GH.owner}/${GH.repo}/${GH.branch}/${node.path}`;
+    if (node.path.startsWith("pocs/")) {
+      const arr = pocUrlsByAve.get(ave) || [];
+      arr.push(raw);
+      pocUrlsByAve.set(ave, arr);
+    } else {
+      const arr = expUrlsByAve.get(ave) || [];
+      arr.push(raw);
+      expUrlsByAve.set(ave, arr);
+    }
+  }
+
+  state.assetIndex = { pocUrlsByAve, expUrlsByAve };
+  return state.assetIndex;
+}
+
+function toCard(item, text, assetIndex) {
   const ave = item.name.replace(/\.toml$/i, "");
   const cve = text.match(/^cve_id\s*=\s*"([^"]+)"/m)?.[1] || "无";
   const pocs = linksFromToml(text, "poc_urls");
   const exps = linksFromToml(text, "exp_urls");
+  const repoPocs = getRepoAssetUrls(assetIndex, ave, "poc");
+  const repoExps = getRepoAssetUrls(assetIndex, ave, "exp");
 
   return {
     ave_id: ave,
@@ -128,8 +173,10 @@ function toCard(item, text) {
     references: linksFromToml(text, "urls"),
     poc_urls: pocs,
     exp_urls: exps,
-    has_poc: pocs.length > 0,
-    has_exp: exps.length > 0,
+    repo_poc_urls: repoPocs,
+    repo_exp_urls: repoExps,
+    has_poc: repoPocs.length > 0,
+    has_exp: repoExps.length > 0,
     raw_url: item.html_url,
   };
 }
@@ -177,8 +224,8 @@ function renderList(cards) {
     const links = n.querySelector(".links");
     const groups = [
       ["参考链接", c.references],
-      ["PoC", c.poc_urls],
-      ["EXP", c.exp_urls],
+      ["PoC（公开）", c.repo_poc_urls],
+      ["EXP（公开）", c.repo_exp_urls],
       ["原始 TOML", [c.raw_url]],
     ];
 
@@ -272,10 +319,13 @@ async function runPage(page) {
   const rawList = await fetchListPage(state.keyword, state.page);
   if (token !== loadToken) return;
 
+  const assetIndex = await ensureAssetIndex();
+  if (token !== loadToken) return;
+
   const cards = [];
   for (const item of rawList) {
     const text = await fetchText(item);
-    cards.push(toCard(item, text));
+    cards.push(toCard(item, text, assetIndex));
   }
   if (token !== loadToken) return;
 

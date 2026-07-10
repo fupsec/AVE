@@ -1,0 +1,25 @@
+[id]
+ave_id = "AVE-2016-0003"
+cve_id = "CVE-2016-15034"
+aliases = ["CVE-2016-15034"]
+
+[basic]
+title = "Dynacase Webdesk SQL注入漏洞(CVE-2016-15034)"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["avd"]
+published = "2023-07-11"
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T07:18:37.417529141+00:00"
