@@ -1,0 +1,60 @@
+[id]
+ave_id = "AVE-2005-0001"
+cve_id = "CVE-2005-2773"
+avd_id = ""
+other_ids = []
+
+[basic]
+title = "HP OpenView Network Node Manager 远程命令执行漏洞"
+description = "HP OpenView Network Node Manager 6.2至7.50版本中存在命令注入漏洞，远程攻击者可通过向connectedNodes.ovpl、cdpView.ovpl、freeIPaddrs.ovpl和ecscmg.ovpl脚本的node参数传递shell元字符来执行任意命令。该漏洞已列入CISA已知被利用漏洞目录（KEV），确认在野活跃利用。"
+severity = "CRITICAL"
+source = "nvd"
+published = "2005-09-02"
+updated = "2026-06-16"
+
+[score]
+cvss_v2 = 7.5
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:P/A:P"
+cvss_v3 = 9.8
+cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+cvss_v4 = 0.0
+cvss_v4_vector = ""
+
+[affected]
+vendor = "Hewlett Packard"
+product = "OpenView Network Node Manager"
+
+[exploit]
+poc = [
+  { url = "http://marc.info/?l=bugtraq&m=112499121725662&w=2", description = "Portcullis Security Advisory 05-014 - 原始PoC/漏洞利用", source = "bugtraq" }
+]
+exp = []
+nuclei_templates = []
+
+[remediation]
+fix = "升级HP OpenView Network Node Manager到修复版本。参考HP官方安全公告安装补丁。该漏洞已列入CISA KEV，应优先修复。"
+workaround = "如无法升级，在网络边界防火墙限制对3443端口的访问，仅允许受信任IP地址连接；或限制对/OvCgi/目录的HTTP访问。"
+steps = ["步骤1: 确认HP OpenView NNM版本", "步骤2: 下载并安装HP官方安全补丁", "步骤3: 重启服务使更新生效", "步骤4: 监控系统日志确认无异常访问"]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2005-2773"
+avd = ""
+other = [
+  "http://marc.info/?l=bugtraq&m=112499121725662&w=2",
+  "https://www.securityfocus.com/bid/14662",
+  "http://secunia.com/advisories/16555/",
+  "https://exchange.xforce.ibmcloud.com/vulnerabilities/21999",
+  "https://www.cisa.gov/known-exploited-vulnerabilities-catalog"
+]
+
+[tags]
+tags = ["CWE-77", "command-injection", "rce", "kev"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "high"
+notes = "CVE由MITRE官方发布，NVD已分析并分配CVSS v3.1 9.8 CRITICAL评分。CWE-77命令注入分类。CISA KEV确认存在在野利用。原始PoC由Portcullis Security（Paul J Docherty）在Bugtraq邮件列表公开。未发现GitHub仓库或Exploit-DB独立条目。"
+
+[meta]
+collected_at = "2026-07-10T10:50:53Z"
+status = "completed"

@@ -1,0 +1,56 @@
+[id]
+ave_id = "AVE-2001-0003"
+cve_id = "CVE-2001-1034"
+avd_id = ""
+other_ids = []
+
+[basic]
+title = "Hylafax 传真软件格式字符串漏洞"
+description = "FreeBSD 系统上 Hylafax 传真软件中存在格式字符串漏洞。本地攻击者可通过向 (1) faxrm 或 (2) faxalter 命令的 -h hostname 参数传递格式字符串说明符，执行任意代码，获取系统最高权限。"
+severity = "HIGH"
+source = "nvd"
+published = "2001-09-23"
+updated = "2026-06-16"
+
+[score]
+cvss_v2 = 7.2
+cvss_v2_vector = "AV:L/AC:L/Au:N/C:C/I:C/A:C"
+cvss_v3 = 0.0
+cvss_v3_vector = ""
+cvss_v4 = 0.0
+cvss_v4_vector = ""
+
+[affected]
+vendor = "HylaFAX"
+product = "HylaFAX"
+
+[exploit]
+poc = []
+exp = []
+nuclei_templates = []
+
+[remediation]
+fix = "升级 Hylafax 到最新版本，参考 FreeBSD 安全公告和 HylaFAX 官方发布的安全补丁。"
+workaround = "限制本地用户对 faxrm 和 faxalter 命令的执行权限，仅授权可信用户访问。"
+steps = ["步骤1: 确认 Hylafax 版本是否受影响", "步骤2: 升级到修复版本", "步骤3: 限制 faxrm/faxalter 命令的执行权限"]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2001-1034"
+avd = ""
+other = [
+  { url = "http://www.securityfocus.com/bid/3357", description = "SecurityFocus BID 3357" },
+  { url = "http://www.securityfocus.com/archive/1/215984", description = "Bugtraq 邮件列表存档" },
+  { url = "https://exchange.xforce.ibmcloud.com/vulnerabilities/7164", description = "X-Force 漏洞数据库" }
+]
+
+[tags]
+tags = ["CWE-134", "format-string", "local", "hylafax", "freebsd"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "none"
+notes = "该漏洞为 2001 年的老旧漏洞，影响 FreeBSD 系统上的 Hylafax 传真软件。为本地格式字符串漏洞，非 HTTP 协议，不适用标准 PoC 脚本生成。未找到公开可用的 PoC/EXP。"
+
+[meta]
+collected_at = "2026-07-10T10:18:58Z"
+status = "completed"

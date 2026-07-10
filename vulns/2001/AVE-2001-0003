@@ -1,0 +1,25 @@
+[id]
+ave_id = "AVE-2001-0003"
+cve_id = "CVE-2001-1034"
+aliases = ["CVE-2001-1034"]
+
+[basic]
+title = "CVE-2001-1034"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["osv"]
+published = ""
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T11:55:16.488620039+00:00"
