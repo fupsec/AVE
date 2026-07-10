@@ -1,51 +1,57 @@
 [id]
 ave_id = "AVE-1999-0200"
-cve_id = "CVE-1999-0415"
+cve_id = "CVE-1999-0113"
 avd_id = ""
 other_ids = []
 
 [basic]
-title = "Cisco 7xx 系列路由器 ClickStart HTTP 服务器默认启用未授权配置修改漏洞"
-description = "Cisco 7xx 系列路由器（IOS/700 3.2(5) 至 4.2(3) 版本）内置的 ClickStart HTTP 服务器默认启用。该 HTTP 服务器不进行任何身份验证，远程攻击者可通过该服务器修改路由器配置或获取配置信息，包括查看连接的交换机类型和 ISDN 电话号码等敏感信息。ClickStart 不会自动过滤来自已配置子网外部的连接尝试。"
-severity = "HIGH"
-source = "cve"
-published = "1999-03-11"
-updated = "2026-06-16"
+title = "rlogin login(1) -froot 远程权限提升漏洞"
+description = "多个 Unix 系统实现中的 rlogin 和 login(1) 存在权限提升漏洞。当使用 -froot 参数调用 rlogin 时，系统会允许远程攻击者无需密码直接获得 root 权限。漏洞源于 login 在解析 rlogind 传递的参数时，将 -fuser 格式的参数误解析为强制登录选项而非用户名，从而绕过认证机制。"
+severity = "CRITICAL"
+source = "exploitdb"
+published = "1994-05-23"
+updated = "2024-08-01"
 
 [score]
-cvss_v2 = 7.5
-cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:P/A:P"
-cvss_v3 = 0
-cvss_v3_vector = ""
-cvss_v4 = 0
+cvss_v2 = 10.0
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C"
+cvss_v3 = 9.8
+cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+cvss_v4 = 0.0
 cvss_v4_vector = ""
 
 [affected]
-vendor = "Cisco"
-product = "Cisco 7xx Series Routers (IOS/700)"
+vendor = "IBM / Multiple Unix Vendors"
+product = "rlogin / login(1)"
 
 [exploit]
-poc = []
-exp = []
+poc = [
+  { url = "https://www.exploit-db.com/exploits/19348", description = "IBM AIX 3.2.5 login(1) 权限提升 PoC", source = "exploit-db" },
+  { url = "https://seclab.cs.ucdavis.edu/projects/testing/vulner/18.html", description = "UC Davis 漏洞数据库详细利用说明", source = "其他" }
+]
+exp = [
+  { url = "https://www.exploit-db.com/exploits/19348", description = "IBM AIX 3.2.5 - login(1) Privilege Escalation 远程利用脚本", source = "exploit-db" },
+  { url = "https://seclists.org/bugtraq/1995/Apr/246", description = "Satan 检测模块用于 rlogin -froot 漏洞扫描", source = "其他" }
+]
 nuclei_templates = []
 
 [remediation]
-fix = "升级 Cisco 76x/77x 路由器至 IOS/700 4.3(1) 或更高版本。对于 75x 路由器，在所有版本中使用命令 'set clickstart off' 禁用 ClickStart HTTP 服务器。"
-workaround = "如无法立即升级，可使用以下命令禁用 ClickStart HTTP 服务器：Router> set clickstart off。同时使用 'set ip filter tcp' 命令过滤来自不可信主机的 TCP 连接。"
-steps = ["步骤1: 确认路由器型号和当前 IOS/700 软件版本", "步骤2: 如为 76x/77x 路由器，升级至 IOS/700 4.3(1) 或更高版本", "步骤3: 如为 75x 路由器，执行 'set clickstart off' 命令禁用 HTTP 服务器", "步骤4: 配置 IP 过滤规则限制对路由器管理接口的访问"]
+fix = "升级 /bin/login 到修复版本，或在 /etc/inetd.conf 中注释掉 rlogin 服务行后重启 inetd 进程。"
+workaround = "禁用 rlogin 服务：在 /etc/inetd.conf 中注释掉 rlogin 相关行，然后执行 refresh -s inetd 或重启 inetd 进程。"
+steps = ["步骤1: 确认系统是否运行 rlogin 服务（检查 /etc/inetd.conf）", "步骤2: 如不需要 rlogin，在 /etc/inetd.conf 中注释掉 rlogin 行", "步骤3: 执行 refresh -s inetd 或重启 inetd 使配置生效", "步骤4: 升级 /bin/login 到厂商提供的修复版本"]
 
 [references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0415"
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0113"
 avd = ""
-other = ["https://www.cisco.com/c/en/us/support/docs/csa/cisco-sa-19990311-xxconn.html", "https://seclists.org/bugtraq/1999/Mar/81", "https://seclists.org/bugtraq/1999/Mar/80", "https://cxsecurity.com/cveshow/CVE-1999-0415/"]
+other = ["http://www.securityfocus.com/bid/458", "https://seclab.cs.ucdavis.edu/projects/testing/vulner/18.html", "https://www.tenable.com/plugins/nessus/10161", "https://seclists.org/bugtraq/1995/Apr/246"]
 
 [tags]
-tags = ["cisco", "clickstart", "http", "unauth", "configuration-change", "cwe-306"]
+tags = ["CWE-88", "Privilege-Escalation", "rlogin", "AIX", "Unix", "Remote"]
 
 [authenticity]
 cve_confidence = "high"
-poc_confidence = "low"
-notes = "CVE 已被 MITRE 和 NVD 确认，Cisco 官方安全公告明确描述了该漏洞。ISS X-Force 发现并报告了此漏洞。由于设备已停产超过 20 年，未发现公开可用的 PoC 或利用工具。"
+poc_confidence = "high"
+notes = "NVD 1994年发布，多个独立来源确认漏洞存在。Exploit-DB 有公开利用代码，Snort 有对应检测规则（1:604）。受影响范围覆盖 IBM AIX 3.1/3.2/3.2.4/3.2.5 及其他 Unix 实现。"
 
 [meta]
 collected_at = "2026-07-10T00:00:00Z"
