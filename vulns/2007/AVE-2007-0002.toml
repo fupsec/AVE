@@ -1,25 +1,61 @@
 [id]
 ave_id = "AVE-2007-0002"
 cve_id = "CVE-2007-3010"
-aliases = ["CVE-2007-3010"]
+avd_id = ""
+other_ids = []
 
 [basic]
-title = "CVE-2007-3010"
-description = ""
-severity = "UNKNOWN"
-score = 0.0
-sources = ["kev"]
-published = ""
-updated = ""
-remediation = "Refer to vendor advisory and upgrade to fixed version."
+title = "Alcatel OmniPCX Enterprise 远程命令执行漏洞"
+description = "Alcatel OmniPCX Enterprise Communication Server R7.1及之前版本的Unified Maintenance Tool中masterCGI脚本存在远程命令执行漏洞。未授权的攻击者可通过向/cgi-bin/masterCGI发送带有shell元字符的user参数（ping操作），在服务器上执行任意命令。"
+severity = "CRITICAL"
+source = "kev"
+published = "2007-09-18"
+updated = "2026-06-16"
 
-[references]
-urls = []
+[score]
+cvss_v2 = 10.0
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C"
+cvss_v3 = 9.8
+cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+cvss_v4 = 0.0
+cvss_v4_vector = ""
+
+[affected]
+vendor = "Alcatel-Lucent"
+product = "OmniPCX Enterprise Communication Server"
 
 [exploit]
-poc_urls = []
-exp_urls = []
+poc = [
+  { url = "http://marc.info/?l=full-disclosure&m=119002152126755&w=2", description = "Full Disclosure 邮件列表PoC：通过user参数注入shell命令执行任意命令", source = "mailing-list" }
+]
+exp = []
+nuclei_templates = [
+  { url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cves/2007/CVE-2007-3010.yaml", description = "Nuclei 检测模板：发送GET请求匹配uid=输出和masterCGI标题", source = "nuclei" }
+]
+
+[remediation]
+fix = "根据厂商安全公告（引用编号2007002）升级到修复版本。所有受支持版本均已实现了shell元字符过滤和更严格的访问控制。"
+workaround = "关闭Web服务器（不影响电话业务功能）；在网络层面设置防火墙，仅允许维护人员IP地址访问OXE的Web管理界面。"
+steps = ["确认OmniPCX Enterprise版本（<= R7.1受影响）", "访问Alcatel-Lucent PSIRT安全公告页面获取更新", "升级到修复版本或应用供应商提供的补丁", "配置网络防火墙限制对Web管理界面的访问"]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2007-3010"
+avd = ""
+other = [
+  "http://marc.info/?l=full-disclosure&m=119002152126755&w=2",
+  "https://exchange.xforce.ibmcloud.com/vulnerabilities/36632",
+  "http://www.securityfocus.com/bid/25694",
+  "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2007-3010"
+]
+
+[tags]
+tags = ["CWE-77", "CWE-20", "RCE", "command-injection", "KEV", "Alcatel", "OmniPCX"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "high"
+notes = "该漏洞已被CISA KEV收录（2022-04-15），有公开的PoC验证代码和Nuclei检测模板。CVSS v3.1评分为9.8（CRITICAL），漏洞利用已被实际观测到。由于协议为HTTP（CGI脚本），可以编写HTTP PoC检测脚本。"
 
 [meta]
+collected_at = "2026-07-10T12:30:59Z"
 status = "completed"
-collected_at = "2026-07-10T11:02:56.040447719+00:00"
