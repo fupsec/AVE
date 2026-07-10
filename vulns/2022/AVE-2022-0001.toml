@@ -1,81 +1,35 @@
-[affected]
-product = "libsndfile"
-vendor = "libsndfile_project"
-
-[authenticity]
-cve_confidence = "high"
-notes = "MSRC 确认该漏洞存在于 libsndfile 1.2.2 IMA ADPCM 编解码器 WAV 路径。NVD 补充了 au.c 和 mat4.c 的溢出问题。GitHub Issue #789 和 #833 包含 PoC 附件。"
-poc_confidence = "high"
-
 [basic]
-description = "libsndfile 1.2.2 中 IMA ADPCM 编解码器处理 WAV 文件时存在整数溢出漏洞。当 samplesperblock (int) 与 blocks (int) 的乘积超过 INT_MAX 时，32 位乘法运算在赋值给 sf.frames (sf_count_t/int64) 前发生溢出，导致帧计数错误，进而引发堆缓冲区溢出或拒绝服务。同时 src/au.c 的 au_read_header 函数和 src/mat4.c 的 mat4_open/mat4_read_header 函数也存在有符号整数溢出问题。攻击者可通过构造恶意音频文件触发漏洞，实现任意代码执行或造成服务崩溃。"
+description = "libsndfile 1.2.2 中 IMA ADPCM 编解码器在处理 WAV 和 AIFF 文件时存在整数溢出漏洞。samplesperblock（int）与 blocks（int）的乘积超过 INT_MAX 时，32 位乘法在赋值给 sf.frames（int64）前发生溢出，导致帧计数计算错误，进而引发堆缓冲区溢出或拒绝服务。同时 src/au.c 的 au_read_header 函数和 src/mat4.c 的 mat4_open/mat4_read_header 函数也存在有符号整数溢出问题。攻击者可通过构造恶意的 WAV/AIFF/AU/Mat4 音频文件触发该漏洞，导致任意代码执行或服务崩溃。"
 published = "2023-07-18"
 remediation = "升级 libsndfile 到修复版本。Debian/Ubuntu 参考 USN-6471-1 提供的修复版本。也可从 GitHub 源码仓库拉取最新提交自行编译。"
 score = 7.8
 severity = "HIGH"
-source = "msrc"
-sources = [
-    "msrc",
-    "nvd",
-]
+sources = ["msrc", "nvd"]
 title = "libsndfile 存在多个整数溢出漏洞"
 updated = "2026-06-17"
 
 [exploit]
-exp = []
-nuclei_templates = []
-
-[[exploit.poc]]
-description = "mat4.c 整数溢出 PoC 压缩包"
-source = "github"
-url = "https://github.com/libsndfile/libsndfile/files/7534888/mat4.c_int_overflow.tar.gz"
-
-[[exploit.poc]]
-description = "au.c 和 mat4.c 多符号整数溢出 PoC 压缩包"
-source = "github"
-url = "https://github.com/libsndfile/libsndfile/files/8591956/int.overflow.zip"
+exp_urls = []
+poc_urls = [
+    "https://github.com/libsndfile/libsndfile/files/7534888/mat4.c_int_overflow.tar.gz",
+    "https://github.com/libsndfile/libsndfile/files/8591956/int.overflow.zip",
+]
 
 [id]
+aliases = ["CVE-2022-33065", "GHSA-q72h-h33r-r8j8"]
 ave_id = "AVE-2022-0001"
 cve_id = "CVE-2022-33065"
-other_ids = ["GHSA-q72h-h33r-r8j8"]
 
 [meta]
-collected_at = "2026-07-11T00:00:00Z"
+collected_at = "2026-07-10T15:53:46.278518299+00:00"
 status = "completed"
 
 [references]
-avd = ""
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2022-33065"
-other = [
+urls = [
+    "https://nvd.nist.gov/vuln/detail/CVE-2022-33065",
     "https://github.com/libsndfile/libsndfile/issues/789",
     "https://github.com/libsndfile/libsndfile/issues/833",
     "https://github.com/libsndfile/libsndfile/commit/0754562e13d2e63a248a1c82f90b30bc0ffe307c",
     "https://ubuntu.com/security/notices/USN-6471-1",
     "https://github.com/advisories/GHSA-q72h-h33r-r8j8",
-]
-
-[remediation]
-fix = "升级 libsndfile 到修复版本。Debian: 1.0.31-2+deb11u2 (bullseye), 1.2.0-1+deb12u1 (bookworm); Ubuntu: 1.2.2-1ubuntu0.23.10.1 (mantic), 1.2.0-1ubuntu0.1 (lunar), 1.0.31-2ubuntu0.1 (jammy), 1.0.28-7ubuntu0.2 (focal)。从源码编译需拉取最新提交。"
-steps = [
-    "确认当前 libsndfile 版本：dpkg -l libsndfile1",
-    "升级到修复版本（Debian/Ubuntu 对应上述版本），apt update && apt upgrade",
-    "重启使用 libsndfile 的服务或应用程序",
-]
-workaround = "避免打开来源不可信的音频文件。如无法升级，可限制使用 libsndfile 处理不受信任的 WAV/AIFF/AU/Mat4 文件。"
-
-[score]
-cvss_v2 = 0.0
-cvss_v2_vector = ""
-cvss_v3 = 7.8
-cvss_v3_vector = "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H"
-cvss_v4 = 0.0
-cvss_v4_vector = ""
-
-[tags]
-tags = [
-    "CWE-190",
-    "INTEGER_OVERFLOW",
-    "DoS",
-    "MEMORY_CORRUPTION",
 ]
