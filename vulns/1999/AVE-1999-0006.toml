@@ -1,39 +1,28 @@
-[id]
-ave_id = "AVE-1999-0006"
-cve_id = "CVE-1999-0018"
-aliases = ["CVE-1999-0018"]
-
 [basic]
-title = "Sun Solaris/SCO/AIX/IRIX statd RPC NFS 状态守护进程缓冲区溢出漏洞"
-description = "statd 是 RPC NFS 状态守护进程，用于向其他服务或主机通信状态信息。许多 Unix 实现中 statd 在处理 SM_MON RPC 请求时存在缓冲区溢出漏洞，远程攻击者可通过向目标 statd 服务发送特制的 RPC 请求触发溢出，从而以 root 权限在目标主机上执行任意代码。该漏洞影响 IBM AIX 3.2/4.1、SCO Unixware 7.1.1、SGI IRIX 5.3、Sun Solaris 2.5.1 等多个平台。"
-severity = "CRITICAL"
-score = 10.0
-remediation = "及时安装各厂商提供的安全补丁：AIX 用户可安装 IBM APAR IX68417 补丁，Solaris 用户可安装 Sun 补丁 102726-01，SCO 用户应升级至 Unixware 7.1.2 及以上版本。同时建议在网络层面限制对 statd 服务（端口 111 上的 RPC）的访问。"
-published = "1997-12-05"
-updated = "2024-11-20"
-sources = ["exploitdb", "redhat"]
-
-[affected]
-vendor = "Multiple"
-product = "statd (RPC NFS Status Daemon)"
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = [
+    "exploitdb",
+    "redhat",
+]
+title = "CVE-1999-0018 漏洞"
+updated = ""
 
 [exploit]
-poc_urls = [
-    "https://www.exploit-db.com/exploits/19104"
-]
-exp_urls = [
-    "https://www.exploit-db.com/exploits/19104"
-]
-nuclei_templates = []
+exp_urls = []
+poc_urls = []
 
-[references]
-urls = [
-    "https://nvd.nist.gov/vuln/detail/CVE-1999-0018",
-    "https://www.exploit-db.com/exploits/19104",
-    "https://access.redhat.com/security/cve/CVE-1999-0018",
-    "http://www.securityfocus.com/bid/127"
-]
+[id]
+aliases = ["CVE-1999-0018"]
+ave_id = "AVE-1999-0006"
+cve_id = "CVE-1999-0018"
 
 [meta]
-collected_at = "2026-07-10T18:10:52Z"
+collected_at = "2026-07-10T20:55:51.699442503+00:00"
 status = "completed"
+
+[references]
+urls = []
