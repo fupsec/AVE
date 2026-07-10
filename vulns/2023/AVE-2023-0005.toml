@@ -1,46 +1,25 @@
-[id]
-ave_id = "AVE-2023-0005"
-cve_id = "CVE-2025-34041"
-aliases = [
-    "HWPOC-2023-000b692b",
-    "CNVD-2020-46552"
-]
-
 [basic]
-title = "深信服 EDR 管理平台认证绕过与远程命令执行漏洞"
-description = "深信服终端检测响应平台(EDR) 3.2.16、3.2.17、3.2.19 版本存在远程命令执行漏洞。攻击者无需认证即可向 EDR 管理平台的 /tool/log/c.php 接口发送恶意构造的 HTTP 请求，通过 strip_slashes 参数注入 passthru 或 system 函数，绕过身份认证并获取系统权限，实现任意命令执行。"
-severity = "CRITICAL"
-score = 9.8
-cvss_v3 = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
-cvss_v4 = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H"
-remediation = "升级至深信服 EDR v3.2.21 或更高版本，可在管理后台开启自动更新，或联系深信服技术支持获取离线升级包进行手动升级。"
-published = "2020-08-15"
-updated = "2025-06-01"
-sources = ["hwpoc", "nvd", "cnvd"]
-
-[affected]
-vendor = "深信服"
-product = "终端检测响应平台 EDR"
-
-[references]
-urls = [
-    "https://nvd.nist.gov/vuln/detail/CVE-2025-34041",
-    "https://www.cnvd.org.cn/flaw/show/CNVD-2020-46552",
-    "https://www.sangfor.com/blog/cybersecurity/sangfor-endpoint-secure-remote-command-execution-vulnerability",
-    "https://vulncheck.com/advisories/sangfor-edr-command-injection",
-    "https://www.tenable.com/cve/CVE-2025-34041",
-    "https://www.cve.org/CVERecord?id=CVE-2025-34041"
-]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["hwpoc"]
+title = "HWPOC-2023-000b692b"
+updated = ""
 
 [exploit]
-poc_urls = [
-    "https://github.com/DeEpinGh0st/Sangfor-edr-RCE",
-    "https://github.com/Ruiruigo/edrshellPOC"
-]
-exp_urls = [
-    "https://github.com/DeEpinGh0st/Sangfor-edr-RCE"
-]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["HWPOC-2023-000b692b"]
+ave_id = "AVE-2023-0005"
+cve_id = "HWPOC-2023-000b692b"
 
 [meta]
+collected_at = "2026-07-10T21:17:08.128763649+00:00"
 status = "completed"
-collected_at = "2026-07-10T18:11:00+00:00"
+
+[references]
+urls = []
