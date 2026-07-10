@@ -9,8 +9,8 @@ title = "CVE-2018-13372（已拒绝）"
 description = "CVE-2018-13372 由 Fortinet, Inc. 提交至 NVD 后被标记为 REJECTED，拒绝原因为 \"Not used\"，该编号未关联任何实际漏洞。"
 severity = "UNKNOWN"
 source = "avd"
-published = "2025-04-28"
-updated = "2025-04-28"
+published = "2018-07-06"
+updated = "2025-04-29"
 
 [score]
 cvss_v2 = 0.0
