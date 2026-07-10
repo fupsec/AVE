@@ -89,6 +89,8 @@ async function gh(url) {
       } else {
         msg += "：权限不足或访问被拒绝。";
       }
+    } else if (res.status === 401) {
+      msg += "：未认证访问。GitHub API 需要认证，请稍后再试或配置 Token。";
     } else {
       msg += `: ${url}`;
     }
