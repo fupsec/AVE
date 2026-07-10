@@ -4,8 +4,8 @@ published = ""
 remediation = "Refer to vendor advisory and upgrade to fixed version."
 score = 0.0
 severity = "UNKNOWN"
-sources = ["github"]
-title = "CVE-2026-0834"
+sources = ["ghsa"]
+title = "CVE-2026-48862"
 updated = ""
 
 [exploit]
@@ -13,12 +13,15 @@ exp_urls = []
 poc_urls = []
 
 [id]
-aliases = ["CVE-2026-0834"]
+aliases = [
+    "CVE-2026-48862",
+    "GHSA-g586-ccqf-7x4r",
+]
 ave_id = "AVE-2026-0082"
-cve_id = "CVE-2026-0834"
+cve_id = "CVE-2026-48862"
 
 [meta]
-collected_at = "2026-07-10T21:30:45.350805793+00:00"
+collected_at = "2026-07-10T21:29:03.519051707+00:00"
 status = "completed"
 
 [references]
