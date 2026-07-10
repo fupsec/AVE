@@ -1,39 +1,25 @@
-[id]
-ave_id = "AVE-2007-0003"
-cve_id = "CVE-2007-5659"
-aliases = ["CVE-2007-5659"]
-
 [basic]
-title = "Adobe Acrobat 和 Reader 缓冲区溢出漏洞"
-description = "Adobe Acrobat 和 Reader 8.1.1 及更早版本中存在多处缓冲区溢出漏洞。远程攻击者可以通过构造特制的PDF文件，向未指定的JavaScript方法传递超长参数，触发缓冲区溢出，进而导致任意代码执行。该漏洞已被CISA列入已知被利用漏洞目录(KEV)，曾在真实攻击中被积极利用。"
-severity = "HIGH"
-score = 7.8
-cvss_v3 = "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H"
-cvss_v2 = "(AV:N/AC:M/Au:N/C:C/I:C/A:C)"
-remediation = "升级 Adobe Acrobat/Reader 至 8.1.2 或更高版本，按照供应商安全公告 APSB08-13 的说明安装补丁，禁用 PDF 中的 JavaScript 执行作为缓解措施。"
-published = "2008-02-12"
-updated = "2026-06-16"
-sources = ["kev", "nvd"]
-
-[affected]
-vendor = "Adobe"
-product = "Acrobat and Reader"
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["kev"]
+title = "CVE-2007-5659 漏洞"
+updated = ""
 
 [exploit]
-poc_urls = []
 exp_urls = []
-nuclei_templates = []
+poc_urls = []
 
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2007-5659"
-other = [
-    "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2007-5659",
-    "http://www.adobe.com/support/security/advisories/apsa08-01.html",
-    "http://www.adobe.com/support/security/bulletins/apsb08-13.html",
-    "http://www.kb.cert.org/vuls/id/666281",
-    "http://www.us-cert.gov/cas/techalerts/TA08-043A.html",
-]
+[id]
+aliases = ["CVE-2007-5659"]
+ave_id = "AVE-2007-0003"
+cve_id = "CVE-2007-5659"
 
 [meta]
+collected_at = "2026-07-10T21:26:12.438949710+00:00"
 status = "completed"
-collected_at = "2026-07-11T00:00:00+00:00"
+
+[references]
+urls = []
