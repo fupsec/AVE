@@ -10,11 +10,10 @@ poc_confidence = "high"
 [basic]
 description = "H3C GR-1100-P、GR-1108-P、GR-1200W、GR-1800AX、GR-2200、GR-3200、GR-5200、GR-8300、ER2100n、ER2200G2、ER3200G2、ER3260G2、ER5100G2、ER5200G2、ER6300G2 路由器存在路径遍历漏洞。攻击者可利用 /userLogin.asp 的路径遍历漏洞构造特制请求下载路由器配置文件，获取包含密码在内的敏感信息，严重威胁网络安全。"
 published = "2023-09-24"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 5.5
+remediation = "升级路由器固件至最新版本，关注 H3C 官方安全公告获取修复补丁，同时限制管理接口访问来源，避免将管理界面暴露在公网。"
+score = 5.3
 severity = "MEDIUM"
-source = "nvd"
-sources = ["unknown"]
+sources = ["hwpoc", "nvd"]
 title = "H3C ER系列G2路由器路径遍历信息泄露漏洞"
 updated = "2026-06-17"
 
