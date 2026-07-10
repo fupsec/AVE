@@ -1,12 +1,12 @@
 [basic]
-description = "BIND 4和BIND 8.2.x存根解析器库(stub resolver libraries)以及glibc 2.2.5及更早版本、libc、libresolv等其他库在处理DNS响应时使用最大缓冲区大小而非实际大小，导致存根解析器读取超出实际边界(读取缓冲区溢出)，远程攻击者可利用特制DNS响应包造成拒绝服务(崩溃)。"
-published = "2002-10-11"
-remediation = "升级BIND至4.9.8或8.2.5及以上版本；升级glibc至2.3.x及以上版本；对于使用libresolv的系统安装相应操作系统厂商提供的安全补丁。"
-score = 5.0
-severity = "MEDIUM"
-sources = ["nvd", "osv"]
-title = "ISC BIND及glibc DNS解析器存根库读取缓冲区溢出漏洞"
-updated = "2026-06-16"
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["osv"]
+title = "CVE-2002-1146 漏洞"
+updated = ""
 
 [exploit]
 exp_urls = []
@@ -18,22 +18,8 @@ ave_id = "AVE-2002-0041"
 cve_id = "CVE-2002-1146"
 
 [meta]
-collected_at = "2026-07-11T06:00:00+00:00"
+collected_at = "2026-07-10T21:15:12.271617361+00:00"
 status = "completed"
 
 [references]
-urls = [
-    "https://nvd.nist.gov/vuln/detail/CVE-2002-1146",
-    "http://www.iss.net/security_center/static/10295.php",
-    "http://www.kb.cert.org/vuls/id/738331",
-    "http://www.mandrakesoft.com/security/advisories?name=MDKSA-2004:009",
-    "http://distro.conectiva.com.br/atualizacoes/?id=a&anuncio=000535",
-    "http://www.redhat.com/support/errata/RHSA-2002-197.html",
-    "http://www.redhat.com/support/errata/RHSA-2002-258.html",
-    "http://www.redhat.com/support/errata/RHSA-2003-022.html",
-    "http://www.redhat.com/support/errata/RHSA-2003-212.html",
-]
-
-[score]
-cvss_v2 = 5.0
-cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:N/A:P"
+urls = []
