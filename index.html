@@ -60,15 +60,14 @@
         <div id="spinner" class="spinner" style="display:none;"></div>
         <section class="project-intro" id="project-intro">
           <h3>项目说明</h3>
-          <p>AVE 代表 AdySec Vulnerability Exposures / AI-powered Vulnerability Engine / Automated Vulnerability Extractor。</p>
-          <p>系统会聚合 NVD、阿里云 AVD、GitHub PoC、MSRC、Tenable、CISA KEV、Red Hat 等来源，并统一输出 AVE 编号的结构化漏洞数据。</p>
-          <p>说明：漏洞爬取和梳理的核心代码与处理逻辑暂未开源，当前公开的是漏洞数据、公开资产与展示站点。</p>
-          <p>目标是构建覆盖最全的漏洞库。漏洞质量可能不一，但可通过严重等级快速筛选高危、可用、有价值的漏洞，支撑安全运营与漏洞梳理。</p>
-          <p>首次访问默认不自动加载列表。你可以点击“开始加载”查看最新数据，或输入关键词后点击“搜索”。</p>
+          <p>AVE（AdySec Vulnerability Exposures）是一个面向安全运营的多源漏洞知识库，统一输出 AVE 编号的结构化 TOML 数据，并整理公开的 PoC/EXP 资产。</p>
+          <p>系统聚合 NVD、阿里云 AVD、GitHub Advisory、MSRC、Tenable、CISA KEV、Red Hat 等来源，经过 AI 结构化处理后发布。</p>
+          <p>漏洞爬取与处理的核心代码暂未开源，当前公开的是漏洞数据、资产文件与展示站点。</p>
+          <p>列表默认不自动加载，可点击「开始加载」浏览全部漏洞，或输入关键词后点击「搜索」快速定位。</p>
           <ul>
-            <li>数据来源：仓库中的 <code>vulns/{year}/*.toml</code>（按年份分子目录）</li>
-            <li>PoC/EXP 标记：基于仓库公开文件真实存在性</li>
-            <li>详情页面：<code>detail.html</code> 独立展示完整字段</li>
+            <li>数据来源：<code>vulns/{year}/*.toml</code>（按年份分目录存储）</li>
+            <li>PoC/EXP 标记：基于仓库中公开文件的真实存在性</li>
+            <li>详情页面：<code>detail.html</code> 展示完整字段信息</li>
           </ul>
         </section>
         <div class="table-wrap">

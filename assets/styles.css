@@ -636,6 +636,21 @@ body {
   text-decoration: underline;
 }
 
+/* ── Detail page ── */
+.detail-layout {
+  grid-template-columns: 1fr;
+}
+
+.detail-layout .hero-top {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.detail-layout .hero-top h1 {
+  margin: 0;
+}
+
 /* ── Responsive: mobile & small screens ── */
 @media (max-width: 820px) {
   .hero {
@@ -769,7 +784,6 @@ body {
   .top-nav {
     align-self: flex-start;
   }
-}
 }
 
 /* ── Sortable headers ── */
