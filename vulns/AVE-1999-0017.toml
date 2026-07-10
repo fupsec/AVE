@@ -1,14 +1,14 @@
 [id]
-ave_id = "AVE-2002-0001"
-cve_id = "CVE-2002-0367"
-aliases = ["CVE-2002-0367"]
+ave_id = "AVE-1999-0017"
+cve_id = "CVE-1999-0428"
+aliases = ["CVE-1999-0428"]
 
 [basic]
-title = "CVE-2002-0367"
+title = "CVE-1999-0428"
 description = ""
 severity = "UNKNOWN"
 score = 0.0
-sources = ["kev"]
+sources = ["redhat"]
 published = ""
 updated = ""
 remediation = "Refer to vendor advisory and upgrade to fixed version."
@@ -22,4 +22,4 @@ exp_urls = []
 
 [meta]
 status = "completed"
-collected_at = "2026-07-10T11:10:50.119371117+00:00"
+collected_at = "2026-07-10T11:11:14.857755819+00:00"

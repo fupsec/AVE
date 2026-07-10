@@ -25,7 +25,16 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Update Dashboard Metrics
-        run: python3 scripts/update_dashboard_counts.py
+        run: |
+          VULNS=$(ls vulns/*.toml 2>/dev/null | wc -l)
+          POCS=$(ls pocs/* 2>/dev/null | wc -l)
+          EXPS=$(ls exploits/* 2>/dev/null | wc -l)
+          PUSH_TIME=$(date -u "+%Y-%m-%d %H:%M UTC")
+          sed -i 's|<p id="m-vulns">.*</p>|<p id="m-vulns">'"$VULNS"'</p>|' index.html
+          sed -i 's|<p id="m-pocs">.*</p>|<p id="m-pocs">'"$POCS"'</p>|' index.html
+          sed -i 's|<p id="m-exps">.*</p>|<p id="m-exps">'"$EXPS"'</p>|' index.html
+          sed -i 's|<p id="m-push">.*</p>|<p id="m-push">'"$PUSH_TIME"'</p>|' index.html
+          echo "dashboard updated: vulns=${VULNS}, pocs=${POCS}, exps=${EXPS}, push=${PUSH_TIME}"
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

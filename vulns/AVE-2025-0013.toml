@@ -1,14 +1,14 @@
 [id]
-ave_id = "AVE-2002-0001"
-cve_id = "CVE-2002-0367"
-aliases = ["CVE-2002-0367"]
+ave_id = "AVE-2025-0013"
+cve_id = "CVE-2025-24071"
+aliases = ["CVE-2025-24071"]
 
 [basic]
-title = "CVE-2002-0367"
+title = "CVE-2025-24071"
 description = ""
 severity = "UNKNOWN"
 score = 0.0
-sources = ["kev"]
+sources = ["github"]
 published = ""
 updated = ""
 remediation = "Refer to vendor advisory and upgrade to fixed version."
@@ -22,4 +22,4 @@ exp_urls = []
 
 [meta]
 status = "completed"
-collected_at = "2026-07-10T11:10:50.119371117+00:00"
+collected_at = "2026-07-10T11:12:19.070764453+00:00"
