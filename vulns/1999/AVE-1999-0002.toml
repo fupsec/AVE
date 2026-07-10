@@ -1,25 +1,53 @@
 [id]
 ave_id = "AVE-1999-0002"
 cve_id = "CVE-1999-0096"
-aliases = ["CVE-1999-0096"]
+other_ids = []
 
 [basic]
-title = "CVE-1999-0096"
-description = ""
-severity = "UNKNOWN"
-score = 0.0
-sources = ["tenable"]
-published = ""
-updated = ""
-remediation = "Refer to vendor advisory and upgrade to fixed version."
+title = "Sendmail decode 别名远程命令执行漏洞"
+description = "Sendmail 中的 decode 别名存在安全缺陷。远程攻击者可通过向目标服务器的 decode 别名发送邮件，将包含 uuencode 编码附件的邮件通过管道传递给程序处理，从而覆盖系统敏感文件（如 /etc/passwd），可能导致完全系统入侵。该漏洞影响所有启用 decode 别名的 Sendmail 版本。"
+severity = "MEDIUM"
+source = "tenable"
+published = "1996-12-10"
+updated = "2026-06-16"
 
-[references]
-urls = []
+[score]
+cvss_v2 = 5.0
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:P/A:N"
+cvss_v3 = 0.0
+cvss_v3_vector = ""
+cvss_v4 = 0.0
+cvss_v4_vector = ""
+
+[affected]
+vendor = "Sendmail"
+product = "Sendmail"
 
 [exploit]
-poc_urls = []
-exp_urls = []
+poc = []
+exp = []
+nuclei_templates = []
+
+[remediation]
+fix = "删除 /etc/aliases 或 /etc/mail/aliases 中的 decode 别名条目，然后运行 newaliases 命令重建别名数据库。升级到 Sendmail 8.9 及以上版本（默认禁用 decode 别名）。"
+workaround = "如无法升级，在网络边界防火墙处限制对 SMTP 端口（TCP 25）的访问，仅允许已知可信邮件服务器连接。限制系统关键文件的写入权限。"
+steps = ["步骤1: 编辑 /etc/aliases 文件，删除或注释 decode 别名行", "步骤2: 运行 newaliases 命令重建别名数据库", "步骤3: 重启 sendmail 服务使更改生效", "步骤4: 升级到 Sendmail 8.9 及以上版本"]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0096"
+other = [
+  "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-1999-0096",
+  "https://security-tracker.debian.org/tracker/CVE-1999-0096"
+]
+
+[tags]
+tags = ["NVD-CWE-Other", "Sendmail", "decode", "alias", "SMTP", "Remote", "File-Overwrite"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "none"
+notes = "漏洞由 MITRE/NVD 收录并确认。该漏洞涉及非 HTTP 协议（SMTP），无法生成自动化 HTTP PoC 验证脚本。利用方式简单：向 decode@target 发送含 uuencode 编码附件的邮件即可覆盖任意文件。已在 Sendmail 8.9+ 中默认修复。未发现公开的专用 PoC 仓库或 Exploit-DB 条目。"
 
 [meta]
+collected_at = "2026-07-10T10:50:50Z"
 status = "completed"
-collected_at = "2026-07-10T10:50:50.893042604+00:00"
