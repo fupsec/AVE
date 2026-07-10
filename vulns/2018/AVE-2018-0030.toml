@@ -1,40 +1,25 @@
-[id]
-ave_id = "AVE-2018-0030"
-cve_id = "CVE-2018-25100"
-aliases = ["CVE-2018-25100"]
-
 [basic]
-title = "Mojolicious Perl模块CookieJar Cookie泄漏漏洞"
-description = "Mojolicious是一个Perl语言编写的现代化Web开发框架。其7.66版本之前的Mojo::UserAgent::CookieJar组件在处理同名、同域、同路径的Cookie时存在逻辑缺陷，未遵循RFC 6265 Section 5.3规范替换已有Cookie，导致新旧Cookie同时被存储和发送至服务端。攻击者可以利用此漏洞获取用户Cookie中的敏感会话信息，可能导致会话劫持等安全风险。"
-severity = "MEDIUM"
-score = 5.3
-cvss_v3 = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N"
-remediation = "升级Mojolicious至7.66或更高版本，该版本修复了CookieJar组件中同名同域同路径Cookie未正确替换的问题。"
-published = "2024-03-23"
-updated = "2026-06-16"
-sources = ["avd", "nvd", "github"]
-
-[affected]
-vendor = "mojolicious"
-product = "mojolicious"
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["avd"]
+title = "CVE-2018-25100 漏洞"
+updated = ""
 
 [exploit]
-poc_urls = [
-  "https://github.com/mojolicious/mojo/issues/1185",
-  "https://github.com/mojolicious/mojo/pull/1192"
-]
 exp_urls = []
-nuclei_templates = []
+poc_urls = []
 
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2018-25100"
-other = [
-  "https://github.com/mojolicious/mojo/commit/c16a56a9d6575ddc53d15e76d58f0ebcb0eeb149",
-  "https://github.com/mojolicious/mojo/issues/1185",
-  "https://github.com/mojolicious/mojo/pull/1192",
-  "https://metacpan.org/dist/Mojolicious/changes"
-]
+[id]
+aliases = ["CVE-2018-25100"]
+ave_id = "AVE-2018-0030"
+cve_id = "CVE-2018-25100"
 
 [meta]
-collected_at = "2026-07-11T12:00:00+00:00"
+collected_at = "2026-07-10T21:21:32.877973898+00:00"
 status = "completed"
+
+[references]
+urls = []
