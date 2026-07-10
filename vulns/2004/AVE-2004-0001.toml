@@ -1,37 +1,25 @@
-[id]
-ave_id = "AVE-2004-0001"
-cve_id = "CVE-2004-0210"
-aliases = ["CVE-2004-0210"]
-
 [basic]
-title = "Microsoft Windows POSIX 子系统权限提升漏洞"
-description = "Microsoft Windows NT 和 Windows 2000 的 POSIX 子系统中存在缓冲区溢出漏洞(CWE-120)。该漏洞允许已登录的本地用户通过向 POSIX 子系统传递特制参数，修改消息长度值触发缓冲区溢出，从而以系统权限执行任意代码，完全控制受影响的系统。该漏洞已被 CISA 列入已知被利用漏洞目录(KEV)，存在在野利用风险。"
-severity = "HIGH"
-score = 7.8
-cvss_v3 = "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H"
-cvss_v2 = "(AV:L/AC:L/Au:N/C:C/I:C/A:C)"
-remediation = "建议用户安装 Microsoft 安全更新 MS04-020，将系统升级至最新服务包版本。对于 Windows NT 4.0 和 Windows 2000 等已停止支持的系统，建议升级到受支持的操作系统版本（如 Windows 10/11 或 Windows Server 2016+）以降低风险。"
-published = "2004-07-13"
-updated = "2026-06-16"
-sources = ["kev", "nvd"]
-
-[affected]
-vendor = "Microsoft"
-product = "Windows NT 4.0 / Windows 2000"
-
-[references]
-urls = [
-    "https://nvd.nist.gov/vuln/detail/CVE-2004-0210",
-    "https://docs.microsoft.com/en-us/security-updates/securitybulletins/2004/ms04-020",
-    "http://www.kb.cert.org/vuls/id/647436",
-    "https://exchange.xforce.ibmcloud.com/vulnerabilities/16590",
-    "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2004-0210"
-]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["kev"]
+title = "CVE-2004-0210 漏洞"
+updated = ""
 
 [exploit]
-poc_urls = []
 exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2004-0210"]
+ave_id = "AVE-2004-0001"
+cve_id = "CVE-2004-0210"
 
 [meta]
-collected_at = "2026-07-11T16:29:06+08:00"
+collected_at = "2026-07-10T20:55:43.876386078+00:00"
 status = "completed"
+
+[references]
+urls = []

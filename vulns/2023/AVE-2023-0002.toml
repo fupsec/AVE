@@ -1,84 +1,43 @@
-[affected]
-product = "BIG-IP"
-vendor = "F5"
-
-[authenticity]
-cve_confidence = "high"
-notes = "该漏洞已被CISA KEV收录，有公开的PoC/EXP和Metasploit模块，真实性确凿。"
-poc_confidence = "high"
-
-[basic]
-description = "F5 BIG-IP 配置实用程序（TMUI）存在认证绕过漏洞，未经身份验证的远程攻击者可通过管理端口或自IP地址发送特制请求，绕过配置实用程序的身份验证，通过AJP协议走私（AJP Smuggling）执行任意系统命令。该漏洞已被CISA列入已知被利用漏洞目录（KEV），且已在野被积极利用。"
-published = "2023-10-26"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 9.8
-severity = "CRITICAL"
-source = "nvd"
-sources = ["unknown"]
-title = "F5 BIG-IP 配置实用程序认证绕过漏洞"
-updated = "2026-06-17"
-
-[[exploit.exp]]
-description = "Metasploit 远程命令执行模块"
-source = "github"
-url = "https://github.com/rapid7/metasploit-framework/tree/master/modules/exploits/linux/http/f5_bigip_tmui_ajp_smuggling"
-
-[[exploit.nuclei_templates]]
-description = "Nuclei 检测模板"
-source = "nuclei"
-url = "https://github.com/adysec/nuclei_poc/blob/ce5a47e163f5440c84dbfc0adb073ab35f562154/poc/cve/CVE-2023-46747.yaml"
-
-[[exploit.nuclei_templates]]
-description = "Nuclei 官方检测模板"
-source = "nuclei"
-url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cves/2023/CVE-2023-46747.yaml"
-
-[[exploit.poc]]
-description = "F5 BIG-IP TMUI AJP走私远程命令执行PoC"
-source = "exploit-db"
-url = "http://packetstormsecurity.com/files/175673/F5-BIG-IP-TMUI-AJP-Smuggling-Remote-Command-Execution.html"
-
 [id]
-avd_id = ""
 ave_id = "AVE-2023-0002"
 cve_id = "CVE-2023-46747"
-other_ids = []
+aliases = ["CVE-2023-46747"]
 
-[meta]
-collected_at = "2026-07-11T00:00:00Z"
-status = "completed"
+[basic]
+title = "F5 BIG-IP 配置工具认证绕过漏洞"
+description = "CVE-2023-46747 是 F5 BIG-IP 配置工具(TMUI)中存在的一个严重认证绕过漏洞。攻击者可以通过管理端口或自IP地址发送特制请求绕过身份验证，利用AJP走私攻击未授权访问配置程序，进而实现远程代码执行(RCE)。该漏洞CVSSv3评分为9.8，影响版本包括BIG-IP 17.1.0、16.1.0-16.1.4、15.1.0-15.1.10、14.1.0-14.1.5及13.1.0-13.1.5，无需用户交互或权限即可远程利用，已出现在CISA已知被利用漏洞目录中并被用于主动攻击链。"
+severity = "CRITICAL"
+score = 9.8
+cvss_v3 = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+remediation = "建议立即升级至修复版本：BIG-IP 17.1.0升级至Hotfix-BIGIP-17.1.0.3.0.75.4-ENG.iso，16.1.x升级至16.1.4.1，15.1.x升级至15.1.10.2，14.1.x升级至14.1.5.6，13.1.x升级至13.1.5.1。如无法升级，建议使用WAF策略进行临时拦截防护。"
+published = "2023-10-27"
+updated = "2023-10-31"
+sources = ["hwpoc", "nvd", "cisa-kev"]
+
+[affected]
+vendor = "F5"
+product = "BIG-IP"
 
 [references]
-avd = ""
 nvd = "https://nvd.nist.gov/vuln/detail/CVE-2023-46747"
+f5_advisory = "https://my.f5.com/manage/s/article/K000137353"
+cisa_kev = "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2023-46747"
 other = [
-    "https://my.f5.com/manage/s/article/K000137353",
-    "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
-    "http://packetstormsecurity.com/files/175673/F5-BIG-IP-TMUI-AJP-Smuggling-Remote-Command-Execution.html",
-    "https://www.secpod.com/blog/f5-issues-warning-big-ip-vulnerability-used-in-active-exploit-chain/",
+  "http://packetstormsecurity.com/files/175673/F5-BIG-IP-TMUI-AJP-Smuggling-Remote-Command-Execution.html",
+  "https://www.praetorian.com/blog/refresh-compromising-f5-big-ip-with-request-smuggling-cve-2023-46747/",
+  "https://www.secpod.com/blog/f5-issues-warning-big-ip-vulnerability-used-in-active-exploit-chain/"
 ]
 
-[remediation]
-fix = "升级到以下修复版本：BIG-IP 17.1.0.3.0.75.4、17.1.1.0.2.6、16.1.4.1.0.50.5、15.1.10.2.0.44.2、14.1.5.6.0.10.6 或 13.1.5.1.0.20.2。参考F5官方安全公告 K000137353。"
-steps = [
-    "步骤1: 确认BIG-IP版本",
-    "步骤2: 访问F5官方公告 K000137353 获取修复版本",
-    "步骤3: 升级BIG-IP到修复版本",
-    "步骤4: 如无法升级，限制管理端口和自IP地址的网络访问权限",
+[exploit]
+poc = [
+  { url = "https://github.com/adysec/nuclei_poc/blob/ce5a47e163f5440c84dbfc0adb073ab35f562154/poc/cve/CVE-2023-46747.yaml", description = "Nuclei PoC - F5 BIG-IP AJP走私未授权RCE检测", source = "github" },
+  { url = "http://packetstormsecurity.com/files/175673/F5-BIG-IP-TMUI-AJP-Smuggling-Remote-Command-Execution.html", description = "PacketStorm公开的利用代码", source = "packetstorm" }
 ]
-workaround = "如无法升级，可限制对BIG-IP管理端口和自IP地址的访问，仅允许受信任的网络访问配置实用程序。"
-
-[score]
-cvss_v2 = 10.0
-cvss_v2_vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C"
-cvss_v3 = 9.8
-cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
-
-[tags]
-tags = [
-    "CWE-306",
-    "CWE-288",
-    "RCE",
-    "AJP-Smuggling",
-    "Authentication-Bypass",
+exp = []
+nuclei_templates = [
+  { url = "https://github.com/adysec/nuclei_poc/blob/ce5a47e163f5440c84dbfc0adb073ab35f562154/poc/cve/CVE-2023-46747.yaml", description = "Nuclei模板 - AJP走私检测", source = "github" }
 ]
+
+[meta]
+status = "completed"
+collected_at = "2026-07-11T00:00:00+00:00"

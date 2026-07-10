@@ -1,34 +1,25 @@
 [basic]
-description = "泛微 e-Mobile 登录接口存在 OGNL 表达式注入漏洞（CNVD-2017-03561）。未授权攻击者可通过 login.do 或 login/login.do 页面的 message 参数注入恶意 OGNL 表达式，绕过表达式过滤直接调用 Java 方法，实现远程命令执行、获取数据库敏感信息及执行未授权管理操作。该漏洞影响使用 Apache 和 Resin 中间件的泛微 OA e-Mobile 模块，攻击者无需认证即可利用，危害严重。"
-published = "2017-06-30"
-remediation = "升级泛微 e-Mobile 至最新版本，或联系厂商获取安全补丁。同时在 WAF 中添加针对 OGNL 表达式注入的过滤规则，对 message 参数进行严格的输入校验，禁止传入 OGNL 特殊字符及 Java 方法调用语法。"
-score = 9.8
-severity = "CRITICAL"
-sources = ["nuclei", "cnvd"]
-title = "泛微 e-Mobile OGNL 表达式注入漏洞"
-updated = "2017-06-30"
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["nuclei"]
+title = "NUCLEI-HTTP-CNVD-2017-CNVD-2017-03561-YAML 漏洞"
+updated = ""
 
 [exploit]
 exp_urls = []
-nuclei_templates = ["https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2017/CNVD-2017-03561.yaml"]
-poc_urls = ["https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2017/CNVD-2017-03561.yaml", "https://gitee.com/cute-guy/Penetration_Testing_POC/blob/master/%E6%B3%9B%E5%BE%AEe-mobile%20ognl%E6%B3%A8%E5%85%A5.md"]
+poc_urls = []
 
 [id]
-aliases = ["CNVD-2017-03561", "NUCLEI-HTTP-CNVD-2017-CNVD-2017-03561-YAML"]
+aliases = ["NUCLEI-HTTP-CNVD-2017-CNVD-2017-03561-YAML"]
 ave_id = "AVE-2026-0026"
-cve_id = "CNVD-2017-03561"
+cve_id = "NUCLEI-HTTP-CNVD-2017-CNVD-2017-03561-YAML"
 
 [meta]
-collected_at = "2026-07-10T16:34:14.667353806+00:00"
+collected_at = "2026-07-10T20:55:45.218746610+00:00"
 status = "completed"
 
 [references]
-urls = ["https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2017/CNVD-2017-03561.yaml", "https://gitee.com/cute-guy/Penetration_Testing_POC/blob/master/%E6%B3%9B%E5%BE%AEe-mobile%20ognl%E6%B3%A8%E5%85%A5.md"]
-
-[score]
-cvss_v2 = 10.0
-cvss_v2_vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C"
-cvss_v3 = 9.8
-cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
-cvss_v4 = 0.0
-cvss_v4_vector = ""
+urls = []
