@@ -1,28 +1,34 @@
+
 [id]
-ave_id = "AVE-2025-0043"
-cve_id = "CVE-2025-9074"
-avd_id = ""
-other_ids = ["GHSA-4xcq-3fjf-xfqw", "EUVD-2025-25308"]
+  ave_id = "AVE-2025-0043"
+  cve_id = "CVE-2025-9074"
+  avd_id = ""
+  other_ids = ["GHSA-4xcq-3fjf-xfqw", "EUVD-2025-25308"]
 
 [basic]
-title = "Docker Desktop 容器逃逸漏洞（Docker Engine API 未授权访问）"
-description = "Docker Desktop存在一个安全漏洞，本地运行的Linux容器可通过配置的Docker子网（默认192.168.65.7:2375）访问Docker Engine API。该漏洞在启用或未启用增强容器隔离（ECI）以及在tcp://localhost:2375上暴露守护进程（不使用TLS）选项的情况下均存在。攻击者可利用该漏洞执行大量特权Engine API命令，包括控制其他容器、创建新容器、管理镜像等。在某些情况下（如Windows平台使用WSL后端的Docker Desktop），还可挂载与运行Docker Desktop用户相同权限的主机驱动器，实现容器逃逸。"
-severity = "CRITICAL"
-source = "nvd"
-published = "2025-08-20"
-updated = "2026-06-17"
+  title = "Docker Desktop 容器逃逸漏洞（Docker Engine API 未授权访问）"
+  description = "Docker Desktop存在一个安全漏洞，本地运行的Linux容器可通过配置的Docker子网（默认192.168.65.7:2375）访问Docker Engine API。该漏洞在启用或未启用增强容器隔离（ECI）以及在tcp://localhost:2375上暴露守护进程（不使用TLS）选项的情况下均存在。攻击者可利用该漏洞执行大量特权Engine API命令，包括控制其他容器、创建新容器、管理镜像等。在某些情况下（如Windows平台使用WSL后端的Docker Desktop），还可挂载与运行Docker Desktop用户相同权限的主机驱动器，实现容器逃逸。"
+  severity = "CRITICAL"
+  source = "nvd"
+  published = "2025-08-20"
+  updated = "2026-06-17"
 
 [score]
-cvss_v2 = 0.0
-cvss_v2_vector = ""
-cvss_v3 = 0.0
-cvss_v3_vector = ""
-cvss_v4 = 9.3
-cvss_v4_vector = "CVSS:4.0/AV:L/AC:L/AT:N/PR:N/UI:P/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H"
+  cvss_v2 = 10.0
+  cvss_v2_vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C"
+  cvss_v3 = 9.8
+  cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+  cvss_v4 = 9.3
+  cvss_v4_vector = "CVSS:4.0/AV:L/AC:L/AT:N/PR:N/UI:P/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H"
 
 [affected]
 vendor = "Docker"
 product = "Docker Desktop"
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "high"
+notes = "CVE-2025-9074由Felix Boulet和Philippe Dugré发现。Docker官方已确认漏洞并发布修复版本4.44.3。GitHub上存在多个独立PoC验证仓库（BridgerAlderson、zenzue、j3r1ch0123等），CISA SSVC标记为PoC利用状态。该漏洞曾被用于HackTheBox MonitorsFour CTF挑战。NVD尚未提供CVSS v2/v3评分，仅有CNA提供的CVSS v4评分（9.3 CRITICAL）。"
 
 [exploit]
 poc = [
@@ -56,11 +62,6 @@ other = ["https://github.com/advisories/GHSA-4xcq-3fjf-xfqw", "https://docs.dock
 
 [tags]
 tags = ["CWE-668", "container-escape", "docker", "rce", "privilege-escalation", "ssrf", "unauthenticated-access"]
-
-[authenticity]
-cve_confidence = "high"
-poc_confidence = "high"
-notes = "CVE-2025-9074由Felix Boulet和Philippe Dugré发现。Docker官方已确认漏洞并发布修复版本4.44.3。GitHub上存在多个独立PoC验证仓库（BridgerAlderson、zenzue、j3r1ch0123等），CISA SSVC标记为PoC利用状态。该漏洞曾被用于HackTheBox MonitorsFour CTF挑战。NVD尚未提供CVSS v2/v3评分，仅有CNA提供的CVSS v4评分（9.3 CRITICAL）。"
 
 [meta]
 collected_at = "2026-07-10T00:00:00Z"

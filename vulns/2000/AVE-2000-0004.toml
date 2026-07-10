@@ -1,24 +1,33 @@
+
 [id]
-ave_id = "AVE-2000-0004"
-cve_id = "CVE-2000-1221"
-aliases = ["CVE-2000-1221"]
+  ave_id = "AVE-2000-0004"
+  cve_id = "CVE-2000-1221"
+  aliases = ["CVE-2000-1221"]
 
 [basic]
-title = "CVE-2000-1221"
-description = ""
-severity = "UNKNOWN"
-score = 0.0
-sources = ["osv"]
-published = ""
-updated = ""
-remediation = "Refer to vendor advisory and upgrade to fixed version."
+  title = "CVE-2000-1221"
+  description = ""
+  severity = "MEDIUM"
+  score = 5.5
+  sources = ["osv"]
+  published = ""
+  updated = ""
+  remediation = "Refer to vendor advisory and upgrade to fixed version."
 
-[references]
-urls = []
+[score]
+  cvss_v2 = 5.0
+  cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:P/A:N"
+  cvss_v3 = 5.5
+  cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N"
+  cvss_v4 = 0.0
+  cvss_v4_vector = ""
 
 [exploit]
 poc_urls = []
 exp_urls = []
+
+[references]
+urls = []
 
 [meta]
 status = "completed"

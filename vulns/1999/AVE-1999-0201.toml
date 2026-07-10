@@ -1,28 +1,34 @@
+
 [id]
-ave_id = "AVE-1999-0201"
-cve_id = "CVE-1999-0115"
-avd_id = ""
-other_ids = []
+  ave_id = "AVE-1999-0201"
+  cve_id = "CVE-1999-0115"
+  avd_id = ""
+  other_ids = []
 
 [basic]
-title = "AIX bugfiler 本地提权漏洞"
-description = "AIX 3.x 版本中的 bugfiler 程序存在本地提权漏洞。bugfiler 以 setuid root 权限安装，允许用户指定目录创建文件，攻击者可通过该程序在任意目录中创建文件，从而获取 root 权限。"
-severity = "HIGH"
-source = "exploitdb"
-published = "1999-07-14"
-updated = ""
+  title = "AIX bugfiler 本地提权漏洞"
+  description = "AIX 3.x 版本中的 bugfiler 程序存在本地提权漏洞。bugfiler 以 setuid root 权限安装，允许用户指定目录创建文件，攻击者可通过该程序在任意目录中创建文件，从而获取 root 权限。"
+  severity = "HIGH"
+  source = "exploitdb"
+  published = "1999-07-14"
+  updated = ""
 
 [score]
-cvss_v2 = 7.2
-cvss_v2_vector = "AV:L/AC:L/Au:N/C:C/I:C/A:C"
-cvss_v3 = 0
-cvss_v3_vector = ""
-cvss_v4 = 0
-cvss_v4_vector = ""
+  cvss_v2 = 7.2
+  cvss_v2_vector = "AV:L/AC:L/Au:N/C:C/I:C/A:C"
+  cvss_v3 = 7.5
+  cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N"
+  cvss_v4 = 8.6
+  cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N"
 
 [affected]
 vendor = "IBM"
 product = "AIX"
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "medium"
+notes = "该漏洞为本地提权漏洞，非 HTTP 协议漏洞，不适用于基于 HTTP 的 PoC 模板。Exploit-DB 已有详细利用信息。"
 
 [exploit]
 poc = []
@@ -43,11 +49,6 @@ other = ["https://www.securityfocus.com/bid/1800", "https://www.exploit-db.com/e
 
 [tags]
 tags = ["local", "privilege-escalation", "setuid", "aix"]
-
-[authenticity]
-cve_confidence = "high"
-poc_confidence = "medium"
-notes = "该漏洞为本地提权漏洞，非 HTTP 协议漏洞，不适用于基于 HTTP 的 PoC 模板。Exploit-DB 已有详细利用信息。"
 
 [meta]
 collected_at = "2026-07-10T00:00:00Z"

@@ -1,28 +1,34 @@
+
 [id]
-ave_id = "AVE-1999-0009"
-cve_id = "CVE-1999-0194"
-avd_id = ""
-other_ids = []
+  ave_id = "AVE-1999-0009"
+  cve_id = "CVE-1999-0194"
+  avd_id = ""
+  other_ids = []
 
 [basic]
-title = "in.comsat (biff/comsat 服务) 拒绝服务漏洞"
-description = "in.comsat (biff/comsat 服务) 存在拒绝服务漏洞，攻击者可通过向 UDP 512 端口发送伪造的邮件通知消息，导致服务崩溃，造成拒绝服务。该服务用于向用户发送新邮件到达通知，默认运行在类 Unix 系统的 inetd 超级守护进程下。"
-severity = "MEDIUM"
-source = "nvd"
-published = "1999-05-01"
-updated = "2026-06-16"
+  title = "in.comsat (biff/comsat 服务) 拒绝服务漏洞"
+  description = "in.comsat (biff/comsat 服务) 存在拒绝服务漏洞，攻击者可通过向 UDP 512 端口发送伪造的邮件通知消息，导致服务崩溃，造成拒绝服务。该服务用于向用户发送新邮件到达通知，默认运行在类 Unix 系统的 inetd 超级守护进程下。"
+  severity = "MEDIUM"
+  source = "nvd"
+  published = "1999-05-01"
+  updated = "2026-06-16"
 
 [score]
-cvss_v2 = 5.0
-cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:N/A:P"
-cvss_v3 = 0.0
-cvss_v3_vector = ""
-cvss_v4 = 0.0
-cvss_v4_vector = ""
+  cvss_v2 = 5.0
+  cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:N/A:P"
+  cvss_v3 = 5.5
+  cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N"
+  cvss_v4 = 5.1
+  cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:L/VI:N/VA:N/SC:N/SI:N/SA:N"
 
 [affected]
 vendor = "n/a"
 product = "in.comsat (biff/comsat 服务)"
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "none"
+notes = "CVE-1999-0194 由 MITRE 于 1999 年发布，NVD 已确认，CVSS v2 评分 5.0 MEDIUM。该漏洞为 UDP 非 HTTP 协议漏洞，未发现公开 PoC/EXP 代码，受影响组件为 Unix 系统中的 in.comsat (biff/comsat) 服务。"
 
 [exploit]
 poc = []
@@ -37,17 +43,10 @@ steps = ["步骤1: 确认系统是否运行 comsat/biff 服务: grep comsat /etc
 [references]
 nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0194"
 avd = ""
-other = [
-  "https://www.cve.org/CVERecord?id=CVE-1999-0194"
-]
+other = ["https://www.cve.org/CVERecord?id=CVE-1999-0194"]
 
 [tags]
 tags = ["DoS", "拒绝服务", "UDP", "comsat", "biff", "in.comsat", "CWE-Other"]
-
-[authenticity]
-cve_confidence = "high"
-poc_confidence = "none"
-notes = "CVE-1999-0194 由 MITRE 于 1999 年发布，NVD 已确认，CVSS v2 评分 5.0 MEDIUM。该漏洞为 UDP 非 HTTP 协议漏洞，未发现公开 PoC/EXP 代码，受影响组件为 Unix 系统中的 in.comsat (biff/comsat) 服务。"
 
 [meta]
 collected_at = "2026-07-11T10:18:58Z"

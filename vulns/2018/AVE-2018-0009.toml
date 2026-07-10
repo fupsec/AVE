@@ -1,24 +1,33 @@
+
 [id]
-ave_id = "AVE-2018-0009"
-cve_id = "CVE-2018-1472"
-aliases = ["CVE-2018-1472"]
+  ave_id = "AVE-2018-0009"
+  cve_id = "CVE-2018-1472"
+  aliases = ["CVE-2018-1472"]
 
 [basic]
-title = "CVE-2018-1472"
-description = ""
-severity = "UNKNOWN"
-score = 0.0
-sources = ["avd"]
-published = ""
-updated = ""
-remediation = "Refer to vendor advisory and upgrade to fixed version."
+  title = "CVE-2018-1472"
+  description = ""
+  severity = "CRITICAL"
+  score = 9.8
+  sources = ["avd"]
+  published = ""
+  updated = ""
+  remediation = "Refer to vendor advisory and upgrade to fixed version."
 
-[references]
-urls = []
+[score]
+  cvss_v2 = 10.0
+  cvss_v2_vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C"
+  cvss_v3 = 9.8
+  cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+  cvss_v4 = 0.0
+  cvss_v4_vector = ""
 
 [exploit]
 poc_urls = []
 exp_urls = []
+
+[references]
+urls = []
 
 [meta]
 status = "completed"

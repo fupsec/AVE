@@ -1,27 +1,33 @@
+
 [id]
-ave_id = "AVE-2026-0033"
-cve_id = "CVE-2026-34225"
-aliases = [
-    "CVE-2026-34225",
-    "GHSA-jgx9-jr5x-mvpv",
-]
+  ave_id = "AVE-2026-0033"
+  cve_id = "CVE-2026-34225"
+  aliases = ["CVE-2026-34225", "GHSA-jgx9-jr5x-mvpv"]
 
 [basic]
-title = "CVE-2026-34225"
-description = ""
-severity = "UNKNOWN"
-score = 0.0
-sources = ["ghsa"]
-published = ""
-updated = ""
-remediation = "Refer to vendor advisory and upgrade to fixed version."
+  title = "CVE-2026-34225"
+  description = ""
+  severity = "HIGH"
+  score = 8.8
+  sources = ["ghsa"]
+  published = ""
+  updated = ""
+  remediation = "Refer to vendor advisory and upgrade to fixed version."
 
-[references]
-urls = []
+[score]
+  cvss_v2 = 7.5
+  cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:P/A:P"
+  cvss_v3 = 8.8
+  cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H"
+  cvss_v4 = 0.0
+  cvss_v4_vector = ""
 
 [exploit]
 poc_urls = []
 exp_urls = []
+
+[references]
+urls = []
 
 [meta]
 status = "completed"

@@ -1,24 +1,33 @@
+
 [id]
-ave_id = "AVE-2001-0001"
-cve_id = "CVE-2001-0735"
-aliases = ["CVE-2001-0735"]
+  ave_id = "AVE-2001-0001"
+  cve_id = "CVE-2001-0735"
+  aliases = ["CVE-2001-0735"]
 
 [basic]
-title = "CVE-2001-0735"
-description = ""
-severity = "UNKNOWN"
-score = 0.0
-sources = ["osv"]
-published = ""
-updated = ""
-remediation = "Refer to vendor advisory and upgrade to fixed version."
+  title = "CVE-2001-0735"
+  description = ""
+  severity = "HIGH"
+  score = 8.8
+  sources = ["osv"]
+  published = ""
+  updated = ""
+  remediation = "Refer to vendor advisory and upgrade to fixed version."
 
-[references]
-urls = []
+[score]
+  cvss_v2 = 7.5
+  cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:P/A:P"
+  cvss_v3 = 8.8
+  cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H"
+  cvss_v4 = 0.0
+  cvss_v4_vector = ""
 
 [exploit]
 poc_urls = []
 exp_urls = []
+
+[references]
+urls = []
 
 [meta]
 status = "completed"

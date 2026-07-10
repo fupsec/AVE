@@ -1,28 +1,34 @@
+
 [id]
-ave_id = "AVE-1999-0006"
-cve_id = "CVE-1999-0018"
-avd_id = ""
-other_ids = ["EDB-19104"]
+  ave_id = "AVE-1999-0006"
+  cve_id = "CVE-1999-0018"
+  avd_id = ""
+  other_ids = ["EDB-19104"]
 
 [basic]
-title = "statd RPC NFS 状态守护进程缓冲区溢出漏洞"
-description = "Buffer overflow in statd allows root privileges。statd 是 RPC NFS 状态守护进程，用于与其他服务或主机通信状态信息。多个 Unix 实现中随附的 statd 版本在处理 'SM_MON' RPC 请求时存在缓冲区溢出漏洞，攻击者可通过发送特制的 RPC 请求触发溢出，从而获得目标主机的 root 权限。"
-severity = "CRITICAL"
-source = "nvd"
-published = "1997-12-05"
-updated = "2026-06-16"
+  title = "statd RPC NFS 状态守护进程缓冲区溢出漏洞"
+  description = "Buffer overflow in statd allows root privileges。statd 是 RPC NFS 状态守护进程，用于与其他服务或主机通信状态信息。多个 Unix 实现中随附的 statd 版本在处理 'SM_MON' RPC 请求时存在缓冲区溢出漏洞，攻击者可通过发送特制的 RPC 请求触发溢出，从而获得目标主机的 root 权限。"
+  severity = "CRITICAL"
+  source = "nvd"
+  published = "1997-12-05"
+  updated = "2026-06-16"
 
 [score]
-cvss_v2 = 10.0
-cvss_v2_vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C"
-cvss_v3 = 0.0
-cvss_v3_vector = ""
-cvss_v4 = 0.0
-cvss_v4_vector = ""
+  cvss_v2 = 10.0
+  cvss_v2_vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C"
+  cvss_v3 = 9.8
+  cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+  cvss_v4 = 9.9
+  cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N"
 
 [affected]
 vendor = "Multiple"
 product = "Multiple Unix Systems (IBM AIX 3.2/4.1, SCO Unixware 7.1.1, SGI IRIX 5.3, Sun Solaris 2.4/2.5/2.5.1)"
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "high"
+notes = "Exploit-DB 19104 提供了完整的可编译 C 语言利用程序源代码，针对 Solaris 2.5.1 x86 平台。该漏洞影响多种 Unix 操作系统。statd 采用 RPC 协议非 HTTP 协议，无法生成符合 poc.md 规范的 HTTP 类型 PoC 脚本。"
 
 [exploit]
 poc = []
@@ -40,20 +46,10 @@ steps = ["步骤1: 确认受影响的 Unix 系统版本", "步骤2: 联系厂商
 [references]
 nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0018"
 avd = ""
-other = [
-  "http://www.securityfocus.com/bid/127",
-  "https://cve.org/CVERecord?id=CVE-1999-0018",
-  "https://access.redhat.com/security/cve/CVE-1999-0018",
-  "https://security-tracker.debian.org/tracker/CVE-1999-0018"
-]
+other = ["http://www.securityfocus.com/bid/127", "https://cve.org/CVERecord?id=CVE-1999-0018", "https://access.redhat.com/security/cve/CVE-1999-0018", "https://security-tracker.debian.org/tracker/CVE-1999-0018"]
 
 [tags]
 tags = ["CWE-Other", "buffer-overflow", "rpc", "statd", "privilege-escalation", "remote"]
-
-[authenticity]
-cve_confidence = "high"
-poc_confidence = "high"
-notes = "Exploit-DB 19104 提供了完整的可编译 C 语言利用程序源代码，针对 Solaris 2.5.1 x86 平台。该漏洞影响多种 Unix 操作系统。statd 采用 RPC 协议非 HTTP 协议，无法生成符合 poc.md 规范的 HTTP 类型 PoC 脚本。"
 
 [meta]
 collected_at = "2026-07-11T10:18:58Z"

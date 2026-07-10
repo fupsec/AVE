@@ -1,26 +1,34 @@
+
 [id]
-ave_id = "AVE-2026-0041"
-cve_id = "CVE-2026-48595"
-avd_id = ""
-other_ids = ["GHSA-9m9w-gxf7-rh8m"]
+  ave_id = "AVE-2026-0041"
+  cve_id = "CVE-2026-48595"
+  avd_id = ""
+  other_ids = ["GHSA-9m9w-gxf7-rh8m"]
 
 [basic]
-title = "Tesla FollowRedirects 中间件跨源重定向时 Authorization 请求头泄露漏洞"
-description = """
-Tesla (Elixir HTTP 客户端库) 的 FollowRedirects 中间件在跨源重定向时未能正确过滤安全敏感请求头。中间件使用小写字符串列表 @filter_headers ["authorization", "host"] 进行大小写敏感的比较，但 Tesla 会原样保留调用者提供的请求头键名而不进行大小写归一化。当请求头设置为 {"Authorization", "Bearer ..."} (RFC 7235 规范大小写，被几乎所有 HTTP 库和文档采用) 时，不会匹配小写过滤条目 "authorization"，导致 Authorization 头被转发到重定向目标。攻击者通过控制或影响客户端收到的 Location 响应 (通过自己的端点、开放重定向上游或受控来源) 即可在跨域请求中获取 Bearer token 或其他凭证。影响 tesla 1.4.0 至 1.18.2 版本。
-"""
-severity = "HIGH"
-source = "ghsa"
-published = "2026-06-02"
-updated = "2026-06-17"
+  title = "Tesla FollowRedirects 中间件跨源重定向时 Authorization 请求头泄露漏洞"
+  description = "Tesla (Elixir HTTP 客户端库) 的 FollowRedirects 中间件在跨源重定向时未能正确过滤安全敏感请求头。中间件使用小写字符串列表 @filter_headers [\"authorization\", \"host\"] 进行大小写敏感的比较，但 Tesla 会原样保留调用者提供的请求头键名而不进行大小写归一化。当请求头设置为 {\"Authorization\", \"Bearer ...\"} (RFC 7235 规范大小写，被几乎所有 HTTP 库和文档采用) 时，不会匹配小写过滤条目 \"authorization\"，导致 Authorization 头被转发到重定向目标。攻击者通过控制或影响客户端收到的 Location 响应 (通过自己的端点、开放重定向上游或受控来源) 即可在跨域请求中获取 Bearer token 或其他凭证。影响 tesla 1.4.0 至 1.18.2 版本。\n"
+  severity = "HIGH"
+  source = "ghsa"
+  published = "2026-06-02"
+  updated = "2026-06-17"
 
 [score]
-cvss_v4 = 8.2
-cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N"
+  cvss_v4 = 8.2
+  cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N"
+  cvss_v3 = 7.5
+  cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N"
+  cvss_v2 = 7.8
+  cvss_v2_vector = "AV:N/AC:L/Au:N/C:C/I:N/A:N"
 
 [affected]
 vendor = "elixir-tesla"
 product = "tesla"
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "low"
+notes = "CVE 已由 EEF (Erlang Ecosystem Foundation) 发布，NVD 已完成初始评估并由 CNA 分配 CVSS v4.0 评分 8.2。GHSA 安全公告提供了完整的漏洞原理和复现步骤。由于该漏洞为客户端库行为缺陷，需要搭建恶意 HTTP 重定向服务器并配合 Elixir/Tesla 客户端进行验证，暂无符合 poc.md 格式的标准 HTTP 请求 PoC。"
 
 [exploit]
 poc = [
@@ -32,32 +40,15 @@ nuclei_templates = []
 [remediation]
 fix = "升级到 tesla 1.18.3 及以上版本。参考官方安全公告 GHSA-9m9w-gxf7-rh8m。"
 workaround = "如无法升级，将所有请求头键名归一化为小写后再传入 Tesla。使用 \"authorization\" (全小写) 替代 \"Authorization\" 设置请求头，或在应用层对请求头键名进行大小写归一化处理。"
-steps = [
-  "确认当前使用的 tesla 版本（mix deps | grep tesla）",
-  "升级到 tesla 1.18.3 及以上版本",
-  "检查应用中是否使用了 Tesla.Middleware.FollowRedirects 中间件",
-  "如无法升级，在设置请求头时使用全小写 \"authorization\" 替代规范大小写 \"Authorization\"",
-  "验证修复：检查所有调用 put_header/3 或 Tesla.Middleware.Headers 的地方是否已归一化请求头键名"
-]
+steps = ["确认当前使用的 tesla 版本（mix deps | grep tesla）", "升级到 tesla 1.18.3 及以上版本", "检查应用中是否使用了 Tesla.Middleware.FollowRedirects 中间件", "如无法升级，在设置请求头时使用全小写 \"authorization\" 替代规范大小写 \"Authorization\"", "验证修复：检查所有调用 put_header/3 或 Tesla.Middleware.Headers 的地方是否已归一化请求头键名"]
 
 [references]
 nvd = "https://nvd.nist.gov/vuln/detail/CVE-2026-48595"
 avd = ""
-other = [
-  "https://github.com/elixir-tesla/tesla/security/advisories/GHSA-9m9w-gxf7-rh8m",
-  "https://github.com/elixir-tesla/tesla/commit/db963dba67651b9abd1fc420a1d9679cf6efe182",
-  "https://github.com/elixir-tesla/tesla/commit/2d937d5813d7cda5cd726f41824985fb655c920f",
-  "https://cna.erlef.org/cves/CVE-2026-48595.html",
-  "https://osv.dev/vulnerability/EEF-CVE-2026-48595"
-]
+other = ["https://github.com/elixir-tesla/tesla/security/advisories/GHSA-9m9w-gxf7-rh8m", "https://github.com/elixir-tesla/tesla/commit/db963dba67651b9abd1fc420a1d9679cf6efe182", "https://github.com/elixir-tesla/tesla/commit/2d937d5813d7cda5cd726f41824985fb655c920f", "https://cna.erlef.org/cves/CVE-2026-48595.html", "https://osv.dev/vulnerability/EEF-CVE-2026-48595"]
 
 [tags]
 tags = ["CWE-178", "credential-leak", "redirect", "tesla", "elixir", "header-injection"]
-
-[authenticity]
-cve_confidence = "high"
-poc_confidence = "low"
-notes = "CVE 已由 EEF (Erlang Ecosystem Foundation) 发布，NVD 已完成初始评估并由 CNA 分配 CVSS v4.0 评分 8.2。GHSA 安全公告提供了完整的漏洞原理和复现步骤。由于该漏洞为客户端库行为缺陷，需要搭建恶意 HTTP 重定向服务器并配合 Elixir/Tesla 客户端进行验证，暂无符合 poc.md 格式的标准 HTTP 请求 PoC。"
 
 [meta]
 collected_at = "2026-07-11T12:00:00Z"

@@ -340,7 +340,7 @@ function renderList(cards) {
     const titleTd = document.createElement("td");
     titleTd.className = "table-title";
     titleTd.title = c.title || "";
-    titleTd.textContent = c.title || c.cve_id || c.ave_id;
+    titleTd.textContent = c.title || c.ave_id;
 
     const sevTd = document.createElement("td");
     const sev = document.createElement("span");

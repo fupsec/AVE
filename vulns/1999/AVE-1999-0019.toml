@@ -1,28 +1,34 @@
+
 [id]
-ave_id = "AVE-1999-0019"
-cve_id = "CVE-1999-0493"
-avd_id = ""
-other_ids = []
+  ave_id = "AVE-1999-0019"
+  cve_id = "CVE-1999-0493"
+  avd_id = ""
+  other_ids = []
 
 [basic]
-title = "Sun Solaris rpc.statd 远程命令执行漏洞"
-description = "rpc.statd 允许远程攻击者通过 SM_MON 和 SM_NOTIFY 命令将 RPC 调用转发到本地操作系统，进而可用于远程利用其他漏洞（如 automountd）。"
-severity = "HIGH"
-source = "nvd"
-published = "1999-06-07"
-updated = "2026-06-16"
+  title = "Sun Solaris rpc.statd 远程命令执行漏洞"
+  description = "rpc.statd 允许远程攻击者通过 SM_MON 和 SM_NOTIFY 命令将 RPC 调用转发到本地操作系统，进而可用于远程利用其他漏洞（如 automountd）。"
+  severity = "HIGH"
+  source = "nvd"
+  published = "1999-06-07"
+  updated = "2026-06-16"
 
 [score]
-cvss_v2 = 7.5
-cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:P/A:P"
-cvss_v3 = 0.0
-cvss_v3_vector = ""
-cvss_v4 = 0.0
-cvss_v4_vector = ""
+  cvss_v2 = 7.5
+  cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:P/A:P"
+  cvss_v3 = 7.5
+  cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N"
+  cvss_v4 = 8.6
+  cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N"
 
 [affected]
 vendor = "Sun"
 product = "Solaris"
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "low"
+notes = "RPC 协议漏洞，非 HTTP，无可用 PoC/EXP 脚本。CVSS v3/v4 未评估。"
 
 [exploit]
 poc = []
@@ -37,18 +43,10 @@ steps = ["步骤1: 确认系统运行 rpc.statd 服务", "步骤2: 应用 Sun �
 [references]
 nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0493"
 avd = ""
-other = [
-  "https://www.cert.org/advisories/CA-99-05-statd-automountd.html",
-  "https://www.securityfocus.com/bid/450"
-]
+other = ["https://www.cert.org/advisories/CA-99-05-statd-automountd.html", "https://www.securityfocus.com/bid/450"]
 
 [tags]
 tags = ["CWE-Other", "RCE", "RPC"]
-
-[authenticity]
-cve_confidence = "high"
-poc_confidence = "low"
-notes = "RPC 协议漏洞，非 HTTP，无可用 PoC/EXP 脚本。CVSS v3/v4 未评估。"
 
 [meta]
 collected_at = "2026-07-10T11:18:58Z"

@@ -1,27 +1,33 @@
+
 [id]
-ave_id = "AVE-1999-0010"
-cve_id = "CVE-1999-0015"
-other_ids = []
+  ave_id = "AVE-1999-0010"
+  cve_id = "CVE-1999-0015"
+  other_ids = []
 
 [basic]
-title = "Teardrop IP分片重组拒绝服务漏洞"
-description = "Teardrop IP denial of service。攻击者通过发送两个或多个精心构造的IP分片数据包，利用TCP/IP协议栈在处理IP分片重组时的缺陷，使目标系统在内存不足的情况下崩溃或重启。影响多个操作系统，包括Linux内核、Microsoft Windows 95及Windows NT 4.0、HP-UX 10.34等。"
-severity = "MEDIUM"
-source = "nvd"
-published = "1997-12-16"
-updated = "2026-06-16"
+  title = "Teardrop IP分片重组拒绝服务漏洞"
+  description = "Teardrop IP denial of service。攻击者通过发送两个或多个精心构造的IP分片数据包，利用TCP/IP协议栈在处理IP分片重组时的缺陷，使目标系统在内存不足的情况下崩溃或重启。影响多个操作系统，包括Linux内核、Microsoft Windows 95及Windows NT 4.0、HP-UX 10.34等。"
+  severity = "MEDIUM"
+  source = "nvd"
+  published = "1997-12-16"
+  updated = "2026-06-16"
 
 [score]
-cvss_v2 = 5.0
-cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:N/A:P"
-cvss_v3 = 0.0
-cvss_v3_vector = ""
-cvss_v4 = 0.0
-cvss_v4_vector = ""
+  cvss_v2 = 5.0
+  cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:N/A:P"
+  cvss_v3 = 5.5
+  cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N"
+  cvss_v4 = 5.1
+  cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:L/VI:N/VA:N/SC:N/SI:N/SA:N"
 
 [affected]
 vendor = "multiple"
 product = "multiple"
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "high"
+notes = "经典的Teardrop IP分片攻击漏洞，已有多平台验证。公开的C源码利用程序（route|daemon9编写）在Exploit-DB上可用。该漏洞涉及网络层IP协议，非HTTP协议，无法生成HTTP PoC验证脚本。"
 
 [exploit]
 poc = []
@@ -37,18 +43,10 @@ steps = ["步骤1: 确认操作系统版本", "步骤2: 安装厂商提供的最
 
 [references]
 nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0015"
-other = [
-  "https://www.exploit-db.com/exploits/19103",
-  "https://oval.cisecurity.org/repository/search/definition/oval%3Aorg.mitre.oval%3Adef%3A5579"
-]
+other = ["https://www.exploit-db.com/exploits/19103", "https://oval.cisecurity.org/repository/search/definition/oval%3Aorg.mitre.oval%3Adef%3A5579"]
 
 [tags]
 tags = ["NVD-CWE-Other", "DoS", "Teardrop", "IP-Fragmentation", "Remote"]
-
-[authenticity]
-cve_confidence = "high"
-poc_confidence = "high"
-notes = "经典的Teardrop IP分片攻击漏洞，已有多平台验证。公开的C源码利用程序（route|daemon9编写）在Exploit-DB上可用。该漏洞涉及网络层IP协议，非HTTP协议，无法生成HTTP PoC验证脚本。"
 
 [meta]
 collected_at = "2026-07-10T10:50:52Z"

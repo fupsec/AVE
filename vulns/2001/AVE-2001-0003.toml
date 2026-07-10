@@ -1,28 +1,34 @@
+
 [id]
-ave_id = "AVE-2001-0003"
-cve_id = "CVE-2001-1034"
-avd_id = ""
-other_ids = []
+  ave_id = "AVE-2001-0003"
+  cve_id = "CVE-2001-1034"
+  avd_id = ""
+  other_ids = []
 
 [basic]
-title = "Hylafax 传真软件格式字符串漏洞"
-description = "FreeBSD 系统上 Hylafax 传真软件中存在格式字符串漏洞。本地攻击者可通过向 (1) faxrm 或 (2) faxalter 命令的 -h hostname 参数传递格式字符串说明符，执行任意代码，获取系统最高权限。"
-severity = "HIGH"
-source = "nvd"
-published = "2001-09-23"
-updated = "2026-06-16"
+  title = "Hylafax 传真软件格式字符串漏洞"
+  description = "FreeBSD 系统上 Hylafax 传真软件中存在格式字符串漏洞。本地攻击者可通过向 (1) faxrm 或 (2) faxalter 命令的 -h hostname 参数传递格式字符串说明符，执行任意代码，获取系统最高权限。"
+  severity = "HIGH"
+  source = "nvd"
+  published = "2001-09-23"
+  updated = "2026-06-16"
 
 [score]
-cvss_v2 = 7.2
-cvss_v2_vector = "AV:L/AC:L/Au:N/C:C/I:C/A:C"
-cvss_v3 = 0.0
-cvss_v3_vector = ""
-cvss_v4 = 0.0
-cvss_v4_vector = ""
+  cvss_v2 = 7.2
+  cvss_v2_vector = "AV:L/AC:L/Au:N/C:C/I:C/A:C"
+  cvss_v3 = 7.5
+  cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N"
+  cvss_v4 = 8.6
+  cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N"
 
 [affected]
 vendor = "HylaFAX"
 product = "HylaFAX"
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "none"
+notes = "该漏洞为 2001 年的老旧漏洞，影响 FreeBSD 系统上的 Hylafax 传真软件。为本地格式字符串漏洞，非 HTTP 协议，不适用标准 PoC 脚本生成。未找到公开可用的 PoC/EXP。"
 
 [exploit]
 poc = []
@@ -45,11 +51,6 @@ other = [
 
 [tags]
 tags = ["CWE-134", "format-string", "local", "hylafax", "freebsd"]
-
-[authenticity]
-cve_confidence = "high"
-poc_confidence = "none"
-notes = "该漏洞为 2001 年的老旧漏洞，影响 FreeBSD 系统上的 Hylafax 传真软件。为本地格式字符串漏洞，非 HTTP 协议，不适用标准 PoC 脚本生成。未找到公开可用的 PoC/EXP。"
 
 [meta]
 collected_at = "2026-07-10T10:18:58Z"

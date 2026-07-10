@@ -1,24 +1,34 @@
+
 [id]
-ave_id = "AVE-1999-0210"
-cve_id = "CVE-1999-0019"
-avd_id = ""
-other_ids = []
+  ave_id = "AVE-1999-0210"
+  cve_id = "CVE-1999-0019"
+  avd_id = ""
+  other_ids = []
 
 [basic]
-title = "Sun Solaris rpc.statd 文件创建/删除漏洞"
-description = "Solaris 系统中 rpc.statd 服务存在输入验证缺陷，远程攻击者可通过发送特制 RPC 请求创建或删除系统文件，导致系统完整性受损。"
-severity = "MEDIUM"
-source = "nvd"
-published = "1996-04-24"
-updated = "2026-06-16"
+  title = "Sun Solaris rpc.statd 文件创建/删除漏洞"
+  description = "Solaris 系统中 rpc.statd 服务存在输入验证缺陷，远程攻击者可通过发送特制 RPC 请求创建或删除系统文件，导致系统完整性受损。"
+  severity = "MEDIUM"
+  source = "nvd"
+  published = "1996-04-24"
+  updated = "2026-06-16"
 
 [score]
-cvss_v2 = 5.0
-cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:P/A:N"
+  cvss_v2 = 5.0
+  cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:P/A:N"
+  cvss_v3 = 5.5
+  cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N"
+  cvss_v4 = 5.1
+  cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:L/VI:N/VA:N/SC:N/SI:N/SA:N"
 
 [affected]
 vendor = "Sun Microsystems"
 product = "Solaris"
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "low"
+notes = "1996年的古老漏洞，rpc.statd 基于 RPC 协议（非 HTTP），无公开可用的 PoC/EXP 仓库链接。"
 
 [exploit]
 poc = []
@@ -37,11 +47,6 @@ other = ["http://sunsolve.sun.com/pub-cgi/retrieve.pl?doctype=coll&doc=secbull/1
 
 [tags]
 tags = ["CWE-20", "Solaris", "rpc.statd", "RPC"]
-
-[authenticity]
-cve_confidence = "high"
-poc_confidence = "low"
-notes = "1996年的古老漏洞，rpc.statd 基于 RPC 协议（非 HTTP），无公开可用的 PoC/EXP 仓库链接。"
 
 [meta]
 collected_at = "2026-07-11T07:51:00Z"

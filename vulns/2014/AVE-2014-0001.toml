@@ -1,24 +1,33 @@
+
 [id]
-ave_id = "AVE-2014-0001"
-cve_id = "CVE-2014-125101"
-aliases = ["CVE-2014-125101"]
+  ave_id = "AVE-2014-0001"
+  cve_id = "CVE-2014-125101"
+  aliases = ["CVE-2014-125101"]
 
 [basic]
-title = "WordPress plugin Portfolio Gallery SQL注入漏洞(CVE-2014-125101)"
-description = ""
-severity = "UNKNOWN"
-score = 0.0
-sources = ["avd"]
-published = "2023-05-28"
-updated = ""
-remediation = "Refer to vendor advisory and upgrade to fixed version."
+  title = "WordPress plugin Portfolio Gallery SQL注入漏洞(CVE-2014-125101)"
+  description = ""
+  severity = "HIGH"
+  score = 8.6
+  sources = ["avd"]
+  published = "2023-05-28"
+  updated = ""
+  remediation = "Refer to vendor advisory and upgrade to fixed version."
 
-[references]
-urls = []
+[score]
+  cvss_v2 = 7.5
+  cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:P/A:P"
+  cvss_v3 = 8.6
+  cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:L/A:L"
+  cvss_v4 = 8.7
+  cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:L/VA:L/SC:N/SI:N/SA:N"
 
 [exploit]
 poc_urls = []
 exp_urls = []
+
+[references]
+urls = []
 
 [meta]
 status = "completed"

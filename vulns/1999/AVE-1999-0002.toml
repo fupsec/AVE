@@ -1,24 +1,34 @@
+
 [id]
-ave_id = "AVE-1999-0002"
-cve_id = "CVE-1999-0096"
-avd_id = ""
-other_ids = []
+  ave_id = "AVE-1999-0002"
+  cve_id = "CVE-1999-0096"
+  avd_id = ""
+  other_ids = []
 
 [basic]
-title = "Sendmail decode 别名远程文件覆盖漏洞"
-description = "Sendmail decode 别名功能存在安全漏洞，远程攻击者可通过向 decode 别名发送邮件，将邮件内容传递给程序执行，从而覆盖系统敏感文件。"
-severity = "MEDIUM"
-source = "nvd"
-published = "1996-12-10"
-updated = "2026-06-16"
+  title = "Sendmail decode 别名远程文件覆盖漏洞"
+  description = "Sendmail decode 别名功能存在安全漏洞，远程攻击者可通过向 decode 别名发送邮件，将邮件内容传递给程序执行，从而覆盖系统敏感文件。"
+  severity = "MEDIUM"
+  source = "nvd"
+  published = "1996-12-10"
+  updated = "2026-06-16"
 
 [score]
-cvss_v2 = 5.0
-cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:P/A:N"
+  cvss_v2 = 5.0
+  cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:P/A:N"
+  cvss_v3 = 5.5
+  cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N"
+  cvss_v4 = 5.1
+  cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:L/VI:N/VA:N/SC:N/SI:N/SA:N"
 
 [affected]
 vendor = "sendmail"
 product = "sendmail"
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "none"
+notes = "PoC/EXP 未公开收录，漏洞年代久远（1996年），经搜索 NVD、GitHub、Exploit-DB、PacketStorm、Sploitus 均未发现公开 PoC/EXP。非 HTTP 协议漏洞（SMTP），不生成 PoC 脚本。"
 
 [exploit]
 poc = []
@@ -37,11 +47,6 @@ other = ["http://sunsolve.sun.com/pub-cgi/retrieve.pl?doctype=coll&doc=secbull/1
 
 [tags]
 tags = ["CWE-Other", "sendmail", "SMTP", "file-overwrite", "mail"]
-
-[authenticity]
-cve_confidence = "high"
-poc_confidence = "none"
-notes = "PoC/EXP 未公开收录，漏洞年代久远（1996年），经搜索 NVD、GitHub、Exploit-DB、PacketStorm、Sploitus 均未发现公开 PoC/EXP。非 HTTP 协议漏洞（SMTP），不生成 PoC 脚本。"
 
 [meta]
 collected_at = "2026-07-11T14:30:00Z"

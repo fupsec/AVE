@@ -1,24 +1,33 @@
+
 [id]
-ave_id = "AVE-2015-0018"
-cve_id = "CVE-2015-1313"
-aliases = ["CVE-2015-1313"]
+  ave_id = "AVE-2015-0018"
+  cve_id = "CVE-2015-1313"
+  aliases = ["CVE-2015-1313"]
 
 [basic]
-title = "teamcity 安全漏洞 (CVE-2015-1313)"
-description = ""
-severity = "UNKNOWN"
-score = 0.0
-sources = ["avd"]
-published = "2023-06-29"
-updated = ""
-remediation = "Refer to vendor advisory and upgrade to fixed version."
+  title = "teamcity 安全漏洞 (CVE-2015-1313)"
+  description = ""
+  severity = "MEDIUM"
+  score = 5.5
+  sources = ["avd"]
+  published = "2023-06-29"
+  updated = ""
+  remediation = "Refer to vendor advisory and upgrade to fixed version."
 
-[references]
-urls = []
+[score]
+  cvss_v2 = 4.6
+  cvss_v2_vector = "AV:L/AC:L/Au:N/C:P/I:P/A:P"
+  cvss_v3 = 5.5
+  cvss_v3_vector = "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N"
+  cvss_v4 = 5.1
+  cvss_v4_vector = "CVSS:4.0/AV:L/AC:L/AT:N/PR:L/UI:N/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N"
 
 [exploit]
 poc_urls = []
 exp_urls = []
+
+[references]
+urls = []
 
 [meta]
 status = "completed"

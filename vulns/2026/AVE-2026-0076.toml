@@ -5,19 +5,25 @@ aliases = ["CVE-2026-48596", "GHSA-q7jx-v53g-848w"]
 
 [basic]
 title = "Tesla Multipart.add_content_type_param CRLF注入漏洞(CVE-2026-48596)"
-description = """
-Tesla 是 Elixir 语言的 HTTP 客户端库。Tesla.Multipart.add_content_type_param/2 函数在构造 multipart Content-Type 请求头时未对用户输入的参数值进行 CR(\r)LF(\n) 过滤，直接将参数值拼接到 Content-Type 头中。攻击者通过传入包含 \r\n 的 content-type 参数值可向 HTTP 请求中注入任意请求头，可能导致 HTTP 请求走私等安全问题。
-
-影响范围: tesla 0.8.0 <= version < 1.18.3
-
-在 1.18.3 版本中，通过对 add_content_type_param 传入的参数值进行 \r\n 字符过滤来修复该漏洞。
-"""
+description = "Tesla 是 Elixir 语言的 HTTP 客户端库。Tesla.Multipart.add_content_type_param/2 函数在构造 multipart Content-Type 请求头时未对用户输入的参数值进行 CR(\\n)LF(\\n) 过滤，直接将参数值拼接到 Content-Type 头中。攻击者通过传入包含 \\n 的 content-type 参数值可向 HTTP 请求中注入任意请求头，可能导致 HTTP 请求走私等安全问题。\\n\\n影响范围: tesla 0.8.0 <= version < 1.18.3\\n\\n在 1.18.3 版本中，通过对 add_content_type_param 传入的参数值进行 \\n 字符过滤来修复该漏洞。\\n"
 severity = "LOW"
 score = 2.1
 sources = ["ghsa", "nvd"]
 published = "2026-06-02"
 updated = "2026-06-17"
-remediation = "升级到 tesla 1.18.3 或以上版本。如无法升级，在使用 add_content_type_param 前对参数值进行 \r\n 字符校验。"
+remediation = "升级到 tesla 1.18.3 或以上版本。如无法升级，在使用 add_content_type_param 前对参数值进行 \\n 字符校验。"
+
+[score]
+cvss_v2 = 2.1
+cvss_v2_vector = "AV:N/AC:L/Au:S/C:N/I:P/A:N"
+cvss_v3 = 3.5
+cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:U/C:N/I:L/A:N"
+cvss_v4 = 2.1
+cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:L/UI:A/VC:N/VI:L/VA:N/SC:N/SI:N/SA:N"
+
+[exploit]
+poc_urls = []
+exp_urls = []
 
 [references]
 urls = [
@@ -28,10 +34,6 @@ urls = [
   "https://cna.erlef.org/cves/CVE-2026-48596.html",
   "https://osv.dev/vulnerability/EEF-CVE-2026-48596"
 ]
-
-[exploit]
-poc_urls = []
-exp_urls = []
 
 [meta]
 status = "completed"

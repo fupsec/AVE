@@ -1,28 +1,34 @@
+
 [id]
-ave_id = "AVE-2011-0001"
-cve_id = "CVE-2011-10034"
-avd_id = ""
-other_ids = []
+  ave_id = "AVE-2011-0001"
+  cve_id = "CVE-2011-10034"
+  avd_id = ""
+  other_ids = []
 
 [basic]
-title = "IRAI AUTOMGEN <= 8.0.0.7 Use-After-Free 远程拒绝服务"
-description = "AUTOMGEN 8.0.0.7及之前版本（也称为8.022）在处理项目文件时存在释放后使用漏洞，当处理某些畸形字段时会释放对象随后解引用悬空指针。攻击者可通过向受害者发送特制的项目文件（.gep/.gepj），在目标系统上触发崩溃，导致拒绝服务。在一定条件下，通过操控内存中的间接调用可能实现远程代码执行。"
-severity = "MEDIUM"
-source = "nvd"
-published = "2011-10-10"
-updated = "2026-06-16"
+  title = "IRAI AUTOMGEN <= 8.0.0.7 Use-After-Free 远程拒绝服务"
+  description = "AUTOMGEN 8.0.0.7及之前版本（也称为8.022）在处理项目文件时存在释放后使用漏洞，当处理某些畸形字段时会释放对象随后解引用悬空指针。攻击者可通过向受害者发送特制的项目文件（.gep/.gepj），在目标系统上触发崩溃，导致拒绝服务。在一定条件下，通过操控内存中的间接调用可能实现远程代码执行。"
+  severity = "MEDIUM"
+  source = "nvd"
+  published = "2011-10-10"
+  updated = "2026-06-16"
 
 [score]
-cvss_v2 = 0
-cvss_v2_vector = ""
-cvss_v3 = 0
-cvss_v3_vector = ""
-cvss_v4 = 6.9
-cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:A/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N"
+  cvss_v2 = 10.0
+  cvss_v2_vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C"
+  cvss_v3 = 9.8
+  cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+  cvss_v4 = 6.9
+  cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:A/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N"
 
 [affected]
 vendor = "IRAI"
 product = "AUTOMGEN"
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "high"
+notes = "漏洞由 Luigi Auriemma 于 2011 年 10 月发现并公开，Exploit-DB 17964 包含完整的 PoC 畸形项目文件。VulnCheck 于 2025 年 11 月分配 CVE 编号。CISA SSVC 评估: exploitation=poc, automatable=no, technicalImpact=partial。NVD CVSS v4.0: 6.9 MEDIUM (CNA: VulnCheck)。PoC 为桌面应用文件解析漏洞，非 HTTP 协议，无法生成标准 HTTP PoC 脚本。"
 
 [exploit]
 poc = [
@@ -49,11 +55,6 @@ other = [
 
 [tags]
 tags = ["CWE-416", "Use-After-Free", "DoS", "Desktop", "SCADA"]
-
-[authenticity]
-cve_confidence = "high"
-poc_confidence = "high"
-notes = "漏洞由 Luigi Auriemma 于 2011 年 10 月发现并公开，Exploit-DB 17964 包含完整的 PoC 畸形项目文件。VulnCheck 于 2025 年 11 月分配 CVE 编号。CISA SSVC 评估: exploitation=poc, automatable=no, technicalImpact=partial。NVD CVSS v4.0: 6.9 MEDIUM (CNA: VulnCheck)。PoC 为桌面应用文件解析漏洞，非 HTTP 协议，无法生成标准 HTTP PoC 脚本。"
 
 [meta]
 collected_at = "2026-07-11T08:00:00Z"

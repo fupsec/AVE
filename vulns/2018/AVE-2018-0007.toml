@@ -1,25 +1,52 @@
 [id]
 ave_id = "AVE-2018-0007"
 cve_id = "CVE-2018-1358"
-aliases = ["CVE-2018-1358"]
+avd_id = ""
+other_ids = []
 
 [basic]
-title = "CVE-2018-1358"
-description = ""
-severity = "UNKNOWN"
-score = 0.0
-sources = ["avd"]
-published = ""
-updated = ""
-remediation = "Refer to vendor advisory and upgrade to fixed version."
+title = "CVE-2018-1358（已废弃）"
+description = "此 CVE 编号已被 Fortinet 废弃，原因：Not used（未使用）。不存在实际漏洞信息。"
+severity = "NONE"
+source = "nvd"
+published = "2025-03-17"
+updated = "2025-03-17"
 
-[references]
-urls = []
+[score]
+cvss_v2 = 0.0
+cvss_v2_vector = ""
+cvss_v3 = 0.0
+cvss_v3_vector = ""
+cvss_v4 = 0.0
+cvss_v4_vector = ""
+
+[affected]
+vendor = "Fortinet"
+product = "N/A"
 
 [exploit]
-poc_urls = []
-exp_urls = []
+poc = []
+exp = []
+nuclei_templates = []
+
+[remediation]
+fix = "不适用（CVE 已被废弃）"
+workaround = ""
+steps = []
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2018-1358"
+avd = ""
+other = []
+
+[tags]
+tags = ["rejected"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "none"
+notes = "CVE-2018-1358 已被 Fortinet 废弃（Rejected），reason: Not used。无 CVSS、描述、参考链接或 PoC/EXP 信息。"
 
 [meta]
-status = "completed"
-collected_at = "2026-07-10T10:50:51.754735310+00:00"
+collected_at = "2026-07-11T00:00:00Z"
+status = "rejected"

@@ -1,26 +1,34 @@
+
 [id]
-ave_id = "AVE-2026-0040"
-cve_id = "CVE-2026-48594"
-avd_id = ""
-other_ids = ["GHSA-mc85-72gr-vm9f"]
+  ave_id = "AVE-2026-0040"
+  cve_id = "CVE-2026-48594"
+  avd_id = ""
+  other_ids = ["GHSA-mc85-72gr-vm9f"]
 
 [basic]
-title = "Tesla HTTP 客户端解压缩炸弹漏洞 (CVE-2026-48594)"
-description = """
-Tesla (Elixir HTTP 客户端库) 的 DecompressResponse 和 Compression 中间件在处理 HTTP 响应时，对响应体进行无大小限制的解压缩。decompress_body/2 函数将完整响应体传递给 :zlib.gunzip/1 或 :zlib.unzip/1，未对输出大小设置上限。此外，compression_algorithms/1 将 content-encoding 头部按逗号分割，decompress_body/2 对每个 token 递归调用一次解压缩。攻击者控制的服务器返回 content-encoding: gzip, gzip, gzip, gzip 的响应时，触发四次递归解压缩，产生指数级放大：每个 gzip 层可将输入放大约 1000 倍，数百字节的载荷可膨胀至数 GB 的 BEAM 堆内存，耗尽内存导致调用进程崩溃或冻结。影响 tesla 0.6.0 至 1.18.2 版本。
-"""
-severity = "HIGH"
-source = "ghsa"
-published = "2026-06-02"
-updated = "2026-06-17"
+  title = "Tesla HTTP 客户端解压缩炸弹漏洞 (CVE-2026-48594)"
+  description = "Tesla (Elixir HTTP 客户端库) 的 DecompressResponse 和 Compression 中间件在处理 HTTP 响应时，对响应体进行无大小限制的解压缩。decompress_body/2 函数将完整响应体传递给 :zlib.gunzip/1 或 :zlib.unzip/1，未对输出大小设置上限。此外，compression_algorithms/1 将 content-encoding 头部按逗号分割，decompress_body/2 对每个 token 递归调用一次解压缩。攻击者控制的服务器返回 content-encoding: gzip, gzip, gzip, gzip 的响应时，触发四次递归解压缩，产生指数级放大：每个 gzip 层可将输入放大约 1000 倍，数百字节的载荷可膨胀至数 GB 的 BEAM 堆内存，耗尽内存导致调用进程崩溃或冻结。影响 tesla 0.6.0 至 1.18.2 版本。\n"
+  severity = "HIGH"
+  source = "ghsa"
+  published = "2026-06-02"
+  updated = "2026-06-17"
 
 [score]
-cvss_v4 = 8.2
-cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N"
+  cvss_v4 = 8.2
+  cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N"
+  cvss_v3 = 5.5
+  cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N"
+  cvss_v2 = 5.0
+  cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:N/A:N"
 
 [affected]
 vendor = "elixir-tesla"
 product = "tesla"
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "low"
+notes = "CVE 已由 EEF (Erlang Ecosystem Foundation) 发布，NVD 已完成初始评估并分配 CVSS v4.0 评分 8.2。目前暂无公开的独立 PoC 仓库或 exploit-db 条目，但 GHSA 安全公告提供了完整的漏洞原理和复现步骤。由于该漏洞为客户端 DoS 类型，需要搭建恶意 HTTP 服务器进行验证，暂无符合 poc.md 格式的标准 HTTP 请求 PoC。"
 
 [exploit]
 poc = []
@@ -30,31 +38,15 @@ nuclei_templates = []
 [remediation]
 fix = "升级到 tesla 1.18.3 及以上版本。参考官方安全公告 GHSA-mc85-72gr-vm9f。"
 workaround = "如无法升级，可在应用层限制 HTTP 响应 content-encoding 头的数量（仅允许单个 gzip/deflate 层），或检查响应体大小并在超过阈值时拒绝解压缩。"
-steps = [
-  "确认当前使用的 tesla 版本（mix deps | grep tesla）",
-  "升级到 tesla 1.18.3 及以上版本",
-  "检查应用中是否使用了 Tesla.Middleware.DecompressResponse 或 Tesla.Middleware.Compression 中间件",
-  "如无法升级，在中间件链中添加大小检查逻辑，限制解压缩后的响应体大小"
-]
+steps = ["确认当前使用的 tesla 版本（mix deps | grep tesla）", "升级到 tesla 1.18.3 及以上版本", "检查应用中是否使用了 Tesla.Middleware.DecompressResponse 或 Tesla.Middleware.Compression 中间件", "如无法升级，在中间件链中添加大小检查逻辑，限制解压缩后的响应体大小"]
 
 [references]
 nvd = "https://nvd.nist.gov/vuln/detail/CVE-2026-48594"
 avd = ""
-other = [
-  "https://github.com/elixir-tesla/tesla/security/advisories/GHSA-mc85-72gr-vm9f",
-  "https://github.com/elixir-tesla/tesla/commit/340f75b5d191dc747ef7ac6365bd002d1cd55a9d",
-  "https://cna.erlef.org/cves/CVE-2026-48594.html",
-  "https://osv.dev/vulnerability/EEF-CVE-2026-48594",
-  "https://github.com/elixir-tesla/tesla/commit/5bd90bb5cf0d15e375edc2a66fa322292940fce2"
-]
+other = ["https://github.com/elixir-tesla/tesla/security/advisories/GHSA-mc85-72gr-vm9f", "https://github.com/elixir-tesla/tesla/commit/340f75b5d191dc747ef7ac6365bd002d1cd55a9d", "https://cna.erlef.org/cves/CVE-2026-48594.html", "https://osv.dev/vulnerability/EEF-CVE-2026-48594", "https://github.com/elixir-tesla/tesla/commit/5bd90bb5cf0d15e375edc2a66fa322292940fce2"]
 
 [tags]
 tags = ["CWE-409", "DoS", "decompression-bomb", "tesla", "elixir"]
-
-[authenticity]
-cve_confidence = "high"
-poc_confidence = "low"
-notes = "CVE 已由 EEF (Erlang Ecosystem Foundation) 发布，NVD 已完成初始评估并分配 CVSS v4.0 评分 8.2。目前暂无公开的独立 PoC 仓库或 exploit-db 条目，但 GHSA 安全公告提供了完整的漏洞原理和复现步骤。由于该漏洞为客户端 DoS 类型，需要搭建恶意 HTTP 服务器进行验证，暂无符合 poc.md 格式的标准 HTTP 请求 PoC。"
 
 [meta]
 collected_at = "2026-07-11T12:00:00Z"

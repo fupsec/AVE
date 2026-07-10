@@ -1,24 +1,33 @@
+
 [id]
-ave_id = "AVE-2018-0010"
-cve_id = "CVE-2018-16739"
-aliases = ["CVE-2018-16739"]
+  ave_id = "AVE-2018-0010"
+  cve_id = "CVE-2018-16739"
+  aliases = ["CVE-2018-16739"]
 
 [basic]
-title = "CVE-2018-16739"
-description = ""
-severity = "UNKNOWN"
-score = 0.0
-sources = ["avd"]
-published = ""
-updated = ""
-remediation = "Refer to vendor advisory and upgrade to fixed version."
+  title = "CVE-2018-16739"
+  description = ""
+  severity = "MEDIUM"
+  score = 6.1
+  sources = ["avd"]
+  published = ""
+  updated = ""
+  remediation = "Refer to vendor advisory and upgrade to fixed version."
 
-[references]
-urls = []
+[score]
+  cvss_v2 = 4.3
+  cvss_v2_vector = "AV:N/AC:M/Au:N/C:N/I:P/A:N"
+  cvss_v3 = 6.1
+  cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N"
+  cvss_v4 = 0.0
+  cvss_v4_vector = ""
 
 [exploit]
 poc_urls = []
 exp_urls = []
+
+[references]
+urls = []
 
 [meta]
 status = "completed"

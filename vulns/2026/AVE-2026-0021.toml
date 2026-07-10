@@ -1,32 +1,33 @@
+
 [id]
-ave_id = "AVE-2026-0021"
-cve_id = "CVE-2026-13524"
-aliases = ["CVE-2026-13524"]
+  ave_id = "AVE-2026-0021"
+  cve_id = "CVE-2026-13524"
+  aliases = ["CVE-2026-13524"]
 
 [basic]
-title = "Cherry Studio MCP OAuth 回调授权绕过漏洞(CVE-2026-13524)"
-description = """
-Cherry Studio 是开源的 AI 助手客户端，集成了 MCP 协议支持 MCP 服务接入。该组件的 MCP OAuth 本地回调服务器在处理授权回调时，未对 OAuth state 参数进行验证，且对回调路径采用前缀匹配而非精确匹配。攻击者可以在本地回调窗口期内抢先发送携带恶意授权码的请求，绕过授权校验并导致受害者交换攻击者的授权码完成认证。
-受影响版本中，Cherry Studio 的 MCP OAuth 本地回调服务器（src/main/services/mcp/oauth/callback.ts）接受任意 code 参数的回调请求而不验证 state 参数，并且接受路径前缀匹配（如 /oauth/callback.extra），形成第一码攻击（first-code race）条件，可使攻击者在合法回调到达前抢先完成 OAuth 流程从而冒充受害者身份。
-修复版本中通过在回调服务器初始化时增加 expectedState 参数，并在接收到回调时强制比对 state 参数与预期值，同时将路径判断从 startsWith 改为精确相等（pathname === path），从而确保只有携带正确 state 的精确路径回调才能完成授权流程，攻击者无法通过抢先发送恶意授权码完成认证。
-解决建议
-建议您更新当前系统或软件至最新版，完成漏洞的修复。"""
-severity = "UNKNOWN"
-score = 0.0
-sources = ["avd"]
-published = "2026-06-29"
-updated = ""
-remediation = "建议您更新当前系统或软件至最新版，完成漏洞的修复。"
+  title = "Cherry Studio MCP OAuth 回调授权绕过漏洞(CVE-2026-13524)"
+  description = "Cherry Studio 是开源的 AI 助手客户端，集成了 MCP 协议支持 MCP 服务接入。该组件的 MCP OAuth 本地回调服务器在处理授权回调时，未对 OAuth state 参数进行验证，且对回调路径采用前缀匹配而非精确匹配。攻击者可以在本地回调窗口期内抢先发送携带恶意授权码的请求，绕过授权校验并导致受害者交换攻击者的授权码完成认证。\n受影响版本中，Cherry Studio 的 MCP OAuth 本地回调服务器（src/main/services/mcp/oauth/callback.ts）接受任意 code 参数的回调请求而不验证 state 参数，并且接受路径前缀匹配（如 /oauth/callback.extra），形成第一码攻击（first-code race）条件，可使攻击者在合法回调到达前抢先完成 OAuth 流程从而冒充受害者身份。\n修复版本中通过在回调服务器初始化时增加 expectedState 参数，并在接收到回调时强制比对 state 参数与预期值，同时将路径判断从 startsWith 改为精确相等（pathname === path），从而确保只有携带正确 state 的精确路径回调才能完成授权流程，攻击者无法通过抢先发送恶意授权码完成认证。\n解决建议\n建议您更新当前系统或软件至最新版，完成漏洞的修复。"
+  severity = "HIGH"
+  score = 8.1
+  sources = ["avd"]
+  published = "2026-06-29"
+  updated = ""
+  remediation = "建议您更新当前系统或软件至最新版，完成漏洞的修复。"
+
+[score]
+  cvss_v2 = 7.5
+  cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:P/A:P"
+  cvss_v3 = 8.1
+  cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N"
+  cvss_v4 = 8.6
+  cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:N/SC:N/SI:N/SA:N"
+
+[exploit]
+poc_urls = ["https://github.com/CherryHQ/cherry-studio/issues/15372", "https://github.com/CherryHQ/cherry-studio/pull/15388"]
+exp_urls = []
 
 [references]
 urls = []
-
-[exploit]
-poc_urls = [
-    "https://github.com/CherryHQ/cherry-studio/issues/15372",
-    "https://github.com/CherryHQ/cherry-studio/pull/15388",
-]
-exp_urls = []
 
 [meta]
 status = "completed"

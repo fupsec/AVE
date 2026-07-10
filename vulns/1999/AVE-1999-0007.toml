@@ -1,28 +1,34 @@
+
 [id]
-ave_id = "AVE-1999-0007"
-cve_id = "CVE-1999-0154"
-avd_id = ""
-other_ids = ["BID-2074", "EDB-20481"]
+  ave_id = "AVE-1999-0007"
+  cve_id = "CVE-1999-0154"
+  avd_id = ""
+  other_ids = ["BID-2074", "EDB-20481"]
 
 [basic]
-title = "Microsoft IIS 2.0/3.0 ASP 源码泄露漏洞"
-description = "IIS 2.0 和 3.0 允许远程攻击者通过在 URL 末尾附加一个点号（.）来读取 ASP 页面的源代码。攻击者通过浏览 http://target/aspfile.asp. 即可获取 ASP 脚本源码，泄露的信息可能包括数据库连接密码、目录结构等敏感信息。该漏洞也影响 .ht、.id、.pl 等脚本映射文件类型。"
-severity = "MEDIUM"
-source = "nvd"
-published = "1997-02-20"
-updated = "2026-06-16"
+  title = "Microsoft IIS 2.0/3.0 ASP 源码泄露漏洞"
+  description = "IIS 2.0 和 3.0 允许远程攻击者通过在 URL 末尾附加一个点号（.）来读取 ASP 页面的源代码。攻击者通过浏览 http://target/aspfile.asp. 即可获取 ASP 脚本源码，泄露的信息可能包括数据库连接密码、目录结构等敏感信息。该漏洞也影响 .ht、.id、.pl 等脚本映射文件类型。"
+  severity = "MEDIUM"
+  source = "nvd"
+  published = "1997-02-20"
+  updated = "2026-06-16"
 
 [score]
-cvss_v2 = 5.0
-cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:N/A:N"
-cvss_v3 = 0.0
-cvss_v3_vector = ""
-cvss_v4 = 0.0
-cvss_v4_vector = ""
+  cvss_v2 = 5.0
+  cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:N/A:N"
+  cvss_v3 = 5.5
+  cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N"
+  cvss_v4 = 5.1
+  cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:L/VI:N/VA:N/SC:N/SI:N/SA:N"
 
 [affected]
 vendor = "Microsoft"
 product = "Internet Information Server"
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "high"
+notes = "该漏洞年代久远，IIS 2.0/3.0 已停止支持。PoC 原理简单（在 URL 后追加点号），Exploit-DB 20481 已验证该漏洞存在。"
 
 [exploit]
 poc = [
@@ -40,19 +46,10 @@ steps = ["步骤1: 确认 IIS 版本是否为 2.0 或 3.0", "步骤2: 升级操�
 [references]
 nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0154"
 avd = ""
-other = [
-  "https://exchange.xforce.ibmcloud.com/vulnerabilities/CVE-1999-0154",
-  "http://www.securityfocus.com/bid/2074",
-  "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-1999-0154"
-]
+other = ["https://exchange.xforce.ibmcloud.com/vulnerabilities/CVE-1999-0154", "http://www.securityfocus.com/bid/2074", "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-1999-0154"]
 
 [tags]
 tags = ["CWE-200", "信息泄露", "IIS", "ASP", "源码泄露"]
-
-[authenticity]
-cve_confidence = "high"
-poc_confidence = "high"
-notes = "该漏洞年代久远，IIS 2.0/3.0 已停止支持。PoC 原理简单（在 URL 后追加点号），Exploit-DB 20481 已验证该漏洞存在。"
 
 [meta]
 collected_at = "2026-07-11T10:18:58Z"

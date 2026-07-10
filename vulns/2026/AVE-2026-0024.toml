@@ -1,20 +1,30 @@
+
 [id]
-ave_id = "AVE-2026-0024"
-other_ids = ["NUCLEI-FILE-MALWARE-UNIVERSAL-1337-MALWARE-YAML"]
+  ave_id = "AVE-2026-0024"
+  other_ids = ["NUCLEI-FILE-MALWARE-UNIVERSAL-1337-MALWARE-YAML"]
 
 [basic]
-title = "Universal 1337 Stealer 恶意软件检测"
-description = "Universal 1337 Stealer 是一种密码窃取恶意软件（Stealer），通过 FTP 协议将窃取的用户凭证等敏感数据外传。该恶意软件特征包含 [S-P-L-I-T]、[H-E-R-E] 等字符串标记及 FTP 通信特征。对应 Nuclei 文件检测模板，通过二进制匹配方式识别该恶意软件。"
-severity = "INFO"
-source = "nuclei"
-published = "2013-02-24"
-updated = "2026-07-10"
+  title = "Universal 1337 Stealer 恶意软件检测"
+  description = "Universal 1337 Stealer 是一种密码窃取恶意软件（Stealer），通过 FTP 协议将窃取的用户凭证等敏感数据外传。该恶意软件特征包含 [S-P-L-I-T]、[H-E-R-E] 等字符串标记及 FTP 通信特征。对应 Nuclei 文件检测模板，通过二进制匹配方式识别该恶意软件。"
+  severity = "INFO"
+  source = "nuclei"
+  published = "2013-02-24"
+  updated = "2026-07-10"
 
 [score]
+  cvss_v2 = 0.0
+  cvss_v2_vector = ""
+  cvss_v3 = 0.0
+  cvss_v3_vector = ""
 
 [affected]
 vendor = "N/A"
 product = "N/A"
+
+[authenticity]
+cve_confidence = "none"
+poc_confidence = "high"
+notes = "非 CVE 漏洞条目，为 Nuclei 恶意软件检测模板。对应 YARA 规则由 Kevin Falcoz 于 2013-02-24 创建，Nuclei 模板直接引用该 YARA 规则的二进制特征进行文件检测。"
 
 [exploit]
 poc = []
@@ -34,11 +44,6 @@ other = [
 
 [tags]
 tags = ["malware", "stealer", "info-stealer", "ftp-exfiltration"]
-
-[authenticity]
-cve_confidence = "none"
-poc_confidence = "high"
-notes = "非 CVE 漏洞条目，为 Nuclei 恶意软件检测模板。对应 YARA 规则由 Kevin Falcoz 于 2013-02-24 创建，Nuclei 模板直接引用该 YARA 规则的二进制特征进行文件检测。"
 
 [meta]
 collected_at = "2026-07-11T00:00:00Z"

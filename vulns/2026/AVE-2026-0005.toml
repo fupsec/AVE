@@ -1,29 +1,33 @@
+
 [id]
-ave_id = "AVE-2026-0005"
-cve_id = "CVE-2026-10083"
-aliases = ["CVE-2026-10083"]
+  ave_id = "AVE-2026-0005"
+  cve_id = "CVE-2026-10083"
+  aliases = ["CVE-2026-10083"]
 
 [basic]
-title = "APCu Manager 存储型 XSS 漏洞(CVE-2026-10083)"
-description = """
-APCu Manager 是 WordPress 平台的 APCu 缓存管理插件，在管理员后台的缓存对象浏览页面中直接输出 APCu 对象键名而未进行 HTML 转义。当启用持久化对象缓存时，攻击者可通过其他插件创建包含恶意代码的缓存键（如未授权请求生成的 transient 名称），这些键值在管理员访问插件管理页面时未经转义即被渲染执行，可窃取管理员会话或执行任意后台操作。
-受影响版本中，该插件的 class-objects.php 文件内 column_object 方法将 $item['object'] 直接拼接至返回字符串，column_default 方法返回 $item[$column_name] 时也未调用 esc_html 函数进行转义，导致用户输入的缓存键内容作为 HTML 片段在页面中渲染。
-修复版本中通过在 get_all_cleaned_objects 方法新增 is_clean 检测机制判断缓存键是否包含不可安全渲染的字符，对可疑键名直接标记为不渲染并在 column_default 中统一使用 esc_html 进行输出转义，切断了恶意键名至 HTML 渲染的利用链。
-解决建议
-将组件 wpscanteam/wpscan-apcu-manager 升级至 4.5.0 及以上版本"""
-severity = "UNKNOWN"
-score = 0.0
-sources = ["avd"]
-published = "2026-06-29"
-updated = ""
-remediation = "将组件 wpscanteam/wpscan-apcu-manager 升级至 4.5.0 及以上版本"
+  title = "APCu Manager 存储型 XSS 漏洞(CVE-2026-10083)"
+  description = "APCu Manager 是 WordPress 平台的 APCu 缓存管理插件，在管理员后台的缓存对象浏览页面中直接输出 APCu 对象键名而未进行 HTML 转义。当启用持久化对象缓存时，攻击者可通过其他插件创建包含恶意代码的缓存键（如未授权请求生成的 transient 名称），这些键值在管理员访问插件管理页面时未经转义即被渲染执行，可窃取管理员会话或执行任意后台操作。\n受影响版本中，该插件的 class-objects.php 文件内 column_object 方法将 $item['object'] 直接拼接至返回字符串，column_default 方法返回 $item[$column_name] 时也未调用 esc_html 函数进行转义，导致用户输入的缓存键内容作为 HTML 片段在页面中渲染。\n修复版本中通过在 get_all_cleaned_objects 方法新增 is_clean 检测机制判断缓存键是否包含不可安全渲染的字符，对可疑键名直接标记为不渲染并在 column_default 中统一使用 esc_html 进行输出转义，切断了恶意键名至 HTML 渲染的利用链。\n解决建议\n将组件 wpscanteam/wpscan-apcu-manager 升级至 4.5.0 及以上版本"
+  severity = "HIGH"
+  score = 7.2
+  sources = ["avd"]
+  published = "2026-06-29"
+  updated = ""
+  remediation = "将组件 wpscanteam/wpscan-apcu-manager 升级至 4.5.0 及以上版本"
 
-[references]
-urls = []
+[score]
+  cvss_v2 = 6.8
+  cvss_v2_vector = "AV:N/AC:M/Au:N/C:P/I:P/A:P"
+  cvss_v3 = 7.2
+  cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:L/I:L/A:N"
+  cvss_v4 = 7.3
+  cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:L/UI:N/VC:L/VI:L/VA:N/SC:L/SI:L/SA:N"
 
 [exploit]
 poc_urls = []
 exp_urls = []
+
+[references]
+urls = []
 
 [meta]
 status = "completed"

@@ -1,28 +1,34 @@
+
 [id]
-ave_id = "AVE-1999-0207"
-cve_id = "CVE-1999-0009"
-avd_id = ""
-other_ids = []
+  ave_id = "AVE-1999-0207"
+  cve_id = "CVE-1999-0009"
+  avd_id = ""
+  other_ids = []
 
 [basic]
-title = "ISC BIND 4.9 / 8 反向查询缓冲区溢出漏洞"
-description = "ISC BIND 4.9 和 BIND 8 版本在处理反向查询（Inverse Query）时存在缓冲区溢出漏洞。攻击者可以通过向 DNS 服务器发送特制的反向查询请求，触发缓冲区溢出，从而在目标系统上执行任意代码。该漏洞影响了大量运行 BIND 的 DNS 服务器，CVSS v2.0 评分为 10.0，危害极大。"
-severity = "CRITICAL"
-source = "nvd"
-published = "1998-04-08"
-updated = "2026-06-16"
+  title = "ISC BIND 4.9 / 8 反向查询缓冲区溢出漏洞"
+  description = "ISC BIND 4.9 和 BIND 8 版本在处理反向查询（Inverse Query）时存在缓冲区溢出漏洞。攻击者可以通过向 DNS 服务器发送特制的反向查询请求，触发缓冲区溢出，从而在目标系统上执行任意代码。该漏洞影响了大量运行 BIND 的 DNS 服务器，CVSS v2.0 评分为 10.0，危害极大。"
+  severity = "CRITICAL"
+  source = "nvd"
+  published = "1998-04-08"
+  updated = "2026-06-16"
 
 [score]
-cvss_v2 = 10.0
-cvss_v2_vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C"
-cvss_v3 = 0.0
-cvss_v3_vector = ""
-cvss_v4 = 0.0
-cvss_v4_vector = ""
+  cvss_v2 = 10.0
+  cvss_v2_vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C"
+  cvss_v3 = 9.8
+  cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+  cvss_v4 = 9.9
+  cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N"
 
 [affected]
 vendor = "ISC (Internet Software Consortium)"
 product = "BIND 4.9 / 8.x"
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "high"
+notes = "CVE-1999-0009 是 BIND 历史上最著名的远程缓冲区溢出漏洞之一，CVSS v2.0 评分 10.0。Exploit-DB 上有公开利用代码（EDB-19112），包含完整的 shellcode，可在多种 Linux 发行版上执行远程代码。ISC、SGI、Sun、HP 等多家厂商发布了安全公告。漏洞 PoC/EXP 已在 Bugtraq 邮件列表公开传播，真实性确认。"
 
 [exploit]
 poc = [
@@ -45,11 +51,6 @@ other = ["http://www.securityfocus.com/bid/134", "https://www.exploit-db.com/exp
 
 [tags]
 tags = ["CWE-119", "Buffer-Overflow", "BIND", "DNS", "RCE", "Remote", "IQUERY"]
-
-[authenticity]
-cve_confidence = "high"
-poc_confidence = "high"
-notes = "CVE-1999-0009 是 BIND 历史上最著名的远程缓冲区溢出漏洞之一，CVSS v2.0 评分 10.0。Exploit-DB 上有公开利用代码（EDB-19112），包含完整的 shellcode，可在多种 Linux 发行版上执行远程代码。ISC、SGI、Sun、HP 等多家厂商发布了安全公告。漏洞 PoC/EXP 已在 Bugtraq 邮件列表公开传播，真实性确认。"
 
 [meta]
 collected_at = "2026-07-10T18:00:00Z"

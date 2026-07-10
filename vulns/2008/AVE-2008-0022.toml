@@ -1,28 +1,34 @@
+
 [id]
-ave_id = "AVE-2008-0022"
-cve_id = "CVE-2008-6218"
-avd_id = ""
-other_ids = ["GHSA-8p6q-rjmr-6gp9"]
+  ave_id = "AVE-2008-0022"
+  cve_id = "CVE-2008-6218"
+  avd_id = ""
+  other_ids = ["GHSA-8p6q-rjmr-6gp9"]
 
 [basic]
-title = "libpng png_handle_tEXt 函数内存泄漏漏洞"
-description = "libpng 的 pngrutil.c 中 png_handle_tEXt 函数存在内存泄漏，攻击者可通过构造恶意 PNG 文件触发内存耗尽，导致拒绝服务（应用崩溃）。受影响版本：libpng 1.2.33 rc02 之前及 1.4.0 beta36 之前的所有版本。"
-severity = "HIGH"
-source = "nvd"
-published = "2009-02-20"
-updated = "2026-06-16"
+  title = "libpng png_handle_tEXt 函数内存泄漏漏洞"
+  description = "libpng 的 pngrutil.c 中 png_handle_tEXt 函数存在内存泄漏，攻击者可通过构造恶意 PNG 文件触发内存耗尽，导致拒绝服务（应用崩溃）。受影响版本：libpng 1.2.33 rc02 之前及 1.4.0 beta36 之前的所有版本。"
+  severity = "HIGH"
+  source = "nvd"
+  published = "2009-02-20"
+  updated = "2026-06-16"
 
 [score]
-cvss_v2 = 7.1
-cvss_v2_vector = "AV:N/AC:M/Au:N/C:N/I:N/A:C"
-cvss_v3 = 0.0
-cvss_v3_vector = ""
-cvss_v4 = 0.0
-cvss_v4_vector = ""
+  cvss_v2 = 7.1
+  cvss_v2_vector = "AV:N/AC:M/Au:N/C:N/I:N/A:C"
+  cvss_v3 = 5.5
+  cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N"
+  cvss_v4 = 5.1
+  cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:L/VI:N/VA:N/SC:N/SI:N/SA:N"
 
 [affected]
 vendor = "libpng"
 product = "libpng"
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "low"
+notes = "Red Hat 不认为此漏洞构成安全威胁（详见 Bugzilla #468990）。公开环境中未发现针对此漏洞的可用 PoC 或利用代码。"
 
 [exploit]
 poc = []
@@ -41,11 +47,6 @@ other = ["https://github.com/advisories/GHSA-8p6q-rjmr-6gp9", "https://cvefeed.i
 
 [tags]
 tags = ["CWE-399", "DoS", "MemoryLeak"]
-
-[authenticity]
-cve_confidence = "high"
-poc_confidence = "low"
-notes = "Red Hat 不认为此漏洞构成安全威胁（详见 Bugzilla #468990）。公开环境中未发现针对此漏洞的可用 PoC 或利用代码。"
 
 [meta]
 collected_at = "2026-07-10T00:00:00Z"

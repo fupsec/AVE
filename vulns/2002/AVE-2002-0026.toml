@@ -1,28 +1,34 @@
+
 [id]
-ave_id = "AVE-2002-0026"
-cve_id = "CVE-2002-0825"
-avd_id = ""
-other_ids = []
+  ave_id = "AVE-2002-0026"
+  cve_id = "CVE-2002-0825"
+  avd_id = ""
+  other_ids = []
 
 [basic]
-title = "nss_ldap DNS SRV 代码缓冲区溢出远程代码执行漏洞"
-description = "nss_ldap（Name Service Switch LDAP 模块）在 nss_ldap-198 之前版本的 DNS SRV 代码中存在缓冲区溢出漏洞，允许远程攻击者通过特制的 DNS 响应导致拒绝服务，并可能执行任意代码。"
-severity = "HIGH"
-source = "nvd"
-published = "2002-08-12"
-updated = "2026-06-16"
+  title = "nss_ldap DNS SRV 代码缓冲区溢出远程代码执行漏洞"
+  description = "nss_ldap（Name Service Switch LDAP 模块）在 nss_ldap-198 之前版本的 DNS SRV 代码中存在缓冲区溢出漏洞，允许远程攻击者通过特制的 DNS 响应导致拒绝服务，并可能执行任意代码。"
+  severity = "HIGH"
+  source = "nvd"
+  published = "2002-08-12"
+  updated = "2026-06-16"
 
 [score]
-cvss_v2 = 7.5
-cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:P/A:P"
-cvss_v3 = 0
-cvss_v3_vector = ""
-cvss_v4 = 0
-cvss_v4_vector = ""
+  cvss_v2 = 7.5
+  cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:P/A:P"
+  cvss_v3 = 9.8
+  cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+  cvss_v4 = 9.9
+  cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N"
 
 [affected]
 vendor = "PADL Software"
 product = "nss_ldap"
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "low"
+notes = "CVE 由 NVD 官方收录，CVSS 2.0 评分 7.5。nss_ldap 为系统级库，漏洞位于 DNS SRV 解析代码中，属于非 HTTP 协议漏洞，无法生成 HTTP PoC 脚本。原始 PADL 安全公告链接已失效，仅可通过 Wayback Machine 存档或 NVD 获取信息。目前未在 GitHub、Exploit-DB 等平台找到公开 PoC 或 EXP。"
 
 [exploit]
 poc = []
@@ -37,18 +43,10 @@ steps = ["步骤1: 确认当前 nss_ldap 版本（ldapsearch -V）", "步骤2: �
 [references]
 nvd = "https://nvd.nist.gov/vuln/detail/CVE-2002-0825"
 avd = ""
-other = [
-  "http://www.padl.com/Articles/PotentialBufferOverflowin.html",
-  "https://web.archive.org/web/20020812000000/http://www.padl.com/Articles/PotentialBufferOverflowin.html"
-]
+other = ["http://www.padl.com/Articles/PotentialBufferOverflowin.html", "https://web.archive.org/web/20020812000000/http://www.padl.com/Articles/PotentialBufferOverflowin.html"]
 
 [tags]
 tags = ["CWE-119", "buffer-overflow", "dns", "ldap", "rce", "dos"]
-
-[authenticity]
-cve_confidence = "high"
-poc_confidence = "low"
-notes = "CVE 由 NVD 官方收录，CVSS 2.0 评分 7.5。nss_ldap 为系统级库，漏洞位于 DNS SRV 解析代码中，属于非 HTTP 协议漏洞，无法生成 HTTP PoC 脚本。原始 PADL 安全公告链接已失效，仅可通过 Wayback Machine 存档或 NVD 获取信息。目前未在 GitHub、Exploit-DB 等平台找到公开 PoC 或 EXP。"
 
 [meta]
 collected_at = "2026-07-10T10:18:58Z"

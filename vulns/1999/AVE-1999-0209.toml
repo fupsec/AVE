@@ -1,28 +1,34 @@
+
 [id]
-ave_id = "AVE-1999-0209"
-cve_id = "CVE-1999-0147"
-avd_id = ""
-other_ids = []
+  ave_id = "AVE-1999-0209"
+  cve_id = "CVE-1999-0147"
+  avd_id = ""
+  other_ids = []
 
 [basic]
-title = "GlimpseHTTP aglimpse CGI 远程命令执行漏洞"
-description = "GlimpseHTTP（Glimpse 信息检索系统的 HTTP 接口）中的 aglimpse CGI 程序存在远程命令执行漏洞。Glimpse 是亚利桑那大学开发的文件索引和搜索引擎。aglimpse 是 Glimpse 的 Archie 风格 CGI 接口，由于在处理用户提供的查询参数时缺少充分的输入验证，攻击者可通过向 aglimpse CGI 发送特制请求，在目标 Web 服务器上以 Web 服务器进程权限执行任意系统命令。此漏洞影响所有自带 GlimpseHTTP 的 Glimpse 版本。"
-severity = "HIGH"
-source = "nvd"
-published = "1997-07-01"
-updated = "2026-06-16"
+  title = "GlimpseHTTP aglimpse CGI 远程命令执行漏洞"
+  description = "GlimpseHTTP（Glimpse 信息检索系统的 HTTP 接口）中的 aglimpse CGI 程序存在远程命令执行漏洞。Glimpse 是亚利桑那大学开发的文件索引和搜索引擎。aglimpse 是 Glimpse 的 Archie 风格 CGI 接口，由于在处理用户提供的查询参数时缺少充分的输入验证，攻击者可通过向 aglimpse CGI 发送特制请求，在目标 Web 服务器上以 Web 服务器进程权限执行任意系统命令。此漏洞影响所有自带 GlimpseHTTP 的 Glimpse 版本。"
+  severity = "HIGH"
+  source = "nvd"
+  published = "1997-07-01"
+  updated = "2026-06-16"
 
 [score]
-cvss_v2 = 7.5
-cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:P/A:P"
-cvss_v3 = 0.0
-cvss_v3_vector = ""
-cvss_v4 = 0.0
-cvss_v4_vector = ""
+  cvss_v2 = 7.5
+  cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:P/A:P"
+  cvss_v3 = 5.5
+  cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N"
+  cvss_v4 = 5.1
+  cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:L/VI:N/VA:N/SC:N/SI:N/SA:N"
 
 [affected]
 vendor = "University of Arizona"
 product = "GlimpseHTTP (aglimpse CGI)"
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "low"
+notes = "CVE-1999-0147 是 Glimpse 信息检索系统中 aglimpse CGI 脚本的远程命令执行漏洞。NVD CVSS v2.0 评分为 7.5。该漏洞发布于 1997 年，年代久远，缺乏公开可用的 PoC/EXP 代码，仅能从 Nessus 插件和 X-Force 条目确认漏洞存在。由于 aglimpse 是 HTTP CGI 程序，可通过构造特定 HTTP 请求进行命令注入验证。"
 
 [exploit]
 poc = [
@@ -43,11 +49,6 @@ other = ["https://exchange.xforce.ibmcloud.com/vulnerabilities/CVE-1999-0147"]
 
 [tags]
 tags = ["CWE-78", "CWE-20", "OS-Command-Injection", "CGI", "RCE", "Glimpse", "Remote"]
-
-[authenticity]
-cve_confidence = "high"
-poc_confidence = "low"
-notes = "CVE-1999-0147 是 Glimpse 信息检索系统中 aglimpse CGI 脚本的远程命令执行漏洞。NVD CVSS v2.0 评分为 7.5。该漏洞发布于 1997 年，年代久远，缺乏公开可用的 PoC/EXP 代码，仅能从 Nessus 插件和 X-Force 条目确认漏洞存在。由于 aglimpse 是 HTTP CGI 程序，可通过构造特定 HTTP 请求进行命令注入验证。"
 
 [meta]
 collected_at = "2026-07-11T00:00:00Z"

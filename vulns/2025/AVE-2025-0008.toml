@@ -1,24 +1,33 @@
+
 [id]
-ave_id = "AVE-2025-0008"
-cve_id = "CVE-2025-1974"
-aliases = ["CVE-2025-1974"]
+  ave_id = "AVE-2025-0008"
+  cve_id = "CVE-2025-1974"
+  aliases = ["CVE-2025-1974"]
 
 [basic]
-title = "CVE-2025-1974"
-description = ""
-severity = "UNKNOWN"
-score = 0.0
-sources = ["github"]
-published = ""
-updated = ""
-remediation = "Refer to vendor advisory and upgrade to fixed version."
+  title = "CVE-2025-1974"
+  description = ""
+  severity = "HIGH"
+  score = 7.5
+  sources = ["github"]
+  published = ""
+  updated = ""
+  remediation = "Refer to vendor advisory and upgrade to fixed version."
 
-[references]
-urls = []
+[score]
+  cvss_v2 = 7.8
+  cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:N/A:C"
+  cvss_v3 = 7.5
+  cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+  cvss_v4 = 0.0
+  cvss_v4_vector = ""
 
 [exploit]
 poc_urls = []
 exp_urls = []
+
+[references]
+urls = []
 
 [meta]
 status = "completed"

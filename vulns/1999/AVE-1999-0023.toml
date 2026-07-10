@@ -1,28 +1,34 @@
+
 [id]
-ave_id = "AVE-1999-0023"
-cve_id = "CVE-1999-0222"
-avd_id = ""
-other_ids = []
+  ave_id = "AVE-1999-0023"
+  cve_id = "CVE-1999-0222"
+  avd_id = ""
+  other_ids = []
 
 [basic]
-title = "Cisco IOS Web服务器超长URL拒绝服务漏洞"
-description = "Cisco IOS的Web服务器在处理超长URL时存在拒绝服务漏洞，攻击者可通过向路由器HTTP服务发送超长URL请求导致IOS进程崩溃并引发路由器重启。"
-severity = "MEDIUM"
-source = "cve"
-published = "1999-03-01"
-updated = "2026-06-16"
+  title = "Cisco IOS Web服务器超长URL拒绝服务漏洞"
+  description = "Cisco IOS的Web服务器在处理超长URL时存在拒绝服务漏洞，攻击者可通过向路由器HTTP服务发送超长URL请求导致IOS进程崩溃并引发路由器重启。"
+  severity = "MEDIUM"
+  source = "cve"
+  published = "1999-03-01"
+  updated = "2026-06-16"
 
 [score]
-cvss_v2 = 5.0
-cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:N/A:P"
-cvss_v3 = 0.0
-cvss_v3_vector = ""
-cvss_v4 = 0.0
-cvss_v4_vector = ""
+  cvss_v2 = 5.0
+  cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:N/A:P"
+  cvss_v3 = 5.5
+  cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N"
+  cvss_v4 = 5.1
+  cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:L/VI:N/VA:N/SC:N/SI:N/SA:N"
 
 [affected]
 vendor = "Cisco"
 product = "IOS"
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "medium"
+notes = "该漏洞为1999年发现的Cisco IOS旧漏洞，攻击者通过向路由器HTTP服务发送超长URL即可触发拒绝服务。Cisco官方已确认并在后续IOS版本中修复。未找到公开GitHub PoC仓库或Nuclei模板，但漏洞原理简单，可通过HTTP长URL请求验证。"
 
 [exploit]
 poc = []
@@ -41,11 +47,6 @@ other = ["http://www.securityfocus.com/archive/1/60159"]
 
 [tags]
 tags = ["CWE-Other", "DoS", "cisco", "ios", "denial-of-service"]
-
-[authenticity]
-cve_confidence = "high"
-poc_confidence = "medium"
-notes = "该漏洞为1999年发现的Cisco IOS旧漏洞，攻击者通过向路由器HTTP服务发送超长URL即可触发拒绝服务。Cisco官方已确认并在后续IOS版本中修复。未找到公开GitHub PoC仓库或Nuclei模板，但漏洞原理简单，可通过HTTP长URL请求验证。"
 
 [meta]
 collected_at = "2026-07-10T12:20:39Z"

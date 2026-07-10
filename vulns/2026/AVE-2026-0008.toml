@@ -1,29 +1,33 @@
+
 [id]
-ave_id = "AVE-2026-0008"
-cve_id = "CVE-2026-13537"
-aliases = ["CVE-2026-13537"]
+  ave_id = "AVE-2026-0008"
+  cve_id = "CVE-2026-13537"
+  aliases = ["CVE-2026-13537"]
 
 [basic]
-title = "CodeAstro HRM系统跨站请求伪造漏洞(CVE-2026-13537)"
-description = """
-CodeAstro Human Resource Management System是闭源商业Web应用,提供人力资源管理功能。
-受影响版本中,Organization.php控制器的Delete_dep方法处理部门删除请求时仅验证用户会话登录状态,未实施CSRF令牌或请求来源验证机制。攻击者可诱导已登录管理员浏览器发送跨站请求,利用可预测的部门ID参数实现未授权删除任意部门。
-修复版本中通过，修复版本中官方尚未发布安全更新,建议使用缓解措施:对所有状态变更请求实施CSRF令牌验证,并对危险操作添加二次确认。
-解决建议
-建议您更新当前系统或软件至最新版，完成漏洞的修复。"""
-severity = "UNKNOWN"
-score = 0.0
-sources = ["avd"]
-published = "2026-06-29"
-updated = ""
-remediation = "建议您更新当前系统或软件至最新版，完成漏洞的修复。"
+  title = "CodeAstro HRM系统跨站请求伪造漏洞(CVE-2026-13537)"
+  description = "CodeAstro Human Resource Management System是闭源商业Web应用,提供人力资源管理功能。\n受影响版本中,Organization.php控制器的Delete_dep方法处理部门删除请求时仅验证用户会话登录状态,未实施CSRF令牌或请求来源验证机制。攻击者可诱导已登录管理员浏览器发送跨站请求,利用可预测的部门ID参数实现未授权删除任意部门。\n修复版本中通过，修复版本中官方尚未发布安全更新,建议使用缓解措施:对所有状态变更请求实施CSRF令牌验证,并对危险操作添加二次确认。\n解决建议\n建议您更新当前系统或软件至最新版，完成漏洞的修复。"
+  severity = "MEDIUM"
+  score = 5.4
+  sources = ["avd"]
+  published = "2026-06-29"
+  updated = ""
+  remediation = "建议您更新当前系统或软件至最新版，完成漏洞的修复。"
 
-[references]
-urls = []
+[score]
+  cvss_v2 = 5.0
+  cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:P/A:N"
+  cvss_v3 = 5.4
+  cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:L/A:N"
+  cvss_v4 = 5.1
+  cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:A/VC:L/VI:L/VA:N/SC:N/SI:N/SA:N"
 
 [exploit]
 poc_urls = ["https://github.com/ashikmd0507/CVE/tree/main/CSRF%20in%20Department%20Deletion%20Endpoint"]
 exp_urls = []
+
+[references]
+urls = []
 
 [meta]
 status = "completed"

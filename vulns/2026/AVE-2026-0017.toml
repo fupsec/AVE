@@ -1,29 +1,33 @@
+
 [id]
-ave_id = "AVE-2026-0017"
-cve_id = "CVE-2026-13528"
-aliases = ["CVE-2026-13528"]
+  ave_id = "AVE-2026-0017"
+  cve_id = "CVE-2026-13528"
+  aliases = ["CVE-2026-13528"]
 
 [basic]
-title = "ruoyi-vue-pro文件上传路径穿越漏洞(CVE-2026-13528)"
-description = """
-ruoyi-vue-pro 是开源 Java 企业级开发框架，其 AppFileController 提供移动端文件上传接口。
-受影响版本中，FileServiceImpl.generateUploadPath() 方法在拼接 directory 和 name 参数生成文件存储路径时未校验 ../ 等路径穿越字符，攻击者可构造 directory=../../../test 或在文件名中携带 ../ 越过 basePath 限制向服务器任意目录写入文件。
-修复版本中通过新增 FilePathUtils 路径校验工具类并在 generateUploadPath() 中对 name 和 directory 调用 validateFileName/validatePath/validateDirectory 方法，以及在 LocalFileClient.getFilePath() 中校验最终路径必须位于 basePath 内，切断了路径穿越利用链。
-解决建议
-建议您更新当前系统或软件至最新版，完成漏洞的修复。"""
-severity = "UNKNOWN"
-score = 0.0
-sources = ["avd"]
-published = "2026-06-29"
-updated = ""
-remediation = "建议您更新当前系统或软件至最新版，完成漏洞的修复。"
+  title = "ruoyi-vue-pro文件上传路径穿越漏洞(CVE-2026-13528)"
+  description = "ruoyi-vue-pro 是开源 Java 企业级开发框架，其 AppFileController 提供移动端文件上传接口。\n受影响版本中，FileServiceImpl.generateUploadPath() 方法在拼接 directory 和 name 参数生成文件存储路径时未校验 ../ 等路径穿越字符，攻击者可构造 directory=../../../test 或在文件名中携带 ../ 越过 basePath 限制向服务器任意目录写入文件。\n修复版本中通过新增 FilePathUtils 路径校验工具类并在 generateUploadPath() 中对 name 和 directory 调用 validateFileName/validatePath/validateDirectory 方法，以及在 LocalFileClient.getFilePath() 中校验最终路径必须位于 basePath 内，切断了路径穿越利用链。\n解决建议\n建议您更新当前系统或软件至最新版，完成漏洞的修复。"
+  severity = "HIGH"
+  score = 7.5
+  sources = ["avd"]
+  published = "2026-06-29"
+  updated = ""
+  remediation = "建议您更新当前系统或软件至最新版，完成漏洞的修复。"
 
-[references]
-urls = []
+[score]
+  cvss_v2 = 7.8
+  cvss_v2_vector = "AV:N/AC:L/Au:N/C:C/I:N/A:N"
+  cvss_v3 = 7.5
+  cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N"
+  cvss_v4 = 8.6
+  cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N"
 
 [exploit]
 poc_urls = []
 exp_urls = ["https://packetstormsecurity.com/files/latest/1"]
+
+[references]
+urls = []
 
 [meta]
 status = "completed"

@@ -1,24 +1,33 @@
+
 [id]
-ave_id = "AVE-2015-0009"
-cve_id = "CVE-2015-10114"
-aliases = ["CVE-2015-10114"]
+  ave_id = "AVE-2015-0009"
+  cve_id = "CVE-2015-10114"
+  aliases = ["CVE-2015-10114"]
 
 [basic]
-title = "WordPress Plugin WooSidebars 输入验证错误漏洞(CVE-2015-10114)"
-description = ""
-severity = "UNKNOWN"
-score = 0.0
-sources = ["avd"]
-published = "2023-06-06"
-updated = ""
-remediation = "Refer to vendor advisory and upgrade to fixed version."
+  title = "WordPress Plugin WooSidebars 输入验证错误漏洞(CVE-2015-10114)"
+  description = ""
+  severity = "MEDIUM"
+  score = 5.4
+  sources = ["avd"]
+  published = "2023-06-06"
+  updated = ""
+  remediation = "Refer to vendor advisory and upgrade to fixed version."
 
-[references]
-urls = []
+[score]
+  cvss_v2 = 4.0
+  cvss_v2_vector = "AV:N/AC:L/Au:S/C:P/I:N/A:N"
+  cvss_v3 = 5.4
+  cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:U/C:L/I:L/A:N"
+  cvss_v4 = 5.1
+  cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:L/UI:A/VC:L/VI:L/VA:N/SC:N/SI:N/SA:N"
 
 [exploit]
 poc_urls = []
 exp_urls = []
+
+[references]
+urls = []
 
 [meta]
 status = "completed"

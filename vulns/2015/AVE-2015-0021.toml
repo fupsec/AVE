@@ -1,23 +1,34 @@
+
 [id]
-ave_id = "AVE-2015-0021"
+  ave_id = "AVE-2015-0021"
 cve_id = "CVE-2015-3310"
+avd_id = ""
 other_ids = []
 
 [basic]
-title = "ppp RADIUS插件rc_mksid函数缓冲区溢出漏洞"
-description = "Paul's PPP Package (ppp) 2.4.6及之前版本中plugins/radius/util.c的rc_mksid函数存在缓冲区溢出漏洞。当pppd的PID大于65535时，远程攻击者通过向RADIUS服务器发送特制的start accounting消息可触发缓冲区溢出，导致拒绝服务（崩溃）。"
-severity = "MEDIUM"
-source = "nvd"
-published = "2015-04-24"
-updated = "2026-06-16"
+  title = "ppp RADIUS插件rc_mksid函数缓冲区溢出漏洞"
+  description = "Paul's PPP Package (ppp) 2.4.6及之前版本中plugins/radius/util.c的rc_mksid函数存在缓冲区溢出漏洞。当pppd的PID大于65535时，远程攻击者通过向RADIUS服务器发送特制的start accounting消息可触发缓冲区溢出，导致拒绝服务（崩溃）。"
+  severity = "MEDIUM"
+  source = "nvd"
+  published = "2015-04-24"
+  updated = "2026-06-16"
 
 [score]
 cvss_v2 = 4.3
-cvss_v2_vector = "AV:N/AC:M/Au:N/C:N/I:N/A:P"
+cvss_v2_vector = "AV:N/AC:M/Au:N/C:N/I:N/A/P"
+cvss_v3 = 6.5
+cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+cvss_v4 = 7.2
+cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N"
 
 [affected]
 vendor = "Paul's PPP Package"
 product = "ppp (Point-to-Point Protocol daemon)"
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "low"
+notes = "该漏洞位于ppp RADIUS插件中，基于RADIUS协议（非HTTP），无法生成HTTP协议PoC脚本。未在GitHub、Exploit-DB、PacketStorm等公开渠道发现可用PoC/EXP。NVD未提供CVSS v3和v4评分。"
 
 [exploit]
 poc = []
@@ -31,22 +42,10 @@ steps = ["步骤1: 确认ppp版本 (pppd --version)", "步骤2: 升级到ppp 2.4
 
 [references]
 nvd = "https://nvd.nist.gov/vuln/detail/CVE-2015-3310"
-other = [
-  "https://www.debian.org/security/2015/dsa-3228",
-  "https://ubuntu.com/usn/USN-2595-1",
-  "https://security.gentoo.org/glsa/201701-50",
-  "http://advisories.mageia.org/MGASA-2015-0173.html",
-  "http://www.securityfocus.com/bid/74163",
-  "https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=782450"
-]
+other = ["https://www.debian.org/security/2015/dsa-3228", "https://ubuntu.com/usn/USN-2595-1", "https://security.gentoo.org/glsa/201701-50", "http://advisories.mageia.org/MGASA-2015-0173.html", "http://www.securityfocus.com/bid/74163", "https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=782450"]
 
 [tags]
 tags = ["CWE-119", "buffer-overflow", "dos", "radius", "ppp"]
-
-[authenticity]
-cve_confidence = "high"
-poc_confidence = "low"
-notes = "该漏洞位于ppp RADIUS插件中，基于RADIUS协议（非HTTP），无法生成HTTP协议PoC脚本。截至2026年7月，未在GitHub、Exploit-DB等公开渠道发现可用PoC/EXP。CVSS v3和v4评分NVD未提供。"
 
 [meta]
 collected_at = "2026-07-11T06:00:00Z"

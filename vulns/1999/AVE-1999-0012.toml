@@ -1,28 +1,34 @@
+
 [id]
-ave_id = "AVE-1999-0012"
-cve_id = "CVE-1999-0016"
-avd_id = ""
-other_ids = []
+  ave_id = "AVE-1999-0012"
+  cve_id = "CVE-1999-0016"
+  avd_id = ""
+  other_ids = []
 
 [basic]
-title = "Land IP 拒绝服务漏洞"
-description = "Land IP denial of service. 通过发送源地址和目标地址相同的 TCP SYN 数据包，导致受影响系统进入无限循环并崩溃。该漏洞影响多种操作系统和网络设备，包括 HP-UX 9/10/11、Windows NT 4.0/95、Windows Server 2003、Cisco IOS、NetBSD 1.0/1.1、SunOS 4.1.3/4.1.4 等。"
-severity = "MEDIUM"
-source = "nvd"
-published = "1997-12-01"
-updated = "2026-06-16"
+  title = "Land IP 拒绝服务漏洞"
+  description = "Land IP denial of service. 通过发送源地址和目标地址相同的 TCP SYN 数据包，导致受影响系统进入无限循环并崩溃。该漏洞影响多种操作系统和网络设备，包括 HP-UX 9/10/11、Windows NT 4.0/95、Windows Server 2003、Cisco IOS、NetBSD 1.0/1.1、SunOS 4.1.3/4.1.4 等。"
+  severity = "MEDIUM"
+  source = "nvd"
+  published = "1997-12-01"
+  updated = "2026-06-16"
 
 [score]
-cvss_v2 = 5.0
-cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:N/A:P"
-cvss_v3 = 0.0
-cvss_v3_vector = ""
-cvss_v4 = 0.0
-cvss_v4_vector = ""
+  cvss_v2 = 5.0
+  cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:N/A:P"
+  cvss_v3 = 5.5
+  cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N"
+  cvss_v4 = 5.1
+  cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:L/VI:N/VA:N/SC:N/SI:N/SA:N"
 
 [affected]
 vendor = "multiple"
 product = "multiple"
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "high"
+notes = "经典 Land 攻击漏洞，已在多个平台被证实。存在多个 PoC 实现（C、Python），均为验证性脚本。"
 
 [exploit]
 poc = [
@@ -45,11 +51,6 @@ other = ["http://www1.itrc.hp.com/service/cki/docDisplay.do?docId=HPSBUX9801-076
 
 [tags]
 tags = ["CWE-Other", "DoS", "Land-Attack", "TCP"]
-
-[authenticity]
-cve_confidence = "high"
-poc_confidence = "high"
-notes = "经典 Land 攻击漏洞，已在多个平台被证实。存在多个 PoC 实现（C、Python），均为验证性脚本。"
 
 [meta]
 collected_at = "2026-07-10T15:31:00Z"

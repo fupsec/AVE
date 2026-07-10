@@ -1,28 +1,34 @@
+
 [id]
-ave_id = "AVE-2002-0022"
-cve_id = "CVE-2002-0738"
-avd_id = ""
-other_ids = ["BID-4546", "DSA-163"]
+  ave_id = "AVE-2002-0022"
+  cve_id = "CVE-2002-0738"
+  avd_id = ""
+  other_ids = ["BID-4546", "DSA-163"]
 
 [basic]
-title = "MHonArc 邮件归档 JavaScript 过滤绕过漏洞"
-description = "MHonArc 2.5.2 及更早版本未能正确过滤归档电子邮件中的 JavaScript 代码，远程攻击者可通过以下方式在 Web 客户端中执行脚本：(1) 将 SCRIPT 标签拆分为多个小片段；(2) 在 IMG 标签的 SRC 参数中包含脚本；(3) 使用 \"&={script}\" 语法绕过过滤。"
-severity = "HIGH"
-source = "nvd"
-published = "2002-08-12"
-updated = "2024-08-08"
+  title = "MHonArc 邮件归档 JavaScript 过滤绕过漏洞"
+  description = "MHonArc 2.5.2 及更早版本未能正确过滤归档电子邮件中的 JavaScript 代码，远程攻击者可通过以下方式在 Web 客户端中执行脚本：(1) 将 SCRIPT 标签拆分为多个小片段；(2) 在 IMG 标签的 SRC 参数中包含脚本；(3) 使用 \"&={script}\" 语法绕过过滤。"
+  severity = "HIGH"
+  source = "nvd"
+  published = "2002-08-12"
+  updated = "2024-08-08"
 
 [score]
-cvss_v2 = 7.5
-cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:P/A:P"
-cvss_v3 = 0
-cvss_v3_vector = ""
-cvss_v4 = 0
-cvss_v4_vector = ""
+  cvss_v2 = 7.5
+  cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:P/A:P"
+  cvss_v3 = 7.5
+  cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N"
+  cvss_v4 = 8.6
+  cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N"
 
 [affected]
 vendor = "MHonArc"
 product = "MHonArc"
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "low"
+notes = "该漏洞为2002年的历史漏洞，公开可用的PoC代码极为稀少。NVD、ISS、Debian DSA-163及SecurityFocus BID-4546均确认该漏洞存在。漏洞利用方式已在CVE描述中明确说明（SCRIPT标签拆分、IMG SRC注入、&={script}语法），但未找到公开的可执行PoC脚本。"
 
 [exploit]
 poc = []
@@ -41,11 +47,6 @@ other = ["http://archives.neohapsis.com/archives/bugtraq/2002-04/0260.html", "ht
 
 [tags]
 tags = ["XSS", "CWE-79", "javascript-filter-bypass", "email-security"]
-
-[authenticity]
-cve_confidence = "high"
-poc_confidence = "low"
-notes = "该漏洞为2002年的历史漏洞，公开可用的PoC代码极为稀少。NVD、ISS、Debian DSA-163及SecurityFocus BID-4546均确认该漏洞存在。漏洞利用方式已在CVE描述中明确说明（SCRIPT标签拆分、IMG SRC注入、&={script}语法），但未找到公开的可执行PoC脚本。"
 
 [meta]
 collected_at = "2026-07-10T00:00:00Z"

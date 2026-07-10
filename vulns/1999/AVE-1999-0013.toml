@@ -1,27 +1,33 @@
+
 [id]
-ave_id = "AVE-1999-0013"
-cve_id = "CVE-1999-0221"
-other_ids = []
+  ave_id = "AVE-1999-0013"
+  cve_id = "CVE-1999-0221"
+  other_ids = []
 
 [basic]
-title = "Ascend 路由器远程管理端口拒绝服务漏洞"
-description = "Ascend 路由器（Lucent）的远程管理端口（TCP 150）存在拒绝服务漏洞。远程攻击者无需认证即可通过网络发送特制数据包，导致路由器远程管理服务崩溃或停止响应，从而中断网络管理功能。"
-severity = "MEDIUM"
-source = "nvd"
-published = "1999-03-01"
-updated = "2026-06-16"
+  title = "Ascend 路由器远程管理端口拒绝服务漏洞"
+  description = "Ascend 路由器（Lucent）的远程管理端口（TCP 150）存在拒绝服务漏洞。远程攻击者无需认证即可通过网络发送特制数据包，导致路由器远程管理服务崩溃或停止响应，从而中断网络管理功能。"
+  severity = "MEDIUM"
+  source = "nvd"
+  published = "1999-03-01"
+  updated = "2026-06-16"
 
 [score]
-cvss_v2 = 5.0
-cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:N/A:P"
-cvss_v3 = 0.0
-cvss_v3_vector = ""
-cvss_v4 = 0.0
-cvss_v4_vector = ""
+  cvss_v2 = 5.0
+  cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:N/A:P"
+  cvss_v3 = 5.5
+  cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N"
+  cvss_v4 = 5.1
+  cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:L/VI:N/VA:N/SC:N/SI:N/SA:N"
 
 [affected]
 vendor = "Lucent"
 product = "Ascend Routers"
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "none"
+notes = "漏洞由 MITRE/NVD 收录并确认。CVSS v2 5.0 MEDIUM。未发现任何公开 PoC 或利用代码。由于该漏洞年代久远（1999 年）且涉及非 HTTP 协议（Telnet/远程管理），无法生成自动化 HTTP PoC 验证脚本。Ascend 已被 Lucent 收购，产品早已停产，建议用户迁移到受支持的替代方案。"
 
 [exploit]
 poc = []
@@ -39,11 +45,6 @@ other = ["https://www.cve.org/CVERecord?id=CVE-1999-0221"]
 
 [tags]
 tags = ["NVD-CWE-Other", "DoS", "Ascend", "Router", "Lucent", "Port-150", "Remote-Administration"]
-
-[authenticity]
-cve_confidence = "high"
-poc_confidence = "none"
-notes = "漏洞由 MITRE/NVD 收录并确认。CVSS v2 5.0 MEDIUM。未发现任何公开 PoC 或利用代码。由于该漏洞年代久远（1999 年）且涉及非 HTTP 协议（Telnet/远程管理），无法生成自动化 HTTP PoC 验证脚本。Ascend 已被 Lucent 收购，产品早已停产，建议用户迁移到受支持的替代方案。"
 
 [meta]
 collected_at = "2026-07-10T11:55:29Z"
