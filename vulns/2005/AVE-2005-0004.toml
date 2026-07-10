@@ -1,12 +1,12 @@
 [basic]
-description = "Cisco VPN 3000 Concentrator 系列设备在 4.1.7.F 之前版本中存在信息泄露漏洞。远程攻击者通过向设备发送包含组名的 IKE Aggressive Mode 数据包，根据设备是否响应来判断该组名是否有效。攻击者可利用此漏洞枚举有效 VPN 组名，为后续暴力破解攻击提供信息，可能导致未授权 VPN 访问。"
-published = "2005-06-20"
-remediation = "升级 Cisco VPN 3000 Concentrator 至 4.1.7.F 或更高版本以修复此漏洞。同时建议在设备配置中限制 IKE Aggressive Mode 的使用，并设置强 VPN 组认证策略以防止组名暴力破解。"
-score = 5.0
-severity = "MEDIUM"
-sources = ["nvd", "tenable"]
-title = "Cisco VPN 3000 Concentrator IKE Aggressive Mode 组名信息泄露漏洞"
-updated = "2025-04-03"
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["tenable"]
+title = "CVE-2005-2025 漏洞"
+updated = ""
 
 [exploit]
 exp_urls = []
@@ -18,14 +18,8 @@ ave_id = "AVE-2005-0004"
 cve_id = "CVE-2005-2025"
 
 [meta]
-collected_at = "2026-07-11T00:00:00+00:00"
+collected_at = "2026-07-10T21:22:18.649923796+00:00"
 status = "completed"
 
 [references]
-urls = [
-    "https://nvd.nist.gov/vuln/detail/CVE-2005-2025",
-    "http://www.nta-monitor.com/news/vpn-flaws/cisco/VPN-Concentrator/index.htm",
-    "http://www.securityfocus.com/bid/13992",
-    "http://www.vupen.com/english/advisories/2005/0822",
-    "http://www.cisco.com/univercd/cc/td/doc/product/vpn/vpn3000/4_7/471con3k.htm",
-]
+urls = []
