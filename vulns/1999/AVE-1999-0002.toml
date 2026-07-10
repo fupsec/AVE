@@ -41,7 +41,7 @@ tags = ["CWE-Other", "sendmail", "SMTP", "file-overwrite", "mail"]
 [authenticity]
 cve_confidence = "high"
 poc_confidence = "none"
-notes = "PoC/EXP 未公开收录，漏洞年代久远（1996年），现有公开资料多为描述性文档。非 HTTP 协议漏洞（SMTP），不生成 PoC 脚本。"
+notes = "PoC/EXP 未公开收录，漏洞年代久远（1996年），经搜索 NVD、GitHub、Exploit-DB、PacketStorm、Sploitus 均未发现公开 PoC/EXP。非 HTTP 协议漏洞（SMTP），不生成 PoC 脚本。"
 
 [meta]
 collected_at = "2026-07-11T14:30:00Z"
