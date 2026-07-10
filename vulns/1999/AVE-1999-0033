@@ -1,17 +1,14 @@
 [id]
-ave_id = "AVE-2026-0041"
-cve_id = "CVE-2026-48595"
-aliases = [
-    "CVE-2026-48595",
-    "GHSA-9m9w-gxf7-rh8m",
-]
+ave_id = "AVE-1999-0033"
+cve_id = "CVE-1999-0287"
+aliases = ["CVE-1999-0287"]
 
 [basic]
-title = "CVE-2026-48595"
+title = "CVE-1999-0287"
 description = ""
 severity = "UNKNOWN"
 score = 0.0
-sources = ["ghsa"]
+sources = ["cve"]
 published = ""
 updated = ""
 remediation = "Refer to vendor advisory and upgrade to fixed version."
@@ -25,4 +22,4 @@ exp_urls = []
 
 [meta]
 status = "completed"
-collected_at = "2026-07-10T12:52:03.111855904+00:00"
+collected_at = "2026-07-10T12:52:03.112603760+00:00"
