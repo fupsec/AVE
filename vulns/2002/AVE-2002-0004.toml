@@ -1,0 +1,25 @@
+[basic]
+description = "Vulnerability identified as CVE-2002-0380. Please refer to vendor advisory for details."
+published = "2026-07-10"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 5.0
+severity = "MEDIUM"
+sources = ["osv"]
+title = "Vulnerability in CVE-2002-0380"
+updated = "2026-07-10"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2002-0380"]
+ave_id = "AVE-2002-0004"
+cve_id = "CVE-2002-0380"
+
+[meta]
+collected_at = "2026-07-10T12:52:04.790665665+00:00"
+status = "completed"
+
+[references]
+urls = []

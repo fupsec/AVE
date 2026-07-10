@@ -1,0 +1,25 @@
+[basic]
+description = "Vulnerability identified as CVE-2018-25116. Please refer to vendor advisory for details."
+published = "2026-07-10"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 5.0
+severity = "MEDIUM"
+sources = ["avd"]
+title = "Vulnerability in CVE-2018-25116"
+updated = "2026-07-10"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2018-25116"]
+ave_id = "AVE-2018-0045"
+cve_id = "CVE-2018-25116"
+
+[meta]
+collected_at = "2026-07-10T14:07:30.496584325+00:00"
+status = "completed"
+
+[references]
+urls = []

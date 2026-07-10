@@ -1,0 +1,25 @@
+[basic]
+description = "Vulnerability identified as CVE-2000-0230. Please refer to vendor advisory for details."
+published = "2026-07-10"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 5.0
+severity = "MEDIUM"
+sources = ["redhat"]
+title = "Vulnerability in CVE-2000-0230"
+updated = "2026-07-10"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2000-0230"]
+ave_id = "AVE-2000-0014"
+cve_id = "CVE-2000-0230"
+
+[meta]
+collected_at = "2026-07-10T12:52:47.893921399+00:00"
+status = "completed"
+
+[references]
+urls = []

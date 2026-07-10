@@ -1,0 +1,25 @@
+[basic]
+description = "Vulnerability identified as CVE-1999-0068. Please refer to vendor advisory for details."
+published = "2026-07-10"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 5.0
+severity = "MEDIUM"
+sources = ["exploitdb"]
+title = "Vulnerability in CVE-1999-0068"
+updated = "2026-07-10"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0068"]
+ave_id = "AVE-1999-0090"
+cve_id = "CVE-1999-0068"
+
+[meta]
+collected_at = "2026-07-10T12:52:47.708838908+00:00"
+status = "completed"
+
+[references]
+urls = []

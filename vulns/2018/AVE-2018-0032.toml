@@ -1,0 +1,25 @@
+[basic]
+description = "Vulnerability identified as CVE-2018-25103. Please refer to vendor advisory for details."
+published = "2026-07-10"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 5.0
+severity = "MEDIUM"
+sources = ["avd"]
+title = "Security vulnerability (CVE-2018-25103)"
+updated = "2026-07-10"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2018-25103"]
+ave_id = "AVE-2018-0032"
+cve_id = "CVE-2018-25103"
+
+[meta]
+collected_at = "2026-07-10T18:10:14.864228328+00:00"
+status = "completed"
+
+[references]
+urls = []

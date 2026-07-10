@@ -1,18 +1,67 @@
-[id]
-ave_id = "AVE-2026-0045"
-cve_id = "CVE-2026-48737"
-avd_id = ""
-other_ids = ["GHSA-m5x5-28jr-gpjj"]
+[affected]
+product = "pyLoad-ng (pyload-ng)"
+vendor = "pyLoad"
+
+[authenticity]
+cve_confidence = "high"
+notes = "GHSA 官方安全公告提供了完整的漏洞原理、复现步骤和修复方案。PoC 脚本存放于 pyload 主仓库的 research_wave5/poc/ 目录中。实际利用需要攻击者具备 Perms.ADD 权限、主机网络支持 6to4/NAT64 路由，且目标运行于 Python 3.9-3.11（6to4 路径）或存在 NAT64 网关（所有版本）。修复提交已验证通过 CI 测试。"
+poc_confidence = "high"
 
 [basic]
-title = "pyLoad SSRF 防护绕过漏洞 — IPv6 6to4/NAT64 过渡机制封装内网 IP"
 description = """
 pyLoad-ng 的 is_global_address 函数在 src/pyload/core/utils/web/check.py 中使用 Python ipaddress.ip_address(value).is_global 判断 IP 是否为全局可路由地址，作为 SSRF 防护的核心检查。但 Python 的 IPv6Address.is_global 将 NAT64 知名前缀 (64:ff9b::/96) 以及 Python 3.9-3.11 上的 6to4 前缀 (2002::/16) 中嵌入了内网 IPv4 地址（如 127.0.0.1、10.0.0.1、169.254.169.254）的地址均归类为"全局可路由"，导致 SSRF 防护被绕过。攻击者可利用此漏洞，通过构造包含 IPv6 过渡编码地址的下载 URL，绕过 is_global_address/is_global_host 检查，使 pycurl PREREQFUNC 允许连接到内部网络端点，实现服务端请求伪造。影响所有声明 python_requires >= 3.9 的 pyLoad-ng 部署。
 """
+published = "2026-05-22"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 5.5
 severity = "MEDIUM"
 source = "ghsa"
-published = "2026-05-22"
+sources = ["unknown"]
+title = "pyLoad SSRF 防护绕过漏洞 — IPv6 6to4/NAT64 过渡机制封装内网 IP"
 updated = "2026-07-10"
+
+[exploit]
+exp = []
+nuclei_templates = []
+
+[[exploit.poc]]
+description = "SSRF 防护绕过验证 PoC 脚本"
+source = "github"
+url = "https://github.com/pyload/pyload/blob/1b12dc7f348db8c144e0f39215680415e90ca4d2/research_wave5/poc/pyload_ipv6_ssrf/poc.py"
+
+[[exploit.poc]]
+description = "修复提交：添加 is_embedded_ipv4 检测嵌入 IPv4 地址"
+source = "github"
+url = "https://github.com/pyload/pyload/commit/ba7491046b2d430732be490913e4cbf1f1e899c2"
+
+[id]
+avd_id = ""
+ave_id = "AVE-2026-0045"
+cve_id = "CVE-2026-48737"
+other_ids = ["GHSA-m5x5-28jr-gpjj"]
+
+[meta]
+collected_at = "2026-07-11T10:18:58Z"
+status = "completed"
+
+[references]
+avd = ""
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2026-48737"
+other = [
+    "https://github.com/pyload/pyload/security/advisories/GHSA-m5x5-28jr-gpjj",
+    "https://github.com/pyload/pyload/commit/ba7491046b2d430732be490913e4cbf1f1e899c2",
+    "https://github.com/pyload/pyload/blob/1b12dc7f348db8c144e0f39215680415e90ca4d2/src/pyload/core/utils/web/check.py",
+]
+
+[remediation]
+fix = "升级到 pyload-ng >= 0.5.0b3.dev101（包含修复提交 ba7491046b2d430732be490913e4cbf1f1e899c2）。修复版本在 is_global_address 和 is_loopback_address 中添加了 is_embedded_ipv4 检测函数，可识别并解包 6to4（2002::/16）、NAT64（64:ff9b::/96 和 64:ff9b:1::/48）以及 IPv4-mapped 地址中的嵌入 IPv4，重新执行全局可路由判断。"
+steps = [
+    "步骤1: 确认 pyload-ng 版本（检查 setup.cfg 或运行 pip show pyload-ng）",
+    "步骤2: 升级到 0.5.0b3.dev101 或更高版本（pip install --upgrade pyload-ng）",
+    "步骤3: 或手动应用补丁：在 is_global_address 中添加 is_embedded_ipv4 解包逻辑",
+    "步骤4: 部署网络层访问控制阻止 IPv6 过渡封装流量到达内部端点",
+]
+workaround = "如无法升级，可在网络层防火墙阻止 6to4（2002::/16）和 NAT64（64:ff9b::/96）流量到达内网目标；或严格限制具有 Perms.ADD 权限的用户账户，仅允许可信用户操作。"
 
 [score]
 cvss_v2 = 5.0
@@ -22,45 +71,12 @@ cvss_v3_vector = "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:C/C:L/I:N/A:L"
 cvss_v4 = 0.0
 cvss_v4_vector = ""
 
-[affected]
-vendor = "pyLoad"
-product = "pyLoad-ng (pyload-ng)"
-
-[exploit]
-poc = [
-  { url = "https://github.com/pyload/pyload/blob/1b12dc7f348db8c144e0f39215680415e90ca4d2/research_wave5/poc/pyload_ipv6_ssrf/poc.py", description = "SSRF 防护绕过验证 PoC 脚本", source = "github" },
-  { url = "https://github.com/pyload/pyload/commit/ba7491046b2d430732be490913e4cbf1f1e899c2", description = "修复提交：添加 is_embedded_ipv4 检测嵌入 IPv4 地址", source = "github" }
-]
-exp = []
-nuclei_templates = []
-
-[remediation]
-fix = "升级到 pyload-ng >= 0.5.0b3.dev101（包含修复提交 ba7491046b2d430732be490913e4cbf1f1e899c2）。修复版本在 is_global_address 和 is_loopback_address 中添加了 is_embedded_ipv4 检测函数，可识别并解包 6to4（2002::/16）、NAT64（64:ff9b::/96 和 64:ff9b:1::/48）以及 IPv4-mapped 地址中的嵌入 IPv4，重新执行全局可路由判断。"
-workaround = "如无法升级，可在网络层防火墙阻止 6to4（2002::/16）和 NAT64（64:ff9b::/96）流量到达内网目标；或严格限制具有 Perms.ADD 权限的用户账户，仅允许可信用户操作。"
-steps = [
-  "步骤1: 确认 pyload-ng 版本（检查 setup.cfg 或运行 pip show pyload-ng）",
-  "步骤2: 升级到 0.5.0b3.dev101 或更高版本（pip install --upgrade pyload-ng）",
-  "步骤3: 或手动应用补丁：在 is_global_address 中添加 is_embedded_ipv4 解包逻辑",
-  "步骤4: 部署网络层访问控制阻止 IPv6 过渡封装流量到达内部端点",
-]
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2026-48737"
-avd = ""
-other = [
-  "https://github.com/pyload/pyload/security/advisories/GHSA-m5x5-28jr-gpjj",
-  "https://github.com/pyload/pyload/commit/ba7491046b2d430732be490913e4cbf1f1e899c2",
-  "https://github.com/pyload/pyload/blob/1b12dc7f348db8c144e0f39215680415e90ca4d2/src/pyload/core/utils/web/check.py",
-]
-
 [tags]
-tags = ["CWE-918", "SSRF", "IPv6", "6to4", "NAT64", "pyLoad"]
-
-[authenticity]
-cve_confidence = "high"
-poc_confidence = "high"
-notes = "GHSA 官方安全公告提供了完整的漏洞原理、复现步骤和修复方案。PoC 脚本存放于 pyload 主仓库的 research_wave5/poc/ 目录中。实际利用需要攻击者具备 Perms.ADD 权限、主机网络支持 6to4/NAT64 路由，且目标运行于 Python 3.9-3.11（6to4 路径）或存在 NAT64 网关（所有版本）。修复提交已验证通过 CI 测试。"
-
-[meta]
-collected_at = "2026-07-11T10:18:58Z"
-status = "completed"
+tags = [
+    "CWE-918",
+    "SSRF",
+    "IPv6",
+    "6to4",
+    "NAT64",
+    "pyLoad",
+]
