@@ -1,40 +1,25 @@
-[id]
-ave_id = "AVE-2026-0073"
-cve_id = "CVE-2026-0047"
-aliases = ["CVE-2026-0047"]
-
 [basic]
-title = "Google Android 16 QPR2 Beta ActivityManagerService 位图信息泄露漏洞"
-description = "Android 16 QPR2 Beta (Baklava) 的 ActivityManagerService.dumpBitmapsProto() 方法缺少 enforceCallingOrSelfPermission(DUMP) 权限检查（CWE-280），导致零权限应用可通过 Binder 事务码 #117 绕过隐藏 API 限制直接调用该方法，通过 ParcelFileDescriptor 管道读取所有正在运行应用的 UI 位图数据。攻击者无需任何权限或用户交互即可窃取其他应用的敏感界面截图，构成严重的信息泄露与本地权限提升威胁。Mobile Hacking Lab 已发布完整 PoC 代码，包含可直接安装的 APK 和一键利用脚本。"
-severity = "HIGH"
-score = 8.4
-cvss_v3 = "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
-remediation = "升级至 Android 安全公告 2026-03-01 修复版本，Google 已在 dumpBitmapsProto() 首行添加 enforceCallingOrSelfPermission(DUMP) 权限检查，未授权调用将抛出 SecurityException。用户应进入设置 > 系统 > 系统更新安装安全补丁，确保安全补丁级别 ≥ 2026-03-01。"
-published = "2026-03-02"
-updated = "2026-06-17"
-sources = ["github", "nvd"]
-vendor = "Google"
-product = "Android 16 QPR2 Beta (Baklava)"
-
-[references]
-urls = [
-    "https://nvd.nist.gov/vuln/detail/CVE-2026-0047",
-    "https://source.android.com/docs/security/bulletin/2026/2026-03-01",
-    "https://github.com/mobilehackinglab/CVE-2026-0047-poc",
-    "https://cwe.mitre.org/data/definitions/280.html"
-]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["github"]
+title = "CVE-2026-0047"
+updated = ""
 
 [exploit]
-poc_urls = [
-    "https://github.com/mobilehackinglab/CVE-2026-0047-poc",
-    "https://github.com/mobilehackinglab/CVE-2026-0047-poc/blob/main/exploit.sh",
-    "https://github.com/mobilehackinglab/CVE-2026-0047-poc/raw/main/apk/cve-2026-0047-poc.apk"
-]
-exp_urls = [
-    "https://github.com/mobilehackinglab/CVE-2026-0047-poc/raw/main/apk/flashlight-pro-attacker.apk"
-]
-nuclei_templates = []
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2026-0047"]
+ave_id = "AVE-2026-0073"
+cve_id = "CVE-2026-0047"
 
 [meta]
+collected_at = "2026-07-10T21:03:22.269550161+00:00"
 status = "completed"
-collected_at = "2026-07-10T17:06:51.879974330+00:00"
+
+[references]
+urls = []
