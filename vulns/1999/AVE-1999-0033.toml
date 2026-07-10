@@ -1,31 +1,25 @@
-[id]
-ave_id = "AVE-1999-0033"
-cve_id = "CVE-1999-0287"
-aliases = ["CVE-1999-0287"]
-
 [basic]
-title = "Webcom CGI Guestbook (Wguest) 任意文件读取漏洞"
-description = "Webcom 公司开发的 CGI Guestbook 程序（wguest.exe/rguest.exe）存在目录遍历漏洞。远程攻击者无需认证即可通过向 wguest.exe 或 rguest.exe 发送特制 HTTP 请求，利用 template 参数读取服务器上任意文本文件，例如 /cgi-bin/wguest.exe?template=c:\\boot.ini 可读取系统配置文件，导致敏感信息泄露。该漏洞影响 Windows NT/95/98 平台上的 Web 服务器，CVSS v2 评分 7.5，危害等级高。"
-severity = "HIGH"
-score = 7.5
-cvss_v2 = 7.5
-cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:P/A:P"
-remediation = "立即移除 Webcom CGI Guestbook 程序并停止使用该软件。由于软件开发商已不再维护此产品，建议迁移至其他安全的 CGI 留言本或采用现代 Web 应用替代。"
-published = "1999-04-09"
-updated = "2026-06-16"
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
 sources = ["cve"]
-
-[affected]
-vendor = "Webcom"
-product = "CGI Guestbook (Wguest)"
-
-[references]
-urls = ["https://marc.info/?l=ntbugtraq&m=92368828704896&w=2"]
+title = "CVE-1999-0287 漏洞"
+updated = ""
 
 [exploit]
-poc_urls = []
 exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0287"]
+ave_id = "AVE-1999-0033"
+cve_id = "CVE-1999-0287"
 
 [meta]
-collected_at = "2026-07-11T00:00:00+00:00"
+collected_at = "2026-07-10T22:45:12.502456676+00:00"
 status = "completed"
+
+[references]
+urls = []
