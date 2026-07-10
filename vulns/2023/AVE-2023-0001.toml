@@ -1,37 +1,25 @@
-[id]
-ave_id = "AVE-2023-0001"
-cve_id = "CVE-2023-3792"
-aliases = ["CVE-2023-3792"]
-
 [basic]
-title = "网康NS-ASG安全网关信息泄露漏洞"
-description = "网康NS-ASG安全网关6.3版本中存在信息泄露漏洞，位于/admin/test_status.php页面。该漏洞属于CWE-425直接请求（强制浏览）类型，攻击者无需任何认证即可直接访问该页面，获取网关敏感配置信息。CVSS评分6.5，攻击复杂度低，无需特权，可能泄露系统运行状态、网络配置等关键数据，为后续渗透攻击提供信息支撑。"
-severity = "MEDIUM"
-score = 6.5
-cvss_v3 = 6.5
-published = "2023-07-20"
-updated = "2026-06-17"
-remediation = "升级网康NS-ASG安全网关至厂商发布的最新修复版本；同时通过防火墙或Web应用防火墙设置访问控制策略，限制对/admin/test_status.php页面的访问，仅允许受信任的管理IP地址访问管理后台路径。"
-sources = ["hwpoc", "vuldb", "nvd"]
-
-[affected]
-vendor = "网康"
-product = "NS-ASG安全网关"
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2023-3792"
-other = [
-    "https://vuldb.com/?id.235059",
-    "https://vuldb.com/?ctiid.235059",
-    "https://github.com/CYN521/cve/blob/main/NS-ASG.md",
-]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["hwpoc"]
+title = "CVE-2023-3792"
+updated = ""
 
 [exploit]
-poc_urls = [
-    "https://github.com/CYN521/cve/blob/main/NS-ASG.md",
-]
 exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2023-3792"]
+ave_id = "AVE-2023-0001"
+cve_id = "CVE-2023-3792"
 
 [meta]
+collected_at = "2026-07-10T20:55:35.751028651+00:00"
 status = "completed"
-collected_at = "2026-07-10T16:29:02+00:00"
+
+[references]
+urls = []
