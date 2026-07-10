@@ -1,43 +1,25 @@
-[id]
-ave_id = "AVE-2023-0002"
-cve_id = "CVE-2023-46747"
-aliases = ["CVE-2023-46747"]
-
 [basic]
-title = "F5 BIG-IP 配置工具认证绕过漏洞"
-description = "CVE-2023-46747 是 F5 BIG-IP 配置工具(TMUI)中存在的一个严重认证绕过漏洞。攻击者可以通过管理端口或自IP地址发送特制请求绕过身份验证，利用AJP走私攻击未授权访问配置程序，进而实现远程代码执行(RCE)。该漏洞CVSSv3评分为9.8，影响版本包括BIG-IP 17.1.0、16.1.0-16.1.4、15.1.0-15.1.10、14.1.0-14.1.5及13.1.0-13.1.5，无需用户交互或权限即可远程利用，已出现在CISA已知被利用漏洞目录中并被用于主动攻击链。"
-severity = "CRITICAL"
-score = 9.8
-cvss_v3 = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
-remediation = "建议立即升级至修复版本：BIG-IP 17.1.0升级至Hotfix-BIGIP-17.1.0.3.0.75.4-ENG.iso，16.1.x升级至16.1.4.1，15.1.x升级至15.1.10.2，14.1.x升级至14.1.5.6，13.1.x升级至13.1.5.1。如无法升级，建议使用WAF策略进行临时拦截防护。"
-published = "2023-10-27"
-updated = "2023-10-31"
-sources = ["hwpoc", "nvd", "cisa-kev"]
-
-[affected]
-vendor = "F5"
-product = "BIG-IP"
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2023-46747"
-f5_advisory = "https://my.f5.com/manage/s/article/K000137353"
-cisa_kev = "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2023-46747"
-other = [
-  "http://packetstormsecurity.com/files/175673/F5-BIG-IP-TMUI-AJP-Smuggling-Remote-Command-Execution.html",
-  "https://www.praetorian.com/blog/refresh-compromising-f5-big-ip-with-request-smuggling-cve-2023-46747/",
-  "https://www.secpod.com/blog/f5-issues-warning-big-ip-vulnerability-used-in-active-exploit-chain/"
-]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["hwpoc"]
+title = "CVE-2023-46747"
+updated = ""
 
 [exploit]
-poc = [
-  { url = "https://github.com/adysec/nuclei_poc/blob/ce5a47e163f5440c84dbfc0adb073ab35f562154/poc/cve/CVE-2023-46747.yaml", description = "Nuclei PoC - F5 BIG-IP AJP走私未授权RCE检测", source = "github" },
-  { url = "http://packetstormsecurity.com/files/175673/F5-BIG-IP-TMUI-AJP-Smuggling-Remote-Command-Execution.html", description = "PacketStorm公开的利用代码", source = "packetstorm" }
-]
-exp = []
-nuclei_templates = [
-  { url = "https://github.com/adysec/nuclei_poc/blob/ce5a47e163f5440c84dbfc0adb073ab35f562154/poc/cve/CVE-2023-46747.yaml", description = "Nuclei模板 - AJP走私检测", source = "github" }
-]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2023-46747"]
+ave_id = "AVE-2023-0002"
+cve_id = "CVE-2023-46747"
 
 [meta]
+collected_at = "2026-07-10T20:58:35.587181308+00:00"
 status = "completed"
-collected_at = "2026-07-11T00:00:00+00:00"
+
+[references]
+urls = []
