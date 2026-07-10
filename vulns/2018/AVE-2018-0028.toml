@@ -1,38 +1,25 @@
-[id]
-ave_id = "AVE-2018-0028"
-cve_id = "CVE-2018-25098"
-aliases = ["CVE-2018-25098", "VDB-252799"]
-
 [basic]
-title = "blockmason 信用协议 UCAC CreditProtocol.sol executeUcacTx 拒绝服务漏洞"
-description = "blockmason credit-protocol 是一款基于以太坊的信用协议智能合约。其 UCAC Handler 组件中的 CreditProtocol.sol 文件的 executeUcacTx 函数存在拒绝服务漏洞。攻击者可通过构造特定的交易调用，导致资源未正确释放（CWE-404），进而使合约功能异常或停止响应。该漏洞无需身份认证即可远程触发，CVSS评分7.5，影响严重。注意该项目已不再受维护者支持。"
-severity = "HIGH"
-score = 7.5
-cvss_v3 = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
-remediation = "应用补丁 082e01f18707ef995e80ebe97fcedb229a55efc5 修复该漏洞。由于该项目已不再受支持，建议用户迁移至其他受维护的信用协议解决方案。"
-sources = ["nvd", "avd", "vuldb"]
-published = "2024-02-04"
-updated = "2026-06-16"
-
-[affected]
-vendor = "blockmason"
-product = "credit-protocol"
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2018-25098"
-avd = "https://avd.aliyun.com/detail/CVE-2018-25098"
-other = [
-    "https://github.com/blockmason/credit-protocol/commit/082e01f18707ef995e80ebe97fcedb229a55efc5",
-    "https://github.com/blockmason/credit-protocol/pull/33",
-    "https://vuldb.com/?id.252799",
-    "https://vuldb.com/?ctiid.252799"
-]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["avd"]
+title = "CVE-2018-25098 漏洞"
+updated = ""
 
 [exploit]
-poc_urls = []
 exp_urls = []
-nuclei_templates = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2018-25098"]
+ave_id = "AVE-2018-0028"
+cve_id = "CVE-2018-25098"
 
 [meta]
+collected_at = "2026-07-10T21:10:00.853641130+00:00"
 status = "completed"
-collected_at = "2026-07-11T00:00:00+00:00"
+
+[references]
+urls = []
