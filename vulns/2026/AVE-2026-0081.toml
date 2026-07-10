@@ -1,42 +1,43 @@
-[affected]
-product = "Diagnostics / Vantage HardwareScanAddin"
-vendor = "Lenovo"
+[id]
+ave_id = "AVE-2026-0081"
+cve_id = "CVE-2026-48861"
+aliases = [
+    "CVE-2026-48861",
+    "GHSA-2pg6-44cx-c49v",
+]
 
 [basic]
-description = "Lenovo Diagnostics 和 Vantage 中的 HardwareScanAddin 组件存在不安全链接跟随漏洞（CWE-59）。LdeApi.Server.exe 进程在安装或硬件扫描期间尝试向 C:\\ProgramData\\Lenovo\\LDE\\SYSTEM 目录写入 MP27AM7W_estimation.json 文件时未正确模拟用户权限。由于 C:\\ProgramData\\ 默认允许标准用户创建子目录，低权限攻击者可预先创建该目录结构并转换为 NTFS 接合点指向任意目标路径，服务进程将以 SYSTEM 权限跟随接合点将文件写入攻击者指定的任意位置，成功利用可实现本地权限提升。"
-published = "2026-04-15"
-remediation = "升级 Lenovo Diagnostics 至 5.26.0 或更高版本，升级 Lenovo Vantage HardwareScanAddin 至 4.7.1.4 或更高版本，以修复文件写入时未正确模拟用户权限的安全缺陷。"
-score = 7.1
-severity = "HIGH"
-sources = ["github", "nvd"]
-title = "联想 Diagnostics 与 Vantage 硬件扫描组件任意文件写入权限提升漏洞"
+title = "Mint HTTP/1 CRLF注入与请求走私漏洞"
+description = "Mint HTTP客户端库的HTTP/1请求编码器在encode_request_line/2函数中，将调用者提供的method和target参数直接拼接到请求行，未对CRLF等控制字符进行校验。攻击者通过控制method参数可注入回车换行序列，提前终止请求行并注入任意HTTP头字段，甚至可在同一TCP连接上走私完整的伪造HTTP请求，绕过访问控制或实施缓存投毒攻击。影响mint 0.1.0至1.9.0之前的所有版本。"
+severity = "LOW"
+score = 2.1
+cvss_v4 = "CVSS:4.0/AV:L/AC:L/AT:P/PR:N/UI:N/VC:N/VI:L/VA:N/SC:N/SI:L/SA:N"
+published = "2026-06-02"
 updated = "2026-06-17"
+remediation = "将Mint升级至v1.9.0或更高版本，该版本已在method参数中添加CRLF字符校验。如无法立即升级，应确保应用程序不将用户可控的输入直接作为HTTP method参数传递给Mint.HTTP.request/5函数。"
+sources = [
+    "ghsa",
+    "nvd",
+]
+
+[affected]
+vendor = "elixir-mint"
+product = "mint"
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2026-48861"
+other = [
+    "https://github.com/elixir-mint/mint/security/advisories/GHSA-2pg6-44cx-c49v",
+    "https://github.com/elixir-mint/mint/commit/fad091454cbb7449b19edb8e1fee12ca7cf28c3a",
+    "https://github.com/elixir-mint/mint/commit/8db1acff30b6a9433762c18b1e1f891b8c1f74f7",
+    "https://cna.erlef.org/cves/CVE-2026-48861.html",
+    "https://osv.dev/vulnerability/EEF-CVE-2026-48861",
+]
 
 [exploit]
+poc_urls = []
 exp_urls = []
-poc_urls = ["https://github.com/ZeroMemoryEx/CVE-2026-0827"]
-
-[id]
-aliases = ["CVE-2026-0827"]
-ave_id = "AVE-2026-0081"
-cve_id = "CVE-2026-0827"
 
 [meta]
 collected_at = "2026-07-11T12:00:00Z"
 status = "completed"
-
-[references]
-urls = [
-    "https://nvd.nist.gov/vuln/detail/CVE-2026-0827",
-    "https://support.lenovo.com/us/en/product_security/LEN-210693",
-    "https://github.com/ZeroMemoryEx/CVE-2026-0827",
-]
-
-[score]
-cvss_v3 = 7.1
-cvss_v3_vector = "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:H/A:H"
-cvss_v4 = 6.9
-cvss_v4_vector = "CVSS:4.0/AV:L/AC:L/AT:N/PR:L/UI:N/VC:N/VI:H/VA:H/SC:N/SI:N/SA:N"
-
-[tags]
-tags = ["CWE-59", "权限提升", "链接跟随"]
