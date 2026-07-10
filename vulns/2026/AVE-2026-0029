@@ -1,0 +1,25 @@
+[id]
+ave_id = "AVE-2026-0029"
+cve_id = "NUCLEI-HTTP-CNVD-2019-CNVD-2019-01348-YAML"
+aliases = ["NUCLEI-HTTP-CNVD-2019-CNVD-2019-01348-YAML"]
+
+[basic]
+title = "NUCLEI-HTTP-CNVD-2019-CNVD-2019-01348-YAML"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["nuclei"]
+published = ""
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T15:08:22.665839247+00:00"
