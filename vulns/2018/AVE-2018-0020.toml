@@ -1,36 +1,25 @@
-[id]
-ave_id = "AVE-2018-0020"
-cve_id = "CVE-2018-25090"
-aliases = ["CVE-2018-25090"]
-
 [basic]
-title = "Wago 多款设备跨站脚本(XSS)漏洞"
-description = "Wago 多款设备存在跨站脚本(XSS)漏洞，该漏洞源于生成网页期间未正确中和用户输入。远程攻击者可利用此漏洞通过特制请求在用户浏览器中执行任意脚本代码，导致机密性和完整性受限影响。攻击者需要诱导用户交互，但无需身份验证即可发动攻击，影响范围包括 750-831、750-829、750-852、750-88x、750-352 等型号。"
-severity = "MEDIUM"
-score = 5.4
-remediation = "受影响用户应升级固件至 FW14 版本。对于不受支持的产品型号（如 750-831、750-829），建议禁用 Web 管理界面(WBM)，限制网络访问并关闭不必要的 TCP/UDP 端口以降低风险。"
-published = "2024-03-13"
-updated = "2026-06-17"
-sources = ["avd", "nvd", "cert-vde"]
-
-[affected]
-vendor = "WAGO GmbH & Co. KG"
-product = "750-831, 750-829, 750-852, 750-88x, 750-352"
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2018-25090"
-avd = "https://avd.aliyun.com/detail/CVE-2018-25090"
-other = [
-  "https://cert.vde.com/en/advisories/VDE-2023-039/",
-  "https://github.com/advisories/GHSA-fr2x-v6g7-3mwv",
-  "https://www.cve.org/CVERecord?id=CVE-2018-25090"
-]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["avd"]
+title = "CVE-2018-25090 漏洞"
+updated = ""
 
 [exploit]
-poc_urls = []
 exp_urls = []
-nuclei_templates = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2018-25090"]
+ave_id = "AVE-2018-0020"
+cve_id = "CVE-2018-25090"
 
 [meta]
+collected_at = "2026-07-10T20:51:33.473833692+00:00"
 status = "completed"
-collected_at = "2026-07-11T12:00:00+08:00"
+
+[references]
+urls = []
