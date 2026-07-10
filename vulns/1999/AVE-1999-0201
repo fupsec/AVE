@@ -1,14 +1,14 @@
 [id]
 ave_id = "AVE-1999-0201"
-cve_id = "CVE-1999-0416"
-aliases = ["CVE-1999-0416"]
+cve_id = "CVE-1999-0115"
+aliases = ["CVE-1999-0115"]
 
 [basic]
-title = "CVE-1999-0416"
+title = "CVE-1999-0115"
 description = ""
 severity = "UNKNOWN"
 score = 0.0
-sources = ["cve"]
+sources = ["exploitdb"]
 published = ""
 updated = ""
 remediation = "Refer to vendor advisory and upgrade to fixed version."
@@ -22,4 +22,4 @@ exp_urls = []
 
 [meta]
 status = "completed"
-collected_at = "2026-07-10T13:24:33.398912604+00:00"
+collected_at = "2026-07-10T13:24:50.553952773+00:00"
