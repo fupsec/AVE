@@ -1,14 +1,17 @@
 [id]
 ave_id = "AVE-2026-0069"
-cve_id = "NUCLEI-HTTP-CNVD-2023-CNVD-2023-48562-YAML"
-aliases = ["NUCLEI-HTTP-CNVD-2023-CNVD-2023-48562-YAML"]
+cve_id = "CVE-2026-49838"
+aliases = [
+    "CVE-2026-49838",
+    "GHSA-frrj-87jh-2772",
+]
 
 [basic]
-title = "NUCLEI-HTTP-CNVD-2023-CNVD-2023-48562-YAML"
+title = "CVE-2026-49838"
 description = ""
 severity = "UNKNOWN"
 score = 0.0
-sources = ["nuclei"]
+sources = ["ghsa"]
 published = ""
 updated = ""
 remediation = "Refer to vendor advisory and upgrade to fixed version."
@@ -22,4 +25,4 @@ exp_urls = []
 
 [meta]
 status = "completed"
-collected_at = "2026-07-10T13:36:41.983690631+00:00"
+collected_at = "2026-07-10T13:37:03.325145852+00:00"

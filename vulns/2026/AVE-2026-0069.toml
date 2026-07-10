@@ -1,0 +1,61 @@
+[id]
+ave_id = "AVE-2026-0069"
+cve_id = "CVE-2026-49838"
+avd_id = ""
+other_ids = ["GHSA-frrj-87jh-2772"]
+
+[basic]
+title = "GoBGP 空 AS_PATH 属性导致联合 eBGP 对等体验证崩溃"
+description = "GoBGP 在处理 BGP UPDATE 解码时接受零长度 AS_PATH，随后在验证联合 eBGP 对等体的该属性时触发 panic。远程未认证的对等体（配置为联合 eBGP 邻居）可建立 BGP 会话并发送单个包含语法有效但零值长度的 AS_PATH 属性的恶意 UPDATE 消息，导致接收 goroutine 崩溃、对等会话中断，若 panic 未被运行时路径恢复可能导致进程终止。"
+severity = "MEDIUM"
+source = "ghsa"
+published = "2026-06-30"
+updated = "2026-07-09"
+
+[score]
+cvss_v2 = 0.0
+cvss_v2_vector = ""
+cvss_v3 = 5.9
+cvss_v3_vector = "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H"
+cvss_v4 = 0.0
+cvss_v4_vector = ""
+
+[affected]
+vendor = "osrg"
+product = "GoBGP"
+
+[exploit]
+poc = [
+  { url = "https://github.com/user-attachments/files/28203698/INT-bgp-gobgp-confed-empty-aspath-panic.zip", description = "官方安全公告附带的 PoC 复现脚本压缩包", source = "github" }
+]
+exp = []
+nuclei_templates = []
+
+[remediation]
+fix = "升级到 GoBGP v4.7.0 或更高版本。该版本添加了对空 AS_PATH 属性的检查：在 confederation eBGP 分支中增加 len(p.Value) == 0 的判断，返回格式错误消息而非触发 panic。"
+workaround = "如无法升级，可在 BGP 会话管理中增加额外的输入验证，在消息到达 GoBGP 解码器之前拒绝包含零长度 AS_PATH 属性的 UPDATE 消息。"
+steps = ["确认 GoBGP 版本是否 ≤ 4.6.0", "使用 go get github.com/osrg/gobgp/v4@v4.7.0 升级到修复版本", "重启 GoBGP 服务使变更生效"]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2026-49838"
+avd = ""
+other = [
+  "https://github.com/advisories/GHSA-frrj-87jh-2772",
+  "https://github.com/osrg/gobgp/security/advisories/GHSA-frrj-87jh-2772",
+  "https://advisories.gitlab.com/golang/github.com/osrg/gobgp/v4/CVE-2026-49838/",
+  "https://dbugs.ptsecurity.com/vulnerability/PT-2026-57024",
+  "https://github.com/osrg/gobgp",
+  "https://github.com/osrg/gobgp/releases/tag/v4.7.0"
+]
+
+[tags]
+tags = ["CWE-129", "DoS", "panic", "BGP", "AS_PATH", "confederation"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "high"
+notes = "GHSA 官方安全公告提供了完整的漏洞分析、根因定位、复现步骤及 PoC 压缩包。漏洞由 variant analysis 基于 CVE-2026-41643 发现，osrg 已在 v4.7.0 中修复。"
+
+[meta]
+collected_at = "2026-07-10T12:18:58Z"
+status = "completed"
