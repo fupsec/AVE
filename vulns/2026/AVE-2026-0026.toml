@@ -26,8 +26,9 @@ product = "e-Mobile"
 
 [exploit]
 poc = [
-  { url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2017/CNVD-2017-03561.yaml", description = "Nuclei OGNL注入检测模板", source = "nuclei" },
-  { url = "https://gitee.com/cute-guy/Penetration_Testing_POC/blob/master/%E6%B3%9B%E5%BE%AEe-mobile%20ognl%E6%B3%A8%E5%85%A5.md", description = "OGNL注入验证PoC及详细利用方法", source = "github" }
+  { url = "https://raw.githubusercontent.com/projectdiscovery/nuclei-templates/master/http/cnvd/2017/CNVD-2017-03561.yaml", description = "Nuclei OGNL注入检测模板（算术表达式验证）", source = "nuclei" },
+  { url = "https://gitee.com/cute-guy/Penetration_Testing_POC/blob/master/%E6%B3%9B%E5%BE%AEe-mobile%20ognl%E6%B3%A8%E5%85%A5.md", description = "OGNL注入验证PoC及详细利用方法（含GET/POST命令执行payload）", source = "github" },
+  { url = "https://mp.weixin.qq.com/s/EbzjQvHTl7k9flG-7lqAvA", description = "微信公众号文章 PoC 及利用截图", source = "other" }
 ]
 exp = []
 nuclei_templates = [
@@ -45,7 +46,10 @@ avd = ""
 other = [
   "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2017/CNVD-2017-03561.yaml",
   "https://gitee.com/cute-guy/Penetration_Testing_POC/blob/master/%E6%B3%9B%E5%BE%AEe-mobile%20ognl%E6%B3%A8%E5%85%A5.md",
-  "https://reconshell.com/vulnerability-research-list/"
+  "https://reconshell.com/vulnerability-research-list/",
+  "https://misakikata.github.io/2018/09/%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B3%A8%E5%85%A5/",
+  "http://sh0w.top/index.php/archives/14/",
+  "http://sh0w.top/index.php/archives/39/"
 ]
 
 [tags]
