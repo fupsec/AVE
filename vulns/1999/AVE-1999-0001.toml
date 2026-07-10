@@ -4,24 +4,31 @@ cve_id = "CVE-1999-0002"
 aliases = ["CVE-1999-0002"]
 
 [basic]
-title = "CVE-1999-0002"
-description = ""
-severity = "UNKNOWN"
-score = 0.0
-sources = [
-    "exploitdb",
-    "redhat",
-]
-published = ""
-updated = ""
-remediation = "Refer to vendor advisory and upgrade to fixed version."
+title = "NFS mountd 缓冲区溢出漏洞"
+description = "NFS mountd 存在缓冲区溢出漏洞，远程攻击者可通过向 mountd 发送特制的 RPC 请求触发缓冲区溢出，从而获取 root 权限。主要影响 Linux 系统（如 Red Hat Linux 5.1、Caldera OpenLinux Standard 1.2），未导出任何文件系统的 NFS 服务器同样受此漏洞影响。"
+severity = "CRITICAL"
+score = 10.0
+sources = ["nvd", "exploitdb", "redhat"]
+published = "1998-10-12"
+updated = "2026-06-16"
+remediation = "升级到受影响版本以上的 Linux 发行版或安装厂商提供的补丁。参考 Red Hat 安全公告和 SGI 安全公告。"
 
 [references]
-urls = []
+urls = [
+    "https://nvd.nist.gov/vuln/detail/CVE-1999-0002",
+    "https://access.redhat.com/security/cve/CVE-1999-0002",
+    "http://www.securityfocus.com/bid/121",
+    "http://www.ciac.org/ciac/bulletins/j-006.shtml",
+    "ftp://patches.sgi.com/support/free/security/advisories/19981006-01-I",
+]
 
 [exploit]
-poc_urls = []
-exp_urls = []
+poc_urls = [
+    "https://www.exploit-db.com/exploits/19096",
+]
+exp_urls = [
+    "https://www.exploit-db.com/exploits/19096",
+]
 
 [meta]
 status = "completed"
