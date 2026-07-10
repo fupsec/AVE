@@ -1,71 +1,25 @@
-[affected]
-product = "Apache HTTP Server"
-vendor = "Apache Software Foundation"
-
-[authenticity]
-cve_confidence = "high"
-notes = "CVE 由 Apache 官方确认并修复。GitHub 上有信息性 PoC 仓库但无可执行利用脚本。"
-poc_confidence = "medium"
-
 [basic]
-description = "精心构造的 If: 请求头可导致池（堆）内存位置中超出所发送标头值的单个零字节的内存读取或写入，从而导致进程崩溃。该漏洞影响 Apache HTTP Server 2.4.54 及更早版本。"
-published = "2023-01-17"
+description = "Vulnerability identified as CVE-2006-20001. Please refer to vendor advisory for details."
+published = "2026-07-10"
 remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 7.5
-severity = "HIGH"
-source = "nvd"
-sources = ["unknown"]
-title = "Apache HTTP Server mod_dav If:请求头越界读取/写入漏洞"
-updated = "2025-02-13"
+score = 5.0
+severity = "MEDIUM"
+sources = ["tenable"]
+title = "Vulnerability in CVE-2006-20001"
+updated = "2026-07-10"
 
 [exploit]
-exp = []
-nuclei_templates = []
-
-[[exploit.poc]]
-description = "CVE-2006-20001 信息与 PoC 参考"
-source = "github"
-url = "https://github.com/r1az4r/CVE-2006-20001"
+exp_urls = []
+poc_urls = []
 
 [id]
-avd_id = ""
+aliases = ["CVE-2006-20001"]
 ave_id = "AVE-2006-0005"
 cve_id = "CVE-2006-20001"
-other_ids = []
 
 [meta]
-collected_at = "2026-07-10T10:18:58Z"
+collected_at = "2026-07-10T18:41:17.596591923+00:00"
 status = "completed"
 
 [references]
-avd = ""
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2006-20001"
-other = [
-    "https://httpd.apache.org/security/vulnerabilities_24.html",
-    "https://security.gentoo.org/glsa/202309-01",
-    "https://security.netapp.com/advisory/ntap-20230316-0005/",
-]
-
-[remediation]
-fix = "升级到 Apache HTTP Server 2.4.55 或更高版本。参考官方安全公告。"
-steps = [
-    "步骤1: 确认 Apache HTTP Server 版本",
-    "步骤2: 升级到 2.4.55 或更高版本",
-    "步骤3: 重启 Apache 服务",
-]
-workaround = "如无法升级，可在 httpd 配置中使用 RequestHeader 指令过滤或限制 If: 请求头。"
-
-[score]
-cvss_v2 = 7.8
-cvss_v2_vector = "AV:N/AC:L/Au:N/C:C/I:N/A:N"
-cvss_v3 = 7.5
-cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
-cvss_v4 = 0.0
-cvss_v4_vector = ""
-
-[tags]
-tags = [
-    "CWE-787",
-    "DoS",
-    "HTTP",
-]
+urls = []

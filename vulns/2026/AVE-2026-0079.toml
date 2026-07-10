@@ -1,11 +1,11 @@
 [basic]
-description = "Vulnerability identified as CVE-2026-0827. Please refer to vendor advisory for details."
+description = "Vulnerability identified as NUCLEI-HTTP-CNVD-2019-CNVD-2019-32204-YAML. Please refer to vendor advisory for details."
 published = "2026-07-10"
 remediation = "Refer to vendor advisory and upgrade to fixed version."
 score = 5.0
 severity = "MEDIUM"
-sources = ["github"]
-title = "CVE-2026-0827 vulnerability"
+sources = ["nuclei"]
+title = "NUCLEI-HTTP-CNVD-2019-CNVD-2019-32204-YAML"
 updated = "2026-07-10"
 
 [exploit]
@@ -13,12 +13,12 @@ exp_urls = []
 poc_urls = []
 
 [id]
-aliases = ["CVE-2026-0827"]
+aliases = ["NUCLEI-HTTP-CNVD-2019-CNVD-2019-32204-YAML"]
 ave_id = "AVE-2026-0079"
-cve_id = "CVE-2026-0827"
+cve_id = "NUCLEI-HTTP-CNVD-2019-CNVD-2019-32204-YAML"
 
 [meta]
-collected_at = "2026-07-10T18:35:17.916060412+00:00"
+collected_at = "2026-07-10T18:51:45.570319012+00:00"
 status = "completed"
 
 [references]
