@@ -1,37 +1,25 @@
-[id]
-ave_id = "AVE-2016-0006"
-cve_id = "CVE-2016-9535"
-aliases = ["CVE-2016-9535"]
-
 [basic]
-title = "LibTIFF 堆缓冲区溢出漏洞"
-description = "LibTIFF 4.0.6 版本中的 tif_predict.h 和 tif_predict.c 文件存在堆缓冲区溢出漏洞。当处理具有异常 Tile 尺寸（如 YCbCr 采样）的 TIFF 图像时，调试模式下会触发断言失败，发布模式下则导致堆缓冲区溢出。攻击者可利用特制图像文件触发此漏洞，实现远程代码执行，可能导致系统被完全控制。"
-severity = "CRITICAL"
-score = 9.8
-published = "2016-11-22"
-updated = "2026-06-16"
-remediation = "升级 LibTIFF 至 4.0.7 或更高版本，或应用官方补丁 commit 3ca657a 和 6a984bf。相关 Linux 发行版（如 Red Hat、Debian）已发布安全更新，请及时安装对应补丁。"
-sources = ["nvd", "msrc"]
-
-[affected]
-vendor = "LibTIFF"
-product = "LibTIFF"
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2016-9535"
-other = [
-    "http://rhn.redhat.com/errata/RHSA-2017-0225.html",
-    "http://www.debian.org/security/2017/dsa-3844",
-    "http://www.securityfocus.com/bid/94484",
-    "http://www.securityfocus.com/bid/94744",
-    "https://github.com/vadz/libtiff/commit/3ca657a8793dd011bf869695d72ad31c779c3cc1",
-    "https://github.com/vadz/libtiff/commit/6a984bf7905c6621281588431f384e79d11a2e33",
-]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["msrc"]
+title = "CVE-2016-9535 漏洞"
+updated = ""
 
 [exploit]
-poc_urls = []
 exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2016-9535"]
+ave_id = "AVE-2016-0006"
+cve_id = "CVE-2016-9535"
 
 [meta]
+collected_at = "2026-07-10T21:08:05.564303179+00:00"
 status = "completed"
-collected_at = "2026-07-11T00:00:00+00:00"
+
+[references]
+urls = []
