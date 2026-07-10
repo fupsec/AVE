@@ -10,11 +10,11 @@ poc_confidence = "none"
 [basic]
 description = "Storable versions before 3.05 for Perl 存在栈溢出漏洞。retrieve_hook 函数将类名长度存储为有符号整数，但在读取操作中将该长度作为无符号整数处理。攻击者可构造特制数据触发栈溢出，导致拒绝服务或远程代码执行。"
 published = "2017-01-24"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 9.8
+remediation = "Refer to vendor advisory and upgrade to Storable 3.05 or later."
+score = 10.0
 severity = "CRITICAL"
 source = "nvd"
-sources = ["unknown"]
+sources = ["nvd", "cpansec"]
 title = "Perl Storable 模块 retrieve_hook 函数栈溢出漏洞"
 updated = "2026-06-16"
 
