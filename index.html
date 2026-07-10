@@ -7,10 +7,23 @@
     <link rel="stylesheet" href="assets/styles.css" />
   </head>
   <body>
-    <header class="hero">
+    <header class="hero" id="top">
       <div class="hero-inner">
-        <h1>AVE 公开漏洞库</h1>
-        <p>公开漏洞详情、PoC 与 EXP 引用。页面通过 GitHub API 在线检索，不依赖本地汇总 JSON。</p>
+        <div class="hero-top">
+          <h1>AVE 公开漏洞库</h1>
+          <nav class="top-nav" aria-label="页面导航">
+            <a class="repo-link" href="https://github.com/adysec/AVE" target="_blank" rel="noopener noreferrer" aria-label="GitHub 仓库">
+              <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            </a>
+          </nav>
+        </div>
+        <p class="hero-lead">AVE（AdySec Vulnerability Exposures）是面向安全运营的多源漏洞知识库，统一输出 AVE 编号与结构化 TOML，并对公开 PoC/EXP 资产进行整理与格式校验。</p>
+        <div class="hero-tags">
+          <span>多源聚合</span>
+          <span>AI 结构化输出</span>
+          <span>公开 PoC/EXP 资产</span>
+          <span>GitHub Actions 自动更新</span>
+        </div>
         <div class="repo-meta" id="repo-meta">仪表盘统计由 GitHub Actions 在部署时自动更新，检索结果由 GitHub API 实时返回。</div>
       </div>
     </header>
@@ -20,8 +33,6 @@
         <article class="metric"><h3>漏洞总数</h3><p id="m-vulns">55</p></article>
         <article class="metric"><h3>PoC 数量</h3><p id="m-pocs">24</p></article>
         <article class="metric"><h3>EXP 数量</h3><p id="m-exps">0</p></article>
-        <article class="metric"><h3>Stars</h3><p id="m-stars">-</p></article>
-        <article class="metric"><h3>Forks</h3><p id="m-forks">-</p></article>
         <article class="metric"><h3>最近推送</h3><p id="m-push">2026-07-10 07:08 UTC</p></article>
       </section>
 
@@ -43,9 +54,22 @@
         </div>
       </aside>
 
-      <section class="panel list-panel">
+      <section class="panel list-panel" id="vuln-list">
         <h2>漏洞列表</h2>
         <div id="status" class="status">初始化中...</div>
+        <section class="project-intro" id="project-intro">
+          <h3>项目说明</h3>
+          <p>AVE 代表 AdySec Vulnerability Exposures / AI-powered Vulnerability Engine / Automated Vulnerability Extractor。</p>
+          <p>系统会聚合 NVD、阿里云 AVD、GitHub PoC、MSRC、Tenable、CISA KEV、Red Hat 等来源，并统一输出 AVE 编号的结构化漏洞数据。</p>
+          <p>说明：漏洞爬取和梳理的核心代码与处理逻辑暂未开源，当前公开的是漏洞数据、公开资产与展示站点。</p>
+          <p>目标是构建覆盖最全的漏洞库。漏洞质量可能不一，但可通过严重等级快速筛选高危、可用、有价值的漏洞，支撑安全运营与漏洞梳理。</p>
+          <p>首次访问默认不自动加载列表。你可以点击“开始加载”查看最新数据，或输入关键词后点击“搜索”。</p>
+          <ul>
+            <li>数据来源：仓库中的 <code>vulns/*.toml</code></li>
+            <li>PoC/EXP 标记：基于仓库公开文件真实存在性</li>
+            <li>详情页面：<code>detail.html</code> 独立展示完整字段</li>
+          </ul>
+        </section>
         <div class="table-wrap">
           <table class="vuln-table">
             <thead>
@@ -70,6 +94,13 @@
         </div>
       </section>
     </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <p class="footer-brand">by AdySec &lt;<a href="mailto:admin@adysec.com">admin@adysec.com</a>&gt;</p>
+        <p class="footer-desc">AVE 聚焦漏洞聚合、PoC/EXP 公开资产整理与高危筛选，服务安全运营与漏洞梳理。</p>
+      </div>
+    </footer>
 
     <script src="assets/app.js"></script>
   </body>
