@@ -1,0 +1,25 @@
+[id]
+ave_id = "AVE-2016-0004"
+cve_id = "CVE-2016-15035"
+aliases = ["CVE-2016-15035"]
+
+[basic]
+title = "RE-Chat 跨站脚本漏洞(CVE-2016-15035)"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["avd"]
+published = "2023-08-28"
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T07:44:54.456789008+00:00"
