@@ -1,40 +1,25 @@
-[id]
-ave_id = "AVE-2020-0002"
-cve_id = "CVE-2020-26247"
-aliases = ["CVE-2020-26247"]
-
 [basic]
-title = "Nokogiri XML::Schema 默认信任输入导致 XXE 漏洞"
-description = "Nokogiri 是 Ruby 生态中广泛使用的 HTML/XML/SAX 解析库，支持 XPath 和 CSS 选择器。在 1.11.0.rc4 之前的版本中，Nokogiri::XML::Schema 默认信任输入的 XML Schema，允许通过网络访问外部资源，即使设置了 NONET 标志也无法阻止。攻击者可利用特制的 XML Schema 触发 XXE（XML 外部实体注入）或 SSRF（服务端请求伪造）攻击，可能导致敏感信息泄露或内网探测。该漏洞在 JRuby 环境下同样受影响，且 NONET 选项无法生效。"
-severity = "MEDIUM"
-score = 4.3
-cvss_v3 = "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N"
-remediation = "升级 Nokogiri 至 1.11.0.rc4 或更高版本。升级后若需恢复网络访问外部资源的功能，可在创建 Nokogiri::XML::Schema 时传入 Nokogiri::XML::ParseOptions.new.nononet 作为第二参数，但仅在输入可信时启用。Debian 用户应安装相关安全更新包。"
-published = "2020-12-30"
-updated = "2026-06-16"
-sources = ["msrc", "nvd"]
-
-[affected]
-vendor = "sparklemotion"
-product = "nokogiri"
-
-[references]
-urls = [
-    "https://nvd.nist.gov/vuln/detail/CVE-2020-26247",
-    "https://github.com/sparklemotion/nokogiri/security/advisories/GHSA-vr8q-g5c7-m54m",
-    "https://github.com/sparklemotion/nokogiri/commit/9c87439d9afa14a365ff13e73adc809cb2c3d97b",
-    "https://github.com/sparklemotion/nokogiri/releases/tag/v1.11.0.rc4",
-    "https://hackerone.com/reports/747489",
-    "https://rubygems.org/gems/nokogiri",
-    "https://lists.debian.org/debian-lts-announce/2021/06/msg00007.html",
-    "https://lists.debian.org/debian-lts-announce/2022/10/msg00018.html",
-    "https://security.gentoo.org/glsa/202208-29"
-]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["msrc"]
+title = "CVE-2020-26247 漏洞"
+updated = ""
 
 [exploit]
-poc_urls = []
 exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2020-26247"]
+ave_id = "AVE-2020-0002"
+cve_id = "CVE-2020-26247"
 
 [meta]
-collected_at = "2026-07-11T00:00:00+00:00"
+collected_at = "2026-07-10T21:26:56.030502045+00:00"
 status = "completed"
+
+[references]
+urls = []
