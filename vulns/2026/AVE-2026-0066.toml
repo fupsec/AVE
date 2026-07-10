@@ -1,65 +1,55 @@
 [id]
 ave_id = "AVE-2026-0066"
-cve_id = "CVE-2023-7335"
+cve_id = "CVE-2026-49834"
 avd_id = ""
-other_ids = ["CNVD-2023-03903"]
+other_ids = ["GHSA-9vcr-p3rj-q5q6"]
 
 [basic]
-title = "EduSoho 教培系统 classroom-course-statistics 任意文件读取漏洞"
-description = "EduSoho 教培系统 v22.4.7 以下版本存在未授权任意文件读取漏洞。攻击者可通过构造带有路径遍历序列的 fileNames[] 参数，未经认证读取服务器上的任意文件，包括 config/parameters.yml 等配置文件，获取数据库账号密码、应用密钥等敏感信息。获取 secret 值后，可结合 Symfony _fragment routing 实现远程代码执行。"
-severity = "HIGH"
-source = "nvd"
-published = "2023-12-15"
-updated = "2026-01-22"
+title = "sigstore-go 多日志阈值绕过漏洞"
+description = "sigstore-go 是一个用于 Sigstore 签名和验证的 Go 语言库。当验证器配置 WithTransparencyLog(N>1) 或 WithSignedCertificateTimestamps(N>1) 时，预期对单一日志实例被攻破提供纵深防御。然而，阈值计数逻辑按每条目或每个验证路径而非按每个日志授权来计数已验证的见证者。因此，单个被攻破的透明日志可以伪造具有不同索引的多个条目，单个被攻破的 CT 日志可以多次验证（跨多个证书链或通过多个嵌入的 SCT），完全满足多日志阈值要求并绕过多日志策略。注意此漏洞不影响 Cosign，因为 Cosign 的阈值设置为 1。"
+severity = "MEDIUM"
+source = "ghsa"
+published = "2026-06-04"
+updated = "2026-06-04"
 
 [score]
-cvss_v2 = 7.5
-cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:P/A:P"
-cvss_v3 = 7.5
-cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N"
-cvss_v4 = 8.7
-cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N"
+cvss_v2 = 0.0
+cvss_v2_vector = ""
+cvss_v3 = 5.9
+cvss_v3_vector = "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:N"
+cvss_v4 = 0.0
+cvss_v4_vector = ""
 
 [affected]
-vendor = "杭州阔知网络科技有限公司"
-product = "EduSoho"
+vendor = "sigstore"
+product = "sigstore-go"
 
 [exploit]
-poc = [
-  { url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2023/CNVD-2023-03903.yaml", description = "Nuclei 检测模板", source = "nuclei" },
-  { url = "https://github.com/gobysec/GobyVuls/blob/master/CNVD-2023-03903.md", description = "Goby 漏洞验证 PoC", source = "github" },
-  { url = "https://github.com/zeroChen00/exp-poc/blob/main/EduSoho教培系统classropm-course-statistics存在任意文件读取漏洞.md", description = "任意文件读取 PoC", source = "github" },
-  { url = "https://cn-sec.com/archives/2451582.html", description = "漏洞复现报告及 PoC", source = "其他" },
-  { url = "https://blog.csdn.net/qq_41904294/article/details/135007351", description = "漏洞复现及 PoC 详情", source = "其他" }
-]
+poc = []
 exp = []
-nuclei_templates = [
-  { url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2023/CNVD-2023-03903.yaml", description = "Nuclei 检测模板", source = "nuclei" }
-]
+nuclei_templates = []
 
 [remediation]
-fix = "升级到 EduSoho v22.4.7 及以上版本。官方发布地址：https://github.com/edusoho/edusoho/releases/tag/v22.4.7"
-workaround = "如无法升级，可在 Web 服务器层面限制对 /export/classroom-course-statistics 路径的访问，或对 fileNames[] 参数进行严格的路径校验，拒绝包含 '../' 等路径遍历序列的请求。"
-steps = ["步骤1: 确认当前 EduSoho 版本", "步骤2: 备份系统和数据", "步骤3: 升级到 v22.4.7 或更高版本", "步骤4: 验证升级后导出功能正常且漏洞已修复"]
+fix = "升级到 sigstore-go v1.1.5 或更高版本（v1.2.0 为 patched 版本）。"
+workaround = "无临时缓解措施，除依赖受信任的日志外。"
+steps = ["步骤1: 确认当前项目依赖的 sigstore-go 版本", "步骤2: 升级 go.mod 中 github.com/sigstore/sigstore-go 到 v1.2.0 或更高", "步骤3: 运行 go mod tidy 和 go mod verify 确保依赖正确", "步骤4: 重新编译并测试验证逻辑"]
 
 [references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2023-7335"
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2026-49834"
 avd = ""
 other = [
-  "https://www.cnvd.org.cn/flaw/show/CNVD-2023-03903",
-  "https://github.com/edusoho/edusoho/releases/tag/v22.4.7",
-  "https://www.vulncheck.com/advisories/edusoho-arbitrary-file-read-via-classroom-course-statistics",
-  "https://blog.csdn.net/qq_41904294/article/details/135007351",
-  "https://cn-sec.com/archives/2451582.html"
+  "https://github.com/sigstore/sigstore-go/security/advisories/GHSA-9vcr-p3rj-q5q6",
+  "https://github.com/sigstore/sigstore-go/releases",
+  "https://github.com/sigstore/sigstore-go/compare/v1.1.4...v1.2.0"
 ]
 
 [tags]
-tags = ["CWE-22", "LFI", "路径遍历", "信息泄露", "未授权访问"]
+tags = ["CWE-693", "多日志阈值绕过", "签名验证", "供应链安全"]
 
 [authenticity]
 cve_confidence = "high"
-poc_confidence = "high"
-notes = "该漏洞已分配 CVE-2023-7335，NVD 已收录，有多方独立 PoC 验证。证据显示已遭在野利用（Shadowserver Foundation 于 2026-01-19 观测到利用行为）。"
+poc_confidence = "low"
+notes = "CVE 已由 GitHub Advisory 确认，CVSS 3.1 评分 5.9（中）。漏洞本质为 Go 库的逻辑缺陷，需要攻击者控制透明日志或 CT 日志，且需要使用该库并配置多日志阈值验证的应用程序。公开渠道未发现可用的 PoC 或利用脚本，因该漏洞属于密码学验证逻辑层面缺陷，非 HTTP 协议层可直接探测的漏洞。"
 
 [meta]
 collected_at = "2026-06-30T10:18:58Z"
