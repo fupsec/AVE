@@ -1,0 +1,62 @@
+[id]
+ave_id = "AVE-2002-0021"
+cve_id = "CVE-2002-0715"
+avd_id = ""
+other_ids = []
+
+[basic]
+title = "Squid代理认证凭据泄露漏洞"
+description = "Squid 2.4.STABLE6之前版本存在代理认证凭据泄露漏洞，远程恶意网站可能获取用户的代理登录名和密码。该漏洞与代理认证凭据处理相关，当用户通过Squid代理访问恶意网站时，网站可以通过特定方式获取代理认证信息。"
+severity = "MEDIUM"
+source = "nvd"
+published = "2002-07-23"
+updated = "2002-07-26"
+
+[score]
+cvss_v2 = 5.0
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:N/A:N"
+cvss_v3 = 9.8
+cvss_v3_vector = "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+cvss_v4 = 0
+cvss_v4_vector = ""
+
+[affected]
+vendor = "Squid-cache"
+product = "Squid"
+
+[exploit]
+poc = []
+exp = []
+nuclei_templates = []
+
+[remediation]
+fix = "升级Squid至2.4.STABLE6或更高版本。"
+workaround = "如无法立即升级，建议限制代理访问并监控异常连接。"
+steps = ["步骤1: 确认当前Squid版本", "步骤2: 下载并安装Squid 2.4.STABLE6或更高版本", "步骤3: 重启Squid服务"]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2002-0715"
+avd = ""
+other = [
+  "http://www.squid-cache.org/Advisories/SQUID-2002_3.txt",
+  "http://www.squid-cache.org/Versions/v2/2.4/bugs/",
+  "http://rhn.redhat.com/errata/RHSA-2002-051.html",
+  "http://rhn.redhat.com/errata/RHSA-2002-130.html",
+  "http://www.securityfocus.com/bid/5154",
+  "http://www.iss.net/security_center/static/9478.php",
+  "http://www.linux-mandrake.com/en/security/2002/MDKSA-2002-044.php",
+  "ftp://ftp.caldera.com/pub/security/OpenLinux/CSSA-2002-046.0.txt",
+  "http://marc.info/?l=bugtraq&m=102674543407606&w=2"
+]
+
+[tags]
+tags = ["information-disclosure", "credential-leak", "proxy"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "low"
+notes = "该漏洞为2002年的旧漏洞，公开PoC较少。根据NVD和Tenable数据，CVSS v2评分为5.0（Medium），CVSS v3评分为9.8（Critical）。漏洞已在Squid 2.4.STABLE6版本中修复。"
+
+[meta]
+collected_at = "2026-07-05T10:30:00Z"
+status = "completed"
