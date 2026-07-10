@@ -1,0 +1,58 @@
+[id]
+ave_id = "AVE-2002-0029"
+cve_id = "CVE-2002-0844"
+avd_id = ""
+other_ids = []
+
+[basic]
+title = "CVSD rcs.c PreservePermissions 越界溢出漏洞"
+description = "CVSD before 1.11.2 的 rcs.c 中 PreservePermissions 功能存在 Off-by-one 越界溢出漏洞，允许本地用户执行任意代码。"
+severity = "HIGH"
+source = "nvd"
+published = "2002-08-12"
+updated = "2024-11-20"
+
+[score]
+cvss_v2 = 4.6
+cvss_v2_vector = "AV:L/AC:L/Au:N/C:P/I:P/A:P"
+cvss_v3 = 7.8
+cvss_v3_vector = "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H"
+
+[affected]
+vendor = "Distrotech"
+product = "CVS"
+
+[exploit]
+poc = []
+exp = []
+nuclei_templates = []
+
+[remediation]
+fix = "升级 CVS 到 1.11.2 及以上版本。参考各发行版安全公告。"
+workaround = "如无法升级，限制本地用户对 CVS 仓库的访问权限。"
+steps = ["步骤1: 确认 CVS 版本", "步骤2: 升级到 CVS 1.11.2 或更高版本", "步骤3: 如无法升级，限制不可信用户对 CVS pserver 服务的本地访问"]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2002-0844"
+avd = ""
+other = [
+  "ftp://ftp.caldera.com/pub/security/OpenLinux/CSSA-2002-035.0.txt",
+  "ftp://patches.sgi.com/support/free/security/advisories/20040103-01-U.asc",
+  "http://archives.neohapsis.com/archives/vulnwatch/2002-q2/0081.html",
+  "http://marc.info/?l=bugtraq&m=102233767925177&w=2",
+  "http://www.redhat.com/support/errata/RHSA-2004-004.html",
+  "http://www.securityfocus.com/bid/4829",
+  "https://exchange.xforce.ibmcloud.com/vulnerabilities/9175"
+]
+
+[tags]
+tags = ["CWE-193", "Off-by-one", "CVS", "CVSD", "local-privilege-escalation"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "low"
+notes = "CVE 信息来源于 NVD/MITRE。漏洞为本地越界溢出，非 HTTP 协议，不适用 HTTP PoC 脚本。未在 GitHub、Exploit-DB 等公开渠道找到可直接使用的 PoC/EXP。"
+
+[meta]
+collected_at = "2026-07-10T00:00:00Z"
+status = "completed"
