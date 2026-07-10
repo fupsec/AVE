@@ -1,25 +1,59 @@
 [id]
 ave_id = "AVE-2006-0003"
 cve_id = "CVE-2006-1547"
-aliases = ["CVE-2006-1547"]
+avd_id = ""
+other_ids = []
 
 [basic]
-title = "CVE-2006-1547"
-description = ""
-severity = "UNKNOWN"
-score = 0.0
-sources = ["kev"]
-published = ""
-updated = ""
-remediation = "Refer to vendor advisory and upgrade to fixed version."
+title = "Apache Struts 1 ActionForm 拒绝服务漏洞"
+description = "Apache Struts 1.2.9之前版本中的ActionForm（与BeanUtils 1.7配合使用）存在安全漏洞，远程攻击者可通过提交一个multipart/form-data编码的表单，其参数名引用public getMultipartRequestHandler方法，从而访问CommonsMultipartRequestHandler实现和BeanUtils中的元素，导致拒绝服务（DoS）。该漏洞已被CISA列入已知被利用漏洞目录（KEV），确认存在在野利用。"
+severity = "HIGH"
+source = "nvd"
+published = "2006-03-30"
+updated = "2026-06-16"
 
-[references]
-urls = []
+[score]
+cvss_v2 = 7.8
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:N/A:C"
+cvss_v3 = 7.5
+cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+cvss_v4 = 0.0
+cvss_v4_vector = ""
+
+[affected]
+vendor = "Apache"
+product = "Struts 1"
 
 [exploit]
-poc_urls = []
-exp_urls = []
+poc = []
+exp = []
+nuclei_templates = []
+
+[remediation]
+fix = "升级Apache Struts到1.2.9或更高版本。参考Apache官方安全公告。该漏洞已列入CISA KEV，应优先修复。"
+workaround = "如无法升级，可在Web应用防火墙（WAF）层面过滤恶意的multipart/form-data请求，限制包含特殊参数名的请求。"
+steps = ["步骤1: 确认Apache Struts版本", "步骤2: 升级Apache Struts到1.2.9或更高版本", "步骤3: 重启服务使更新生效", "步骤4: 监控系统日志确认无异常访问"]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2006-1547"
+avd = ""
+other = [
+  "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
+  "http://struts.apache.org/struts-doc-1.2.9/userGuide/release-notes.html",
+  "https://exchange.xforce.ibmcloud.com/vulnerabilities/25613",
+  "http://www.securityfocus.com/bid/17342",
+  "http://securitytracker.com/id?1015856",
+  "http://secunia.com/advisories/19493"
+]
+
+[tags]
+tags = ["CWE-749", "DoS", "denial-of-service", "kev"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "low"
+notes = "CVE由MITRE官方发布，NVD已分析并分配CVSS v3.1 7.5 HIGH评分。CWE-749（危险方法或函数暴露）分类。CISA KEV确认存在在野利用。未在GitHub或Exploit-DB找到公开PoC/EXP，但CISA确认该漏洞曾被活跃利用。漏洞为Apache Struts 1 ActionForm DoS，通过构造特殊multipart/form-data请求触发。"
 
 [meta]
+collected_at = "2026-07-10T10:50:53Z"
 status = "completed"
-collected_at = "2026-07-10T10:50:52.532390656+00:00"
