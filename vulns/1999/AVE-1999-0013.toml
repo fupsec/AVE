@@ -1,30 +1,25 @@
-[id]
-ave_id = "AVE-1999-0013"
-cve_id = "CVE-1999-0221"
-aliases = ["CVE-1999-0221"]
-
 [basic]
-title = "Lucent Ascend路由器远程管理端口拒绝服务漏洞"
-description = "Lucent Ascend路由器在端口150（远程管理端口）存在拒绝服务漏洞。攻击者无需认证即可通过网络向该端口发送恶意数据包，导致路由器服务不可用，影响网络通信。"
-severity = "MEDIUM"
-score = 5.0
-remediation = "升级Ascend路由器固件至厂商提供的最新版本，或在防火墙上限制端口150的远程管理访问，仅允许受信IP地址连接。"
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
 sources = ["cve"]
-published = "1999-03-01"
-updated = "2026-06-16"
-
-[affected]
-vendor = "Lucent"
-product = "Ascend Routers"
-
-[references]
-urls = ["https://www.cve.org/CVERecord?id=CVE-1999-0221"]
+title = "CVE-1999-0221 漏洞"
+updated = ""
 
 [exploit]
-poc_urls = []
 exp_urls = []
-nuclei_templates = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0221"]
+ave_id = "AVE-1999-0013"
+cve_id = "CVE-1999-0221"
 
 [meta]
-collected_at = "2026-07-10T17:55:58Z"
+collected_at = "2026-07-10T21:12:02.142303462+00:00"
 status = "completed"
+
+[references]
+urls = []
