@@ -1,0 +1,54 @@
+[id]
+ave_id = "AVE-2026-0075"
+cve_id = "CVE-2026-48598"
+avd_id = ""
+other_ids = ["GHSA-28jh-g32x-v9v4"]
+
+[basic]
+title = "Tesla 存在 multipart 部分走私漏洞（未转义 Content-Disposition 参数值）"
+description = "Tesla (Elixir HTTP 客户端库) 的 Tesla.Multipart.part_headers_for_disposition/1 函数在构造 Content-Disposition 头时，直接将参数值（如 field name、filename）嵌入到 k=\"v\" 格式中，未对 CR (\\r)、LF (\\n) 及双引号字符进行转义或编码。攻击者通过控制文件名、字段名等 disposition 参数，可利用未转义的双引号注入额外的 disposition 键值对，或利用 CRLF 序列注入额外的 part 头部（如伪造的 Content-Type），甚至通过第二个 CRLF 结束整个 part 头部区块从而在 part 体前追加字节。影响 tesla >= 0.8.0 且 < 1.18.3 版本。"
+severity = "LOW"
+source = "ghsa"
+published = "2026-06-02"
+updated = "2026-06-17"
+
+[score]
+cvss_v4 = 2.1
+cvss_v4_vector = "CVSS:4.0/AV:L/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:N/SC:N/SI:L/SA:N"
+
+[affected]
+vendor = "elixir-tesla"
+product = "tesla"
+
+[exploit]
+poc = []
+exp = []
+nuclei_templates = []
+
+[remediation]
+fix = "升级到 tesla 1.18.3 或更高版本。参考 https://github.com/elixir-tesla/tesla/commit/bb1a2c3da2775924d96e3db8e315dcc4d5d2246e"
+workaround = "在调用 Tesla.Multipart.add_field/4、add_file/3 或 add_file_content/4 之前，对 disposition 参数值进行验证，拒绝任何包含 \\r、\\n 或 \" 字符的输入。"
+steps = ["步骤1: 检查项目依赖中 tesla 的版本", "步骤2: 如版本低于 1.18.3，在 mix.exs 中将 tesla 更新至 ~> 1.18.3", "步骤3: 运行 mix deps.update tesla 更新依赖"]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2026-48598"
+avd = ""
+other = [
+  "https://github.com/elixir-tesla/tesla/security/advisories/GHSA-28jh-g32x-v9v4",
+  "https://github.com/elixir-tesla/tesla/commit/bb1a2c3da2775924d96e3db8e315dcc4d5d2246e",
+  "https://github.com/elixir-tesla/tesla/commit/6ebfdb9abe9c6f119408045b933d82462decd351",
+  "https://cna.erlef.org/cves/CVE-2026-48598.html",
+  "https://osv.dev/vulnerability/EEF-CVE-2026-48598"
+]
+
+[tags]
+tags = ["CWE-116", "multipart", "CRLF注入", "HTTP走私", "Elixir", "Tesla", "Elixir安全"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "medium"
+notes = "CVE 已由 EEF (Erlang Ecosystem Foundation) 分配，CISA-ADP 已确认并标记 exploitation 状态为 poc。GHSA 安全公告提供了详细 PoC 描述，但未发现独立的公开 PoC 仓库。目前仅 workshops-de/google_gax 项目包含兼容性修复引用。修复版本 1.18.3 已发布。"
+
+[meta]
+collected_at = "2026-07-10T18:00:00Z"
+status = "completed"
