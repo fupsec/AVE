@@ -5,12 +5,12 @@ avd_id = "CVE-2018-25114"
 other_ids = ["EUVD-2018-21601", "GHSA-7hjh-7hp4-wr4c"]
 
 [basic]
-title = "osCommerce 2.3.4.1安装程序未经验证的配置文件注入PHP代码执行（CVE-2018-25114）"
+title = "osCommerce 2.3.4.1安装程序未经验证的配置文件注入PHP代码执行"
 description = "osCommerce Online Merchant 2.3.4.1版本存在远程代码执行漏洞，该漏洞源于默认配置不安全且安装程序工作流中缺少身份验证。默认情况下，/install/目录在安装完成后仍可访问。未经验证的攻击者可调用install_4.php，提交经过构造的POST数据，将任意PHP代码注入configure.php文件。当应用程序后续包含该文件时，注入的有效载荷将被执行，导致服务器端完全沦陷。"
 severity = "CRITICAL"
-source = "avd"
+source = "nvd"
 published = "2018-03-27"
-updated = "2026-04-07"
+updated = "2026-06-16"
 
 [score]
 cvss_v2 = 7.5
@@ -26,16 +26,16 @@ product = "Online Merchant"
 
 [exploit]
 poc = [
-  { url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cves/2018/CVE-2018-25114.yaml", description = "Nuclei 检测模板，通过install_4.php注入PHP代码并验证执行", source = "nuclei" }
+  { url = "https://www.exploit-db.com/exploits/44374", description = "osCommerce 2.3.4.1 远程代码执行 PoC（Simon Scannell 原始Python利用脚本）", source = "exploit-db" },
+  { url = "https://github.com/nobodyatall648/osCommerce-2.3.4-Remote-Command-Execution", description = "osCommerce 2.3.4 远程命令执行 PoC 脚本，通过install.php注入PHP payload至configure.php", source = "github" }
 ]
 exp = [
-  { url = "https://www.exploit-db.com/exploits/44374", description = "osCommerce 2.3.4.1 远程代码执行 Exploit", source = "exploit-db" },
-  { url = "https://raw.githubusercontent.com/rapid7/metasploit-framework/master/modules/exploits/multi/http/oscommerce_installer_unauth_code_exec.rb", description = "Metasploit osCommerce安装程序未授权代码执行模块", source = "exploit-db" },
-  { url = "https://github.com/nobodyatall648/osCommerce-2.3.4-Remote-Command-Execution", description = "osCommerce 2.3.4 远程命令执行PoC", source = "github" },
-  { url = "https://www.exploit-db.com/exploits/50128", description = "osCommerce 远程代码执行补充利用", source = "exploit-db" }
+  { url = "https://www.exploit-db.com/exploits/50128", description = "osCommerce 2.3.4.1 远程代码执行利用（支持交互式命令执行）", source = "exploit-db" },
+  { url = "https://raw.githubusercontent.com/rapid7/metasploit-framework/master/modules/exploits/multi/http/oscommerce_installer_unauth_code_exec.rb", description = "Metasploit 框架 osCommerce 安装程序未授权代码执行模块", source = "metasploit" },
+  { url = "https://github.com/nobodyatall648/osCommerce-2.3.4-Remote-Command-Execution", description = "osCommerce 2.3.4 远程命令执行完整利用脚本", source = "github" }
 ]
 nuclei_templates = [
-  { url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cves/2018/CVE-2018-25114.yaml", description = "Nuclei 检测模板", source = "nuclei" }
+  { url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cves/2018/CVE-2018-25114.yaml", description = "Nuclei 检测模板，通过install_4.php注入PHP代码并验证执行结果", source = "nuclei" }
 ]
 
 [remediation]
@@ -46,16 +46,22 @@ steps = ["步骤1: 确认 osCommerce 版本是否为 2.3.4.1", "步骤2: 检查 
 [references]
 nvd = "https://nvd.nist.gov/vuln/detail/CVE-2018-25114"
 avd = "https://avd.aliyun.com/detail?id=CVE-2018-25114"
-other = ["https://github.com/advisories/ghsa-7hjh-7hp4-wr4c", "https://www.exploit-db.com/exploits/44374", "https://www.rapid7.com/db/modules/exploit/multi/http/oscommerce_installer_unauth_code_exec/", "https://www.vulncheck.com/advisories/oscommerce-installer-unauth-config-file-injection-php-code-execution"]
+other = [
+  "https://github.com/advisories/GHSA-7hjh-7hp4-wr4c",
+  "https://www.exploit-db.com/exploits/44374",
+  "https://www.exploit-db.com/exploits/50128",
+  "https://www.rapid7.com/db/modules/exploit/multi/http/oscommerce_installer_unauth_code_exec/",
+  "https://www.vulncheck.com/advisories/oscommerce-installer-unauth-config-file-injection-php-code-execution"
+]
 
 [tags]
-tags = ["CWE-94", "CWE-434", "RCE", "code-injection", "oscommerce"]
+tags = ["CWE-94", "CWE-434", "RCE", "code-injection", "oscommerce", "installer-abuse"]
 
 [authenticity]
 cve_confidence = "high"
 poc_confidence = "high"
-notes = "CVE编号由多个权威来源确认（NVD、AVD、GitHub Advisory、VulnCheck），CVSS v4评分9.3（严重）。存在Metasploit模块和Nuclei模板。"
+notes = "CVE编号由多个权威来源确认（NVD、AVD、GitHub Advisory、VulnCheck），CVSS v4评分9.3（严重）。存在Metasploit模块、Nuclei模板及多个Exploit-Db PoC。已在VulnCheck KEV中被收录，确认存在野外利用。原始CVE公开时间为2025年7月，但漏洞本身自2018年已被公开利用。"
 
 [meta]
-collected_at = "2026-07-10T08:00:00Z"
+collected_at = "2026-07-10T15:00:00Z"
 status = "completed"
