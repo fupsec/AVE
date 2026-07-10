@@ -1,0 +1,25 @@
+[id]
+ave_id = "AVE-2007-0014"
+cve_id = "CVE-2007-5747"
+aliases = ["CVE-2007-5747"]
+
+[basic]
+title = "CVE-2007-5747"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["tenable"]
+published = ""
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T12:52:05.158058569+00:00"
