@@ -1,4 +1,4 @@
-name: Deploy GitHub Pages
+name: Update Dashboard and Deploy
 
 on:
   push:
@@ -6,19 +6,14 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 concurrency:
   group: pages
   cancel-in-progress: true
 
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  update:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -54,7 +49,6 @@ jobs:
           printf "%-6s %d/%d/%d\\n" "合计" "$TOTAL_E" "$TOTAL_P" "$TOTAL_V" >> /tmp/year_stats.html
           echo '</code></pre>' >> /tmp/year_stats.html
           python3 -c "
-import re
 with open('index.html') as f:
     html = f.read()
 with open('/tmp/year_stats.html') as f:
@@ -65,14 +59,11 @@ with open('index.html', 'w') as f:
 "
           echo "year breakdown updated"
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: .
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Commit updated index.html back to repo
+        run: |
+          git config user.name "AVE Bot"
+          git config user.email "admin@adysec.com"
+          git add index.html
+          git diff --cached --quiet || git commit -m "update: dashboard metrics and year stats [skip ci]"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+          git push
