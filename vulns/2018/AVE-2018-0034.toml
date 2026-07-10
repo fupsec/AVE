@@ -5,7 +5,7 @@ remediation = "Refer to vendor advisory and upgrade to fixed version."
 score = 5.0
 severity = "MEDIUM"
 sources = ["avd"]
-title = "CVE-2018-25105 vulnerability"
+title = "Vulnerability in CVE-2018-25105"
 updated = "2026-07-10"
 
 [exploit]
@@ -18,7 +18,7 @@ ave_id = "AVE-2018-0034"
 cve_id = "CVE-2018-25105"
 
 [meta]
-collected_at = "2026-07-10T12:52:50.489656099+00:00"
+collected_at = "2026-07-10T18:37:55.665800426+00:00"
 status = "completed"
 
 [references]
