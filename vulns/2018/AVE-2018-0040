@@ -1,0 +1,25 @@
+[id]
+ave_id = "AVE-2018-0040"
+cve_id = "CVE-2018-25111"
+aliases = ["CVE-2018-25111"]
+
+[basic]
+title = "CVE-2018-25111"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["avd"]
+published = ""
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T13:18:41.840985807+00:00"
