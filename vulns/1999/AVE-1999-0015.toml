@@ -1,64 +1,63 @@
 [affected]
-product = "IOS"
-vendor = "Cisco"
+product = "wwwcount"
+vendor = "Muhammad A. Muquit"
 
 [authenticity]
 cve_confidence = "high"
-notes = "该漏洞为1999年发现的Cisco IOS旧漏洞，未找到公开可用的PoC/EXP和Nuclei模板。漏洞验证需要实际Cisco IOS环境。已确认CVE数据源与NVD记录一致性。"
-poc_confidence = "low"
+notes = "CVE-1999-0021是wwwcount 2.3 Count.cgi的远程缓冲区溢出漏洞，存在公开的PoC代码（EDB-19105），CVSS v3评分9.8（CRITICAL），远程未授权攻击者可利用该漏洞执行任意命令。"
+poc_confidence = "high"
 
 [basic]
-description = "Cisco IOS的Web服务器在处理超长URL时存在拒绝服务漏洞，攻击者可通过向路由器HTTP服务发送超长URL请求导致IOS进程崩溃并引发路由器重启。"
-published = "1999-03-01"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 5.5
-severity = "MEDIUM"
+description = "wwwcount（Count.cgi）是一个广泛使用的CGI网站访问计数器程序。该程序在处理QUERY_STRING环境变量时存在缓冲区溢出漏洞。远程攻击者可以向Count.cgi发送超长的恶意查询字符串，触发缓冲区溢出，从而覆盖返回地址并执行任意命令。攻击成功后，攻击者可以获取Web服务器的控制权限，执行任意系统命令，完全接管目标服务器。该漏洞影响wwwcount 2.3及更早版本，无需身份验证即可远程利用。"
+published = "1997-11-05"
+remediation = "升级到wwwcount 2.4或更高版本以修复缓冲区溢出问题。如无法升级，建议从Web服务器上移除Count.cgi脚本，或限制对该CGI脚本的访问权限。"
+score = 9.8
+severity = "CRITICAL"
 source = "nvd"
-sources = ["unknown"]
-title = "Cisco IOS Web服务器超长URL拒绝服务漏洞"
+sources = ["exploitdb"]
+title = "Muhammad A. Muquit wwwcount 2.3 Count.cgi 远程缓冲区溢出漏洞"
 updated = "2026-06-16"
 
 [exploit]
-exp = []
+exp = [{description = "wwwcount 2.3 Count.cgi 远程缓冲区溢出利用代码（EDB-19105）", source = "exploitdb", url = "https://www.exploit-db.com/exploits/19105"}]
 nuclei_templates = []
-poc = []
+poc = [{description = "wwwcount 2.3 Count.cgi 远程缓冲区溢出PoC（EDB-19105）", source = "exploitdb", url = "https://www.exploit-db.com/exploits/19105"}]
 
 [id]
-aliases = ["CVE-1999-0222"]
+aliases = ["CVE-1999-0021"]
 ave_id = "AVE-1999-0015"
-cve_id = "CVE-1999-0222"
+cve_id = "CVE-1999-0021"
 
 [meta]
-collected_at = "2026-07-10T11:03:30Z"
+collected_at = "2026-07-11T00:00:00Z"
 status = "completed"
 
 [references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0222"
-other = ["http://www.securityfocus.com/archive/1/60159"]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0021"
+other = ["http://www.securityfocus.com/bid/128", "https://www.exploit-db.com/exploits/19105"]
 
 [remediation]
-fix = "升级到修复版本。参考Cisco安全公告，禁用HTTP服务或升级到不受影响的IOS版本。"
+fix = "升级wwwcount到2.4或更高版本，或移除/禁用Count.cgi脚本。"
 steps = [
-    "登录到Cisco路由器",
-    "进入全局配置模式",
-    "执行命令: no ip http server 禁用HTTP服务",
-    "执行命令: ip http secure-server 仅启用HTTPS",
-    "执行命令: no ip http access-class 限制HTTP访问",
+    "从https://web.archive.org/web/*/wwwcount.s27.net下载最新版本的wwwcount",
+    "替换服务器上的Count.cgi为修复后的版本",
+    "如无法升级，使用Web服务器配置限制对Count.cgi的访问（如通过.htaccess或Nginx配置）",
+    "考虑使用替代的网站计数器方案",
 ]
-workaround = "如无法升级，可在Cisco路由器上使用 'no ip http server' 命令关闭HTTP服务。"
+workaround = "如无法升级，可在Web服务器配置中限制对cgi-bin/Count.cgi的访问，仅允许受信任的IP地址访问。"
 
 [score]
-cvss_v2 = 5.0
-cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:N/A:P"
-cvss_v3 = 5.5
-cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N"
-cvss_v4 = 5.1
-cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:L/VI:N/VA:N/SC:N/SI:N/SA:N"
+cvss_v2 = 7.5
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:P/A:P"
+cvss_v3 = 9.8
+cvss_v3_vector = "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
 
 [tags]
 tags = [
     "NVD-CWE-Other",
-    "DoS",
-    "cisco",
-    "ios",
+    "buffer-overflow",
+    "rce",
+    "cgi",
+    "remote",
+    "wwwcount",
 ]
