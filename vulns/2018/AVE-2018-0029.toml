@@ -1,20 +1,15 @@
-[affected]
-product = "perl-CryptX"
-vendor = "DCIT"
-
 [basic]
-description = "Perl CryptX 模块 0.062 版本之前存在安全漏洞，其 gcm_decrypt_verify() 和 chacha20poly1305_decrypt_verify() 函数未能正确验证 GCM 模式的认证标签（tag）。攻击者可利用此漏洞向加密数据中注入恶意载荷而不被检测，导致数据完整性和机密性受损。该漏洞影响范围广泛，CVSS 评分 9.8，远程攻击者无需认证即可利用，造成严重影响。"
-published = "2024-03-18"
-remediation = "将 perl-CryptX 模块升级至 0.062 或更高版本。Linux 发行版用户可通过包管理器升级 libcryptx-perl 软件包。该漏洞已在 CryptX 0.062 版本中修复，在 gcm_decrypt_verify 和 chacha20poly1305_decrypt_verify 函数中添加了认证标签验证逻辑。"
-score = 9.8
-severity = "CRITICAL"
-sources = ["nvd", "avd", "github", "osv", "debian"]
-title = "DCIT perl-CryptX 模块认证标签验证绕过漏洞"
-updated = "2026-06-16"
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["avd"]
+title = "CVE-2018-25099 漏洞"
+updated = ""
 
 [exploit]
 exp_urls = []
-nuclei_templates = []
 poc_urls = []
 
 [id]
@@ -23,18 +18,8 @@ ave_id = "AVE-2018-0029"
 cve_id = "CVE-2018-25099"
 
 [meta]
-collected_at = "2026-07-11T00:00:00Z"
+collected_at = "2026-07-10T21:14:59.360178086+00:00"
 status = "completed"
 
 [references]
-avd = "https://avd.aliyun.com/detail/CVE-2018-25099"
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2018-25099"
-other = [
-    "https://github.com/DCIT/perl-CryptX/issues/47",
-    "https://github.com/libtom/libtomcrypt/pull/451",
-    "https://metacpan.org/dist/CryptX/changes",
-]
-
-[score]
-cvss_v3 = 9.8
-cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+urls = []
