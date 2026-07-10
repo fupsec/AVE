@@ -1,53 +1,25 @@
-[id]
-ave_id = "AVE-1999-0004"
-cve_id = "CVE-1999-0006"
-aliases = [
-    "CVE-1999-0006",
-    "EDB-19109",
-    "EDB-19110",
-    "BID-133"
-]
-
 [basic]
-title = "Qualcomm qpopper 2.4 POP3服务器缓冲区溢出漏洞"
-description = "Qualcomm qpopper 2.4及之前版本中存在栈缓冲区溢出漏洞。远程攻击者无需身份验证即可通过向POP3服务(端口110)发送特制的PASS命令，触发缓冲区溢出，从而在目标系统上以root权限执行任意代码。该漏洞影响FreeBSD、BSDI、Linux等多款Unix系统。"
-severity = "CRITICAL"
-score = 9.8
-cvss_v3 = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
-cvss_v2 = "(AV:N/AC:L/Au:N/C:C/I:C/A:C)"
-published = "1998-07-14"
-updated = "2026-06-16"
-remediation = "升级Qualcomm qpopper至2.5或更高版本。如无法立即升级，应限制POP3服务(端口110)的访问权限，仅允许受信任IP地址连接，并部署入侵检测系统监控异常PASS命令。"
-sources = [
-    "exploitdb",
-    "nvd"
-]
-
-[affected]
-vendor = "Qualcomm"
-product = "qpopper"
-
-[references]
-urls = [
-    "https://nvd.nist.gov/vuln/detail/CVE-1999-0006",
-    "https://www.exploit-db.com/exploits/19109",
-    "https://www.exploit-db.com/exploits/19110",
-    "http://www.securityfocus.com/bid/133",
-    "ftp://patches.sgi.com/support/free/security/advisories/19980801-01-I"
-]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["exploitdb"]
+title = "CVE-1999-0006 漏洞"
+updated = ""
 
 [exploit]
-poc_urls = [
-    "https://www.exploit-db.com/exploits/19109",
-    "https://www.exploit-db.com/exploits/19110"
-]
-exp_urls = [
-    "https://www.exploit-db.com/exploits/19109",
-    "https://www.exploit-db.com/exploits/19110"
-]
-nuclei_templates = []
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0006"]
+ave_id = "AVE-1999-0004"
+cve_id = "CVE-1999-0006"
 
 [meta]
-authenticity = { confidence = "high", evidence = "verified exploit code available in Exploit-DB" }
-collected_at = "2026-07-11T00:00:00+00:00"
+collected_at = "2026-07-10T21:03:44.902825200+00:00"
 status = "completed"
+
+[references]
+urls = []
