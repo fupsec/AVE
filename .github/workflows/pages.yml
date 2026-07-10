@@ -36,6 +36,25 @@ jobs:
           sed -i 's|<p id="m-push">.*</p>|<p id="m-push">'"$PUSH_TIME"'</p>|' index.html
           echo "dashboard updated: vulns=${VULNS}, pocs=${POCS}, exps=${EXPS}, push=${PUSH_TIME}"
 
+      - name: Update Year Breakdown
+        run: |
+          rm -f /tmp/year_stats.html
+          echo '<table class="year-table"><thead><tr><th>年份</th><th class="num">漏洞</th><th class="num">PoC</th><th class="num">EXP</th></tr></thead><tbody>' > /tmp/year_stats.html
+          TOTAL_V=0; TOTAL_P=0; TOTAL_E=0
+          for y in $(ls vulns/ 2>/dev/null | sort); do
+            [ -d "vulns/$y" ] || continue
+            V=$(find "vulns/$y" -maxdepth 1 -name "*.toml" -type f 2>/dev/null | wc -l)
+            P=$(find "pocs/$y" -maxdepth 1 -type f 2>/dev/null | wc -l)
+            E=$(find "exploits/$y" -maxdepth 1 -type f 2>/dev/null | wc -l)
+            TOTAL_V=$((TOTAL_V + V))
+            TOTAL_P=$((TOTAL_P + P))
+            TOTAL_E=$((TOTAL_E + E))
+            echo "<tr><td>${y}</td><td class=\"num\">${V}</td><td class=\"num\">${P}</td><td class=\"num\">${E}</td></tr>" >> /tmp/year_stats.html
+          done
+          echo "<tr class=\"total-row\"><td>合计</td><td class=\"num\">${TOTAL_V}</td><td class=\"num\">${TOTAL_P}</td><td class=\"num\">${TOTAL_E}</td></tr></tbody></table>" >> /tmp/year_stats.html
+          sed -i '/<!--YEAR_STATS-->/{r /tmp/year_stats.html' -e 'd}' index.html
+          echo "year breakdown updated" | head -1
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 

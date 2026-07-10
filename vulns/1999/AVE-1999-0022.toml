@@ -1,0 +1,62 @@
+[id]
+ave_id = "AVE-1999-0022"
+cve_id = "CVE-1999-0027"
+avd_id = ""
+other_ids = ["BID-351"]
+
+[basic]
+title = "SGI IRIX 6.2 eject 命令本地权限提升漏洞"
+description = "SGI IRIX 6.2 的 eject 程序存在缓冲区溢出漏洞。eject 用于弹出可移动介质，被设置为 setuid root 以允许控制台用户执行弹出操作。通过向 eject 程序提供超长参数，可以覆盖栈上的返回地址，以 root 权限执行任意代码。"
+severity = "HIGH"
+source = "nvd"
+published = "1997-05-25"
+updated = "2026-06-16"
+
+[score]
+cvss_v2 = 7.2
+cvss_v2_vector = "AV:L/AC:L/Au:N/C:C/I:C/A:C"
+cvss_v3 = 0.0
+cvss_v3_vector = ""
+cvss_v4 = 0.0
+cvss_v4_vector = ""
+
+[affected]
+vendor = "Silicon Graphics (SGI)"
+product = "IRIX 6.2"
+
+[exploit]
+poc = [
+  { url = "https://www.exploit-db.com/exploits/19276", description = "SGI IRIX 6.2 eject 本地权限提升 EXP (1)", source = "exploit-db" },
+  { url = "https://www.exploit-db.com/exploits/19277", description = "SGI IRIX 6.2 eject 本地权限提升 EXP (2)", source = "exploit-db" }
+]
+exp = [
+  { url = "https://www.exploit-db.com/exploits/19276", description = "SGI IRIX 6.2 eject 本地权限提升 EXP (1)", source = "exploit-db" },
+  { url = "https://www.exploit-db.com/exploits/19277", description = "SGI IRIX 6.2 eject 本地权限提升 EXP (2)", source = "exploit-db" }
+]
+nuclei_templates = []
+
+[remediation]
+fix = "升级到 IRIX 6.3 或更高版本，该版本不受 eject 缓冲区溢出漏洞影响。"
+workaround = "如无法升级，可移除 eject 的 setuid root 权限位：chmod u-s /usr/sbin/eject。注意此操作将限制 eject 只能由 root 用户执行。"
+steps = ["步骤1: 确认 IRIX 系统版本", "步骤2: 升级到 IRIX 6.3 或更高版本", "步骤3: 如无法升级，执行 chmod u-s /usr/sbin/eject 移除 setuid 权限"]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0027"
+avd = ""
+other = [
+  "https://www.cve.org/CVERecord?id=CVE-1999-0027",
+  "https://www.securityfocus.com/bid/351",
+  "https://exchange.xforce.ibmcloud.com/vulnerabilities/CVE-1999-0027"
+]
+
+[tags]
+tags = ["CWE-119", "buffer-overflow", "privilege-escalation", "local", "irix", "sgi"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "high"
+notes = "该漏洞为 SGI IRIX 6.2 本地缓冲区溢出漏洞，存在两个公开的 Exploit-DB 利用脚本（EDB-19276, EDB-19277）。漏洞非 HTTP 协议，不适用标准 PoC 脚本生成。"
+
+[meta]
+collected_at = "2026-07-10T10:50:53Z"
+status = "completed"
