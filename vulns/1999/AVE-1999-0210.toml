@@ -1,25 +1,21 @@
 
 [id]
-  ave_id = "AVE-1999-0210"
-  cve_id = "CVE-1999-0019"
-  avd_id = ""
-  other_ids = []
+ave_id = "AVE-1999-0210"
+cve_id = "CVE-1999-0019"
+avd_id = ""
+other_ids = []
 
 [basic]
-  title = "Sun Solaris rpc.statd 文件创建/删除漏洞"
-  description = "Solaris 系统中 rpc.statd 服务存在输入验证缺陷，远程攻击者可通过发送特制 RPC 请求创建或删除系统文件，导致系统完整性受损。"
-  severity = "MEDIUM"
-  source = "nvd"
-  published = "1996-04-24"
-  updated = "2026-06-16"
+title = "Sun Solaris rpc.statd 文件创建/删除漏洞"
+description = "Solaris 系统中 rpc.statd（NFS 状态监控守护进程）存在输入验证缺陷，远程攻击者可通过发送特制 RPC 请求创建或删除任意系统文件，导致系统完整性受损。该漏洞曾被 Ramen 蠕虫利用。"
+severity = "MEDIUM"
+source = "nvd"
+published = "1996-04-24"
+updated = "2026-06-16"
 
 [score]
-  cvss_v2 = 5.0
-  cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:P/A:N"
-  cvss_v3 = 5.5
-  cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N"
-  cvss_v4 = 5.1
-  cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:L/VI:N/VA:N/SC:N/SI:N/SA:N"
+cvss_v2 = 5.0
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:P/A:N"
 
 [affected]
 vendor = "Sun Microsystems"
@@ -28,10 +24,10 @@ product = "Solaris"
 [authenticity]
 cve_confidence = "high"
 poc_confidence = "low"
-notes = "1996年的古老漏洞，rpc.statd 基于 RPC 协议（非 HTTP），无公开可用的 PoC/EXP 仓库链接。"
+notes = "1996年的古老漏洞，rpc.statd 基于 ONC RPC/SunRPC 协议（非 HTTP），不具备 HTTP PoC 生成条件。未在 GitHub、Exploit-DB、PacketStorm 等渠道找到单独标为 CVE-1999-0019 的 PoC/EXP 仓库或条目。该漏洞曾被 Ramen 蠕虫用于传播。"
 
 [exploit]
-poc = []
+poc = [{ url = "https://packetstormsecurity.com/search/?q=statd", description = "rpc.statd 相关利用代码汇总（Packet Storm）", source = "其他" }]
 exp = []
 nuclei_templates = []
 
@@ -46,7 +42,7 @@ avd = ""
 other = ["http://sunsolve.sun.com/pub-cgi/retrieve.pl?doctype=coll&doc=secbull/135"]
 
 [tags]
-tags = ["CWE-20", "Solaris", "rpc.statd", "RPC"]
+tags = ["CWE-20", "Solaris", "rpc.statd", "RPC", "NFS", "Ramen"]
 
 [meta]
 collected_at = "2026-07-11T07:51:00Z"
