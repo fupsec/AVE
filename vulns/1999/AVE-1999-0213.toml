@@ -1,0 +1,31 @@
+[id]
+ave_id = "AVE-1999-0213"
+cve_id = "CVE-1999-0289"
+aliases = ["CVE-1999-0289"]
+
+[basic]
+title = "Apache HTTP Server for Win32 点号追加路径信息泄露漏洞"
+description = "Apache HTTP Server Windows版本在处理URL时存在路径信息泄露漏洞。当攻击者在请求URL后追加一个点号(.)时，Apache可能绕过访问控制机制，导致受限文件被未经授权访问。此漏洞仅影响Windows平台上的Apache HTTP Server，攻击者可通过网络远程利用，无需身份认证，导致敏感信息泄露。"
+severity = "MEDIUM"
+score = 5.0
+remediation = "升级 Apache HTTP Server 至不受影响的版本，或在服务器配置中对 URL 请求进行规范化处理，过滤并拒绝以点号结尾的请求路径。对于 Windows 平台部署的 Apache 服务，建议使用 URL 重写规则拦截此类畸形请求。"
+sources = ["cve"]
+published = "1999-12-12"
+updated = "2026-06-16"
+
+[affected]
+vendor = "apache"
+product = "http_server"
+
+[exploit]
+poc_urls = []
+exp_urls = []
+nuclei_templates = []
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0289"
+other = ["https://www.cve.org/CVERecord?id=CVE-1999-0289"]
+
+[meta]
+collected_at = "2026-07-11T00:00:00Z"
+status = "completed"
