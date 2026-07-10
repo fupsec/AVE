@@ -28,6 +28,7 @@ source = "nuclei"
 url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2019/CNVD-2019-01348.yaml"
 
 [id]
+aliases = ["CNVD-2019-01348", "NUCLEI-HTTP-CNVD-2019-CNVD-2019-01348-YAML"]
 avd_id = ""
 ave_id = "AVE-2026-0029"
 cve_id = ""

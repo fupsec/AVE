@@ -1,98 +1,25 @@
-[affected]
-product = "Struts 1"
-vendor = "Apache"
-
-[authenticity]
-cve_confidence = "high"
-notes = "CVE 由 NVD 确认，已列入 CISA KEV 目录，确认存在野外利用。未找到公开 PoC/EXP 脚本或 Nuclei 检测模板。"
-poc_confidence = "none"
-
 [basic]
-description = "Apache Software Foundation (ASF) Struts 1.2.9 之前版本中的 ActionForm 组件在配合 BeanUtils 1.7 使用时，远程攻击者可通过 multipart/form-data 编码的表单，构造一个引用 public getMultipartRequestHandler 方法的参数名，从而访问 CommonsMultipartRequestHandler 实现及 BeanUtils 中的内部元素，导致服务器拒绝服务（DoS）。该漏洞已被 CISA 列入已知利用漏洞目录（KEV），确认存在野外利用。"
-published = "2006-03-30"
-remediation = "升级 Apache Struts 至 1.2.9 或更高版本，修复 ActionForm 中 multipart 请求处理的安全问题。"
-score = 7.5
-severity = "HIGH"
-source = "nvd"
-sources = ["kev", "nvd"]
-title = "Apache Struts 1 ActionForm 拒绝服务漏洞"
-updated = "2026-06-16"
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["kev"]
+title = "CVE-2006-1547 漏洞"
+updated = ""
 
 [exploit]
-exp = []
-nuclei_templates = []
-poc = []
+exp_urls = []
+poc_urls = []
 
 [id]
+aliases = ["CVE-2006-1547"]
 ave_id = "AVE-2006-0003"
 cve_id = "CVE-2006-1547"
-aliases = ["CVE-2006-1547"]
-avd_id = ""
-other_ids = []
 
 [meta]
-collected_at = "2026-07-11T01:00:00Z"
+collected_at = "2026-07-10T21:07:43.786449819+00:00"
 status = "completed"
 
 [references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2006-1547"
-
-[[references.other]]
-description = "CISA KEV 目录"
-url = "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2006-1547"
-
-[[references.other]]
-description = "Apache Bugzilla 工单"
-url = "http://issues.apache.org/bugzilla/show_bug.cgi?id=38534"
-
-[[references.other]]
-description = "IBM X-Force 条目"
-url = "https://exchange.xforce.ibmcloud.com/vulnerabilities/25613"
-
-[[references.other]]
-description = "SecurityFocus BID"
-url = "http://www.securityfocus.com/bid/17342"
-
-[[references.other]]
-description = "SecurityTracker 条目"
-url = "http://securitytracker.com/id?1015856"
-
-[[references.other]]
-description = "Secunia 安全公告"
-url = "http://secunia.com/advisories/19493"
-
-[[references.other]]
-description = "Secunia 安全公告"
-url = "http://secunia.com/advisories/20117"
-
-[[references.other]]
-description = "SUSE 安全公告"
-url = "http://lists.suse.com/archive/suse-security-announce/2006-May/0004.html"
-
-[[references.other]]
-description = "Struts 1.2.9 发版说明"
-url = "http://struts.apache.org/struts-doc-1.2.9/userGuide/release-notes.html"
-
-[remediation]
-fix = "升级到 Apache Struts 1.2.9 或更高版本。参考官方安全公告和发版说明。"
-steps = [
-    "步骤1: 确认 Apache Struts 版本是否低于 1.2.9",
-    "步骤2: 检查是否使用了 BeanUtils 1.7",
-    "步骤3: 升级到 Apache Struts 1.2.9 或更高版本",
-    "步骤4: 重启应用服务器使更新生效",
-]
-workaround = "如无法升级，可禁用 multipart/form-data 请求处理功能，或在 Web 服务器层面限制对 ActionForm 的访问。"
-
-[score]
-cvss_v2 = 7.8
-cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:N/A:C"
-cvss_v3 = 7.5
-cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
-
-[tags]
-tags = [
-    "CWE-749",
-    "DoS",
-    "Exposed Dangerous Method or Function",
-    "KEV",
-]
+urls = []
