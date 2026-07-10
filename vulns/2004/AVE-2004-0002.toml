@@ -1,36 +1,25 @@
-[id]
-ave_id = "AVE-2004-0002"
-cve_id = "CVE-2004-1464"
-aliases = ["CVE-2004-1464"]
-
 [basic]
-title = "Cisco IOS Telnet拒绝服务漏洞"
-description = "Cisco IOS 12.2(15)及更早版本中存在一个拒绝服务漏洞。远程攻击者可通过向Telnet或反向Telnet端口发送特制的TCP连接请求，导致设备拒绝后续的VTY（虚拟终端）连接，从而影响Telnet、反向Telnet、RSH、SSH和HTTP等远程管理服务的正常访问。该漏洞已由CISA列入已知被利用漏洞目录（KEV）。"
-severity = "MEDIUM"
-score = 5.9
-cvss_v3 = "AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H"
-cvss_v2 = "AV:N/AC:L/Au:N/C:N/I:N/A:P"
-published = "2004-12-31"
-remediation = "升级Cisco IOS至12.2(15)之后的安全修复版本，或应用Cisco官方安全公告cisco-sa-20040827-telnet中提供的补丁程序。"
-sources = ["kev", "nvd"]
-updated = "2026-06-16"
-
-[affected]
-vendor = "Cisco"
-product = "IOS"
-
-[references]
-urls = [
-    "http://www.cisco.com/warp/public/707/cisco-sa-20040827-telnet.shtml",
-    "http://www.kb.cert.org/vuls/id/384230",
-    "https://exchange.xforce.ibmcloud.com/vulnerabilities/17131",
-    "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2004-1464"
-]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["kev"]
+title = "CVE-2004-1464 漏洞"
+updated = ""
 
 [exploit]
-poc_urls = []
 exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2004-1464"]
+ave_id = "AVE-2004-0002"
+cve_id = "CVE-2004-1464"
 
 [meta]
-collected_at = "2026-07-10T16:39:49Z"
+collected_at = "2026-07-10T20:59:13.286249952+00:00"
 status = "completed"
+
+[references]
+urls = []
