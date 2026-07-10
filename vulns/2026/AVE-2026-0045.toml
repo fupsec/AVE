@@ -1,45 +1,28 @@
+[basic]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["ghsa"]
+title = "CVE-2026-48737"
+updated = ""
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
 [id]
-ave_id = "AVE-2026-0045"
-cve_id = "CVE-2026-48737"
 aliases = [
     "CVE-2026-48737",
     "GHSA-m5x5-28jr-gpjj",
 ]
-
-[basic]
-title = "pyLoad SSRF防护绕过漏洞（IPv6 6to4/NAT64转换封装内部IP）"
-description = "pyLoad的is_global_address函数通过Python ipaddress.ip_address(value).is_global判断IP是否全局可达，用于防御SSRF攻击。然而Python的IPv6Address.is_global将6to4(2002::/16)和NAT64(64:ff9b::/96)前缀视为全局可路由，攻击者可利用这些IPv6转换封装形式将内部IP地址（如127.0.0.1、10.0.0.1、169.254.169.254等）编码为IPv6地址，绕过SSRF检查。pycurl的PREREQFUNC在TCP连接前调用了同一检查函数，导致连接被允许。Python 3.9-3.11中6to4和NAT64均受影响，3.12+中NAT64仍可绕过。成功利用可在内网进行探测、获取云元数据等。"
-published = "2026-07-08"
-remediation = "升级至pyload-ng >= 0.5.0b3.dev101或应用补丁：在is_global_address函数中解包IPv6转换封装地址，对2002::/16和64:ff9b::/96前缀提取嵌入式IPv4地址并重新执行全局检查。"
-score = 4.7
-severity = "MEDIUM"
-sources = ["ghsa"]
-updated = "2026-07-08"
-
-[score]
-cvss_v3 = 4.7
-cvss_v3_vector = "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:C/C:L/I:N/A:L"
-
-[affected]
-vendor = "pyLoad"
-product = "pyload-ng"
-
-[references]
-urls = [
-    "https://github.com/advisories/GHSA-m5x5-28jr-gpjj",
-    "https://github.com/pyload/pyload/security/advisories/GHSA-m5x5-28jr-gpjj",
-    "https://nvd.nist.gov/vuln/detail/CVE-2026-48737",
-    "https://github.com/pyload/pyload/blob/1b12dc7f348db8c144e0f39215680415e90ca4d2/src/pyload/core/utils/web/check.py",
-    "https://github.com/pyload/pyload/blob/1b12dc7f348db8c144e0f39215680415e90ca4d2/src/pyload/core/network/http/http_request.py#L680",
-]
-
-[exploit]
-poc_urls = [
-    "https://github.com/pyload/pyload/security/advisories/GHSA-m5x5-28jr-gpjj",
-]
-exp_urls = []
-nuclei_templates = []
+ave_id = "AVE-2026-0045"
+cve_id = "CVE-2026-48737"
 
 [meta]
-collected_at = "2026-07-10T19:14:37.383616143+00:00"
+collected_at = "2026-07-10T21:16:06.954361031+00:00"
 status = "completed"
+
+[references]
+urls = []
