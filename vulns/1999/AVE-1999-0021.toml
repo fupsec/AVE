@@ -1,31 +1,25 @@
-[id]
-ave_id = "AVE-1999-0021"
-cve_id = "CVE-1999-0523"
-aliases = ["CVE-1999-0523"]
-
 [basic]
-title = "ICMP Ping 请求允许导致网络信息泄露"
-description = "ICMP Echo（Ping）请求默认允许从任意主机发起，攻击者通过向目标发送ICMP Echo请求可判断目标主机是否存活，进而进行网络探测和主机发现。该漏洞有助于攻击者绘制目标网络拓扑结构，为后续针对性攻击（如DDoS、端口扫描）提供信息支持。由于大多数操作系统默认响应Ping请求，若企业网络边界未对ICMP流量进行过滤，可能导致内部网络结构暴露。"
-severity = "INFO"
-score = 2.1
-published = "1999-01-01"
-updated = "2026-06-16"
-remediation = "在边界防火墙上配置规则阻止来自外部网络的ICMP Echo请求，或在主机上使用iptables、firewalld等工具过滤入站ICMP流量，仅允许来自可信监控源的Ping检测请求。"
-sources = ["nvd", "redhat"]
-
-[affected]
-vendor = "通用"
-product = "多款操作系统及网络设备"
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0523"
-redhat = "https://access.redhat.com/security/cve/CVE-1999-0523"
-other = ["https://www.cve.org/CVERecord?id=CVE-1999-0523"]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["redhat"]
+title = "CVE-1999-0523 漏洞"
+updated = ""
 
 [exploit]
-poc_urls = []
 exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0523"]
+ave_id = "AVE-1999-0021"
+cve_id = "CVE-1999-0523"
 
 [meta]
-collected_at = "2026-07-11T00:00:00Z"
+collected_at = "2026-07-10T21:26:46.355751419+00:00"
 status = "completed"
+
+[references]
+urls = []
