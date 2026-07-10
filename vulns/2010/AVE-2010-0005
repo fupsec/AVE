@@ -1,0 +1,25 @@
+[id]
+ave_id = "AVE-2010-0005"
+cve_id = "CVE-2010-0806"
+aliases = ["CVE-2010-0806"]
+
+[basic]
+title = "CVE-2010-0806"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["kev"]
+published = ""
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T12:52:50.825215924+00:00"
