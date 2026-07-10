@@ -1,14 +1,14 @@
 [id]
-ave_id = "AVE-1999-0079"
-cve_id = "CVE-1999-0378"
-aliases = ["CVE-1999-0378"]
+ave_id = "AVE-2000-0009"
+cve_id = "CVE-2000-0052"
+aliases = ["CVE-2000-0052"]
 
 [basic]
-title = "CVE-1999-0378"
+title = "CVE-2000-0052"
 description = ""
 severity = "UNKNOWN"
 score = 0.0
-sources = ["cve"]
+sources = ["redhat"]
 published = ""
 updated = ""
 remediation = "Refer to vendor advisory and upgrade to fixed version."
@@ -22,4 +22,4 @@ exp_urls = []
 
 [meta]
 status = "completed"
-collected_at = "2026-07-10T12:52:05.065963942+00:00"
+collected_at = "2026-07-10T12:52:05.065375859+00:00"
