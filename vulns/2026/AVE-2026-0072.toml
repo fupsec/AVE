@@ -1,36 +1,25 @@
-[id]
-ave_id = "AVE-2026-0072"
-cve_id = "CVE-2026-0023"
-aliases = ["CVE-2026-0023"]
-other_ids = ["A-459461121"]
-
 [basic]
-title = "Google Android PackageInstallerService 更新拥有权验证绕过漏洞"
-description = "Android PackageInstallerService 的 createSessionInternal 方法中存在权限检查缺失漏洞。在管理安装会话时，内部 INSTALL_FROM_MANAGED_USER_OR_PROFILE 标志未在检查前被清除，导致普通应用可操纵该标志以绕过 Android 的更新拥有权验证机制。攻击者可利用此漏洞在没有额外执行权限的情况下实现本地权限提升，覆盖应用更新来源，使用户无法收到更新源变更警告。"
-severity = "HIGH"
-score = 7.8
-cvss_v3 = "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H"
-remediation = "升级至 Android 安全补丁级别 2026-03-01 或更高版本。Google 已在 AOSP 提交补丁 09055276288a68cf35b0f84ba32e28822f74ecf9，通过在 checked 前显式清除 INSTALL_FROM_MANAGED_USER_OR_PROFILE 标志来修复此漏洞。受影响版本包括 Android 14、15、16 及 16-qpr2。"
-published = "2026-03-02"
-updated = "2026-06-17"
-sources = ["github", "nvd", "android"]
-
-[affected]
-vendor = "Google"
-product = "Android"
-
-[references]
-urls = [
-    "https://source.android.com/docs/security/bulletin/2026/2026-03-01",
-    "https://android.googlesource.com/platform/frameworks/base/+/09055276288a68cf35b0f84ba32e28822f74ecf9",
-    "https://nvd.nist.gov/vuln/detail/CVE-2026-0023",
-    "https://github.com/QM4RS/CVE-2026-0023-Update-Ownership-PoC"
-]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["github"]
+title = "CVE-2026-0023"
+updated = ""
 
 [exploit]
-poc_urls = ["https://github.com/QM4RS/CVE-2026-0023-Update-Ownership-PoC"]
 exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2026-0023"]
+ave_id = "AVE-2026-0072"
+cve_id = "CVE-2026-0023"
 
 [meta]
+collected_at = "2026-07-10T20:59:01.742383024+00:00"
 status = "completed"
-collected_at = "2026-07-11T12:00:00+00:00"
+
+[references]
+urls = []
