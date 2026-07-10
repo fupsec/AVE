@@ -1,45 +1,25 @@
-[id]
-ave_id = "AVE-2026-0030"
-cve_id = ""
-aliases = [
-    "CNVD-2019-06255",
-    "NUCLEI-HTTP-CNVD-2019-CNVD-2019-06255-YAML",
-]
-
 [basic]
-title = "CatfishCMS 远程命令执行漏洞"
-description = "CatfishCMS 4.8.54 版本中存在远程命令执行漏洞。该漏洞位于 method 参数中，攻击者可利用 __construct 方法结合 filter 参数调用 system 函数，在未经身份验证的情况下通过构造特制 HTTP GET 请求远程执行任意命令，获取服务器完全控制权，危害严重。"
-severity = "CRITICAL"
-score = 10.0
-remediation = "升级 CatfishCMS 至 4.8.55 或更高版本，对 method 和 filter 参数进行严格的输入过滤和权限校验，避免直接将用户输入传入危险函数。"
-published = "2019-01-01"
-updated = "2019-01-01"
-sources = [
-    "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2019/CNVD-2019-06255.yaml",
-]
-
-[affected]
-vendor = "CatfishCMS"
-product = "Catfish CMS"
-
-[references]
-nvd = ""
-avd = ""
-other = [
-    "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2019/CNVD-2019-06255.yaml",
-    "https://its401.com/article/yun2diao/91344725",
-    "https://github.com/xwlrbh/Catfish/issues/4",
-]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["nuclei"]
+title = "NUCLEI-HTTP-CNVD-2019-CNVD-2019-06255-YAML 漏洞"
+updated = ""
 
 [exploit]
-poc_urls = [
-    "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2019/CNVD-2019-06255.yaml",
-]
 exp_urls = []
-nuclei_templates = [
-    "http/cnvd/2019/CNVD-2019-06255.yaml",
-]
+poc_urls = []
+
+[id]
+aliases = ["NUCLEI-HTTP-CNVD-2019-CNVD-2019-06255-YAML"]
+ave_id = "AVE-2026-0030"
+cve_id = "NUCLEI-HTTP-CNVD-2019-CNVD-2019-06255-YAML"
 
 [meta]
+collected_at = "2026-07-10T21:13:22.467036138+00:00"
 status = "completed"
-collected_at = "2026-07-10T17:56:57.115542192+00:00"
+
+[references]
+urls = []
