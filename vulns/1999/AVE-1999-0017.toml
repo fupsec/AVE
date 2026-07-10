@@ -8,13 +8,12 @@ notes = "该漏洞为协议层 SSL 会话重用问题，非 HTTP 协议漏洞，
 poc_confidence = "none"
 
 [basic]
-description = "OpenSSL and SSLeay allow remote attackers to reuse SSL sessions and bypass access controls."
+description = "OpenSSL和SSLeay存在SSL会话重用漏洞。远程攻击者可重用已建立的SSL会话绕过访问控制机制，未授权访问受保护资源或获取敏感信息。该漏洞影响OpenSSL 0.9.2b之前版本及SSLeay库，攻击不需要身份认证，利用难度低。"
 published = "1999-03-22"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
+remediation = "升级OpenSSL至0.9.2b或更高版本，并重新启动所有依赖OpenSSL的服务。对于无法升级的环境，建议在应用层禁用SSL会话重用功能。"
 score = 7.5
 severity = "HIGH"
-source = "nvd"
-sources = ["unknown"]
+sources = ["redhat"]
 title = "OpenSSL 和 SSLeay SSL 会话重用漏洞"
 updated = "2026-06-16"
 
@@ -24,13 +23,13 @@ nuclei_templates = []
 poc = []
 
 [id]
-avd_id = ""
 ave_id = "AVE-1999-0017"
 cve_id = "CVE-1999-0428"
+aliases = ["CVE-1999-0428"]
 other_ids = []
 
 [meta]
-collected_at = "2026-07-10T11:13:37Z"
+collected_at = "2026-07-11T00:00:00Z"
 status = "completed"
 
 [references]

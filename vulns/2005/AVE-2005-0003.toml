@@ -1,69 +1,39 @@
-[affected]
-product = "Razor Agents"
-vendor = "Vipul"
-
-[authenticity]
-cve_confidence = "high"
-notes = "该漏洞为非 HTTP 协议漏洞（razor-agent 分布式垃圾邮件检测客户端），无法生成 HTTP 协议的 PoC 脚本。未发现公开可用的 PoC/EXP。"
-poc_confidence = "none"
-
-[basic]
-description = "Vipul Razor Agents（razor-agents）2.70之前版本存在拒绝服务漏洞，远程攻击者可通过发送异常HTML消息或恶意的Content-Type等畸形标头导致服务拒绝。"
-published = "2005-06-17"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 5.5
-severity = "MEDIUM"
-source = "nvd"
-sources = ["unknown"]
-title = "Vipul Razor Agents 拒绝服务漏洞"
-updated = "2005-06-21"
-
-[exploit]
-exp = []
-nuclei_templates = []
-poc = []
-
 [id]
-avd_id = ""
 ave_id = "AVE-2005-0003"
 cve_id = "CVE-2005-2024"
-other_ids = []
+aliases = ["CVE-2005-2024"]
 
-[meta]
-collected_at = "2025-07-11T10:18:58Z"
-status = "completed"
+[basic]
+title = "Vipul Razor Agents 畸形消息远程拒绝服务漏洞"
+description = "Vipul Razor Agents（razor-agents）是一款分布式协同垃圾邮件检测和过滤网络的客户端软件。在2.70版本之前，razor-agents存在远程拒绝服务漏洞。攻击者可以通过发送特殊构造的异常HTML消息或包含畸形Content-Type等报头的邮件，触发razor-agents在处理时发生崩溃，从而导致服务不可用。该漏洞无需身份认证即可远程利用，影响垃圾邮件检测服务的正常运行。"
+severity = "MEDIUM"
+score = 5.0
+cvss_v2 = 5.0
+remediation = "升级 Vipul Razor Agents 至 2.70 或更高版本。对于 Gentoo 系统用户，请执行 emerge --sync && emerge --ask --oneshot --verbose \">=mail-filter/razor-2.74\" 命令完成升级。Debian 用户请参照 DSA-738 更新对应软件包。"
+published = "2005-06-17"
+updated = "2005-06-21"
+sources = ["tenable", "nvd", "gentoo"]
+
+[affected]
+vendor = "Vipul"
+product = "Razor Agents (razor-agents)"
 
 [references]
-avd = ""
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2005-2024"
+nvd = ["https://nvd.nist.gov/vuln/detail/CVE-2005-2024"]
 other = [
-    "http://www.debian.org/security/2005/dsa-738",
-    "http://security.gentoo.org/glsa/glsa-200506-17.xml",
-    "http://bugs.gentoo.org/show_bug.cgi?id=95492",
-    "http://www.securityfocus.com/bid/13984",
-    "http://sourceforge.net/mailarchive/forum.php?thread_id=7520323&forum_id=4259",
-    "http://www.novell.com/linux/security/advisories/2005_35_razor_agents.html",
+  "http://security.gentoo.org/glsa/glsa-200506-17.xml",
+  "http://bugs.gentoo.org/show_bug.cgi?id=95492",
+  "http://sourceforge.net/mailarchive/forum.php?thread_id=7520323&forum_id=4259",
+  "http://www.debian.org/security/2005/dsa-738",
+  "http://www.novell.com/linux/security/advisories/2005_35_razor_agents.html",
+  "http://www.securityfocus.com/bid/13984"
 ]
 
-[remediation]
-fix = "升级 razor-agents 至 2.70 或更高版本。参考 Debian DSA-738 和 Gentoo GLSA-200506-17。"
-steps = [
-    "步骤1: 确认当前 razor-agents 版本",
-    "步骤2: 升级到 2.70 或更高版本",
-    "步骤3: 重启服务使更新生效",
-]
-workaround = "暂无已知缓解措施。"
+[exploit]
+poc_urls = []
+exp_urls = []
+nuclei_templates = []
 
-[score]
-cvss_v2 = 5.0
-cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:N/A:P"
-cvss_v3 = 0.0
-cvss_v3_vector = ""
-cvss_v4 = 0.0
-cvss_v4_vector = ""
-
-[tags]
-tags = [
-    "CWE-Other",
-    "DoS",
-]
+[meta]
+status = "completed"
+collected_at = "2026-07-11T00:00:00+00:00"

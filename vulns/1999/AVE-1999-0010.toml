@@ -1,84 +1,36 @@
-[affected]
-product = "Multiple Operating Systems"
-vendor = "Multiple"
-
-[authenticity]
-cve_confidence = "high"
-notes = ""
-poc_confidence = "high"
-
-[basic]
-description = "Teardrop IP 拒绝服务漏洞。通过发送两个或更多特制的 IP 分片数据包，利用多个厂商 TCP/IP 协议栈在分片重组时的缺陷，导致目标系统因内存不足而冻结或重启。影响 HP-UX 10.34、Microsoft Windows 95、Windows NT 3.5.1、Windows NT 4.0 等多个操作系统。"
-published = "1997-12-16"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 5.5
-severity = "MEDIUM"
-source = "exploitdb"
-sources = ["unknown"]
-title = "Teardrop IP 分片拒绝服务漏洞"
-updated = "2026-07-10"
-
-[exploit]
-exp = []
-nuclei_templates = []
-
-[[exploit.poc]]
-description = "Teardrop IP 分片拒绝服务攻击 PoC（C 语言源代码）"
-source = "exploit-db"
-url = "https://www.exploit-db.com/exploits/19103"
-
-[[exploit.poc]]
-description = "Teardrop 攻击模拟与可视化分析"
-source = "github"
-url = "https://github.com/Cchristian42/Teardrop_Anomaly_Analysis"
-
-[[exploit.poc]]
-description = "Teardrop 攻击 Python 实现"
-source = "github"
-url = "https://github.com/C4PIT4L/TearDrop"
-
-[[exploit.poc]]
-description = "Teardrop DoS 攻击与 Sniffer 检测实验室脚本"
-source = "github"
-url = "https://github.com/02loveslollipop/DoS-Sniffer-lab"
-
 [id]
-avd_id = ""
 ave_id = "AVE-1999-0010"
 cve_id = "CVE-1999-0015"
-other_ids = ["EDB-19103"]
+aliases = ["CVE-1999-0015"]
 
-[meta]
-collected_at = "2026-07-11T16:30:00Z"
-status = "completed"
+[basic]
+title = "Teardrop IP分片重组拒绝服务漏洞"
+description = "Teardrop是一种经典的IP分片拒绝服务攻击，通过向目标系统发送两个特制的IP分片数据包实现。第一个分片偏移量为0且MF标志位置位，第二个分片偏移量为正值但小于第一个分片的数据长度，导致TCP/IP协议栈在重组时产生重叠。目标系统会分配异常大的内存资源用于分片重组，最终因内存耗尽而冻结或重启。该漏洞影响包括Linux内核、Microsoft Windows 95/NT 4.0/NT 3.5.1以及HP HP-UX 10.34在内的多种操作系统。攻击者无需认证即可通过网络远程触发，造成目标系统不可用。"
+severity = "MEDIUM"
+score = 5.0
+remediation = "建议升级操作系统至修复版本以解决IP分片处理缺陷。Windows NT 4.0用户应安装Service Pack 4及以上版本，Windows 95用户安装Winsock 2更新，Linux用户升级内核至修复版本，HP-UX用户安装最新补丁集。在网络层面可部署入侵检测系统拦截异常IP分片包。"
+published = "1997-12-16"
+updated = "2026-06-16"
+sources = ["exploitdb", "nvd"]
+
+[affected]
+vendor = "multiple"
+product = "多种操作系统"
 
 [references]
-avd = ""
 nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0015"
-other = [
+urls = [
     "https://www.exploit-db.com/exploits/19103",
-    "https://oval.cisecurity.org/repository/search/definition/oval%3Aorg.mitre.oval%3Adef%3A5579",
+    "https://oval.cisecurity.org/repository/search/definition/oval%3Aorg.mitre.oval%3Adef%3A5579"
 ]
 
-[remediation]
-fix = "升级到受影响操作系统的最新版本，应用厂商安全补丁。Microsoft 已发布安全公告，HP 已发布 HP-UX 补丁。"
-steps = [
-    "步骤1: 确认操作系统版本",
-    "步骤2: 安装厂商提供的安全更新补丁",
-    "步骤3: 在网络边界配置防火墙规则，限制或监控 IP 分片流量",
+[exploit]
+poc_urls = [
+    "https://www.exploit-db.com/exploits/19103"
 ]
-workaround = "在防火墙或网络边界设备上阻止 IP 分片数据包，或部署入侵检测系统（IDS）检测 Teardrop 攻击特征（重叠 IP 分片偏移）。"
+exp_urls = []
+nuclei_templates = []
 
-[score]
-cvss_v2 = 5.0
-cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:N/A:P"
-cvss_v3 = 7.5
-cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
-
-[tags]
-tags = [
-    "CWE-Other",
-    "DoS",
-    "IP-fragment",
-    "teardrop",
-]
+[meta]
+collected_at = "2026-07-11T00:00:00+00:00"
+status = "completed"
