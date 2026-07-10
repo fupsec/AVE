@@ -2,7 +2,7 @@
 ave_id = "AVE-1999-0004"
 cve_id = "CVE-1999-0006"
 avd_id = ""
-other_ids = ["EDB-19110"]
+other_ids = ["EDB-19109", "EDB-19110"]
 
 [basic]
 title = "Qualcomm qpopper 2.4 - POP Server 缓冲区溢出漏洞"
@@ -17,16 +17,22 @@ cvss_v2 = 10.0
 cvss_v2_vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C"
 cvss_v3 = 9.8
 cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+cvss_v4 = 0.0
+cvss_v4_vector = ""
 
 [affected]
 vendor = "Qualcomm"
 product = "qpopper 2.4"
 
 [exploit]
-poc = []
+poc = [
+  { url = "https://www.exploit-db.com/exploits/19110", description = "qpopper 2.4 POP3 缓冲区溢出远程 root 利用脚本（FreeBSD/BSDI）", source = "exploitdb" },
+  { url = "https://www.exploit-db.com/exploits/19109", description = "qpopper 2.4 POP3 缓冲区溢出远程 root 利用脚本（Linux）", source = "exploitdb" }
+]
 exp = [
-  { url = "https://www.exploit-db.com/exploits/19110", description = "qpopper 2.4 POP3 缓冲区溢出远程 root 利用脚本", source = "exploitdb" },
-  { url = "https://www.exploit-db.com/raw/19110", description = "qpopper 2.4 POP3 缓冲区溢出利用脚本（源码）", source = "exploitdb" }
+  { url = "https://www.exploit-db.com/raw/19110", description = "qpopper 2.4 POP3 缓冲区溢出利用脚本（FreeBSD/BSDI，源码）", source = "exploitdb" },
+  { url = "https://www.exploit-db.com/raw/19109", description = "qpopper 2.4 POP3 缓冲区溢出利用脚本（Linux，源码）", source = "exploitdb" },
+  { url = "https://gitlab.com/exploit-database/exploitdb/-/raw/main/exploits/unix/remote/19110.c", description = "qpopper 2.4 POP3 缓冲区溢出利用脚本（GitLab 镜像）", source = "exploitdb" }
 ]
 nuclei_templates = []
 
@@ -49,8 +55,8 @@ tags = ["CWE-125", "CWE-119", "buffer-overflow", "qpopper", "POP3", "RCE"]
 [authenticity]
 cve_confidence = "high"
 poc_confidence = "high"
-notes = "存在完整利用脚本（EDB-19110），可远程 root 权限执行任意代码。因采用 POP3 协议非 HTTP 协议，无法生成符合 poc.md 规范的 HTTP 类型 PoC 脚本。"
+notes = "存在两个完整利用脚本（EDB-19109 Linux / EDB-19110 FreeBSD/BSDI），均可远程 root 权限执行任意代码。因采用 POP3 协议非 HTTP 协议，无法生成符合 poc.md 规范的 HTTP 类型 PoC 脚本。"
 
 [meta]
-collected_at = "2026-07-11T10:18:58Z"
+collected_at = "2026-07-11T17:05:04Z"
 status = "completed"
