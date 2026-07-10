@@ -17,7 +17,6 @@
 ## 搜索架构
 
 - 页面直接使用 GitHub Search API 与 Repository API 检索。
-- 不再依赖大型 `vulns.json` 聚合文件。
 - 每次 push 后由 GitHub Actions 自动重新部署页面。
 
 ## 初始化独立仓库
