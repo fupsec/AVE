@@ -1,17 +1,14 @@
 [id]
 ave_id = "AVE-2026-0063"
-cve_id = "CVE-2026-49832"
-aliases = [
-    "CVE-2026-49832",
-    "GHSA-9x82-rm84-c6x7",
-]
+cve_id = "NUCLEI-HTTP-CNVD-2022-CNVD-2022-42853-YAML"
+aliases = ["NUCLEI-HTTP-CNVD-2022-CNVD-2022-42853-YAML"]
 
 [basic]
-title = "CVE-2026-49832"
+title = "NUCLEI-HTTP-CNVD-2022-CNVD-2022-42853-YAML"
 description = ""
 severity = "UNKNOWN"
 score = 0.0
-sources = ["ghsa"]
+sources = ["nuclei"]
 published = ""
 updated = ""
 remediation = "Refer to vendor advisory and upgrade to fixed version."
@@ -25,4 +22,4 @@ exp_urls = []
 
 [meta]
 status = "completed"
-collected_at = "2026-07-10T12:52:50.672506177+00:00"
+collected_at = "2026-07-10T12:52:50.701004486+00:00"
