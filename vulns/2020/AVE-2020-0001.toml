@@ -1,66 +1,25 @@
-[affected]
-product = "Thrift"
-vendor = "Apache"
-
-[authenticity]
-cve_confidence = "high"
-notes = "该漏洞为 Apache Thrift RPC 协议层的拒绝服务漏洞，非 HTTP 协议，无法生成 HTTP PoC。经搜索 NVD、GitHub、Exploit-DB、PacketStorm、Sploitus 等渠道均未发现公开 PoC/EXP 或 Nuclei 模板。微软 MSRC 确认 Rust 实现也受该模式影响。"
-poc_confidence = "none"
-
 [basic]
-description = "Apache Thrift 0.9.3 至 0.13.0 版本中存在安全漏洞。恶意 RPC 客户端可通过发送精心构造的短消息，触发服务端分配大量内存，进而导致拒绝服务。该漏洞影响所有语言实现，包括 Rust 实现。"
-published = "2020-12-02"
+description = "Vulnerability identified as CVE-2020-13949. Please refer to vendor advisory for details."
+published = "2026-07-10"
 remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 7.5
-severity = "HIGH"
-source = "nvd"
-sources = ["unknown"]
-title = "Apache Thrift 拒绝服务漏洞"
-updated = "2026-06-16"
+score = 5.0
+severity = "MEDIUM"
+sources = ["msrc"]
+title = "Vulnerability in CVE-2020-13949"
+updated = "2026-07-10"
 
 [exploit]
-exp = []
-nuclei_templates = []
-poc = []
+exp_urls = []
+poc_urls = []
 
 [id]
-avd_id = ""
+aliases = ["CVE-2020-13949"]
 ave_id = "AVE-2020-0001"
 cve_id = "CVE-2020-13949"
-other_ids = []
 
 [meta]
-collected_at = "2026-07-10T12:31:17Z"
+collected_at = "2026-07-10T18:35:11.971057469+00:00"
 status = "completed"
 
 [references]
-avd = ""
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2020-13949"
-other = [
-    "https://lists.apache.org/thread.html/r1504886a550426d3c05772c47b1a6350c3235e51fd1fdffbec43e974%40%3Cuser.thrift.apache.org%3E",
-    "https://lists.apache.org/thread.html/r43dc2b2e928e9d845b07ac075634cb759d91bb852421dc282f87a74a%40%3Cdev.thrift.apache.org%3E",
-    "https://security.gentoo.org/glsa/202107-32",
-    "https://www.oracle.com/security-alerts/cpujul2021.html",
-    "https://www.oracle.com/security-alerts/cpujan2022.html",
-]
-
-[remediation]
-fix = "升级到 Apache Thrift 0.14.0 或更高版本。"
-steps = [
-    "步骤1: 确认 Apache Thrift 版本",
-    "步骤2: 升级到 Apache Thrift 0.14.0 或更高版本",
-    "步骤3: 如无法升级，在服务端代码中设置 TConfiguration 的 setMaxFrameSize 限制帧大小",
-]
-workaround = "在 Thrift 服务端配置 frame size limit（setMaxFrameSize），限制单帧最大大小。"
-
-[score]
-cvss_v2 = 5.0
-cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:N/A:P"
-cvss_v3 = 7.5
-cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
-
-[tags]
-tags = [
-    "CWE-400",
-    "DoS",
-]
+urls = []
