@@ -10,7 +10,7 @@ description = "HP OpenView Network Node Manager 6.2 至 7.50 版本中存在远�
 severity = "CRITICAL"
 source = "nvd"
 published = "2005-08-25"
-updated = "2025-10-22"
+updated = "2026-07-11"
 
 [score]
 cvss_v2 = 7.5
