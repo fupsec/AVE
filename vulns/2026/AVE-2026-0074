@@ -1,0 +1,28 @@
+[id]
+ave_id = "AVE-2026-0074"
+cve_id = "CVE-2026-48597"
+aliases = [
+    "CVE-2026-48597",
+    "GHSA-h74c-q9j7-mpcm",
+]
+
+[basic]
+title = "CVE-2026-48597"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["ghsa"]
+published = ""
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T15:15:48.860596344+00:00"
