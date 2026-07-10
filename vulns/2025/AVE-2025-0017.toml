@@ -1,0 +1,75 @@
+[id]
+ave_id = "AVE-2025-0017"
+cve_id = "CVE-2025-24813"
+avd_id = ""
+other_ids = []
+
+[basic]
+title = "Apache Tomcat 路径等价漏洞（内部点号）导致远程代码执行和信息泄露"
+description = "Apache Tomcat 中存在路径等价漏洞（CWE-44：'file.Name' 内部点号），当满足特定条件时，攻击者可以通过部分 PUT 请求实现远程代码执行和/或信息泄露和/或向上传文件中添加恶意内容。利用条件包括：Default Servlet 启用了写入（默认禁用）、支持部分 PUT（默认启用）、应用程序使用 Tomcat 基于文件的会话持久化且使用默认存储位置、应用程序包含可用于反序列化攻击的库。影响版本：Apache Tomcat 11.0.0-M1 至 11.0.2、10.1.0-M1 至 10.1.34、9.0.0.M1 至 9.0.98，以及已停止维护的 8.5.0 至 8.5.100。该漏洞已被 CISA 列入已知被利用漏洞目录（KEV）。"
+severity = "CRITICAL"
+source = "nvd"
+published = "2025-03-10"
+updated = "2026-06-17"
+
+[score]
+cvss_v2 = 0.0
+cvss_v2_vector = ""
+cvss_v3 = 9.8
+cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+cvss_v4 = 0.0
+cvss_v4_vector = ""
+
+[affected]
+vendor = "Apache Software Foundation"
+product = "Apache Tomcat"
+
+[exploit]
+poc = [
+  { url = "https://github.com/absholi7ly/POC-CVE-2025-24813", description = "CVE-2025-24813 Apache Tomcat RCE 自动化 PoC 脚本，支持 PUT 检测和反序列化利用", source = "github" },
+  { url = "https://github.com/iSee857/CVE-2025-24813-PoC", description = "Apache Tomcat 远程代码执行漏洞批量检测脚本", source = "github" },
+  { url = "https://github.com/Franconyu/Poc_for_CVE-2025-24813", description = "CVE-2025-24813 PoC 验证脚本", source = "github" },
+  { url = "https://github.com/pirenga/CVE-2025-24813", description = "CVE-2025-24813 Tomcat RCE PoC（Java 实现）", source = "github" },
+  { url = "https://github.com/qzy0x/cve-2025-24813_poc", description = "CVE-2025-24813 验证脚本", source = "github" },
+  { url = "https://github.com/La3B0z/CVE-2025-24813-POC", description = "CVE-2025-24813 JSP Web Shell 上传 PoC", source = "github" },
+  { url = "https://github.com/Erosion2020/CVE-2025-24813-vulhub", description = "CVE-2025-24813 Vulhub 环境 PoC 脚本", source = "github" },
+  { url = "https://github.com/Alaatk/CVE-2025-24813-POC", description = "CVE-2025-24813 Apache Tomcat RCE PoC", source = "github" }
+]
+exp = []
+nuclei_templates = []
+
+[remediation]
+fix = "升级 Apache Tomcat 至安全版本：11.0.3、10.1.35 或 9.0.99。"
+workaround = "如无法升级，可采取以下缓解措施：1）禁用 Default Servlet 的写入功能（readonly=true）；2）禁用部分 PUT（partialPut=false）；3）将会话持久化存储位置移出 web 应用可访问目录。"
+steps = [
+  "步骤1: 确认 Apache Tomcat 版本",
+  "步骤2: 升级到修复版本 11.0.3 / 10.1.35 / 9.0.99",
+  "步骤3: 如无法升级，禁用 Default Servlet 写入（设置 readonly=true）",
+  "步骤4: 禁用部分 PUT 功能（设置 partialPut=false）",
+  "步骤5: 将会话持久化文件存储在 web 应用不可访问的位置"
+]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2025-24813"
+avd = ""
+other = [
+  "https://lists.apache.org/thread/j5fkjv2k477os90nczf2v9l61fb0kkgq",
+  "http://www.openwall.com/lists/oss-security/2025/03/10/5",
+  "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2025-24813",
+  "https://security.netapp.com/advisory/ntap-20250321-0001/",
+  "https://lists.debian.org/debian-lts-announce/2025/04/msg00003.html",
+  "https://www.vicarius.io/vsociety/posts/cve-2025-24813-detect-apache-tomcat-rce",
+  "https://github.com/absholi7ly/POC-CVE-2025-24813"
+]
+
+[tags]
+tags = ["CWE-44", "CWE-502", "CWE-706"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "high"
+notes = "CVE 已由 Apache 官方确认并发布修复版本。CISA 已于 2025-04-01 将该漏洞列入已知被利用漏洞目录（KEV），确认已在野利用。多个独立 PoC 已验证漏洞原理。"
+
+[meta]
+collected_at = "2025-07-10T00:00:00Z"
+status = "completed"
