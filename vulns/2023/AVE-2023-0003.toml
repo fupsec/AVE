@@ -10,7 +10,7 @@ description = "NetScaler ADC和NetScaler Gateway在以网关（VPN虚拟服务�
 severity = "CRITICAL"
 source = "nvd"
 published = "2023-10-10"
-updated = "2024-06-20"
+updated = "2025-06-17"
 
 [score]
 cvss_v2 = 0.0
@@ -26,14 +26,20 @@ product = "NetScaler ADC / NetScaler Gateway"
 
 [exploit]
 poc = [
-  { url = "https://github.com/Chocapikk/CVE-2023-4966", description = "Citrix Bleed会话令牌泄露利用脚本", source = "github" },
-  { url = "https://github.com/assetnote/exploits/blob/main/citrix/CVE-2023-4966/exploit.py", description = "AssetNote原始PoC/EXP利用脚本", source = "github" },
-  { url = "https://github.com/mlynchcogent/CVE-2023-4966-POC", description = "Citrix Bleed PoC验证脚本", source = "github" },
-  { url = "http://packetstormsecurity.com/files/175323/Citrix-Bleed-Session-Token-Leakage-Proof-Of-Concept.html", description = "Citrix Bleed会话令牌泄露PoC", source = "packetstorm" }
+  { url = "https://github.com/Chocapikk/CVE-2023-4966", description = "Citrix Bleed会话令牌泄露利用脚本（79★）", source = "github" },
+  { url = "https://github.com/assetnote/exploits/blob/main/citrix/CVE-2023-4966/exploit.py", description = "AssetNote 原始 PoC/EXP 利用脚本", source = "github" },
+  { url = "https://github.com/mlynchcogent/CVE-2023-4966-POC", description = "Citrix Bleed PoC 验证脚本", source = "github" },
+  { url = "https://github.com/dinosn/citrix_cve-2023-4966", description = "并行化的 Citrix Bleed 会话令牌批量提取工具", source = "github" },
+  { url = "https://github.com/RevoltSecurities/CVE-2023-4966", description = "Citrix Bleed 信息泄露漏洞利用框架", source = "github" },
+  { url = "https://github.com/morganwdavis/overread", description = "Citrix Bleed 内存越界读取模拟器（C 语言实现）", source = "github" },
+  { url = "https://github.com/certat/citrix-logchecker", description = "NetScaler 日志检测工具 - 识别 CVE-2023-4966 利用痕迹", source = "github" },
+  { url = "https://github.com/akshthejo/CVE-2023-4966-exploit", description = "Citrix Bleed 利用脚本", source = "github" },
+  { url = "http://packetstormsecurity.com/files/175323/Citrix-Bleed-Session-Token-Leakage-Proof-Of-Concept.html", description = "Citrix Bleed 会话令牌泄露 PoC", source = "packetstorm" }
 ]
 exp = [
-  { url = "https://github.com/RevoltSecurities/CVE-2023-4966", description = "Citrix Bleed信息泄露漏洞利用框架", source = "github" },
-  { url = "https://github.com/dinosn/citrix_cve-2023-4966", description = "并行化的Citrix Bleed会话令牌批量提取工具", source = "github" }
+  { url = "https://github.com/Chocapikk/CVE-2023-4966", description = "Citrix Bleed 会话令牌泄露 EXP - 支持批量检测和会话提取", source = "github" },
+  { url = "https://github.com/dinosn/citrix_cve-2023-4966", description = "并行化批量会话令牌提取工具", source = "github" },
+  { url = "https://github.com/IceBreakerCode/CVE-2023-4966", description = "Citrix Bleed 基础利用脚本", source = "github" }
 ]
 nuclei_templates = [
   { url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cves/2023/CVE-2023-4966.yaml", description = "Nuclei检测模板 - Citrix Bleed会话令牌泄露", source = "nuclei" }
@@ -63,5 +69,5 @@ poc_confidence = "high"
 notes = "CVE-2023-4966（Citrix Bleed）已在CISA KEV目录中登记，AssetNote等安全研究机构已公开发布详细分析文章和利用工具。多个GitHub仓库提供了可工作的PoC/EXP脚本。漏洞已被广泛利用于野外攻击。"
 
 [meta]
-collected_at = "2026-07-10T10:18:58Z"
+collected_at = "2026-07-10T15:07:53Z"
 status = "completed"

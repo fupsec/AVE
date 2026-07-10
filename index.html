@@ -20,6 +20,7 @@
           </nav>
         </div>
         <p class="hero-lead">AVE（AdySec Vulnerability Exposures）是面向安全运营的多源漏洞知识库，统一输出 AVE 编号与结构化 TOML，并对公开 PoC/EXP 资产进行整理与格式校验。</p>
+        <p class="hero-lead-short">多源聚合漏洞知识库 · AVE/CVE 搜索 · PoC/EXP 查询</p>
       </div>
     </header>
 
@@ -58,8 +59,8 @@
         <h2>漏洞列表</h2>
         <div id="status" class="status">初始化中...</div>
         <div id="spinner" class="spinner" style="display:none;"></div>
-        <section class="project-intro" id="project-intro">
-          <h3>项目说明</h3>
+        <details class="project-intro" id="project-intro" open>
+          <summary><h3>项目说明</h3></summary>
           <p>AVE（AdySec Vulnerability Exposures）是一个面向安全运营的多源漏洞知识库，统一输出 AVE 编号的结构化 TOML 数据，并整理公开的 PoC/EXP 资产。</p>
           <p>系统聚合 NVD、阿里云 AVD、GitHub Advisory、MSRC、Tenable、CISA KEV、Red Hat 等来源，经过 AI 结构化处理后发布。</p>
           <p>漏洞爬取与处理的核心代码暂未开源，当前公开的是漏洞数据、资产文件与展示站点。</p>
@@ -69,7 +70,7 @@
             <li>PoC/EXP 标记：基于仓库中公开文件的真实存在性</li>
             <li>详情页面：<code>detail.html</code> 展示完整字段信息</li>
           </ul>
-        </section>
+        </details>
         <div class="table-wrap">
           <table class="vuln-table">
             <thead>

@@ -1,25 +1,53 @@
 [id]
 ave_id = "AVE-2015-0021"
 cve_id = "CVE-2015-3310"
-aliases = ["CVE-2015-3310"]
+other_ids = []
 
 [basic]
-title = "CVE-2015-3310"
-description = ""
-severity = "UNKNOWN"
-score = 0.0
-sources = ["msrc"]
-published = ""
-updated = ""
-remediation = "Refer to vendor advisory and upgrade to fixed version."
+title = "ppp RADIUS插件rc_mksid函数缓冲区溢出漏洞"
+description = "Paul's PPP Package (ppp) 2.4.6及之前版本中plugins/radius/util.c的rc_mksid函数存在缓冲区溢出漏洞。当pppd的PID大于65535时，远程攻击者通过向RADIUS服务器发送特制的start accounting消息可触发缓冲区溢出，导致拒绝服务（崩溃）。"
+severity = "MEDIUM"
+source = "nvd"
+published = "2015-04-24"
+updated = "2026-06-16"
 
-[references]
-urls = []
+[score]
+cvss_v2 = 4.3
+cvss_v2_vector = "AV:N/AC:M/Au:N/C:N/I:N/A:P"
+
+[affected]
+vendor = "Paul's PPP Package"
+product = "ppp (Point-to-Point Protocol daemon)"
 
 [exploit]
-poc_urls = []
-exp_urls = []
+poc = []
+exp = []
+nuclei_templates = []
+
+[remediation]
+fix = "升级到ppp 2.4.7及以上版本。参考各发行版安全公告：Debian DSA-3228、Ubuntu USN-2595-1、Gentoo GLSA 201701-50。"
+workaround = "如无法升级，可在RADIUS服务器配置中限制可发送start accounting消息的客户端IP范围，或禁用RADIUS计费功能。"
+steps = ["步骤1: 确认ppp版本 (pppd --version)", "步骤2: 升级到ppp 2.4.7或更高版本", "步骤3: 重启pppd服务"]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2015-3310"
+other = [
+  "https://www.debian.org/security/2015/dsa-3228",
+  "https://ubuntu.com/usn/USN-2595-1",
+  "https://security.gentoo.org/glsa/201701-50",
+  "http://advisories.mageia.org/MGASA-2015-0173.html",
+  "http://www.securityfocus.com/bid/74163",
+  "https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=782450"
+]
+
+[tags]
+tags = ["CWE-119", "buffer-overflow", "dos", "radius", "ppp"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "low"
+notes = "该漏洞位于ppp RADIUS插件中，基于RADIUS协议（非HTTP），无法生成HTTP协议PoC脚本。截至2026年7月，未在GitHub、Exploit-DB等公开渠道发现可用PoC/EXP。CVSS v3和v4评分NVD未提供。"
 
 [meta]
+collected_at = "2026-07-11T06:00:00Z"
 status = "completed"
-collected_at = "2026-07-10T10:50:52.712841236+00:00"

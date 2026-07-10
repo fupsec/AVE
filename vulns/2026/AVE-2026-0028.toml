@@ -22,7 +22,8 @@ product = "米拓建站系统（Metinfo CMS）"
 
 [exploit]
 poc = [
-  { url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2018/CNVD-2018-13393.yaml", description = "Metinfo include/thumb.php 本地文件包含 Nuclei 检测模板", source = "nuclei" }
+  { url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2018/CNVD-2018-13393.yaml", description = "Metinfo include/thumb.php 本地文件包含 Nuclei 检测模板", source = "nuclei" },
+  { url = "https://paper.seebug.org/676/", description = "Seebug 文章：Metinfo 多个漏洞分析（含此 LFI）", source = "其他" }
 ]
 exp = []
 nuclei_templates = [

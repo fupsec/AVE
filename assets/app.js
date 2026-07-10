@@ -491,11 +491,16 @@ async function boot() {
 
   setStatus("等待加载");
 
+  // ── Collapse project-intro on small screens ──
+  const intro = document.getElementById("project-intro");
+  if (intro && window.innerWidth < 480) {
+    intro.removeAttribute("open");
+  }
+
   const searchInput = document.getElementById("search");
   const severityInput = document.getElementById("severity");
   const loadFirst = document.getElementById("load-first");
   const searchBtn = document.getElementById("search-btn");
-  const intro = document.getElementById("project-intro");
   const prev = document.getElementById("prev-page");
   const next = document.getElementById("next-page");
 
