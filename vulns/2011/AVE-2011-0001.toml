@@ -1,28 +1,60 @@
 [id]
 ave_id = "AVE-2011-0001"
 cve_id = "CVE-2011-10034"
-aliases = ["CVE-2011-10034"]
+avd_id = ""
+other_ids = []
 
 [basic]
-title = "IRAI AUTOMGEN &lt;= 8.0.0.7 Use-After-Free Remote DoS"
-description = ""
-severity = "UNKNOWN"
-score = 0.0
-sources = [
-    "avd",
-    "msrc",
-]
-published = "2025-11-14"
-updated = ""
-remediation = "Refer to vendor advisory and upgrade to fixed version."
+title = "IRAI AUTOMGEN <= 8.0.0.7 Use-After-Free 远程拒绝服务"
+description = "AUTOMGEN 8.0.0.7及之前版本（也称为8.022）在处理项目文件时存在释放后使用漏洞，当处理某些畸形字段时会释放对象随后解引用悬空指针。攻击者可通过操控内存中的间接调用，导致拒绝服务。在一定条件下可能实现远程代码执行。"
+severity = "MEDIUM"
+source = "nvd"
+published = "2011-10-10"
+updated = "2026-06-16"
 
-[references]
-urls = []
+[score]
+cvss_v2 = 0
+cvss_v2_vector = ""
+cvss_v3 = 0
+cvss_v3_vector = ""
+cvss_v4 = 6.9
+cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:A/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N"
+
+[affected]
+vendor = "IRAI"
+product = "AUTOMGEN"
 
 [exploit]
-poc_urls = []
-exp_urls = []
+poc = [
+  { url = "https://www.exploit-db.com/exploits/17964", description = "Exploit-DB 漏洞利用条目", source = "exploit-db" },
+  { url = "https://gitlab.com/exploit-database/exploitdb-bin-sploits/-/raw/main/bin-sploits/17964.zip", description = "PoC 畸形项目文件（触发 UAF 崩溃）", source = "exploit-db" },
+  { url = "https://aluigi.altervista.org/poc/automgen_1.zip", description = "PoC 畸形项目文件（作者: Luigi Auriemma）", source = "exploit-db" }
+]
+exp = []
+nuclei_templates = []
+
+[remediation]
+fix = "截至报告时厂商未提供修复版本。建议停止使用受影响版本或将 AUTOMGEN 置于隔离环境中运行。"
+workaround = "避免打开来自不可信来源的项目文件（.gep/.gepj）。在隔离环境中运行 AUTOMGEN。"
+steps = ["步骤1: 确认 AUTOMGEN 版本是否 <= 8.0.0.7", "步骤2: 避免打开未知来源的项目文件", "步骤3: 将 AUTOMGEN 置于隔离网络环境中运行"]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2011-10034"
+avd = ""
+other = [
+  { url = "https://www.exploit-db.com/exploits/17964", description = "Exploit-DB 17964" },
+  { url = "https://www.vulncheck.com/advisories/irai-automgen-use-after-free-remote-dos", description = "VulnCheck 安全公告" },
+  { url = "https://en.iraifrance.com/automgen", description = "IRAI 官方产品页面" }
+]
+
+[tags]
+tags = ["CWE-416", "Use-After-Free", "DoS", "Desktop"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "high"
+notes = "漏洞由 Luigi Auriemma 于2011年10月发现并公开，Exploit-DB 17964 包含完整的 PoC 文件。VulnCheck 于2025年分配 CVE 编号。CISA SSVC 评估显示 exploitation 状态为 poc，技术影响为 partial。"
 
 [meta]
+collected_at = "2026-07-10T14:21:00Z"
 status = "completed"
-collected_at = "2026-07-10T11:19:46.393182565+00:00"
