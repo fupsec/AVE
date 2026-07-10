@@ -1,17 +1,14 @@
 [id]
-ave_id = "AVE-2026-0049"
-cve_id = "CVE-2026-49455"
-aliases = [
-    "CVE-2026-49455",
-    "GHSA-75w3-gmqx-993q",
-]
+ave_id = "AVE-2018-0026"
+cve_id = "CVE-2018-25096"
+aliases = ["CVE-2018-25096"]
 
 [basic]
-title = "CVE-2026-49455"
+title = "CVE-2018-25096"
 description = ""
 severity = "UNKNOWN"
 score = 0.0
-sources = ["ghsa"]
+sources = ["avd"]
 published = ""
 updated = ""
 remediation = "Refer to vendor advisory and upgrade to fixed version."
@@ -25,4 +22,4 @@ exp_urls = []
 
 [meta]
 status = "completed"
-collected_at = "2026-07-10T12:52:05.031068662+00:00"
+collected_at = "2026-07-10T12:52:05.030954425+00:00"
