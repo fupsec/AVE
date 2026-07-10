@@ -1,32 +1,25 @@
-[id]
-ave_id = "AVE-1999-0026"
-cve_id = "CVE-1999-0229"
-aliases = ["CVE-1999-0229"]
-
 [basic]
-title = "Microsoft IIS 路径遍历拒绝服务漏洞"
-description = "Windows NT IIS 服务器在处理包含 \"..\\..\" 目录遍历序列的特制 HTTP 请求时存在拒绝服务漏洞。远程攻击者无需身份认证即可通过网络向 IIS 服务发送恶意请求，利用路径遍历攻击导致 IIS 进程崩溃或停止响应，造成服务不可用。该漏洞影响 Microsoft Internet Information Server 4.0 及早期版本。"
-severity = "MEDIUM"
-score = 5.0
-published = "1999-05-12"
-updated = "2026-06-16"
-sources = ["cve", "nvd"]
-remediation = "升级至 Microsoft 官方发布的安全更新版本，或在 IIS 管理器中禁用不必要的虚拟目录，限制 URL 中的路径遍历序列访问。"
-
-[affected]
-vendor = "Microsoft"
-product = "Internet Information Server"
-
-[references]
-urls = [
-    "https://nvd.nist.gov/vuln/detail/CVE-1999-0229",
-    "https://exchange.xforce.ibmcloud.com/vulnerabilities/CVE-1999-0229"
-]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["cve"]
+title = "CVE-1999-0229 漏洞"
+updated = ""
 
 [exploit]
-poc_urls = []
 exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0229"]
+ave_id = "AVE-1999-0026"
+cve_id = "CVE-1999-0229"
 
 [meta]
+collected_at = "2026-07-10T21:33:17.880303869+00:00"
 status = "completed"
-collected_at = "2026-07-10T19:21:41.516562019+00:00"
+
+[references]
+urls = []
