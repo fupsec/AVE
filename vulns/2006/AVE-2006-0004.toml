@@ -34,6 +34,7 @@ steps = ["步骤1: 确认 Microsoft Office 版本 (Office 2000 SP3 / Office XP S
 
 [references]
 nvd = "https://nvd.nist.gov/vuln/detail/CVE-2006-2492"
+avd = ""
 other = [
   { url = "https://docs.microsoft.com/en-us/security-updates/securitybulletins/2006/ms06-027", description = "Microsoft 安全公告 MS06-027" },
   { url = "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2006-2492", description = "CISA KEV 目录" },

