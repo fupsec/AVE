@@ -1,61 +1,64 @@
 [id]
 ave_id = "AVE-2026-0068"
-cve_id = ""
-avd_id = "AVD-2023-1700211"
-other_ids = ["CNVD-2023-12632", "QVD-2023-5012"]
+cve_id = "CVE-2026-49837"
+avd_id = ""
+other_ids = ["GHSA-gjrg-jjr3-56cm"]
 
 [basic]
-title = "泛微E-Cology9 browser.jsp SQL注入漏洞"
-description = "由于泛微e-cology9中对用户前台输入的数据未做校验，未经身份验证的攻击者通过构造恶意数据包（POST /mobile/plugin/browser.jsp），可以在keyword参数中注入SQL语句，最终获取数据库中的敏感信息（如数据库版本、表数据等）。该漏洞为回显型SQL注入，非盲注。影响版本为泛微e-cology V9 < 10.56。"
-severity = "HIGH"
-source = "nuclei"
-published = "2023-03-01"
-updated = "2023-03-17"
+title = "GoBGP BGP OPEN Capability 解析器越界读取漏洞"
+description = "GoBGP 的 BGP OPEN 消息 Capability 解析器存在边界校验缺陷。多个具体 Capability 解码器（CapFourOctetASNumber、CapMultiProtocol、CapGracefulRestart、CapFQDN、CapSoftwareVersion）在调用 DefaultParameterCapability.DecodeFromBytes 后直接使用 data[2:] 全量缓冲区进行解析，而非限制在声明的 CapLen 边界内。攻击者可构造 CapLen=0 的畸形 Capability，使解析器将后续 Capability 的字节误读为当前 Capability 的值。最严重的场景是 4-octet AS Number Capability（Code 65）：CapLen=0 时，紧跟其后的 4 字节会被解析为 AS 号并流入 ValidateOpenMsg 进行 peer AS 验证，从而影响 BGP 会话建立时的 AS 验证逻辑。"
+severity = "MEDIUM"
+source = "ghsa"
+published = "2026-06-02"
+updated = "2026-06-02"
 
 [score]
-cvss_v2 = 7.5
-cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:P/A:P"
-cvss_v3 = 8.6
-cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:N/A:N"
+cvss_v2 = 0.0
+cvss_v2_vector = ""
+cvss_v3 = 5.9
+cvss_v3_vector = "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:N"
 cvss_v4 = 0.0
 cvss_v4_vector = ""
 
 [affected]
-vendor = "泛微 (Weaver)"
-product = "e-cology9 (E-Cology V9)"
+vendor = "osrg"
+product = "GoBGP"
 
 [exploit]
 poc = [
-  { url = "https://github.com/SharpKean/CNVD-2023-12632_POC", description = "泛微e-cology9 SQL注入批量检测POC（Python）", source = "github" },
-  { url = "https://github.com/bgmaopao/CNVD-2023-12632", description = "泛微e-cology9未授权SQL注入漏洞批量探测工具", source = "github" },
-  { url = "https://github.com/ccongc/e-cology9-sql", description = "泛微e-cology9 SQL注入验证脚本（QVD-2023-5012）", source = "github" },
-  { url = "https://github.com/XiaomingX/data-cve-poc/blob/main/frog-poc/CNVD/2023/CNVD-2023-12632.yaml", description = "Nuclei格式PoC模板（frog-poc）", source = "github" },
-  { url = "https://github.com/kuang-zy/2023-Weaver-pocs", description = "泛微OA系列漏洞PoC集合", source = "github" },
-  { url = "https://www.ddpoc.com/poc/DVB-2023-4075.html", description = "泛微E-Cology9 SQL注入漏洞详情", source = "exploit-db" }
+  { url = "https://github.com/osrg/gobgp/security/advisories/GHSA-gjrg-jjr3-56cm", description = "官方安全公告包含解析器级别 PoC 示例（CapLen=0 + 4字节偏移读取 AS 65000）", source = "github" }
 ]
 exp = []
-nuclei_templates = [
-  { url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2023/CNVD-2023-12632.yaml", description = "Nuclei官方检测模板（E-Cology V9 SQL Injection）", source = "nuclei" }
-]
+nuclei_templates = []
 
 [remediation]
-fix = "升级泛微e-cology至10.56及以上版本。官方已发布安全补丁修复该漏洞，请受影响用户尽快升级。"
-workaround = "如暂时无法升级，可通过WAF对/mobile/plugin/browser.jsp路径的keyword参数进行过滤拦截，或限制该路径的外部访问。"
-steps = ["步骤1: 确认当前泛微e-cology版本是否低于10.56", "步骤2: 下载官方安全补丁（https://www.weaver.com.cn/cs/securityDownload.asp#）", "步骤3: 备份数据库和应用后执行升级操作", "步骤4: 升级后验证漏洞是否已修复"]
+fix = "升级 GoBGP 至 4.6.0 或更高版本。补丁提交 f02ca397821f6ca182ef4eb492c3cbc459552d7c 修复了所有受影响的 Capability 解码器，改为从 DefaultParameterCapability.CapValue（已由基类按 CapLen 裁剪的切片）读取，并校验 CapLen 必须匹配所需大小。"
+workaround = "如无法立即升级，可通过防火墙限制 BGP 端口（TCP 179）仅允许受信任的 peer 连接，或使用 BGP TCP MD5/AO 认证机制限制会话建立来源。"
+steps = [
+  "步骤1: 确认 GoBGP 版本，受影响版本为 <= 4.5.0",
+  "步骤2: 升级至 GoBGP >= 4.6.0（github.com/osrg/gobgp/v4）",
+  "步骤3: 若为 Debian/Ubuntu 系统发行版包管理安装，等待或手动编译新版本",
+  "步骤4: 限制 BGP TCP 179 端口的网络访问，仅允许受信任 peer"
+]
 
 [references]
-nvd = ""
-avd = "https://avd.aliyun.com/detail?id=AVD-2023-1700211"
-other = ["https://blog.csdn.net/qq_50854662/article/details/129992329", "https://www.chaosec.com/?p=1373", "https://cn-sec.com/archives/1608338.html", "https://cn-sec.com/archives/1710341.html", "https://www.cnblogs.com/pursue-security/p/17677330.html", "https://www.zhihu.com/tardis/zm/art/625931869?source_id=1003", "https://rivers.chaitin.cn/blog/cqli76h0lnec5jjug6hg"]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2026-49837"
+avd = ""
+other = [
+  "https://github.com/osrg/gobgp/security/advisories/GHSA-gjrg-jjr3-56cm",
+  "https://github.com/osrg/gobgp/commit/f02ca397821f6ca182ef4eb492c3cbc459552d7c",
+  "https://vulert.com/vuln-db/--4591",
+  "https://www.tenable.com/plugins/nessus/318736"
+]
 
 [tags]
-tags = ["CWE-89", "SQL注入", "泛微", "e-cology", "CNVD-2023-12632", "未授权"]
+tags = ["CWE-125", "OOB-Read", "BGP", "GoBGP", "protocol-parsing"]
 
 [authenticity]
 cve_confidence = "high"
-poc_confidence = "high"
-notes = "该漏洞存在多个独立PoC和Nuclei模板，已被广泛验证和利用。泛微官方已确认并发布补丁。"
+poc_confidence = "medium"
+notes = "NVD 尚未收录此 CVE（显示 CVE ID Not Found），但 GHSA 安全公告及修复提交均已确认漏洞存在。PoC 为解析器级别验证（无需完整 BGP 会话），由安全公告作者提供。无已知的野外利用或 exploit-db/sploitus 公开利用脚本。"
 
 [meta]
-collected_at = "2026-07-10T12:00:00Z"
+collected_at = "2026-07-10T00:00:00Z"
 status = "completed"
