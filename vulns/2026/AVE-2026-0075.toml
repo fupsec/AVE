@@ -10,11 +10,11 @@ poc_confidence = "high"
 [basic]
 description = "Palo Alto Networks PAN-OS 软件的 User-ID™ Authentication Portal（又称 Captive Portal）服务存在缓冲区溢出漏洞，未经身份验证的攻击者可通过发送特制数据包在 PA-Series 和 VM-Series 防火墙上以 root 权限执行任意代码。Prisma Access、Cloud NGFW 和 Panorama 设备不受影响。"
 published = "2026-05-06"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
+remediation = "升级 PAN-OS 到修复版本，限制 User-ID 认证门户仅允许可信内部 IP 访问。"
 score = 9.8
 severity = "CRITICAL"
 source = "nvd"
-sources = ["unknown"]
+sources = ["github", "nvd", "cisa-kev"]
 title = "Palo Alto Networks PAN-OS User-ID™ 认证门户缓冲区溢出漏洞"
 updated = "2026-06-17"
 
@@ -28,10 +28,9 @@ source = "github"
 url = "https://github.com/p3Nt3st3r-sTAr/CVE-2026-0300-POC"
 
 [id]
-avd_id = ""
+aliases = ["CVE-2026-0300"]
 ave_id = "AVE-2026-0075"
 cve_id = "CVE-2026-0300"
-other_ids = []
 
 [meta]
 collected_at = "2026-07-11T10:18:58Z"
