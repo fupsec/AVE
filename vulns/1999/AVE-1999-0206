@@ -1,0 +1,25 @@
+[id]
+ave_id = "AVE-1999-0206"
+cve_id = "CVE-1999-0077"
+aliases = ["CVE-1999-0077"]
+
+[basic]
+title = "CVE-1999-0077"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["redhat"]
+published = ""
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T14:24:57.070702565+00:00"
