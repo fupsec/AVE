@@ -26,10 +26,10 @@ product = "BIND 4.9 / 8.x"
 
 [exploit]
 poc = [
-  { url = "https://www.exploit-db.com/exploits/19112", description = "ISC BIND 远程缓冲区溢出 PoC 利用代码", source = "exploit-db" }
+  { url = "https://www.exploit-db.com/exploits/19112", description = "ISC BIND 远程缓冲区溢出 PoC 利用代码", source = "exploitdb" }
 ]
 exp = [
-  { url = "https://www.exploit-db.com/exploits/19112", description = "ISC BIND 远程缓冲区溢出 EXP 利用脚本", source = "exploit-db" }
+  { url = "https://www.exploit-db.com/exploits/19112", description = "ISC BIND 远程缓冲区溢出 EXP/exploit，包含完整 shellcode，可获取远程 shell", source = "exploitdb" }
 ]
 nuclei_templates = []
 
@@ -44,13 +44,13 @@ avd = ""
 other = ["http://www.securityfocus.com/bid/134", "https://www.exploit-db.com/exploits/19112", "ftp://patches.sgi.com/support/free/security/advisories/19980603-01-PX", "http://sunsolve.sun.com/pub-cgi/retrieve.pl?doctype=coll&doc=secbull/180", "http://www1.itrc.hp.com/service/cki/docDisplay.do?docId=HPSBUX9808-083"]
 
 [tags]
-tags = ["CWE-119", "Buffer-Overflow", "BIND", "DNS", "RCE", "Remote"]
+tags = ["CWE-119", "Buffer-Overflow", "BIND", "DNS", "RCE", "Remote", "IQUERY"]
 
 [authenticity]
 cve_confidence = "high"
 poc_confidence = "high"
-notes = "CVE-1999-0009 是 BIND 历史上最著名的远程缓冲区溢出漏洞之一，CVSS v2.0 评分 10.0。Exploit-DB 上有公开利用代码（EDB-19112）。多个厂商（SGI、Sun、HP）发布了安全公告。"
+notes = "CVE-1999-0009 是 BIND 历史上最著名的远程缓冲区溢出漏洞之一，CVSS v2.0 评分 10.0。Exploit-DB 上有公开利用代码（EDB-19112），包含完整的 shellcode，可在多种 Linux 发行版上执行远程代码。ISC、SGI、Sun、HP 等多家厂商发布了安全公告。漏洞 PoC/EXP 已在 Bugtraq 邮件列表公开传播，真实性确认。"
 
 [meta]
-collected_at = "2026-07-10T00:00:00Z"
+collected_at = "2026-07-10T18:00:00Z"
 status = "completed"
