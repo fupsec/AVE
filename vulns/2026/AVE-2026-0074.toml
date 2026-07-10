@@ -10,11 +10,11 @@ poc_confidence = "high"
 [basic]
 description = "adbd（Android Debug Bridge Daemon）的 adbd_tls_verify_cert 函数中存在认证绕过漏洞。由于 EVP_PKEY_cmp 类型混淆（type confusion）逻辑错误，攻击者可绕过无线 ADB 双向认证机制，在无需用户交互的情况下，以 shell 用户身份在相邻网络中远程执行代码。"
 published = "2026-05-04"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 7.5
+remediation = "升级到 Android 安全公告 2026-05-01 中对应修复版本或关闭无线 ADB 调试。"
+score = 8.8
 severity = "HIGH"
 source = "android"
-sources = ["unknown"]
+sources = ["android-security-bulletin", "nvd", "github"]
 title = "Android ADB 无线调试 TLS 证书验证认证绕过漏洞"
 updated = "2026-06-17"
 
@@ -62,6 +62,7 @@ source = "github"
 url = "https://github.com/ctnBobong32/CVE-2026-0073-Android-ADBD-bypass-POC_zh_CN"
 
 [id]
+aliases = ["CVE-2026-0073"]
 ave_id = "AVE-2026-0074"
 cve_id = "CVE-2026-0073"
 other_ids = []
