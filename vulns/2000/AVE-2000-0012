@@ -1,17 +1,14 @@
 [id]
-ave_id = "AVE-2026-0053"
-cve_id = "CVE-2026-49471"
-aliases = [
-    "CVE-2026-49471",
-    "GHSA-37h2-6p4f-mp3q",
-]
+ave_id = "AVE-2000-0012"
+cve_id = "CVE-2000-0196"
+aliases = ["CVE-2000-0196"]
 
 [basic]
-title = "CVE-2026-49471"
+title = "CVE-2000-0196"
 description = ""
 severity = "UNKNOWN"
 score = 0.0
-sources = ["ghsa"]
+sources = ["redhat"]
 published = ""
 updated = ""
 remediation = "Refer to vendor advisory and upgrade to fixed version."
@@ -25,4 +22,4 @@ exp_urls = []
 
 [meta]
 status = "completed"
-collected_at = "2026-07-10T12:52:47.707792305+00:00"
+collected_at = "2026-07-10T12:52:47.708081623+00:00"
