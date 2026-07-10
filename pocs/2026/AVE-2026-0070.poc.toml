@@ -1,0 +1,21 @@
+[info]
+id = "POC-AVE-2026-0070"
+name = "Open WebUI Response Message iFrame Stored XSS"
+author = "AVE"
+severity = "high"
+tags = ["xss", "stored-xss", "open-webui", "iframe"]
+description = "Open WebUI 0.6.44 之前版本中，响应消息的 iFrame 嵌入了 allow-scripts 和 allow-same-origin 沙箱属性，结合用户可控的 embeds 属性可导致存储型 XSS。通过检测 /api/version 接口确认版本是否受影响。"
+vuln_id = ["CVE-2026-26193", "AVE-2026-0070", "GHSA-vjm7-m4xh-7wrc"]
+
+[poc]
+logic = "all"
+
+[[poc.requests]]
+method = "GET"
+path = "/api/version"
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["open-webui"]
+expect = true

