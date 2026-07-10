@@ -27,6 +27,7 @@ poc = []
 avd_id = ""
 ave_id = "AVE-2006-0006"
 cve_id = "CVE-2006-4339"
+aliases = ["CVE-2006-4339"]
 other_ids = []
 
 [meta]
