@@ -27,7 +27,8 @@ product = "imapd 10.234, Messaging Server 3.55"
 [exploit]
 poc = []
 exp = [
-  { url = "https://www.exploit-db.com/exploits/19107", description = "UW imapd 10.234 / Netscape Messaging Server 3.55 远程栈溢出 EXP（i386 BSD/Linux）", source = "exploitdb" }
+  { url = "https://www.exploit-db.com/exploits/19107", description = "UW imapd 10.234 / Netscape Messaging Server 3.55 远程栈溢出 EXP（i386 BSD/Linux）", source = "exploitdb" },
+  { url = "https://gitlab.com/exploit-database/exploitdb/-/raw/main/exploits/linux/remote/19107.c", description = "UW imapd 远程栈溢出 EXP 源码（GitLab 镜像）", source = "exploitdb" }
 ]
 nuclei_templates = []
 
