@@ -1,25 +1,44 @@
-[basic]
-description = "Vulnerability identified as CVE-2007-2445. Please refer to vendor advisory for details."
-published = "2026-07-10"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 5.0
-severity = "MEDIUM"
-sources = ["tenable"]
-title = "CVE-2007-2445 vulnerability"
-updated = "2026-07-10"
-
-[exploit]
-exp_urls = []
-poc_urls = []
-
 [id]
-aliases = ["CVE-2007-2445"]
 ave_id = "AVE-2007-0005"
 cve_id = "CVE-2007-2445"
+aliases = ["CVE-2007-2445"]
 
-[meta]
-collected_at = "2026-07-10T19:14:40.038763253+00:00"
-status = "completed"
+[basic]
+title = "libpng tRNS块CRC校验拒绝服务漏洞"
+description = "libpng的png_handle_tRNS函数在处理tRNS透明块时存在缺陷，未能正确校验灰度PNG图像中tRNS块的CRC校验值。远程攻击者可通过构造特制的灰度PNG图像，诱使用户或应用程序解析该图像，触发png_handle_tRNS函数中的越界访问导致应用程序崩溃，造成拒绝服务。该漏洞影响libpng 1.0.25之前及1.2.x系列1.2.17之前的所有版本，攻击无需身份验证且复杂度较低。"
+severity = "MEDIUM"
+score = 5.0
+remediation = "升级libpng至1.0.25或1.2.17及以上版本。各Linux发行版已发布安全更新（如Debian DSA-1613、Gentoo GLSA 200705-24、Ubuntu USN-472-1等），建议用户及时安装对应补丁。"
+published = "2007-05-16"
+updated = "2026-06-16"
+sources = ["tenable", "nvd"]
+
+[score]
+cvss_v2 = 5.0
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:N/A:P"
+
+[affected]
+vendor = "libpng"
+product = "libpng"
 
 [references]
-urls = []
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2007-2445"
+other = [
+    "http://www.libpng.org/pub/png/libpng.html",
+    "http://sourceforge.net/project/shownotes.php?release_id=508653",
+    "http://www.redhat.com/support/errata/RHSA-2007-0356.html",
+    "http://www.debian.org/security/2008/dsa-1613",
+    "http://www.gentoo.org/security/en/glsa/glsa-200705-24.xml",
+    "http://www.ubuntu.com/usn/usn-472-1",
+    "http://secunia.com/advisories/25268",
+    "http://www.securityfocus.com/bid/24000",
+    "https://exchange.xforce.ibmcloud.com/vulnerabilities/34340",
+]
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+collected_at = "2026-07-11T00:00:00Z"
+status = "completed"
