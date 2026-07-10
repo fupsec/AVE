@@ -1,25 +1,50 @@
 [id]
 ave_id = "AVE-1999-0013"
 cve_id = "CVE-1999-0221"
-aliases = ["CVE-1999-0221"]
+other_ids = []
 
 [basic]
-title = "CVE-1999-0221"
-description = ""
-severity = "UNKNOWN"
-score = 0.0
-sources = ["cve"]
-published = ""
-updated = ""
-remediation = "Refer to vendor advisory and upgrade to fixed version."
+title = "Ascend 路由器远程管理端口拒绝服务漏洞"
+description = "Ascend 路由器（Lucent）的远程管理端口（TCP 150）存在拒绝服务漏洞。远程攻击者无需认证即可通过网络发送特制数据包，导致路由器远程管理服务崩溃或停止响应，从而中断网络管理功能。"
+severity = "MEDIUM"
+source = "nvd"
+published = "1999-03-01"
+updated = "2026-06-16"
 
-[references]
-urls = []
+[score]
+cvss_v2 = 5.0
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:N/A:P"
+cvss_v3 = 0.0
+cvss_v3_vector = ""
+cvss_v4 = 0.0
+cvss_v4_vector = ""
+
+[affected]
+vendor = "Lucent"
+product = "Ascend Routers"
 
 [exploit]
-poc_urls = []
-exp_urls = []
+poc = []
+exp = []
+nuclei_templates = []
+
+[remediation]
+fix = "联系 Lucent（现隶属于 Nokia/阿尔卡特朗讯）获取官方修复方案。由于该产品已停止支持，建议升级到受支持的路由器设备。"
+workaround = "在网络边界防火墙处限制对 TCP 端口 150 的入站访问，仅允许已知可信管理 IP 地址连接。"
+steps = ["步骤1: 在防火墙上限制对 TCP 端口 150（Ascend 远程管理）的入站访问", "步骤2: 如不需要远程管理功能，在路由器配置中禁用它", "步骤3: 将路由器固件升级到最新版本（如厂商仍提供支持）"]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0221"
+other = ["https://www.cve.org/CVERecord?id=CVE-1999-0221"]
+
+[tags]
+tags = ["NVD-CWE-Other", "DoS", "Ascend", "Router", "Lucent", "Port-150", "Remote-Administration"]
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "none"
+notes = "漏洞由 MITRE/NVD 收录并确认。CVSS v2 5.0 MEDIUM。未发现任何公开 PoC 或利用代码。由于该漏洞年代久远（1999 年）且涉及非 HTTP 协议（Telnet/远程管理），无法生成自动化 HTTP PoC 验证脚本。Ascend 已被 Lucent 收购，产品早已停产，建议用户迁移到受支持的替代方案。"
 
 [meta]
+collected_at = "2026-07-10T11:55:29Z"
 status = "completed"
-collected_at = "2026-07-10T10:50:53.857682264+00:00"
