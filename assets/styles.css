@@ -395,14 +395,14 @@ body {
 }
 
 .year-breakdown {
-  margin-top: 0.6rem;
+  margin-top: 0.5rem;
   border-top: 1px solid var(--line);
-  padding-top: 0.6rem;
+  padding-top: 0.45rem;
 }
 
 .year-breakdown h3 {
-  margin: 0 0 0.45rem;
-  font-size: 0.82rem;
+  margin: 0 0 0.3rem;
+  font-size: 0.8rem;
   color: #bfdbfe;
   font-weight: 600;
 }
@@ -413,21 +413,21 @@ body {
 
 .year-table {
   width: 100%;
-  min-width: 200px;
+  min-width: 180px;
   border-collapse: separate;
   border-spacing: 0;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   border: 1px solid #2a3a55;
-  border-radius: 8px;
+  border-radius: 6px;
   overflow: hidden;
   background: #0b1220;
 }
 
 .year-table thead th {
   text-align: left;
-  padding: 0.32rem 0.45rem;
+  padding: 0.22rem 0.45rem;
   font-weight: 600;
-  font-size: 0.68rem;
+  font-size: 0.66rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: #94a3b8;
@@ -449,9 +449,9 @@ body {
 }
 
 .year-table tbody td {
-  padding: 0.28rem 0.45rem;
+  padding: 0.18rem 0.45rem;
   color: #cbd5e1;
-  border-bottom: 1px solid rgba(42, 58, 85, 0.35);
+  border-bottom: 1px solid rgba(42, 58, 85, 0.3);
 }
 
 .year-table tbody tr:last-child td {
@@ -475,6 +475,7 @@ body {
   font-weight: 700;
   color: #e5e7eb;
   background: rgba(52, 211, 153, 0.07);
+  padding: 0.22rem 0.45rem;
 }
 
 .year-table .total td.num:first-of-type { color: #fca5a5; }
