@@ -1,34 +1,25 @@
-[id]
-ave_id = "AVE-2021-0001"
-cve_id = "CVE-2021-47658"
-aliases = ["CVE-2021-47658"]
-other_ids = []
-
 [basic]
-title = "Linux 内核 AMD GPU 驱动存在内存泄漏漏洞"
-description = "Linux 内核 AMD GPU 驱动(drm/amd/pm)中，gpu_metrics_table 内存在 renoir_init_smc_tables() 函数中分配，但在 smu_v12_0_fini_smc_tables() 函数中未释放，导致潜在的内存泄漏漏洞。该漏洞影响内核版本 5.10 至 5.17，本地攻击者可利用此漏洞造成系统拒绝服务。"
-severity = "MEDIUM"
-score = 5.5
-cvss_v3 = 5.5
-cvss_v3_vector = "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H"
-remediation = "升级 Linux 内核至 5.17 或更高版本，或应用补丁 583637d66a70fc7090e12fb0ebbacc33d39e2214。"
-published = "2025-02-26"
-updated = "2026-06-17"
-sources = ["nvd", "msrc", "kernel.org"]
-
-[affected]
-vendor = "Linux"
-product = "Linux Kernel"
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2021-47658"
-other = ["https://git.kernel.org/stable/c/583637d66a70fc7090e12fb0ebbacc33d39e2214"]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["msrc"]
+title = "CVE-2021-47658 漏洞"
+updated = ""
 
 [exploit]
-poc_urls = []
 exp_urls = []
-nuclei_templates = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2021-47658"]
+ave_id = "AVE-2021-0001"
+cve_id = "CVE-2021-47658"
 
 [meta]
+collected_at = "2026-07-10T21:31:19.954875229+00:00"
 status = "completed"
-collected_at = "2026-07-11T00:00:00Z"
+
+[references]
+urls = []
