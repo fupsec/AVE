@@ -1,72 +1,25 @@
-[affected]
-product = "XML::Parser"
-vendor = "TODDR"
-
-[authenticity]
-cve_confidence = "high"
-notes = "该漏洞为非 HTTP 协议的 Perl 库堆缓冲区溢出漏洞，无公开 PoC 脚本或 EXP 利用脚本。补丁于 2006 年已在 CPAN Request Tracker 中提供。"
-poc_confidence = "low"
-
 [basic]
-description = "XML::Parser 版本 2.45 及之前版本存在堆缓冲区溢出漏洞。在 Perl 中使用 :utf8 PerlIO 层时，parse_stream() 函数（Expat.xs）可能溢出 XML 输入缓冲区，因为 Perl 的 read() 返回解码后的字符，而 SvPV() 返回的 UTF-8 多字节数据可能超过预分配的缓冲区大小，导致堆损坏（double free）和崩溃。"
-published = "2026-03-19"
-remediation = "升级XML::Parser至2.46或更高版本，该版本修复了解析:utf8 PerlIO层时parse_stream()函数中的堆缓冲区溢出问题。"
-score = 7.5
-severity = "HIGH"
-source = "nvd"
-sources = ["msrc", "nvd"]
-title = "XML::Parser 堆缓冲区溢出漏洞"
-updated = "2026-06-16"
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["msrc"]
+title = "CVE-2006-10002 漏洞"
+updated = ""
 
 [exploit]
-exp = []
-nuclei_templates = []
-poc = []
+exp_urls = []
+poc_urls = []
 
 [id]
 aliases = ["CVE-2006-10002"]
-avd_id = ""
 ave_id = "AVE-2006-0002"
 cve_id = "CVE-2006-10002"
-other_ids = []
 
 [meta]
-collected_at = "2026-07-11T00:00:00Z"
+collected_at = "2026-07-10T20:51:33.497264864+00:00"
 status = "completed"
 
 [references]
-avd = ""
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2006-10002"
-other = [
-    "http://www.openwall.com/lists/oss-security/2026/03/19/1",
-    "http://www.openwall.com/lists/oss-security/2026/03/22/3",
-    "https://github.com/cpan-authors/XML-Parser/issues/64",
-    "https://github.com/cpan-authors/XML-Parser/commit/56b0509dfc6b559cd7555ea81ee62e3622069255.patch",
-    "https://metacpan.org/release/TODDR/XML-Parser-2.46/changes",
-    "https://rt.cpan.org/Ticket/Display.html?id=19859",
-]
-
-[remediation]
-fix = "升级到 XML::Parser 2.48 或更高版本。"
-steps = [
-    "步骤 1: 确认当前 XML::Parser 版本",
-    "步骤 2: 升级到 2.48 或更高版本，或应用官方补丁",
-]
-workaround = "应用自 2006-06-13 起公开可用的补丁：https://github.com/cpan-authors/XML-Parser/commit/56b0509dfc6b559cd7555ea81ee62e3622069255"
-
-[score]
-cvss_v2 = 7.8
-cvss_v2_vector = "AV:N/AC:L/Au:N/C:C/I:N/A:N"
-cvss_v3 = 7.5
-cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
-cvss_v4 = 0.0
-cvss_v4_vector = ""
-
-[tags]
-tags = [
-    "CWE-122",
-    "CWE-176",
-    "heap-overflow",
-    "perl",
-    "xml",
-]
+urls = []
