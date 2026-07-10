@@ -1,25 +1,25 @@
+[basic]
+description = "Vulnerability identified as CVE-2020-13949. Please refer to vendor advisory for details."
+published = "2026-07-10"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 5.0
+severity = "MEDIUM"
+sources = ["msrc"]
+title = "CVE-2020-13949"
+updated = "2026-07-10"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
 [id]
+aliases = ["CVE-2020-13949"]
 ave_id = "AVE-2020-0001"
 cve_id = "CVE-2020-13949"
-aliases = ["CVE-2020-13949"]
 
-[basic]
-title = "CVE-2020-13949"
-description = ""
-severity = "UNKNOWN"
-score = 0.0
-sources = ["msrc"]
-published = ""
-updated = ""
-remediation = "Refer to vendor advisory and upgrade to fixed version."
+[meta]
+collected_at = "2026-07-10T18:11:00.912874568+00:00"
+status = "completed"
 
 [references]
 urls = []
-
-[exploit]
-poc_urls = []
-exp_urls = []
-
-[meta]
-status = "completed"
-collected_at = "2026-07-10T15:19:52.189198191+00:00"

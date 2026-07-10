@@ -1,11 +1,11 @@
 [basic]
-description = "Vulnerability identified as CVE-2026-0770. Please refer to vendor advisory for details."
+description = "Vulnerability identified as CVE-2026-48598. Please refer to vendor advisory for details."
 published = "2026-07-10"
 remediation = "Refer to vendor advisory and upgrade to fixed version."
 score = 5.0
 severity = "MEDIUM"
-sources = ["github"]
-title = "CVE-2026-0770"
+sources = ["ghsa"]
+title = "CVE-2026-48598"
 updated = "2026-07-10"
 
 [exploit]
@@ -13,12 +13,15 @@ exp_urls = []
 poc_urls = []
 
 [id]
-aliases = ["CVE-2026-0770"]
+aliases = [
+    "CVE-2026-48598",
+    "GHSA-28jh-g32x-v9v4",
+]
 ave_id = "AVE-2026-0078"
-cve_id = "CVE-2026-0770"
+cve_id = "CVE-2026-48598"
 
 [meta]
-collected_at = "2026-07-10T18:07:30.851280692+00:00"
+collected_at = "2026-07-10T18:10:01.454047722+00:00"
 status = "completed"
 
 [references]
