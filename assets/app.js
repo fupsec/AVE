@@ -246,6 +246,22 @@ function sortCards(cards) {
   });
 }
 
+function renderError(msg) {
+  const tbody = document.getElementById("list-body");
+  if (tbody) tbody.innerHTML = "";
+  const tr = document.createElement("tr");
+  const td = document.createElement("td");
+  td.colSpan = 8;
+  td.className = "table-empty";
+  td.style.color = "#fca5a5";
+  td.textContent = msg;
+  tr.appendChild(td);
+  if (tbody) tbody.appendChild(tr);
+  document.getElementById("page-info").textContent = "第 0 / 0 页（共 0 条）";
+  document.getElementById("prev-page").disabled = true;
+  document.getElementById("next-page").disabled = true;
+}
+
 function renderPager() {
   document.getElementById("page-info").textContent = `第 ${state.page} / ${state.totalPages} 页（共 ${state.total} 条）`;
   document.getElementById("prev-page").disabled = state.page <= 1;
@@ -328,7 +344,6 @@ function filterBySeverity(cards) {
 async function searchViaCodeApi(keyword, page) {
   let q = `repo:${GH.owner}/${GH.repo} path:vulns extension:toml`;
   if (keyword && keyword.trim()) q += ` ${keyword.trim()}`;
-  if (state.severity) q += ` severity:"${state.severity}"`;
   const data = await gh(`https://api.github.com/search/code?q=${enc(q)}&per_page=${PAGE_SIZE}&page=${page}`);
   state.mode = "search";
   state.total = Math.min(data.total_count || 0, 1000);
@@ -400,22 +415,36 @@ async function fetchListPage(keyword, page) {
 async function runPage(page) {
   const token = ++loadToken;
   state.page = Math.max(1, page);
+  state.loaded = false;
   showLoading(true);
   setStatus("正在调用 GitHub API 搜索...");
 
-  const rawList = await fetchListPage(state.keyword, state.page);
-  if (token !== loadToken) return;
-
-  const assetIndex = await ensureAssetIndex();
-  if (token !== loadToken) return;
+  let rawList, assetIndex;
+  try {
+    rawList = await fetchListPage(state.keyword, state.page);
+    if (token !== loadToken) return;
+    assetIndex = await ensureAssetIndex();
+    if (token !== loadToken) return;
+  } catch (e) {
+    showLoading(false);
+    renderError(`⚠ ${e.message}`);
+    setStatus(`搜索失败：${e.message}`);
+    return;
+  }
 
   const cards = [];
   for (const item of rawList) {
-    const text = await fetchText(item);
+    let text;
+    try {
+      text = await fetchText(item);
+    } catch {
+      continue;
+    }
     cards.push(toCard(item, text, assetIndex));
   }
   if (token !== loadToken) return;
 
+  // Severity filtering is always done client-side (GitHub code search cannot filter by TOML content)
   state.lastCards = sortCards(cards);
   const finalCards = filterBySeverity(state.lastCards);
   state.loaded = true;
@@ -424,7 +453,7 @@ async function runPage(page) {
   updateSortIndicators();
   saveUrlState();
   showLoading(false);
-  setStatus(`已显示第 ${state.page} 页，当前模式：${state.mode === "search" ? "Code Search" : "Tree Fallback"}。`);
+  setStatus(`已显示第 ${state.page} 页（共 ${state.total} 条），当前模式：${state.mode === "search" ? "Code Search" : "Tree Fallback"}。`);
 }
 
 function debounce(fn, wait) {
@@ -458,11 +487,9 @@ async function boot() {
   const rerun = debounce(() => {
     state.keyword = searchInput.value || "";
     state.severity = severityInput.value || "";
-    runPage(1)
-      .then(() => {
-        if (intro) intro.style.display = "none";
-      })
-      .catch((e) => setStatus(`搜索失败：${e.message}`));
+    runPage(1).then(() => {
+      if (intro) intro.style.display = "none";
+    });
   }, 300);
 
   searchBtn.addEventListener("click", rerun);
@@ -475,11 +502,9 @@ async function boot() {
     state.severity = "";
     searchInput.value = "";
     severityInput.value = "";
-    runPage(1)
-      .then(() => {
-        if (intro) intro.style.display = "none";
-      })
-      .catch((e) => setStatus(`加载失败：${e.message}`));
+    runPage(1).then(() => {
+      if (intro) intro.style.display = "none";
+    });
   });
   searchInput.addEventListener("keydown", (e) => {
     if (e.key === "Enter") rerun();
@@ -517,25 +542,23 @@ async function boot() {
       setStatus("尚未加载列表，请先点击“开始加载”。");
       return;
     }
-    runPage(state.page - 1).catch((e) => setStatus(`翻页失败：${e.message}`));
+    runPage(state.page - 1);
   });
   next.addEventListener("click", () => {
     if (!state.loaded) {
       setStatus("尚未加载列表，请先点击“开始加载”。");
       return;
     }
-    runPage(state.page + 1).catch((e) => setStatus(`翻页失败：${e.message}`));
+    runPage(state.page + 1);
   });
   renderPager();
   updateSortIndicators();
 
   // ── Auto-load if URL has search params ──
   if (urlState.keyword || urlState.severity) {
-    runPage(urlState.page)
-      .then(() => {
-        if (intro) intro.style.display = "none";
-      })
-      .catch((e) => setStatus(`搜索失败：${e.message}`));
+    runPage(urlState.page).then(() => {
+      if (intro) intro.style.display = "none";
+    });
   }
 }
 
