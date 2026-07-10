@@ -1,71 +1,25 @@
-[affected]
-product = "OpenSSL"
-vendor = "OpenSSL Software Foundation"
-
-[authenticity]
-cve_confidence = "high"
-notes = "CVE-2006-4339 是 OpenSSL 的 RSA 签名验证绕过漏洞。NVD/Red Hat/Debian 等均确认该漏洞描述。该漏洞为密码学层面的设计缺陷，无公用 HTTP PoC/EXP。OpenOffice.org 等下游产品因捆绑受影响 OpenSSL 版本而受波及。"
-poc_confidence = "none"
-
 [basic]
-description = "OpenSSL 0.9.7 之前版本、0.9.7 至 0.9.7k 之前版本、0.9.8 至 0.9.8c 之前版本，在使用指数为 3 的 RSA 密钥时，会在生成哈希之前移除 PKCS-1 填充，从而允许远程攻击者伪造由该 RSA 密钥签名的 PKCS #1 v1.5 签名，并阻止 OpenSSL 正确验证使用 PKCS #1 的 X.509 及其他证书。该漏洞广泛影响使用受影响 OpenSSL 版本的各类下游产品（如 OpenOffice.org、BIND、OpenVPN 等）。"
-published = "2006-09-05"
-remediation = "升级 OpenSSL 到 0.9.7k、0.9.8c 或更高版本。避免使用指数为 3 的 RSA 证书密钥。"
-score = 5.5
-severity = "MEDIUM"
-source = "nvd"
-sources = ["nvd", "tenable"]
-title = "OpenSSL RSA 签名伪造漏洞（PKCS #1 v1.5）"
-updated = "2026-07-10"
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["tenable"]
+title = "CVE-2006-4339 漏洞"
+updated = ""
 
 [exploit]
-exp = []
-nuclei_templates = []
-poc = []
+exp_urls = []
+poc_urls = []
 
 [id]
-avd_id = ""
+aliases = ["CVE-2006-4339"]
 ave_id = "AVE-2006-0006"
 cve_id = "CVE-2006-4339"
-aliases = ["CVE-2006-4339"]
-other_ids = []
 
 [meta]
-collected_at = "2026-07-10T12:52:01Z"
+collected_at = "2026-07-10T21:31:29.023119390+00:00"
 status = "completed"
 
 [references]
-avd = ""
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2006-4339"
-other = [
-    "https://www.openssl.org/news/secadv_20060905.txt",
-    "https://access.redhat.com/security/cve/CVE-2006-4339",
-    "https://security-tracker.debian.org/tracker/CVE-2006-4339",
-    "http://www.kb.cert.org/vuls/id/845620",
-    "http://www.openoffice.org/security/cves/CVE-2006-4339.html",
-]
-
-[remediation]
-fix = "升级 OpenSSL 到 0.9.7k、0.9.8c 或更高版本。参考 OpenSSL 官方安全公告 https://www.openssl.org/news/secadv_20060905.txt"
-steps = [
-    "步骤1: 确认 OpenSSL 版本",
-    "步骤2: 升级到 0.9.7k/0.9.8c 或更高版本",
-    "步骤3: 重新编译链接受影响 OpenSSL 的应用程序",
-]
-workaround = "避免使用指数为 3 的 RSA 证书，或使用更严格的签名验证方案。"
-
-[score]
-cvss_v2 = 4.3
-cvss_v2_vector = "AV:N/AC:M/Au:N/C:P/I:N/A:N"
-cvss_v3 = 5.5
-cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N"
-cvss_v4 = 5.1
-cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:L/VI:N/VA:N/SC:N/SI:N/SA:N"
-
-[tags]
-tags = [
-    "CWE-310",
-    "Crypto",
-    "Signature-Forgery",
-    "RSA",
-]
+urls = []
