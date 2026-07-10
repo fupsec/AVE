@@ -2,12 +2,12 @@
 ave_id = "AVE-2020-0002"
 cve_id = "CVE-2020-26247"
 avd_id = ""
-other_ids = []
+other_ids = ["GHSA-vr8q-g5c7-m54m"]
 
 [basic]
 title = "Nokogiri XML::Schema 默认信任输入导致 XXE 漏洞"
-description = "Nokogiri 是一个提供 HTML、XML、SAX 和 Reader 解析器的 Rubygem，支持 XPath 和 CSS 选择器。在 Nokogiri 1.11.0.rc4 之前版本中，存在 XML 外部实体（XXE）漏洞。Nokogiri::XML::Schema 解析的 XML Schema 默认被信任，允许通过网络访问外部资源，可能导致 XXE 或 SSRF 攻击。"
-severity = "MEDIUM"
+description = "Nokogiri 是一个提供 HTML、XML、SAX 和 Reader 解析器并支持 XPath 和 CSS 选择器的 Ruby gem。在 Nokogiri 1.11.0.rc4 之前版本中，Nokogiri::XML::Schema 默认信任输入的 XML Schema，允许通过网络访问外部资源，可能造成 XXE 或 SSRF 攻击。此行为与 Nokogiri 维护者的安全策略相反，该策略要求尽可能默认将所有输入视为不受信任。该漏洞已在 Nokogiri 1.11.0.rc4 中修复。"
+severity = "LOW"
 source = "nvd"
 published = "2020-12-30"
 updated = "2026-06-16"
@@ -17,10 +17,12 @@ cvss_v2 = 4.0
 cvss_v2_vector = "AV:N/AC:L/Au:S/C:P/I:N/A:N"
 cvss_v3 = 4.3
 cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N"
+cvss_v4 = 0.0
+cvss_v4_vector = ""
 
 [affected]
 vendor = "sparklemotion"
-product = "Nokogiri"
+product = "nokogiri"
 
 [exploit]
 poc = []
@@ -28,32 +30,31 @@ exp = []
 nuclei_templates = []
 
 [remediation]
-fix = "升级到 Nokogiri 1.11.0.rc4 或更高版本。详情参考官方安全公告。"
-workaround = "该漏洞无已知缓解措施，建议尽快升级。"
-steps = ["步骤1: 确认当前使用的 Nokogiri 版本", "步骤2: 升级到 Nokogiri 1.11.0.rc4 或更高版本", "步骤3: 如需在升级后重新启用外部资源访问，确保输入可信后传入 Nokogiri::XML::ParseOptions.new.nononet 作为第二个参数"]
+fix = "升级到 Nokogiri 1.11.0.rc4 或更高版本。"
+workaround = "如无法升级，确保传递给 Nokogiri::XML::Schema 的 XML Schema 输入是可信的，不要对不可信输入启用外部资源访问。"
+steps = ["步骤1: 检查当前 Nokogiri 版本", "步骤2: 升级到 Nokogiri >= 1.11.0.rc4", "步骤3: 如需恢复旧行为，显式传递 Nokogiri::XML::ParseOptions.new.nononet 参数"]
 
 [references]
 nvd = "https://nvd.nist.gov/vuln/detail/CVE-2020-26247"
 avd = ""
 other = [
-  "https://github.com/sparklemotion/nokogiri/security/advisories/GHSA-vr8q-g5c7-m54m",
-  "https://github.com/sparklemotion/nokogiri/commit/9c87439d9afa14a365ff13e73adc809cb2c3d97b",
-  "https://github.com/sparklemotion/nokogiri/releases/tag/v1.11.0.rc4",
-  "https://hackerone.com/reports/747489",
-  "https://rubygems.org/gems/nokogiri",
-  "https://lists.debian.org/debian-lts-announce/2021/06/msg00007.html",
-  "https://lists.debian.org/debian-lts-announce/2022/10/msg00018.html",
-  "https://security.gentoo.org/glsa/202208-29"
+  { url = "https://github.com/sparklemotion/nokogiri/security/advisories/GHSA-vr8q-g5c7-m54m", description = "GitHub Security Advisory" },
+  { url = "https://github.com/sparklemotion/nokogiri/commit/9c87439d9afa14a365ff13e73adc809cb2c3d97b", description = "修复提交" },
+  { url = "https://github.com/sparklemotion/nokogiri/releases/tag/v1.11.0.rc4", description = "修复版本发布" },
+  { url = "https://hackerone.com/reports/747489", description = "HackerOne 原始报告" },
+  { url = "https://rubygems.org/gems/nokogiri", description = "RubyGems 包页面" },
+  { url = "https://lists.debian.org/debian-lts-announce/2021/06/msg00007.html", description = "Debian LTS 安全公告" },
+  { url = "https://security.gentoo.org/glsa/202208-29", description = "Gentoo Linux 安全公告" }
 ]
 
 [tags]
-tags = ["CWE-611", "XXE", "SSRF"]
+tags = ["CWE-611", "XXE", "SSRF", "Ruby", "Nokogiri", "XML"]
 
 [authenticity]
 cve_confidence = "high"
 poc_confidence = "none"
-notes = "CVE-2020-26247 由 NVD 和 GitHub Security Advisory 确认，真实性可靠。该漏洞为 Nokogiri Ruby gem 库级别的 XXE 漏洞，非 HTTP 协议漏洞，无法生成 HTTP PoC。截至收集时未发现公开 PoC、EXP 脚本及 Nuclei 检测模板。"
+notes = "CVSS 来源为 NIST NVD 评分。漏洞为 Nokogiri Ruby gem 的 XXE 漏洞，非 HTTP 协议可直接检测的漏洞场景，故未生成 PoC 脚本。"
 
 [meta]
-collected_at = "2026-07-10T10:18:58Z"
+collected_at = "2026-07-10T12:45:00Z"
 status = "completed"
