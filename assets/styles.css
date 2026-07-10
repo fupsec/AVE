@@ -394,6 +394,55 @@ body {
   background: rgba(22, 101, 52, 0.28);
 }
 
+.year-breakdown {
+  margin-top: 0.6rem;
+  border-top: 1px solid var(--line);
+  padding-top: 0.6rem;
+}
+
+.year-breakdown h3 {
+  margin: 0 0 0.45rem;
+  font-size: 0.82rem;
+  color: #bfdbfe;
+  font-weight: 600;
+}
+
+.year-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.78rem;
+}
+
+.year-table thead th {
+  text-align: left;
+  color: #94a3b8;
+  font-weight: 600;
+  padding: 0.25rem 0.35rem;
+  border-bottom: 1px solid #334155;
+  font-size: 0.72rem;
+}
+
+.year-table tbody td {
+  padding: 0.2rem 0.35rem;
+  border-bottom: 1px solid rgba(51, 65, 85, 0.3);
+  color: #cbd5e1;
+}
+
+.year-table tbody tr:hover {
+  background: rgba(30, 41, 59, 0.4);
+}
+
+.year-table .num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.year-table .total-row td {
+  border-top: 1px solid #334155;
+  font-weight: 700;
+  color: #e5e7eb;
+}
+
 .severity {
   font-size: 0.8rem;
   font-weight: 700;

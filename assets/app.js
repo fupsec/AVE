@@ -394,6 +394,72 @@ async function ensureTreeCache() {
   }
 }
 
+// ── Shared raw tree cache (avoids duplicate GitHub API calls) ──
+
+let rawTreeCache = null;
+
+async function fetchFullTree() {
+  if (rawTreeCache) return rawTreeCache;
+  const tree = await gh(`https://api.github.com/repos/${GH.owner}/${GH.repo}/git/trees/${GH.branch}?recursive=1`);
+  rawTreeCache = tree;
+  return tree;
+}
+
+// ── Year breakdown ──
+
+let yearBreakdownCache = null;
+
+async function loadYearBreakdown() {
+  if (yearBreakdownCache) return yearBreakdownCache;
+  const tree = await fetchFullTree();
+  const yearMap = {};
+
+  for (const node of tree.tree || []) {
+    if (node.type !== "blob" || !node.path) continue;
+    const parts = node.path.split("/");
+    if (parts.length < 2) continue;
+    const folder = parts[0];      // vulns | pocs | exploits
+    const year = parts[1];        // 1999 | 2000 | ...
+    if (!/^\d{4}$/.test(year)) continue;
+    if (!yearMap[year]) yearMap[year] = { vulns: 0, pocs: 0, exps: 0 };
+    if (folder === "vulns" && node.path.endsWith(".toml")) yearMap[year].vulns++;
+    else if (folder === "pocs") yearMap[year].pocs++;
+    else if (folder === "exploits") yearMap[year].exps++;
+  }
+
+  yearBreakdownCache = yearMap;
+  return yearMap;
+}
+
+function renderYearBreakdown(yearMap) {
+  const el = document.getElementById("year-stats");
+  if (!el) return;
+  const years = Object.keys(yearMap).sort();
+  if (!years.length) {
+    el.innerHTML = '<p class="status">暂无数据</p>';
+    return;
+  }
+  let totalV = 0, totalP = 0, totalE = 0;
+  let html = '<table class="year-table"><thead><tr><th>年份</th><th class="num">漏洞</th><th class="num">PoC</th><th class="num">EXP</th></tr></thead><tbody>';
+  for (const y of years) {
+    const d = yearMap[y];
+    totalV += d.vulns; totalP += d.pocs; totalE += d.exps;
+    html += `<tr><td>${y}</td><td class="num">${d.vulns}</td><td class="num">${d.pocs}</td><td class="num">${d.exps}</td></tr>`;
+  }
+  html += `<tr class="total-row"><td>合计</td><td class="num">${totalV}</td><td class="num">${totalP}</td><td class="num">${totalE}</td></tr>`;
+  html += '</tbody></table>';
+  el.innerHTML = html;
+}
+
+async function loadAndRenderYearStats() {
+  try {
+    const yearMap = await loadYearBreakdown();
+    renderYearBreakdown(yearMap);
+  } catch {
+    document.getElementById("year-stats").innerHTML = '<p class="status">年份统计暂不可用</p>';
+  }
+}
+
 async function searchViaTreeFallback(keyword, page) {
   if (state.treeCacheFailed) {
     throw new Error("GitHub API 速率限制已达，无法获取列表数据。请稍后再试。");
@@ -572,6 +638,9 @@ async function boot() {
   });
   renderPager();
   updateSortIndicators();
+
+  // ── Load year breakdown stats ──
+  loadAndRenderYearStats();
 
   // ── Auto-load if URL has search params ──
   if (urlState.keyword || urlState.severity) {
