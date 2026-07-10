@@ -5,8 +5,8 @@ avd_id = ""
 other_ids = []
 
 [basic]
-title = "GNU C Library (glibc) tdelete 函数文档缺陷导致悬空指针访问"
-description = "manual/search.texi in the GNU C Library (aka glibc) before 2.2 lacks a statement about the unspecified tdelete return value upon deletion of a tree's root, which might allow attackers to access a dangling pointer in an application whose developer was unaware of a documentation update from 1999."
+title = "GNU C Library (glibc) 2.2 之前版本 tdelete() 函数返回值未文档化漏洞"
+description = "GNU C Library（又名 glibc）2.2 之前的版本中，manual/search.texi 缺少关于删除树根节点时 tdelete 返回值为未指定的说明，这可能导致开发者在不知情的情况下访问悬垂指针，从而可能被攻击者利用。"
 severity = "CRITICAL"
 source = "nvd"
 published = "1999-11-09"
@@ -17,42 +17,38 @@ cvss_v2 = 7.5
 cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:P/A:P"
 cvss_v3 = 9.8
 cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
-cvss_v4 = 0.0
-cvss_v4_vector = ""
 
 [affected]
 vendor = "gnu"
 product = "glibc"
 
 [exploit]
-poc = [
-  { url = "https://www.cee.studio/tdelete.html", description = "tdelete 函数悬空指针漏洞 PoC 说明", source = "其他" }
-]
+poc = []
 exp = []
 nuclei_templates = []
 
 [remediation]
-fix = "升级到 glibc 2.2 及以上版本。参考官方安全公告和提交记录。"
-workaround = "开发者在调用 tdelete 删除树根节点后，不应依赖其返回值，应手动将相关指针置空。"
-steps = ["步骤1: 确认 glibc 版本", "步骤2: 升级到 glibc 2.2 或更新版本"]
+fix = "升级到 glibc 2.2 及以上版本"
+workaround = ""
+steps = []
 
 [references]
 nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0199"
 avd = ""
 other = [
   "https://ftp.gnu.org/gnu/glibc/glibc-2.2.tar.gz",
-  "https://github.com/bminor/glibc/commit/2864e767053317538feafa815046fff89e5a16be#diff-94e8c502f255fdfc346df0e29fd4ef40",
-  "https://access.redhat.com/security/cve/CVE-1999-0199"
+  "https://github.com/bminor/glibc/commit/2864e767053317538feafa815046fff89e5a16be",
+  "https://www.cee.studio/tdelete.html"
 ]
 
 [tags]
-tags = ["CWE-252", "glibc", "dangling-pointer", "memory-safety"]
+tags = ["CWE-252", "glibc", "dangling-pointer"]
 
 [authenticity]
 cve_confidence = "high"
-poc_confidence = "medium"
-notes = "NVD 将 https://www.cee.studio/tdelete.html 标注为 Exploit，但该网站已无法访问。此漏洞为 glibc 文档缺陷（tdelete 返回值未定义），非 HTTP 协议漏洞，无法生成 HTTP PoC 脚本。"
+poc_confidence = "low"
+notes = "该漏洞实为 glibc 文档缺陷，非代码逻辑漏洞。Red Hat 不认为存在实际可利用的安全风险。CVSS v3 9.8 为 NVD 评分，可能偏高。搜索 GitHub、Exploit-DB、PacketStorm、Sploitus 等渠道均未发现公开 PoC/EXP。"
 
 [meta]
-collected_at = "2026-07-10T11:01:27Z"
+collected_at = "2026-07-11T00:00:00Z"
 status = "completed"
