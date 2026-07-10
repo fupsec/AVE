@@ -1,12 +1,12 @@
 [basic]
-description = "Vulnerability identified as CVE-2026-0006. Please refer to vendor advisory for details."
-published = "2026-07-10"
+description = ""
+published = ""
 remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 5.0
-severity = "MEDIUM"
+score = 0.0
+severity = "UNKNOWN"
 sources = ["github"]
-title = "CVE-2026-0006 vulnerability"
-updated = "2026-07-10"
+title = "CVE-2026-0006"
+updated = ""
 
 [exploit]
 exp_urls = []
@@ -18,7 +18,7 @@ ave_id = "AVE-2026-0071"
 cve_id = "CVE-2026-0006"
 
 [meta]
-collected_at = "2026-07-10T16:23:37.662042735+00:00"
+collected_at = "2026-07-10T20:54:57.440769634+00:00"
 status = "completed"
 
 [references]
