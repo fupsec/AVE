@@ -1,0 +1,28 @@
+[id]
+ave_id = "AVE-2026-0065"
+cve_id = "CVE-2026-49834"
+aliases = [
+    "CVE-2026-49834",
+    "GHSA-9vcr-p3rj-q5q6",
+]
+
+[basic]
+title = "CVE-2026-49834"
+description = ""
+severity = "UNKNOWN"
+score = 0.0
+sources = ["ghsa"]
+published = ""
+updated = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T12:52:50.790359188+00:00"
