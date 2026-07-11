@@ -4,29 +4,56 @@ cve_id = "CVE-2018-25109"
 aliases = ["CVE-2018-25109"]
 
 [basic]
-title = "任天堂动物森友会GameCube版信件Trigram处理程序内存破坏漏洞"
-description = "任天堂GameCube平台的动物森友会及动物森林e+ 1.00/1.01版本中，信件Trigram处理程序存在内存破坏漏洞（CWE-119）。攻击者可通过物理接触游戏主机的方式投递特制信件，触发缓冲区溢出，导致任意代码执行。该漏洞利用复杂度较高，已有公开PoC代码。"
+title = "Nintendo Animal Crossing GameCube 三字母组合处理器内存损坏漏洞"
+description = "任天堂GameCube平台的Animal Crossing游戏（含Doubutsu no Mori+和Doubutsu no Mori e+版本1.00/1.01）存在内存损坏漏洞。该漏洞位于Letter Trigram Handler组件中，由于三字母组合（trigram）查找表未正确终止（使用0x00而非0x7F作为停止字符），导致游戏读取超出数组边界。攻击者可通过精心构造的内存卡文件（包含恶意NES ROM加载器和PAT标签）利用该漏洞实现任意代码执行，无需网络连接，仅需物理接触设备和特制存储卡。漏洞利用复杂度较高但已公开披露，可能被用于加载自制程序或作弊代码。"
 severity = "MEDIUM"
 score = 6.4
-remediation = "升级游戏至官方修复版本或安装社区补丁。避免使用来路不明的存档文件，游玩时勿加载可疑信件数据。"
+cvss_v3 = "CVSS:3.1/AV:P/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H"
 published = "2025-03-23"
-updated = "2026-06-16"
-sources = ["avd", "nvd"]
+updated = "2025-03-23"
+sources = ["nvd", "vuldb", "tenable", "opencve"]
+remediation = "任天堂官方未发布针对GameCube平台Animal Crossing的补丁。由于GameCube已停产且该漏洞需要物理访问设备，建议限制对游戏主机和内存卡的物理接触。对于安全研究人员，建议使用模拟器进行测试，并关注任天堂官方公告。社区已发布缓解措施文档，可参考相关技术博客了解漏洞细节。"
+
+[affected]
+vendor = "Nintendo"
+product = "Animal Crossing"
+versions = ["1.00", "1.01"]
+platforms = ["GameCube"]
+other_products = ["Doubutsu no Mori+", "Doubutsu no Mori e+"]
+cpe = ["cpe:2.3:a:nintendo:animal_crossing:1.00", "cpe:2.3:a:nintendo:animal_crossing:1.01", "cpe:2.3:a:nintendo:doubutsu_no_mori_plus:1.00", "cpe:2.3:a:nintendo:doubutsu_no_mori_plus:1.01", "cpe:2.3:a:nintendo:doubutsu_no_mori_e_plus:1.00", "cpe:2.3:a:nintendo:doubutsu_no_mori_e_plus:1.01"]
+
+[exploit]
+poc = [
+    {url = "https://github.com/FIX94/ac-exploit-gc", description = "Animal Crossing GameCube exploit PoC代码，展示如何通过内存卡实现代码执行", source = "github", type = "poc"},
+    {url = "https://jamchamb.net/2018/07/11/animal-crossing-nes-emulator-hacks.html", description = "详细技术分析文章，解释NES模拟器加载器漏洞和PAT标签利用方法", source = "blog", type = "analysis"}
+]
+nuclei_templates = []
+exp_urls = ["https://github.com/FIX94/ac-exploit-gc", "https://jamchamb.net/2018/07/11/animal-crossing-nes-emulator-hacks.html"]
+poc_urls = ["https://github.com/FIX94/ac-exploit-gc"]
 
 [references]
-urls = [
-    "https://nvd.nist.gov/vuln/detail/CVE-2018-25109",
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2018-25109"
+avd = ""
+other = [
     "https://github.com/FIX94/ac-exploit-gc",
     "https://hunter-r.com/posts/ac-trigrams/",
     "https://jamchamb.net/2018/07/11/animal-crossing-nes-emulator-hacks.html",
     "https://vuldb.com/?id.300631",
-    "https://vuldb.com/?ctiid.300631",
+    "https://vuldb.com/?ctiid.300631"
 ]
-
-[exploit]
-poc_urls = ["https://github.com/FIX94/ac-exploit-gc"]
-exp_urls = []
+references = ["https://github.com/FIX94/ac-exploit-gc", "https://hunter-r.com/posts/ac-trigrams/", "https://jamchamb.net/2018/07/11/animal-crossing-nes-emulator-hacks.html", "https://vuldb.com/?id.300631", "https://vuldb.com/?ctiid.300631"]
 
 [meta]
+collected_at = "2025-07-11T00:00:00Z"
 status = "completed"
-collected_at = "2026-07-10T12:52:50.784405289+00:00"
+cwe = ["CWE-119"]
+cvss_v2 = "AV:L/AC:H/Au:N/C:C/I:C/A:C"
+cvss_v2_score = 6.2
+cvss_v4 = "CVSS:4.0/AV:P/AC:H/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N"
+cvss_v4_score = 5.4
+epss = 0.00013
+remotely_exploitable = false
+attack_vector = "Physical"
+attack_complexity = "High"
+privileges_required = "None"
+user_interaction = "None"
