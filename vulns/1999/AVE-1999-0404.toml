@@ -1,0 +1,30 @@
+[basic]
+description = "AIX、Solaris及Windows等多个操作系统的gethostbyname()库函数存在缓冲区溢出漏洞。攻击者可以通过构造恶意的DNS主机名，在调用该函数的应用程序中触发缓冲区溢出，从而以root权限执行任意代码。该漏洞影响AIX 3.2.x/4.x、SunOS 5及Windows 95/98/2000/NT 4.0等多个平台，可被本地或远程利用。"
+published = "1996-12-10"
+remediation = "建议升级操作系统到厂商修复版本：AIX用户安装IBM ERS-SVA-E01-1996:007.1补丁；Solaris用户安装Sun相关安全补丁；Windows用户升级至受支持的操作系统版本。对于无法升级的系统，建议在网络边界过滤恶意DNS流量并限制对受影响服务的访问。"
+score = 10.0
+severity = "CRITICAL"
+sources = [
+    "nvd",
+    "exploitdb",
+]
+title = "AIX 3.x/4.x / Windows 95/98/2000/NT 4.0 / SunOS 5 gethostbyname() 远程缓冲区溢出漏洞"
+updated = "2024-06-16"
+
+[exploit]
+exp_urls = []
+poc_urls = ["https://www.exploit-db.com/exploits/22251"]
+
+[id]
+aliases = ["CVE-1999-0101"]
+ave_id = "AVE-1999-0404"
+
+[meta]
+collected_at = "2026-07-11T23:35:47+00:00"
+status = "completed"
+
+[references]
+urls = [
+    "http://ciac.llnl.gov/ciac/bulletins/h-13.shtml",
+    "https://www.exploit-db.com/exploits/22251",
+]
