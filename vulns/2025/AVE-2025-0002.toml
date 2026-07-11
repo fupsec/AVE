@@ -4,8 +4,8 @@ published = ""
 remediation = "Refer to vendor advisory and upgrade to fixed version."
 score = 0.0
 severity = "UNKNOWN"
-sources = ["ghsa"]
-title = "CVE-2025-46571"
+sources = ["github"]
+title = "CVE-2025-0282"
 updated = ""
 
 [exploit]
@@ -13,14 +13,11 @@ exp_urls = []
 poc_urls = []
 
 [id]
-aliases = [
-    "CVE-2025-46571",
-    "GHSA-8gh5-qqh8-hq3x",
-]
+aliases = ["CVE-2025-0282"]
 ave_id = "AVE-2025-0002"
 
 [meta]
-collected_at = "2026-07-11T19:12:20.590797972+00:00"
+collected_at = "2026-07-11T19:12:20.750659383+00:00"
 status = "completed"
 
 [references]
