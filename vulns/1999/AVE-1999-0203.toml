@@ -1,0 +1,32 @@
+[basic]
+description = "SGI IRIX 6.2 操作系统中的 fsdump 工具存在多个安全漏洞。本地攻击者可通过符号链接攻击或修改敏感文件等方式，利用 fsdump 程序以 root 权限执行任意操作，从而完全控制受影响的系统。具体攻击方式包括修改 /etc/passwd 文件删除 root 密码或创建 /.rhosts 文件等。"
+published = "1996-12-03"
+remediation = "升级至 SGI 官方提供的安全补丁版本，或应用 19970301-01-P 公告中的修复方案。限制普通用户对 fsdump 程序的访问权限。"
+score = 7.2
+severity = "HIGH"
+sources = [
+    "exploitdb",
+    "nvd",
+    "sgi",
+]
+title = "SGI IRIX fsdump 本地权限提升漏洞"
+updated = "2024-11-20"
+
+[exploit]
+exp_urls = []
+poc_urls = ["https://www.exploit-db.com/exploits/19280"]
+
+[id]
+aliases = ["CVE-1999-0044"]
+ave_id = "AVE-1999-0203"
+
+[meta]
+collected_at = "2026-07-11T23:19:27.496740502+00:00"
+status = "completed"
+
+[references]
+urls = [
+    "https://www.securityfocus.com/bid/355/info",
+    "https://www.exploit-db.com/exploits/19280",
+    "https://nvd.nist.gov/vuln/detail/CVE-1999-0044",
+]
