@@ -4,8 +4,8 @@ published = ""
 remediation = "Refer to vendor advisory and upgrade to fixed version."
 score = 0.0
 severity = "UNKNOWN"
-sources = ["exploitdb"]
-title = "CVE-1999-0021 漏洞"
+sources = ["redhat"]
+title = "CVE-1999-0524 漏洞"
 updated = ""
 
 [exploit]
@@ -13,12 +13,12 @@ exp_urls = []
 poc_urls = []
 
 [id]
-aliases = ["CVE-1999-0021"]
+aliases = ["CVE-1999-0524"]
 ave_id = "AVE-1999-0012"
-cve_id = "CVE-1999-0021"
+cve_id = "CVE-1999-0524"
 
 [meta]
-collected_at = "2026-07-11T17:14:43.155383748+00:00"
+collected_at = "2026-07-11T17:15:45.742900409+00:00"
 status = "completed"
 
 [references]
