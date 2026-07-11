@@ -1,0 +1,32 @@
+[affected]
+product = "waku"
+vendor = "Waku"
+
+[basic]
+description = "Waku 框架的 RSC 请求分发器在处理 'use server' 操作时未验证请求的 Origin 头部。跨源攻击者可通过 Content-Type: text/plain 的 POST 请求（无需预检）触发已注册的服务端操作，受害者的浏览器 Cookie 会被自动附带。该漏洞在 waku 1.0.0-beta.0 中已确认可被利用，影响 Node/Cloudflare/Vercel 等多种适配器，且 opaque-origin 上下文（沙箱 iframe、file:// 等）同样可触发。"
+published = "2026-05-15"
+remediation = "升级 Waku 框架至官方修复版本，或在反向代理层添加 Origin 头部验证中间件，拒绝跨域 POST 请求到 RSC 路径前缀，同时配置 allowedHosts 白名单增强防护。"
+score = 5.3
+severity = "MEDIUM"
+sources = ["ghsa"]
+title = "Waku waku RSC 服务端操作跨站请求伪造漏洞"
+updated = "2026-07-11"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = [
+    "CVE-2026-49455",
+    "GHSA-75w3-gmqx-993q",
+]
+ave_id = "AVE-2026-0085"
+cve_id = "CVE-2026-49455"
+
+[meta]
+collected_at = "2026-07-11T00:00:00+00:00"
+status = "completed"
+
+[references]
+urls = ["https://github.com/advisories/GHSA-75w3-gmqx-993q"]

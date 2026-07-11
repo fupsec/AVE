@@ -1,35 +1,39 @@
-[basic]
-description = "libsndfile 1.2.2 中 IMA ADPCM 编解码器在处理 WAV 和 AIFF 文件时存在整数溢出漏洞。samplesperblock（int）与 blocks（int）的乘积超过 INT_MAX 时，32 位乘法在赋值给 sf.frames（int64）前发生溢出，导致帧计数计算错误，进而引发堆缓冲区溢出或拒绝服务。同时 src/au.c 的 au_read_header 函数和 src/mat4.c 的 mat4_open/mat4_read_header 函数也存在有符号整数溢出问题。攻击者可通过构造恶意的 WAV/AIFF/AU/Mat4 音频文件触发该漏洞，导致任意代码执行或服务崩溃。"
-published = "2023-07-18"
-remediation = "升级 libsndfile 到修复版本。Debian/Ubuntu 参考 USN-6471-1 提供的修复版本。也可从 GitHub 源码仓库拉取最新提交自行编译。"
-score = 7.8
-severity = "HIGH"
-sources = ["msrc", "nvd"]
-title = "libsndfile 存在多个整数溢出漏洞"
-updated = "2026-06-17"
-
-[exploit]
-exp_urls = []
-poc_urls = [
-    "https://github.com/libsndfile/libsndfile/files/7534888/mat4.c_int_overflow.tar.gz",
-    "https://github.com/libsndfile/libsndfile/files/8591956/int.overflow.zip",
-]
-
 [id]
-aliases = ["CVE-2022-33065", "GHSA-q72h-h33r-r8j8"]
 ave_id = "AVE-2022-0001"
 cve_id = "CVE-2022-33065"
+aliases = ["CVE-2022-33065"]
 
-[meta]
-collected_at = "2026-07-10T15:53:46.278518299+00:00"
-status = "completed"
+[basic]
+title = "Libsndfile有符号整数溢出漏洞（CVE-2022-33065）"
+description = "Libsndfile是用于读写采样音频文件的C语言开源库。该库在处理AU格式和MAT4格式音频文件时，函数au_read_header（src/au.c）、mat4_open和mat4_read_header（src/mat4.c）存在多个有符号整数溢出问题。攻击者可构造恶意音频文件触发整数溢出，导致拒绝服务（程序崩溃）或其他未定义行为。CVSS 3.1评分7.8（高危），攻击向量为本地，无需高权限即可利用。"
+severity = "HIGH"
+score = 7.8
+cvss_v3 = "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H"
+published = "2023-07-18"
+updated = "2024-11-21"
+remediation = "升级libsndfile至修复版本：Debian bullseye使用1.0.31-2+deb11u2，bookworm使用1.2.0-1+deb12u1，trixie使用1.2.2-2+deb13u1，或从源码编译修复版本。临时缓解可在受影响函数中添加显式类型转换防止整数溢出。"
+sources = ["nvd", "msrc", "debian", "redhat", "ubuntu"]
+
+[affected]
+vendor = "libsndfile project"
+product = "libsndfile"
+
+[exploit]
+poc = []
+exp = []
+nuclei_templates = []
 
 [references]
-urls = [
-    "https://nvd.nist.gov/vuln/detail/CVE-2022-33065",
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2022-33065"
+avd = ""
+other = [
     "https://github.com/libsndfile/libsndfile/issues/789",
     "https://github.com/libsndfile/libsndfile/issues/833",
-    "https://github.com/libsndfile/libsndfile/commit/0754562e13d2e63a248a1c82f90b30bc0ffe307c",
-    "https://ubuntu.com/security/notices/USN-6471-1",
-    "https://github.com/advisories/GHSA-q72h-h33r-r8j8",
+    "https://security-tracker.debian.org/tracker/CVE-2022-33065",
+    "https://access.redhat.com/security/cve/cve-2022-33065",
+    "https://ubuntu.com/security/CVE-2022-33065"
 ]
+
+[meta]
+collected_at = "2026-07-11T00:00:00Z"
+status = "completed"

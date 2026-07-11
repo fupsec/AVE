@@ -1,34 +1,41 @@
-[basic]
-description = "SGI IRIX 5.x和6.x系统中的df命令存在缓冲区溢出漏洞。攻击者可通过向df命令的-f选项提交超长参数触发缓冲区溢出，精心构造的负载可在目标系统上以root权限执行任意代码，实现本地权限提升。"
-published = "1997-07-16"
-remediation = "升级SGI IRIX系统至厂商发布的安全修复版本，或限制本地用户对df命令的访问权限以降低被利用风险。"
-score = 7.2
-severity = "HIGH"
-sources = [
-    "exploitdb",
-    "nvd",
-]
-title = "SGI IRIX df 命令缓冲区溢出权限提升漏洞"
-updated = "2026-06-16"
-
-[exploit]
-exp_urls = ["https://www.exploit-db.com/exploits/19274"]
-poc_urls = ["https://www.exploit-db.com/exploits/19274"]
-
 [id]
-aliases = ["CVE-1999-0025"]
 ave_id = "AVE-1999-0018"
 cve_id = "CVE-1999-0025"
+aliases = ["CVE-1999-0025"]
 
-[meta]
-collected_at = "2026-07-10T19:21:50.144113805+00:00"
-status = "completed"
+[basic]
+title = "SGI IRIX df命令缓冲区溢出本地提权漏洞"
+description = "SGI IRIX操作系统的df命令存在缓冲区溢出漏洞，影响IRIX 5.x和6.x版本。攻击者通过向df命令的-f选项传入超长字符串参数，可触发缓冲区溢出导致程序崩溃。经过精心构造包含可执行机器码的缓冲区，攻击者可在目标系统上以root权限执行任意命令，实现本地权限提升。该漏洞无需认证，仅需本地访问权限即可利用，成功利用后将获得完整的系统控制权。"
+published = "1997-07-16"
+updated = "2024-08-01"
+remediation = "SGI已发布安全补丁修复此漏洞，请联系SGI获取并安装相应的安全补丁。在无法立即打补丁的情况下，建议对df命令设置wrapper程序限制命令行参数长度（MAXARGLEN设为32），并限制本地用户对df命令的访问权限。同时可使用host-based入侵检测系统监控异常行为。对于不再维护的IRIX系统，建议迁移到现代受支持的操作平台。"
+score = 7.2
+cvss_v2 = "AV:L/AC:L/Au:N/C:C/I:C/A:C"
+severity = "HIGH"
+sources = ["exploitdb", "nvd", "cert", "securityfocus"]
+
+[affected]
+vendor = "SGI"
+product = "IRIX"
+versions = ["5.x", "6.x"]
+
+[exploit]
+poc_urls = []
+exp_urls = [
+    {url = "https://www.exploit-db.com/exploits/19274", description = "SGI IRIX 6.3 df本地提权漏洞利用程序，作者David Hedley", source = "exploitdb", verified = true}
+]
+nuclei_templates = []
 
 [references]
-urls = [
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0025"
+avd = ""
+other = [
     "http://www.cert.org/advisories/CA-1997-21.html",
     "http://www.kb.cert.org/vuls/id/20851",
     "http://www.securityfocus.com/bid/346",
-    "https://exchange.xforce.ibmcloud.com/vulnerabilities/440",
-    "https://nvd.nist.gov/vuln/detail/CVE-1999-0025",
+    "https://exchange.xforce.ibmcloud.com/vulnerabilities/440"
 ]
+
+[meta]
+collected_at = "2026-07-10T23:19:13.114565072+00:00"
+status = "completed"
