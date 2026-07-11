@@ -1,0 +1,24 @@
+[basic]
+description = ""
+published = ""
+remediation = "请参考官方安全公告，及时安装安全更新或升级到最新版本。"
+score = 5
+severity = "MEDIUM"
+sources = ["avd"]
+title = "** REJECT **"
+updated = ""
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2002-0390"]
+ave_id = "AVE-2002-0002"
+
+[meta]
+collected_at = "2026-07-11T23:07:20.728620516+00:00"
+status = "completed"
+
+[references]
+urls = []
