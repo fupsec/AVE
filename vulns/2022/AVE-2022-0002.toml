@@ -4,8 +4,8 @@ description = "SDL2的GLES_CreateTexture()函数（位于SDL_render_gles.c）中
 published = "2023-01-12"
 updated = "2025-11-25"
 remediation = "将SDL2升级至2.26.0或更高版本。若暂时无法升级，建议限制不可信来源对SDL渲染功能的调用，避免处理恶意纹理数据。"
-severity = "MEDIUM"
-score = 5.4
+severity = "HIGH"
+score = 7.5
 sources = ["nvd", "redhat", "snyk", "github", "debian"]
 
 [affected]
