@@ -1,0 +1,27 @@
+[basic]
+description = "CVE-2001-0802 是 Silicon Graphics (SGI) 公司申请的一个 CVE 候选编号，但由于在 2001 年间未与任何实际安全漏洞关联，已被标记为 REJECTED 状态。该编号不指向任何有效的安全漏洞，不应被使用。此条目仅用于记录该废弃编号的存在。"
+published = "2017-05-11"
+remediation = "该CVE编号已标记为废弃状态，不关联任何实际安全漏洞，无需进行修复。"
+score = 0.1
+severity = "INFO"
+sources = [
+    "SGI",
+    "NVD",
+]
+title = "SGI 已废弃安全候选编号（未与任何实际漏洞关联）"
+updated = "2023-11-06"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2001-0802"]
+ave_id = "AVE-2001-0006"
+
+[meta]
+collected_at = "2026-07-11T22:36:07.658411553+00:00"
+status = "completed"
+
+[references]
+urls = ["https://nvd.nist.gov/vuln/detail/CVE-2001-0802"]
