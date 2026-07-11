@@ -1,17 +1,25 @@
+[basic]
+description = "LibTIFF 4.0.6 版本中的 tif_predict.h 和 tif_predict.c 文件存在堆缓冲区溢出漏洞。当处理 YCbCr 采样等异常 tile 大小时，断言检查在调试模式下可导致断言失败，在发布模式下可导致缓冲区溢出，从而允许攻击者通过特制的 TIFF 文件触发远程代码执行。该漏洞被标记为 MSVR 35105，又名 Predictor heap-buffer-overflow。"
+published = "2016-11-22"
+remediation = "升级 LibTIFF 至 4.0.7 或更高版本，或应用上游提交 3ca657a8793dd011bf869695d72ad31c779c3cc1 和 6a984bf7905c6621281588431f384e79d11a2e33 的补丁。Debian 用户参照 DSA-3844，Red Hat 用户参照 RHSA-2017:0225。"
+score = 9.8
+severity = "CRITICAL"
+sources = ["msrc"]
+title = "LibTIFF 4.0.6 Predictor 堆缓冲区溢出漏洞"
+updated = "2026-07-08"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
 [id]
+aliases = ["CVE-2016-9535"]
 ave_id = "AVE-2016-0001"
 cve_id = "CVE-2016-9535"
-aliases = ["CVE-2016-9535"]
 
-[basic]
-title = "LibTIFF 4.0.6 Predictor 堆缓冲区溢出漏洞"
-description = "LibTIFF 4.0.6 版本中的 tif_predict.h 和 tif_predict.c 文件存在堆缓冲区溢出漏洞。当处理 YCbCr 采样等异常 tile 大小时，断言检查在调试模式下可导致断言失败，在发布模式下可导致缓冲区溢出，从而允许攻击者通过特制的 TIFF 文件触发远程代码执行。该漏洞被标记为 MSVR 35105，又名 Predictor heap-buffer-overflow。"
-severity = "CRITICAL"
-score = 9.8
-sources = ["msrc"]
-published = "2016-11-22"
-updated = "2026-07-08"
-remediation = "升级 LibTIFF 至 4.0.7 或更高版本，或应用上游提交 3ca657a8793dd011bf869695d72ad31c779c3cc1 和 6a984bf7905c6621281588431f384e79d11a2e33 的补丁。Debian 用户参照 DSA-3844，Red Hat 用户参照 RHSA-2017:0225。"
+[meta]
+collected_at = "2026-07-11T00:00:00Z"
+status = "completed"
 
 [references]
 urls = [
@@ -22,11 +30,3 @@ urls = [
     "https://github.com/vadz/libtiff/commit/3ca657a8793dd011bf869695d72ad31c779c3cc1",
     "https://github.com/vadz/libtiff/commit/6a984bf7905c6621281588431f384e79d11a2e33",
 ]
-
-[exploit]
-poc_urls = []
-exp_urls = []
-
-[meta]
-status = "completed"
-collected_at = "2026-07-11T00:00:00Z"

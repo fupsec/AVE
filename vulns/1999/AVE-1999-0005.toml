@@ -1,30 +1,25 @@
-[id]
-ave_id = "AVE-1999-0005"
-cve_id = "CVE-1999-0009"
-aliases = ["CVE-1999-0009"]
-
 [basic]
-title = "ISC BIND 逆查询远程缓冲区溢出漏洞"
-description = "ISC BIND（域名系统服务软件）在处理逆查询（IQUERY）请求时存在缓冲区溢出漏洞。攻击者可通过向目标DNS服务器发送特制的逆查询数据包，触发内存拷贝过程中的边界检查缺陷，造成缓冲区溢出，从而在目标系统上执行任意代码。该漏洞影响BIND 4.9和BIND 8系列版本，是影响极为广泛的经典远程代码执行漏洞，多个操作系统平台均受波及。"
+description = "该漏洞存在于 RedHat Linux 5.1 及 Caldera OpenLinux Standard 1.2 的 mountd 服务中。攻击者可以通过向 mountd 端口发送精心构造的恶意请求，触发缓冲区溢出漏洞，从而在目标系统上执行任意代码，导致远程代码执行或系统崩溃。"
+published = "1999-01-01"
+remediation = "建议管理员及时更新受影响的 RedHat Linux 及 Caldera OpenLinux 系统至官方修复版本，或通过防火墙限制对 mountd 端口的外部访问。"
+score = 9.8
 severity = "CRITICAL"
-score = 10.0
 sources = ["exploitdb"]
-published = "1998-04-08"
-updated = "2026-06-16"
-remediation = "升级至BIND 8.2.1及以上版本，或从ISC官方网站下载修复后的版本；同时建议在网络边界限制对DNS服务器的外部访问以减少攻击面。"
-
-[references]
-urls = [
-    "https://www.exploit-db.com/exploits/19112",
-    "http://www.securityfocus.com/bid/134",
-    "http://sunsolve.sun.com/pub-cgi/retrieve.pl?doctype=coll&doc=secbull/180",
-    "http://www1.itrc.hp.com/service/cki/docDisplay.do?docId=HPSBUX9808-083",
-]
+title = "RedHat Linux Mountd 远程溢出漏洞"
+updated = "2026-07-11"
 
 [exploit]
-poc_urls = ["https://www.exploit-db.com/exploits/19112"]
-exp_urls = ["https://www.exploit-db.com/exploits/19112"]
+exp_urls = ["https://www.exploit-db.com/exploits/19096"]
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0002"]
+ave_id = "AVE-1999-0005"
+cve_id = "CVE-1999-0002"
 
 [meta]
+collected_at = "2026-07-11T00:00:00Z"
 status = "completed"
-collected_at = "2026-07-11T12:00:00+08:00"
+
+[references]
+urls = ["https://www.exploit-db.com/exploits/19096"]

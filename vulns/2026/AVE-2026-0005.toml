@@ -1,17 +1,31 @@
+[basic]
+description = "Tesla 是一个 Elixir 语言的 HTTP 客户端库。其 Multipart 组件的 part_headers_for_disposition/1 函数在生成 Content-Disposition 头部时未对参数值中的双引号和 CRLF 字符进行编码或转义，攻击者可通过在文件名或字段名参数中注入未转义的特殊字符来闭合当前参数值并注入额外的 Content-Disposition 键值对，或利用 CRLF 序列终止当前头部行并注入伪造的 Part 头部，甚至通过连续 CRLF 提前结束头部块并将后续字节注入请求体，实现多部分表单内容走私攻击。影响版本为 tesla 0.8.0 至 1.18.2。"
+published = "2026-06-02"
+remediation = '升级 tesla 至 1.18.3 或更高版本；如无法升级，则在使用 add_field、add_file、add_file_content 函数前对 disposition 参数值进行验证，过滤包含回车(\r)、换行(\n)或双引号(")字符的输入。'
+score = 2.1
+severity = "LOW"
+sources = [
+    "ghsa",
+    "nvd",
+]
+title = "Tesla Elixir HTTP 客户端库存在多部分表单内容走私漏洞"
+updated = "2026-06-17"
+
+[exploit]
+exp_urls = []
+poc_urls = ["https://github.com/elixir-tesla/tesla/security/advisories/GHSA-28jh-g32x-v9v4"]
+
 [id]
+aliases = [
+    "CVE-2026-48598",
+    "GHSA-28jh-g32x-v9v4",
+]
 ave_id = "AVE-2026-0005"
 cve_id = "CVE-2026-48598"
-aliases = ["CVE-2026-48598", "GHSA-28jh-g32x-v9v4"]
 
-[basic]
-title = "Tesla Elixir HTTP 客户端库存在多部分表单内容走私漏洞"
-description = "Tesla 是一个 Elixir 语言的 HTTP 客户端库。其 Multipart 组件的 part_headers_for_disposition/1 函数在生成 Content-Disposition 头部时未对参数值中的双引号和 CRLF 字符进行编码或转义，攻击者可通过在文件名或字段名参数中注入未转义的特殊字符来闭合当前参数值并注入额外的 Content-Disposition 键值对，或利用 CRLF 序列终止当前头部行并注入伪造的 Part 头部，甚至通过连续 CRLF 提前结束头部块并将后续字节注入请求体，实现多部分表单内容走私攻击。影响版本为 tesla 0.8.0 至 1.18.2。"
-severity = "LOW"
-score = 2.1
-sources = ["ghsa", "nvd"]
-published = "2026-06-02"
-updated = "2026-06-17"
-remediation = "升级 tesla 至 1.18.3 或更高版本；如无法升级，则在使用 add_field、add_file、add_file_content 函数前对 disposition 参数值进行验证，过滤包含回车(\\r)、换行(\\n)或双引号(\")字符的输入。"
+[meta]
+collected_at = "2026-07-11T00:00:00Z"
+status = "completed"
 
 [references]
 urls = [
@@ -21,13 +35,3 @@ urls = [
     "https://osv.dev/vulnerability/EEF-CVE-2026-48598",
     "https://nvd.nist.gov/vuln/detail/CVE-2026-48598",
 ]
-
-[exploit]
-poc_urls = [
-    "https://github.com/elixir-tesla/tesla/security/advisories/GHSA-28jh-g32x-v9v4",
-]
-exp_urls = []
-
-[meta]
-status = "completed"
-collected_at = "2026-07-11T00:00:00Z"

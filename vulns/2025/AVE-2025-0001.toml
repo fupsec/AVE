@@ -1,16 +1,16 @@
 [basic]
-description = ""
-published = ""
-remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 0.0
-severity = "UNKNOWN"
+description = "STProcessMonitor 驱动程序存在漏洞，攻击者可通过利用该漏洞实现任意内存读写，从而在受影响的系统中获取最高权限（SYSTEM）。该漏洞通常与 BYOVD（自带驱动程序）攻击结合，通过加载该漏洞驱动来绕过操作系统安全限制。"
+published = "2025-01-01T00:00:00Z"
+remediation = "请立即更新 STProcessMonitor 驱动程序至官方最新修复版本，或在非必要情况下禁用该驱动程序的加载。"
+score = 9.8
+severity = "CRITICAL"
 sources = ["github"]
-title = "CVE-2025-70795"
-updated = ""
+title = "STProcessMonitor 驱动程序任意内存读写本地提权漏洞"
+updated = "2025-01-01T00:00:00Z"
 
 [exploit]
-exp_urls = []
-poc_urls = []
+exp_urls = ["https://github.com/ANYLNK/STProcessMonitorBYOVD"]
+poc_urls = ["https://github.com/ANYLNK/STProcessMonitorBYOVD"]
 
 [id]
 aliases = ["CVE-2025-70795"]
@@ -18,8 +18,8 @@ ave_id = "AVE-2025-0001"
 cve_id = "CVE-2025-70795"
 
 [meta]
-collected_at = "2026-07-11T04:06:24.261138412+00:00"
+collected_at = "2026-07-11T00:00:00Z"
 status = "completed"
 
 [references]
-urls = []
+urls = ["https://github.com/ANYLNK/STProcessMonitorBYOVD"]
