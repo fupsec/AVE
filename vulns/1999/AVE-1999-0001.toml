@@ -1,25 +1,25 @@
-[basic]
-description = ""
-published = ""
-remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 0.0
-severity = "UNKNOWN"
-sources = ["cve"]
-title = "CVE-1999-0380 漏洞"
-updated = ""
-
-[exploit]
-exp_urls = []
-poc_urls = []
-
 [id]
-aliases = ["CVE-1999-0380"]
 ave_id = "AVE-1999-0001"
-cve_id = "CVE-1999-0380"
+cve_id = "CVE-1999-1594"
+aliases = ["CVE-1999-1594"]
 
-[meta]
-collected_at = "2026-07-11T04:06:59.297631569+00:00"
-status = "completed"
+[basic]
+title = "CVE-1999-1594 被撤销的漏洞编号"
+description = "此CVE编号已被其CNA（Red Hat, Inc.）撤销。根据NVD记录，该候选编号因CNA撤回而作废，无实际关联的漏洞信息或安全问题。该编号不应被用于任何漏洞追踪或评估场景。"
+severity = "INFO"
+score = 0.1
+sources = ["avd", "nvd"]
+published = "2020-11-05"
+updated = "2023-11-06"
+remediation = "此CVE编号已被CNA撤销，不存在实际漏洞，无需进行任何修复操作。"
 
 [references]
-urls = []
+urls = ["https://nvd.nist.gov/vuln/detail/CVE-1999-1594"]
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-11T00:00:00Z"
