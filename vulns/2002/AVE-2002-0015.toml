@@ -1,0 +1,34 @@
+[basic]
+description = "Diffie-Hellman密钥交换协议允许远程攻击者从客户端发送并非公钥的任意数字，触发服务端昂贵的DHE模幂计算，导致拒绝服务（D(HE)at攻击）。攻击者仅需很少的CPU资源和网络带宽即可大量消耗服务器计算资源，且客户端可要求服务器使用其支持的最大密钥大小以放大攻击效果。"
+published = "2021-11-12"
+remediation = "禁用服务端DHE密码套件，优先使用ECDHE密钥交换；升级至TLS 1.3以消除DHE密钥交换协商；限制服务端允许的最大DHE密钥大小；配置入侵检测系统监控异常TLS握手机制。"
+score = 7.5
+severity = "HIGH"
+sources = [
+    "NVD",
+    "GitHub",
+    "CVE",
+]
+title = "Diffie-Hellman密钥交换协议D(HE)at拒绝服务漏洞"
+updated = "2024-05-13"
+
+[exploit]
+exp_urls = []
+poc_urls = ["https://github.com/Balasys/dheater"]
+
+[id]
+aliases = ["CVE-2002-20001"]
+ave_id = "AVE-2002-0015"
+
+[meta]
+collected_at = "2026-07-11T23:26:43.019860110+00:00"
+status = "completed"
+
+[references]
+urls = [
+    "https://nvd.nist.gov/vuln/detail/CVE-2002-20001",
+    "https://github.com/Balasys/dheater",
+    "https://dheatattack.com",
+    "https://www.openssl.org/blog/blog/2022/10/21/tls-groups-configuration/",
+    "https://gitlab.com/dheatattack/dheater",
+]
