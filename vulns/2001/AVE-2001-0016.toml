@@ -1,0 +1,24 @@
+[basic]
+description = "CVE-2001-1590 是一个已被撤销的候选漏洞编号，由 Red Hat 公司申请后被 CNA 撤回。该编号不指向任何实际漏洞，官方说明建议不使用此编号，无相关漏洞详情、影响范围或修复信息。"
+published = "2020-11-05"
+remediation = "CVE-2001-1590 已被撤销，无实际漏洞需修复。建议忽略此编号，关注其他有效漏洞公告。"
+score = 0.1
+severity = "LOW"
+sources = ["nvd"]
+title = "Red Hat 申请并已撤销的无效候选漏洞编号，无实际漏洞详情与影响范围"
+updated = "2023-11-06"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2001-1590"]
+ave_id = "AVE-2001-0016"
+
+[meta]
+collected_at = "2026-07-11T22:53:08.844610092+00:00"
+status = "completed"
+
+[references]
+urls = []
