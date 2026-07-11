@@ -1,12 +1,12 @@
 [basic]
-description = "Balabit Syslog-NG 1.4.x（至 1.4.15）和 1.5.x（至 1.5.20）版本在使用模板文件名或输出时，在宏展开过程中遇到常量字符未能正确跟踪缓冲区大小，导致缓冲区溢出。远程攻击者可利用此漏洞造成拒绝服务，甚至可能执行任意代码。"
-published = "2002-10-28"
-remediation = "升级至 Syslog-NG 1.4.15 或 1.5.20 以上版本，或应用厂商官方补丁。同时建议限制对 Syslog-NG 服务的网络访问权限以降低风险。"
-score = 7.5
-severity = "HIGH"
-sources = ["osv", "nvd"]
-title = "Balabit Syslog-NG 宏扩展缓冲区溢出漏洞"
-updated = "2002-10-28"
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["osv"]
+title = "CVE-2002-1200 漏洞"
+updated = ""
 
 [exploit]
 exp_urls = []
@@ -18,12 +18,8 @@ ave_id = "AVE-2002-0050"
 cve_id = "CVE-2002-1200"
 
 [meta]
-collected_at = "2026-07-11T00:00:00+00:00"
+collected_at = "2026-07-11T00:52:18.943469613+00:00"
 status = "completed"
 
-[affected]
-vendor = "Balabit"
-product = "syslog-ng"
-
 [references]
-urls = ["http://nvd.nist.gov/vuln/detail/CVE-2002-1200", "http://www.balabit.hu/static/zsa/ZSA-2002-014-en.txt", "http://www.debian.org/security/2002/dsa-175", "http://www.securityfocus.com/bid/5934", "http://marc.info/?l=bugtraq&m=103426595021928&w=2"]
+urls = []
