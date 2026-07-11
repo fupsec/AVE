@@ -1,31 +1,30 @@
 [basic]
-description = "Land攻击是一种经典的拒绝服务攻击方式，攻击者向目标系统发送精心构造的TCP SYN数据包，其中源IP地址和端口与目标IP地址和端口完全相同。目标系统收到该数据包后会尝试与自己建立连接，导致系统崩溃、重启或停止响应。该漏洞影响FreeBSD 2.x、HP-UX 9/10/11、Linux Kernel 2.0.3、Windows NT 4.0/Server 2003、NetBSD 1等多款操作系统。"
+description = "CVE-1999-0016又名LAND攻击，是存在于多种TCP/IP协议栈实现中的拒绝服务漏洞。攻击者通过向目标发送源地址和目标地址相同的特制TCP SYN数据包（源端口等于目的端口），触发目标系统内核TCP/IP协议栈进入无限循环处理状态，导致系统完全挂起或蓝屏崩溃。受影响的系统包括Windows 95/NT 4.0/XP SP2/Server 2003、HP-UX 9/10/11、FreeBSD 2.x、NetBSD 1、Linux Kernel 2.0.3、多个Cisco IOS设备及Catalyst交换机等。此漏洞在Windows Server 2003和XP SP2上需要TCP和IP校验和正确才能触发。"
 published = "1997-12-01"
-remediation = "升级操作系统至已修复该漏洞的版本，或安装厂商提供的安全补丁；对于无法升级的系统，可在网络边界部署入侵检测系统过滤源IP与目标IP相同的TCP SYN数据包。"
+remediation = "各厂商已发布对应补丁或升级版本修复此漏洞。Windows用户应安装最新安全更新；HP-UX用户升级至11.11及以上版本；Linux用户升级内核至2.0.4或更高版本；Cisco设备用户升级IOS至修复版本。建议在网络边界部署防火墙过滤源地址与目标地址相同的异常数据包。"
 score = 5.0
 severity = "MEDIUM"
 sources = [
-    "nvd",
     "exploitdb",
+    "nvd",
 ]
-title = "Land IP拒绝服务攻击（Land Attack）影响多款操作系统"
-updated = "2004-01-01"
+title = "TCP LAND攻击导致多操作系统拒绝服务漏洞"
+updated = "2026-06-16"
 
 [exploit]
 exp_urls = []
-poc_urls = ["https://www.exploit-db.com/exploits/20814"]
+poc_urls = []
 
 [id]
 aliases = ["CVE-1999-0016"]
 ave_id = "AVE-1999-0018"
 
 [meta]
-collected_at = "2026-07-11T22:28:28.234284762+00:00"
+collected_at = "2026-07-11T23:02:42.085264571+00:00"
 status = "completed"
 
 [references]
 urls = [
-    "https://www.exploit-db.com/exploits/20814",
     "http://www1.itrc.hp.com/service/cki/docDisplay.do?docId=HPSBUX9801-076",
     "https://security.netapp.com/advisory/ntap-20170815-0001/",
 ]
