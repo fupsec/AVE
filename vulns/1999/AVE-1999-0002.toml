@@ -4,8 +4,8 @@ published = ""
 remediation = "Refer to vendor advisory and upgrade to fixed version."
 score = 0.0
 severity = "UNKNOWN"
-sources = ["exploitdb"]
-title = "CVE-1999-0003 漏洞"
+sources = ["tenable"]
+title = "CVE-1999-0096 漏洞"
 updated = ""
 
 [exploit]
@@ -13,11 +13,11 @@ exp_urls = []
 poc_urls = []
 
 [id]
-aliases = ["CVE-1999-0003"]
+aliases = ["CVE-1999-0096"]
 ave_id = "AVE-1999-0002"
 
 [meta]
-collected_at = "2026-07-11T19:02:33.613354338+00:00"
+collected_at = "2026-07-11T19:02:41.051744712+00:00"
 status = "completed"
 
 [references]
