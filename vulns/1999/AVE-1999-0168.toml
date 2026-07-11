@@ -1,0 +1,27 @@
+[basic]
+description = "Solaris 2.6（i386架构）中的cancel命令存在缓冲区溢出漏洞，本地攻击者可利用该漏洞通过精心构造的输入触发缓冲区溢出，从而获取系统root权限。该漏洞影响Sun Solaris 2.6操作系统，攻击者需要拥有本地访问权限。"
+published = "1999-03-05"
+remediation = "建议升级到不受影响的Solaris版本或安装厂商提供的安全补丁。对于不再受支持的旧版本，应限制本地用户访问并将系统迁移到受支持版本。"
+score = 7.2
+severity = "HIGH"
+sources = [
+    "nvd",
+    "cve",
+]
+title = "Solaris 2.6 i386平台cancel命令缓冲区溢出漏洞"
+updated = "2026-06-16"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0410"]
+ave_id = "AVE-1999-0168"
+
+[meta]
+collected_at = "2026-07-11T23:10:34.875400326+00:00"
+status = "completed"
+
+[references]
+urls = ["http://www.securityfocus.com/bid/293"]
