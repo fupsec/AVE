@@ -1,0 +1,30 @@
+[basic]
+description = "Apache HTTP Server 0.8.x至1.0.x版本以及NCSA HTTPd 1.x版本中自带的test-cgi CGI示例脚本存在信息泄露漏洞。该脚本未正确对ECHO命令参数中的*通配符进行引号封闭，导致在特定配置下，远程攻击者可通过向/cgi-bin/test-cgi传递*、/*等参数，利用shell通配符展开获取服务器上的文件目录列表。此漏洞可被用于收集目标系统信息，为后续攻击提供便利。"
+published = "1996-04-01"
+remediation = "升级Apache HTTP Server至1.3.0及以上版本，或删除禁用不必要的CGI示例脚本如test-cgi和nph-test-cgi，并确保CGI脚本正确处理用户输入参数。"
+score = 5.0
+severity = "MEDIUM"
+sources = [
+    "exploitdb",
+    "NVD",
+]
+title = "Apache 0.8.x/1.0.x / NCSA HTTPd 1.x test-cgi 目录列出漏洞"
+updated = "2026-06-16"
+
+[exploit]
+exp_urls = []
+poc_urls = ["https://www.exploit-db.com/exploits/20435"]
+
+[id]
+aliases = ["CVE-1999-0070"]
+ave_id = "AVE-1999-0335"
+
+[meta]
+collected_at = "2026-07-11T23:31:50+00:00"
+status = "completed"
+
+[references]
+urls = [
+    "https://lists.apache.org/thread.html/rc5d27fc1e76dc5650e1a3f1db1de403120f4c2d041cb7352850455c2@%3Cusers.httpd.apache.org%3E",
+    "https://www.exploit-db.com/exploits/20435",
+]
