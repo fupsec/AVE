@@ -1,12 +1,12 @@
 [basic]
-description = ""
-published = ""
+description = ": 目前没有详细的漏洞描述。请参考相关安全公告获取更多信息。"
+published = "unknown"
 remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 0.0
-severity = "UNKNOWN"
+score = 5.0
+severity = "MEDIUM"
 sources = ["nuclei"]
 title = "NUCLEI-FILE-MALWARE-UNIVERSAL-1337-MALWARE-YAML 漏洞"
-updated = ""
+updated = "unknown"
 
 [exploit]
 exp_urls = []
