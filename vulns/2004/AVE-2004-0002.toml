@@ -1,0 +1,24 @@
+[basic]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["kev"]
+title = "CVE-2004-1464 漏洞"
+updated = ""
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2004-1464"]
+ave_id = "AVE-2004-0002"
+
+[meta]
+collected_at = "2026-07-11T19:15:27.322260123+00:00"
+status = "completed"
+
+[references]
+urls = []
