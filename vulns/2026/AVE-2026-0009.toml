@@ -4,8 +4,8 @@ published = ""
 remediation = "Refer to vendor advisory and upgrade to fixed version."
 score = 0.0
 severity = "UNKNOWN"
-sources = ["github"]
-title = "CVE-2026-0828"
+sources = ["ghsa"]
+title = "CVE-2026-48987"
 updated = ""
 
 [exploit]
@@ -13,12 +13,15 @@ exp_urls = []
 poc_urls = []
 
 [id]
-aliases = ["CVE-2026-0828"]
+aliases = [
+    "CVE-2026-48987",
+    "GHSA-c2f9-4mc8-j656",
+]
 ave_id = "AVE-2026-0009"
-cve_id = "CVE-2026-0828"
+cve_id = "CVE-2026-48987"
 
 [meta]
-collected_at = "2026-07-11T17:11:18.924170431+00:00"
+collected_at = "2026-07-11T17:11:25.912547737+00:00"
 status = "completed"
 
 [references]
