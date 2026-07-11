@@ -1,25 +1,25 @@
-[id]
-ave_id = "AVE-1999-0002"
-cve_id = "CVE-1999-0382"
-aliases = ["CVE-1999-0382"]
-
 [basic]
-title = "Microsoft Windows NT 屏幕保护程序权限提升漏洞"
-description = "Windows NT 的屏幕保护程序在锁定系统后未能正确验证其安全上下文是否已更改，攻击者可以利用此漏洞在系统上以提升的权限运行程序。该漏洞影响 Windows NT 3.5.1 及 4.0 多个版本，本地攻击者可通过特定操作绕过屏幕保护限制，获取系统最高权限执行任意代码。"
-severity = "HIGH"
-score = 7.2
-sources = ["cve"]
-published = "1999-03-12"
-updated = "2026-06-16"
-remediation = "升级到 Windows NT 最新版本并安装 Microsoft 安全公告 MS99-008 提供的安全补丁，同时限制本地用户对系统的物理访问权限。"
-
-[references]
-urls = ["https://docs.microsoft.com/en-us/security-updates/securitybulletins/1999/ms99-008", "https://nvd.nist.gov/vuln/detail/CVE-1999-0382"]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["tenable"]
+title = "CVE-1999-0524 漏洞"
+updated = ""
 
 [exploit]
-poc_urls = []
 exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0524"]
+ave_id = "AVE-1999-0002"
+cve_id = "CVE-1999-0524"
 
 [meta]
+collected_at = "2026-07-11T04:19:37.876929548+00:00"
 status = "completed"
-collected_at = "2026-07-11T00:00:00+00:00"
+
+[references]
+urls = []
