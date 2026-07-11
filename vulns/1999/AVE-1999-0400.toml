@@ -1,0 +1,32 @@
+[basic]
+description = "IBM Lotus Notes 4.5 客户端在用户未设置加密已保存邮件（Encrypt Saved Mail）偏好选项的情况下，会将加密后的邮件以明文形式通过网络发送。攻击者可利用此漏洞通过网络嗅探获取本应加密的邮件内容，导致敏感信息泄露。该漏洞影响 Lotus Notes 4.5 版本，攻击条件简单，无需身份认证即可远程利用。"
+published = "1999-03-01"
+remediation = "升级 IBM Lotus Notes 客户端至更高版本，或在客户端设置中启用加密已保存邮件（Encrypt Saved Mail）偏好选项，确保加密邮件在传输和存储时均受到保护。"
+score = 7.5
+severity = "HIGH"
+sources = [
+    "nvd",
+    "cve",
+]
+title = "IBM Lotus Notes 4.5 客户端加密邮件明文传输漏洞"
+updated = "2026-06-16"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0429"]
+ave_id = "AVE-1999-0400"
+
+[meta]
+collected_at = "2026-07-11T23:31:38Z"
+status = "completed"
+
+[references]
+urls = [
+    "http://marc.info/?l=bugtraq&m=92221437025743&w=2",
+    "http://marc.info/?l=bugtraq&m=92241547418689&w=2",
+    "http://marc.info/?l=bugtraq&m=92246997917866&w=2",
+    "http://marc.info/?l=bugtraq&m=92249282302994&w=2",
+]
