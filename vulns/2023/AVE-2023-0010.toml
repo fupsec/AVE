@@ -1,0 +1,25 @@
+[basic]
+description = "Nginx（含Tengine）存在目录穿越漏洞，攻击者可通过构造特殊的URL请求，利用路径遍历绕过身份验证和访问控制，读取服务器上的任意文件，包括配置文件、源码和敏感数据等，导致严重的信息泄露。该漏洞无需身份认证即可远程利用。"
+published = "2023-08-10"
+remediation = "升级Nginx/Tengine至最新版本；配置严格的访问控制规则，限制URL中的特殊路径字符如../；禁用不必要的alias和root指令中的符号链接跟随；部署WAF规则拦截目录遍历攻击payload。"
+score = 7.5
+severity = "HIGH"
+sources = ["hwpoc"]
+title = "Nginx目录穿越任意文件读取漏洞"
+updated = "2023-08-10"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["HWPOC-2023-00130e6f"]
+ave_id = "AVE-2023-0010"
+cve_id = "HWPOC-2023-00130e6f"
+
+[meta]
+collected_at = "2026-07-11T00:43:42+00:00"
+status = "completed"
+
+[references]
+urls = []
