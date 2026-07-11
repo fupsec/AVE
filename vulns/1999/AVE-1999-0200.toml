@@ -1,31 +1,27 @@
 [basic]
-description = "X Window System的Xt库中存在缓冲区溢出漏洞。本地攻击者可通过向Xt库发送特制数据触发缓冲区溢出，成功利用此漏洞可在目标系统上以root权限执行任意代码。受影响的系统包括BSD/OS、Caldera UnixWare、FreeBSD、HP-UX、IBM AIX、SGI IRIX及SunOS等多个Unix操作系统。"
-published = "1997-05-01"
-remediation = "建议升级X Window System至包含补丁的最新版本，限制不可信用户对受影响系统的本地访问权限，并及时应用操作系统厂商提供的安全更新补丁。"
+description = "SGI IRIX 5.3、6.2、6.3及6.4版本的X服务器存在缓冲区溢出漏洞。本地攻击者可通过向X服务器字体路径提交特制请求触发缓冲区溢出，成功利用后可获取系统root权限，实现完全控制受影响系统。"
+published = "1999-03-01"
+remediation = "建议升级SGI IRIX系统至最新安全补丁版本，或从SGI官方安全公告ftp://patches.sgi.com/support/free/security/advisories/19990301-01-PX获取对应补丁进行修复。"
 score = 7.2
 severity = "HIGH"
 sources = [
-    "NVD",
-    "exploit-db",
-    "X-Force",
+    "cve",
+    "sgi",
 ]
-title = "X Window System Xt库缓冲区溢出导致本地权限提升漏洞"
-updated = "1997-05-01"
+title = "SGI IRIX X服务器字体路径缓冲区溢出漏洞"
+updated = "1999-03-01"
 
 [exploit]
 exp_urls = []
 poc_urls = []
 
 [id]
-aliases = ["CVE-1999-0040"]
+aliases = ["CVE-1999-0413"]
 ave_id = "AVE-1999-0200"
 
 [meta]
-collected_at = "2026-07-11T23:15:56+00:00"
+collected_at = "2026-07-11T23:15:30.513786311+00:00"
 status = "completed"
 
 [references]
-urls = [
-    "https://exchange.xforce.ibmcloud.com/vulnerabilities/CVE-1999-0040",
-    "https://www.exploit-db.com/exploits/19202",
-]
+urls = ["https://nvd.nist.gov/vuln/detail/CVE-1999-0413"]
