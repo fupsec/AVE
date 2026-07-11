@@ -1,16 +1,14 @@
 [basic]
-description = "SGI IRIX系统的df命令存在缓冲区溢出漏洞。攻击者通过构造特定的参数，可触发df命令中的缓冲区溢出，从而在本地获取root权限。该漏洞影响多个版本的SGI IRIX操作系统。"
-published = "1997-07-16"
-remediation = "建议升级到SGI IRIX的修复版本或应用厂商提供的安全补丁，限制本地用户对系统的访问权限。"
-score = 7.2
-severity = "HIGH"
+description = "Debian GNU/Linux 系统中的 cfengine 软件包存在符号链接（symlink）安全漏洞。cfengine 是一款自动化配置管理工具，在运行过程中会以可预测的方式创建临时文件。本地攻击者可以利用此漏洞，通过创建恶意的符号链接指向系统中其他敏感文件，从而在 cfengine 以特权身份运行时触发文件覆盖或信息泄露。该漏洞影响 Debian GNU/Linux 2.0 版本，攻击者需要本地访问权限，利用复杂度较低，可能导致部分机密信息被未授权读取。"
+published = "1999-02-16"
+remediation = "升级 cfengine 软件包至包含安全修复的最新版本，避免使用可预测的临时文件名，确保临时文件创建在受限目录中。"
+score = 2.1
+severity = "LOW"
 sources = [
-    "NVD",
-    "CERT",
-    "SecurityFocus",
-    "XForce",
+    "nvd",
+    "cve",
 ]
-title = "SGI IRIX df命令缓冲区溢出漏洞"
+title = "Debian GNU/Linux cfengine 软件包符号链接攻击漏洞"
 updated = "2026-06-16"
 
 [exploit]
@@ -18,18 +16,12 @@ exp_urls = []
 poc_urls = []
 
 [id]
-aliases = ["CVE-1999-0025"]
+aliases = ["CVE-1999-0374"]
 ave_id = "AVE-1999-0067"
 
 [meta]
-collected_at = "2026-07-11T22:35:08+00:00"
+collected_at = "2026-07-11T22:36:00+00:00"
 status = "completed"
 
 [references]
-urls = [
-    "http://www.cert.org/advisories/CA-1997-21.html",
-    "http://www.kb.cert.org/vuls/id/20851",
-    "http://www.securityfocus.com/bid/346",
-    "https://exchange.xforce.ibmcloud.com/vulnerabilities/440",
-    "https://www.exploit-db.com/exploits/19274",
-]
+urls = ["https://exchange.xforce.ibmcloud.com/vulnerabilities/CVE-1999-0374"]
