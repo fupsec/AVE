@@ -1,0 +1,25 @@
+[basic]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["cve"]
+title = "CVE-1999-0409 漏洞"
+updated = ""
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0409"]
+ave_id = "AVE-1999-0008"
+cve_id = "CVE-1999-0409"
+
+[meta]
+collected_at = "2026-07-11T17:10:54.940000190+00:00"
+status = "completed"
+
+[references]
+urls = []

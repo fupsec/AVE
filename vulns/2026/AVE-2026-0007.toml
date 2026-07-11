@@ -1,25 +1,35 @@
 [basic]
-description = ""
-published = ""
-remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 0.0
-severity = "UNKNOWN"
-sources = ["github"]
-title = "CVE-2026-0300"
-updated = ""
+description = "CatfishCMS（鲶鱼CMS）4.8.54版本中存在远程命令执行漏洞（CNVD-2019-06255）。攻击者无需认证即可通过构造恶意HTTP请求，利用method参数传递_method=__construct和filter[]=system等参数，触发ThinkPHP5框架的方法调用缺陷，从而在服务器上执行任意系统命令，获取服务器控制权限。该漏洞影响严重，可导致完全的信息泄露、数据篡改和服务中断。"
+published = "2019-01-01"
+remediation = "升级CatfishCMS至4.8.54或更高版本。如无法即时升级，建议对method参数进行严格过滤，禁用_method参数传递功能，并启用Web应用防火墙拦截恶意请求。"
+score = 10.0
+severity = "CRITICAL"
+sources = [
+    "nuclei",
+    "cnvd",
+]
+title = "CatfishCMS（鲶鱼CMS）远程命令执行漏洞"
+updated = "2019-12-31"
 
 [exploit]
 exp_urls = []
-poc_urls = []
+poc_urls = ["https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2019/CNVD-2019-06255.yaml"]
 
 [id]
-aliases = ["CVE-2026-0300"]
+aliases = [
+    "NUCLEI-HTTP-CNVD-2019-CNVD-2019-06255-YAML",
+    "CNVD-2019-06255",
+]
 ave_id = "AVE-2026-0007"
-cve_id = "CVE-2026-0300"
+cve_id = ""
 
 [meta]
-collected_at = "2026-07-11T16:25:51.916772021+00:00"
+collected_at = "2026-07-12T12:00:00Z"
 status = "completed"
 
 [references]
-urls = []
+urls = [
+    "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2019/CNVD-2019-06255.yaml",
+    "https://its401.com/article/yun2diao/91344725",
+    "https://github.com/xwlrbh/Catfish/issues/4",
+]

@@ -1,0 +1,32 @@
+[basic]
+description = "Microsoft Office Excel 2000、XP、2003 及 Mac 版 2004 中存在未指定的远程代码执行漏洞。攻击者可通过诱导用户打开特制的 Excel 文件来利用此漏洞，该文件可伪装为电子邮件附件或托管在恶意网站上。成功利用后攻击者可完全控制受影响的系统，该漏洞已被发现在定向零日攻击中实际利用。"
+published = "2007-02-03"
+remediation = "安装微软安全公告 MS07-015 提供的安全更新，升级 Excel 至最新版本。对于无法立即更新的系统，应谨慎打开来自不明来源的 Excel 文件，并启用 Office 文件验证功能。"
+score = 8.8
+severity = "HIGH"
+sources = ["kev"]
+title = "Microsoft Office Excel 远程代码执行漏洞"
+updated = "2026-06-16"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2007-0671"]
+ave_id = "AVE-2007-0001"
+cve_id = "CVE-2007-0671"
+
+[meta]
+collected_at = "2026-07-12T00:30:49+08:00"
+status = "completed"
+
+[references]
+urls = [
+    "https://docs.microsoft.com/en-us/security-updates/securitybulletins/2007/ms07-015",
+    "http://www.kb.cert.org/vuls/id/613740",
+    "http://www.us-cert.gov/cas/techalerts/TA07-044A.html",
+    "http://www.securityfocus.com/bid/22383",
+    "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2007-0671",
+    "http://www.microsoft.com/technet/security/advisory/932553.mspx",
+]
