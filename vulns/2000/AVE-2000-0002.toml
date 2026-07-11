@@ -1,0 +1,24 @@
+[basic]
+description = "Novell NetWare 5.1 SP3中的FTP服务器组件NWFTPD.nlm在5.01o版本之前存在拒绝服务漏洞。远程认证用户通过在失败的RNFR命令后发送RNTO命令，可导致FTP服务异常终止（abend），造成拒绝服务。该漏洞源于对命令序列的输入验证不足，属于缓冲区边界操作限制不当（CWE-119）类问题。"
+published = "2010-04-05"
+remediation = "升级NWFTPD.nlm至5.01o或更高版本，以修复因RNFR命令失败后发送RNTO命令导致的拒绝服务问题。"
+score = 3.5
+severity = "LOW"
+sources = ["nvd"]
+title = "Novell NetWare 5.1 SP3 FTP服务器NWFTPD.nlm RNFR/RNTO命令拒绝服务漏洞"
+updated = "2010-04-05"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2000-1246"]
+ave_id = "AVE-2000-0002"
+
+[meta]
+collected_at = "2026-07-11T22:18:18.175900591+00:00"
+status = "completed"
+
+[references]
+urls = ["http://www.novell.com/support/viewContent.do?externalId=3238588&sliceId=1"]

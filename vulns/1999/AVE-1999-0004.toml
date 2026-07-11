@@ -1,12 +1,15 @@
 [basic]
-description = ""
-published = ""
-remediation = "请参考官方安全公告，及时安装安全更新或升级到最新版本。"
-score = 5
-severity = "MEDIUM"
-sources = ["avd"]
-title = "** REJECT **"
-updated = ""
+description = "CVE-1999-1595 是一个已被撤销的漏洞候选编号，该编号由 CNA 提交后因故撤回，不包含任何有效漏洞信息，不指向实际安全缺陷，不应被使用或引用。"
+published = "2020-11-05"
+remediation = "该CVE编号已被CNA撤销，不构成实际安全威胁，无需采取修复措施。"
+score = 0.1
+severity = "INFO"
+sources = [
+    "nvd",
+    "avd",
+]
+title = "已撤销的CVE候选编号1999-1595（不包含实际漏洞信息）"
+updated = "2023-11-06"
 
 [exploit]
 exp_urls = []
@@ -21,4 +24,4 @@ collected_at = "2026-07-11T22:01:14.012042823+00:00"
 status = "completed"
 
 [references]
-urls = []
+urls = ["https://nvd.nist.gov/vuln/detail/CVE-1999-1595"]

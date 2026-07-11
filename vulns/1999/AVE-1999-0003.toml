@@ -1,12 +1,15 @@
 [basic]
-description = ""
-published = ""
-remediation = "请参考官方安全公告，及时安装安全更新或升级到最新版本。"
-score = 5
-severity = "MEDIUM"
-sources = ["avd"]
-title = "** REJECT **"
-updated = ""
+description = "CVE-1999-1594 是一个被其 CNA（Red Hat, Inc.）撤销的候选漏洞编号。该编号不涉及任何实际的安全漏洞，原因为该候选编号已被 CNA 主动撤回，仅用于记录该编号曾被分配而后被撤销的历史事实，不具有任何安全风险。"
+published = "2020-11-05"
+remediation = "该候选漏洞编号已被 CNA 撤销，不存在实际安全漏洞，无需任何修复操作。建议忽略此编号记录。"
+score = 2.5
+severity = "INFO"
+sources = [
+    "avd",
+    "nvd",
+]
+title = "被撤销的候选漏洞编号（CVE-1999-1594）记录"
+updated = "2023-11-06"
 
 [exploit]
 exp_urls = []
@@ -21,4 +24,4 @@ collected_at = "2026-07-11T22:00:09.937780767+00:00"
 status = "completed"
 
 [references]
-urls = []
+urls = ["https://nvd.nist.gov/vuln/detail/CVE-1999-1594"]
