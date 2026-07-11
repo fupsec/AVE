@@ -1,24 +1,24 @@
-[id]
-ave_id = "AVE-2002-0012"
-aliases = ["CVE-2002-1303"]
-
 [basic]
-title = "CVE-2002-1303 已被撤销（REJECT）的候选编号"
-description = "CVE-2002-1303 是一个已被撤销的候选编号，该编号在2002年期间未被任何CNA或个人与任何实际安全漏洞关联，因此被标记为REJECT状态，此编号不应被用于标识任何安全漏洞。"
-severity = "INFO"
-score = 2.5
-sources = ["nvd"]
-published = "2017-05-11"
-updated = "2023-11-06"
-remediation = "不适用，该CVE编号已被撤销，不需要修复任何漏洞。"
-
-[references]
-urls = ["https://nvd.nist.gov/vuln/detail/CVE-2002-1303"]
+description = ""
+published = ""
+remediation = "请参考官方安全公告，及时安装安全更新或升级到最新版本。"
+score = 5
+severity = "MEDIUM"
+sources = ["avd"]
+title = "** REJECT **"
+updated = ""
 
 [exploit]
-poc_urls = []
 exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2002-1303"]
+ave_id = "AVE-2002-0012"
 
 [meta]
+collected_at = "2026-07-11T23:23:30.184287935+00:00"
 status = "completed"
-collected_at = "2026-07-11T23:23:30.184763666+00:00"
+
+[references]
+urls = []
