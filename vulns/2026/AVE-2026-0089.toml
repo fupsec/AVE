@@ -1,0 +1,29 @@
+[affected]
+product = "Smartweb"
+vendor = "Ruijie"
+
+[basic]
+description = "锐捷 Smartweb 网络管理软件存在默认口令漏洞。该软件内置默认用户名和密码（guest/guest），如果管理员未及时修改默认凭据，攻击者可以通过网络访问管理接口，利用默认口令直接登录系统，从而获取设备管理权限。攻击者成功登录后可查看敏感信息、修改设备配置以及执行未授权管理操作，造成严重安全风险。"
+published = "2020-01-01"
+remediation = "登录锐捷 Smartweb 管理后台后立即修改默认的 guest 账户密码，使用包含大小写字母、数字和特殊字符的强密码，同时限制管理接口仅允许可信 IP 地址访问，避免将 Web 管理界面直接暴露在互联网上。"
+score = 3.9
+severity = "LOW"
+sources = ["cnvd", "nuclei"]
+title = "锐捷 Smartweb 默认口令漏洞"
+updated = "2020-01-01"
+
+[exploit]
+exp_urls = []
+poc_urls = ["https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2020/CNVD-2020-56167.yaml"]
+
+[id]
+aliases = ["CNVD-2020-56167", "NUCLEI-HTTP-CNVD-2020-CNVD-2020-56167-YAML"]
+ave_id = "AVE-2026-0089"
+cve_id = ""
+
+[meta]
+collected_at = "2026-07-11T00:00:00Z"
+status = "completed"
+
+[references]
+urls = ["https://www.cnvd.org.cn/flaw/show/CNVD-2020-56167", "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2020/CNVD-2020-56167.yaml"]
