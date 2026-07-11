@@ -1,0 +1,24 @@
+[basic]
+description = "CVE-2002-1304 是一个被标记为废弃（REJECT）的候选编号。该编号在2002年期间未与任何实际安全漏洞相关联，CNA或申请方未将其关联到任何漏洞。因此该编号不应被使用，也不代表任何有效的安全风险。"
+published = "2017-05-11"
+remediation = "该CVE编号已被废弃且不关联任何实际漏洞，无需修复措施。建议关注厂商安全公告获取有效漏洞信息。"
+score = 0.1
+severity = "INFO"
+sources = ["nvd"]
+title = "已废弃安全候选编号 CVE-2002-1304（未关联任何实际漏洞）"
+updated = "2023-11-06"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2002-1304"]
+ave_id = "AVE-2002-0013"
+
+[meta]
+collected_at = "2026-07-11T23:24:55.673801694+00:00"
+status = "completed"
+
+[references]
+urls = ["https://nvd.nist.gov/vuln/detail/CVE-2002-1304"]
