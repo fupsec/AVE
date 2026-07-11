@@ -1,60 +1,25 @@
-[id]
-ave_id = "AVE-2018-0038"
-cve_id = "CVE-2018-25109"
-aliases = ["CVE-2018-25109", "EUVD-2018-21598", "VDB-300631"]
-
 [basic]
-title = "Nintendo Animal Crossing Letter Trigram内存损坏漏洞"
-description = "Nintendo GameCube平台上的Animal Crossing（动物森友会）、Doubutsu no Mori+和Doubutsu no Mori e+ 1.00/1.01版本中存在一个内存损坏漏洞。该漏洞位于Letter Trigram Handler组件中，攻击者通过物理接触设备并操纵三字母组（Trigram）数据，可触发缓冲区越界操作（CWE-119），导致内存损坏。由于攻击需要物理访问且复杂度较高，实际利用难度较大，但已公开的exploit代码增加了被武器化的风险。"
-severity = "MEDIUM"
-score = 6.4
-published = "2025-03-23"
-updated = "2026-06-17"
-remediation = "由于该漏洞存在于GameCube物理游戏卡带及游戏软件中，目前无官方补丁。建议限制对GameCube设备的物理访问，防止未授权人员操作游戏信件系统。对于已部署的受影响版本（1.00/1.01），可通过升级至更高版本或使用官方修复的游戏版本来降低风险。"
-sources = ["nvd", "avd", "vuldb"]
-
-[scores]
-cvss_v3 = "AV:P/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H"
-cvss_v3_score = 6.4
-cvss_v2 = "AV:L/AC:H/Au:N/C:C/I:C/A:C"
-cvss_v2_score = 6.2
-cvss_v4 = "AV:P/AC:H/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N"
-cvss_v4_score = 5.4
-
-[affected]
-vendor = "Nintendo"
-product = "Animal Crossing"
-affected_versions = ["1.00", "1.01"]
-platform = "GameCube"
-other_products = ["Doubutsu no Mori+", "Doubutsu no Mori e+"]
-
-[cwe]
-id = "CWE-119"
-name = "Improper Restriction of Operations within the Bounds of a Memory Buffer"
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["avd"]
+title = "CVE-2018-25109 漏洞"
+updated = ""
 
 [exploit]
-poc = [
-    {url = "https://github.com/FIX94/ac-exploit-gc", description = "Animal Crossing GameCube内存损坏exploit PoC代码", source = "GitHub"}
-]
-exp = [
-    {url = "https://github.com/FIX94/ac-exploit-gc", description = "可利用的GameCube平台Animal Crossing内存损坏exploit", source = "GitHub"}
-]
-nuclei_templates = []
+exp_urls = []
+poc_urls = []
 
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2018-25109"
-avd = ""
-other = [
-    "https://vuldb.com/?id.300631",
-    "https://vuldb.com/?ctiid.300631",
-    "https://hunter-r.com/posts/ac-trigrams/",
-    "https://jamchamb.net/2018/07/11/animal-crossing-nes-emulator-hacks.html",
-    "https://euvd.enisa.europa.eu/vulnerability/EUVD-2018-21598",
-    "https://cvefeed.io/vuln/detail/CVE-2018-25109"
-]
+[id]
+aliases = ["CVE-2018-25109"]
+ave_id = "AVE-2018-0038"
+cve_id = "CVE-2018-25109"
 
 [meta]
-collected_at = "2026-07-11T08:30:00+08:00"
+collected_at = "2026-07-10T23:58:11.152276444+00:00"
 status = "completed"
-epss = 0.002
-confidence = "medium"
+
+[references]
+urls = []
