@@ -1,0 +1,25 @@
+[id]
+ave_id = "AVE-2023-0009"
+cve_id = ""
+aliases = ["HWPOC-2023-000f79a9"]
+
+[basic]
+title = "畅捷通畅捷CRM create_site.php SQL注入漏洞"
+description = "畅捷通CRM系统的create_site.php接口存在SQL注入漏洞，攻击者可在无需身份认证的情况下，通过向该接口提交恶意构造的SQL查询语句，实现对后端数据库的任意数据读取、篡改或删除操作，严重威胁系统数据安全与业务连续性。"
+severity = "CRITICAL"
+score = 9.8
+remediation = "建议立即联系畅捷通官方获取并安装最新安全补丁，或将畅捷CRM升级至已修复该漏洞的最新版本。同时建议对create_site.php所有输入参数实施严格的参数化查询与输入过滤。"
+published = "2023-08-08"
+updated = "2023-08-08"
+sources = ["hwpoc"]
+
+[references]
+urls = []
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-11T12:00:00Z"

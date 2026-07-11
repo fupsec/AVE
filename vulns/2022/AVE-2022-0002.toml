@@ -1,37 +1,38 @@
+[basic]
+title = "SDL2 GLES_CreateTexture内存泄漏拒绝服务漏洞"
+description = "SDL2的GLES_CreateTexture()函数（位于SDL_render_gles.c）中存在潜在的内存泄漏问题。攻击者可通过触发该漏洞导致内存消耗过度，进而引发拒绝服务（DoS）攻击，造成系统不稳定或崩溃。该漏洞影响SDL2 v2.0.4及以上版本，SDL-1.x不受影响。"
+published = "2023-01-12"
+updated = "2025-11-25"
+remediation = "将SDL2升级至2.26.0或更高版本。若暂时无法升级，建议限制不可信来源对SDL渲染功能的调用，避免处理恶意纹理数据。"
+severity = "MEDIUM"
+score = 5.4
+sources = ["nvd", "redhat", "snyk", "github", "debian"]
+
+[affected]
+vendor = "libsdl.org"
+product = "SDL2"
+
+[exploit]
+poc_urls = []
+exp_urls = []
+nuclei_templates = []
+
 [id]
 ave_id = "AVE-2022-0002"
 cve_id = "CVE-2022-4743"
 aliases = ["CVE-2022-4743"]
 
-[basic]
-title = "SDL2 GLES_CreateTexture 内存泄漏拒绝服务漏洞"
-description = "SDL2（Simple DirectMedia Layer 2）在 SDL_render_gles.c 文件的 GLES_CreateTexture() 函数中存在内存泄漏漏洞。攻击者可利用该漏洞远程触发持续内存泄漏，最终导致目标系统拒绝服务。漏洞影响 SDL2 v2.0.4 及以上版本，SDL-1.x 不受影响。攻击者无需身份认证即可远程利用，CVSS 评分 7.5。"
-severity = "HIGH"
-score = 7.5
-remediation = "升级 SDL2 至 2.26.0 或更高版本；相关发行版可通过包管理器更新至修复版本；也可参考 Red Hat 安全公告 RH bug 2156290 应用补丁。"
-published = "2023-01-12"
-updated = "2026-06-17"
-sources = ["nvd", "msrc", "redhat"]
-
-[affected]
-vendor = "libsdl"
-product = "Simple DirectMedia Layer"
-
 [references]
 urls = [
-  "https://access.redhat.com/security/cve/CVE-2022-4743",
-  "https://bugzilla.redhat.com/show_bug.cgi?id=2156290",
-  "https://github.com/libsdl-org/SDL/commit/00b67f55727bc0944c3266e2b875440da132ce4b",
-  "https://github.com/libsdl-org/SDL/pull/6269",
-  "https://lists.debian.org/debian-lts-announce/2023/02/msg00008.html",
-  "https://lists.debian.org/debian-lts-announce/2025/11/msg00024.html",
-  "https://security.gentoo.org/glsa/202305-18"
+    "https://nvd.nist.gov/vuln/detail/CVE-2022-4743",
+    "https://access.redhat.com/security/cve/CVE-2022-4743",
+    "https://github.com/libsdl-org/SDL/commit/00b67f55727bc0944c3266e2b875440da132ce4b",
+    "https://github.com/libsdl-org/SDL/pull/6269",
+    "https://security.snyk.io/vuln/SNYK-CONAN-SDL-11967999",
+    "https://bugzilla.redhat.com/show_bug.cgi?id=2156290",
+    "https://security.gentoo.org/glsa/202305-18"
 ]
 
-[exploit]
-poc_urls = []
-exp_urls = []
-
 [meta]
-collected_at = "2026-07-10T12:52:03.113375692+00:00"
+collected_at = "2026-07-11T00:03:56.033648256+00:00"
 status = "completed"
