@@ -1,0 +1,30 @@
+[basic]
+description = "RPC statd是NFS状态守护进程，用于在系统间传递状态信息。其在处理SM_MON RPC请求时存在缓冲区溢出漏洞，远程攻击者可通过发送特制的RPC请求触发栈溢出，从而在目标系统上以root权限执行任意代码。受影响系统包括IBM AIX 3.2/4.1、SCO Unixware 7.1.1、SGI IRIX 5.3、Sun Solaris 2.5.1等多款Unix操作系统。"
+published = "1997-12-05"
+remediation = "建议升级操作系统至已修复该漏洞的版本，或安装厂商提供的安全补丁。对于仍在运行statd服务的系统，应通过防火墙限制对RPC端口的访问。"
+score = 10.0
+severity = "CRITICAL"
+sources = [
+    "nvd",
+    "exploitdb",
+]
+title = "多款Unix系统RPC statd服务缓冲区溢出漏洞"
+updated = "2026-06-16"
+
+[exploit]
+exp_urls = []
+poc_urls = ["https://www.exploit-db.com/exploits/19104"]
+
+[id]
+aliases = ["CVE-1999-0018"]
+ave_id = "AVE-1999-0024"
+
+[meta]
+collected_at = "2026-07-11T22:30:47.456291964+00:00"
+status = "completed"
+
+[references]
+urls = [
+    "http://www.securityfocus.com/bid/127",
+    "https://www.exploit-db.com/exploits/19104",
+]
