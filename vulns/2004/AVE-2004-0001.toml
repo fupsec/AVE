@@ -1,30 +1,25 @@
-[id]
-ave_id = "AVE-2004-0001"
-cve_id = "CVE-2004-0210"
-aliases = ["CVE-2004-0210"]
-
 [basic]
-title = "Microsoft Windows POSIX 子系统权限提升漏洞"
-description = "Microsoft Windows NT 和 Windows 2000 的 POSIX 子系统中存在缓冲区溢出漏洞。攻击者可通过向 POSIX 子系统传递特定参数，修改消息长度值，触发缓冲区溢出，从而在目标系统上执行任意代码。成功利用此漏洞的本地攻击者可获取系统完全控制权限。该漏洞已被 CISA 列入已知被利用漏洞目录，存在在野利用。"
-severity = "HIGH"
-score = 7.8
-sources = ["kev", "nvd"]
-published = "2004-08-06"
-updated = "2026-06-16"
-remediation = "微软已发布安全公告 MS04-020 修复此漏洞。用户应立即访问 Microsoft Update 安装安全更新，或参考微软官方文档获取补丁。"
-
-[references]
-urls = [
-    "https://docs.microsoft.com/en-us/security-updates/securitybulletins/2004/ms04-020",
-    "http://www.kb.cert.org/vuls/id/647436",
-    "https://exchange.xforce.ibmcloud.com/vulnerabilities/16590",
-    "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2004-0210",
-]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["kev"]
+title = "CVE-2004-0210 漏洞"
+updated = ""
 
 [exploit]
-poc_urls = []
 exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2004-0210"]
+ave_id = "AVE-2004-0001"
+cve_id = "CVE-2004-0210"
 
 [meta]
+collected_at = "2026-07-11T04:16:18.101626879+00:00"
 status = "completed"
-collected_at = "2026-07-11T04:16:45Z"
+
+[references]
+urls = []
