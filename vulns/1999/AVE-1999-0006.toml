@@ -1,0 +1,30 @@
+[basic]
+description = "BSD派生操作系统（包括FreeBSD、OpenBSD等）的TCP/IP协议栈实现中，ip_input.c文件存在输入验证不当漏洞（CWE-20）。远程攻击者可通过发送特制网络数据包，触发目标系统内核崩溃或进程挂起，从而导致服务不可用。攻击者无需认证即可远程利用，影响多个BSD系统版本。"
+published = "1999-12-30"
+remediation = "升级到修复版本：OpenBSD用户升级至2.3及以上版本（已应用tcpfix补丁）；FreeBSD用户安装厂商发布的安全补丁。建议关注官方安全公告获取最新修复方案。"
+score = 5.0
+severity = "MEDIUM"
+sources = [
+    "nvd",
+    "cve",
+]
+title = "BSD派生TCP/IP实现ip_input.c存在远程拒绝服务漏洞"
+updated = "2024-11-20"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0001"]
+ave_id = "AVE-1999-0006"
+
+[meta]
+collected_at = "2026-07-11T22:14:29.523991484+00:00"
+status = "completed"
+
+[references]
+urls = [
+    "http://www.openbsd.org/errata23.html#tcpfix",
+    "http://www.osvdb.org/5707",
+]
