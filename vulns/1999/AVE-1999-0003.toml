@@ -1,30 +1,25 @@
-[id]
-ave_id = "AVE-1999-0003"
-cve_id = "CVE-1999-1109"
-aliases = ["CVE-1999-1109"]
-
 [basic]
-title = "Sendmail ETRN命令处理拒绝服务漏洞"
-description = "Sendmail 8.10.0之前版本中的SMTP服务存在拒绝服务漏洞。远程攻击者无需认证即可与目标服务器建立连接，发送一系列特制的ETRN命令后立即断开连接，而Sendmail服务器会持续处理这些已断开连接的命令请求，导致系统资源被大量消耗，最终造成邮件服务不可用。"
-severity = "MEDIUM"
-score = 5.0
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
 sources = ["tenable"]
-published = "1999-12-22"
-updated = "2026-06-16"
-remediation = "升级Sendmail至8.10.1或更高版本，该版本已修复ETRN命令处理异常导致的资源泄露问题。"
-
-[references]
-urls = [
-    "http://marc.info/?l=bugtraq&m=94632241202626&w=2",
-    "http://marc.info/?l=bugtraq&m=94780566911948&w=2",
-    "http://www.iss.net/security_center/static/7760.php",
-    "https://www.securityfocus.com/bid/904",
-]
+title = "CVE-1999-1109 漏洞"
+updated = ""
 
 [exploit]
-poc_urls = []
 exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-1109"]
+ave_id = "AVE-1999-0003"
+cve_id = "CVE-1999-1109"
 
 [meta]
+collected_at = "2026-07-11T04:23:48.147331314+00:00"
 status = "completed"
-collected_at = "2026-07-11T12:00:00Z"
+
+[references]
+urls = []
