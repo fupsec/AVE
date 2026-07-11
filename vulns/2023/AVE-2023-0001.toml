@@ -1,11 +1,11 @@
 [basic]
-description = ": 目前没有详细的漏洞描述。请参考相关安全公告获取更多信息。"
+description = "CVE-2023-3792: 目前没有详细的漏洞描述。请参考相关安全公告获取更多信息。"
 published = "unknown"
 remediation = "Refer to vendor advisory and upgrade to fixed version."
 score = 5.0
 severity = "MEDIUM"
 sources = ["hwpoc"]
-title = " 漏洞详情"
+title = "CVE-2023-3792 漏洞详情"
 updated = "unknown"
 
 [exploit]
@@ -17,7 +17,7 @@ aliases = ["CVE-2023-3792"]
 ave_id = "AVE-2023-0001"
 
 [meta]
-collected_at = "2026-07-11T19:23:58.590952910+00:00"
+collected_at = "2026-07-11T20:57:55.454406966+00:00"
 status = "completed"
 
 [references]
