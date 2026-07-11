@@ -1,0 +1,27 @@
+[basic]
+description = "Internet Explorer 4.x及5.x结合Word 97时存在远程代码执行漏洞。攻击者可通过精心构造的恶意Word 97模板嵌入Visual Basic程序，当用户使用IE或Outlook访问包含恶意内容的邮件或网页时，模板中的VBA代码将被自动执行且不提示警告，导致攻击者能够在用户系统上执行任意代码，获取敏感信息或完全控制系统。"
+published = "1999-11-01"
+remediation = "微软已发布安全公告MS99-002修复此漏洞，请安装对应安全更新补丁。建议升级至受支持的最新浏览器版本，并在Outlook中禁用HTML邮件自动执行宏功能。"
+score = 7.5
+severity = "HIGH"
+sources = [
+    "NVD",
+    "Microsoft",
+]
+title = "Microsoft Internet Explorer 与 Word 97 模板远程代码执行漏洞"
+updated = "2026-06-16"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0354"]
+ave_id = "AVE-1999-0055"
+
+[meta]
+collected_at = "2026-07-11T22:32:46.346234003+00:00"
+status = "completed"
+
+[references]
+urls = ["https://docs.microsoft.com/en-us/security-updates/securitybulletins/1999/ms99-002"]
