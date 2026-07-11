@@ -17,38 +17,33 @@ sources = ["nvd", "cnvd", "ghsa", "nuclei", "vulhub"]
 [affected]
 vendor = "ShowDoc"
 product = "ShowDoc"
-versions = ["< 2.8.7"]
 
 [exploit]
-poc = [
-    {
-        url = "https://github.com/vulhub/vulhub/tree/master/showdoc/CNVD-2020-26585",
-        description = "Vulhub 提供的完整复现环境和利用脚本，通过构造 multipart 请求上传 test.<>php 文件绕过后缀校验",
-        source = "vulhub"
-    },
-    {
-        url = "https://github.com/MzzdToT/showdoc_fileupload",
-        description = "ShowDoc 任意文件上传批量 getshell 利用脚本，支持单目标和批量测试",
-        source = "github"
-    },
-    {
-        url = "https://github.com/Threekiii/Awesome-POC/blob/master/Web%E5%BA%94%E7%94%A8%E6%BC%8F%E6%B4%9E/ShowDoc%20%E5%89%8D%E5%8F%B0%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%20CNVD-2020-26585.md",
-        description = "ShowDoc 前台任意文件上传 PoC 文档，包含详细的漏洞分析和利用步骤",
-        source = "github"
-    }
-]
-nuclei_templates = [
-    {
-        url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2020/CNVD-2020-26585.yaml",
-        description = "Nuclei 扫描模板，检测 ShowDoc 未授权文件上传漏洞",
-        source = "nuclei-templates"
-    },
-    {
-        url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/vulnerabilities/other/showdoc-file-upload-rce.yaml",
-        description = "Nuclei ShowDoc 文件上传 RCE 检测模板",
-        source = "nuclei-templates"
-    }
-]
+
+[[exploit.poc]]
+url = "https://github.com/vulhub/vulhub/tree/master/showdoc/CNVD-2020-26585"
+description = "Vulhub 提供的完整复现环境和利用脚本，通过构造 multipart 请求上传 test.<>php 文件绕过后缀校验"
+source = "vulhub"
+
+[[exploit.poc]]
+url = "https://github.com/MzzdToT/showdoc_fileupload"
+description = "ShowDoc 任意文件上传批量 getshell 利用脚本，支持单目标和批量测试"
+source = "github"
+
+[[exploit.poc]]
+url = "https://github.com/Threekiii/Awesome-POC/blob/master/Web%E5%BA%94%E7%94%A8%E6%BC%8F%E6%B4%9E/ShowDoc%20%E5%89%8D%E5%8F%B0%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%20CNVD-2020-26585.md"
+description = "ShowDoc 前台任意文件上传 PoC 文档，包含详细的漏洞分析和利用步骤"
+source = "github"
+
+[[exploit.nuclei_templates]]
+url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2020/CNVD-2020-26585.yaml"
+description = "Nuclei 扫描模板，检测 ShowDoc 未授权文件上传漏洞"
+source = "nuclei-templates"
+
+[[exploit.nuclei_templates]]
+url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/vulnerabilities/other/showdoc-file-upload-rce.yaml"
+description = "Nuclei ShowDoc 文件上传 RCE 检测模板"
+source = "nuclei-templates"
 
 [references]
 nvd = "https://nvd.nist.gov/vuln/detail/CVE-2025-0520"

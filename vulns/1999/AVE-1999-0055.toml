@@ -1,25 +1,49 @@
-[basic]
-description = "Vulnerability identified as CVE-1999-0317. Please refer to vendor advisory for details."
-published = "2026-07-10"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 5.0
-severity = "MEDIUM"
-sources = ["cve"]
-title = "CVE-1999-0317 vulnerability"
-updated = "2026-07-10"
-
-[exploit]
-exp_urls = []
-poc_urls = []
-
 [id]
-aliases = ["CVE-1999-0317"]
 ave_id = "AVE-1999-0055"
 cve_id = "CVE-1999-0317"
+aliases = ["CVE-1999-0317", "CVE-1999-0845"]
 
-[meta]
-collected_at = "2026-07-10T12:52:04.537763286+00:00"
-status = "completed"
+[basic]
+title = "Linux su 命令缓冲区溢出本地提权漏洞"
+description = "Linux su 命令存在缓冲区溢出漏洞，根源在于 libc 中 vsyslog()/openlog() 函数对 ident 字符串的处理不当。su 命令使用 argv[0] 作为 openlog() 的 ident 参数，当攻击者通过环境变量 LANGUAGE 设置恶意 locale 文件路径（包含 /tmp 等目录遍历），并结合 libc.po/lc.mo 格式化字符串漏洞，可覆盖 /bin/su 的 .dtors 段或返回地址。本地攻击者通过向 su 传递超长用户名（argv[1]），触发缓冲区溢出，覆盖栈上的返回地址或 GOT 表项，最终以 root 权限执行任意代码。该漏洞影响 libc 5.4.23 及更早版本，在 libc 5.4.38 中已修复。"
+severity = "HIGH"
+score = 7.2
+cvss_v2_score = 7.2
+cvss_v2_vector = "AV:L/AC:L/Au:N/C:C/I:C/A:C"
+published = "1999-11-25"
+updated = "2026-06-16"
+remediation = "升级 libc 至 5.4.38 或更高版本；如无法立即升级，可使用非可执行栈补丁（http://www.false.com/security/linux-stack/）；对 su 命令去除 SUID 位（chmod u-s /bin/su）作为临时缓解措施；限制本地用户对 su 命令的直接访问权限，通过 PAM 或 sudo 替代方案管理特权提升。"
+sources = ["cve", "nvd"]
+
+[affected]
+vendor = "glibc"
+product = "glibc"
+
+[exploit]
+poc_urls = [
+    { url = "https://seclists.org/bugtraq/1997/Dec/137", description = "vsyslog()/openlog() 漏洞原始分析与 PoC（BiT 编写），通过构造 libc.po 格式化字符串覆盖 /bin/su 返回地址获取 root shell", source = "Bugtraq" },
+    { url = "https://seclists.org/bugtraq/2000/Oct/39", description = "glibc + /bin/su 本地提权 PoC（Guido Bakker），利用 GOT 覆写技术绕过 StackGuard/StackShield/libsafe，通过 msgfmt 编译恶意 locale 文件实现攻击", source = "Bugtraq" },
+    { url = "https://www.vulmon.com/exploitdetails?qid=209&qidtp=exploitdb", description = "glibc /bin/su 本地提权完整利用代码（Doing 编写），通过覆盖 .dtors 段在程序退出时执行 shellcode，已在 Red Hat 6.1/6.2 和 SuSE 6.2 上验证", source = "Vulmon" },
+    { url = "https://www.opennet.ru/base/sco/17.txt.html", description = "SCO UnixWare 7 su 命令缓冲区溢出 PoC（K2 编写），通过超长用户名触发溢出执行 /bin/sh，与 CVE-1999-0317 为同一漏洞的不同变体", source = "OpenNET" },
+]
+exp_urls = [
+    { url = "https://exchange.xforce.ibmcloud.com/vulnerabilities/CVE-1999-0317", description = "IBM X-Force 漏洞详情页", source = "IBM" },
+]
+
+[nuclei_templates]
 
 [references]
-urls = []
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0317"
+avd = ""
+other_ids = ["CVE-1999-0845"]
+urls = [
+    "https://exchange.xforce.ibmcloud.com/vulnerabilities/CVE-1999-0317",
+    "https://seclists.org/bugtraq/1997/Dec/137",
+    "https://seclists.org/bugtraq/2000/Oct/39",
+    "https://seclists.org/bugtraq/2000/Nov/371",
+    "https://www.opennet.ru/base/sco/17.txt.html",
+]
+
+[meta]
+collected_at = "2026-07-10T12:52:04Z"
+status = "completed"
