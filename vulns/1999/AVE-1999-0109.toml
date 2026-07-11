@@ -1,0 +1,27 @@
+[basic]
+description = "lsof（List Open Files）是一款用于列出系统已打开文件描述符的命令行工具。在 Debian Linux 2.0/2.0.5 及 FreeBSD 2.0/2.0.5/2.1.0 等操作系统中，lsof 存在缓冲区溢出漏洞。本地攻击者可以利用该漏洞触发缓冲区溢出，从而将权限提升至 root，实现完全控制受影响系统。"
+published = "1999-02-18"
+remediation = "升级 lsof 到已修复漏洞的版本。对于 Debian Linux，更新至 2.0.5 以上版本并应用安全补丁；对于 FreeBSD，更新至 2.1.0 以上版本。建议从官方渠道获取最新 lsof 版本。"
+score = 7.2
+severity = "HIGH"
+sources = [
+    "cve",
+    "nvd",
+]
+title = "Debian Linux 和 FreeBSD 系统 lsof 工具缓冲区溢出本地权限提升漏洞"
+updated = "1999-02-18"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0405"]
+ave_id = "AVE-1999-0109"
+
+[meta]
+collected_at = "2026-07-11T23:04:55.811087711+00:00"
+status = "completed"
+
+[references]
+urls = ["http://www.osvdb.org/3163"]
