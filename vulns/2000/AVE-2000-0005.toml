@@ -1,0 +1,24 @@
+[basic]
+description = "CVE-2000-1249 编号已被其 CNA（原始编号分配机构 Red Hat, Inc.）撤销。该候选编号不应用于任何实际漏洞标识，无相关漏洞详情、受影响的软件版本或攻击向量信息。此编号仅作历史记录保留，不指向任何真实安全缺陷。"
+published = "2020-11-05"
+remediation = "此编号已被 CNA 撤销，不指向任何真实漏洞，无需采取修复措施。建议忽略并使用其他有效 CVE 编号。"
+score = 1.0
+severity = "LOW"
+sources = ["nvd"]
+title = "Red Hat 已撤销的无实际影响的无效漏洞编号记录"
+updated = "2023-11-06"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2000-1249"]
+ave_id = "AVE-2000-0005"
+
+[meta]
+collected_at = "2026-07-11T22:22:43.752655115+00:00"
+status = "completed"
+
+[references]
+urls = ["https://nvd.nist.gov/vuln/detail/CVE-2000-1249"]
