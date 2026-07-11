@@ -1,0 +1,24 @@
+[basic]
+description = ""
+published = ""
+remediation = "请参考官方安全公告，及时安装安全更新或升级到最新版本。"
+score = 5
+severity = "MEDIUM"
+sources = ["exploitdb"]
+title = "Qualcomm qpopper 2.4 - POP Server Buffer Overflow (2)"
+updated = ""
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0006"]
+ave_id = "AVE-1999-0009"
+
+[meta]
+collected_at = "2026-07-11T22:18:40.444182222+00:00"
+status = "completed"
+
+[references]
+urls = []
