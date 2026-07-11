@@ -1,0 +1,37 @@
+[id]
+ave_id = "AVE-1999-0002"
+cve_id = "CVE-1999-0524"
+aliases = ["CVE-1999-0524"]
+
+[basic]
+title = "ICMP时间戳及网络掩码信息泄露漏洞"
+description = "攻击者可通过向目标主机发送ICMP时间戳请求（类型13）或地址掩码请求（类型17），获取系统的当前时间和网络掩码信息。这些信息可被用于辅助其他攻击，例如利用已知时间戳绕过基于时间的认证机制或推断网络拓扑结构。该漏洞影响广泛的操作系统和网络设备，包括但不限于Linux、Windows、macOS、Cisco IOS、AIX、Solaris等平台上的ICMP实现。"
+severity = "MEDIUM"
+score = 4.0
+sources = ["tenable", "nvd"]
+published = "1997-08-01"
+updated = "2026-06-16"
+remediation = "在网络边界防火墙或主机防火墙上配置规则，阻止外部的ICMP时间戳请求（类型13）和地址掩码请求（类型17）数据包。对于Linux系统，使用iptables规则丢弃此类报文；对于Windows系统，通过高级安全防火墙创建入站规则拦截ICMPv4类型13和17的流量。"
+
+[references]
+urls = [
+    "https://nvd.nist.gov/vuln/detail/CVE-1999-0524",
+    "https://exchange.xforce.ibmcloud.com/vulnerabilities/306",
+    "https://exchange.xforce.ibmcloud.com/vulnerabilities/322",
+    "https://support.f5.com/csp/article/K15277",
+    "http://kb.juniper.net/InfoCenter/index?page=content&id=JSA10705",
+    "http://kb.vmware.com/selfservice/microsites/search.do?cmd=displayKC&externalId=1434",
+]
+
+[exploit]
+poc_urls = [
+    "https://github.com/threatlabindonesia/CVE-1999-0524-ICMP-Timestamp-and-Address-Mask-Request-Exploit",
+    "https://github.com/b1tsec/CVE-1999-0524",
+    "https://github.com/Ransc0rp1on/ICMP-Timestamp-POC",
+    "https://github.com/noraj/ChronoLeak",
+]
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-11T00:00:00Z"

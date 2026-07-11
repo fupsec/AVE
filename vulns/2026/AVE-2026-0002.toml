@@ -1,33 +1,32 @@
 [id]
 ave_id = "AVE-2026-0002"
-cve_id = "CVE-2026-0023"
-aliases = ["CVE-2026-0023"]
+cve_id = ""
+aliases = ["CNVD-2017-03561", "NUCLEI-HTTP-CNVD-2017-CNVD-2017-03561-YAML"]
 
 [basic]
-title = "Android PackageInstallerService 更新所有权绕过致权限提升漏洞"
-description = "在 Android PackageInstallerService.java 的 createSessionInternal 方法中，由于未正确清除 INSTALL_FROM_MANAGED_USER_OR_PROFILE 标志位，导致普通安装器应用能够操纵安装会话的内部状态。攻击者可在无需用户交互且无需额外权限的情况下，绕过 Android 的更新所有权安全警告机制，使系统仅显示通用更新对话框而非所有权验证提示。该漏洞影响 Android 14、15、16 及 16-qpr2 版本，可导致本地权限提升，削弱企业环境中基于更新所有权的信任链保护机制。"
+title = "泛微e-Mobile OGNL表达式注入漏洞"
+description = "泛微e-Mobile移动办公系统存在OGNL表达式注入漏洞，该漏洞位于login.do及login/login.do接口的message参数中。攻击者无需认证即可向message参数注入恶意OGNL表达式，利用OGNL上下文执行任意Java方法，最终实现远程命令执行，获取服务器控制权限。攻击者可进一步窃取数据库敏感信息、篡改系统数据或进行未授权管理操作。"
 severity = "HIGH"
-score = 7.8
-sources = ["nvd", "github", "android"]
-published = "2026-03-02"
-updated = "2026-06-17"
-remediation = "建议用户将 Android 设备更新至 2026-03-01 安全补丁级别或更高版本。Google 已通过 AOSP 提交 09055276288a68cf35b0f84ba32e28822f74ecf9 修复该漏洞，修复方式为在检查托管用户状态前显式清除 INSTALL_FROM_MANAGED_USER_OR_PROFILE 标志位，确保该标志仅由系统根据实际托管状态设置。"
+score = 8.8
+sources = ["nuclei"]
+published = "2017-03-01"
+updated = "2017-03-01"
+remediation = "建议升级泛微e-Mobile至官方最新版本，及时安装厂商发布的安全补丁。若无法立即升级，应限制login.do及login/login.do等接口的互联网访问，配置Web应用防火墙(WAF)拦截OGNL注入攻击载荷，并将系统部署于内网环境避免直接暴露于公网。"
 
 [references]
 urls = [
-    "https://nvd.nist.gov/vuln/detail/CVE-2026-0023",
-    "https://source.android.com/docs/security/bulletin/2026/2026-03-01",
-    "https://www.cve.org/CVERecord?id=CVE-2026-0023",
-    "https://android.googlesource.com/platform/frameworks/base/+/09055276288a68cf35b0f84ba32e28822f74ecf9",
-    "https://github.com/QM4RS/CVE-2026-0023-Update-Ownership-PoC"
+    "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2017/CNVD-2017-03561.yaml",
+    "https://gitee.com/cute-guy/Penetration_Testing_POC/blob/master/%E6%B3%9B%E5%BE%AEe-mobile%20ognl%E6%B3%A8%E5%85%A5.md",
+    "https://www.cnvd.org.cn/flaw/show/CNVD-2017-03561",
 ]
 
 [exploit]
 poc_urls = [
-    "https://github.com/QM4RS/CVE-2026-0023-Update-Ownership-PoC"
+    "https://gitee.com/cute-guy/Penetration_Testing_POC/blob/master/%E6%B3%9B%E5%BE%AEe-mobile%20ognl%E6%B3%A8%E5%85%A5.md",
+    "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2017/CNVD-2017-03561.yaml",
 ]
 exp_urls = []
 
 [meta]
 status = "completed"
-collected_at = "2026-07-11T12:00:00Z"
+collected_at = "2026-07-11T00:00:00Z"

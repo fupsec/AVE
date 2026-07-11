@@ -4,8 +4,8 @@ published = ""
 remediation = "Refer to vendor advisory and upgrade to fixed version."
 score = 0.0
 severity = "UNKNOWN"
-sources = ["tenable"]
-title = "CVE-1999-0147 漏洞"
+sources = ["redhat"]
+title = "CVE-1999-0018 漏洞"
 updated = ""
 
 [exploit]
@@ -13,12 +13,12 @@ exp_urls = []
 poc_urls = []
 
 [id]
-aliases = ["CVE-1999-0147"]
+aliases = ["CVE-1999-0018"]
 ave_id = "AVE-1999-0001"
-cve_id = "CVE-1999-0147"
+cve_id = "CVE-1999-0018"
 
 [meta]
-collected_at = "2026-07-11T04:14:25.740381506+00:00"
+collected_at = "2026-07-11T04:15:56.221483279+00:00"
 status = "completed"
 
 [references]
