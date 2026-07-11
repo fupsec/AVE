@@ -156,9 +156,17 @@ async function ensureAssetIndex() {
   }
 }
 
+function extractCveId(text) {
+  const aliases = listField(text, "aliases");
+  for (const a of aliases) {
+    if (/^CVE-\d{4}-\d+/i.test(a)) return a.toUpperCase();
+  }
+  return "无";
+}
+
 function toCard(item, text, assetIndex) {
   const ave = item.name.replace(/\.toml$/i, "");
-  const cve = textField(text, "cve_id", "无");
+  const cve = extractCveId(text);
   const pocs = linksFromToml(text, "poc_urls");
   const exps = linksFromToml(text, "exp_urls");
   const repoPocs = getRepoAssetUrls(assetIndex, ave, "poc");

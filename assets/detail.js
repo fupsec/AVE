@@ -206,7 +206,7 @@ function render(toml, fileName, rawUrl, htmlUrl, assetIndex) {
   // ── 评分显示 ──
   const scoreEl = document.getElementById("d-score");
   scoreEl.textContent = String(score);
-  scoreEl.className = "score-value " + sev.toLowerCase();
+  scoreEl.className = "score-big " + sev.toLowerCase();
   document.getElementById("d-score-label").textContent = `/ 10  ${sev}`;
 
   // ── 元信息 ──

@@ -1,0 +1,31 @@
+[basic]
+description = "X Window System的Xt库中存在缓冲区溢出漏洞。本地攻击者可通过向Xt库发送特制数据触发缓冲区溢出，成功利用此漏洞可在目标系统上以root权限执行任意代码。受影响的系统包括BSD/OS、Caldera UnixWare、FreeBSD、HP-UX、IBM AIX、SGI IRIX及SunOS等多个Unix操作系统。"
+published = "1997-05-01"
+remediation = "建议升级X Window System至包含补丁的最新版本，限制不可信用户对受影响系统的本地访问权限，并及时应用操作系统厂商提供的安全更新补丁。"
+score = 7.2
+severity = "HIGH"
+sources = [
+    "NVD",
+    "exploit-db",
+    "X-Force",
+]
+title = "X Window System Xt库缓冲区溢出导致本地权限提升漏洞"
+updated = "1997-05-01"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0040"]
+ave_id = "AVE-1999-0200"
+
+[meta]
+collected_at = "2026-07-11T23:15:56+00:00"
+status = "completed"
+
+[references]
+urls = [
+    "https://exchange.xforce.ibmcloud.com/vulnerabilities/CVE-1999-0040",
+    "https://www.exploit-db.com/exploits/19202",
+]
