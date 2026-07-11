@@ -1,0 +1,24 @@
+[basic]
+description = "CVE-2001-0655 是一个被撤销的候选漏洞编号（REJECTED），该编号的申请者在2001年未将其与任何具体漏洞关联，因此该编号无效，不应被用作安全漏洞引用。此条目仅作审计追踪与记录用途。"
+published = "2017-05-11"
+remediation = "该CVE编号已被撤销，无对应实际漏洞，无需修复措施。"
+score = 0.5
+severity = "INFO"
+sources = ["nvd"]
+title = "已撤销的CVE候选编号记录（CVE-2001-0655）"
+updated = "2023-11-06"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2001-0655"]
+ave_id = "AVE-2001-0002"
+
+[meta]
+collected_at = "2026-07-11T22:29:57.086519615+00:00"
+status = "completed"
+
+[references]
+urls = ["https://nvd.nist.gov/vuln/detail/CVE-2001-0655"]
