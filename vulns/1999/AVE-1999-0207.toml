@@ -1,0 +1,30 @@
+[basic]
+description = "Apache 1.1、NCSA HTTPd 1.5.2以及Netscape Server 1.12/1.1/2.0中的nph-test-cgi脚本未对echo命令参数使用引号包裹，导致存在shell扩展漏洞。远程攻击者可通过特制URL利用该漏洞读取Web服务器上的任意文件，包括敏感配置文件等，造成信息泄露。"
+published = "1996-12-10"
+remediation = "移除或删除Web服务器上的nph-test-cgi脚本文件，或升级到Apache 1.2及以上版本等不受影响的服务器版本。"
+score = 7.5
+severity = "HIGH"
+sources = [
+    "nvd",
+    "exploitdb",
+]
+title = "Apache/NCSA/Netscape HTTP服务器nph-test-cgi脚本任意文件读取漏洞"
+updated = "1996-12-10"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0045"]
+ave_id = "AVE-1999-0207"
+
+[meta]
+collected_at = "2026-07-11T23:21:04.158792200+00:00"
+status = "completed"
+
+[references]
+urls = [
+    "https://www.exploit-db.com/exploits/19536",
+    "https://exchange.xforce.ibmcloud.com/vulnerabilities/CVE-1999-0045",
+]

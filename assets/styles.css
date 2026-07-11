@@ -1142,17 +1142,22 @@ body {
   /* Remaining columns: AVE(1), Title(2), Severity(3), Action(8) */
   .vuln-table thead th:nth-child(1),
   .vuln-table tbody td:nth-child(1) {
-    width: 30%;
+    width: 28%;
+  }
+
+  .vuln-table thead th:nth-child(2),
+  .vuln-table tbody td:nth-child(2) {
+    width: auto;
   }
 
   .vuln-table thead th:nth-child(3),
   .vuln-table tbody td:nth-child(3) {
-    width: 30%;
+    width: 18%;
   }
 
-  .vuln-table thead th:nth-child(4),
-  .vuln-table tbody td:nth-child(4) {
-    width: 20%;
+  .vuln-table thead th:nth-child(8),
+  .vuln-table tbody td:nth-child(8) {
+    width: 12%;
   }
 
   .table-title {
