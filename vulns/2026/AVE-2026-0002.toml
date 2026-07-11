@@ -17,7 +17,7 @@ aliases = ["NUCLEI-FILE-MALWARE-UNIVERSAL-1337-MALWARE-YAML"]
 ave_id = "AVE-2026-0002"
 
 [meta]
-collected_at = "2026-07-11T19:47:46.791577661+00:00"
+collected_at = "2026-07-11T19:48:54.471686529+00:00"
 status = "completed"
 
 [references]
