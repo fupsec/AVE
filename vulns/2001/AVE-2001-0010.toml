@@ -1,0 +1,24 @@
+[basic]
+description = "CVE-2001-0813 是 MITRE 于 2001 年预留的候选漏洞编号，但因提出方未将其与任何实际安全漏洞关联，该编号于 2017 年被正式拒绝（REJECT）。该编号不指向任何具体的漏洞、产品或版本，不具备实际安全风险。"
+published = "2001-01-01"
+remediation = "无需修复措施，此 CVE 编号未关联实际安全漏洞，不存在安全风险。"
+score = 0.5
+severity = "INFO"
+sources = ["NVD"]
+title = "CVE-2001-0813 候选编号已废弃（未关联实际漏洞）"
+updated = "2017-05-12"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2001-0813"]
+ave_id = "AVE-2001-0010"
+
+[meta]
+collected_at = "2026-07-11T22:40:51.689856439+00:00"
+status = "completed"
+
+[references]
+urls = ["https://nvd.nist.gov/vuln/detail/CVE-2001-0813"]
