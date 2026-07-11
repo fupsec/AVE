@@ -1,0 +1,24 @@
+[basic]
+description = "Novell NetWare 5.1 SP3中的FTP服务器组件NWFTPD.nlm在5.01o版本之前存在多个未指定的安全漏洞。远程攻击者无需认证即可利用这些漏洞绕过匿名访问的限制，获取未经授权的文件访问权限，可能导致敏感信息泄露或系统被进一步利用。"
+published = "2010-04-05"
+remediation = "升级NWFTPD.nlm至5.01o或更高版本，限制匿名FTP访问权限并监控异常连接行为。"
+score = 7.5
+severity = "HIGH"
+sources = ["nvd"]
+title = "Novell NetWare 5.1 SP3 NWFTPD.nlm 匿名访问绕过漏洞"
+updated = "2026-06-16"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2000-1245"]
+ave_id = "AVE-2000-0001"
+
+[meta]
+collected_at = "2026-07-11T22:17:17.818217769+00:00"
+status = "completed"
+
+[references]
+urls = ["http://www.novell.com/support/viewContent.do?externalId=3238588&sliceId=1"]
