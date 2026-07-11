@@ -1,12 +1,15 @@
 [basic]
-description = "Qualcomm qpopper 2.4 及基于 BSD 的 POP 服务器存在缓冲区溢出漏洞。远程攻击者可通过向 PASS 命令发送超长字符串触发缓冲区溢出，从而获得服务器的 root 权限。该漏洞影响所有使用 qpopper 2.4 的邮件服务器。"
+description = "基于BSD/Qualcomm的qpopper 2.4版本POP3服务器中存在缓冲区溢出漏洞。远程攻击者可通过向PASS命令发送超长字符串，触发缓冲区溢出，从而在目标系统上以root权限执行任意代码，完全控制受影响系统。"
 published = "1998-07-14"
-remediation = "升级至 qpopper 2.5 或更高版本，该版本修复了 PASS 命令的缓冲区边界检查问题。同时应限制对 POP 服务的网络访问，仅允许受信任的客户端连接。"
+remediation = "升级qpopper至最新版本或应用厂商提供的安全补丁。SGI已发布安全公告19980801-01-I提供相关补丁。建议禁用不必要的POP3服务或使用防火墙限制访问。"
 score = 9.8
 severity = "CRITICAL"
-sources = ["nvd.nist.gov", "securityfocus.com", "sgi"]
-title = "Qualcomm qpopper 2.4 POP 服务器 PASS 命令缓冲区溢出漏洞"
-updated = "1999-08-19"
+sources = [
+    "NVD",
+    "exploitdb",
+]
+title = "Qualcomm qpopper 2.4 POP3服务器缓冲区溢出漏洞"
+updated = "2026-07-11"
 
 [exploit]
 exp_urls = []
@@ -21,4 +24,4 @@ collected_at = "2026-07-11T22:18:40.444182222+00:00"
 status = "completed"
 
 [references]
-urls = ["http://www.securityfocus.com/bid/133", "ftp://patches.sgi.com/support/free/security/advisories/19980801-01-I"]
+urls = ["http://www.securityfocus.com/bid/133"]

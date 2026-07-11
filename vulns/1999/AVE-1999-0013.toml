@@ -1,0 +1,30 @@
+[basic]
+description = "Lucent Ascend路由器通过150端口（远程管理服务）存在拒绝服务漏洞。远程攻击者无需认证即可通过网络向该端口发送恶意数据包，导致路由器服务崩溃或无法响应正常请求，造成网络中断。该漏洞影响Ascend系列路由器的远程管理功能。"
+published = "1999-03-01"
+remediation = "升级Ascend路由器固件至最新版本以修复该漏洞；若无法升级，建议在防火墙上限制对端口150的访问，仅允许可信管理IP连接。"
+score = 5.0
+severity = "MEDIUM"
+sources = [
+    "cve",
+    "nvd",
+]
+title = "Ascend路由器远程管理端口150拒绝服务漏洞"
+updated = "2026-06-16"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0221"]
+ave_id = "AVE-1999-0013"
+
+[meta]
+collected_at = "2026-07-11T22:24:46.536609375+00:00"
+status = "completed"
+
+[references]
+urls = [
+    "https://www.cve.org/CVERecord?id=CVE-1999-0221",
+    "https://nvd.nist.gov/vuln/detail/CVE-1999-0221",
+]
