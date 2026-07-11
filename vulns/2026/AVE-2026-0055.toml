@@ -1,35 +1,28 @@
-[id]
-ave_id = "AVE-2026-0055"
-cve_id = "CVE-2026-49477"
-aliases = ["GHSA-836r-79rf-4m37"]
-
 [basic]
-title = "soupsieve CSS选择器解析器正则表达式拒绝服务(ReDoS)漏洞"
-description = "soupsieve是Beautiful Soup 4使用的CSS选择器引擎，其css_parser.py中VALUE正则表达式存在灾难性回溯漏洞。当处理未闭合引号的属性选择器（如[a=\"xxx...）时，正则引擎进入指数级回溯，仅需300字节载荷即可导致CPU耗尽超过3秒，造成拒绝服务(ReDoS)。攻击者无需认证即可远程利用，影响所有接受用户CSS选择器输入的Python应用。"
-severity = "HIGH"
-score = 7.5
-cvss_v3 = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
-remediation = "升级soupsieve至2.8.4及以上版本，该版本已修复正则表达式回溯问题。如无法升级，应避免将用户输入的CSS选择器直接传递给soupsieve.compile()或BeautifulSoup的.select()/.select_one()方法，并对用户输入进行严格的格式校验。"
-published = "2026-06-01"
-updated = "2026-07-09"
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
 sources = ["ghsa"]
-
-[affected]
-vendor = "facelessuser"
-product = "soupsieve"
-
-[references]
-urls = [
-  "https://github.com/facelessuser/soupsieve/security/advisories/GHSA-836r-79rf-4m37",
-  "https://github.com/facelessuser/soupsieve",
-  "https://nvd.nist.gov/vuln/detail/CVE-2026-49477"
-]
+title = "CVE-2026-49477"
+updated = ""
 
 [exploit]
-poc_urls = ["https://github.com/facelessuser/soupsieve/security/advisories/GHSA-836r-79rf-4m37"]
 exp_urls = []
-nuclei_templates = []
+poc_urls = []
+
+[id]
+aliases = [
+    "CVE-2026-49477",
+    "GHSA-836r-79rf-4m37",
+]
+ave_id = "AVE-2026-0055"
+cve_id = "CVE-2026-49477"
 
 [meta]
+collected_at = "2026-07-11T00:17:05.410242660+00:00"
 status = "completed"
-collected_at = "2026-07-11T10:00:00+08:00"
+
+[references]
+urls = []
