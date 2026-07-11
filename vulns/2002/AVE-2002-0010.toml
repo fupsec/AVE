@@ -1,0 +1,24 @@
+[basic]
+description = "CVE-2002-1301 是一个被标记为 REJECT（已废弃）的候选编号。该编号的请求者在2002年期间并未将其实关联到任何实际安全漏洞，因此MITRE及CNA决定废弃此编号。此条目仅作为编号记录保留，不表示存在任何实际的安全风险或受影响产品。"
+published = "2017-05-11"
+remediation = "此CVE编号已被废弃，不关联任何实际漏洞，无需采取修复措施。"
+score = 0.1
+severity = "INFO"
+sources = ["nvd"]
+title = "MITRE 已废弃安全漏洞候选编号 CVE-2002-1301"
+updated = "2023-11-06"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2002-1301"]
+ave_id = "AVE-2002-0010"
+
+[meta]
+collected_at = "2026-07-11T23:21:05+00:00"
+status = "completed"
+
+[references]
+urls = ["https://nvd.nist.gov/vuln/detail/CVE-2002-1301"]
