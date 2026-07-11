@@ -1,0 +1,25 @@
+[basic]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["tenable"]
+title = "CVE-2007-2444 漏洞"
+updated = ""
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2007-2444"]
+ave_id = "AVE-2007-0004"
+cve_id = "CVE-2007-2444"
+
+[meta]
+collected_at = "2026-07-11T17:15:41.084068429+00:00"
+status = "completed"
+
+[references]
+urls = []
