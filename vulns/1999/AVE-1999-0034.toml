@@ -1,25 +1,32 @@
 [basic]
-description = "Vulnerability identified as CVE-1999-0044. Please refer to vendor advisory for details."
-published = "2026-07-10"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 5.0
-severity = "MEDIUM"
-sources = ["exploitdb"]
-title = "CVE-1999-0044 vulnerability"
-updated = "2026-07-10"
+description = "wu-ftpd 的 FTP 转换功能存在远程命令执行漏洞。攻击者通过构造恶意的文件名，将特殊参数传递给转换程序（如 tar 或 uncompress），从而在服务器上执行任意命令。利用该漏洞需要有效的登录凭据与写入权限，但可导致敏感信息泄露、系统被控制等严重后果。"
+published = "1999-12-20"
+remediation = "升级 wu-ftpd 至安全版本或禁用 FTP 转换功能。建议迁移至 vsftpd 或 ProFTPD 等更安全的 FTP 服务器软件，并限制用户对 FTP 服务器的写入权限。"
+score = 7.5
+severity = "HIGH"
+sources = [
+    "redhat",
+    "nvd",
+]
+title = "wu-ftpd FTP 文件转换远程命令执行漏洞"
+updated = "2026-06-16"
 
 [exploit]
 exp_urls = []
 poc_urls = []
 
 [id]
-aliases = ["CVE-1999-0044"]
+aliases = ["CVE-1999-0997"]
 ave_id = "AVE-1999-0034"
-cve_id = "CVE-1999-0044"
+cve_id = "CVE-1999-0997"
 
 [meta]
-collected_at = "2026-07-10T12:52:04.247696278+00:00"
+collected_at = "2026-07-10T12:52:04.341466967+00:00"
 status = "completed"
 
 [references]
-urls = []
+urls = [
+    "https://nvd.nist.gov/vuln/detail/CVE-1999-0997",
+    "https://access.redhat.com/security/cve/CVE-1999-0997",
+    "http://www.debian.org/security/2003/dsa-377",
+]
