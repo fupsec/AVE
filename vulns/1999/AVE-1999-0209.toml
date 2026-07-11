@@ -1,0 +1,30 @@
+[basic]
+description = "CVE-1999-0046 是一个影响广泛的 Unix 系统 rlogin 远程登录程序的缓冲区溢出漏洞。攻击者通过向 rlogin 传递特制的 TERM 环境变量，可触发缓冲区溢出，从而实现远程代码执行，获取目标系统的完全控制权限。受影响系统包括 BSD/OS、DG/UX、Debian、Digital UNIX、FreeBSD、HP-UX、IBM AIX、NetBSD、NeXTstep、SGI IRIX 及 SunOS 等多种 Unix 操作系统。"
+published = "1997-02-06"
+remediation = "建议升级操作系统至厂商修复版本，或禁用不安全的 rlogin 服务，改用 SSH 等安全远程登录协议替代。"
+score = 10.0
+severity = "CRITICAL"
+sources = [
+    "NVD",
+    "Exploit-DB",
+]
+title = "多款Unix系统rlogin程序TERM环境变量缓冲区溢出漏洞"
+updated = "2026-06-16"
+
+[exploit]
+exp_urls = []
+poc_urls = ["https://www.exploit-db.com/exploits/19203"]
+
+[id]
+aliases = ["CVE-1999-0046"]
+ave_id = "AVE-1999-0209"
+
+[meta]
+collected_at = "2026-07-11T23:22:00.990183683+00:00"
+status = "completed"
+
+[references]
+urls = [
+    "https://exchange.xforce.ibmcloud.com/vulnerabilities/CVE-1999-0046",
+    "https://www.exploit-db.com/exploits/19203",
+]

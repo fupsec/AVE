@@ -1,19 +1,26 @@
 [basic]
-description = ""
-published = ""
-remediation = "请参考官方安全公告，及时安装安全更新或升级到最新版本。"
-score = 5
-severity = "MEDIUM"
-sources = ["avd"]
-title = "** REJECT **"
-updated = ""
+description = "OpenSSH 2.9.9至3.3版本中的sshd存在整数溢出漏洞。在启用SKEY或BSD_AUTH认证时，远程攻击者可通过挑战响应认证（ChallengeResponseAuthentication）过程中的特制认证请求触发整数溢出，导致任意代码执行，完全控制目标系统。"
+published = "2002-06-27"
+remediation = "升级OpenSSH至3.4或更高版本，禁用SKEY和BSD_AUTH认证，或参考CERT/CC CA-2002-18及各大厂商安全公告安装对应补丁。"
+score = 9.8
+severity = "CRITICAL"
+sources = [
+    "nvd",
+    "avd",
+    "cert",
+]
+title = "OpenSSH sshd 整数溢出远程代码执行漏洞"
+updated = "2024-02-08"
 
 [exploit]
 exp_urls = []
 poc_urls = []
 
 [id]
-aliases = ["CVE-2002-0390"]
+aliases = [
+    "CVE-2002-0390",
+    "CVE-2002-0639",
+]
 ave_id = "AVE-2002-0002"
 
 [meta]
@@ -21,4 +28,8 @@ collected_at = "2026-07-11T23:07:20.728620516+00:00"
 status = "completed"
 
 [references]
-urls = []
+urls = [
+    "https://nvd.nist.gov/vuln/detail/CVE-2002-0639",
+    "http://www.cert.org/advisories/CA-2002-18.html",
+    "http://www.kb.cert.org/vuls/id/369347",
+]
