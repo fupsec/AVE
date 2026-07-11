@@ -4,8 +4,8 @@ published = ""
 remediation = "Refer to vendor advisory and upgrade to fixed version."
 score = 0.0
 severity = "UNKNOWN"
-sources = ["ghsa"]
-title = "CVE-2026-48737"
+sources = ["github"]
+title = "CVE-2026-0073"
 updated = ""
 
 [exploit]
@@ -13,15 +13,12 @@ exp_urls = []
 poc_urls = []
 
 [id]
-aliases = [
-    "CVE-2026-48737",
-    "GHSA-m5x5-28jr-gpjj",
-]
+aliases = ["CVE-2026-0073"]
 ave_id = "AVE-2026-0006"
-cve_id = "CVE-2026-48737"
+cve_id = "CVE-2026-0073"
 
 [meta]
-collected_at = "2026-07-11T05:06:25.144302015+00:00"
+collected_at = "2026-07-11T05:06:25.178411311+00:00"
 status = "completed"
 
 [references]
