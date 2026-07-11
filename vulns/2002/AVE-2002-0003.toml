@@ -1,24 +1,20 @@
 [id]
 ave_id = "AVE-2002-0003"
-cve_id = "CVE-2002-1226"
-aliases = ["CVE-2002-1226"]
+cve_id = "CVE-2002-0906"
+aliases = ["CVE-2002-0906"]
 
 [basic]
-title = "Heimdal Kerberos kadmind 和 kdc 服务器未明安全漏洞"
-description = "Heimdal Kerberos 5 之前的 0.5 版本中存在多个未明漏洞，可能影响 kadmind 和 kdc 服务器。远程或本地攻击者可能利用这些漏洞获取 root 权限或其他访问权限，但并非通过缓冲区溢出方式。具体漏洞细节和影响范围尚不明确，建议用户升级至最新版本。"
-severity = "CRITICAL"
-score = 10.0
-sources = ["osv", "nvd"]
-published = "2002-10-28"
-updated = "2002-10-28"
-remediation = "升级 Heimdal 至 0.5 及以上版本，具体修复版本请参考 Debian 安全公告 DSA-178。"
+title = "Sendmail DNS响应处理缓冲区溢出漏洞"
+description = "Sendmail 8.12.5之前版本中，当配置使用自定义DNS映射查询TXT记录时，存在缓冲区溢出漏洞。远程攻击者可通过恶意DNS服务器利用该漏洞造成拒绝服务，甚至可能执行任意代码。攻击者无需身份认证即可远程触发，危害严重。"
+severity = "HIGH"
+score = 7.5
+sources = ["tenable"]
+published = "2002-10-04"
+updated = "2026-06-16"
+remediation = "升级Sendmail至8.12.5或更高版本，避免使用自定义DNS映射查询TXT记录配置。"
 
 [references]
-urls = [
-    "http://www.debian.org/security/2002/dsa-178",
-    "http://marc.info/?l=bugtraq&m=103341355708817&w=2",
-    "http://marc.info/?l=bugtraq&m=103462479621246&w=2",
-]
+urls = ["http://www.iss.net/security_center/static/9443.php", "http://www.kb.cert.org/vuls/id/814627", "http://www.securityfocus.com/bid/5122", "http://www.sendmail.org/8.12.5.html", "https://oval.cisecurity.org/repository/search/definition/oval%3Aorg.mitre.oval%3Adef%3A2183"]
 
 [exploit]
 poc_urls = []
@@ -26,4 +22,4 @@ exp_urls = []
 
 [meta]
 status = "completed"
-collected_at = "2026-07-11T12:00:00Z"
+collected_at = "2026-07-11T00:00:00Z"

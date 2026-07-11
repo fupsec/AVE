@@ -1,34 +1,25 @@
-[id]
-ave_id = "AVE-2015-0001"
-cve_id = "CVE-2015-3310"
-aliases = ["CVE-2015-3310"]
-
 [basic]
-title = "ppp RADIUS插件rc_mksid函数缓冲区溢出漏洞"
-description = "Paul's PPP Package (ppp) 2.4.6及之前版本的plugins/radius/util.c文件中的rc_mksid函数存在缓冲区溢出漏洞。当pppd进程的PID大于65535时，远程攻击者可通过向RADIUS服务器发送特制的start accounting消息触发该漏洞，导致pppd崩溃，造成拒绝服务。"
-severity = "MEDIUM"
-score = 4.3
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
 sources = ["msrc"]
-published = "2015-04-24"
-updated = "2026-06-17"
-remediation = "升级ppp至修复版本：Ubuntu 14.10升级至2.4.5-5.1ubuntu3.2，Ubuntu 14.04 LTS升级至2.4.5-5.1ubuntu2.2，Ubuntu 12.04 LTS升级至2.4.5-5ubuntu1.2；Debian 7用户应用DSA-3228安全更新。"
-
-[references]
-urls = [
-    "http://advisories.mageia.org/MGASA-2015-0173.html",
-    "http://lists.opensuse.org/opensuse-updates/2015-11/msg00147.html",
-    "http://www.debian.org/security/2015/dsa-3228",
-    "http://www.mandriva.com/security/advisories?name=MDVSA-2015:222",
-    "http://www.securityfocus.com/bid/74163",
-    "http://www.ubuntu.com/usn/USN-2595-1",
-    "https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=782450",
-    "https://security.gentoo.org/glsa/201701-50",
-]
+title = "CVE-2015-3310 漏洞"
+updated = ""
 
 [exploit]
-poc_urls = []
 exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2015-3310"]
+ave_id = "AVE-2015-0001"
+cve_id = "CVE-2015-3310"
 
 [meta]
+collected_at = "2026-07-11T04:25:03.892512287+00:00"
 status = "completed"
-collected_at = "2026-07-11T04:25:00Z"
+
+[references]
+urls = []

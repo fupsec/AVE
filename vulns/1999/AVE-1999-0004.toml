@@ -1,0 +1,25 @@
+[id]
+ave_id = "AVE-1999-0004"
+cve_id = "CVE-1999-0006"
+aliases = ["CVE-1999-0006"]
+
+[basic]
+title = "Qualcomm qpopper 2.4 POP3服务器缓冲区溢出漏洞"
+description = "Qualcomm qpopper 2.4及更早版本的POP3服务器在处理PASS命令时存在缓冲区溢出漏洞。远程未经认证的攻击者可通过向POP3服务端口发送超长PASS命令参数触发缓冲区溢出，从而在目标系统上执行任意代码或造成拒绝服务。该漏洞可被利用获取root权限，影响所有基于BSD/Qualcomm qpopper的POP服务器实现。"
+severity = "CRITICAL"
+score = 9.8
+sources = ["exploitdb", "nvd"]
+published = "1998-07-14"
+updated = "2024-08-01"
+remediation = "升级Qualcomm qpopper至2.5或更高版本，或应用SGI安全公告中的补丁。限制POP3服务的网络访问来源，仅允许受信任IP连接110/TCP端口。"
+
+[references]
+urls = ["https://www.exploit-db.com/exploits/19110", "http://www.securityfocus.com/bid/133", "ftp://patches.sgi.com/support/free/security/advisories/19980801-01-I"]
+
+[exploit]
+poc_urls = []
+exp_urls = ["https://www.exploit-db.com/exploits/19110"]
+
+[meta]
+status = "completed"
+collected_at = "2026-07-11T00:00:00Z"
