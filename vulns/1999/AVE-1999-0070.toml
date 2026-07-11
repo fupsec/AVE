@@ -1,31 +1,27 @@
 [basic]
-description = "SGI IRIX 5.3 至 6.2 版本系统中 ordist 命令存在缓冲区溢出漏洞，攻击者可通过向 ordist 的 -d 选项传递特制参数，触发缓冲区溢出，覆盖返回地址并执行任意代码，从而获取系统的 root 权限。攻击需要本地访问系统。"
-published = "1997-07-16"
-remediation = "SGI IRIX 系统已停止官方技术支持，建议将系统迁移至其他受支持的操作系统平台，或在现有系统上限制用户对 ordist 命令的执行权限。"
-score = 8.4
-severity = "HIGH"
+description = "Unix系统中存在进程表攻击漏洞，远程攻击者可通过向网络服务发起大量连接，耗尽目标机器的进程表资源，导致系统无法处理新的服务请求，从而引发拒绝服务（DoS）状况。该攻击利用Unix系统进程表容量有限的特点，通过发送大量连接请求填满进程表空间。"
+published = "1999-02-22"
+remediation = "建议限制单个IP的并发连接数，配置防火墙规则过滤异常流量，及时应用操作系统厂商发布的安全补丁，并监控系统进程表使用情况以发现异常。"
+score = 5.0
+severity = "MEDIUM"
 sources = [
     "nvd",
-    "exploitdb",
+    "cve",
 ]
-title = "SGI IRIX ordist 命令缓冲区溢出本地权限提升漏洞"
-updated = "2026-06-16"
+title = "Unix系统进程表攻击远程拒绝服务漏洞"
+updated = "1999-02-22"
 
 [exploit]
 exp_urls = []
 poc_urls = []
 
 [id]
-aliases = ["CVE-1999-0029"]
+aliases = ["CVE-1999-0377"]
 ave_id = "AVE-1999-0070"
 
 [meta]
-collected_at = "2026-07-11T22:53:00+00:00"
+collected_at = "2026-07-11T22:40:05.343048254+00:00"
 status = "completed"
 
 [references]
-urls = [
-    "https://nvd.nist.gov/vuln/detail/CVE-1999-0029",
-    "https://www.exploit-db.com/exploits/19317",
-    "https://exchange.xforce.ibmcloud.com/vulnerabilities/CVE-1999-0029",
-]
+urls = ["http://www.securitytracker.com/id/1033881"]
