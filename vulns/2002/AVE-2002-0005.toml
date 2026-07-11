@@ -1,0 +1,24 @@
+[basic]
+description = "该漏洞编号CVE-2002-0635已被CVE官方驳回（REJECT status）。驳回原因为此候选编号的申请方在2002年期间未将其与任何实际漏洞关联，因此该编号不应被使用。建议参考其他关联CVE编号获取有效的漏洞信息。"
+published = "2017-05-11"
+remediation = "该CVE编号已被官方驳回，无关联实际漏洞，无需采取修复措施"
+score = 0.1
+severity = "INFO"
+sources = ["nvd"]
+title = "候选CVE编号2002-0635未关联任何漏洞已被官方驳回"
+updated = "2023-11-07"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2002-0635"]
+ave_id = "AVE-2002-0005"
+
+[meta]
+collected_at = "2026-07-11T23:13:36+00:00"
+status = "completed"
+
+[references]
+urls = ["https://nvd.nist.gov/vuln/detail/CVE-2002-0635"]
