@@ -1,0 +1,27 @@
+[basic]
+description = "HP-UX 操作系统中的 cstm 程序存在缓冲区溢出漏洞，本地攻击者可利用该漏洞获取系统的 root 权限。该漏洞影响 HP-UX 9.00 和 10.00 版本，攻击者通过向 cstm 程序发送特制的输入数据触发缓冲区溢出，从而执行任意代码并完全控制受影响的系统。"
+published = "2000-12-20"
+remediation = "建议升级到不受影响的 HP-UX 版本，或联系惠普获取针对 cstm 程序的安全补丁进行修复。"
+score = 7.2
+severity = "HIGH"
+sources = [
+    "nvd",
+    "cve",
+]
+title = "HP-UX cstm 程序缓冲区溢出漏洞"
+updated = "2026-06-16"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0307"]
+ave_id = "AVE-1999-0033"
+
+[meta]
+collected_at = "2026-07-11T22:30:52.392249658+00:00"
+status = "completed"
+
+[references]
+urls = ["https://exchange.xforce.ibmcloud.com/vulnerabilities/CVE-1999-0307"]
