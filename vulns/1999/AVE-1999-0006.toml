@@ -1,30 +1,32 @@
 [basic]
-description = "BSD派生操作系统（包括FreeBSD、OpenBSD等）的TCP/IP协议栈实现中，ip_input.c文件存在输入验证不当漏洞（CWE-20）。远程攻击者可通过发送特制网络数据包，触发目标系统内核崩溃或进程挂起，从而导致服务不可用。攻击者无需认证即可远程利用，影响多个BSD系统版本。"
-published = "1999-12-30"
-remediation = "升级到修复版本：OpenBSD用户升级至2.3及以上版本（已应用tcpfix补丁）；FreeBSD用户安装厂商发布的安全补丁。建议关注官方安全公告获取最新修复方案。"
-score = 5.0
-severity = "MEDIUM"
+description = "NFS mountd 守护进程（rpc.mountd）在处理 mount 请求时存在缓冲区溢出漏洞。远程攻击者可以向目标系统发送特制的畸形 mount RPC 请求，导致 mountd 的日志记录代码发生缓冲区溢出，从而以 root 权限在受影响的 Linux 系统上执行任意代码。该漏洞主要影响 RedHat Linux 5.1 和 Caldera OpenLinux Standard 1.2 等运行 nfs-server-2.2beta29 的系统，即使 NFS 服务器未共享任何文件系统也可被利用。"
+published = "1998-10-12"
+remediation = "升级 NFS 服务程序至修补后的版本。RedHat 和 Caldera 官方已发布补丁，建议从 ftp://ftp.redhat.com 获取并更新 nfs-server 软件包。对于无法立即升级的系统，建议禁用 NFS 服务或使用防火墙限制对 mountd（端口 635 和 111）的访问。"
+score = 10.0
+severity = "CRITICAL"
 sources = [
-    "nvd",
-    "cve",
+    "NVD",
+    "exploitdb",
+    "SecurityFocus",
 ]
-title = "BSD派生TCP/IP实现ip_input.c存在远程拒绝服务漏洞"
-updated = "2024-11-20"
+title = "NFS mountd 缓冲区溢出漏洞（RedHat Linux 5.1 / Caldera OpenLinux 1.2）"
+updated = "1998-10-12"
 
 [exploit]
-exp_urls = []
-poc_urls = []
+exp_urls = ["https://www.exploit-db.com/exploits/19096"]
+poc_urls = ["https://www.exploit-db.com/exploits/19096"]
 
 [id]
-aliases = ["CVE-1999-0001"]
+aliases = ["CVE-1999-0002"]
 ave_id = "AVE-1999-0006"
 
 [meta]
-collected_at = "2026-07-11T22:14:29.523991484+00:00"
+collected_at = "2026-07-11T22:14:40+00:00"
 status = "completed"
 
 [references]
 urls = [
-    "http://www.openbsd.org/errata23.html#tcpfix",
-    "http://www.osvdb.org/5707",
+    "https://nvd.nist.gov/vuln/detail/CVE-1999-0002",
+    "https://www.exploit-db.com/exploits/19096",
+    "http://www.securityfocus.com/bid/121",
 ]
