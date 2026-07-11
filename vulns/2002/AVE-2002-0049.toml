@@ -1,42 +1,25 @@
-[id]
-ave_id = "AVE-2002-0049"
-cve_id = "CVE-2002-1175"
-aliases = ["CVE-2002-1175", "EUVD-2002-1159"]
-
 [basic]
-title = "Fetchmail getmxrecord函数DNS响应边界检查漏洞导致拒绝服务"
-description = "Fetchmail 6.0.0及更早版本中的getmxrecord函数在处理来自恶意DNS服务器的畸形DNS数据包时，未能正确检查数据边界。当Fetchmail尝试读取超出预期边界的数据时，远程攻击者可利用此漏洞导致程序崩溃，造成拒绝服务。该漏洞仅在Fetchmail使用multidrop模式（启用multiple-local-recipients功能）时可被利用。"
-severity = "MEDIUM"
-score = 5.0
-cvss_v3 = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L"
-published = "2002-09-30"
-updated = "2002-10-07"
-remediation = "升级Fetchmail至6.1.0或更高版本。Red Hat用户可升级至RHSA-2002:215-09 errata软件包。Debian用户可通过DSA-171安全公告获取修复版本。若暂无法升级，建议避免在multidrop模式下使用Fetchmail，或限制对不可信DNS服务器的访问。"
-sources = ["osv", "redhat", "debian", "nvd"]
-
-[affected]
-vendor = "Fetchmail Project"
-product = "Fetchmail"
-versions = ["6.0.0", "6.0.0及更早版本"]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["osv"]
+title = "CVE-2002-1175 漏洞"
+updated = ""
 
 [exploit]
-poc_urls = []
 exp_urls = []
-nuclei_templates = []
+poc_urls = []
 
-[references]
-urls = [
-    "https://nvd.nist.gov/vuln/detail/cve-2002-1175",
-    "https://access.redhat.com/security/cve/cve-2002-1175",
-    "http://rhn.redhat.com/errata/RHSA-2002-215.html",
-    "http://www.debian.org/security/2002/dsa-171",
-    "http://www.iss.net/security_center/static/10203.php",
-    "http://www.linux-mandrake.com/en/security/2002/MDKSA-2002-063.php",
-    "http://www.linuxsecurity.com/advisories/other_advisory-2402.html",
-    "http://www.securityfocus.com/bid/5826",
-    "http://marc.info/?l=bugtraq&m=103340148625187&w=2"
-]
+[id]
+aliases = ["CVE-2002-1175"]
+ave_id = "AVE-2002-0049"
+cve_id = "CVE-2002-1175"
 
 [meta]
-collected_at = "2026-07-11T00:00:00Z"
+collected_at = "2026-07-11T00:09:56.032186743+00:00"
 status = "completed"
+
+[references]
+urls = []
