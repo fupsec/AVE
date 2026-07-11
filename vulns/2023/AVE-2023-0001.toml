@@ -1,0 +1,32 @@
+[id]
+ave_id = "AVE-2023-0001"
+cve_id = "CVE-2023-3792"
+aliases = ["CVE-2023-3792"]
+
+[basic]
+title = "网康NS-ASG安全网关存在信息泄露漏洞"
+description = "网康NS-ASG安全网关6.3版本存在信息泄露漏洞。该漏洞位于/admin/test_status.php文件中，远程攻击者无需认证即可直接访问该路径，导致系统敏感信息泄露。厂商已联系但未给予回复。"
+severity = "MEDIUM"
+score = 6.5
+sources = ["hwpoc", "nvd", "vuldb"]
+published = "2023-07-20"
+updated = "2026-06-17"
+remediation = "升级网康NS-ASG安全网关至最新版本，并配置访问控制策略限制未经授权的用户访问/admin/test_status.php路径。"
+
+[references]
+urls = [
+    "https://nvd.nist.gov/vuln/detail/CVE-2023-3792",
+    "https://github.com/CYN521/cve/blob/main/NS-ASG.md",
+    "https://vuldb.com/?id.235059",
+    "https://vuldb.com/?ctiid.235059"
+]
+
+[exploit]
+poc_urls = [
+    "https://github.com/CYN521/cve/blob/main/NS-ASG.md"
+]
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-11T04:17:00Z"
