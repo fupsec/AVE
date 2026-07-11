@@ -1,0 +1,31 @@
+[id]
+ave_id = "AVE-2005-0001"
+cve_id = "CVE-2005-2773"
+aliases = ["CVE-2005-2773"]
+
+[basic]
+title = "HP OpenView Network Node Manager 远程命令执行漏洞"
+description = "HP OpenView Network Node Manager 6.2至7.50版本中存在远程命令执行漏洞。攻击者可通过向connectedNodes.ovpl、cdpView.ovpl、freeIPaddrs.ovpl和ecscmg.ovpl脚本的node等参数注入shell元字符，在未经身份验证的情况下远程执行任意系统命令。该漏洞源于程序未对用户输入进行充分过滤，导致输入被直接拼接至系统命令中执行。成功利用该漏洞可导致服务器被完全控制。"
+severity = "CRITICAL"
+score = 9.8
+sources = ["kev", "nvd", "bugtraq"]
+published = "2005-09-02"
+updated = "2026-06-16"
+remediation = "厂商已发布安全更新，建议升级至最新版本。对于无法升级的系统，应限制对OvCgi目录的访问权限，并在网络边界封禁对3443端口的未授权访问。"
+
+[references]
+urls = [
+    "http://marc.info/?l=bugtraq&m=112499121725662&w=2",
+    "https://exchange.xforce.ibmcloud.com/vulnerabilities/21999",
+    "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2005-2773",
+    "http://secunia.com/advisories/16555/",
+    "http://www.securityfocus.com/bid/14662"
+]
+
+[exploit]
+poc_urls = ["http://marc.info/?l=bugtraq&m=112499121725662&w=2"]
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-11T04:26:15Z"
