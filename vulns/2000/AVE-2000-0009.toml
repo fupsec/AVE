@@ -1,0 +1,30 @@
+[basic]
+description = "OpenSSL 0.9.6之前版本中的crypto/rsa/rsa_gen.c文件在处理超出表达式大小的C语言按位移位操作时存在安全漏洞。在64位HP-UX平台上，此缺陷导致不正确的RSA密钥生成，使得远程攻击者更容易通过破解RSA密钥机制来绕过加密保护，获取敏感信息。"
+published = "2016-05-04"
+remediation = "升级OpenSSL至0.9.6或更高版本，避免在64位HP-UX平台上使用存在缺陷的RSA密钥生成逻辑，修复按位移位操作越界问题。"
+score = 7.5
+severity = "HIGH"
+sources = [
+    "NVD",
+    "OpenSSL",
+]
+title = "OpenSSL 0.9.6之前版本RSA密钥生成安全漏洞"
+updated = "2026-06-16"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2000-1254"]
+ave_id = "AVE-2000-0009"
+
+[meta]
+collected_at = "2026-07-11T22:27:45.724339303+00:00"
+status = "completed"
+
+[references]
+urls = [
+    "https://nvd.nist.gov/vuln/detail/CVE-2000-1254",
+    "https://git.openssl.org/?p=openssl.git;a=commit;h=db82b8f9bd432a59aea8e1014694e15fc457c2bb",
+]
