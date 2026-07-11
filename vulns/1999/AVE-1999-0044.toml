@@ -1,0 +1,27 @@
+[basic]
+description = "Linux系统su命令中存在缓冲区溢出漏洞，本地用户可以利用该漏洞获取root权限。攻击者通过构造特制的输入触发su命令中的缓冲区溢出，从而以root权限执行任意恶意代码，完全控制受影响的Linux系统。"
+published = "1999-11-25"
+remediation = "建议升级Linux系统内核至最新版本，限制普通用户对su命令的访问权限，或使用sudo机制替代su命令进行权限提升操作。"
+score = 7.2
+severity = "HIGH"
+sources = [
+    "cve",
+    "nvd",
+]
+title = "Linux su命令缓冲区溢出漏洞"
+updated = "2026-06-16"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0317"]
+ave_id = "AVE-1999-0044"
+
+[meta]
+collected_at = "2026-07-11T22:31:30.249708106+00:00"
+status = "completed"
+
+[references]
+urls = ["https://exchange.xforce.ibmcloud.com/vulnerabilities/CVE-1999-0317"]
