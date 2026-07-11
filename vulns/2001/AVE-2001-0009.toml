@@ -1,0 +1,27 @@
+[basic]
+description = "CVE-2001-0812 是 NVD 中记录的一个已撤销（REJECTED）的候选漏洞编号。该编号由 Silicon Graphics（SGI）申请预留，但在2001年期间并未与任何实际安全漏洞相关联，CVE编号被撤销意味着该编号不应被用于标识任何漏洞，安全研究人员和产品用户应忽略此编号。"
+published = "2017-05-11"
+remediation = "此CVE编号已被撤销，不代表实际漏洞，无需采取修复措施。请关注SGI官方安全公告获取真实漏洞信息。"
+score = 0.1
+severity = "INFO"
+sources = [
+    "nvd",
+    "mitre",
+]
+title = "CVE-2001-0812 编号已废弃（已撤销的候选漏洞编号）"
+updated = "2023-11-06"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2001-0812"]
+ave_id = "AVE-2001-0009"
+
+[meta]
+collected_at = "2026-07-11T22:39:49.455899824+00:00"
+status = "completed"
+
+[references]
+urls = ["https://nvd.nist.gov/vuln/detail/CVE-2001-0812"]
