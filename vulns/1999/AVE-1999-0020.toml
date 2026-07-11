@@ -1,24 +1,19 @@
 [basic]
-description = "SGI IRIX系统的pset(1M)命令存在缓冲区溢出漏洞。pset程序用于显示和管理处理器集信息，由于对用户提供的参数缺乏足够的边界检查，攻击者可通过精心构造的超长参数覆盖程序内部栈空间，注入并执行任意命令。该程序默认以setgid sys权限运行，本地攻击者利用此漏洞可先获取sys组权限，再进一步提升至root权限，完全控制系统。影响IRIX 5.0至6.3版本，IRIX 6.4已移除该程序。"
-published = "1997-07-16"
-remediation = "1. 立即以root身份修改pset程序权限：执行 chmod 500 /sbin/pset，移除非root用户的执行权限；2. 安装SGI官方补丁：IRIX 5.3安装补丁2176，IRIX 6.2安装补丁2459，IRIX 6.3安装补丁2792；3. 对于无补丁版本（IRIX 5.0.x/5.1.x/5.2/6.0.x/6.1），部署AUSCERT提供的overflow_wrapper防护程序，从 ftp://ftp.auscert.org.au/pub/auscert/tools/AA-97.20-pset_wrapper.tar.Z 下载并安装；4. 升级至IRIX 6.4或更高版本，该版本已移除存在漏洞的pset程序。"
-score = 4.6
-severity = "MEDIUM"
-sources = ["nvd", "cert", "auscert", "exploitdb"]
-title = "SGI IRIX pset命令缓冲区溢出本地提权漏洞"
-updated = "2023-12-13"
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["exploitdb"]
+title = "CVE-1999-0026 漏洞"
+updated = ""
 
 [exploit]
-exp_urls = [
-    {url = "https://seclists.org/bugtraq/1998/Mar/205", description = "SGI官方安全公告，包含漏洞详情、补丁信息和临时解决方案", source = "SGI"},
-    {url = "ftp://ftp.auscert.org.au/pub/auscert/tools/AA-97.20-pset_wrapper.tar.Z", description = "AUSCERT提供的pset漏洞防护wrapper程序", source = "AUSCERT"}
-]
-poc_urls = [
-    {url = "https://seclists.org/bugtraq/1997/Jul/68", description = "CERT advisory CA-97.21，包含漏洞利用信息和防护措施", source = "CERT"}
-]
+exp_urls = []
+poc_urls = []
 
 [id]
-aliases = ["CVE-1999-0026", "OSVDB-8423", "AUSCERT-AA-97.20", "CERT-CA-97.21"]
+aliases = ["CVE-1999-0026"]
 ave_id = "AVE-1999-0020"
 cve_id = "CVE-1999-0026"
 
@@ -27,15 +22,4 @@ collected_at = "2026-07-11T00:04:03.837821264+00:00"
 status = "completed"
 
 [references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0026"
-avd = "https://avd.aquasec.com/nvd/1999/cve-1999-0026/"
-other = [
-    "https://seclists.org/bugtraq/1998/Mar/205",
-    "https://seclists.org/bugtraq/1997/Jul/68",
-    "ftp://ftp.auscert.org.au/pub/auscert/tools/AA-97.20-pset_wrapper.tar.Z"
-]
-
-[affected]
-vendor = "SGI"
-product = "IRIX"
-versions = ["5.0", "5.0.1", "5.1", "5.1.1", "5.2", "5.3", "6.0", "6.0.1", "6.1", "6.2", "6.3"]
+urls = []
