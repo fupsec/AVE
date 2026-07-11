@@ -1,0 +1,31 @@
+[basic]
+description = "Microsoft Personal Web Server 和 FrontPage Personal Web Server 中存在目录遍历漏洞。远程攻击者可通过使用非标准URL（如包含特殊字符的请求路径）读取服务器上的任意文件，导致敏感信息泄露。该漏洞影响运行在Windows系统上的Microsoft Personal Web Server 4.0及FrontPage Personal Web Server。"
+published = "1999-03-01"
+remediation = "安装微软安全公告MS99-010提供的补丁程序，升级到修复版本，或限制对Web服务器非标准URL的访问请求。"
+score = 5.0
+severity = "MEDIUM"
+sources = [
+    "cve",
+    "nvd",
+    "microsoft",
+]
+title = "Microsoft Personal Web Server 和 FrontPage Personal Web Server 目录遍历漏洞"
+updated = "1999-03-01"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0386"]
+ave_id = "AVE-1999-0100"
+
+[meta]
+collected_at = "2026-07-11T22:54:43.569674022+00:00"
+status = "completed"
+
+[references]
+urls = [
+    "http://www.osvdb.org/111",
+    "https://docs.microsoft.com/en-us/security-updates/securitybulletins/1999/ms99-010",
+]
