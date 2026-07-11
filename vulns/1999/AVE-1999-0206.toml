@@ -1,0 +1,30 @@
+[basic]
+description = "Cisco 7xx系列路由器在版本3.2至4.2中默认启用了HTTP服务器功能，远程攻击者无需认证即可通过Web接口访问并修改路由器配置，可能导致网络中断、流量劫持或敏感信息泄露等安全风险。"
+published = "1999-03-11"
+remediation = "升级路由器固件至4.2以上版本，或禁用不必要的HTTP服务，并在网络边界限制对路由器管理接口的IP访问。注意：该漏洞较老，建议直接替换为受支持的设备。"
+score = 7.5
+severity = "HIGH"
+sources = [
+    "cve",
+    "nvd",
+]
+title = "Cisco 7xx系列路由器默认HTTP服务器配置漏洞"
+updated = "2026-06-16"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0415"]
+ave_id = "AVE-1999-0206"
+
+[meta]
+collected_at = "2026-07-11T23:19:55.472318869+00:00"
+status = "completed"
+
+[references]
+urls = [
+    "https://www.cisco.com/warp/public/770/7xxconn-pub.shtml",
+    "http://ciac.llnl.gov/ciac/bulletins/j-034.shtml",
+]
