@@ -1,0 +1,30 @@
+[basic]
+description = "Microsoft IIS 2.0和3.0版本存在信息泄露漏洞。远程攻击者通过在ASP页面URL末尾附加一个点号(.)，可以绕过服务器的访问控制，读取ASP文件的源代码。攻击者可利用该漏洞获取ASP脚本中可能包含的数据库连接字符串、管理员凭据等敏感信息。"
+published = "1999-12-31"
+remediation = "升级到Windows NT 4.0 Option Pack或IIS 4.0及以上版本。微软已在后续版本中修复了此问题，建议用户升级到IIS 4.0或更高版本以消除此信息泄露风险。"
+score = 5.0
+severity = "MEDIUM"
+sources = [
+    "nvd",
+    "cve",
+]
+title = "Microsoft IIS 2.0/3.0 ASP源码泄露漏洞"
+updated = "2026-06-16"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0154"]
+ave_id = "AVE-1999-0011"
+
+[meta]
+collected_at = "2026-07-12T00:01:00+08:00"
+status = "completed"
+
+[references]
+urls = [
+    "https://exchange.xforce.ibmcloud.com/vulnerabilities/CVE-1999-0154",
+    "https://nvd.nist.gov/vuln/detail/CVE-1999-0154",
+]
