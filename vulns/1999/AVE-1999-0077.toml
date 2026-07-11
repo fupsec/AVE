@@ -1,0 +1,28 @@
+[basic]
+description = "Microsoft BackOffice Resource Kit 2.0 中的 Taskpads 功能将某些方法标记为 Safe for Scripting，导致远程攻击者可以通过恶意网页在访问用户的计算机上执行任意命令，获取与当前用户相同的权限，造成机密性、完整性和可用性影响。"
+published = "1999-02-22"
+remediation = "建议安装 Microsoft 安全公告 MS99-007 提供的补丁，或禁用 Taskpads 中标记为 Safe for Scripting 的方法，限制远程网页调用本地组件。"
+score = 7.5
+severity = "HIGH"
+sources = ["cve"]
+title = "Microsoft BackOffice Resource Kit Taskpads 远程命令执行漏洞"
+updated = "2026-06-16"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0379"]
+ave_id = "AVE-1999-0077"
+
+[meta]
+collected_at = "2026-07-11T22:42:28.862486246+00:00"
+status = "completed"
+
+[references]
+urls = [
+    "https://docs.microsoft.com/en-us/security-updates/securitybulletins/1999/ms99-007",
+    "http://www.securityfocus.com/bid/498",
+    "http://www.osvdb.org/1019",
+]
