@@ -4,8 +4,8 @@ published = ""
 remediation = "Refer to vendor advisory and upgrade to fixed version."
 score = 0.0
 severity = "UNKNOWN"
-sources = ["redhat"]
-title = "CVE-1999-0002 漏洞"
+sources = ["hwpoc"]
+title = "HWPOC-2023-000475df"
 updated = ""
 
 [exploit]
@@ -13,12 +13,12 @@ exp_urls = []
 poc_urls = []
 
 [id]
-aliases = ["CVE-1999-0002"]
-ave_id = "AVE-1999-0005"
-cve_id = "CVE-1999-0002"
+aliases = ["HWPOC-2023-000475df"]
+ave_id = "AVE-2023-0004"
+cve_id = "HWPOC-2023-000475df"
 
 [meta]
-collected_at = "2026-07-11T05:06:06.168641673+00:00"
+collected_at = "2026-07-11T05:06:00.653648652+00:00"
 status = "completed"
 
 [references]
