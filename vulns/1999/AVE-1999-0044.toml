@@ -1,12 +1,16 @@
+[affected]
+product = "HP-UX"
+vendor = "HP"
+
 [basic]
-description = "Vulnerability identified as CVE-1999-0307. Please refer to vendor advisory for details."
-published = "2026-07-10"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 5.0
-severity = "MEDIUM"
+description = "HP-UX 操作系统的 cstm 程序存在缓冲区溢出漏洞。本地攻击者可以利用该漏洞通过精心构造的输入触发缓冲区溢出，从而获取系统 root 权限。攻击无需用户交互，攻击复杂度低，可导致机密性、完整性和可用性的完全丧失。"
+published = "2000-12-20T05:00:00.000"
+remediation = "建议升级 HP-UX 系统至最新安全补丁版本，或限制对 cstm 程序的本地访问权限，确保只有可信用户可执行该程序。"
+score = 7.2
+severity = "HIGH"
 sources = ["cve"]
-title = "CVE-1999-0307 vulnerability"
-updated = "2026-07-10"
+title = "`HP HP-UX cstm 本地缓冲区溢出漏洞`"
+updated = "2026-06-16T21:48:07.113"
 
 [exploit]
 exp_urls = []
@@ -18,8 +22,8 @@ ave_id = "AVE-1999-0044"
 cve_id = "CVE-1999-0307"
 
 [meta]
-collected_at = "2026-07-10T12:52:04.339165428+00:00"
+collected_at = "2026-07-11T00:00:00Z"
 status = "completed"
 
 [references]
-urls = []
+urls = ["https://exchange.xforce.ibmcloud.com/vulnerabilities/CVE-1999-0307"]

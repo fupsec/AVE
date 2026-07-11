@@ -1,38 +1,61 @@
 [id]
 ave_id = "AVE-2026-0037"
-cve_id = "CNVD-2020-26585"
+cve_id = "CVE-2025-0520"
 aliases = [
-    "NUCLEI-HTTP-CNVD-2020-CNVD-2020-26585-YAML"
+    "CNVD-2020-26585",
+    "GHSA-6jmr-r7p6-f5wr"
 ]
 
 [basic]
-title = "ShowDoc 2.8.6 以下版本文件上传漏洞"
-description = "ShowDoc 是一个适用于IT团队的在线API文档和在线文档管理工具。其 2.8.6 以下版本存在文件上传漏洞（CWE-434），攻击者可在无需认证的情况下通过 /index.php?s=/home/page/uploadImg 接口上传恶意文件，进而获取服务器权限。该漏洞危害严重，CVSS 评分 9.9。"
+title = "ShowDoc 未授权文件上传导致远程代码执行漏洞"
+description = "ShowDoc（一款适用于IT团队的在线API文档与技术文档分享工具）存在未授权任意文件上传漏洞（CNVD-2020-26585 / CVE-2025-0520）。由于/接口/home/page/uploadImg对上传文件后缀校验不严格，攻击者无需认证即可通过构造特殊请求（filename使用test.<>php绕过过滤）上传PHP Webshell，从而在服务器上执行任意代码，获取服务器完全控制权限。该漏洞CVSS v4.0评分9.4（CRITICAL），CVSS v3.1评分9.8（CRITICAL），已被CISA KEV收录并在野活跃利用。"
 severity = "CRITICAL"
-score = 9.9
-remediation = "升级 ShowDoc 至 2.8.6 或以上版本，并对文件上传接口实施严格的类型校验和访问控制策略。"
-published = "2020-01-01"
-updated = "2020-01-01"
-sources = ["nuclei"]
+score = 9.4
+score_cvss_v4 = "CVSS:4.0/AV:N/AC:L/AT:N/PR:L/UI:N/VC:H/VI:H/VA:L/SC:H/SI:H/SA:L"
+published = "2025-04-29"
+updated = "2026-06-17"
+remediation = "立即将ShowDoc升级至2.8.7或更高版本，该版本已修复文件后缀校验逻辑并增加了上传接口的认证机制。若暂时无法升级，应在Web服务器层面（Nginx/Apache）禁止upload目录下PHP文件执行，对上传目录设置755权限且文件权限设为644，并对上传文件实施白名单后缀校验（仅允许jpg/png/gif等图片格式）。"
+sources = ["nvd", "cnvd", "ghsa", "vulhub", "tenable", "vulncheck"]
 
 [affected]
-vendor = "star7th"
+vendor = "ShowDoc"
 product = "ShowDoc"
-
-[references]
-urls = [
-    "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2020/CNVD-2020-26585.yaml",
-    "https://github.com/star7th/showdoc/pull/1059",
-    "https://blog.csdn.net/qq_48985780/article/details/122211136",
-    "https://vul.wangan.com/a/CNVD-2020-26585"
-]
+versions = "< 2.8.7"
 
 [exploit]
-poc_urls = [
-    "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2020/CNVD-2020-26585.yaml"
+poc = [
+    {
+        url = "https://github.com/vulhub/vulhub/tree/master/showdoc/CNVD-2020-26585",
+        description = "Vulhub提供完整的Docker漏洞环境与复现步骤：通过POST /index.php?s=/home/page/uploadImg接口上传filename为test.<>php的PHP文件绕过后缀校验，成功执行phpinfo()证明任意代码执行",
+        source = "vulhub"
+    },
+    {
+        url = "https://blog.csdn.net/xiaofengdada/article/details/125961946",
+        description = "CSDN技术博客详细复现CNVD-2020-26585漏洞，包含ShowDoc 2.8.3及以下版本的利用过程与抓包分析",
+        source = "csdn"
+    }
 ]
-exp_urls = []
+exp = [
+    {
+        url = "https://www.vulncheck.com/advisories/showdoc-unauthenticated-file-upload-rce",
+        description = "VulnCheck安全通告，提供漏洞技术细节与利用验证",
+        source = "vulncheck"
+    }
+]
+nuclei_templates = []
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2025-0520"
+avd = "https://www.cnvd.org.cn/flaw/show/CNVD-2020-26585"
+other = [
+    "https://github.com/star7th/showdoc/pull/1059",
+    "https://github.com/vulhub/vulhub/tree/master/showdoc/CNVD-2020-26585",
+    "https://github.com/advisories/GHSA-6jmr-r7p6-f5wr",
+    "https://www.tenable.com/cve/CVE-2025-0520",
+    "https://www.vulncheck.com/advisories/showdoc-unauthenticated-file-upload-rce",
+    "https://thehackernews.com/2026/04/showdoc-rce-flaw-cve-2025-0520-actively.html"
+]
 
 [meta]
+collected_at = "2026-07-10T23:50:39.665826414+00:00"
 status = "completed"
-collected_at = "2026-07-10T12:39:17Z"
