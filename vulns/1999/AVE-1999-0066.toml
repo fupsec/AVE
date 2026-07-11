@@ -1,0 +1,27 @@
+[basic]
+description = "Unix系统中的ptylogin工具存在安全漏洞，攻击者可能利用该漏洞锁定调制解调器、通过该调制解调器拨打电话或获取用户密码，导致拒绝服务或信息泄露。该漏洞影响Marc Schaefer开发的ptylogin软件，攻击者可在无需认证的情况下远程利用。"
+published = "2001-03-12"
+remediation = "建议升级ptylogin至最新版本，或限制ptylogin的访问权限，禁止非授权用户使用该工具。如无可用的补丁版本，建议禁用ptylogin服务。"
+score = 7.5
+severity = "HIGH"
+sources = [
+    "NVD",
+    "MITRE",
+]
+title = "Unix系统ptylogin存在多种安全漏洞"
+updated = "2026-06-16"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0359"]
+ave_id = "AVE-1999-0066"
+
+[meta]
+collected_at = "2026-07-11T22:34:44.437384537+00:00"
+status = "completed"
+
+[references]
+urls = ["https://exchange.xforce.ibmcloud.com/vulnerabilities/CVE-1999-0359"]
