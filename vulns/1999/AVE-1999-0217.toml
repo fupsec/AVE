@@ -1,51 +1,25 @@
-[id]
-ave_id = "AVE-1999-0217"
-cve_id = "CVE-1999-0036"
-avd_id = ""
-other_ids = ["EDB-336"]
-aliases = ["CVE-1999-0036"]
-
 [basic]
-title = "SGI IRIX /bin/login 本地缓冲区溢出漏洞"
-description = "SGI IRIX 操作系统的 /bin/login 程序在处理 LOCKOUT 参数时存在缓冲区溢出漏洞。本地攻击者可利用此漏洞通过精心构造的登录请求触发缓冲区溢出，导致任意代码执行或以 root 权限破坏系统文件。攻击者需要具有本地系统访问权限，成功利用后可完全控制受影响的系统。"
-severity = "HIGH"
-score = 8.4
-published = "1997-05-26"
-updated = "2024-08-01"
-sources = ["exploitdb", "nvd"]
-
-[affected]
-vendor = "sgi"
-product = "irix"
-
-[score]
-cvss_v2 = 7.2
-cvss_v2_vector = "AV:L/AC:L/Au:N/C:C/I:C/A:C"
-cvss_v3 = 8.4
-cvss_v3_vector = "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
-
-[remediation]
-fix = "升级 SGI IRIX 系统至安装安全补丁版本，或安装 SGI 官方安全公告 19970508-02-PX 提供的补丁。限制本地用户对系统的访问权限。"
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["exploitdb"]
+title = "CVE-1999-0036 漏洞"
+updated = ""
 
 [exploit]
-poc = [{url = "https://www.exploit-db.com/exploits/336", description = "SGI IRIX /bin/login 本地缓冲区溢出 PoC", source = "exploitdb"}]
-exp = [{url = "https://www.exploit-db.com/exploits/336", description = "SGI IRIX /bin/login 本地缓冲区溢出 Exploit", source = "exploitdb"}]
+exp_urls = []
+poc_urls = []
 
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0036"
-other = [
-    "https://www.exploit-db.com/exploits/336",
-    "ftp://patches.sgi.com/support/free/security/advisories/19970508-02-PX",
-    "http://www.ciac.org/ciac/bulletins/h-106.shtml",
-    "http://www.osvdb.org/990",
-    "https://exchange.xforce.ibmcloud.com/vulnerabilities/557",
-]
+[id]
+aliases = ["CVE-1999-0036"]
+ave_id = "AVE-1999-0217"
+cve_id = "CVE-1999-0036"
 
 [meta]
-collected_at = "2026-07-11T00:00:00+00:00"
+collected_at = "2026-07-11T00:19:14.537350052+00:00"
 status = "completed"
 
-[authenticity]
-cve_confidence = "high"
-poc_confidence = "high"
-notes = "Exploit-DB 收录了完整的本地提权利用代码，适用于 IRIX 5.3/6.2/6.3 等多个版本。David Hedley 于 1997 年公开。"
+[references]
+urls = []
