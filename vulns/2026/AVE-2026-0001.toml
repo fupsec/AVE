@@ -1,26 +1,27 @@
 [id]
 ave_id = "AVE-2026-0001"
-cve_id = ""
-aliases = ["NUCLEI-FILE-MALWARE-UNIVERSAL-1337-MALWARE-YAML"]
+cve_id = "CVE-2026-0006"
+aliases = ["CVE-2026-0006"]
 
 [basic]
-title = "Universal 1337 Stealer 恶意软件检测规则"
-description = "Universal 1337 Stealer 是一款针对 Windows 平台的信息窃取类恶意软件（InfoStealer），能够窃取 FTP 客户端凭据、浏览器保存的密码、加密货币钱包以及系统敏感信息。该恶意软件通过二进制特征码匹配进行检测，使用 YARA 规则识别文件中包含的特定恶意代码片段。被感染系统可能面临数据泄露、凭据被盗和进一步横向移动的风险，攻击者通常通过钓鱼邮件或捆绑下载传播该恶意软件。"
-severity = "INFO"
-score = 2.5
-sources = ["nuclei"]
-published = "2023-08-01"
-updated = "2025-10-31"
-remediation = "建议部署端点检测与响应(EDR)解决方案，及时更新防病毒软件病毒库，对可疑文件进行沙箱分析，避免执行未知来源的可执行文件。同时启用系统文件完整性监控，定期扫描主机中的恶意软件特征。"
+title = "Android libopenapv 堆缓冲区溢出远程代码执行漏洞"
+description = "Android 16 的 libopenapv (APV 编解码器) 存在堆缓冲区溢出漏洞，攻击者可利用特制数据包触发越界读写，导致远程代码执行。无需用户交互或额外权限即可利用，CVSS评分9.8，危害严重。"
+severity = "CRITICAL"
+score = 9.8
+sources = ["github", "nvd"]
+published = "2026-03-02"
+updated = "2026-06-17"
+remediation = "及时升级 Android 安全更新至 2026-03-01 安全公告对应版本，包含修复此漏洞的补丁。"
 
 [references]
 urls = [
-    "https://github.com/projectdiscovery/nuclei-templates/blob/main/file/malware/universal-1337-malware.yaml",
-    "https://github.com/Yara-Rules/rules/blob/master/malware/MALW_Stealer.yar",
+    "https://source.android.com/docs/security/bulletin/2026/2026-03-01",
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-0006",
+    "https://github.com/mobilehackinglab/CVE-2026-0006-openapv-poc"
 ]
 
 [exploit]
-poc_urls = []
+poc_urls = ["https://github.com/mobilehackinglab/CVE-2026-0006-openapv-poc"]
 exp_urls = []
 
 [meta]
