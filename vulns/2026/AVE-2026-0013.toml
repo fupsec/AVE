@@ -4,8 +4,8 @@ published = ""
 remediation = "Refer to vendor advisory and upgrade to fixed version."
 score = 0.0
 severity = "UNKNOWN"
-sources = ["github"]
-title = "CVE-2026-2002"
+sources = ["ghsa"]
+title = "CVE-2026-49464"
 updated = ""
 
 [exploit]
@@ -13,12 +13,15 @@ exp_urls = []
 poc_urls = []
 
 [id]
-aliases = ["CVE-2026-2002"]
+aliases = [
+    "CVE-2026-49464",
+    "GHSA-6h3c-r723-7fx3",
+]
 ave_id = "AVE-2026-0013"
-cve_id = "CVE-2026-2002"
+cve_id = "CVE-2026-49464"
 
 [meta]
-collected_at = "2026-07-11T17:16:42.319512730+00:00"
+collected_at = "2026-07-11T17:16:56.585191469+00:00"
 status = "completed"
 
 [references]
