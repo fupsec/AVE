@@ -1,29 +1,19 @@
-[affected]
-product = "Multiple TP-Link Router Models"
-vendor = "TP-Link"
-
 [basic]
-description = "多款TP-Link路由器存在DHCP选项处理逻辑命令注入漏洞（CWE-78）。在设备初始化或预配置阶段，当设备作为DHCP客户端连接WAN接口时，DHCP响应中的Option 66（TFTP服务器名称）值被直接拼接到libcmm.so中的tftp shell命令中，未经任何过滤或转义。相邻网络攻击者无需认证，仅需在同一广播域内提供包含恶意Option 66值的DHCP响应，即可通过shell元字符注入任意命令并以root权限执行，导致设备完全被接管。该漏洞影响Archer MR200、MR402、VR2100、C20、TL-MR6400等多个型号的多个硬件版本。"
-published = "2026-06-22"
-remediation = "立即升级受影响设备至TP-Link官方发布的修复固件版本。Archer MR200(EN)V7升级至1.3.0 Build 250605，Archer MR200(EU)V8升级至1.5.0 Build 260605，Archer MR402(EU)V1升级至1.5.0 Build 260605，Archer VR2100(EU)V1升级至EU_V1_260330，Archer C20 V5升级至EU_V5_260317/US_V5_260419，Archer C20 V6升级至V6_260608，TL-MR6400(EU)V7升级至1.7.0 Build 260413。对于已停产无法升级的设备，应将WAN侧二层段视为信任边界，避免在不可信共享网段部署，启用DHCP Snooping阻止非授权DHCP响应，使用VLAN隔离WAN广播域，或改用静态/PPPoE WAN配置绕过DHCP客户端路径。"
-score = 8.7
-severity = "HIGH"
-sources = ["nvd", "ghsa", "tp-link", "github"]
-title = "TP-Link多型号路由器DHCP Option 66未授权命令注入漏洞"
-updated = "2026-06-26"
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["github"]
+title = "CVE-2026-11834"
+updated = ""
 
 [exploit]
 exp_urls = []
-poc_urls = [
-    { url = "https://github.com/mattgsys/CVE-2026-11834", description = "CVE-2026-11834 PoC - TP-Link DHCP Option 66未授权RCE，通过DHCP竞速攻击实现任意命令执行", source = "mattgsys" }
-]
+poc_urls = []
 
 [id]
-aliases = [
-    "CVE-2026-11834",
-    "GHSA-w296-94hj-pfcg",
-    "EUVD-2026-38339",
-]
+aliases = ["CVE-2026-11834"]
 ave_id = "AVE-2026-0085"
 cve_id = "CVE-2026-11834"
 
@@ -32,15 +22,4 @@ collected_at = "2026-07-10T23:07:49.805281719+00:00"
 status = "completed"
 
 [references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2026-11834"
-avd = "https://avd.aquasec.com/nvd/2026/cve-2026-11834"
-urls = [
-    "https://www.tp-link.com/us/support/faq/5141/",
-    "https://www.tp-link.com/en/support/download/archer-c20/",
-    "https://www.tp-link.com/en/support/download/archer-mr200/",
-    "https://www.tp-link.com/en/support/download/archer-mr402/",
-    "https://www.tp-link.com/en/support/download/archer-vr2100/",
-    "https://www.tp-link.com/en/support/download/tl-mr6400/v7/",
-    "https://mattg.systems/posts/cve-2026-11834/",
-    "https://github.com/advisories/GHSA-w296-94hj-pfcg",
-]
+urls = []

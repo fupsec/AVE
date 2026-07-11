@@ -1,25 +1,37 @@
-[basic]
-description = "Vulnerability identified as CVE-2022-4743. Please refer to vendor advisory for details."
-published = "2026-07-10"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 5.0
-severity = "MEDIUM"
-sources = ["msrc"]
-title = "CVE-2022-4743 vulnerability"
-updated = "2026-07-10"
-
-[exploit]
-exp_urls = []
-poc_urls = []
-
 [id]
-aliases = ["CVE-2022-4743"]
 ave_id = "AVE-2022-0002"
 cve_id = "CVE-2022-4743"
+aliases = ["CVE-2022-4743"]
 
-[meta]
-collected_at = "2026-07-10T12:52:02.490372697+00:00"
-status = "completed"
+[basic]
+title = "SDL2 GLES_CreateTexture 内存泄漏拒绝服务漏洞"
+description = "SDL2（Simple DirectMedia Layer 2）在 SDL_render_gles.c 文件的 GLES_CreateTexture() 函数中存在内存泄漏漏洞。攻击者可利用该漏洞远程触发持续内存泄漏，最终导致目标系统拒绝服务。漏洞影响 SDL2 v2.0.4 及以上版本，SDL-1.x 不受影响。攻击者无需身份认证即可远程利用，CVSS 评分 7.5。"
+severity = "HIGH"
+score = 7.5
+remediation = "升级 SDL2 至 2.26.0 或更高版本；相关发行版可通过包管理器更新至修复版本；也可参考 Red Hat 安全公告 RH bug 2156290 应用补丁。"
+published = "2023-01-12"
+updated = "2026-06-17"
+sources = ["nvd", "msrc", "redhat"]
+
+[affected]
+vendor = "libsdl"
+product = "Simple DirectMedia Layer"
 
 [references]
-urls = []
+urls = [
+  "https://access.redhat.com/security/cve/CVE-2022-4743",
+  "https://bugzilla.redhat.com/show_bug.cgi?id=2156290",
+  "https://github.com/libsdl-org/SDL/commit/00b67f55727bc0944c3266e2b875440da132ce4b",
+  "https://github.com/libsdl-org/SDL/pull/6269",
+  "https://lists.debian.org/debian-lts-announce/2023/02/msg00008.html",
+  "https://lists.debian.org/debian-lts-announce/2025/11/msg00024.html",
+  "https://security.gentoo.org/glsa/202305-18"
+]
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+collected_at = "2026-07-10T12:52:03.113375692+00:00"
+status = "completed"

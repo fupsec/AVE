@@ -1,41 +1,40 @@
 [id]
 ave_id = "AVE-2002-0047"
 cve_id = "CVE-2002-1170"
-aliases = ["CVE-2002-1170", "GHSA-5j37-qvcv-4rf2", "EUVD-2002-1154"]
+aliases = ["CVE-2002-1170", "CAN-2002-1170", "EUVD-2002-1154", "JVNDB-2002-000240"]
 
 [basic]
-title = "Net-SNMP SNMP代理handle_var_requests函数NULL指针解引用拒绝服务漏洞"
-description = "Net-SNMP（前身为ucd-snmp）5.0.1至5.0.5版本中SNMP守护进程的snmp_agent.c文件内handle_var_requests函数存在空指针解引用漏洞。远程攻击者可通过向目标系统发送特制的SNMP请求，触发该函数中的NULL指针解引用，导致SNMP守护进程崩溃（拒绝服务）。攻击者无需认证即可利用此漏洞，仅需网络访问SNMP服务端口（默认UDP/161）。该漏洞影响网络设备的管理和监控能力，可能导致管理员无法通过SNMP协议获取设备状态信息。"
+title = "Net-SNMP snmpd handle_var_requests 空指针解引用拒绝服务漏洞"
+description = "Net-SNMP（前身为 ucd-snmp）5.0.1 至 5.0.5 版本中的 SNMP 守护进程 snmp_agent.c 文件存在空指针解引用漏洞。攻击者在已知 SNMP 社区字符串（如默认的 public 只读字符串）的前提下，可向目标 snmpd 服务发送特制的 SNMP 数据包，使 handle_var_requests 函数在遍历 treecache 数组时因 asp->treecache_num 为 NULL 而绕过循环条件检查，随后解引用 NULL 指针导致进程崩溃（SIGSEGV），造成拒绝服务。该漏洞影响任何未修改默认社区字符串的 Net-SNMP 安装实例。"
+published = "2002-10-11"
+updated = "2002-10-11"
 severity = "MEDIUM"
 score = 5.0
 cvss_v2 = "AV:N/AC:L/Au:N/C:N/I:N/A:P"
-remediation = "升级Net-SNMP至5.0.6或更高版本。Red Hat Enterprise Linux用户应应用RHSA-2002:228安全公告中的补丁。临时缓解措施包括：使用防火墙规则限制SNMP服务仅允许受信任的IP地址访问；考虑禁用SNMP服务或将其限制在内部网络中；建议迁移至SNMPv3协议以增强认证和加密保护。"
-published = "2002-10-11"
-updated = "2024-08-08"
-sources = ["nvd", "osv", "ghsa", "redhat"]
+sources = ["nvd", "osv", "redhat"]
+remediation = "将 Net-SNMP 升级至 5.0.6 或更高版本。如使用 Red Hat Linux 8.0，可通过 Red Hat Network 应用 RHSA-2002:228-11 安全公告中的更新包进行修复。升级前应修改所有默认的 SNMP 社区字符串（特别是 public），限制 SNMP 访问来源，并通过防火墙限制 161/UDP 端口的访问。"
 
 [affected]
-vendor = "net-snmp"
-product = "net-snmp"
-versions = ["5.0.1", "5.0.3", "5.0.4_pre2", "5.0.5"]
+vendor = "Net-SNMP"
+product = "Net-SNMP"
+versions = ["5.0.1", "5.0.2", "5.0.3", "5.0.4", "5.0.5"]
+fixed_version = "5.0.6"
 
 [exploit]
-poc_urls = []
-exp_urls = []
-nuclei_templates = []
+poc = []
+exp = []
+
+[nuclei_templates]
 
 [references]
 nvd = "https://nvd.nist.gov/vuln/detail/CVE-2002-1170"
 avd = ""
 other = [
-    "https://github.com/advisories/GHSA-5j37-qvcv-4rf2",
-    "https://euvd.enisa.europa.eu/vulnerability/EUVD-2002-1154",
-    "http://www.redhat.com/support/errata/RHSA-2002-228.html",
-    "https://exchange.xforce.ibmcloud.com/vulnerabilities/10250",
-    "http://www.securityfocus.com/bid/5862",
-    "http://www.idefense.com/advisory/10.02.02.txt",
-    "http://sourceforge.net/forum/forum.php?forum_id=216532",
-    "http://marc.info/?l=bugtraq&m=103359362020365&w=2"
+    "https://lists.openwall.net/full-disclosure/2002/10/02/25",
+    "https://security.snyk.io/vuln/SNYK-DEBIANUNSTABLE-NETSNMP-310899",
+    "https://app.opencve.io/cve/CVE-2002-1170",
+    "https://www.vulmon.com/vulnerabilitydetails?qid=CVE-2002-1170",
+    "https://lwn.net/Articles/18267/"
 ]
 
 [meta]

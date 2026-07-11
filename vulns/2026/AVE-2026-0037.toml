@@ -45,7 +45,7 @@ nuclei_templates = [
     },
     {
         url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/vulnerabilities/other/showdoc-file-upload-rce.yaml",
-        description": "Nuclei ShowDoc 文件上传 RCE 检测模板",
+        description = "Nuclei ShowDoc 文件上传 RCE 检测模板",
         source = "nuclei-templates"
     }
 ]
