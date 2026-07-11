@@ -1,0 +1,34 @@
+[id]
+ave_id = "AVE-2026-0054"
+cve_id = "CVE-2026-49476"
+aliases = ["GHSA-2wc2-fm75-p42x"]
+
+[basic]
+title = "Soup Sieve CSS 选择器解析器内存耗尽漏洞"
+description = "soupsieve（Beautiful Soup 4 的 CSS 选择器引擎）中的 CSS 选择器解析器在编译大型逗号分隔选择器列表时分配无界内存。攻击者可向 soupsieve.compile() 或 Beautiful Soup 的 .select()/.select_one() 提供特制的 CSS 选择器字符串，导致应用程序从约 500 KB 的输入分配约 244 MB 的堆内存（放大比约 488 倍），从而引发内存耗尽和拒绝服务。无需认证或用户交互即可发起攻击，并发请求会倍增影响。soupsieve 是 beautifulsoup4 的自动依赖项，下游影响广泛。"
+severity = "HIGH"
+score = 7.5
+cvss_v3 = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+remediation = "升级 soupsieve 至 2.8.4 或更高版本。临时缓解措施：避免将用户输入的 CSS 选择器直接传递给 soupsieve.compile() 或 Beautiful Soup 的 .select()/.select_one() 方法，并对选择器字符串长度和逗号分隔项数量实施严格限制。"
+published = "2026-06-01"
+updated = "2026-07-09"
+sources = ["ghsa", "nvd"]
+
+[affected]
+vendor = "facelessuser"
+product = "soupsieve"
+
+[exploit]
+poc_urls = ["https://github.com/advisories/GHSA-2wc2-fm75-p42x"]
+exp_urls = []
+
+[exploit.nuclei_templates]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2026-49476"
+ghsa = "https://github.com/advisories/GHSA-2wc2-fm75-p42x"
+other = ["https://github.com/facelessuser/soupsieve", "https://pypi.org/project/soupsieve/"]
+
+[meta]
+collected_at = "2026-07-11T12:00:00+00:00"
+status = "completed"
