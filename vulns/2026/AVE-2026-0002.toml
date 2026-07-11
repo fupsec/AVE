@@ -4,8 +4,8 @@ published = ""
 remediation = "Refer to vendor advisory and upgrade to fixed version."
 score = 0.0
 severity = "UNKNOWN"
-sources = ["ghsa"]
-title = "CVE-2026-48595"
+sources = ["nuclei"]
+title = "NUCLEI-FILE-MALWARE-UNIVERSAL-1337-MALWARE-YAML 漏洞"
 updated = ""
 
 [exploit]
@@ -13,14 +13,11 @@ exp_urls = []
 poc_urls = []
 
 [id]
-aliases = [
-    "CVE-2026-48595",
-    "GHSA-9m9w-gxf7-rh8m",
-]
+aliases = ["NUCLEI-FILE-MALWARE-UNIVERSAL-1337-MALWARE-YAML"]
 ave_id = "AVE-2026-0002"
 
 [meta]
-collected_at = "2026-07-11T19:02:34.646564188+00:00"
+collected_at = "2026-07-11T19:02:39.188632801+00:00"
 status = "completed"
 
 [references]
