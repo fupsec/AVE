@@ -1,0 +1,36 @@
+[id]
+ave_id = "AVE-2023-0003"
+cve_id = "CVE-2023-4966"
+aliases = ["CVE-2023-4966"]
+
+[basic]
+title = "Citrix NetScaler ADC/Gateway 会话令牌泄露漏洞（Citrix Bleed）"
+description = "Citrix NetScaler ADC和NetScaler Gateway在配置为网关（VPN虚拟服务器、ICA代理、CVPN、RDP代理）或AAA虚拟服务器时存在信息泄露漏洞（CVE-2023-4966，又名Citrix Bleed）。未经认证的远程攻击者可通过发送包含大量字符的特制HTTP请求，利用该漏洞获取有效的会话令牌（Session Token），从而绕过身份认证并接管已登录用户的会话，导致敏感信息泄露。该漏洞在野已被广泛利用，已纳入CISA KEV目录。"
+severity = "HIGH"
+score = 7.5
+sources = ["hwpoc"]
+published = "2023-10-10"
+updated = "2023-10-25"
+remediation = "升级到受影响版本的修复版本：NetScaler ADC和NetScaler Gateway 13.1-49.13、13.0-91.13、12.1-55.291及更高版本，同时建议立即回收所有活跃会话令牌以防止被利用。"
+
+[references]
+urls = [
+    "https://nvd.nist.gov/vuln/detail/CVE-2023-4966",
+    "https://www.assetnote.io/resources/research/citrix-bleed-leaking-session-tokens-with-cve-2023-4966",
+    "https://www.netscaler.com/blog/news/cve-2023-4966-critical-security-update-now-available-for-netscaler-adc-and-netscaler-gateway/",
+    "https://github.com/assetnote/exploits/blob/main/citrix/CVE-2023-4966/exploit.py",
+    "https://github.com/Chocapikk/CVE-2023-4966"
+]
+
+[exploit]
+poc_urls = [
+    "https://www.assetnote.io/resources/research/citrix-bleed-leaking-session-tokens-with-cve-2023-4966",
+    "https://github.com/Chocapikk/CVE-2023-4966"
+]
+exp_urls = [
+    "https://github.com/assetnote/exploits/blob/main/citrix/CVE-2023-4966/exploit.py"
+]
+
+[meta]
+status = "completed"
+collected_at = "2025-07-11T12:00:00Z"
