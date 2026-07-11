@@ -1,0 +1,27 @@
+[basic]
+description = "CVE-2002-1305 是一个被标记为 REJECTED（已废弃）的 CVE 候选编号。根据 CVE 官方说明，该编号的申请者在 2002 年期间未将其与任何实际安全漏洞相关联，因此该编号被废弃，不应用于任何漏洞标识目的。该条目仅作为编号留档，不代表存在任何实际安全风险。"
+published = "2017-05-11"
+remediation = "该 CVE 编号已被废弃，不涉及任何实际漏洞，无需采取修复措施。"
+score = 3.0
+severity = "LOW"
+sources = [
+    "nvd",
+    "cve",
+]
+title = "CVE-2002-1305 已废弃（REJECTED）— 未关联任何漏洞"
+updated = "2023-11-06"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2002-1305"]
+ave_id = "AVE-2002-0014"
+
+[meta]
+collected_at = "2026-07-11T23:26:15.906590154+00:00"
+status = "completed"
+
+[references]
+urls = ["https://nvd.nist.gov/vuln/detail/CVE-2002-1305"]
