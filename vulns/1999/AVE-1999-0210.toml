@@ -1,0 +1,24 @@
+[basic]
+description = "Sendmail 及其他 SMTP 服务器在处理大量 RCPT TO 命令时存在拒绝服务漏洞。远程攻击者无需认证即可在同一次 SMTP 连接中发送大量 RCPT TO 命令，导致服务器资源耗尽，无法正常处理邮件收发请求，严重影响邮件系统的可用性。"
+published = "1999-03-08"
+remediation = "升级 Sendmail 至最新版本，或配置 SMTP 服务限制单次连接中的 RCPT TO 命令数量，部署流量控制策略以防止资源耗尽攻击。"
+score = 6.4
+severity = "MEDIUM"
+sources = ["NVD"]
+title = "Sendmail SMTP RCPT TO 命令拒绝服务漏洞"
+updated = "2026-06-16"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0418"]
+ave_id = "AVE-1999-0210"
+
+[meta]
+collected_at = "2026-07-11T23:22:42.932155042+00:00"
+status = "completed"
+
+[references]
+urls = ["http://marc.info/?l=bugtraq&m=92100018214316&w=2"]
