@@ -1,21 +1,24 @@
 [basic]
-description = "Linux syslogd 在处理大量网络连接时存在拒绝服务漏洞。远程攻击者可向 syslogd 服务发送大量连接请求，导致服务资源耗尽而崩溃，无法正常记录系统日志。受影响的系统包括 Caldera OpenLinux 和 Red Hat Linux 等发行版。"
-published = "1999-11-18T00:00:00Z"
-remediation = "升级 Caldera OpenLinux 或 Red Hat Linux 到包含 syslogd 补丁的最新版本。限制对 syslogd 服务端口（514/UDP）的网络访问，通过防火墙规则仅允许可信来源的连接请求，避免暴露服务到不可信网络。"
-score = 5.0
-severity = "MEDIUM"
-sources = ["redhat"]
-title = "Linux syslogd 远程拒绝服务漏洞"
-updated = "2026-06-16T00:00:00Z"
+description = "SGI IRIX 5.3/6.2 系统中 ordist 命令存在缓冲区溢出漏洞，攻击者可通过向 -d 选项提供特制的超长参数触发溢出，从而获取 root 权限。该漏洞影响所有 SGI IRIX 5.x 和 6.x 系列系统，本地用户可利用此漏洞实现权限提升。"
+published = "1997-07-16"
+remediation = "升级 SGI IRIX 系统至最新安全补丁版本，或限制 ordist 命令的本地用户访问权限。"
+score = 8.4
+severity = "HIGH"
+sources = [
+    "exploitdb",
+    "nvd",
+]
+title = "SGI IRIX ordist 缓冲区溢出本地权限提升漏洞"
+updated = "2024-08-01"
 
 [exploit]
-exp_urls = []
-poc_urls = []
+exp_urls = ["https://www.exploit-db.com/exploits/19317"]
+poc_urls = ["https://www.exploit-db.com/exploits/19317"]
 
 [id]
-aliases = ["CVE-1999-0831"]
+aliases = ["CVE-1999-0029"]
 ave_id = "AVE-1999-0215"
-cve_id = "CVE-1999-0831"
+cve_id = "CVE-1999-0029"
 
 [meta]
 collected_at = "2026-07-11T00:00:00Z"
@@ -23,7 +26,7 @@ status = "completed"
 
 [references]
 urls = [
-    "https://nvd.nist.gov/vuln/detail/CVE-1999-0831",
-    "https://access.redhat.com/security/cve/CVE-1999-0831",
-    "http://www.securityfocus.com/bid/809",
+    "https://nvd.nist.gov/vuln/detail/CVE-1999-0029",
+    "https://exchange.xforce.ibmcloud.com/vulnerabilities/CVE-1999-0029",
+    "https://www.exploit-db.com/exploits/19317",
 ]
