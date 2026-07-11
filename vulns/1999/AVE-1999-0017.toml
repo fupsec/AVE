@@ -1,18 +1,18 @@
 [basic]
-description = "Teardrop（泪滴）攻击是一种经典的拒绝服务漏洞，通过发送两个或多个特制的IP分片包，其中第二个分片的偏移量被设置为小于第一个分片载荷长度但大于零，导致目标系统在IP分片重组时发生内存错误。该漏洞影响多种操作系统，包括Linux内核、Windows 95、Windows NT 4.0及HP-UX 10.34等，攻击者无需认证即可远程触发，导致目标系统崩溃或重启。"
+description = "Teardrop（泪滴）攻击是一种经典的IP分片拒绝服务漏洞，影响多个操作系统TCP/IP协议栈。攻击者发送两个或多个特制的IP分片数据包，其中第二个分片的偏移量小于第一个分片长度并重叠，导致目标系统在IP分片重组过程中分配异常大量的内存资源，最终因内存耗尽造成系统死机或重启。该漏洞影响Linux内核、Windows 95/NT 4.0、HP-UX 10.34等多个操作系统。"
 published = "1997-12-16"
-remediation = "建议升级操作系统至不受影响的现代版本（如Linux内核2.1及以上、Windows 2000及以上），或在网络边界部署入侵检测系统拦截异常的IP分片包。"
+remediation = "安装操作系统厂商提供的安全补丁，禁用易受攻击系统上的IP分片功能，或升级到不受影响的操作系统版本。"
 score = 5.0
 severity = "MEDIUM"
 sources = [
-    "nvd.nist.gov",
-    "exploit-db",
+    "exploitdb",
+    "nvd",
 ]
-title = "多个厂商TCP/IP协议栈IP分片重组拒绝服务漏洞（Teardrop）"
+title = "Teardrop IP分片重组拒绝服务漏洞"
 updated = "2026-06-16"
 
 [exploit]
-exp_urls = ["https://www.exploit-db.com/exploits/19103"]
+exp_urls = []
 poc_urls = []
 
 [id]
@@ -20,11 +20,11 @@ aliases = ["CVE-1999-0015"]
 ave_id = "AVE-1999-0017"
 
 [meta]
-collected_at = "2026-07-11T22:27:42.175201558+00:00"
+collected_at = "2026-07-11T23:01:47.639540771+00:00"
 status = "completed"
 
 [references]
 urls = [
     "https://nvd.nist.gov/vuln/detail/CVE-1999-0015",
-    "https://oval.cisecurity.org/repository/search/definition/oval%3Aorg.mitre.oval%3Adef%3A5579",
+    "https://www.exploit-db.com/exploits/19103",
 ]
