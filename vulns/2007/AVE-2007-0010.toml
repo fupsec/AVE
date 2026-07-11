@@ -15,7 +15,7 @@ sources = ["tenable", "nvd", "openoffice", "redhat"]
 remediation = "升级 Apache OpenOffice 至 2.4 或更高版本，或升级 ICU 库至 3.8-5 及以上修复版本。Red Hat 发行版可参考 RHSA-2008:0090 进行更新。避免打开来源不明的 ODF 文档。"
 
 [affected]
-vendor = "Apache（原 Sun Microsystems）"
+vendor = "Apache"
 product = "OpenOffice"
 
 [references]
