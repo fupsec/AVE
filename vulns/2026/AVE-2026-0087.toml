@@ -1,40 +1,41 @@
-[id]
-ave_id = "AVE-2026-0087"
-cve_id = "CVE-2026-49463"
-aliases = [
-    "CVE-2026-49463",
-    "GHSA-qpm9-h556-mwxm",
-]
+[affected]
+product = "WPvivid Backup & Migration"
+vendor = "wpvividplugins"
 
 [basic]
-title = "NL Portal GraphQL接口缺少逐用户鉴权导致信息泄露"
-description = "NL Portal 后端库（nl-portal-backend-libraries）中的 GraphQL API 在文档内容查询和决策（besluiten）查询两个接口上缺少逐用户鉴权检查。攻击者作为已认证用户，可通过 documenten-api 模块的 getDocumentContent 查询下载任意文档原始内容，也可通过 besluiten 模块枚举、搜索和读取其他用户的决策记录及其审计日志和附件。根本原因是 GraphQL Resolver 方法签名未声明认证参数，导致框架无法绑定已认证主体，Resolver 因此无法执行用户级别的授权检查。攻击者可利用两个端点形成完整攻击链：先通过决策接口枚举文档 ID，再通过文档接口窃取内容，威胁包含个人敏感数据的政府门户系统数据机密性。"
-severity = "MEDIUM"
-score = 6.5
-cvss_v3 = "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N"
-published = "2026-06-03"
-updated = "2026-07-08"
-remediation = "升级 nl-portal-backend-libraries 至 3.0.1 或更高版本。documenten-api 模块已在 Resolver 签名中添加认证参数，besluiten 模块已在 3.0.1 中整体移除。如无法立即升级，应在 API 网关层屏蔽 getDocumentContent、getBesluiten、getBesluit、getBesluitAuditTrails、getBesluitAuditTrail、getBesluitDocumenten、getBesluitDocument 等 GraphQL 操作，或直接屏蔽 besluiten 模块的 GraphQL 类型及文档内容查询。"
-sources = ["ghsa"]
-
-[affected]
-vendor = "nl-portal"
-product = "nl-portal-backend-libraries"
-affected_versions = [">= 1.5.0, <= 3.0.0"]
-patched_version = "3.0.1"
+description = "WPvivid Backup & Migration WordPress插件0.9.123及之前版本中存在未授权任意文件上传远程代码执行漏洞。RSA解密过程中错误处理不当，openssl_private_decrypt()失败后返回false值，phpseclib库将其视为空字节AES密钥，攻击者可利用可预测的空字节密钥加密恶意载荷。同时插件未对上传文件名进行清理，导致目录遍历可逃逸备份目录，未经身份验证的攻击者可通过wpvivid_action=send_to_site参数上传任意PHP文件至可公开访问的目录，实现远程代码执行。CVSS评分9.8，危害严重。"
+published = "2026-02-11"
+remediation = "升级WPvivid Backup & Migration插件至0.9.124或更高版本；限制/wp-content/uploads/目录的PHP执行权限；部署WAF规则拦截异常文件上传请求。"
+score = 9.8
+severity = "CRITICAL"
+sources = [
+    "github",
+    "nvd",
+    "wordfence",
+]
+title = "`WPvivid Backup & Migration WordPress插件远程代码执行漏洞`"
+updated = "2026-06-17"
 
 [exploit]
-poc = []
-exp = []
+exp_urls = ["https://github.com/cybertechajju/CVE-2026-1357-POC"]
 nuclei_templates = []
+poc_urls = ["https://github.com/cybertechajju/CVE-2026-1357-POC"]
 
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2026-49463"
-ghsa = "https://github.com/advisories/GHSA-qpm9-h556-mwxm"
-other = [
-    "https://github.com/nl-portal/nl-portal-backend-libraries/security/advisories/GHSA-qpm9-h556-mwxm",
-]
+[id]
+aliases = ["CVE-2026-1357"]
+ave_id = "AVE-2026-0087"
+cve_id = "CVE-2026-1357"
 
 [meta]
-collected_at = "2026-07-11T00:04:19.335491882+00:00"
+collected_at = "2026-07-11T00:00:00Z"
 status = "completed"
+
+[references]
+urls = [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-1357",
+    "https://plugins.trac.wordpress.org/browser/wpvivid-backuprestore/tags/0.9.123/includes/class-wpvivid-crypt.php#L58",
+    "https://plugins.trac.wordpress.org/browser/wpvivid-backuprestore/tags/0.9.123/includes/customclass/class-wpvivid-send-to-site.php#L629",
+    "https://plugins.trac.wordpress.org/changeset/3448386/wpvivid-backuprestore#file1",
+    "https://www.wordfence.com/threat-intel/vulnerabilities/id/e5af0317-ef46-4744-9752-74ce228b5f37?source=cve",
+    "https://github.com/cybertechajju/CVE-2026-1357-POC",
+]
