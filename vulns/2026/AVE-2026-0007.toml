@@ -1,0 +1,28 @@
+[basic]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["ghsa"]
+title = "CVE-2026-48861"
+updated = ""
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = [
+    "CVE-2026-48861",
+    "GHSA-2pg6-44cx-c49v",
+]
+ave_id = "AVE-2026-0007"
+cve_id = "CVE-2026-48861"
+
+[meta]
+collected_at = "2026-07-11T16:25:56.567513492+00:00"
+status = "completed"
+
+[references]
+urls = []
