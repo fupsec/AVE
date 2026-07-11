@@ -1,0 +1,30 @@
+[basic]
+description = "Slackware Linux 3.6 在安装后首次重启期间，系统未正确配置 root 账户密码，导致远程攻击者可在无需认证的情况下直接以 root 身份登录系统。该漏洞源于安装程序的初始化脚本缺陷，影响系统初始配置流程中的账户安全设置。攻击者利用此漏洞可完全接管受影响服务器，获取最高权限。"
+published = "1999-03-17"
+remediation = "升级 Slackware Linux 至已修复此漏洞的版本，或在安装完成后立即手动为 root 账户设置强密码，确保系统首次重启前完成 root 密码配置。"
+score = 7.2
+severity = "HIGH"
+sources = [
+    "nvd",
+    "cve",
+]
+title = "Slackware Linux 3.6 安装重启后 root 账户无密码登录漏洞"
+updated = "2026-06-16"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0421"]
+ave_id = "AVE-1999-0300"
+
+[meta]
+collected_at = "2026-07-12T00:00:00+00:00"
+status = "completed"
+
+[references]
+urls = [
+    "http://www.osvdb.org/981",
+    "http://www.securityfocus.com/bid/338",
+]
