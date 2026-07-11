@@ -1,0 +1,27 @@
+[basic]
+description = "NetBSD和OpenBSD的TCP服务器实现中存在一个竞争条件漏洞，位于select()和accept()系统调用之间。远程攻击者可以利用该竞争条件向受影响系统发送特制请求，导致服务器拒绝服务，影响系统正常可用性。"
+published = "1999-02-17"
+remediation = "建议升级NetBSD系统至2.0.4以上版本，升级OpenBSD系统至2.4以上版本，以修复TCP服务器中select()与accept()之间的竞争条件缺陷。"
+score = 2.6
+severity = "LOW"
+sources = [
+    "cve",
+    "nvd",
+]
+title = "NetBSD和OpenBSD TCP服务器select()与accept()竞争条件拒绝服务漏洞"
+updated = "2026-06-16"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0396"]
+ave_id = "AVE-1999-0107"
+
+[meta]
+collected_at = "2026-07-11T23:02:04.729592848+00:00"
+status = "completed"
+
+[references]
+urls = ["https://exchange.xforce.ibmcloud.com/vulnerabilities/CVE-1999-0396"]
