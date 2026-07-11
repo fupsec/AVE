@@ -1,31 +1,25 @@
-[id]
-ave_id = "AVE-1999-0214"
-cve_id = "CVE-1999-0804"
-aliases = ["CVE-1999-0804"]
-
 [basic]
-title = "Linux 2.2.x 内核 ICMP 报文拒绝服务漏洞"
-description = "Linux 2.2.x 内核存在拒绝服务漏洞，远程攻击者可通过发送包含异常类型、代码和 IP 头长度的畸形 ICMP 报文，导致目标系统内核崩溃或服务不可用，影响系统的正常运行。攻击者无需认证即可远程触发该漏洞。"
-severity = "MEDIUM"
-score = 5.0
-cvss_v2 = 5.0
-cvss_v2_vector = "AV:N/AC:L/Au:N/C:N/I:N/A:P"
-remediation = "建议升级 Linux 内核至 2.2.x 系列的最新安全版本，或应用各发行版厂商提供的补丁。对于 Red Hat 系统，请参考 Red Hat 安全公告并及时更新内核软件包。"
-published = "1999-06-01"
-updated = "2026-06-16"
-sources = ["redhat", "nvd"]
-
-[affected]
-vendor = "Linux"
-product = "Linux Kernel 2.2.x"
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["redhat"]
+title = "CVE-1999-0804 漏洞"
+updated = ""
 
 [exploit]
-poc_urls = []
 exp_urls = []
+poc_urls = []
 
-[references]
-urls = ["https://access.redhat.com/security/cve/CVE-1999-0804", "https://nvd.nist.gov/vuln/detail/CVE-1999-0804", "http://www.securityfocus.com/bid/302"]
+[id]
+aliases = ["CVE-1999-0804"]
+ave_id = "AVE-1999-0214"
+cve_id = "CVE-1999-0804"
 
 [meta]
-collected_at = "2026-07-11T00:00:00Z"
+collected_at = "2026-07-11T00:12:04.667954695+00:00"
 status = "completed"
+
+[references]
+urls = []
