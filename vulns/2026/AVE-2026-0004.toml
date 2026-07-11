@@ -1,25 +1,25 @@
 [id]
 ave_id = "AVE-2026-0004"
-cve_id = "CVE-2026-48597"
-aliases = ["CVE-2026-48597", "GHSA-h74c-q9j7-mpcm"]
+cve_id = ""
+aliases = ["NUCLEI-HTTP-CNVD-2018-CNVD-2018-13393-YAML", "CNVD-2018-13393"]
 
 [basic]
-title = "Tesla HTTP 客户端 Mint 适配器存在原子表耗尽致拒绝服务漏洞"
-description = "Tesla 是一款基于 Elixir 语言的 HTTP 客户端库。其 Mint 适配器中的 open_conn/2 函数在构建请求时将 URL 协议 scheme 直接通过 String.to_atom/1 转换为 BEAM 原子，未进行任何白名单校验。由于 BEAM 虚拟机中的原子一旦创建即永久存在且不会被垃圾回收，默认原子表上限约为 1,048,576 个条目。攻击者可通过向应用发送大量包含不同 URL scheme 的请求（或利用 FollowRedirects 中间件跟随恶意服务器返回的 Location 头），逐步耗尽原子表空间，最终导致 BEAM 虚拟机崩溃，造成拒绝服务。该漏洞影响 tesla 1.3.0 至 1.18.2 版本。"
+title = "Metinfo CMS 本地文件包含漏洞"
+description = "Metinfo CMS（米拓企业建站系统）存在本地文件包含漏洞。攻击者可通过向 /include/thumb.php 发送精心构造的请求，利用 dir 参数中的目录遍历序列（如 http\\..\\admin\\login\\login_check.php）读取服务器上的任意文件，导致敏感信息泄露。该漏洞无需身份验证即可远程利用，影响 Metinfo 6.x 系列版本，危害较大。"
 severity = "HIGH"
-score = 8.2
-sources = ["ghsa", "nvd"]
-published = "2026-06-02"
-updated = "2026-06-17"
-remediation = "升级 Tesla 至 1.18.3 或更高版本，并在 Mint 适配器中对 URL scheme 进行白名单校验以防止原子表被恶意填充。"
+score = 8.6
+sources = ["nuclei", "CNVD"]
+published = "2018-07-01"
+updated = "2018-07-01"
+remediation = "升级 Metinfo CMS 到官方发布的最新版本；对 /include/thumb.php 中 dir 参数进行严格的输入验证和过滤，禁止包含路径穿越字符（如 ..）和反斜杠。"
 
 [references]
-urls = ["https://nvd.nist.gov/vuln/detail/CVE-2026-48597", "https://github.com/elixir-tesla/tesla/security/advisories/GHSA-h74c-q9j7-mpcm", "https://github.com/elixir-tesla/tesla/commit/4699c3cb3e2fd6078f99f45f11cf7466aeedbf0e", "https://cna.erlef.org/cves/CVE-2026-48597.html", "https://osv.dev/vulnerability/EEF-CVE-2026-48597"]
+urls = ["https://paper.seebug.org/676/", "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2018/CNVD-2018-13393.yaml"]
 
 [exploit]
-poc_urls = []
+poc_urls = ["https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2018/CNVD-2018-13393.yaml"]
 exp_urls = []
 
 [meta]
 status = "completed"
-collected_at = "2026-07-11T12:27:00+08:00"
+collected_at = "2026-07-11T12:30:00+08:00"
