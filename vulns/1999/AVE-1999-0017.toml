@@ -1,0 +1,27 @@
+[basic]
+description = '''Windows NT IIS服务器存在路径遍历漏洞，远程攻击者通过发送包含特殊构造的'..\..'序列的HTTP请求，可导致服务器耗尽资源或崩溃，造成拒绝服务。该漏洞影响Microsoft Internet Information Server，攻击者无需认证即可通过网络远程触发。'''
+published = "1999-05-12"
+remediation = "建议升级到受支持的最新Windows版本或安装安全更新，限制对IIS服务器的未授权网络访问，并部署Web应用防火墙(WAF)进行防护。"
+score = 5.0
+severity = "MEDIUM"
+sources = [
+    "NVD",
+    "CVE",
+]
+title = "Microsoft Windows NT IIS服务器路径遍历拒绝服务漏洞"
+updated = "2026-06-16"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0229"]
+ave_id = "AVE-1999-0017"
+
+[meta]
+collected_at = "2026-07-11T22:27:46.951746610+00:00"
+status = "completed"
+
+[references]
+urls = ["https://exchange.xforce.ibmcloud.com/vulnerabilities/CVE-1999-0229"]
