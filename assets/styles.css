@@ -1604,3 +1604,194 @@ body {
   color: #86efac;
   text-decoration: none;
 }
+
+/* ════════════════════════════════════════
+   PoC / EXP Asset Detail Page
+   ════════════════════════════════════════ */
+
+/* Type badge */
+.asset-type-badge {
+  display: inline-block;
+  padding: 0.15rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+.asset-type-badge.poc {
+  background: #1e3a5f;
+  color: #93c5fd;
+  border: 1px solid #3b82f6;
+}
+.asset-type-badge.exp {
+  background: #5f1e1e;
+  color: #fca5a5;
+  border: 1px solid #ef4444;
+}
+
+/* Detail header actions */
+.detail-header-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.detail-link {
+  font-size: 0.8rem;
+  color: #93c5fd;
+  text-decoration: none;
+  border: 1px solid #334155;
+  border-radius: 6px;
+  padding: 0.2rem 0.5rem;
+  background: #111827;
+  transition: background 0.2s, border-color 0.2s;
+}
+.detail-link:hover {
+  background: #1e293b;
+  border-color: #86efac;
+  color: #86efac;
+}
+
+/* Tag pills (asset page) */
+.tag-pill {
+  display: inline-block;
+  padding: 0.1rem 0.5rem;
+  margin: 0.15rem;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  background: #1e293b;
+  color: #94a3b8;
+  border: 1px solid #334155;
+}
+
+/* Requests list */
+.requests-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+/* Request card */
+.request-card {
+  background: #0f1726;
+  border: 1px solid #22314d;
+  border-radius: 10px;
+  padding: 0.8rem 1rem;
+  transition: border-color 0.2s;
+}
+.request-card:hover {
+  border-color: #3b82f6;
+}
+
+/* Request header: method + path + number */
+.request-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.req-method {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  border-radius: 5px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  font-family: "Consolas", "Menlo", monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+.req-method.get     { background: #0f3b2e; color: #34d399; border: 1px solid #34d399; }
+.req-method.post    { background: #3b2e0f; color: #fbbf24; border: 1px solid #fbbf24; }
+.req-method.put     { background: #1e2f5f; color: #93c5fd; border: 1px solid #3b82f6; }
+.req-method.delete  { background: #3b0f0f; color: #fca5a5; border: 1px solid #ef4444; }
+.req-method.head    { background: #1e3b2e; color: #6ee7b7; border: 1px solid #6ee7b7; }
+.req-method.patch   { background: #2e1e3b; color: #c4b5fd; border: 1px solid #8b5cf6; }
+.req-method.options { background: #1e2e3b; color: #67e8f9; border: 1px solid #06b6d4; }
+
+.req-path {
+  flex: 1;
+  font-family: "Consolas", "Menlo", monospace;
+  font-size: 0.85rem;
+  color: #e5e7eb;
+  word-break: break-all;
+}
+
+.req-num {
+  font-size: 0.7rem;
+  color: #64748b;
+  font-weight: 600;
+}
+
+/* Request headers block */
+.req-headers {
+  background: #0b1220;
+  border: 1px solid #1e293b;
+  border-radius: 6px;
+  padding: 0.5rem 0.7rem;
+  margin: 0.3rem 0 0.5rem;
+  font-size: 0.78rem;
+  font-family: "Consolas", "Menlo", monospace;
+  color: #94a3b8;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+/* Matchers section */
+.matcher-title {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #94a3b8;
+  margin: 0.5rem 0 0.3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.matcher-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 0.5rem;
+  margin: 0.2rem 0;
+  background: #0b1220;
+  border-radius: 6px;
+  flex-wrap: wrap;
+}
+
+.matcher-type {
+  display: inline-block;
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.matcher-type.word   { background: #1e3a5f; color: #93c5fd; border: 1px solid #3b82f6; }
+.matcher-type.status { background: #3b2e0f; color: #fbbf24; border: 1px solid #fbbf24; }
+.matcher-type.regex  { background: #3b0f2e; color: #f9a8d4; border: 1px solid #ec4899; }
+.matcher-type.binary { background: #2e1e3b; color: #c4b5fd; border: 1px solid #8b5cf6; }
+
+.matcher-part {
+  font-size: 0.72rem;
+  color: #64748b;
+  background: #1e293b;
+  border-radius: 4px;
+  padding: 0.05rem 0.35rem;
+  font-family: "Consolas", "Menlo", monospace;
+}
+
+.matcher-value {
+  font-size: 0.78rem;
+  color: #e5e7eb;
+  font-family: "Consolas", "Menlo", monospace;
+}
+
+.matcher-expect {
+  font-size: 0.7rem;
+  font-weight: 600;
+  margin-left: auto;
+}
+.matcher-expect.yes { color: #34d399; }
+.matcher-expect.no  { color: #fca5a5; }

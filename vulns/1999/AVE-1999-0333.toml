@@ -1,0 +1,27 @@
+[basic]
+description = "OpenSSL和SSLeay存在安全漏洞，远程攻击者能够重用已建立的SSL会话，从而绕过访问控制机制。该漏洞影响OpenSSL 0.9.2b之前版本，攻击者可利用此漏洞获取未授权访问，导致敏感信息泄露、数据篡改或服务中断等严重后果。"
+published = "1999-03-22"
+remediation = "升级OpenSSL至0.9.2b或更高版本，禁用不安全的SSL会话缓存重用功能，并配置严格的会话管理策略以防止会话重放攻击。"
+score = 7.5
+severity = "HIGH"
+sources = [
+    "cve",
+    "nvd",
+]
+title = "OpenSSL和SSLeay SSL会话重用绕过访问控制漏洞"
+updated = "2026-06-16"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0428"]
+ave_id = "AVE-1999-0333"
+
+[meta]
+collected_at = "2026-07-11T23:30:13.375308204+00:00"
+status = "completed"
+
+[references]
+urls = ["http://www.osvdb.org/3936"]
