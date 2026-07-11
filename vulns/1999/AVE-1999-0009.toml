@@ -4,8 +4,8 @@ published = ""
 remediation = "Refer to vendor advisory and upgrade to fixed version."
 score = 0.0
 severity = "UNKNOWN"
-sources = ["cve"]
-title = "CVE-1999-0410 漏洞"
+sources = ["exploitdb"]
+title = "CVE-1999-0016 漏洞"
 updated = ""
 
 [exploit]
@@ -13,12 +13,12 @@ exp_urls = []
 poc_urls = []
 
 [id]
-aliases = ["CVE-1999-0410"]
+aliases = ["CVE-1999-0016"]
 ave_id = "AVE-1999-0009"
-cve_id = "CVE-1999-0410"
+cve_id = "CVE-1999-0016"
 
 [meta]
-collected_at = "2026-07-11T17:11:15.793523480+00:00"
+collected_at = "2026-07-11T17:11:48.413334650+00:00"
 status = "completed"
 
 [references]
