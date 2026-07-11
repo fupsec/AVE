@@ -1,0 +1,24 @@
+[basic]
+description = "此漏洞编号已被 CVE 官方撤销（REJECT）。CVE-2001-1592 由 Red Hat, Inc. 作为 CNA 提交，但随后被撤回。MITRE 于 2020-11-05 标记为 REJECT，Red Hat 于 2023-11-06 确认撤销。此编号不应被用于引用任何实际安全漏洞，请使用其他有效 CVE 编号替代。"
+published = "2020-11-05"
+remediation = "此 CVE 编号已被官方撤销，无对应实际安全漏洞，无需进行任何修复操作。建议在安全漏洞追踪系统中将此编号标记为已撤销（REJECT）状态，避免在安全评估或漏洞报告中引用此编号。"
+score = 3.5
+severity = "LOW"
+sources = ["nvd"]
+title = "Red Hat 公司提交的 CVE-2001-1592 安全漏洞编号已被撤销"
+updated = "2023-11-06"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2001-1592"]
+ave_id = "AVE-2001-0018"
+
+[meta]
+collected_at = "2026-07-11T23:01:56.190245892+00:00"
+status = "completed"
+
+[references]
+urls = ["https://nvd.nist.gov/vuln/detail/CVE-2001-1592"]
