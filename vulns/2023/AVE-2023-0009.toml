@@ -1,25 +1,45 @@
 [id]
 ave_id = "AVE-2023-0009"
-cve_id = ""
-aliases = ["HWPOC-2023-000f79a9"]
+cve_id = "CVE-2023-0009"
+aliases = ["HWPOC-2023-000f79a9", "GPC-16078"]
 
 [basic]
-title = "畅捷通畅捷CRM create_site.php SQL注入漏洞"
-description = "畅捷通CRM系统的create_site.php接口存在SQL注入漏洞，攻击者可在无需身份认证的情况下，通过向该接口提交恶意构造的SQL查询语句，实现对后端数据库的任意数据读取、篡改或删除操作，严重威胁系统数据安全与业务连续性。"
-severity = "CRITICAL"
-score = 9.8
-remediation = "建议立即联系畅捷通官方获取并安装最新安全补丁，或将畅捷CRM升级至已修复该漏洞的最新版本。同时建议对create_site.php所有输入参数实施严格的参数化查询与输入过滤。"
-published = "2023-08-08"
-updated = "2023-08-08"
-sources = ["hwpoc"]
+title = "Palo Alto GlobalProtect Windows客户端本地权限提升漏洞"
+description = "Palo Alto Networks GlobalProtect VPN客户端的Windows版本存在本地权限提升漏洞。该漏洞源于PanGPA（用户态进程）与PanGPS（SYSTEM服务）之间的IPC通信缺乏输入验证，攻击者可通过Frida等工具篡改XML格式的IPC数据中的<path>元素，将其重定向至恶意命名管道（Named Pipe）或远程SMB共享。对于具备SeImpersonate特权的用户，可利用命名管道令牌模拟获取SYSTEM权限；对于普通用户，可将路径指向远程SMB服务器以捕获NTLMv1/NTLMv2哈希，进而进行中继攻击（如Shadow Credentials）。该漏洞影响GlobalProtect App 5.2.13之前、6.0.5之前及6.1.1之前的Windows版本。"
+severity = "HIGH"
+score = 7.8
+remediation = "立即将GlobalProtect App升级至5.2.13、6.0.5、6.1.1或更高版本。在无法立即升级的情况下，建议限制本地用户安装VPN客户端的权限，并监控PanGPA进程的异常IPC通信行为。企业环境应启用Windows Defender攻击面减少规则（ASR）阻止命名管道滥用。"
+published = "2023-06-14"
+updated = "2024-04-10"
+sources = ["hwpoc", "nvd", "paloalto"]
 
-[references]
-urls = []
+[affected]
+vendor = "Palo Alto Networks"
+product = "GlobalProtect App"
+platforms = ["Windows"]
+versions = [
+    { version = "< 5.2.13", status = "affected" },
+    { version = ">= 5.2.13, < 6.0.5", status = "affected" },
+    { version = ">= 6.0.5, < 6.1.1", status = "affected" },
+    { version = ">= 6.1.1", status = "unaffected" },
+    { version = ">= 6.2.0", status = "unaffected" }
+]
 
 [exploit]
 poc_urls = []
-exp_urls = []
+exp_urls = [
+    { url = "https://arman.sh/archives/1/", description = "漏洞发现者Mohammad Arman发布的详细技术分析，包含Frida脚本和命名管道模拟攻击的完整流程", source = "researcher" }
+]
+nuclei_templates = []
+
+[references]
+nvd = ["https://nvd.nist.gov/vuln/detail/CVE-2023-0009"]
+avd = []
+other = [
+    "https://security.paloaltonetworks.com/CVE-2023-0009",
+    "https://arman.sh/archives/1/"
+]
 
 [meta]
+collected_at = "2026-07-11T00:05:32.118131041+00:00"
 status = "completed"
-collected_at = "2026-07-11T12:00:00Z"
