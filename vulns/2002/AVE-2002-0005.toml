@@ -4,8 +4,8 @@ published = ""
 remediation = "Refer to vendor advisory and upgrade to fixed version."
 score = 0.0
 severity = "UNKNOWN"
-sources = ["msrc"]
-title = "CVE-2016-9535 漏洞"
+sources = ["osv"]
+title = "CVE-2002-1227 漏洞"
 updated = ""
 
 [exploit]
@@ -13,12 +13,12 @@ exp_urls = []
 poc_urls = []
 
 [id]
-aliases = ["CVE-2016-9535"]
-ave_id = "AVE-2016-0001"
-cve_id = "CVE-2016-9535"
+aliases = ["CVE-2002-1227"]
+ave_id = "AVE-2002-0005"
+cve_id = "CVE-2002-1227"
 
 [meta]
-collected_at = "2026-07-11T05:06:25.160044344+00:00"
+collected_at = "2026-07-11T05:06:25.118677429+00:00"
 status = "completed"
 
 [references]
