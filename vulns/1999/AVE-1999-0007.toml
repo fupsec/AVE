@@ -1,31 +1,24 @@
 [basic]
-description = "ToolTalk 对象数据库服务器 rpc.ttdbserverd 存在栈缓冲区溢出漏洞，远程攻击者可通过发送特制的 RPC 消息触发溢出，覆盖栈上的激活记录从而控制程序执行流，最终以 root 权限执行任意代码。该服务是 CDE 桌面环境的标准组件，运行于多种 Unix 操作系统上。"
-published = "1998-04-01"
-remediation = "应用 SGI 安全公告 19981101-01 中提供的补丁，禁用不需要的 ToolTalk RPC 服务 rpc.ttdbserverd，或通过防火墙限制对 RPC 端口（100083）的访问。"
-score = 10.0
-severity = "CRITICAL"
-sources = [
-    "NVD",
-    "Exploit-DB",
-    "SecurityFocus",
-]
-title = "Unix CDE ToolTalk RPC 服务远程缓冲区溢出漏洞"
-updated = "2026-06-16"
+description = "CVE-1999-1598 是一个被撤销的候选漏洞编号。该编号由 Red Hat 公司作为 CNA 分配，后因故被撤回，不指向任何实际存在的安全漏洞。此条目仅为存档目的保留该编号记录。"
+published = "2020-11-05"
+remediation = "此编号已被 CNA 撤销，不存在实际漏洞，无需修复。建议关注 Red Hat 安全公告中的有效 CVE 条目。"
+score = 0.1
+severity = "LOW"
+sources = ["nvd"]
+title = "Red Hat 已撤销的无效候选漏洞编号记录"
+updated = "2023-11-06"
 
 [exploit]
-exp_urls = ["https://www.exploit-db.com/exploits/19102"]
-poc_urls = ["https://www.exploit-db.com/exploits/19102"]
+exp_urls = []
+poc_urls = []
 
 [id]
-aliases = ["CVE-1999-0003"]
+aliases = ["CVE-1999-1598"]
 ave_id = "AVE-1999-0007"
 
 [meta]
-collected_at = "2026-07-11T22:15:36.757355990+00:00"
+collected_at = "2026-07-11T22:15:42.309379095+00:00"
 status = "completed"
 
 [references]
-urls = [
-    "http://www.securityfocus.com/bid/122",
-    "https://www.exploit-db.com/exploits/19102",
-]
+urls = []
