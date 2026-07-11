@@ -16,7 +16,10 @@ published = "2009-06-10"
 remediation = "建议用户安装 Microsoft 安全公告 MS09-021 提供的更新，将 Office Excel 升级至不受影响的版本。对于无法立即更新的系统，禁用 Excel 中的 ActiveX 控件并启用 Office 文件验证功能以降低风险。"
 score = 7.8
 severity = "HIGH"
-sources = ["kev", "nvd"]
+sources = [
+    "kev",
+    "nvd",
+]
 title = "Microsoft Office Excel 对象记录损坏远程代码执行漏洞"
 updated = "2026-07-10"
 

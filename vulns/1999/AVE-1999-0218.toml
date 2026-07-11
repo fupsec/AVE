@@ -1,23 +1,36 @@
-[id]
-ave_id = "AVE-1999-0218"
-cve_id = "CVE-1999-0039"
-aliases = ["CVE-1999-0039"]
+[affected]
+product = "IRIX"
+vendor = "SGI"
 
 [basic]
-title = "SGI IRIX webdist.cgi 命令执行漏洞"
-description = "SGI IRIX 操作系统自带的 webdist.cgi 程序存在命令注入漏洞，远程攻击者可通过向 distloc 参数传递包含 shell 元字符（如分号、管道符）的恶意请求，在目标系统上以 httpd 守护进程权限执行任意命令。该漏洞无需认证即可远程利用，影响系统机密性、完整性和可用性。"
-severity = "HIGH"
-score = 7.5
 cvss_v2 = 7.5
 cvss_v3 = 7.3
-remediation = "升级到 SGI IRIX 的修复版本或安装官方安全补丁。如无法升级，建议移除或禁用 webdist.cgi 脚本，并在 Web 服务器层面过滤特殊字符输入以缓解风险。"
+description = "SGI IRIX 操作系统自带的 webdist.cgi 程序存在命令注入漏洞，远程攻击者可通过向 distloc 参数传递包含 shell 元字符（如分号、管道符）的恶意请求，在目标系统上以 httpd 守护进程权限执行任意命令。该漏洞无需认证即可远程利用，影响系统机密性、完整性和可用性。"
 published = "1997-05-06"
+remediation = "升级到 SGI IRIX 的修复版本或安装官方安全补丁。如无法升级，建议移除或禁用 webdist.cgi 脚本，并在 Web 服务器层面过滤特殊字符输入以缓解风险。"
+score = 7.5
+severity = "HIGH"
+sources = [
+    "exploitdb",
+    "nvd",
+    "cert",
+]
+title = "SGI IRIX webdist.cgi 命令执行漏洞"
 updated = "2026-06-16"
-sources = ["exploitdb", "nvd", "cert"]
 
-[affected]
-vendor = "SGI"
-product = "IRIX"
+[exploit]
+exp_urls = ["https://www.exploit-db.com/exploits/19299"]
+poc_description = "向 /cgi-bin/webdist.cgi?distloc=;cat%20/etc/passwd 发送GET请求即可执行任意命令"
+poc_urls = ["https://www.exploit-db.com/exploits/19299"]
+
+[id]
+aliases = ["CVE-1999-0039"]
+ave_id = "AVE-1999-0218"
+cve_id = "CVE-1999-0039"
+
+[meta]
+collected_at = "2026-07-11T00:00:00Z"
+status = "completed"
 
 [references]
 nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0039"
@@ -26,14 +39,5 @@ urls = [
     "http://www.cert.org/advisories/CA-1997-12.html",
     "http://www.securityfocus.com/bid/374",
     "https://exchange.xforce.ibmcloud.com/vulnerabilities/333",
-    "https://www.exploit-db.com/exploits/19299"
+    "https://www.exploit-db.com/exploits/19299",
 ]
-
-[exploit]
-poc_urls = ["https://www.exploit-db.com/exploits/19299"]
-exp_urls = ["https://www.exploit-db.com/exploits/19299"]
-poc_description = "向 /cgi-bin/webdist.cgi?distloc=;cat%20/etc/passwd 发送GET请求即可执行任意命令"
-
-[meta]
-status = "completed"
-collected_at = "2026-07-11T00:00:00Z"
