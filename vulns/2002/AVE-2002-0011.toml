@@ -1,0 +1,24 @@
+[basic]
+description = "CVE-2002-1302 是一个已被标记为废弃（REJECT）的候选漏洞编号。该编号在2002年期间未被任何CNA或个人与具体安全漏洞相关联，因此CVE组织已将其废弃，不应用于安全评估或漏洞管理。"
+published = "2017-05-11"
+remediation = "该CVE编号已被CVE组织废弃，不表示任何实际安全漏洞，无需进行修复操作。"
+score = 0.1
+severity = "LOW"
+sources = ["nvd"]
+title = "CVE-2002-1302 候选编号已废弃（未关联实际漏洞）"
+updated = "2023-11-06"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2002-1302"]
+ave_id = "AVE-2002-0011"
+
+[meta]
+collected_at = "2026-07-11T23:22:50.010905137+00:00"
+status = "completed"
+
+[references]
+urls = ["https://nvd.nist.gov/vuln/detail/CVE-2002-1302"]
