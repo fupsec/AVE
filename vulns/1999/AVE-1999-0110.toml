@@ -1,0 +1,30 @@
+[basic]
+description = "Digital Unix（后称Tru64 UNIX）操作系统中的Networker备份管理程序nsralist存在缓冲区溢出漏洞。本地攻击者可利用该漏洞通过特制的输入触发缓冲区溢出，从而获取系统的root权限。该漏洞影响Digital Unix系统，攻击复杂度低，无需身份认证即可完成权限提升。"
+published = "1999-02-19"
+remediation = "建议升级操作系统至最新安全补丁版本，或限制本地用户对nsralist程序的访问权限。Digital Unix已停止维护，建议迁移至受支持的操作系统平台。"
+score = 7.2
+severity = "HIGH"
+sources = [
+    "cve",
+    "nvd",
+]
+title = "Digital Unix Networker nsralist 本地缓冲区溢出提权漏洞"
+updated = "2026-06-16"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0406"]
+ave_id = "AVE-1999-0110"
+
+[meta]
+collected_at = "2026-07-11T23:05:55.177411832+00:00"
+status = "completed"
+
+[references]
+urls = [
+    "https://exchange.xforce.ibmcloud.com/vulnerabilities/CVE-1999-0406",
+    "https://nvd.nist.gov/vuln/detail/CVE-1999-0406",
+]

@@ -1,12 +1,15 @@
 [basic]
-description = ""
-published = ""
-remediation = "请参考官方安全公告，及时安装安全更新或升级到最新版本。"
-score = 5
-severity = "MEDIUM"
-sources = ["avd"]
-title = "** REJECT **"
-updated = ""
+description = "CVE-2001-1591 是 Red Hat 官方撤销的无效候选漏洞编号，此编号已被其 CNA 撤回，不建议使用。无实际漏洞细节、影响评估或修复方案，建议关注其他活跃漏洞。"
+published = "2020-11-05"
+remediation = "该漏洞编号已被 CNA 撤销，无实际漏洞存在，无需执行修复操作，建议忽略此编号并关注其他活跃漏洞。"
+score = 1.0
+severity = "INFO"
+sources = [
+    "nvd",
+    "redhat",
+]
+title = "Red Hat 官方撤销的无效候选漏洞编号 CVE-2001-1591"
+updated = "2023-11-07"
 
 [exploit]
 exp_urls = []
@@ -21,4 +24,4 @@ collected_at = "2026-07-11T22:54:47.531553984+00:00"
 status = "completed"
 
 [references]
-urls = []
+urls = ["https://nvd.nist.gov/vuln/detail/CVE-2001-1591"]

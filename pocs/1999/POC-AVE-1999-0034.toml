@@ -1,0 +1,27 @@
+[info]
+id = "POC-AVE-1999-0034"
+name = "CVE-1999-0021 PoC"
+author = "AVE"
+severity = "high"
+tags = ["cve-1999-0021"]
+description = "检测目标服务器上是否存在 wwwcount 2.3 Count.cgi CGI 脚本，该脚本存在 QUERY_STRING 缓冲区溢出漏洞，远程攻击者可利用该漏洞执行任意命令。"
+vuln_id = ["CVE-1999-0021", "AVE-1999-0034"]
+
+[poc]
+logic = "any"
+
+[[poc.requests]]
+method = "GET"
+path = "/cgi-bin/Count.cgi"
+headers = {"User-Agent" = "AVE/1.0"}
+
+[[poc.requests.matchers]]
+type = "status"
+status = [200]
+expect = true
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["Count.cgi", "wwwcount", "display this page"]
+expect = true
