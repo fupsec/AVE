@@ -1,0 +1,24 @@
+[basic]
+description = "CVE-2000-1250 已被其 CNA（Red Hat, Inc.）撤销。该候选编号不应用于任何漏洞标识，因其已被发起方撤回，无实际漏洞信息。此条目仅为记录该撤销状态而保留。"
+published = "2020-11-05"
+remediation = "此CVE编号已被撤销，无需修复。请勿使用该编号标识任何漏洞。"
+score = 0.1
+severity = "INFO"
+sources = ["nvd"]
+title = "Red Hat 已撤销的无效候选编号 CVE-2000-1250"
+updated = "2023-11-06"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2000-1250"]
+ave_id = "AVE-2000-0006"
+
+[meta]
+collected_at = "2026-07-11T22:23:56+00:00"
+status = "completed"
+
+[references]
+urls = ["https://nvd.nist.gov/vuln/detail/CVE-2000-1250"]
