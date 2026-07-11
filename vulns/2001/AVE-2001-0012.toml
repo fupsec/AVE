@@ -1,12 +1,12 @@
 [basic]
-description = "SimpleServer:WWW 1.13及更早版本中存在目录遍历漏洞（CWE-22）。远程攻击者可通过向cgi-bin/目录发送经过编码的../序列（%2E%2E%2F%）来绕过路径限制，进而读取或执行服务器上的任意文件与程序。该漏洞利用复杂度低，无需身份认证即可远程触发，可导致服务器完全受控。"
-published = "2001-07-01"
-remediation = "建议升级至SimpleServer:WWW 1.14或更高版本。若无法升级，应限制对cgi-bin/目录的访问权限，并在Web服务器层面对URL中的编码字符进行过滤。同时移除不必要的CGI脚本以防止被利用。"
+description = "SimpleServer:WWW 1.13及更早版本存在目录遍历漏洞（CWE-22）。远程攻击者可通过向cgi-bin目录发送包含编码后的../序列（%2E%2E%2F）的HTTP请求，绕过路径访问限制，执行任意程序。该漏洞与CVE-2000-0664不同，攻击者利用此漏洞可在未授权情况下实现远程代码执行，完全控制受影响服务器。"
+published = "2010-02-12"
+remediation = "建议升级SimpleServer:WWW至最新版本（1.13以上），或限制cgi-bin目录的访问权限，对用户输入进行严格的路径规范化处理，阻止编码后的目录遍历序列。"
 score = 10.0
 severity = "CRITICAL"
-sources = ["NVD"]
+sources = ["nvd"]
 title = "SimpleServer:WWW 1.13及更早版本目录遍历漏洞"
-updated = "2026-06-16"
+updated = "2010-02-13"
 
 [exploit]
 exp_urls = []
@@ -17,7 +17,7 @@ aliases = ["CVE-2001-1586"]
 ave_id = "AVE-2001-0012"
 
 [meta]
-collected_at = "2026-07-11T22:43:59.233445552+00:00"
+collected_at = "2026-07-11T22:44:48.886409711+00:00"
 status = "completed"
 
 [references]
@@ -26,4 +26,5 @@ urls = [
     "http://www.securityfocus.com/bid/3112",
     "http://www.securiteam.com/windowsntfocus/5TP0B1P4UK.html",
     "https://exchange.xforce.ibmcloud.com/vulnerabilities/56631",
+    "http://www.analogx.com/contents/download/network/sswww.htm",
 ]
