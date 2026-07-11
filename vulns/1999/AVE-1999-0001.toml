@@ -1,27 +1,32 @@
 [basic]
-description = "CVE-1999-0002: 目前没有详细的漏洞描述。请参考相关安全公告获取更多信息。"
-published = "unknown"
-remediation = "请参考官方安全公告，及时安装安全更新或升级到最新版本。"
-score = 5.0
-severity = "MEDIUM"
+description = "NFS mountd 守护进程的日志记录代码存在缓冲区溢出漏洞，远程攻击者可通过向目标系统发送特制的 RPC mount 请求触发栈溢出，从而覆盖执行流并获得 root 权限。该漏洞主要影响 Linux 系统，包括 RedHat Linux 5.1和Caldera OpenLinux Standard 1.2等发行版中的 nfs-server-2.2beta29 版本。即使在 NFS 服务器未共享任何文件系统的情况下，攻击者也可利用此漏洞实施远程无认证攻击，危害极为严重。"
+published = "1998-10-12"
+remediation = "升级到已修复此漏洞的 nfs-utils 版本；从 RedHat 官方 FTP 获取补丁进行更新；限制 NFS 服务仅对可信网络开放；在不需要时禁用 rpc.mountd 服务或使用防火墙过滤 RPC 端口。"
+score = 10.0
+severity = "CRITICAL"
 sources = [
+    "nvd",
     "exploitdb",
-    "redhat",
+    "securityfocus",
 ]
-title = "CVE-1999-0002 漏洞详情"
-updated = "unknown"
+title = "Linux NFS mountd 缓冲区溢出远程代码执行漏洞"
+updated = "2024-11-20"
 
 [exploit]
-exp_urls = []
-poc_urls = []
+exp_urls = ["https://www.exploit-db.com/exploits/19096"]
+poc_urls = ["https://www.exploit-db.com/exploits/19096"]
 
 [id]
 aliases = ["CVE-1999-0002"]
 ave_id = "AVE-1999-0001"
 
 [meta]
-collected_at = "2026-07-11T20:52:31.851275406+00:00"
+collected_at = "2026-07-11T21:37:29.130228578+00:00"
 status = "completed"
 
 [references]
-urls = []
+urls = [
+    "http://www.securityfocus.com/bid/121",
+    "http://www.ciac.org/ciac/bulletins/j-006.shtml",
+    "https://www.exploit-db.com/exploits/19096",
+]
