@@ -1,12 +1,15 @@
 [basic]
-description = "GNU C库（glibc）2.2之前版本中的manual/search.texi文档未说明删除树根节点时tdelete函数返回值为未定义，攻击者可利用此漏洞在开发者不知情的情况下，通过悬垂指针访问应用程序内存，导致敏感信息泄露或系统被控制。"
+description = "GNU C 库 (glibc) 2.2 之前版本中，manual/search.texi 文件在删除树根节点时未明确声明 tdelete 函数的返回值。开发者若未注意到 1999 年发布的文档更新，可能误用该函数导致访问悬空指针，进而引发信息泄露、数据篡改或服务拒绝等安全问题。攻击者可利用此漏洞远程执行恶意操作，影响系统机密性、完整性和可用性。"
 published = "2020-10-06"
-remediation = "升级glibc至2.2或更高版本，避免在应用程序中直接使用tdelete函数的未检查返回值。"
+remediation = "升级 GNU C 库 (glibc) 至 2.2 或更高版本，该版本已明确 tdelete 函数的返回值行为，避免悬空指针访问问题。"
 score = 9.8
 severity = "CRITICAL"
-sources = ["nvd"]
-title = "GNU glibc tdelete 函数未检查返回值导致悬垂指针漏洞"
-updated = "2026-06-16"
+sources = [
+    "cve",
+    "nvd",
+]
+title = "GNU C 库 glibc tdelete 函数返回值未定义导致悬空指针漏洞"
+updated = "2020-10-06"
 
 [exploit]
 exp_urls = []
@@ -17,12 +20,13 @@ aliases = ["CVE-1999-0199"]
 ave_id = "AVE-1999-0001"
 
 [meta]
-collected_at = "2026-07-11T22:00:00+00:00"
+collected_at = "2026-07-11T22:24:09.189954216+00:00"
 status = "completed"
 
 [references]
 urls = [
+    "https://nvd.nist.gov/vuln/detail/CVE-1999-0199",
     "https://ftp.gnu.org/gnu/glibc/glibc-2.2.tar.gz",
-    "https://github.com/bminor/glibc/commit/2864e767053317538feafa815046fff89e5a16be",
+    "https://github.com/bminor/glibc/commit/2864e767053317538feafa815046fff89e5a16be#diff-94e8c502f255fdfc346df0e29fd4ef40",
     "https://www.cee.studio/tdelete.html",
 ]
