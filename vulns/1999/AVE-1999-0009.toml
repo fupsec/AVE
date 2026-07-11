@@ -1,27 +1,31 @@
 [basic]
-description = "基于BSD/Qualcomm的qpopper 2.4版本POP3服务器中存在缓冲区溢出漏洞。远程攻击者可通过向PASS命令发送超长字符串，触发缓冲区溢出，从而在目标系统上以root权限执行任意代码，完全控制受影响系统。"
-published = "1998-07-14"
-remediation = "升级qpopper至最新版本或应用厂商提供的安全补丁。SGI已发布安全公告19980801-01-I提供相关补丁。建议禁用不必要的POP3服务或使用防火墙限制访问。"
+description = "Qualcomm qpopper 2.4及更早版本中存在缓冲区溢出漏洞。远程攻击者可通过向POP服务器发送超长PASS命令，触发缓冲区溢出，从而在目标系统上以root权限执行任意代码，完全控制受影响的邮件服务器。该漏洞影响基于BSD/Qualcomm qpopper的多款POP服务器实现。"
+published = "1998-06-27"
+remediation = "升级Qualcomm qpopper至2.5或更高版本。如无法立即升级，建议在网络边界限制对POP服务端口（110/TCP）的访问，仅允许可信IP连接。"
 score = 9.8
 severity = "CRITICAL"
 sources = [
-    "NVD",
     "exploitdb",
+    "NVD",
 ]
-title = "Qualcomm qpopper 2.4 POP3服务器缓冲区溢出漏洞"
-updated = "2026-07-11"
+title = "Qualcomm qpopper 2.4 POP服务器缓冲区溢出漏洞"
+updated = "2026-06-16"
 
 [exploit]
-exp_urls = []
-poc_urls = []
+exp_urls = ["https://www.exploit-db.com/exploits/19110"]
+poc_urls = ["https://www.exploit-db.com/exploits/19110"]
 
 [id]
 aliases = ["CVE-1999-0006"]
 ave_id = "AVE-1999-0009"
 
 [meta]
-collected_at = "2026-07-11T22:18:40.444182222+00:00"
+collected_at = "2026-07-12T06:53:57+08:00"
 status = "completed"
 
 [references]
-urls = ["http://www.securityfocus.com/bid/133"]
+urls = [
+    "https://nvd.nist.gov/vuln/detail/CVE-1999-0006",
+    "https://www.exploit-db.com/exploits/19110",
+    "http://www.securityfocus.com/bid/133",
+]
