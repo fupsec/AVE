@@ -1,0 +1,24 @@
+[basic]
+description = "GoAhead WebServer 2.1.4之前版本中的webs.c文件存在输入验证不当漏洞（CWE-20）。远程攻击者可通过向目标服务器发送包含负整数的Content-Length头的HTTP POST请求，导致WebServer守护进程崩溃，从而造成拒绝服务。攻击者无需任何身份认证即可通过网络远程利用该漏洞，影响GoAhead WebServer 2.0至2.1.3版本。"
+published = "2009-02-06"
+remediation = "建议将GoAhead WebServer升级至2.1.4或更高版本。官方已在2.1.8版本中修复该漏洞，用户应从官方渠道获取最新版本并完成升级。"
+score = 5.0
+severity = "MEDIUM"
+sources = ["nvd"]
+title = "GoAhead WebServer 2.1.4之前版本webs.c输入验证不当导致拒绝服务漏洞"
+updated = "2026-06-16"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2002-2429"]
+ave_id = "AVE-2002-0018"
+
+[meta]
+collected_at = "2026-07-11T23:32:54.877318528+00:00"
+status = "completed"
+
+[references]
+urls = ["http://data.goahead.com/Software/Webserver/2.1.8/release.htm#fixed-vulnerability-to-malicious-code-in-webs-c"]
