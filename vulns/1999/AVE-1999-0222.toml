@@ -1,0 +1,27 @@
+[basic]
+description = "umapfs 是 NetBSD 系统中的用户映射文件系统，存在安全漏洞。本地用户可通过恶意的 mount_umap 程序更改其用户标识符（UID），从而获取 root 权限，实现本地权限提升。攻击者利用此漏洞可完全控制受影响的系统，包括读取、修改系统文件和执行任意代码。"
+published = "1999-03-17"
+remediation = "建议升级 NetBSD 系统至包含安全修复的版本，限制普通用户对 mount_umap 程序的访问权限，并应用厂商发布的安全补丁。"
+score = 7.2
+severity = "HIGH"
+sources = [
+    "nvd",
+    "cve",
+]
+title = "NetBSD umapfs 本地权限提升漏洞"
+updated = "2026-06-16"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0420"]
+ave_id = "AVE-1999-0222"
+
+[meta]
+collected_at = "2026-07-11T23:23:51.502134169+00:00"
+status = "completed"
+
+[references]
+urls = ["https://exchange.xforce.ibmcloud.com/vulnerabilities/CVE-1999-0420"]
