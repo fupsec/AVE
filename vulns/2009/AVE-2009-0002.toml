@@ -1,16 +1,12 @@
 [basic]
-description = "Microsoft Office PowerPoint 2000 SP3、2002 SP3、2003 SP3 以及 Mac 版 Office 2004 中的 PowerPoint 在处理包含无效索引值的 OutlineTextRefAtom 时存在内存破坏漏洞，远程攻击者可通过构造特制的 PPT 或 PPS 文件并诱使用户打开来触发，成功利用可导致任意代码执行。该漏洞在 2009 年 4 月已被在野利用，属于 CISA KEV 已知利用漏洞。"
-published = "2009-04-03"
-remediation = "安装微软 MS09-017 安全更新修复该漏洞，升级 Office 至最新版本；根据 CISA KEV 要求立即应用厂商缓解措施，或停止使用受影响产品。"
-score = 8.8
-severity = "HIGH"
-sources = ["kev", "nvd"]
-title = "Microsoft Office PowerPoint 内存破坏代码执行漏洞"
-updated = "2026-06-16"
-
-[affected]
-product = "Office PowerPoint"
-vendor = "Microsoft"
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["kev"]
+title = "CVE-2009-0556 漏洞"
+updated = ""
 
 [exploit]
 exp_urls = []
@@ -22,8 +18,8 @@ ave_id = "AVE-2009-0002"
 cve_id = "CVE-2009-0556"
 
 [meta]
-collected_at = "2026-07-11T01:07:20+00:00"
+collected_at = "2026-07-11T01:01:21.979140797+00:00"
 status = "completed"
 
 [references]
-urls = ["https://nvd.nist.gov/vuln/detail/CVE-2009-0556", "https://docs.microsoft.com/en-us/security-updates/securitybulletins/2009/ms09-017", "http://www.zerodayinitiative.com/advisories/ZDI-09-019", "https://www.cisa.gov/known-exploited-vulnerabilities-catalog"]
+urls = []
