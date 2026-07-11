@@ -1,0 +1,31 @@
+[basic]
+description = "Muhammad A. Muquit 开发的 wwwcount 2.3 版本中的 Count.cgi CGI 程序存在缓冲区溢出漏洞。远程攻击者可以通过向 Count.cgi 发送特制的请求数据，触发缓冲区溢出，从而在服务器上执行任意命令。该漏洞可导致攻击者完全控制受影响系统，造成机密性、完整性和可用性的全面破坏。"
+published = "1997-11-05"
+remediation = "建议升级到 wwwcount 的最新版本或替换为其他更安全的网站计数器程序。如果无法升级，建议限制 Count.cgi 的访问权限，或从 Web 服务器中移除该 CGI 程序。"
+score = 7.5
+severity = "HIGH"
+sources = [
+    "nvd",
+    "exploitdb",
+    "securityfocus",
+]
+title = "Muhammad A. Muquit wwwcount 2.3 Count.cgi 远程缓冲区溢出漏洞"
+updated = "2026-06-16"
+
+[exploit]
+exp_urls = []
+poc_urls = ["https://www.exploit-db.com/exploits/19105"]
+
+[id]
+aliases = ["CVE-1999-0021"]
+ave_id = "AVE-1999-0034"
+
+[meta]
+collected_at = "2026-07-11T22:32:06.182507109+00:00"
+status = "completed"
+
+[references]
+urls = [
+    "http://www.securityfocus.com/bid/128",
+    "https://www.exploit-db.com/exploits/19105",
+]
