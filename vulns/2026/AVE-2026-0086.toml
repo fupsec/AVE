@@ -1,0 +1,35 @@
+[affected]
+product = "waku"
+vendor = "waku"
+
+[basic]
+description = "waku框架的unstable_redirect函数（位于packages/waku/src/router/define-router.tsx）接受任意字符串后直接将其写入HTTP响应的Location头，未对URL进行任何校验。攻击者可利用此漏洞诱导用户点击恶意链接，将浏览器重定向至任意外部域名，实现钓鱼攻击、凭证窃取和OAuth令牌窃取。该漏洞影响waku 1.0.0-beta.0及可能更早版本。"
+published = "2026-05-17"
+remediation = "升级Waku至修复版本；在调用unstable_redirect前严格校验location参数，确保仅允许以单斜杠/开头的路径内重定向，拒绝包含控制字符或双斜杠//的输入。"
+score = 3.5
+severity = "LOW"
+sources = ["ghsa"]
+title = "Waku 开放重定向漏洞"
+updated = "2026-05-17"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = [
+    "CVE-2026-49456",
+    "GHSA-43fc-v873-qw85",
+]
+ave_id = "AVE-2026-0086"
+cve_id = "CVE-2026-49456"
+
+[meta]
+collected_at = "2026-07-11T00:00:00Z"
+status = "completed"
+
+[references]
+urls = [
+    "https://github.com/advisories/GHSA-43fc-v873-qw85",
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-49456",
+]
