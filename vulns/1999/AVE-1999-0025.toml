@@ -1,35 +1,25 @@
-[id]
-ave_id = "AVE-1999-0025"
-cve_id = "CVE-1999-0719"
-aliases = ["CVE-1999-0719"]
-
 [basic]
-title = "Gnumeric 电子表格 Guile 插件任意代码执行漏洞"
-description = "Gnumeric 电子表格的 Guile 插件存在任意代码执行漏洞。攻击者可通过特制的电子表格文件触发 Guile 脚本解释器执行任意命令，由于 Guile 作为 GNU 扩展脚本语言在处理恶意构造的文件时可能绕过安全限制执行系统命令，导致目标系统被控制。"
-severity = "MEDIUM"
-score = 4.6
-published = "1999-07-23"
-updated = "2026-06-16"
-remediation = "建议升级 Gnumeric 至修复版本，或禁用 Guile 插件扩展以防止恶意电子表格文件触发任意代码执行。"
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
 sources = ["redhat"]
-
-[score]
-cvss_v2 = 4.6
-cvss_v2_vector = "AV:L/AC:L/Au:N/C:P/I:P/A:P"
-
-[affected]
-vendor = "GNOME"
-product = "Gnumeric"
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0719"
-other = ["http://www.securityfocus.com/bid/563"]
+title = "CVE-1999-0719 漏洞"
+updated = ""
 
 [exploit]
-poc_urls = []
 exp_urls = []
-nuclei_templates = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0719"]
+ave_id = "AVE-1999-0025"
+cve_id = "CVE-1999-0719"
 
 [meta]
-collected_at = "2026-07-10T12:39:27Z"
+collected_at = "2026-07-10T23:45:26.542388306+00:00"
 status = "completed"
+
+[references]
+urls = []

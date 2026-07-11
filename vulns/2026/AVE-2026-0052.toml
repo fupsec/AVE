@@ -1,0 +1,31 @@
+[id]
+ave_id = "AVE-2026-0052"
+cve_id = "CVE-2026-49464"
+aliases = ["GHSA-6h3c-r723-7fx3"]
+
+[basic]
+title = "NL Portal 后端库 Taak 模块越权访问漏洞（IDOR）"
+description = """
+NL Portal 后端库的 Taak（任务）模块存在越权访问漏洞（IDOR）。在 1.5.0 至 3.0.0 版本中，任务提交端点 submitTaakV2 未校验任务归属，任何已认证用户可通过任务 ID 提交并篡改其他用户的开放任务数据，同时可读取原用户已填写的表单内容，导致数据完整性和机密性受损。攻击者仅需有效登录令牌和目标任务 ID 即可远程利用，无需用户交互。
+"""
+severity = "HIGH"
+score = 8.1
+cvss_v3 = "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:N"
+remediation = "升级至 nl-portal-backend-libraries 的 taak 模块 3.0.1 或更高版本；在升级前可在 API 网关层拦截 submitTaakV2 GraphQL 突变请求，或将 /graphql 端点限制为仅可信网络访问。"
+published = "2026-07-08T21:12:00Z"
+updated = "2026-07-08T21:12:01Z"
+sources = ["ghsa"]
+
+[references]
+urls = [
+    "https://github.com/nl-portal/nl-portal-backend-libraries/security/advisories/GHSA-6h3c-r723-7fx3",
+    "https://github.com/advisories/GHSA-6h3c-r723-7fx3",
+]
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+collected_at = "2026-07-11T00:10:27Z"
+status = "completed"
