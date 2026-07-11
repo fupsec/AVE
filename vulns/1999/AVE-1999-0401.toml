@@ -1,27 +1,31 @@
 [basic]
-description = "Cisco Catalyst局域网交换机中运行Catalyst 5000系列监控软件时存在安全漏洞。远程攻击者可通过向交换机发送特制数据包，强制监控模块（Supervisor Module）重载，导致设备暂时无法正常处理网络流量，造成拒绝服务。该漏洞影响运行Catalyst 5000 Supervisor Software的Catalyst 12xx和29xx系列交换机。"
-published = "1999-03-01"
-remediation = "建议升级Cisco Catalyst交换机监控软件至最新版本。对于Catalyst 12xx系列升级至4.29以上版本，Catalyst 29xx系列升级至2.1.5以上版本。如设备已过支持周期，建议替换为不受影响的新型号设备。"
-score = 5.0
-severity = "MEDIUM"
+description = "IBM AIX 4.2.1 操作系统中 /usr/bin/portmir 命令存在多种安全漏洞，包括本地缓冲区溢出和不安全的临时文件创建。本地攻击者可以利用这些漏洞执行任意代码，获取 root 权限，完全控制受影响的系统，造成机密性、完整性和可用性的完全丧失。"
+published = "1997-10-29"
+remediation = "建议升级到 IBM AIX 的修复版本，或安装 IBM 提供的安全补丁。由于此漏洞较旧，建议升级到受支持的 AIX 版本并应用最新的安全更新。"
+score = 7.2
+severity = "HIGH"
 sources = [
-    "nvd",
-    "cve",
+    "nvd.nist.gov",
+    "exploit-db",
 ]
-title = "Cisco Catalyst 5000系列局域网交换机远程拒绝服务漏洞"
-updated = "2026-06-16"
+title = "IBM AIX 4.2.1 portmir 命令本地缓冲区溢出与权限提升漏洞"
+updated = "2024-11-20"
 
 [exploit]
-exp_urls = []
-poc_urls = []
+exp_urls = ["https://www.exploit-db.com/exploits/19306"]
+poc_urls = ["https://www.exploit-db.com/exploits/19306"]
 
 [id]
-aliases = ["CVE-1999-0430"]
+aliases = ["CVE-1999-0092"]
 ave_id = "AVE-1999-0401"
 
 [meta]
-collected_at = "2026-07-11T23:33:00+00:00"
+collected_at = "2026-07-11T23:33:04.532177672+00:00"
 status = "completed"
 
 [references]
-urls = ["http://www.osvdb.org/1103"]
+urls = [
+    "https://nvd.nist.gov/vuln/detail/CVE-1999-0092",
+    "https://exchange.xforce.ibmcloud.com/vulnerabilities/CVE-1999-0092",
+    "https://www.exploit-db.com/exploits/19306",
+]
