@@ -1,0 +1,27 @@
+[basic]
+description = "Windows NT 4.0 信使服务在处理超长用户名时存在拒绝服务漏洞。远程攻击者可通过向目标系统发送包含超长用户名的消息，导致信使服务崩溃或系统资源耗尽，造成拒绝服务。受影响系统包括 Windows NT 4.0 及 Service Pack 1/2/3 版本。"
+published = "1999-07-23"
+remediation = "建议升级至 Windows 2000 或更高版本操作系统，或在 Windows NT 4.0 上安装最新的安全更新补丁，限制对信使服务的网络访问。"
+score = 5.0
+severity = "MEDIUM"
+sources = [
+    "NVD",
+    "CVE",
+]
+title = "Windows NT 信使服务长用户名拒绝服务漏洞"
+updated = "2024-11-20"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0224"]
+ave_id = "AVE-1999-0016"
+
+[meta]
+collected_at = "2026-07-11T22:27:14.580499881+00:00"
+status = "completed"
+
+[references]
+urls = ["https://www.cve.org/CVERecord?id=CVE-1999-0224"]
