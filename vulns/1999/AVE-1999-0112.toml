@@ -1,0 +1,34 @@
+[basic]
+description = "SGI IRIX 5.x和6.x系统中的df命令存在缓冲区溢出漏洞。攻击者通过向df命令的-f选项提供超长参数，可以触发缓冲区溢出，进而导致程序崩溃。通过精心构造包含可执行代码的缓冲区，攻击者能够以root权限执行任意代码，实现本地权限提升。"
+published = "1997-07-16"
+remediation = "建议升级到不受影响的IRIX版本，或应用SGI提供的安全补丁。限制本地用户对df命令的执行权限，并监控异常的系统命令执行行为。"
+score = 7.2
+severity = "HIGH"
+sources = [
+    "exploitdb",
+    "nvd",
+    "cert",
+]
+title = "SGI IRIX 6.3 df命令缓冲区溢出本地权限提升漏洞"
+updated = "2026-06-16"
+
+[exploit]
+exp_urls = ["https://www.exploit-db.com/exploits/19274"]
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0025"]
+ave_id = "AVE-1999-0112"
+
+[meta]
+collected_at = "2026-07-11T23:07:16.589313682+00:00"
+status = "completed"
+
+[references]
+urls = [
+    "http://www.cert.org/advisories/CA-1997-21.html",
+    "http://www.kb.cert.org/vuls/id/20851",
+    "http://www.securityfocus.com/bid/346",
+    "https://exchange.xforce.ibmcloud.com/vulnerabilities/440",
+    "https://www.exploit-db.com/exploits/19274",
+]
