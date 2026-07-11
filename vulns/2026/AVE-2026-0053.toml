@@ -1,32 +1,28 @@
-[id]
-ave_id = "AVE-2026-0053"
-cve_id = "CVE-2026-49471"
-aliases = ["CVE-2026-49471", "GHSA-37h2-6p4f-mp3q"]
-
 [basic]
-title = "Serena AI 编程助手 Web 面板未授权访问致远程代码执行漏洞"
-description = "Serena 是一款 AI 编程助手，其内置 Web 管理面板默认在固定端口（TCP 24282）启动 Flask API 服务，未实施任何身份认证、CSRF 防护或 Host 头验证。攻击者可通过 DNS 重绑定攻击绕过浏览器同源策略，向本地 API 发送恶意请求写入持久化记忆存储。结合默认启用的 execute_shell_command 函数（shell=True），可触发完整的远程代码执行链，完全控制受害者主机。"
-severity = "HIGH"
-score = 7.5
-remediation = "升级至 Serena 官方已修复版本；或在配置中设置 web_dashboard: false 禁用 Web 面板；或通过防火墙限制 127.0.0.1 仅有本地访问 24282 端口。"
-published = "2026-07-10"
-updated = "2026-07-10"
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
 sources = ["ghsa"]
-
-[affected]
-vendor = "Serena"
-product = "Serena AI Coding Agent"
+title = "CVE-2026-49471"
+updated = ""
 
 [exploit]
-poc_urls = ["https://github.com/user-attachments/files/27755382/verify_vuln.py"]
 exp_urls = []
+poc_urls = []
 
-[references]
-urls = [
-    "https://nvd.nist.gov/vuln/detail/CVE-2026-49471",
-    "https://github.com/advisories/GHSA-37h2-6p4f-mp3q"
+[id]
+aliases = [
+    "CVE-2026-49471",
+    "GHSA-37h2-6p4f-mp3q",
 ]
+ave_id = "AVE-2026-0053"
+cve_id = "CVE-2026-49471"
 
 [meta]
+collected_at = "2026-07-11T00:13:56.955342370+00:00"
 status = "completed"
-collected_at = "2026-07-10T12:52:47Z"
+
+[references]
+urls = []
