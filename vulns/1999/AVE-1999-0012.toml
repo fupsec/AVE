@@ -1,0 +1,24 @@
+[basic]
+description = "CVE-1999-0003: 目前没有详细的漏洞描述。请参考相关安全公告获取更多信息。"
+published = "unknown"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 5.0
+severity = "MEDIUM"
+sources = ["exploitdb"]
+title = "CVE-1999-0003 漏洞详情"
+updated = "unknown"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0003"]
+ave_id = "AVE-1999-0012"
+
+[meta]
+collected_at = "2026-07-11T20:57:55.419702782+00:00"
+status = "completed"
+
+[references]
+urls = []
