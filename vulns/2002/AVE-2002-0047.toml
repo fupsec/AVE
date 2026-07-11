@@ -1,0 +1,33 @@
+[id]
+ave_id = "AVE-2002-0047"
+cve_id = "CVE-2002-1170"
+aliases = ["CVE-2002-1170"]
+
+[basic]
+title = "Net-SNMP snmp_agent.c 空指针解引用拒绝服务漏洞"
+description = "Net-SNMP（原ucd-snmp）5.0.1至5.0.5版本的SNMP守护进程中，handle_var_requests函数在处理SNMP请求时存在空指针解引用漏洞。远程攻击者可通过发送特制的SNMP请求包，触发空指针解引用，导致snmpd进程崩溃，造成服务不可用。"
+severity = "MEDIUM"
+score = 5.0
+remediation = "升级Net-SNMP至5.0.5以上版本，或参考RedHat安全公告RHSA-2002-228安装对应补丁。同时建议在网络层限制SNMP服务（UDP 161端口）的访问来源，仅允许受信任的管理主机访问。"
+published = "2002-10-11"
+updated = "2026-06-16"
+sources = ["osv", "nvd"]
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2002-1170"
+other = [
+  "http://www.idefense.com/advisory/10.02.02.txt",
+  "http://www.securityfocus.com/bid/5862",
+  "http://marc.info/?l=bugtraq&m=103359362020365&w=2",
+  "http://sourceforge.net/forum/forum.php?forum_id=216532",
+  "http://www.redhat.com/support/errata/RHSA-2002-228.html",
+  "https://exchange.xforce.ibmcloud.com/vulnerabilities/10250",
+]
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-11T00:00:00Z"

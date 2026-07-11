@@ -1,0 +1,49 @@
+[id]
+ave_id = "AVE-2023-0008"
+cve_id = "CVE-2014-8423"
+aliases = ["HWPOC-2023-000ddad9", "CNVD-2023-62027", "ZDI-16-694", "ZDI-CAN-3871"]
+
+[basic]
+title = "Arris VAP2500 list_mac_address.php 远程命令注入漏洞"
+description = "Arris VAP2500 管理门户的 list_mac_address.php 页面存在未授权远程命令注入漏洞。攻击者无需认证，可通过向 list_mac_address.php 发送包含恶意 cmb_macaddrfilter 参数的请求，利用系统未对用户输入进行充分过滤的缺陷，将恶意命令注入到系统调用中，以 root 权限执行任意代码，完全控制目标设备。该漏洞影响 Arris VAP2500 固件版本 FW08.41 之前的所有版本，攻击复杂度极低（AV:N/AC:L/Au:N/C:C/I:C/A:C），CVSS v2 评分 10.0，属于最高危漏洞。"
+published = "2014-11-28"
+updated = "2023-08-09"
+severity = "CRITICAL"
+score = 10.0
+score_v2 = "AV:N/AC:L/Au:N/C:C/I:C/A:C"
+remediation = "立即升级 Arris VAP2500 固件至 FW08.41 或更高版本。厂商已于 2016 年 10 月向服务提供商客户推送修复更新。在无法立即升级的情况下，应通过防火墙或网络 ACL 限制对设备管理门户（默认端口 80/443）的访问，仅允许可信管理网络 IP 连接，禁止将管理接口暴露到公网。"
+sources = ["hwpoc", "cnvd", "zdi"]
+
+[affected]
+vendor = "Arris"
+product = "VAP2500"
+versions = ["< FW08.41"]
+platform = "Network device / Video gateway / WiFi signal booster"
+
+[exploit]
+poc_urls = [
+    { url = "https://github.com/Nassim-Asrir/ArrisVAP2500-Exploit", description = "Arris VAP2500 PreAuth RCE exploit (Python)", source = "GitHub" },
+    { url = "https://github.com/zerozenxlabs/ArrisVAP2500-Exploit", description = "Arris VAP2500 PreAuth RCE exploit", source = "GitHub" }
+]
+exp_urls = []
+
+[nuclei_templates]
+templates = []
+
+[references]
+nvd = ["https://nvd.nist.gov/vuln/detail/CVE-2014-8423"]
+avd = []
+other = [
+    { url = "https://www.zerodayinitiative.com/advisories/ZDI-16-694/", description = "ZDI-16-694: ARRIS VAP2500 list_mac_address cmb_macaddrfilter Command Injection RCE" },
+    { url = "https://www.zerodayinitiative.com/advisories/ZDI-14-389/", description = "ZDI-14-389: ARRIS VAP2500 Management Portal Remote Command Execution" },
+    { url = "https://www.cnvd.org.cn/vulnerability/show/CNVD-2023-62027", description = "CNVD-2023-62027: Arris VAP2500 远程代码执行漏洞" },
+    { url = "https://www.variotdbs.pl/vuln/VAR-202308-3954", description = "VARIoT: CNVD-2023-62027 详情" },
+    { url = "https://www.snort.org/rule_docs/1-56779", description = "Snort 规则: ARRIS VAP2500 list_mac_address cmb_macaddrfilter command injection" }
+]
+
+[meta]
+collected_at = "2023-08-15T00:00:00Z"
+status = "completed"
+discovered_by = "Ricky 'HeadlessZeke' Lawshae"
+cwe = "CWE-78"
+disclosure_date = "2017-06-26"
