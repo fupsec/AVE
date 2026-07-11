@@ -1,0 +1,27 @@
+[basic]
+description = "Qualcomm Eudora 4.1 邮件客户端存在安全漏洞，远程攻击者通过发送包含超长文件名的邮件附件，可导致邮件客户端崩溃或拒绝服务，影响版本包括 Eudora 4.2、4.3、Eudora Light 3.0 及 Eudora Pro 1.00，攻击复杂度低且无需认证。"
+published = "2000-05-01"
+remediation = "升级到不受影响的 Eudora 更高版本，避免打开来源不明的邮件附件，或改用其他安全的邮件客户端产品。"
+score = 7.5
+severity = "HIGH"
+sources = [
+    "cve",
+    "nvd",
+]
+title = "Qualcomm Eudora 4.1 邮件客户端附件长文件名拒绝服务漏洞"
+updated = "2026-06-16"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0427"]
+ave_id = "AVE-1999-0308"
+
+[meta]
+collected_at = "2026-07-11T23:28:53.200328120+00:00"
+status = "completed"
+
+[references]
+urls = ["https://exchange.xforce.ibmcloud.com/vulnerabilities/CVE-1999-0427"]
