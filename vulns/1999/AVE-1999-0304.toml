@@ -1,0 +1,27 @@
+[basic]
+description = "AnyForm 是由 John S. Roberts 开发的一个 CGI 脚本，用于处理 HTML 表单数据。该脚本存在远程命令执行漏洞，攻击者可通过向 CGI 参数中注入换行符等特殊字符，绕过输入验证，在目标服务器上以 Web 服务器权限执行任意系统命令，进而获取服务器控制权、窃取敏感数据或发起进一步攻击。"
+published = "1995-07-31"
+remediation = "立即删除或禁用 AnyForm CGI 脚本，该脚本已不再维护且存在严重安全缺陷；同时检查 Web 服务器上其他第三方 CGI 脚本的安全性，限制 CGI 执行目录的权限，确保仅部署经过安全审计的表单处理方案。"
+score = 9.8
+severity = "CRITICAL"
+sources = [
+    "nvd",
+    "mitre",
+]
+title = "John S. Roberts AnyForm CGI 远程命令执行漏洞"
+updated = "2026-06-16"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0066"]
+ave_id = "AVE-1999-0304"
+
+[meta]
+collected_at = "2026-07-12T00:00:00+00:00"
+status = "completed"
+
+[references]
+urls = ["http://www.securityfocus.com/bid/719"]
