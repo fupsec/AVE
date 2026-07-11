@@ -1,0 +1,31 @@
+[basic]
+description = "Lucent（原Ascend）MAX 5.0、Pipeline 6.0及TNT 1.0/2.0系列路由器在处理发送到UDP端口9（Discard端口）的畸形数据包时存在缺陷，攻击者无需认证即可远程发送特制报文，导致路由器崩溃拒绝服务。该端口被Java Configurator工具用于发现本地路由器，攻击者可利用此漏洞造成设备不可用，影响网络通信。"
+published = "1998-03-16"
+remediation = "建议升级路由器固件至厂商修复版本，或禁用UDP端口9的Discard服务，并在防火墙上过滤对该端口的入站流量以防止远程攻击。"
+score = 5.0
+severity = "MEDIUM"
+sources = [
+    "exploitdb",
+    "nvd",
+]
+title = "Lucent Ascend MAX/Pipeline/TNT路由器UDP端口9畸形数据包拒绝服务漏洞"
+updated = "2026-06-16"
+
+[exploit]
+exp_urls = ["https://www.exploit-db.com/exploits/19555"]
+poc_urls = ["https://www.exploit-db.com/exploits/19555"]
+
+[id]
+aliases = ["CVE-1999-0060"]
+ave_id = "AVE-1999-0223"
+
+[meta]
+collected_at = "2026-07-11T23:24:59.094453421+00:00"
+status = "completed"
+
+[references]
+urls = [
+    "http://www.ascend.com/2695.html",
+    "https://www.exploit-db.com/exploits/19555",
+    "https://www.securityfocus.com/bid/714/info",
+]
