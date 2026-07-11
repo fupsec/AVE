@@ -1,12 +1,15 @@
 [basic]
-description = ""
-published = ""
-remediation = "请参考官方安全公告，及时安装安全更新或升级到最新版本。"
-score = 5
-severity = "MEDIUM"
-sources = ["avd"]
-title = "** REJECT **"
-updated = ""
+description = "此CVE编号已被CVE管理机构标记为废弃（REJECT）。该候选编号在2001年期间未与任何实际漏洞关联，不应使用。CVE编号由Silicon Graphics (SGI) 申请但未关联具体漏洞信息。"
+published = "2017-05-11"
+remediation = "此CVE编号已废弃，无需采取修复措施。"
+score = 0.1
+severity = "INFO"
+sources = [
+    "nvd",
+    "cve",
+]
+title = "Silicon Graphics 废弃的CVE编号 CVE-2001-0814"
+updated = "2023-11-06"
 
 [exploit]
 exp_urls = []
@@ -21,4 +24,4 @@ collected_at = "2026-07-11T22:41:44.562456015+00:00"
 status = "completed"
 
 [references]
-urls = []
+urls = ["https://nvd.nist.gov/vuln/detail/CVE-2001-0814"]
