@@ -4,8 +4,8 @@ published = ""
 remediation = "Refer to vendor advisory and upgrade to fixed version."
 score = 0.0
 severity = "UNKNOWN"
-sources = ["ghsa"]
-title = "CVE-2026-49455"
+sources = ["nuclei"]
+title = "NUCLEI-HTTP-CNVD-2019-CNVD-2019-32204-YAML 漏洞"
 updated = ""
 
 [exploit]
@@ -13,15 +13,12 @@ exp_urls = []
 poc_urls = []
 
 [id]
-aliases = [
-    "CVE-2026-49455",
-    "GHSA-75w3-gmqx-993q",
-]
+aliases = ["NUCLEI-HTTP-CNVD-2019-CNVD-2019-32204-YAML"]
 ave_id = "AVE-2026-0010"
-cve_id = "CVE-2026-49455"
+cve_id = "NUCLEI-HTTP-CNVD-2019-CNVD-2019-32204-YAML"
 
 [meta]
-collected_at = "2026-07-11T17:12:57.763699382+00:00"
+collected_at = "2026-07-11T17:13:38.422960077+00:00"
 status = "completed"
 
 [references]
