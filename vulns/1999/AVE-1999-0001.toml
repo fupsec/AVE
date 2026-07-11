@@ -1,28 +1,25 @@
-[basic]
-description = ""
-published = ""
-remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 0.0
-severity = "UNKNOWN"
-sources = [
-    "exploitdb",
-    "redhat",
-]
-title = "CVE-1999-0002 漏洞"
-updated = ""
-
-[exploit]
-exp_urls = []
-poc_urls = []
-
 [id]
-aliases = ["CVE-1999-0002"]
 ave_id = "AVE-1999-0001"
-cve_id = "CVE-1999-0002"
+cve_id = "CVE-1999-0380"
+aliases = ["CVE-1999-0380"]
 
-[meta]
-collected_at = "2026-07-10T20:51:33.499747063+00:00"
-status = "completed"
+[basic]
+title = "SLMail 远程管理服务本地文件访问漏洞"
+description = "SLMail 3.1及3.2版本的远程管理服务(RAS)存在安全漏洞。本地用户可通过将用户的Finger文件设置为指向目标文件，然后对该用户执行finger命令，从而访问NTFS文件系统中的任意文件。此漏洞可能导致敏感信息泄露或系统被进一步利用。"
+severity = "MEDIUM"
+score = 4.6
+sources = ["cve"]
+published = "1999-02-25"
+updated = "2026-06-16"
+remediation = "升级SLMail至不受影响的版本，或禁用远程管理服务(RAS)。如必须使用，应限制本地用户对Finger文件配置的修改权限。"
 
 [references]
-urls = []
+urls = ["http://marc.info/?l=bugtraq&m=91996412724720&w=2", "http://marc.info/?l=ntbugtraq&m=91999015212415&w=2", "http://marc.info/?l=ntbugtraq&m=92110501504997&w=2", "http://www.securityfocus.com/bid/497", "https://exchange.xforce.ibmcloud.com/vulnerabilities/5392"]
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-11T12:00:00Z"

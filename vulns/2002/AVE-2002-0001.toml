@@ -1,25 +1,37 @@
-[basic]
-description = ""
-published = ""
-remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 0.0
-severity = "UNKNOWN"
-sources = ["kev"]
-title = "CVE-2002-0367 漏洞"
-updated = ""
-
-[exploit]
-exp_urls = []
-poc_urls = []
-
 [id]
-aliases = ["CVE-2002-0367"]
 ave_id = "AVE-2002-0001"
 cve_id = "CVE-2002-0367"
+aliases = ["CVE-2002-0367"]
 
-[meta]
-collected_at = "2026-07-10T20:51:33.497666234+00:00"
-status = "completed"
+[basic]
+title = "Microsoft Windows NT/2000 smss.exe 调试子系统权限提升漏洞"
+description = "Windows NT 和 Windows 2000 的 smss.exe 调试子系统未能正确验证连接到其他程序的程序，允许本地用户通过复制特权进程的句柄来获取管理员或 SYSTEM 权限。该漏洞被 DebPloit 工具演示利用，属于权限管理不当漏洞（CWE-269），影响 Microsoft Windows NT 4.0 和 Windows 2000 系统，已纳入 CISA KEV 目录。"
+severity = "HIGH"
+score = 7.8
+sources = ["kev", "nvd"]
+published = "2002-06-25"
+updated = "2026-06-16"
+remediation = "安装 Microsoft 安全公告 MS02-024 提供的更新补丁，升级至 Windows 2000 Service Pack 3 或更高版本。对于 Windows NT 4.0，安装最新的安全更新汇总。"
 
 [references]
-urls = []
+urls = [
+    "https://docs.microsoft.com/en-us/security-updates/securitybulletins/2002/ms02-024",
+    "http://www.securityfocus.com/bid/4287",
+    "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2002-0367",
+    "http://marc.info/?l=ntbugtraq&m=101614320402695&w=2",
+    "http://www.securityfocus.com/archive/1/262074",
+    "http://www.securityfocus.com/archive/1/264441",
+    "http://www.securityfocus.com/archive/1/264927",
+    "http://www.iss.net/security_center/static/8462.php",
+]
+
+[exploit]
+poc_urls = [
+    "http://www.anticracking.sk/EliCZ/bugs/DebPloit.zip",
+    "http://www.securityfocus.com/archive/1/262074",
+]
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-11T04:11:30Z"

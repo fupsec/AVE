@@ -1,25 +1,31 @@
-[basic]
-description = ""
-published = ""
-remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 0.0
-severity = "UNKNOWN"
-sources = ["msrc"]
-title = "CVE-2022-33065"
-updated = ""
-
-[exploit]
-exp_urls = []
-poc_urls = []
-
 [id]
-aliases = ["CVE-2022-33065"]
 ave_id = "AVE-2022-0001"
-cve_id = "CVE-2022-33065"
+cve_id = "CVE-2022-37700"
+aliases = ["CVE-2022-37700"]
 
-[meta]
-collected_at = "2026-07-10T22:48:12.499028775+00:00"
-status = "completed"
+[basic]
+title = "禅道15.0 Demo版本路径遍历致敏感信息泄漏漏洞"
+description = "禅道（ZenTao）是一款开源项目管理软件。其15.0版本演示环境中存在路径遍历漏洞（CWE-22），未经身份认证的远程攻击者可通过构造特制请求，利用mode=getconfig接口读取服务器任意文件，导致敏感信息泄露。攻击复杂度低，无需用户交互，严重影响系统机密性。"
+severity = "HIGH"
+score = 7.5
+sources = ["nvd", "hwpoc", "ghsa"]
+published = "2022-09-19"
+updated = "2026-07-08"
+remediation = "建议升级至禅道最新稳定版本，对mode=getconfig接口实施访问控制或删除演示环境中的未授权接口。如使用官方演示站点，应限制公网访问并配置Web应用防火墙规则拦截路径遍历攻击。"
 
 [references]
-urls = []
+urls = [
+    "https://nvd.nist.gov/vuln/detail/CVE-2022-37700",
+    "https://medium.com/@sc0p3hacker/cve-2022-37700-directory-transversal-in-zentao-easy-soft-alm-2573c1f0fc21",
+    "https://github.com/advisories/ghsa-wmpj-9273-jv34"
+]
+
+[exploit]
+poc_urls = [
+    "https://demo15.zentao.pm/user-login.html/zentao/index.php?mode=getconfig"
+]
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-11T00:00:00Z"
