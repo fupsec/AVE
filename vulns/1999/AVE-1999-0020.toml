@@ -1,35 +1,30 @@
-[affected]
-product = "IRIX"
-vendor = "SGI"
-
-[basic]
-cvss_v2 = 4.6
-description = "SGI IRIX 5.x/6.x 至 6.3 版本中自带的 pset 工具存在缓冲区溢出漏洞。pset 用于配置和管理多处理器系统中的处理器组。攻击者通过向 pset 命令提供特制的长参数作为参数，可覆盖栈上的返回地址，从而以 root 权限执行任意代码，实现本地权限提升。任何拥有系统本地账号的用户均可利用此漏洞获取 root 权限。"
-published = "1997-07-16"
-remediation = "升级到 SGI IRIX 6.4 及以上版本，或应用 SGI 提供的安全补丁。在无法升级的情况下，可通过移除 pset 的 setuid 权限或限制可执行 pset 的用户组来降低风险。"
-score = 4.6
-severity = "MEDIUM"
-sources = [
-    "exploitdb",
-    "nvd",
-]
-title = "SGI IRIX 6.3 pset 命令缓冲区溢出本地权限提升漏洞"
-updated = "2026-06-16"
-
-[exploit]
-exp_urls = ["https://www.exploit-db.com/exploits/19347"]
-nuclei_templates = []
-poc_urls = ["https://www.exploit-db.com/exploits/19347"]
-
 [id]
-aliases = ["CVE-1999-0026"]
 ave_id = "AVE-1999-0020"
 cve_id = "CVE-1999-0026"
+aliases = ["CVE-1999-0026"]
 
-[meta]
-collected_at = "2026-07-10T11:19:46Z"
-status = "completed"
+[basic]
+title = "SGI IRIX pset命令缓冲区溢出导致本地权限提升"
+description = "SGI IRIX 5.x至6.3系统中的pset命令存在缓冲区溢出漏洞，该命令用于多处理器系统中的处理器组配置和管理。攻击者可利用该漏洞通过向pset命令提供精心构造的超长参数触发缓冲区溢出，覆盖栈上返回地址，从而执行任意代码并以root权限控制系统。该漏洞为本地攻击，无需特殊权限即可利用，严重影响系统安全性。"
+severity = "MEDIUM"
+score = 4.6
+remediation = "升级SGI IRIX系统至最新版本或安装厂商提供的安全补丁，同时限制普通用户对pset命令的访问权限，删除不必要的setuid程序。"
+published = "1997-07-16"
+updated = "2026-06-16"
+sources = ["nvd", "exploitdb"]
+
+[affected]
+vendor = "SGI"
+product = "IRIX"
 
 [references]
 nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0026"
 other = ["https://exchange.xforce.ibmcloud.com/vulnerabilities/CVE-1999-0026"]
+
+[exploit]
+poc_urls = []
+exp_urls = ["https://www.exploit-db.com/exploits/19347"]
+
+[meta]
+status = "completed"
+collected_at = "2026-07-11T00:04:24Z"
