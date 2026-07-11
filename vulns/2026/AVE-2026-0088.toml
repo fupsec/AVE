@@ -1,44 +1,25 @@
-[id]
-ave_id = "AVE-2026-0088"
-cve_id = "CNVD-2020-46552"
-aliases = ["CNVD-2020-46552"]
-
 [basic]
-title = "深信服EDR终端检测响应平台远程命令执行漏洞（CNVD-2020-46552）"
-description = "深信服终端检测响应平台（EDR）v3.2.16、v3.2.17、v3.2.19版本存在OS命令注入漏洞。攻击者可通过向管理平台发送特制的HTTP请求，利用c.php中extract()函数的变量覆盖缺陷，将函数名覆盖为system并注入任意系统命令，从而在未授权的情况下远程执行任意代码并获取服务器权限。该漏洞影响范围包括中国大陆、香港及海外部分部署实例，共计约499个受影响服务对外开放。"
-severity = "HIGH"
-score = 8.7
-cvss_v3 = "AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
-published = "2020-08-18"
-updated = "2020-08-18"
-sources = ["cnvd", "nuclei", "sangfor", "nosec", "360cert"]
-remediation = "深信服官方已于2020年7月9日发布修复版本EDR v3.2.21，建议受影响用户立即升级至该版本或更高版本。用户可通过管理平台在线升级功能自动安装升级包，或从深信服官方论坛下载升级包进行手动升级。对于无法在线升级的用户，可在系统管理-升级管理-平台和终端升级界面导入升级包完成修复。"
-
-[affected]
-vendor = "深信服"
-product = "终端检测响应平台（EDR）"
-affected_versions = ["v3.2.16", "v3.2.17", "v3.2.19"]
-fixed_version = "v3.2.21"
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["nuclei"]
+title = "NUCLEI-HTTP-CNVD-2020-CNVD-2020-46552-YAML 漏洞"
+updated = ""
 
 [exploit]
-poc = []
-exp = []
-nuclei_templates = [
-    {id = "http/cnvd/2020/CNVD-2020-46552.yaml", name = "Sangfor EDR Remote Command Execution", url = "https://github.com/projectdiscovery/nuclei-templates/blob/master/http/cnvd/2020/CNVD-2020-46552.yaml"}
-]
+exp_urls = []
+poc_urls = []
 
-[references]
-nvd = []
-cnvd = ["https://www.cnvd.org.cn/flaw/show/CNVD-2020-46552", "https://www.cnvd.org.cn/webinfo/show/5677"]
-other = [
-    "https://nosec.org/home/detail/4532.html",
-    "https://www.sangfor.com/blog/cybersecurity/sangfor-endpoint-secure-remote-command-execution-vulnerability",
-    "https://nsfocusglobal.com/sangfor-edr-remote-command-execution-vulnerability-handling-guide/",
-    "https://sechub.in/view/2156377",
-    "https://cn-sec.com/archives/721509.html",
-    "https://vulncheck.com/advisories/sangfor-edr-command-injection"
-]
+[id]
+aliases = ["NUCLEI-HTTP-CNVD-2020-CNVD-2020-46552-YAML"]
+ave_id = "AVE-2026-0088"
+cve_id = "NUCLEI-HTTP-CNVD-2020-CNVD-2020-46552-YAML"
 
 [meta]
 collected_at = "2026-07-11T00:08:04.040601347+00:00"
 status = "completed"
+
+[references]
+urls = []
