@@ -1,31 +1,34 @@
-[id]
-ave_id = "AVE-1999-0066"
-cve_id = "CVE-1999-0354"
-aliases = ["CVE-1999-0354"]
+[affected]
+product = "internet_explorer"
+vendor = "microsoft"
+versions = [
+    "4.0",
+    "5.0",
+]
 
 [basic]
-title = "Microsoft Internet Explorer 与 Word 97 模板远程代码执行漏洞"
-description = "Internet Explorer 4.x或5.x与Word 97结合使用时，存在远程代码执行漏洞。攻击者可通过构造恶意邮件或网页，诱导用户打开包含恶意宏的Word 97模板，Visual Basic程序将在IE客户端上下文中任意执行，而系统不会向用户发出警告。此漏洞也影响Outlook客户端查看恶意邮件时的场景。成功利用可导致机密性、完整性和可用性受到部分影响。"
-severity = "HIGH"
-score = 7.5
 cvss_v2 = "AV:N/AC:L/Au:N/C:P/I:P/A:P"
+description = "Internet Explorer 4.x或5.x与Word 97结合使用时，存在远程代码执行漏洞。攻击者可通过构造恶意邮件或网页，诱导用户打开包含恶意宏的Word 97模板，Visual Basic程序将在IE客户端上下文中任意执行，而系统不会向用户发出警告。此漏洞也影响Outlook客户端查看恶意邮件时的场景。成功利用可导致机密性、完整性和可用性受到部分影响。"
 published = "1999-11-01T05:00:00Z"
-updated = "2026-06-16T21:48:12.977Z"
-sources = ["cve"]
 remediation = "建议升级至Microsoft提供的安全更新MS99-002修补程序，或禁用Word 97模板中的宏自动执行功能。对于Outlook用户，应配置以纯文本方式阅读邮件，并启用受保护视图以防止恶意内容自动执行。"
-
-[affected]
-vendor = "microsoft"
-product = "internet_explorer"
-versions = ["4.0", "5.0"]
-
-[references]
-urls = ["https://docs.microsoft.com/en-us/security-updates/securitybulletins/1999/ms99-002"]
+score = 7.5
+severity = "HIGH"
+sources = ["cve"]
+title = "`Microsoft Internet Explorer 远程代码执行漏洞`"
+updated = "2026-06-16T21:48:12.977Z"
 
 [exploit]
-poc_urls = []
 exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0354"]
+ave_id = "AVE-1999-0066"
+cve_id = "CVE-1999-0354"
 
 [meta]
 collected_at = "2026-07-10T12:52:04.705462744Z"
 status = "completed"
+
+[references]
+urls = ["https://docs.microsoft.com/en-us/security-updates/securitybulletins/1999/ms99-002"]
