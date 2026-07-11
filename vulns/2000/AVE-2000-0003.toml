@@ -1,0 +1,25 @@
+[basic]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["avd"]
+title = "CVE-2000-1250 漏洞"
+updated = ""
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2000-1250"]
+ave_id = "AVE-2000-0003"
+cve_id = "CVE-2000-1250"
+
+[meta]
+collected_at = "2026-07-11T17:16:17.112821826+00:00"
+status = "completed"
+
+[references]
+urls = []
