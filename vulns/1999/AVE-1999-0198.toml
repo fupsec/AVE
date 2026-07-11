@@ -1,0 +1,24 @@
+[basic]
+description = "SCO OpenServer Enterprise System v 5.0.4p 中的多个启动脚本（包括 S84rpcinit、S95nis、S85tcp 和 S89nfs）存在符号链接攻击漏洞。本地攻击者可通过创建恶意符号链接，利用这些脚本在系统启动时以 root 权限执行任意操作，从而获取系统的完全控制权限。该漏洞影响系统的机密性、完整性和可用性。"
+published = "1999-03-07"
+remediation = "升级 SCO OpenServer Enterprise System 至不受影响的版本，或限制本地用户对系统启动脚本所在目录的写入权限，并监控异常符号链接创建行为。"
+score = 7.2
+severity = "HIGH"
+sources = ["cve"]
+title = "SCO OpenServer Enterprise System 5.0.4p 启动脚本符号链接攻击本地提权漏洞"
+updated = "1999-03-07"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0411"]
+ave_id = "AVE-1999-0198"
+
+[meta]
+collected_at = "2026-07-11T23:12:01.446092091+00:00"
+status = "completed"
+
+[references]
+urls = ["https://exchange.xforce.ibmcloud.com/vulnerabilities/CVE-1999-0411"]
