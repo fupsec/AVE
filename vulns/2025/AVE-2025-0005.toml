@@ -1,0 +1,27 @@
+[basic]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["ghsa"]
+title = "CVE-2025-46571"
+updated = ""
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = [
+    "CVE-2025-46571",
+    "GHSA-8gh5-qqh8-hq3x",
+]
+ave_id = "AVE-2025-0005"
+
+[meta]
+collected_at = "2026-07-11T19:27:35.162965220+00:00"
+status = "completed"
+
+[references]
+urls = []
