@@ -17,7 +17,7 @@ aliases = ["CVE-1999-0147"]
 ave_id = "AVE-1999-0010"
 
 [meta]
-collected_at = "2026-07-11T19:21:29.376254148+00:00"
+collected_at = "2026-07-11T19:23:54.481354670+00:00"
 status = "completed"
 
 [references]
