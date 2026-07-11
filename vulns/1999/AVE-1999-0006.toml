@@ -1,32 +1,24 @@
 [basic]
-description = "NFS mountd 守护进程（rpc.mountd）在处理 mount 请求时存在缓冲区溢出漏洞。远程攻击者可以向目标系统发送特制的畸形 mount RPC 请求，导致 mountd 的日志记录代码发生缓冲区溢出，从而以 root 权限在受影响的 Linux 系统上执行任意代码。该漏洞主要影响 RedHat Linux 5.1 和 Caldera OpenLinux Standard 1.2 等运行 nfs-server-2.2beta29 的系统，即使 NFS 服务器未共享任何文件系统也可被利用。"
-published = "1998-10-12"
-remediation = "升级 NFS 服务程序至修补后的版本。RedHat 和 Caldera 官方已发布补丁，建议从 ftp://ftp.redhat.com 获取并更新 nfs-server 软件包。对于无法立即升级的系统，建议禁用 NFS 服务或使用防火墙限制对 mountd（端口 635 和 111）的访问。"
-score = 10.0
-severity = "CRITICAL"
-sources = [
-    "NVD",
-    "exploitdb",
-    "SecurityFocus",
-]
-title = "NFS mountd 缓冲区溢出漏洞（RedHat Linux 5.1 / Caldera OpenLinux 1.2）"
-updated = "1998-10-12"
+description = "CVE-1999-1597 是一个已被撤销（REJECT）的 CVE 编号。该候选编号由 CNA（Red Hat）发起并随后撤回，MITRE 于 2020-11-05 正式标记为 REJECT 状态。此编号不指向任何实际存在的安全漏洞，无 CVSS 评分、无受影响产品信息，不应被使用或引用。"
+published = "2020-11-05"
+remediation = "该 CVE 编号已被撤销，不存在实际漏洞，无需采取任何修复措施。"
+score = 0.1
+severity = "LOW"
+sources = ["nvd"]
+title = "Red Hat 撤销的 CVE 候选编号说明（无实际安全漏洞影响）"
+updated = "2023-11-06"
 
 [exploit]
-exp_urls = ["https://www.exploit-db.com/exploits/19096"]
-poc_urls = ["https://www.exploit-db.com/exploits/19096"]
+exp_urls = []
+poc_urls = []
 
 [id]
-aliases = ["CVE-1999-0002"]
+aliases = ["CVE-1999-1597"]
 ave_id = "AVE-1999-0006"
 
 [meta]
-collected_at = "2026-07-11T22:14:40+00:00"
+collected_at = "2026-07-11T22:14:16.975320359+00:00"
 status = "completed"
 
 [references]
-urls = [
-    "https://nvd.nist.gov/vuln/detail/CVE-1999-0002",
-    "https://www.exploit-db.com/exploits/19096",
-    "http://www.securityfocus.com/bid/121",
-]
+urls = ["https://nvd.nist.gov/vuln/detail/CVE-1999-1597"]
