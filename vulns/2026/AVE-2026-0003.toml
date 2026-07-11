@@ -1,0 +1,27 @@
+[basic]
+description = "CVE-2026-26192: 目前没有详细的漏洞描述。请参考相关安全公告获取更多信息。"
+published = "unknown"
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 5.0
+severity = "MEDIUM"
+sources = ["ghsa"]
+title = "CVE-2026-26192 漏洞详情"
+updated = "unknown"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = [
+    "CVE-2026-26192",
+    "GHSA-xc8p-9rr6-97r2",
+]
+ave_id = "AVE-2026-0003"
+
+[meta]
+collected_at = "2026-07-11T20:57:55.434186274+00:00"
+status = "completed"
+
+[references]
+urls = []
