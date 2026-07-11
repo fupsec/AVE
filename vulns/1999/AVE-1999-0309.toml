@@ -1,0 +1,34 @@
+[basic]
+description = "PHP/FI（PHP/FI 1.0、2.0及2.0 b10版本）中的mylog和mlog示例脚本存在任意文件读取漏洞。由于脚本未对文件路径参数进行有效过滤，远程攻击者可通过向mylog.html或mlog.html脚本传递精心构造的文件路径参数，读取服务器上任意文件，导致敏感信息泄露。"
+published = "1997-10-19"
+remediation = "升级到PHP/FI 3.0或更高版本，或删除mylog.html和mlog.html脚本文件。建议停止使用生命周期已终结的PHP/FI系列版本，迁移至现代受支持的PHP版本。"
+score = 7.5
+severity = "HIGH"
+sources = [
+    "nvd",
+    "exploitdb",
+    "securityfocus",
+    "osvdb",
+]
+title = "PHP/FI mylog/mlog 脚本任意文件读取漏洞"
+updated = "2026-06-16"
+
+[exploit]
+exp_urls = []
+poc_urls = ["https://www.exploit-db.com/exploits/19553"]
+
+[id]
+aliases = ["CVE-1999-0068"]
+ave_id = "AVE-1999-0309"
+
+[meta]
+collected_at = "2026-07-11T23:29:43.281199554+00:00"
+status = "completed"
+
+[references]
+urls = [
+    "https://nvd.nist.gov/vuln/detail/CVE-1999-0068",
+    "https://www.exploit-db.com/exploits/19553",
+    "http://www.securityfocus.com/bid/713",
+    "http://www.osvdb.org/3396",
+]
