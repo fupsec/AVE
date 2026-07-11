@@ -1,0 +1,25 @@
+[basic]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["hwpoc"]
+title = "HWPOC-2023-000bc4ac"
+updated = ""
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["HWPOC-2023-000bc4ac"]
+ave_id = "AVE-2023-0006"
+cve_id = "HWPOC-2023-000bc4ac"
+
+[meta]
+collected_at = "2026-07-11T17:10:54.371370524+00:00"
+status = "completed"
+
+[references]
+urls = []
