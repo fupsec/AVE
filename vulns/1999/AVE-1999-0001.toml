@@ -1,28 +1,25 @@
-[id]
-ave_id = "AVE-1999-0001"
-cve_id = "CVE-1999-0381"
-aliases = ["CVE-1999-0381"]
-
 [basic]
-title = "super 3.11.6 syslog 缓冲区溢出漏洞"
-description = "super 3.11.6 及部分其他版本中的 syslog 工具存在缓冲区溢出漏洞。本地攻击者可通过向 syslog 传入特制输入触发缓冲区溢出，覆盖内存数据，从而获取 root 权限，实现完全的机密性、完整性和可用性破坏。攻击无需用户交互，利用复杂度低。"
-severity = "HIGH"
-score = 7.2
-sources = ["cve"]
-published = "1999-02-26"
-updated = "1999-02-26"
-remediation = "升级 super 至 3.11.6 以上版本，修补 syslog 组件中的缓冲区溢出问题。同时建议限制非信任本地用户对 syslog 工具的访问权限。"
-
-[references]
-urls = [
-    "http://www.securityfocus.com/bid/342",
-    "http://www.securityfocus.com/templates/archive.pike?list=1&msg=Pine.LNX.3.96.990225011801.12757A-100000%40eleet"
-]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["avd"]
+title = "CVE-1999-1594 漏洞"
+updated = ""
 
 [exploit]
-poc_urls = []
 exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-1594"]
+ave_id = "AVE-1999-0001"
+cve_id = "CVE-1999-1594"
 
 [meta]
+collected_at = "2026-07-11T04:14:30.732842477+00:00"
 status = "completed"
-collected_at = "2026-07-11T00:00:00+00:00"
+
+[references]
+urls = []
