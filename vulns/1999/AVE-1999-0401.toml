@@ -1,0 +1,27 @@
+[basic]
+description = "Cisco Catalyst局域网交换机中运行Catalyst 5000系列监控软件时存在安全漏洞。远程攻击者可通过向交换机发送特制数据包，强制监控模块（Supervisor Module）重载，导致设备暂时无法正常处理网络流量，造成拒绝服务。该漏洞影响运行Catalyst 5000 Supervisor Software的Catalyst 12xx和29xx系列交换机。"
+published = "1999-03-01"
+remediation = "建议升级Cisco Catalyst交换机监控软件至最新版本。对于Catalyst 12xx系列升级至4.29以上版本，Catalyst 29xx系列升级至2.1.5以上版本。如设备已过支持周期，建议替换为不受影响的新型号设备。"
+score = 5.0
+severity = "MEDIUM"
+sources = [
+    "nvd",
+    "cve",
+]
+title = "Cisco Catalyst 5000系列局域网交换机远程拒绝服务漏洞"
+updated = "2026-06-16"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0430"]
+ave_id = "AVE-1999-0401"
+
+[meta]
+collected_at = "2026-07-11T23:33:00+00:00"
+status = "completed"
+
+[references]
+urls = ["http://www.osvdb.org/1103"]
