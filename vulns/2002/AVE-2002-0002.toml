@@ -1,31 +1,25 @@
-[id]
-ave_id = "AVE-2002-0002"
-cve_id = "CVE-2002-1225"
-aliases = ["CVE-2002-1225"]
-
 [basic]
-title = "Heimdal kadmind 和 kdc 服务器多缓冲区溢出漏洞"
-description = "Heimdal Kerberos 5 实现 0.5 版本之前存在多个缓冲区溢出漏洞，影响 kadmin（kadmind）和 kdc 服务器。远程攻击者可利用精心构造的请求触发缓冲区溢出，导致拒绝服务或以 root 权限执行任意代码。成功利用此漏洞可完全控制目标系统。"
-severity = "CRITICAL"
-score = 10.0
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
 sources = ["osv"]
-published = "2002-10-28"
-updated = "2026-06-16"
-remediation = "升级 Heimdal 至 0.5 或更高版本，或应用厂商发布的安全补丁。Debian 系统可通过 apt-get 升级 heimdal 软件包。"
-
-[references]
-urls = [
-    "http://www.debian.org/security/2002/dsa-178",
-    "http://www.iss.net/security_center/static/10116.php",
-    "http://www.securityfocus.com/bid/5729",
-    "http://marc.info/?l=bugtraq&m=103341355708817&w=2",
-    "http://marc.info/?l=bugtraq&m=103462479621246&w=2",
-]
+title = "CVE-2002-1225 漏洞"
+updated = ""
 
 [exploit]
-poc_urls = []
 exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2002-1225"]
+ave_id = "AVE-2002-0002"
+cve_id = "CVE-2002-1225"
 
 [meta]
+collected_at = "2026-07-11T04:20:31.215012252+00:00"
 status = "completed"
-collected_at = "2026-07-11T04:22:01Z"
+
+[references]
+urls = []
