@@ -1,0 +1,27 @@
+[basic]
+description = "CVE-2002-1297 是 MITRE 在 2002 年分配的候选漏洞编号，但该编号从未与任何实际安全漏洞相关联，已于 2017 年被正式标记为 REJECTED（废弃）状态。该 CVE 编号不指向任何真实存在的漏洞，不应被用于漏洞追踪或安全风险评估。"
+published = "2017-05-12"
+remediation = "该编号已被废弃，不关联任何实际漏洞，无需采取修复措施"
+score = 1.0
+severity = "LOW"
+sources = [
+    "nvd",
+    "mitre",
+]
+title = "CVE-2002-1297 废弃漏洞编号（未关联任何实际漏洞）"
+updated = "2023-11-06"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2002-1297"]
+ave_id = "AVE-2002-0006"
+
+[meta]
+collected_at = "2026-07-11T23:15:20.005207824+00:00"
+status = "completed"
+
+[references]
+urls = ["https://nvd.nist.gov/vuln/detail/CVE-2002-1297"]

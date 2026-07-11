@@ -4,6 +4,8 @@ const GH = {
   branch: "main",
 };
 
+/* ── 工具函数 ── */
+
 function setStatus(text) {
   const el = document.getElementById("status");
   if (el) el.textContent = text;
@@ -13,7 +15,22 @@ function q(name) {
   return new URLSearchParams(location.search).get(name) || "";
 }
 
-function linksFromToml(text, key) {
+function numField(text, key, fallback = 0) {
+  const m = text.match(new RegExp(`^${key}\\s*=\\s*([0-9]+(?:\\.[0-9]+)?)`, "m"));
+  return m ? Number(m[1]) : fallback;
+}
+
+/* 从 TOML 文本中提取单行/多行字符串字段 */
+function textField(text, key, fallback = "") {
+  const one = text.match(new RegExp(`^${key}\\s*=\\s*\"([^\"]*)\"`, "m"));
+  if (one?.[1] !== undefined) return one[1];
+  const multi = text.match(new RegExp(`^${key}\\s*=\\s*\"\"\"([\\s\\S]*?)\"\"\"`, "m"));
+  if (multi?.[1] !== undefined) return multi[1].trim();
+  return fallback;
+}
+
+/* 从 TOML 文本中提取数组字段（如 ["a","b"] 或 ["a"]） */
+function listField(text, key) {
   const arrRe = new RegExp(`^${key}\\s*=\\s*\\[(.*?)\\]`, "ms");
   const oneRe = new RegExp(`^${key}\\s*=\\s*\"([^\"]+)\"`, "m");
   const one = text.match(oneRe);
@@ -27,24 +44,32 @@ function linksFromToml(text, key) {
   return out;
 }
 
-function textField(text, key, fallback = "") {
-  const one = text.match(new RegExp(`^${key}\\s*=\\s*\"([^\"]*)\"`, "m"));
-  if (one?.[1] !== undefined) return one[1];
-  const multi = text.match(new RegExp(`^${key}\\s*=\\s*\"\"\"([\\s\\S]*?)\"\"\"`, "m"));
-  if (multi?.[1] !== undefined) return multi[1].trim();
-  return fallback;
+function severityClass(sev) {
+  const s = (sev || "UNKNOWN").toUpperCase();
+  return ["CRITICAL", "HIGH", "MEDIUM", "LOW", "INFO", "UNKNOWN"].includes(s) ? s : "UNKNOWN";
 }
 
-function numField(text, key, fallback = 0) {
-  const m = text.match(new RegExp(`^${key}\\s*=\\s*([0-9]+(?:\\.[0-9]+)?)`, "m"));
-  return m ? Number(m[1]) : fallback;
+function extractAveId(value) {
+  const m = String(value || "").match(/AVE-\d{4}-\d+/i);
+  return m ? m[0].toUpperCase() : "";
 }
 
-function addLinks(el, arr) {
+/* 从 aliases 数组中提取 CVE 编号 */
+function extractCveId(toml) {
+  const aliases = listField(toml, "aliases");
+  for (const a of aliases) {
+    if (/^CVE-\d{4}-\d+/i.test(a)) return a.toUpperCase();
+  }
+  return "无";
+}
+
+/* 生成链接列表 */
+function addLinks(el, arr, labelFn) {
   el.innerHTML = "";
   if (!arr.length) {
     const p = document.createElement("p");
     p.textContent = "（无）";
+    p.className = "empty-hint";
     el.appendChild(p);
     return;
   }
@@ -53,25 +78,27 @@ function addLinks(el, arr) {
     a.href = u;
     a.target = "_blank";
     a.rel = "noopener noreferrer";
-    a.textContent = u;
+    a.textContent = labelFn ? labelFn(u) : u;
     el.appendChild(a);
   }
 }
 
-function severityClass(sev) {
-  const s = (sev || "UNKNOWN").toUpperCase();
-  return ["CRITICAL", "HIGH", "MEDIUM", "LOW", "INFO", "UNKNOWN"].includes(s) ? s : "UNKNOWN";
+/* ── 从 TOML 中提取来源名称并显示为徽章 ── */
+function renderSources(el, sources) {
+  el.innerHTML = "";
+  if (!sources.length) {
+    el.textContent = "无";
+    return;
+  }
+  for (const s of sources) {
+    const span = document.createElement("span");
+    span.className = "source-badge";
+    span.textContent = s.toUpperCase();
+    el.appendChild(span);
+  }
 }
 
-function listField(text, key) {
-  return linksFromToml(text, key);
-}
-
-function extractAveId(value) {
-  const m = String(value || "").match(/AVE-\d{4}-\d+/i);
-  return m ? m[0].toUpperCase() : "";
-}
-
+/* ── 获取仓库资产索引 (PoC/EXP 文件) ── */
 async function loadAssetIndex() {
   const tree = await fetch(`https://api.github.com/repos/${GH.owner}/${GH.repo}/git/trees/${GH.branch}?recursive=1`, {
     headers: { Accept: "application/vnd.github+json" },
@@ -79,7 +106,7 @@ async function loadAssetIndex() {
   if (!tree.ok) throw new Error(`获取仓库文件索引失败：HTTP ${tree.status}`);
   const data = await tree.json();
 
-  const pocUrlsByAve = new Map();
+  const pocUrlsByAve = new Map();   // ave -> [{url, path}]
   const expUrlsByAve = new Map();
 
   for (const node of data.tree || []) {
@@ -89,14 +116,16 @@ async function loadAssetIndex() {
     const ave = extractAveId(node.path.split("/").pop());
     if (!ave) continue;
     const raw = `https://raw.githubusercontent.com/${GH.owner}/${GH.repo}/${GH.branch}/${node.path}`;
+    const html = `https://github.com/${GH.owner}/${GH.repo}/blob/${GH.branch}/${node.path}`;
+    const entry = { url: raw, html, path: node.path };
 
     if (node.path.startsWith("pocs/")) {
       const arr = pocUrlsByAve.get(ave) || [];
-      arr.push(raw);
+      arr.push(entry);
       pocUrlsByAve.set(ave, arr);
     } else {
       const arr = expUrlsByAve.get(ave) || [];
-      arr.push(raw);
+      arr.push(entry);
       expUrlsByAve.set(ave, arr);
     }
   }
@@ -104,12 +133,10 @@ async function loadAssetIndex() {
   return { pocUrlsByAve, expUrlsByAve };
 }
 
+/* ── 加载漏洞 TOML ── */
 async function loadToml(fileName) {
   const safeName = fileName.endsWith(".toml") ? fileName : `${fileName}.toml`;
 
-  // Determine vuln subpath — support both:
-  //   "2026/AVE-2026-0001.toml" (new year-subdirectory layout)
-  //   "AVE-2026-0001.toml"      (legacy flat layout — derive year from AVE ID)
   let vulnPath = safeName;
   if (!vulnPath.includes('/')) {
     const yearMatch = vulnPath.match(/AVE-(\d{4})-/);
@@ -124,9 +151,30 @@ async function loadToml(fileName) {
   return { text, raw, html, safeName };
 }
 
+/* ── 加载 PoC/EXP TOML 文件内容 ── */
+async function loadAssetToml(url) {
+  try {
+    const res = await fetch(url, { cache: "no-cache" });
+    if (!res.ok) return null;
+    return await res.text();
+  } catch {
+    return null;
+  }
+}
+
+/* 从 PoC TOML [info] 中提取名称和描述 */
+function pocInfo(toml) {
+  const name = textField(toml, "name", "");
+  const desc = textField(toml, "description", "");
+  const severity = textField(toml, "severity", "").toLowerCase();
+  return { name, desc, severity };
+}
+
+/* ── 渲染页面 ── */
 function render(toml, fileName, rawUrl, htmlUrl, assetIndex) {
+  // ── 提取所有字段 ──
   const ave = textField(toml, "ave_id", fileName.replace(/\.toml$/i, ""));
-  const cve = textField(toml, "cve_id", "无");
+  const cve = extractCveId(toml);
   const title = textField(toml, "title", ave);
   const desc = textField(toml, "description", "");
   const sev = severityClass(textField(toml, "severity", "UNKNOWN"));
@@ -138,60 +186,139 @@ function render(toml, fileName, rawUrl, htmlUrl, assetIndex) {
   const remediation = textField(toml, "remediation", "");
   const status = textField(toml, "status", "");
   const collectedAt = textField(toml, "collected_at", "");
+  const refs = listField(toml, "urls");
+  const pocUrlsFromToml = listField(toml, "poc_urls");
+  const expUrlsFromToml = listField(toml, "exp_urls");
 
-  const refs = linksFromToml(toml, "urls");
-  const pocs = assetIndex.pocUrlsByAve.get(ave) || [];
-  const exps = assetIndex.expUrlsByAve.get(ave) || [];
+  const repoPocs = assetIndex.pocUrlsByAve.get(ave) || [];
+  const repoExps = assetIndex.expUrlsByAve.get(ave) || [];
 
+  // ── 头部信息 ──
   document.getElementById("detail-subtitle").textContent = `${ave} / ${cve}`;
   document.getElementById("d-ave").textContent = ave;
   const sevEl = document.getElementById("d-sev");
   sevEl.textContent = sev;
-  sevEl.classList.add(sev);
+  sevEl.className = "severity " + sev;
+
   document.getElementById("d-title").textContent = title;
   document.getElementById("d-desc").textContent = desc;
-  document.getElementById("d-meta").textContent = `CVE: ${cve} | 评分: ${score}`;
 
-  const extra = document.getElementById("d-extra");
-  extra.innerHTML = "";
-  const pairs = [
-    ["别名", aliases.join(", ") || "无"],
-    ["来源", sources.join(", ") || "无"],
-    ["发布时间", published || "无"],
-    ["更新时间", updated || "无"],
-    ["采集状态", status || "无"],
-    ["采集时间", collectedAt || "无"],
-  ];
-  for (const [k, v] of pairs) {
-    const p = document.createElement("p");
-    const s = document.createElement("strong");
-    s.textContent = `${k}: `;
-    p.appendChild(s);
-    p.append(document.createTextNode(v));
-    extra.appendChild(p);
+  // ── 评分显示 ──
+  const scoreEl = document.getElementById("d-score");
+  scoreEl.textContent = String(score);
+  scoreEl.className = "score-value " + sev.toLowerCase();
+  document.getElementById("d-score-label").textContent = `/ 10  ${sev}`;
+
+  // ── 元信息 ──
+  document.getElementById("d-published").textContent = published || "-";
+  document.getElementById("d-updated").textContent = updated || "-";
+  document.getElementById("d-status").textContent = status || "-";
+  document.getElementById("d-collected").textContent = collectedAt || "-";
+
+  // ── 来源 ──
+  renderSources(document.getElementById("d-sources"), sources);
+
+  // ── 别名（含 CVE） ──
+  const aliasEl = document.getElementById("d-aliases");
+  aliasEl.innerHTML = "";
+  if (aliases.length) {
+    for (const a of aliases) {
+      const span = document.createElement("span");
+      span.className = "alias-tag";
+      const isCve = /^CVE-\d{4}-\d+/i.test(a);
+      if (isCve) span.classList.add("cve");
+      span.textContent = a;
+      aliasEl.appendChild(span);
+    }
+  } else {
+    aliasEl.textContent = "无";
   }
 
-  const rem = document.getElementById("d-remediation");
-  rem.textContent = remediation ? `修复建议: ${remediation}` : "";
+  // ── 修复建议 ──
+  const remEl = document.getElementById("d-remediation");
+  remEl.textContent = remediation || "";
 
+  // ── PoC/EXP 标记 ──
   const pocFlag = document.getElementById("d-poc");
   const expFlag = document.getElementById("d-exp");
-  pocFlag.textContent = `PoC：${pocs.length ? "有" : "无"}`;
-  expFlag.textContent = `EXP：${exps.length ? "有" : "无"}`;
-  if (pocs.length) pocFlag.classList.add("yes");
-  if (exps.length) expFlag.classList.add("yes");
+  pocFlag.textContent = `PoC：${repoPocs.length ? repoPocs.length : "无"}`;
+  expFlag.textContent = `EXP：${repoExps.length ? repoExps.length : "无"}`;
+  pocFlag.className = "flag" + (repoPocs.length ? " yes" : "");
+  expFlag.className = "flag" + (repoExps.length ? " yes" : "");
 
+  // ── 如果 TOML 中声明了外部 PoC/EXP URL 也显示 ──
+  if (pocUrlsFromToml.length) {
+    addLinks(document.getElementById("d-poc-urls"), pocUrlsFromToml);
+    document.getElementById("d-poc-urls-section").style.display = "";
+  } else {
+    document.getElementById("d-poc-urls-section").style.display = "none";
+  }
+  if (expUrlsFromToml.length) {
+    addLinks(document.getElementById("d-exp-urls"), expUrlsFromToml);
+    document.getElementById("d-exp-urls-section").style.display = "";
+  } else {
+    document.getElementById("d-exp-urls-section").style.display = "none";
+  }
+
+  // ── 仓库 PoC 资产 ──
+  const pocSection = document.getElementById("d-repo-pocs");
+  const pocContainer = document.getElementById("d-repo-poc-files");
+  pocContainer.innerHTML = "";
+  if (repoPocs.length) {
+    pocSection.style.display = "";
+    for (const entry of repoPocs) {
+      const div = document.createElement("div");
+      div.className = "asset-file";
+      div.innerHTML = `<a href="${entry.html}" target="_blank" rel="noopener noreferrer" class="asset-link">${entry.path.replace(/^pocs\//, '')}</a> ` +
+        `<a href="${entry.url}" target="_blank" rel="noopener noreferrer" class="asset-raw" title="查看原始内容">📄</a>`;
+      // 异步加载 PoC TOML 摘要
+      loadAssetToml(entry.url).then(tomlText => {
+        if (tomlText) {
+          const info = pocInfo(tomlText);
+          if (info.name || info.desc) {
+            const tip = document.createElement("p");
+            tip.className = "asset-tip";
+            tip.textContent = (info.name ? info.name + "：": "") + (info.desc || "");
+            div.appendChild(tip);
+          }
+        }
+      });
+      pocContainer.appendChild(div);
+    }
+  } else {
+    pocSection.style.display = "none";
+  }
+
+  // ── 仓库 EXP 资产 ──
+  const expSection = document.getElementById("d-repo-exps");
+  const expContainer = document.getElementById("d-repo-exp-files");
+  expContainer.innerHTML = "";
+  if (repoExps.length) {
+    expSection.style.display = "";
+    for (const entry of repoExps) {
+      const div = document.createElement("div");
+      div.className = "asset-file";
+      div.innerHTML = `<a href="${entry.html}" target="_blank" rel="noopener noreferrer" class="asset-link">${entry.path.replace(/^exploits\//, '')}</a> ` +
+        `<a href="${entry.url}" target="_blank" rel="noopener noreferrer" class="asset-raw" title="查看原始内容">📄</a>`;
+      expContainer.appendChild(div);
+    }
+  } else {
+    expSection.style.display = "none";
+  }
+
+  // ── 参考链接 ──
   addLinks(document.getElementById("d-refs"), refs);
-  addLinks(document.getElementById("d-pocs"), pocs);
-  addLinks(document.getElementById("d-exps"), exps);
 
+  // ── 原始 TOML ──
   const rawLink = document.getElementById("d-raw");
   rawLink.href = htmlUrl;
   rawLink.dataset.raw = rawUrl;
 
+  // ── 显示卡片 ──
   document.getElementById("detail-card").style.display = "block";
 }
 
+/* ── 启动 ── */
 async function boot() {
   const file = q("file").trim();
   if (!file) {
