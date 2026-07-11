@@ -1,42 +1,65 @@
 [id]
 ave_id = "AVE-2026-0037"
 cve_id = "CVE-2025-0520"
-aliases = ["CNVD-2020-26585", "CVE-2025-0520", "GHSA-6jmr-r7p6-f5wr"]
+aliases = ["CNVD-2020-26585", "GHSA-6jmr-r7p6-f5wr", "NUCLEI-HTTP-CNVD-2020-CNVD-2020-26585-YAML"]
 
 [basic]
-title = "ShowDoc 未授权文件上传远程代码执行漏洞"
-description = "ShowDoc 2.8.7之前版本存在未授权任意文件上传漏洞（CNVD-2020-26585/CVE-2025-0520）。攻击者无需认证，通过向 /index.php?s=/home/page/uploadImg 端点发送精心构造的 multipart POST 请求，利用文件名中插入特殊字符（如 <>）绕过扩展名校验，上传包含PHP Webshell的恶意文件到服务器。服务器未对上传文件的MIME类型和扩展名进行有效验证，导致攻击者可直接访问上传的PHP文件并执行任意命令，实现远程代码执行。该漏洞CVSS v4评分为9.4（CRITICAL），已发现在野利用，全球超过2000个ShowDoc实例面临风险，多数位于中国。"
-published = "2025-04-29"
-updated = "2026-04-14"
+title = "ShowDoc 未授权任意文件上传远程代码执行漏洞"
+description = "ShowDoc 是一款适用于IT团队的在线API文档和知识库工具，广泛用于团队协作编写API文档、数据字典和技术文档。该产品在 2.8.7 以下版本中存在未授权任意文件上传漏洞，攻击者无需登录即可通过 POST /index.php?s=/home/page/uploadImg 接口上传恶意文件。漏洞根源在于 uploadImg 方法对文件扩展名的校验存在缺陷，攻击者通过在文件名中插入特殊字符（如 test.<>php）可绕过后缀过滤，将 PHP webshell 上传至服务器。上传成功后，攻击者可直接访问上传的 PHP 文件执行任意命令，实现远程代码执行（RCE），完全控制目标服务器。该漏洞已被多个漏洞利用平台收录，并在野被积极利用。"
 severity = "CRITICAL"
 score = 9.4
 cvss_v4 = "CVSS:4.0/AV:N/AC:L/AT:N/PR:L/UI:N/VC:H/VI:H/VA:L/SC:H/SI:H/SA:L"
-remediation = "立即将ShowDoc升级至2.8.7或更高版本（当前最新版为3.8.1）。升级前应检查是否已被入侵，删除可疑上传文件。若暂时无法升级，应在Web服务器层面限制 /index.php?s=/home/page/uploadImg 端点的访问权限，或通过WAF规则拦截包含异常扩展名的文件上传请求。同时监控服务器日志中针对该端点的异常POST请求。"
-sources = ["nuclei", "nvd", "vulhub", "vulncheck", "cnvd"]
+published = "2025-04-29"
+updated = "2026-04-14"
+remediation = "立即升级 ShowDoc 至 2.8.7 或更高版本，该版本修复了文件扩展名校验缺陷并增加了身份认证检查。若暂时无法升级，应在 Web 服务器（Nginx/Apache）层面禁止上传目录执行 PHP 文件，将上传目录权限设为只读（chmod 644），并部署 WAF 规则拦截包含特殊字符的文件上传请求。"
+sources = ["nvd", "cnvd", "ghsa", "nuclei", "vulhub"]
 
 [affected]
-vendor = "star7th"
+vendor = "ShowDoc"
 product = "ShowDoc"
+versions = ["< 2.8.7"]
 
 [exploit]
-poc_urls = [
-    { url = "https://github.com/vulhub/vulhub/tree/master/showdoc/CNVD-2020-26585", description = "Vulhub提供的完整漏洞复现Docker环境及PoC", source = "Vulhub" }
+poc = [
+    {
+        url = "https://github.com/vulhub/vulhub/tree/master/showdoc/CNVD-2020-26585",
+        description = "Vulhub 提供的完整复现环境和利用脚本，通过构造 multipart 请求上传 test.<>php 文件绕过后缀校验",
+        source = "vulhub"
+    },
+    {
+        url = "https://github.com/MzzdToT/showdoc_fileupload",
+        description = "ShowDoc 任意文件上传批量 getshell 利用脚本，支持单目标和批量测试",
+        source = "github"
+    },
+    {
+        url = "https://github.com/Threekiii/Awesome-POC/blob/master/Web%E5%BA%94%E7%94%A8%E6%BC%8F%E6%B4%9E/ShowDoc%20%E5%89%8D%E5%8F%B0%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%20CNVD-2020-26585.md",
+        description = "ShowDoc 前台任意文件上传 PoC 文档，包含详细的漏洞分析和利用步骤",
+        source = "github"
+    }
 ]
-exp_urls = []
 nuclei_templates = [
-    { url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2020/CNVD-2020-26585.yaml", description = "Nuclei官方模板，检测ShowDoc <2.8.6未授权文件上传漏洞", source = "projectdiscovery" }
+    {
+        url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2020/CNVD-2020-26585.yaml",
+        description = "Nuclei 扫描模板，检测 ShowDoc 未授权文件上传漏洞",
+        source = "nuclei-templates"
+    },
+    {
+        url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/vulnerabilities/other/showdoc-file-upload-rce.yaml",
+        description": "Nuclei ShowDoc 文件上传 RCE 检测模板",
+        source = "nuclei-templates"
+    }
 ]
 
 [references]
 nvd = "https://nvd.nist.gov/vuln/detail/CVE-2025-0520"
-avd = ""
+cnvd = "https://www.cnvd.org.cn/flaw/show/CNVD-2020-26585"
+ghsa = "https://github.com/advisories/GHSA-6jmr-r7p6-f5wr"
 other = [
-    "https://www.cnvd.org.cn/flaw/show/CNVD-2020-26585",
     "https://github.com/star7th/showdoc/pull/1059",
+    "https://github.com/vulhub/vulhub/tree/master/showdoc/CNVD-2020-26585",
+    "https://www.tenable.com/cve/CVE-2025-0520",
     "https://www.vulncheck.com/advisories/showdoc-unauthenticated-file-upload-rce",
-    "https://github.com/advisories/GHSA-6jmr-r7p6-f5wr",
-    "https://thehackernews.com/2026/04/showdoc-rce-flaw-cve-2025-0520-actively.html",
-    "https://cybersecuritynews.com/showdoc-rce-vulnerability-exploited/"
+    "https://thehackernews.com/2026/04/showdoc-rce-flaw-cve-2025-0520-actively.html"
 ]
 
 [meta]

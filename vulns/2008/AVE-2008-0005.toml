@@ -1,16 +1,16 @@
 [basic]
-description = "Vulnerability identified as CVE-2008-4250. Please refer to vendor advisory for details."
-published = "2026-07-10"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 5.0
-severity = "MEDIUM"
-sources = ["kev"]
-title = "CVE-2008-4250 vulnerability"
-updated = "2026-07-10"
+description = "Microsoft Windows 服务器服务（Server Service）在处理远程过程调用（RPC）请求时存在缓冲区溢出漏洞（MS08-067）。攻击者可通过向目标系统发送特制的 RPC 请求，触发路径规范化过程中的内存溢出，从而以内核权限执行任意代码。该漏洞已被 Gimmiv.A 等恶意软件在野外大规模利用（即 Conficker 蠕虫），影响 Windows 2000 SP4、XP SP2/SP3、Server 2003 SP1/SP2、Vista Gold/SP1、Server 2008 及 7 Pre-Beta 等多个版本，无需身份验证即可远程利用，危害极大。"
+published = "2008-10-23"
+remediation = "安装 Microsoft 安全公告 MS08-067（KB958644）提供的安全更新，或升级至不受影响的 Windows 版本。对于无法立即修补的系统，应在防火墙层面阻止 SMB（TCP 445）和 RPC（TCP 135）端口的入站流量，并限制网络暴露面以降低被利用风险。"
+score = 9.8
+severity = "CRITICAL"
+sources = ["kev", "nvd"]
+title = "Microsoft Windows 服务器服务远程代码执行漏洞"
+updated = "2026-05-20"
 
 [exploit]
-exp_urls = []
-poc_urls = []
+exp_urls = ["https://www.exploit-db.com/exploits/6824", "https://www.exploit-db.com/exploits/6841", "https://www.exploit-db.com/exploits/7104", "https://www.exploit-db.com/exploits/7132"]
+poc_urls = ["https://www.exploit-db.com/exploits/6824"]
 
 [id]
 aliases = ["CVE-2008-4250"]
@@ -18,8 +18,8 @@ ave_id = "AVE-2008-0005"
 cve_id = "CVE-2008-4250"
 
 [meta]
-collected_at = "2026-07-10T12:52:04.275366204+00:00"
+collected_at = "2026-07-11T00:00:00+00:00"
 status = "completed"
 
 [references]
-urls = []
+urls = ["https://docs.microsoft.com/en-us/security-updates/securitybulletins/2008/ms08-067", "https://nvd.nist.gov/vuln/detail/CVE-2008-4250", "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2008-4250"]
