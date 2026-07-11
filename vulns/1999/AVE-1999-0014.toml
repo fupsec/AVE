@@ -1,27 +1,32 @@
 [basic]
-description = "Cisco IOS系统的Web服务器存在拒绝服务漏洞，攻击者无需身份认证即可通过网络向路由器发送特制的超长URL请求，该请求在处理时会导致路由器设备重新启动，从而造成拒绝服务。该漏洞影响了运行Cisco IOS的多种路由器型号，攻击成本低且无需特殊权限。"
-published = "1999-03-01"
-remediation = "建议升级Cisco IOS系统至不受影响的最新版本，或在路由器上配置访问控制列表（ACL）限制对Web服务的访问。具体修复版本请参考Cisco官方安全公告。"
-score = 5.0
-severity = "MEDIUM"
+description = "ISC BIND（域名系统服务器软件）4.9及8版本在处理反向查询（Inverse Query）请求时存在缓冲区溢出漏洞。攻击者可通过向目标DNS服务器发送特制的反向查询数据包，触发缓冲区溢出，从而在服务器上执行任意代码，完全控制受影响的系统。该漏洞影响范围广泛，利用代码已公开，构成严重安全威胁。"
+published = "1998-04-08"
+remediation = "升级到ISC BIND 8.1.2或更高版本，或应用各操作系统厂商提供的安全补丁。SGI、Sun、HP等厂商均已发布相关安全公告及补丁。如无法立即升级，建议限制对DNS服务器的TCP查询访问。"
+score = 10.0
+severity = "CRITICAL"
 sources = [
-    "nvd",
-    "cve",
+    "nvd.nist.gov",
+    "exploit-db",
 ]
-title = "Cisco IOS Web服务器长URL导致路由器重启的拒绝服务漏洞"
-updated = "2026-06-16"
+title = "ISC BIND 4.9/8 反向查询缓冲区溢出漏洞"
+updated = "2024-11-20"
 
 [exploit]
-exp_urls = []
-poc_urls = []
+exp_urls = ["https://www.exploit-db.com/exploits/19112"]
+poc_urls = ["https://www.exploit-db.com/exploits/19112"]
 
 [id]
-aliases = ["CVE-1999-0222"]
+aliases = ["CVE-1999-0009"]
 ave_id = "AVE-1999-0014"
 
 [meta]
-collected_at = "2026-07-11T22:25:34.685613415+00:00"
+collected_at = "2026-07-11T22:25:47.484216758+00:00"
 status = "completed"
 
 [references]
-urls = ["http://www.securityfocus.com/archive/1/60159"]
+urls = [
+    "http://www.securityfocus.com/bid/134",
+    "https://www.exploit-db.com/exploits/19112",
+    "http://sunsolve.sun.com/pub-cgi/retrieve.pl?doctype=coll&doc=secbull/180",
+    "http://www1.itrc.hp.com/service/cki/docDisplay.do?docId=HPSBUX9808-083",
+]
