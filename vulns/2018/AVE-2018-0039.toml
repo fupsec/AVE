@@ -1,41 +1,25 @@
-[id]
-ave_id = "AVE-2018-0039"
-cve_id = "CVE-2018-25110"
-aliases = ["CVE-2018-25110", "GHSA-p9wx-2529-fp83", "EUVD-2018-21603"]
-
 [basic]
-title = "Marked Markdown解析器正则表达式拒绝服务漏洞"
-description = "Marked（markedjs/marked）0.3.17之前的版本存在正则表达式拒绝服务（ReDoS）漏洞。该漏洞源于解析HTML标签和Markdown链接时使用的多个正则表达式存在灾难性回溯（CWE-1333），攻击者可通过构造特殊的Markdown输入（如深度嵌套或重复结构的括号、标签属性），导致解析器CPU资源耗尽并挂起，从而造成拒绝服务。攻击无需认证，可通过网络远程触发，影响可用性。"
-severity = "HIGH"
-score = 7.5
-cvss_v3 = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
-cvss_v4 = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N"
-published = "2025-05-23"
-updated = "2025-08-13"
-remediation = "将Marked升级至0.3.17或更高版本，该版本修复了相关正则表达式的灾难性回溯问题。同时应审查应用中使用的所有正则表达式，避免类似回溯缺陷，并对用户输入的Markdown内容进行长度和复杂度限制。"
-sources = ["nvd", "avd", "ghsa", "nuclei"]
-
-[affected]
-vendor = "Marked Project"
-product = "marked"
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["avd"]
+title = "CVE-2018-25110 漏洞"
+updated = ""
 
 [exploit]
-poc_urls = [
-  { url = "https://github.com/Checkmarx/Vulnerabilities-Proofs-of-Concept/tree/main/2018/CVE-2018-25110", description = "Checkmarx提供的ReDoS概念验证PoC，包含构造的恶意Markdown输入样例", source = "Checkmarx" }
-]
 exp_urls = []
+poc_urls = []
 
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2018-25110"
-avd = "https://avd.aquasec.com/nvd/cve-2018-25110"
-other = [
-  "https://github.com/markedjs/marked/commit/20bfc106013ed45713a21672ad4a34df94dcd485",
-  "https://github.com/markedjs/marked/issues/1070",
-  "https://github.com/markedjs/marked/pull/1083",
-  "https://github.com/advisories/GHSA-p9wx-2529-fp83",
-  "https://cvefeed.io/vuln/detail/CVE-2018-25110"
-]
+[id]
+aliases = ["CVE-2018-25110"]
+ave_id = "AVE-2018-0039"
+cve_id = "CVE-2018-25110"
 
 [meta]
 collected_at = "2026-07-11T00:06:35.750505878+00:00"
 status = "completed"
+
+[references]
+urls = []
