@@ -1,25 +1,28 @@
-[id]
-ave_id = "AVE-2026-0003"
-cve_id = ""
-aliases = ["NUCLEI-HTTP-CNVD-2017-CNVD-2017-06001-YAML", "CNVD-2017-06001"]
-
 [basic]
-title = "大华 DSS 存在 SQL 注入漏洞"
-description = "大华 DSS（数字监控系统）的 portal 模块中 attachment_clearTempFile.action 和 attachment_getAttList.action 接口存在 SQL 注入漏洞。攻击者可通过构造特制的 bean.RecId 参数，利用 EXTRACTVALUE 函数触发报错注入，从而获取数据库中的敏感信息。该漏洞无需身份认证即可远程利用，影响大华 DSS 系统的数据安全性。"
-severity = "HIGH"
-score = 7.5
-sources = ["nuclei"]
-published = "2017-01-01"
-updated = "2017-01-01"
-remediation = "联系大华厂商获取安全补丁，升级 DSS 系统至最新版本。对 portal 模块的输入参数进行严格的过滤和参数化查询处理，避免直接将用户输入拼接到 SQL 语句中。"
-
-[references]
-urls = ["https://www.cnvd.org.cn/flaw/show/CNVD-2017-06001", "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2017/CNVD-2017-06001.yaml"]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["ghsa"]
+title = "CVE-2026-48596"
+updated = ""
 
 [exploit]
-poc_urls = ["https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2017/CNVD-2017-06001.yaml"]
 exp_urls = []
+poc_urls = []
+
+[id]
+aliases = [
+    "CVE-2026-48596",
+    "GHSA-q7jx-v53g-848w",
+]
+ave_id = "AVE-2026-0003"
+cve_id = "CVE-2026-48596"
 
 [meta]
+collected_at = "2026-07-11T04:22:26.492820826+00:00"
 status = "completed"
-collected_at = "2026-07-11T08:00:00Z"
+
+[references]
+urls = []

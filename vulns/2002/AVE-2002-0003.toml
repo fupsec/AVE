@@ -1,0 +1,29 @@
+[id]
+ave_id = "AVE-2002-0003"
+cve_id = "CVE-2002-1226"
+aliases = ["CVE-2002-1226"]
+
+[basic]
+title = "Heimdal Kerberos kadmind 和 kdc 服务器未明安全漏洞"
+description = "Heimdal Kerberos 5 之前的 0.5 版本中存在多个未明漏洞，可能影响 kadmind 和 kdc 服务器。远程或本地攻击者可能利用这些漏洞获取 root 权限或其他访问权限，但并非通过缓冲区溢出方式。具体漏洞细节和影响范围尚不明确，建议用户升级至最新版本。"
+severity = "CRITICAL"
+score = 10.0
+sources = ["osv", "nvd"]
+published = "2002-10-28"
+updated = "2002-10-28"
+remediation = "升级 Heimdal 至 0.5 及以上版本，具体修复版本请参考 Debian 安全公告 DSA-178。"
+
+[references]
+urls = [
+    "http://www.debian.org/security/2002/dsa-178",
+    "http://marc.info/?l=bugtraq&m=103341355708817&w=2",
+    "http://marc.info/?l=bugtraq&m=103462479621246&w=2",
+]
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-11T12:00:00Z"
