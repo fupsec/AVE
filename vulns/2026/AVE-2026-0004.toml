@@ -1,25 +1,28 @@
-[id]
-ave_id = "AVE-2026-0004"
-cve_id = ""
-aliases = ["NUCLEI-HTTP-CNVD-2018-CNVD-2018-13393-YAML", "CNVD-2018-13393"]
-
 [basic]
-title = "Metinfo CMS 本地文件包含漏洞"
-description = "Metinfo CMS（米拓企业建站系统）存在本地文件包含漏洞。攻击者可通过向 /include/thumb.php 发送精心构造的请求，利用 dir 参数中的目录遍历序列（如 http\\..\\admin\\login\\login_check.php）读取服务器上的任意文件，导致敏感信息泄露。该漏洞无需身份验证即可远程利用，影响 Metinfo 6.x 系列版本，危害较大。"
-severity = "HIGH"
-score = 8.6
-sources = ["nuclei", "CNVD"]
-published = "2018-07-01"
-updated = "2018-07-01"
-remediation = "升级 Metinfo CMS 到官方发布的最新版本；对 /include/thumb.php 中 dir 参数进行严格的输入验证和过滤，禁止包含路径穿越字符（如 ..）和反斜杠。"
-
-[references]
-urls = ["https://paper.seebug.org/676/", "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2018/CNVD-2018-13393.yaml"]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["ghsa"]
+title = "CVE-2026-48597"
+updated = ""
 
 [exploit]
-poc_urls = ["https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2018/CNVD-2018-13393.yaml"]
 exp_urls = []
+poc_urls = []
+
+[id]
+aliases = [
+    "CVE-2026-48597",
+    "GHSA-h74c-q9j7-mpcm",
+]
+ave_id = "AVE-2026-0004"
+cve_id = "CVE-2026-48597"
 
 [meta]
+collected_at = "2026-07-11T04:26:45.692064316+00:00"
 status = "completed"
-collected_at = "2026-07-11T12:30:00+08:00"
+
+[references]
+urls = []
