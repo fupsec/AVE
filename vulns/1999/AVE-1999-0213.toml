@@ -1,31 +1,39 @@
 [id]
 ave_id = "AVE-1999-0213"
 cve_id = "CVE-1999-0289"
-aliases = ["CVE-1999-0289"]
+aliases = ["CVE-1999-0289", "GHSA-w6fh-wrw4-q6vg"]
 
 [basic]
-title = "Apache HTTP Server for Win32 点号追加路径信息泄露漏洞"
-description = "Apache HTTP Server Windows版本在处理URL时存在路径信息泄露漏洞。当攻击者在请求URL后追加一个点号(.)时，Apache可能绕过访问控制机制，导致受限文件被未经授权访问。此漏洞仅影响Windows平台上的Apache HTTP Server，攻击者可通过网络远程利用，无需身份认证，导致敏感信息泄露。"
+title = "Apache HTTP Server Win32 目录遍历漏洞"
+description = "Apache HTTP Server 的 Windows (Win32) 版本存在路径遍历漏洞。攻击者通过在请求的 URL 末尾追加一个点号（.）即可绕过访问控制，读取服务器上的受限文件。该漏洞利用了 Windows 文件系统忽略文件名末尾点号的特性，使得原本被访问限制保护的文件（如 .htaccess 配置、CGI 脚本源码等）可以被未授权访问。攻击者无需认证即可远程利用此漏洞，获取敏感配置信息或源代码，为后续攻击提供便利条件。"
 severity = "MEDIUM"
 score = 5.0
-remediation = "升级 Apache HTTP Server 至不受影响的版本，或在服务器配置中对 URL 请求进行规范化处理，过滤并拒绝以点号结尾的请求路径。对于 Windows 平台部署的 Apache 服务，建议使用 URL 重写规则拦截此类畸形请求。"
-sources = ["cve"]
-published = "1999-12-12"
-updated = "2026-06-16"
+cvss_v2 = "AV:N/AC:L/Au:N/C:P/I:N/A:N"
+published = "1999-09-29"
+updated = "2024-08-01"
+sources = ["cve", "nvd", "ghsa"]
+remediation = "升级 Apache HTTP Server 至 1.3.10 或更高版本，该版本修复了 Windows 平台的路径遍历问题。若暂时无法升级，可通过 Apache 配置文件中的 AllowOverride 指令限制目录访问权限，或使用 RewriteRule 过滤包含末尾点号的 URL 请求。建议在 Windows 服务器前部署反向代理或 Web 应用防火墙，对异常 URL 进行过滤和拦截。"
 
 [affected]
-vendor = "apache"
-product = "http_server"
+vendor = "Apache"
+product = "HTTP Server"
+versions = ["1.3.6", "1.3.7", "1.3.8", "1.3.9"]
 
 [exploit]
-poc_urls = []
-exp_urls = []
+poc = []
+exp = []
 nuclei_templates = []
 
 [references]
 nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0289"
-other = ["https://www.cve.org/CVERecord?id=CVE-1999-0289"]
+avd = ""
+ghsa = "https://github.com/advisories/GHSA-w6fh-wrw4-q6vg"
+other = [
+    "https://www.cve.org/CVERecord?id=CVE-1999-0289",
+    "https://cve.circl.lu/vuln/cve-1999-0289",
+    "https://app.opencve.io/cve/CVE-1999-0289"
+]
 
 [meta]
-collected_at = "2026-07-11T00:00:00Z"
+collected_at = "2026-07-10T23:38:13.304362792+00:00"
 status = "completed"

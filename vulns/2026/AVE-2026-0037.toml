@@ -1,45 +1,38 @@
-[affected]
-product = "ShowDoc"
-vendor = "star7th"
+[id]
+ave_id = "AVE-2026-0037"
+cve_id = "CNVD-2020-26585"
+aliases = [
+    "NUCLEI-HTTP-CNVD-2020-CNVD-2020-26585-YAML"
+]
 
 [basic]
-description = "ShowDoc是一款适用于IT团队的在线API文档与技术文档工具，使用Markdown语法书写文档。2.8.6以下版本存在任意文件上传漏洞，攻击者可通过/index.php?s=/home/page/uploadImg接口构造特制multipart数据包，上传包含恶意PHP代码的文件。成功利用后可实现远程代码执行，获取服务器完全控制权限。该漏洞无需身份认证即可触发，攻击成本低且危害严重。"
-published = "2020-10-23"
-remediation = "厂商已发布修复版本，建议升级ShowDoc至2.8.6或更高版本；如无法升级，应在Web应用防火墙上配置规则拦截/index.php?s=/home/page/uploadImg接口的可执行文件上传请求，并限制上传目录的执行权限。"
-score = 9.9
+title = "ShowDoc 2.8.6 以下版本文件上传漏洞"
+description = "ShowDoc 是一个适用于IT团队的在线API文档和在线文档管理工具。其 2.8.6 以下版本存在文件上传漏洞（CWE-434），攻击者可在无需认证的情况下通过 /index.php?s=/home/page/uploadImg 接口上传恶意文件，进而获取服务器权限。该漏洞危害严重，CVSS 评分 9.9。"
 severity = "CRITICAL"
-sources = [
-    "nuclei",
-    "cnvd",
-]
-title = "ShowDoc 任意文件上传漏洞"
-updated = "2026-07-10T12:39:17Z"
+score = 9.9
+remediation = "升级 ShowDoc 至 2.8.6 或以上版本，并对文件上传接口实施严格的类型校验和访问控制策略。"
+published = "2020-01-01"
+updated = "2020-01-01"
+sources = ["nuclei"]
 
-[exploit]
-exp_urls = []
-nuclei_templates = ["https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2020/CNVD-2020-26585.yaml"]
-poc_urls = [
-    "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2020/CNVD-2020-26585.yaml",
-    "https://blog.csdn.net/qq_48985780/article/details/122211136",
-]
-
-[id]
-aliases = [
-    "CNVD-2020-26585",
-    "NUCLEI-HTTP-CNVD-2020-CNVD-2020-26585-YAML",
-]
-ave_id = "AVE-2026-0037"
-cve_id = ""
-
-[meta]
-collected_at = "2026-07-11T00:00:00Z"
-status = "completed"
+[affected]
+vendor = "star7th"
+product = "ShowDoc"
 
 [references]
-avd = ""
-nvd = ""
-other = [
-    "https://github.com/star7th/showdoc/pull/1059",
-    "https://vul.wangan.com/a/CNVD-2020-26585",
+urls = [
     "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2020/CNVD-2020-26585.yaml",
+    "https://github.com/star7th/showdoc/pull/1059",
+    "https://blog.csdn.net/qq_48985780/article/details/122211136",
+    "https://vul.wangan.com/a/CNVD-2020-26585"
 ]
+
+[exploit]
+poc_urls = [
+    "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2020/CNVD-2020-26585.yaml"
+]
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-10T12:39:17Z"
