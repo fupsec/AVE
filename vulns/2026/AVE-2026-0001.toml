@@ -1,0 +1,28 @@
+[basic]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["ghsa"]
+title = "CVE-2026-48594"
+updated = ""
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = [
+    "CVE-2026-48594",
+    "GHSA-mc85-72gr-vm9f",
+]
+ave_id = "AVE-2026-0001"
+cve_id = "CVE-2026-48594"
+
+[meta]
+collected_at = "2026-07-11T18:56:45.813367116+00:00"
+status = "completed"
+
+[references]
+urls = []
