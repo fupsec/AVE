@@ -1,0 +1,27 @@
+[basic]
+description = "GE Healthcare eNTEGRA P&R 系统中存在多个硬编码或默认密码漏洞，包括entegra用户的密码entegra、Polestar/Polestar-i Starlink 4升级超级用户密码passme、Codonics打印机FTP服务entegra用户密码0、eNTEGRA P&R用户账户密码eNTEGRA以及WinVNC登录密码insite等多个账户使用默认凭据。攻击者可通过网络远程利用这些硬编码密码登录系统，获取完整控制权限，导致机密性、完整性和可用性完全受损。"
+published = "2015-08-04"
+remediation = "建议联系GE Healthcare获取官方固件升级，修改eNTEGRA P&R系统中所有默认密码（entegra、passme、0等），禁用不必要的FTP服务和账户，并限制网络访问仅允许受信任主机。"
+score = 10.0
+severity = "CRITICAL"
+sources = ["nvd"]
+title = "GE Healthcare eNTEGRA P&R 硬编码密码漏洞"
+updated = "2026-06-16"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2001-1594"]
+ave_id = "AVE-2001-0020"
+
+[meta]
+collected_at = "2026-07-11T23:04:31+00:00"
+status = "completed"
+
+[references]
+urls = [
+    "http://apps.gehealthcare.com/servlet/ClientServlet/2263784.pdf?DOCCLASS=A&REQ=RAC&DIRECTION=2263784-100&FILENAME=2263784.pdf&FILEREV=5&DOCREV_ORG=5&SUBMIT=+ACCEPT+",
+    "https://ics-cert.us-cert.gov/advisories/ICSMA-18-037-02",
+]
