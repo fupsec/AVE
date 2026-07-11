@@ -1,0 +1,30 @@
+[basic]
+description = "Super 3.11.6及之前版本中的syslog实用程序存在缓冲区溢出漏洞，本地攻击者可利用精心构造的输入触发缓冲区溢出，成功利用后可获取系统root权限，完全控制受影响系统。"
+published = "1999-02-26"
+remediation = "升级Super至厂商修复版本或应用安全补丁，限制本地用户对syslog工具的访问权限。"
+score = 7.2
+severity = "HIGH"
+sources = [
+    "NVD",
+    "CVE",
+]
+title = "Super 3.11.6 syslog 工具缓冲区溢出漏洞"
+updated = "1999-02-26"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0381"]
+ave_id = "AVE-1999-0088"
+
+[meta]
+collected_at = "2026-07-11T22:47:41.306404882+00:00"
+status = "completed"
+
+[references]
+urls = [
+    "http://www.securityfocus.com/bid/342",
+    "http://www.securityfocus.com/templates/archive.pike?list=1&msg=Pine.LNX.3.96.990225011801.12757A-100000%40eleet",
+]
