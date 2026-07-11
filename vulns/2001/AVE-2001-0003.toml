@@ -1,0 +1,24 @@
+[basic]
+description = "CVE-2001-0656 是 CVE 项目官方标记为 REJECT（撤销）的候选编号。该编号的申请方未在 2001 年度为其关联任何有效的安全漏洞信息，因此该 CVE 编号不指向任何实际存在的漏洞，不应被用于漏洞追踪或安全评估场景。"
+published = "2017-05-11"
+remediation = "此 CVE 编号已被官方撤销且无关联漏洞，无需进行修复。建议关注其他有效的 CVE 编号。"
+score = 0.1
+severity = "INFO"
+sources = ["nvd"]
+title = "被 CVE 官方撤销的候选漏洞编号（未关联有效漏洞）"
+updated = "2023-11-06"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2001-0656"]
+ave_id = "AVE-2001-0003"
+
+[meta]
+collected_at = "2026-07-11T22:31:33.045798023+00:00"
+status = "completed"
+
+[references]
+urls = []
