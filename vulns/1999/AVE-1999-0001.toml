@@ -1,32 +1,28 @@
 [basic]
-description = "NFS mountd 守护进程的日志记录代码存在缓冲区溢出漏洞，远程攻击者可通过向目标系统发送特制的 RPC mount 请求触发栈溢出，从而覆盖执行流并获得 root 权限。该漏洞主要影响 Linux 系统，包括 RedHat Linux 5.1和Caldera OpenLinux Standard 1.2等发行版中的 nfs-server-2.2beta29 版本。即使在 NFS 服务器未共享任何文件系统的情况下，攻击者也可利用此漏洞实施远程无认证攻击，危害极为严重。"
-published = "1998-10-12"
-remediation = "升级到已修复此漏洞的 nfs-utils 版本；从 RedHat 官方 FTP 获取补丁进行更新；限制 NFS 服务仅对可信网络开放；在不需要时禁用 rpc.mountd 服务或使用防火墙过滤 RPC 端口。"
-score = 10.0
+description = "GNU C库（glibc）2.2之前版本中的manual/search.texi文档未说明删除树根节点时tdelete函数返回值为未定义，攻击者可利用此漏洞在开发者不知情的情况下，通过悬垂指针访问应用程序内存，导致敏感信息泄露或系统被控制。"
+published = "2020-10-06"
+remediation = "升级glibc至2.2或更高版本，避免在应用程序中直接使用tdelete函数的未检查返回值。"
+score = 9.8
 severity = "CRITICAL"
-sources = [
-    "nvd",
-    "exploitdb",
-    "securityfocus",
-]
-title = "Linux NFS mountd 缓冲区溢出远程代码执行漏洞"
-updated = "2024-11-20"
+sources = ["nvd"]
+title = "GNU glibc tdelete 函数未检查返回值导致悬垂指针漏洞"
+updated = "2026-06-16"
 
 [exploit]
-exp_urls = ["https://www.exploit-db.com/exploits/19096"]
-poc_urls = ["https://www.exploit-db.com/exploits/19096"]
+exp_urls = []
+poc_urls = []
 
 [id]
-aliases = ["CVE-1999-0002"]
+aliases = ["CVE-1999-0199"]
 ave_id = "AVE-1999-0001"
 
 [meta]
-collected_at = "2026-07-11T21:37:29.130228578+00:00"
+collected_at = "2026-07-11T22:00:00+00:00"
 status = "completed"
 
 [references]
 urls = [
-    "http://www.securityfocus.com/bid/121",
-    "http://www.ciac.org/ciac/bulletins/j-006.shtml",
-    "https://www.exploit-db.com/exploits/19096",
+    "https://ftp.gnu.org/gnu/glibc/glibc-2.2.tar.gz",
+    "https://github.com/bminor/glibc/commit/2864e767053317538feafa815046fff89e5a16be",
+    "https://www.cee.studio/tdelete.html",
 ]
