@@ -4,7 +4,7 @@ const GH = {
   branch: "main",
 };
 
-const PAGE_SIZE = 30;
+const PAGE_SIZE = 15;
 const state = {
   page: 1,
   total: 0,

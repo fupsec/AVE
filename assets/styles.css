@@ -112,11 +112,11 @@ body {
 }
 
 .layout {
-  max-width: 1240px;
+  max-width: 1320px;
   margin: 1rem auto;
   display: grid;
   gap: 1rem;
-  grid-template-columns: minmax(240px, 280px) minmax(0, 1fr);
+  grid-template-columns: minmax(200px, 220px) minmax(0, 1fr);
   padding: 0 1rem 2rem;
 }
 
@@ -271,7 +271,7 @@ body {
 
 .table-title {
   color: #e5e7eb;
-  max-width: 420px;
+  max-width: 520px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

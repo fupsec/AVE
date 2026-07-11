@@ -1,0 +1,24 @@
+[basic]
+description = "CVE-2002-0633 是一个被 MITRE 标记为 REJECTED（已撤销）的候选编号。该编号在 2002 年并未与任何实际漏洞相关联，请求此编号的 CNA 或个人未将其用于任何安全漏洞。因此此条目不代表任何真实存在的安全漏洞，仅为记录该 CVE 编号状态。"
+published = "2017-05-12"
+remediation = "此 CVE 编号已被撤销，不表示任何实际漏洞，无需进行修复。"
+score = 0.1
+severity = "INFO"
+sources = ["nvd"]
+title = "MITRE 已撤销编号 CVE-2002-0633 无关联实际漏洞"
+updated = "2023-11-06"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2002-0633"]
+ave_id = "AVE-2002-0003"
+
+[meta]
+collected_at = "2026-07-11T23:10:29Z"
+status = "completed"
+
+[references]
+urls = ["https://nvd.nist.gov/vuln/detail/CVE-2002-0633"]
