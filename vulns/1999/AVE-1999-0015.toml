@@ -1,0 +1,30 @@
+[basic]
+description = "Solaris 操作系统中的 syslogd 服务在处理来自没有反向 DNS 记录的主机的消息时会出现崩溃，导致系统日志服务中断。攻击者可以利用此漏洞，通过发送来自未配置反向 DNS 的主机日志消息，使目标系统的 syslogd 进程崩溃，造成拒绝服务。该漏洞影响 SunOS 5.4（Solaris 2.4）系统。"
+published = "1999-03-01"
+remediation = "升级到 Sun 提供的补丁（patch ID 103291），或为网络中的主机配置正确的反向 DNS 记录。若无法立即打补丁，建议限制 syslog 服务的网络访问来源。"
+score = 2.1
+severity = "LOW"
+sources = [
+    "NVD",
+    "cve",
+]
+title = "Sun Solaris syslogd 反向DNS查询失败导致拒绝服务漏洞"
+updated = "2026-06-16"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0223"]
+ave_id = "AVE-1999-0015"
+
+[meta]
+collected_at = "2026-07-11T22:26:34.237394961+00:00"
+status = "completed"
+
+[references]
+urls = [
+    "http://sunsolve.Sun.COM/pub-cgi/retrieve.pl?patchid=103291&collection=fpatches",
+    "http://www.securityfocus.com/bid/1878",
+]
