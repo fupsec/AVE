@@ -1,41 +1,48 @@
-[affected]
-product = "WPvivid Backup & Migration"
-vendor = "wpvividplugins"
+[id]
+ave_id = "AVE-2026-0087"
+cve_id = "CVE-2026-49463"
+aliases = [
+    "CVE-2026-49463",
+    "GHSA-qpm9-h556-mwxm",
+]
 
 [basic]
-description = "WPvivid Backup & Migration WordPress插件0.9.123及之前版本中存在未授权任意文件上传远程代码执行漏洞。RSA解密过程中错误处理不当，openssl_private_decrypt()失败后返回false值，phpseclib库将其视为空字节AES密钥，攻击者可利用可预测的空字节密钥加密恶意载荷。同时插件未对上传文件名进行清理，导致目录遍历可逃逸备份目录，未经身份验证的攻击者可通过wpvivid_action=send_to_site参数上传任意PHP文件至可公开访问的目录，实现远程代码执行。CVSS评分9.8，危害严重。"
-published = "2026-02-11"
-remediation = "升级WPvivid Backup & Migration插件至0.9.124或更高版本；限制/wp-content/uploads/目录的PHP执行权限；部署WAF规则拦截异常文件上传请求。"
-score = 9.8
-severity = "CRITICAL"
-sources = [
-    "github",
-    "nvd",
-    "wordfence",
+title = "NL Portal GraphQL API 越权访问漏洞（缺少用户级授权检查）"
+description = "NL Portal Backend Libraries（nl-portal-backend-libraries）存在 GraphQL API 缺少逐用户授权检查的安全漏洞。在3.0.0及以下版本中，DocumentContentQuery 和 BesluitenQuery 两个 GraphQL 解析器的方法签名中均未声明 CommonGroundAuthentication 参数，导致框架无法将已认证用户绑定到调用路径中，解析器无法执行用户级授权校验。攻击者以任意已登录用户身份即可通过 documenten-api 的 getDocumentContent 操作按 ID 下载任意文档原始内容（该项目自2022年首次提交以来所有版本均受影响），同时可通过 besluiten 模块的 getBesluiten、getBesluit 等六个操作跨用户枚举和读取决策记录及其审计轨迹和附件文档。决策数据通常包含敏感个人信息（如福利、许可、异议等），两个端点可形成链式利用：先通过决策枚举获取文档 ID，再通过文档接口窃取内容，造成高机密性影响。"
+severity = "MEDIUM"
+published = "2026-07-08"
+updated = "2026-07-08"
+score = 6.5
+cvss_v3 = "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N"
+sources = ["ghsa", "nvd", "gitlab"]
+
+remediation = "升级 nl-portal-backend-libraries 至3.0.1或更高版本。documenten-api 模块在修复提交32e0ebdf中为 DocumentContentQuery 的 getDocumentContent 方法添加了 CommonGroundAuthentication 参数，使 Spring 框架自动绑定已认证用户并拒绝未认证调用；besluiten 模块在修复提交f592af1b中被整体移除，依赖该功能的应用需在升级前自行实现带有逐用户授权的替代解析器。无法立即升级的部署可在 API 网关层屏蔽 getDocumentContent、getBesluiten、getBesluit、getBesluitAuditTrails、getBesluitAuditTrail、getBesluitDocumenten、getBesluitDocument 等 GraphQL 操作，或屏蔽 besluiten 模块的全部 GraphQL 类型。"
+
+[affected]
+vendor = "NL Portal"
+product = "nl-portal-backend-libraries"
+affected_packages = [
+    { name = "nl.nl-portal:documenten-api", ecosystem = "Maven", versions = "<= 3.0.0" },
+    { name = "nl.nl-portal:besluiten", ecosystem = "Maven", versions = ">= 1.5.0, <= 3.0.0" },
 ]
-title = "`WPvivid Backup & Migration WordPress插件远程代码执行漏洞`"
-updated = "2026-06-17"
+fixed_version = "3.0.1"
 
 [exploit]
-exp_urls = ["https://github.com/cybertechajju/CVE-2026-1357-POC"]
+poc = []
+exp = []
 nuclei_templates = []
-poc_urls = ["https://github.com/cybertechajju/CVE-2026-1357-POC"]
-
-[id]
-aliases = ["CVE-2026-1357"]
-ave_id = "AVE-2026-0087"
-cve_id = "CVE-2026-1357"
-
-[meta]
-collected_at = "2026-07-11T00:00:00Z"
-status = "completed"
 
 [references]
-urls = [
-    "https://nvd.nist.gov/vuln/detail/CVE-2026-1357",
-    "https://plugins.trac.wordpress.org/browser/wpvivid-backuprestore/tags/0.9.123/includes/class-wpvivid-crypt.php#L58",
-    "https://plugins.trac.wordpress.org/browser/wpvivid-backuprestore/tags/0.9.123/includes/customclass/class-wpvivid-send-to-site.php#L629",
-    "https://plugins.trac.wordpress.org/changeset/3448386/wpvivid-backuprestore#file1",
-    "https://www.wordfence.com/threat-intel/vulnerabilities/id/e5af0317-ef46-4744-9752-74ce228b5f37?source=cve",
-    "https://github.com/cybertechajju/CVE-2026-1357-POC",
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2026-49463"
+avd = ""
+ghsa = "https://github.com/advisories/GHSA-qpm9-h556-mwxm"
+other = [
+    "https://github.com/nl-portal/nl-portal-backend-libraries/security/advisories/GHSA-qpm9-h556-mwxm",
+    "https://github.com/nl-portal/nl-portal-backend-libraries",
+    "https://advisories.gitlab.com/maven/nl.nl-portal/documenten-api/CVE-2026-49463/",
 ]
+
+[meta]
+collected_at = "2026-07-11T00:04:19.335491882+00:00"
+status = "completed"
+cwe = ["CWE-200", "CWE-285"]
