@@ -1,20 +1,23 @@
 [id]
 ave_id = "AVE-1999-0001"
-cve_id = "CVE-1999-0147"
-aliases = ["CVE-1999-0147"]
+cve_id = "CVE-1999-0381"
+aliases = ["CVE-1999-0381"]
 
 [basic]
-title = "Glimpse HTTP aglimpse CGI 远程命令执行漏洞"
-description = "Glimpse HTTP 服务器中的 aglimpse CGI 程序存在远程命令执行漏洞。攻击者可以通过向 aglimpse 发送特制请求，在无需认证的情况下远程执行任意系统命令，获取服务器完全控制权。该漏洞影响所有运行 aglimpse CGI 的 Glimpse HTTP 服务器版本，危害严重。"
+title = "super 3.11.6 syslog 缓冲区溢出漏洞"
+description = "super 3.11.6 及部分其他版本中的 syslog 工具存在缓冲区溢出漏洞。本地攻击者可通过向 syslog 传入特制输入触发缓冲区溢出，覆盖内存数据，从而获取 root 权限，实现完全的机密性、完整性和可用性破坏。攻击无需用户交互，利用复杂度低。"
 severity = "HIGH"
-score = 7.5
-sources = ["nvd", "tenable"]
-published = "1997-07-01"
-updated = "2026-06-16"
-remediation = "由于 Glimpse HTTP 已停止维护，建议立即从 Web 服务器上删除或禁用 aglimpse CGI 脚本，并迁移至其他受支持的 HTTP 服务器软件。若必须使用，应限制 CGI 目录的访问权限并部署 WAF 规则进行防护。"
+score = 7.2
+sources = ["cve"]
+published = "1999-02-26"
+updated = "1999-02-26"
+remediation = "升级 super 至 3.11.6 以上版本，修补 syslog 组件中的缓冲区溢出问题。同时建议限制非信任本地用户对 syslog 工具的访问权限。"
 
 [references]
-urls = ["https://exchange.xforce.ibmcloud.com/vulnerabilities/CVE-1999-0147"]
+urls = [
+    "http://www.securityfocus.com/bid/342",
+    "http://www.securityfocus.com/templates/archive.pike?list=1&msg=Pine.LNX.3.96.990225011801.12757A-100000%40eleet"
+]
 
 [exploit]
 poc_urls = []
@@ -22,4 +25,4 @@ exp_urls = []
 
 [meta]
 status = "completed"
-collected_at = "2026-07-11T04:15:11Z"
+collected_at = "2026-07-11T00:00:00+00:00"

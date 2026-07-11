@@ -1,25 +1,34 @@
-[basic]
-description = ""
-published = ""
-remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 0.0
-severity = "UNKNOWN"
-sources = ["msrc"]
-title = "CVE-2006-10002 漏洞"
-updated = ""
-
-[exploit]
-exp_urls = []
-poc_urls = []
-
 [id]
-aliases = ["CVE-2006-10002"]
 ave_id = "AVE-2006-0001"
-cve_id = "CVE-2006-10002"
+cve_id = "CVE-2006-10003"
+aliases = ["CVE-2006-10003"]
 
-[meta]
-collected_at = "2026-07-11T04:06:34.271742960+00:00"
-status = "completed"
+[basic]
+title = "Perl XML::Parser 模块堆越界写入漏洞"
+description = "XML::Parser 是 Perl 语言中广泛使用的 XML 解析模块，其 2.47 及之前版本的 Expat.xs 文件中存在 off-by-one 堆缓冲区溢出漏洞。当元素嵌套深度达到栈大小上限（stackptr == stacksize - 1）时，栈未能正确扩展，导致新值被写入已分配缓冲区边界之外。攻击者可向受影响应用提交特制的深层嵌套 XML 文档触发越界写入，造成堆内存损坏，可能导致信息泄露、拒绝服务或远程代码执行。"
+severity = "CRITICAL"
+score = 9.8
+sources = ["msrc", "nvd"]
+published = "2026-03-19"
+updated = "2026-06-29"
+remediation = "将 XML::Parser 升级至 2.48 或更高版本，或安装操作系统厂商（如 Red Hat、Debian）提供的安全更新补丁。"
 
 [references]
-urls = []
+urls = [
+  "http://www.openwall.com/lists/oss-security/2026/03/19/2",
+  "https://access.redhat.com/security/cve/CVE-2006-10003",
+  "https://bugzilla.redhat.com/show_bug.cgi?id=2448999",
+  "https://github.com/cpan-authors/XML-Parser/commit/3eb9cc95420fa0c3f76947c4708962546bf27cfd.patch",
+  "https://github.com/cpan-authors/XML-Parser/issues/39",
+  "https://lists.debian.org/debian-lts-announce/2026/04/msg00002.html",
+  "https://rt.cpan.org/Ticket/Display.html?id=19860",
+  "https://security.access.redhat.com/data/csaf/v2/vex/2006/cve-2006-10003.json",
+]
+
+[exploit]
+poc_urls = []
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-11T04:11:00Z"

@@ -4,8 +4,8 @@ published = ""
 remediation = "Refer to vendor advisory and upgrade to fixed version."
 score = 0.0
 severity = "UNKNOWN"
-sources = ["nuclei"]
-title = "NUCLEI-FILE-MALWARE-UNIVERSAL-1337-MALWARE-YAML 漏洞"
+sources = ["github"]
+title = "CVE-2026-0006"
 updated = ""
 
 [exploit]
@@ -13,12 +13,12 @@ exp_urls = []
 poc_urls = []
 
 [id]
-aliases = ["NUCLEI-FILE-MALWARE-UNIVERSAL-1337-MALWARE-YAML"]
+aliases = ["CVE-2026-0006"]
 ave_id = "AVE-2026-0001"
-cve_id = "NUCLEI-FILE-MALWARE-UNIVERSAL-1337-MALWARE-YAML"
+cve_id = "CVE-2026-0006"
 
 [meta]
-collected_at = "2026-07-11T04:07:04.302587406+00:00"
+collected_at = "2026-07-11T04:13:37.650410391+00:00"
 status = "completed"
 
 [references]
