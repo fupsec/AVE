@@ -1,0 +1,27 @@
+[basic]
+description = "Novell NetWare的FTP服务器组件中的NWFTPD.nlm模块在5.01w之前版本存在缓冲区溢出漏洞（CWE-119），远程攻击者可通过匿名FTP会话发送特制的STOU命令，导致服务器异常终止（abend），造成拒绝服务。该漏洞无需身份验证即可远程利用，影响NetWare 5.x及之前版本。"
+published = "2010-04-05"
+remediation = "升级NWFTPD.nlm至5.01w或更高版本，或限制匿名FTP用户的STOU命令权限，必要时禁用匿名FTP访问。"
+score = 5.0
+severity = "MEDIUM"
+sources = [
+    "nvd",
+    "novell",
+]
+title = "Novell NetWare FTP服务器NWFTPD.nlm拒绝服务漏洞"
+updated = "2026-06-16"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2001-1587"]
+ave_id = "AVE-2001-0013"
+
+[meta]
+collected_at = "2026-07-11T22:47:56+00:00"
+status = "completed"
+
+[references]
+urls = ["http://www.novell.com/support/viewContent.do?externalId=3238588&sliceId=1"]
