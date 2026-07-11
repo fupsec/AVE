@@ -1,39 +1,25 @@
-[id]
-ave_id = "AVE-2022-0001"
-cve_id = "CVE-2022-33065"
-aliases = ["CVE-2022-33065"]
-
 [basic]
-title = "Libsndfile有符号整数溢出漏洞（CVE-2022-33065）"
-description = "Libsndfile是用于读写采样音频文件的C语言开源库。该库在处理AU格式和MAT4格式音频文件时，函数au_read_header（src/au.c）、mat4_open和mat4_read_header（src/mat4.c）存在多个有符号整数溢出问题。攻击者可构造恶意音频文件触发整数溢出，导致拒绝服务（程序崩溃）或其他未定义行为。CVSS 3.1评分7.8（高危），攻击向量为本地，无需高权限即可利用。"
-severity = "HIGH"
-score = 7.8
-cvss_v3 = "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H"
-published = "2023-07-18"
-updated = "2024-11-21"
-remediation = "升级libsndfile至修复版本：Debian bullseye使用1.0.31-2+deb11u2，bookworm使用1.2.0-1+deb12u1，trixie使用1.2.2-2+deb13u1，或从源码编译修复版本。临时缓解可在受影响函数中添加显式类型转换防止整数溢出。"
-sources = ["nvd", "msrc", "debian", "redhat", "ubuntu"]
-
-[affected]
-vendor = "libsndfile project"
-product = "libsndfile"
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["msrc"]
+title = "CVE-2022-33065"
+updated = ""
 
 [exploit]
-poc = []
-exp = []
-nuclei_templates = []
+exp_urls = []
+poc_urls = []
 
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2022-33065"
-avd = ""
-other = [
-    "https://github.com/libsndfile/libsndfile/issues/789",
-    "https://github.com/libsndfile/libsndfile/issues/833",
-    "https://security-tracker.debian.org/tracker/CVE-2022-33065",
-    "https://access.redhat.com/security/cve/cve-2022-33065",
-    "https://ubuntu.com/security/CVE-2022-33065"
-]
+[id]
+aliases = ["CVE-2022-33065"]
+ave_id = "AVE-2022-0001"
+cve_id = "CVE-2022-33065"
 
 [meta]
-collected_at = "2026-07-11T00:00:00Z"
+collected_at = "2026-07-10T22:48:12.499028775+00:00"
 status = "completed"
+
+[references]
+urls = []
