@@ -1,25 +1,35 @@
-[basic]
-description = "Vulnerability identified as CVE-2008-3431. Please refer to vendor advisory for details."
-published = "2026-07-10"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 5.0
-severity = "MEDIUM"
-sources = ["kev"]
-title = "CVE-2008-3431 vulnerability"
-updated = "2026-07-10"
-
-[exploit]
-exp_urls = []
-poc_urls = []
-
 [id]
-aliases = ["CVE-2008-3431"]
 ave_id = "AVE-2008-0004"
 cve_id = "CVE-2008-3431"
+aliases = ["CVE-2008-3431"]
 
-[meta]
-collected_at = "2026-07-10T12:52:03.235974257+00:00"
-status = "completed"
+[basic]
+title = "Oracle VirtualBox VBoxDrv.sys 驱动输入验证漏洞"
+description = 'Sun xVM VirtualBox 1.6.4之前版本中的VBoxDrv.sys驱动VBoxDrvNtDeviceControl函数使用METHOD_NEITHER通信方法处理IOCTL，未能正确验证与Irp对象关联的缓冲区，导致本地攻击者可通过打开\\.\VBoxDrv设备并调用DeviceIoControl发送特制内核地址，从而提升至系统权限。此漏洞已在野被积极利用，已纳入CISA KEV目录。'
+severity = "HIGH"
+score = 8.8
+published = "2008-08-05"
+updated = "2026-06-16"
+remediation = "升级至 Oracle VirtualBox 1.6.4 或更高版本，并及时应用厂商安全补丁。限制本地用户对 \\.VBoxDrv 设备的访问权限。"
+sources = ["kev", "nvd"]
+
+[affected]
+vendor = "Oracle"
+product = "VirtualBox"
 
 [references]
-urls = []
+urls = [
+    "https://nvd.nist.gov/vuln/detail/CVE-2008-3431",
+    "http://virtualbox.org/wiki/Changelog",
+    "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2008-3431",
+    "http://www.coresecurity.com/content/virtualbox-privilege-escalation-vulnerability",
+    "https://exchange.xforce.ibmcloud.com/vulnerabilities/44202"
+]
+
+[exploit]
+poc_urls = ["https://www.exploit-db.com/exploits/6218"]
+exp_urls = ["https://www.exploit-db.com/exploits/6218"]
+
+[meta]
+status = "completed"
+collected_at = "2026-07-11T00:00:00Z"
