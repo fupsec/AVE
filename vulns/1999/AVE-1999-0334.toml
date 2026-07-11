@@ -1,0 +1,30 @@
+[basic]
+description = "Solaris 操作系统中 ufsrestore 工具存在缓冲区溢出漏洞，本地攻击者可利用该漏洞通过精心构造的参数触发缓冲区溢出，从而获取系统最高权限（root）。该漏洞影响 SunOS 5.5 及 5.5.1 版本（即 Solaris 2.5 和 2.5.1）。"
+published = "1998-04-29"
+remediation = "建议升级到不受影响的 Solaris 版本或安装 Sun 安全公告 169 号提供的补丁程序，限制本地用户对 ufsrestore 的访问权限。"
+score = 8.4
+severity = "HIGH"
+sources = [
+    "NVD",
+    "Exploit-DB",
+]
+title = "Solaris ufsrestore 缓冲区溢出漏洞"
+updated = "2024-08-01"
+
+[exploit]
+exp_urls = []
+poc_urls = ["https://www.exploit-db.com/exploits/19534"]
+
+[id]
+aliases = ["CVE-1999-0069"]
+ave_id = "AVE-1999-0334"
+
+[meta]
+collected_at = "2026-07-11T23:30:54.749315448+00:00"
+status = "completed"
+
+[references]
+urls = [
+    "http://sunsolve.sun.com/pub-cgi/retrieve.pl?doctype=coll&doc=secbull/169",
+    "http://www.osvdb.org/8158",
+]
