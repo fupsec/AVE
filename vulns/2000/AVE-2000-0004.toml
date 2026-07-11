@@ -1,0 +1,24 @@
+[basic]
+description = "CVE-2000-1248 已被其 CNA（Red Hat, Inc.）撤销，不应用于任何漏洞识别。该候选编号因被 CNA 撤回而作废，仅用于记录编号状态，不代表任何实际存在的安全漏洞。"
+published = "2020-11-05"
+remediation = "该候选编号已被撤销，不存在实际漏洞，无需修复措施。"
+score = 0.1
+severity = "INFO"
+sources = ["nvd"]
+title = "Red Hat 已撤销的候选编号 CVE-2000-1248"
+updated = "2023-11-06"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2000-1248"]
+ave_id = "AVE-2000-0004"
+
+[meta]
+collected_at = "2026-07-11T22:20:52.161441990+00:00"
+status = "completed"
+
+[references]
+urls = ["https://nvd.nist.gov/vuln/detail/CVE-2000-1248"]
