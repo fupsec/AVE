@@ -1,0 +1,27 @@
+[basic]
+description = "Windows NT 系统中的远程访问服务（RAS）和点对点隧道协议（PPTP）存在拒绝服务漏洞。远程攻击者可以通过发送特制的网络数据包导致 RAS/PPTP 服务崩溃，从而造成系统拒绝服务，影响 Windows NT 系统的远程访问功能和 VPN 连接。"
+published = "1999-06-30"
+remediation = "升级到 Microsoft 官方发布的最新 Windows NT 安全补丁，或在网络边界防火墙中限制对 RAS/PPTP 服务的访问以降低风险。"
+score = 5.0
+severity = "MEDIUM"
+sources = [
+    "cve",
+    "nvd",
+]
+title = "Microsoft Windows NT RAS/PPTP 远程拒绝服务漏洞"
+updated = "2026-06-16"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0140"]
+ave_id = "AVE-1999-0010"
+
+[meta]
+collected_at = "2026-07-12T00:00:00+00:00"
+status = "completed"
+
+[references]
+urls = ["https://exchange.xforce.ibmcloud.com/vulnerabilities/CVE-1999-0140"]
