@@ -4,8 +4,8 @@ published = ""
 remediation = "Refer to vendor advisory and upgrade to fixed version."
 score = 0.0
 severity = "UNKNOWN"
-sources = ["cve"]
-title = "CVE-1999-0001 漏洞"
+sources = ["redhat"]
+title = "CVE-1999-0018 漏洞"
 updated = ""
 
 [exploit]
@@ -13,11 +13,11 @@ exp_urls = []
 poc_urls = []
 
 [id]
-aliases = ["CVE-1999-0001"]
+aliases = ["CVE-1999-0018"]
 ave_id = "AVE-1999-0012"
 
 [meta]
-collected_at = "2026-07-11T19:23:34.718048553+00:00"
+collected_at = "2026-07-11T19:23:59.845425032+00:00"
 status = "completed"
 
 [references]
