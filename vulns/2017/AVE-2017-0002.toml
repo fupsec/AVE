@@ -1,0 +1,25 @@
+[basic]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["msrc"]
+title = "CVE-2017-9047 漏洞"
+updated = ""
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2017-9047"]
+ave_id = "AVE-2017-0002"
+cve_id = "CVE-2017-9047"
+
+[meta]
+collected_at = "2026-07-11T17:10:54.962810973+00:00"
+status = "completed"
+
+[references]
+urls = []
