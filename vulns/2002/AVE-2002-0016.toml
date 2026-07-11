@@ -1,0 +1,30 @@
+[basic]
+description = "GoAhead WebServer 2.1.1之前版本的安全处理程序存在安全绕过漏洞。远程攻击者可通过在URL中添加额外的斜杠字符，绕过身份验证机制，获取受保护Web内容的未授权访问权限。此漏洞与CVE-2002-1603不同。"
+published = "2009-02-06"
+remediation = "升级GoAhead WebServer至2.1.1或更高版本，该版本修复了URL中添加额外斜杠可绕过安全特性的问题。"
+score = 5.0
+severity = "MEDIUM"
+sources = [
+    "nvd",
+    "cert",
+]
+title = "GoAhead WebServer 安全绕过漏洞"
+updated = "2009-02-07"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2002-2427"]
+ave_id = "AVE-2002-0016"
+
+[meta]
+collected_at = "2026-07-11T23:28:04.602611737+00:00"
+status = "completed"
+
+[references]
+urls = [
+    "http://data.goahead.com/Software/Webserver/2.1.8/release.htm#security-features-can-be-bypassed-by-adding-an-extra-slash-in-the-url-bug01518",
+    "http://www.kb.cert.org/vuls/id/124059",
+]
