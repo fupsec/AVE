@@ -1,11 +1,14 @@
 [basic]
-description = "Apache JServ 1.1.2版本中jserv.conf文件的jserv-status处理器默认配置包含'allow from 127.0.0.1'规则，允许本地用户通过直接请求jserv/ URI来发现JDBC密码或其他敏感配置信息，属于不安全的默认配置引发的信息泄露问题。"
+description = "Apache JServ 1.1.2版本的jserv.conf中jserv-status处理器的默认配置包含allow from 127.0.0.1行，允许本地用户通过直接请求jserv/URI路径发现JDBC数据库密码或其他敏感配置信息，属于配置不当导致的信息泄露漏洞（CWE-16）。"
 published = "2011-10-04"
-remediation = "修改Apache JServ的jserv.conf配置文件，删除或注释jserv-status处理器中的allow规则，限制本地用户对jserv/路径的直接访问，或升级到已修复版本。"
+remediation = "修改Apache JServ的jserv.conf配置文件，移除jserv-status处理器的allow from 127.0.0.1配置项，或限制仅授权管理员可访问，或升级至不受影响的更高版本。"
 score = 2.1
 severity = "LOW"
-sources = ["nvd"]
-title = "Apache JServ jserv-status处理器配置错误导致敏感信息泄露漏洞"
+sources = [
+    "nvd",
+    "avd",
+]
+title = "Apache JServ jserv-status处理器默认配置信息泄露漏洞"
 updated = "2011-10-05"
 
 [exploit]
@@ -17,7 +20,7 @@ aliases = ["CVE-2000-1247"]
 ave_id = "AVE-2000-0003"
 
 [meta]
-collected_at = "2026-07-11T21:47:10.932426917+00:00"
+collected_at = "2026-07-11T21:49:22.236901162+00:00"
 status = "completed"
 
 [references]
