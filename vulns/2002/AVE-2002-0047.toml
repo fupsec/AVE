@@ -1,39 +1,25 @@
-[id]
-ave_id = "AVE-2002-0047"
-cve_id = "CVE-2002-1170"
-aliases = ["CVE-2002-1170", "CAN-2002-1170", "JVNDB-2002-000240", "EUVD-2002-1154"]
-
 [basic]
-title = "Net-SNMP snmpd 空指针解引用拒绝服务漏洞"
-description = "Net-SNMP（前身为 ucd-snmp）5.0.1 至 5.0.5 版本的 SNMP 守护进程（snmpd）中的 handle_var_requests 函数存在空指针解引用漏洞。远程攻击者可以通过发送特制的 SNMP 数据包，在未建立会话的情况下触发 asp->treecache_num 为 NULL 时进入 for 循环，导致 snmpd 尝试解引用空指针并触发 SIGSEGV 崩溃，造成拒绝服务。利用该漏洞需要知道有效的 SNMP 社区字符串（如默认的 public）。"
-severity = "MEDIUM"
-score = 5.0
-cvss_v2 = 5.0
-published = "2002-10-11"
-updated = "2016-10-17"
-remediation = "升级 Net-SNMP 至 5.0.6 或更高版本；修改默认 SNMP 社区字符串（public/private），限制 SNMP 访问来源 IP；在不需要 SNMP 的环境中禁用 snmpd 服务。"
-sources = ["nvd", "osv", "bugtraq", "jvn"]
-
-[affected]
-vendor = "Net-SNMP"
-product = "Net-SNMP (ucd-snmp)"
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["osv"]
+title = "CVE-2002-1170 漏洞"
+updated = ""
 
 [exploit]
-poc_urls = [
-  { url = "https://seclists.org/bugtraq/2002/Oct/26", description = "iDEFENSE Security Advisory - Net-SNMP DoS Vulnerability (含漏洞利用细节)", source = "bugtraq" }
-]
 exp_urls = []
+poc_urls = []
 
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2002-1170"
-urls = [
-  "https://seclists.org/bugtraq/2002/Oct/26",
-  "https://lwn.net/Articles/18342/",
-  "https://app.opencve.io/cve/CVE-2002-1170",
-  "https://security.snyk.io/vuln/SNYK-DEBIANUNSTABLE-NETSNMP-310899",
-  "http://jvndb.jvn.jp/contents/2002/JVNDB-2002-000240.html"
-]
+[id]
+aliases = ["CVE-2002-1170"]
+ave_id = "AVE-2002-0047"
+cve_id = "CVE-2002-1170"
 
 [meta]
 collected_at = "2026-07-11T00:03:18.010403810+00:00"
 status = "completed"
+
+[references]
+urls = []
