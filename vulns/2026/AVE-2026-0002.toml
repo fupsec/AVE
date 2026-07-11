@@ -4,8 +4,8 @@ published = ""
 remediation = "Refer to vendor advisory and upgrade to fixed version."
 score = 0.0
 severity = "UNKNOWN"
-sources = ["github"]
-title = "CVE-2026-0006"
+sources = ["ghsa"]
+title = "CVE-2026-48595"
 updated = ""
 
 [exploit]
@@ -13,11 +13,14 @@ exp_urls = []
 poc_urls = []
 
 [id]
-aliases = ["CVE-2026-0006"]
+aliases = [
+    "CVE-2026-48595",
+    "GHSA-9m9w-gxf7-rh8m",
+]
 ave_id = "AVE-2026-0002"
 
 [meta]
-collected_at = "2026-07-11T19:02:32.764873681+00:00"
+collected_at = "2026-07-11T19:02:34.646564188+00:00"
 status = "completed"
 
 [references]
