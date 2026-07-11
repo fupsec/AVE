@@ -1,0 +1,27 @@
+[basic]
+description = "CVE-2001-0654 是已被撤销的候选编号。提交该编号的 CNA 在 2001 年期间未将其与任何实际漏洞关联，因此该编号被正式标记为 REJECT，不应被用于引用任何安全漏洞。"
+published = "2017-05-11"
+remediation = "此 CVE 编号已被撤销，不存在对应的实际漏洞，无需修复。建议关注其他活跃 CVE 编号。"
+score = 0.1
+severity = "INFO"
+sources = [
+    "nvd",
+    "mitre",
+]
+title = "已撤销的无关联漏洞候选编号记录"
+updated = "2023-11-06"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2001-0654"]
+ave_id = "AVE-2001-0001"
+
+[meta]
+collected_at = "2026-07-11T22:28:53.295139024+00:00"
+status = "completed"
+
+[references]
+urls = ["https://nvd.nist.gov/vuln/detail/CVE-2001-0654"]
