@@ -1,36 +1,25 @@
-[id]
-ave_id = "AVE-2007-0009"
-cve_id = "CVE-2007-4770"
-aliases = ["CVE-2007-4770", "CVE-2007-4771"]
-
 [basic]
-title = "OpenOffice.org ICU 库正则表达式反向引用越界内存访问漏洞"
-description = "International Components for Unicode (ICU) 库 3.8.1 及更早版本在处理正则表达式中对不存在的捕获组零（\\0）的反向引用时存在缺陷，导致 REStackFrames 数据结构损坏，可能允许攻击者通过特制的 ODF 文本文档（包含 XForms）实现堆溢出，从而触发越界内存读写并在目标系统上执行任意代码。该漏洞通过 OpenOffice.org 使用的第三方 ICU 库被触发，用户只需打开恶意文档即可被利用。"
-severity = "MEDIUM"
-score = 6.8
-cvss_v2 = "AV:N/AC:M/Au:N/C:P/I:P/A:P"
-remediation = "升级 OpenOffice.org 至 2.4 或更高版本；或升级 ICU 库至 3.8.1 之后的安全版本。各 Linux 发行版用户应安装对应安全更新（如 Debian DSA-1511-1、Red Hat RHSA-2008-0090、Ubuntu USN-591-1）。"
-published = "2008-01-28"
-updated = "2026-06-16"
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
 sources = ["tenable"]
-
-[affected]
-vendor = "Apache"
-product = "OpenOffice"
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2007-4770"
-openoffice = "https://www.openoffice.org/security/cves/CVE-2007-4770.html"
-redhat = "http://rhn.redhat.com/errata/RHSA-2008-0090.html"
-debian = "https://lists.debian.org/debian-security-announce/2008/msg00075.html"
-ubuntu = "https://ubuntu.com/security/notices/USN-591-1"
-opensuse = "http://lists.opensuse.org/opensuse-security-announce/2008-03/msg00001.html"
+title = "CVE-2007-4770 漏洞"
+updated = ""
 
 [exploit]
-poc_urls = []
 exp_urls = []
-nuclei_templates = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2007-4770"]
+ave_id = "AVE-2007-0009"
+cve_id = "CVE-2007-4770"
 
 [meta]
-collected_at = "2026-07-10T12:52:04Z"
+collected_at = "2026-07-11T00:08:49.200933098+00:00"
 status = "completed"
+
+[references]
+urls = []
