@@ -1,12 +1,12 @@
 [basic]
-description = "Vulnerability identified as CVE-2007-4559. Please refer to vendor advisory for details."
-published = "2026-07-10"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 5.0
+description = "Python tarfile 模块中的 extract 与 extractall 函数存在目录遍历漏洞（CVE-2007-4559）。攻击者可在 TAR 压缩包的文件名中使用 ..（点点）序列，当目标系统解压该压缩包时覆盖任意文件。此漏洞影响 Python 2.3 至 3.x 系列，无需身份认证即可利用，可能导致任意文件写入甚至远程代码执行。"
+published = "2007-08-28"
+remediation = "建议升级 Python 至包含安全修复的版本。对于 RHEL/AlmaLinux 用户，执行 'dnf update python3.9 --releasever 2023.6.20241212' 更新至修复版本。其他发行版请参考各厂商安全公告升级对应 Python 软件包。"
+score = 6.8
 severity = "MEDIUM"
 sources = ["tenable"]
-title = "CVE-2007-4559 vulnerability"
-updated = "2026-07-10"
+title = "Python tarfile 模块目录遍历漏洞"
+updated = "2026-07-10T12:52:04+00:00"
 
 [exploit]
 exp_urls = []
@@ -18,8 +18,11 @@ ave_id = "AVE-2007-0008"
 cve_id = "CVE-2007-4559"
 
 [meta]
-collected_at = "2026-07-10T12:52:04.384360035+00:00"
+collected_at = "2026-07-10T12:52:04+00:00"
 status = "completed"
 
 [references]
-urls = []
+urls = [
+    "https://nvd.nist.gov/vuln/detail/CVE-2007-4559",
+    "https://access.redhat.com/security/cve/CVE-2007-4559",
+]

@@ -1,40 +1,43 @@
 [id]
 ave_id = "AVE-2026-0088"
-cve_id = "CVE-2026-1731"
-aliases = ["CVE-2026-1731"]
+cve_id = ""
+aliases = ["CNVD-2020-46552", "NUCLEI-HTTP-CNVD-2020-CNVD-2020-46552-YAML"]
 
 [basic]
-title = "BeyondTrust Remote Support/Privileged Remote Access 预认证命令注入远程代码执行漏洞"
-description = "CVE-2026-1731 是 BeyondTrust Remote Support (RS) 和 Privileged Remote Access (PRA) 产品中的一个预认证远程代码执行漏洞。攻击者通过向 WebSocket 端点 /nw 发送精心构造的请求，在 thin-scc-wrapper 脚本中利用 Bash 算术求值特性实现命令注入。由于 remoteVersion 变量未经充分校验，攻击者可在版本号字段中注入恶意 payload（如 a[$(command)]），导致任意 OS 命令以 site user 权限执行。该漏洞与 CVE-2024-12356 存在于同一端点，技术原理相似，已被 VShell 和 SparkRAT 等恶意软件武器化利用。"
-severity = "CRITICAL"
-score = 9.9
-cvss_v3 = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
-remediation = "立即升级 BeyondTrust Remote Support 至 25.3.2 或更高版本，升级 Privileged Remote Access 至 24.3.5 或更高版本。如暂无法升级，部署厂商提供的补丁 BT26-02-RS 和 BT26-02-PRA，并对 WebSocket 端点访问实施网络层访问控制，限制仅允许可信来源连接。"
-published = "2026-02-06"
-updated = "2026-06-16"
-sources = ["nvd", "beyondtrust", "github", "rapid7", "tenable", "unit42"]
+title = "深信服EDR终端检测响应平台远程命令执行漏洞（CNVD-2020-46552）"
+description = "深信服终端检测响应平台（EDR）存在远程命令执行漏洞，攻击者无需身份认证，通过向目标服务器的 /tool/log/c.php 接口发送恶意构造的HTTP请求，利用extract()函数变量覆盖及匿名函数回调机制，可将strip_slashes参数覆盖为system等危险函数，配合host参数注入系统命令，从而实现远程代码执行，获取目标服务器完全控制权限。受影响版本包括EDR v3.2.16、v3.2.17和v3.2.19，漏洞评分8.7分，危害等级高危。"
+severity = "HIGH"
+score = 8.7
+published = "2020-08-18"
+updated = "2020-08-18"
+remediation = "升级深信服EDR至v3.2.21版本并更新安全补丁包，或直接升级至EDR v3.2.32及之后版本。无法在线升级的用户可通过EDR管理平台「系统管理 - 升级管理 - 平台和终端升级」界面导入升级安装包完成修复。建议立即对受影响资产进行自查，确认版本后尽快完成升级。"
+sources = ["nuclei", "cnvd", "nosec", "sangfor", "nsfocus", "360cert"]
 
 [affected]
-vendor = "BeyondTrust"
-product = "Remote Support / Privileged Remote Access"
+vendor = "深信服"
+product = "终端检测响应平台（EDR）"
 
 [exploit]
-poc_urls = [
-  { url = "https://github.com/jakubie07/CVE-2026-1731", description = "Rust 编写的盲 RCE PoC 工具", source = "github" },
-  { url = "https://github.com/win3zz/CVE-2026-1731", description = "CVE-2026-1731 PoC", source = "github" }
+poc = [
+  {url = "https://github.com/0day404/vulnerability-poc/blob/master/%E6%B7%B1%E4%BF%A1%E6%9C%8DEDR%20c.php%20%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8CCNVD-2020-46552", description = "深信服EDR c.php远程命令执行PoC", source = "github"},
+  {url = "https://vulbase.vercel.app/peiqi/PeiQi_Wiki/Web%E5%BA%94%E7%94%A8%E6%BC%8F%E6%B4%9E/%E6%B7%B1%E4%BF%A1%E6%9C%8D/%E6%B7%B1%E4%BF%A1%E6%9C%8DEDR%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%20CNVD-2020-46552.html", description = "PeiQi漏洞库PoC详情及反弹shell方法", source = "peiqi"}
 ]
-nuclei_templates = []
+nuclei_templates = [
+  {url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2020/CNVD-2020-46552.yaml", description = "Nuclei检测模板", source = "projectdiscovery/nuclei-templates"}
+]
 
 [references]
-urls = [
-  "https://nvd.nist.gov/vuln/detail/CVE-2026-1731",
-  "https://www.beyondtrust.com/trust-center/security-advisories/bt26-02",
-  "https://www.rapid7.com/blog/post/ra-cve-2026-1731-analysis/",
-  "https://www.rapid7.com/blog/post/etr-cve-2026-1731-critical-unauthenticated-remote-code-execution-rce-beyondtrust-remote-support-rs-privileged-remote-access-pra/",
-  "https://unit42.paloaltonetworks.com/beyondtrust-cve-2026-1731/",
-  "https://www.tenable.com/cve/CVE-2026-1731",
-  "https://kudelskisecurity.com/research/advisory-cve-2026-1731---critical-pre-auth-rce-in-beyondtrust-rs-pra",
-  "https://www.dataprise.com/resources/defense-digest/beyondtrust-remote-code-execution/"
+nvd = ""
+avd = ""
+other = [
+  "https://nosec.org/home/detail/4532.html",
+  "https://cn-sec.com/archives/721509.html",
+  "https://www.sangfor.com.cn/sec_center/details/e4ffdcc25eb64371afc77222aa0ad6f7",
+  "https://www.sangfor.com/blog/cybersecurity/sangfor-endpoint-secure-remote-command-execution-vulnerability",
+  "https://nsfocusglobal.com/sangfor-edr-remote-command-execution-vulnerability-handling-guide/",
+  "https://cn-sec.com/archives/93929.html",
+  "https://vulncheck.com/advisories/sangfor-edr-command-injection",
+  "https://sechub.in/view/2156377"
 ]
 
 [meta]
