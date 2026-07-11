@@ -1,42 +1,25 @@
-[id]
-ave_id = "AVE-2007-0005"
-cve_id = "CVE-2007-2445"
-aliases = ["CVE-2007-2445", "VU#684664", "OSVDB-36196"]
-
 [basic]
-title = "libpng png_handle_tRNS函数拒绝服务漏洞"
-description = "libpng 1.0.25之前版本和1.2.x系列1.2.17之前版本中的pngrutil.c文件存在漏洞。攻击者可利用png_handle_tRNS函数中的缺陷，通过发送带有错误tRNS块CRC值的灰度PNG图像，导致使用该库的应用程序崩溃（拒绝服务）。该漏洞无需认证即可远程利用，攻击复杂度低，仅影响可用性，不涉及机密性或完整性泄露。"
-severity = "MEDIUM"
-score = 5.0
-cvss_v2 = "AV:N/AC:L/Au:N/C:N/I:N/A:P"
-published = "2007-05-16"
-updated = "2024-08-07"
-sources = ["nvd", "tenable", "redhat"]
-
-[basic.remediation]
-text = "升级libpng至安全版本：1.0.25或更高版本（适用于1.0.x系列），或1.2.17或更高版本（适用于1.2.x系列）。对于使用发行版包管理的系统，请应用Red Hat RHSA-2007:0356、Debian DSA-1750-1或Ubuntu USN-472-1等官方安全更新。若无法立即升级，应限制不受信任PNG图像的处理，或使用其他PNG解析库替代。"
-
-[affected]
-vendor = "libpng"
-product = "libpng"
-versions = ["< 1.0.25", "1.2.x < 1.2.17"]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["tenable"]
+title = "CVE-2007-2445 漏洞"
+updated = ""
 
 [exploit]
-poc = [
-    {url = "https://vuldb.com/vuln/3084", description = "VulDB记录为已知概念验证，但无公开利用代码", source = "vuldb"}
-]
+exp_urls = []
+poc_urls = []
 
-[references]
-nvd = ["https://nvd.nist.gov/vuln/detail/CVE-2007-2445"]
-other = [
-    "https://access.redhat.com/security/cve/CVE-2007-2445",
-    "https://bugzilla.redhat.com/show_bug.cgi?id=239425",
-    "https://www.tenable.com/cve/CVE-2007-2445",
-    "https://lists.debian.org/debian-security-announce/2009/msg00060.html",
-    "https://ubuntu.com/security/notices/USN-472-1",
-    "https://www.cve.org/CVERecord?id=CVE-2007-2445"
-]
+[id]
+aliases = ["CVE-2007-2445"]
+ave_id = "AVE-2007-0005"
+cve_id = "CVE-2007-2445"
 
 [meta]
 collected_at = "2026-07-10T22:44:07.255350710+00:00"
 status = "completed"
+
+[references]
+urls = []

@@ -1,35 +1,62 @@
 [id]
 ave_id = "AVE-2008-0004"
 cve_id = "CVE-2008-3431"
-aliases = ["CVE-2008-3431"]
+aliases = [
+    "CVE-2008-3431",
+    "GHSA-pxp3-358m-6vfm",
+    "GHSA-293c-r3p4-g63r",
+    "EUVD-2008-3417",
+    "GSD-2008-3431",
+    "CORE-2008-0716",
+]
 
 [basic]
-title = "Oracle VirtualBox VBoxDrv.sys 驱动输入验证漏洞"
-description = 'Sun xVM VirtualBox 1.6.4之前版本中的VBoxDrv.sys驱动VBoxDrvNtDeviceControl函数使用METHOD_NEITHER通信方法处理IOCTL，未能正确验证与Irp对象关联的缓冲区，导致本地攻击者可通过打开\\.\VBoxDrv设备并调用DeviceIoControl发送特制内核地址，从而提升至系统权限。此漏洞已在野被积极利用，已纳入CISA KEV目录。'
+title = "Sun xVM VirtualBox VBoxDrv.sys 驱动 IOCTL 本地权限提升漏洞"
+description = """Sun xVM VirtualBox 1.6.4 之前版本的 VBoxDrv.sys 驱动程序中 VBoxDrvNtDeviceControl 函数存在输入验证漏洞。
+该驱动在处理 IOCTL 请求时使用 METHOD_NEITHER 通信方式，且未正确验证与 Irp 对象关联的缓冲区。
+本地用户可通过打开 \\\\.\\VBoxDrv 设备并调用 DeviceIoControl 发送精心构造的内核地址来利用此漏洞，
+从而在内核态执行任意代码，实现从普通用户到 SYSTEM 权限的本地提权。该漏洞已被 CISA 纳入
+已知被利用漏洞（KEV）目录，且存在公开的 PoC 利用代码。"""
 severity = "HIGH"
 score = 8.8
+cvss_v3 = "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:C/C:H/I:H/A:H"
+cvss_v2 = "AV:L/AC:L/Au:N/C:C/I:C/A:C"
 published = "2008-08-05"
-updated = "2026-06-16"
-remediation = "升级至 Oracle VirtualBox 1.6.4 或更高版本，并及时应用厂商安全补丁。限制本地用户对 \\.VBoxDrv 设备的访问权限。"
-sources = ["kev", "nvd"]
+updated = "2025-10-22"
+remediation = "立即升级 Sun xVM VirtualBox 至 1.6.4 或更高版本。若无法立即升级，应限制对 VBoxDrv 设备（\\\\.\\VBoxDrv）的访问权限，仅允许授权用户和进程访问，并考虑卸载不需要的 VirtualBox 组件。"
+sources = ["nvd", "kev", "ghsa", "exploit-db", "cvedetails"]
 
 [affected]
 vendor = "Oracle"
 product = "VirtualBox"
-
-[references]
-urls = [
-    "https://nvd.nist.gov/vuln/detail/CVE-2008-3431",
-    "http://virtualbox.org/wiki/Changelog",
-    "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2008-3431",
-    "http://www.coresecurity.com/content/virtualbox-privilege-escalation-vulnerability",
-    "https://exchange.xforce.ibmcloud.com/vulnerabilities/44202"
-]
+versions = ["< 1.6.4"]
+cpe = "cpe:2.3:a:oracle:virtualbox:*:*:*:*:*:*:*:*"
 
 [exploit]
-poc_urls = ["https://www.exploit-db.com/exploits/6218"]
-exp_urls = ["https://www.exploit-db.com/exploits/6218"]
+poc = [
+    { url = "https://www.exploit-db.com/exploits/6218", description = "Sun xVM VirtualBox < 1.6.4 本地权限提升 PoC", source = "Exploit-DB" },
+]
+exp_urls = [
+    "https://www.exploit-db.com/exploits/6218",
+]
+poc_urls = []
+nuclei_templates = []
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2008-3431"
+avd = ""
+other = [
+    "https://github.com/advisories/GHSA-pxp3-358m-6vfm",
+    "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2008-3431",
+    "https://www.coresecurity.com/content/virtualbox-privilege-escalation-vulnerability",
+    "https://exchange.xforce.ibmcloud.com/vulnerabilities/44202",
+    "http://www.securityfocus.com/bid/30481",
+    "http://secunia.com/advisories/31361",
+    "https://www.cvedetails.com/cve/CVE-2008-3431",
+    "https://cvebase.io/cve/CVE-2008-3431",
+    "https://kevdb.com/cves/cve-2008-3431",
+]
 
 [meta]
+collected_at = "2026-07-11T00:00:00.000000000+00:00"
 status = "completed"
-collected_at = "2026-07-11T00:00:00Z"
