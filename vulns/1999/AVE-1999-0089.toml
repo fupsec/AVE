@@ -1,0 +1,32 @@
+[basic]
+description = "ToolTalk数据库服务rpc.ttdbserverd中存在缓冲区溢出漏洞，该服务运行于root权限下。远程攻击者可通过向此ONC RPC服务发送特制的RPC消息，触发栈缓冲区溢出，覆盖激活记录从而控制程序执行流，最终在受影响系统上以root权限执行任意代码。该漏洞影响Sun Solaris及SGI IRIX等Unix操作系统上运行CDE或OpenWindows环境的系统。"
+published = "1998-04-01"
+remediation = "建议用户联系操作系统厂商获取补丁。SGI已发布安全公告19981101-01-A和19981101-01-PX修复此漏洞，建议升级到修复版本或禁用rpc.ttdbserverd服务。无法升级的系统可通过防火墙限制对RPC端口111的访问来缓解风险。"
+score = 10.0
+severity = "CRITICAL"
+sources = [
+    "nvd.vuldb",
+    "exploitdb",
+    "securityfocus",
+]
+title = "Sun Solaris / SGI IRIX ToolTalk RPC服务缓冲区溢出漏洞"
+updated = "1998-11-01"
+
+[exploit]
+exp_urls = ["https://www.exploit-db.com/exploits/19102"]
+poc_urls = ["https://www.exploit-db.com/exploits/19102"]
+
+[id]
+aliases = ["CVE-1999-0003"]
+ave_id = "AVE-1999-0089"
+
+[meta]
+collected_at = "2026-07-11T22:50:19.061162429+00:00"
+status = "completed"
+
+[references]
+urls = [
+    "http://www.securityfocus.com/bid/122",
+    "https://www.exploit-db.com/exploits/19102",
+    "https://nvd.nist.gov/vuln/detail/CVE-1999-0003",
+]
