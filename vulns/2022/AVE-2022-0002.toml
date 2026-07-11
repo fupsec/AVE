@@ -1,0 +1,25 @@
+[basic]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["msrc"]
+title = "CVE-2022-33065"
+updated = ""
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2022-33065"]
+ave_id = "AVE-2022-0002"
+cve_id = "CVE-2022-33065"
+
+[meta]
+collected_at = "2026-07-11T17:16:24.783890143+00:00"
+status = "completed"
+
+[references]
+urls = []
