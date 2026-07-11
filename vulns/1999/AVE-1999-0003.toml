@@ -1,29 +1,25 @@
-[id]
-ave_id = "AVE-1999-0003"
-cve_id = "CVE-1999-0077"
-aliases = ["CVE-1999-0077"]
-
 [basic]
-title = "TCP序列号可预测漏洞"
-description = "TCP/IP协议栈使用可预测的初始序列号（ISN），攻击者通过分析可预测TCP连接序列号，伪造TCP数据包实施会话劫持或数据注入攻击。该漏洞被用于1994-1995年的Mitnick攻击，影响所有使用TCP协议的操作系统和网络设备。"
-severity = "HIGH"
-score = 7.5
-sources = ["redhat", "nvd", "mitre"]
-published = "1995-01-01"
-updated = "2026-06-16"
-remediation = "升级操作系统至厂商支持的版本，确保TCP协议栈实现RFC 1948标准，使用加密随机化方式生成初始序列号，避免序列号可预测。"
-
-[references]
-urls = [
-    "https://nvd.nist.gov/vuln/detail/CVE-1999-0077",
-    "https://access.redhat.com/security/cve/CVE-1999-0077",
-    "https://www.cve.org/CVERecord?id=CVE-1999-0077"
-]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["cve"]
+title = "CVE-1999-0386 漏洞"
+updated = ""
 
 [exploit]
-poc_urls = []
 exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0386"]
+ave_id = "AVE-1999-0003"
+cve_id = "CVE-1999-0386"
 
 [meta]
+collected_at = "2026-07-11T04:25:57.887102591+00:00"
 status = "completed"
-collected_at = "2026-07-11T12:00:00Z"
+
+[references]
+urls = []
