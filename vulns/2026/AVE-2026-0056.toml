@@ -1,29 +1,28 @@
 [basic]
-description = "HL7 FHIR Core 的 FHIRPathEngine 实现中存在正则表达式拒绝服务漏洞。matches()、matchesFull() 和 replaceMatches() 函数将用户可控的正则表达式传递给 Java 的 Pattern.compile()，但超时机制未能正确中断正在执行的线程。攻击者可构造 (a+)+$ 等恶意模式导致指数级回溯，耗尽 CPU 资源，造成服务不可用。"
-published = "2026-06-01"
-remediation = "升级至 ca.uhn.hapi.fhir 6.9.4.2 或 6.9.9 及以上版本，或参考厂商安全公告应用补丁。"
-score = 7.5
-severity = "HIGH"
-sources = ["ghsa", "github"]
-title = "HL7 FHIR Core FHIRPathEngine 正则表达式拒绝服务漏洞"
-updated = "2026-07-09"
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["ghsa"]
+title = "CVE-2026-49485"
+updated = ""
 
 [exploit]
 exp_urls = []
 poc_urls = []
 
 [id]
-aliases = ["CVE-2026-49485", "GHSA-7cmj-v6x8-frvv"]
+aliases = [
+    "CVE-2026-49485",
+    "GHSA-7cmj-v6x8-frvv",
+]
 ave_id = "AVE-2026-0056"
 cve_id = "CVE-2026-49485"
 
 [meta]
-collected_at = "2026-07-10T12:52:47.949099111+00:00"
+collected_at = "2026-07-11T00:19:08.172508640+00:00"
 status = "completed"
 
 [references]
-urls = ["https://github.com/advisories/GHSA-7cmj-v6x8-frvv"]
-
-[score]
-cvss_v3 = 7.5
-cvss_v3_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+urls = []
