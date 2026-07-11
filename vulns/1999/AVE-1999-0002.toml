@@ -1,37 +1,25 @@
 [id]
 ave_id = "AVE-1999-0002"
-cve_id = "CVE-1999-0524"
-aliases = ["CVE-1999-0524"]
+cve_id = "CVE-1999-0382"
+aliases = ["CVE-1999-0382"]
 
 [basic]
-title = "ICMP时间戳及网络掩码信息泄露漏洞"
-description = "攻击者可通过向目标主机发送ICMP时间戳请求（类型13）或地址掩码请求（类型17），获取系统的当前时间和网络掩码信息。这些信息可被用于辅助其他攻击，例如利用已知时间戳绕过基于时间的认证机制或推断网络拓扑结构。该漏洞影响广泛的操作系统和网络设备，包括但不限于Linux、Windows、macOS、Cisco IOS、AIX、Solaris等平台上的ICMP实现。"
-severity = "MEDIUM"
-score = 4.0
-sources = ["tenable", "nvd"]
-published = "1997-08-01"
+title = "Microsoft Windows NT 屏幕保护程序权限提升漏洞"
+description = "Windows NT 的屏幕保护程序在锁定系统后未能正确验证其安全上下文是否已更改，攻击者可以利用此漏洞在系统上以提升的权限运行程序。该漏洞影响 Windows NT 3.5.1 及 4.0 多个版本，本地攻击者可通过特定操作绕过屏幕保护限制，获取系统最高权限执行任意代码。"
+severity = "HIGH"
+score = 7.2
+sources = ["cve"]
+published = "1999-03-12"
 updated = "2026-06-16"
-remediation = "在网络边界防火墙或主机防火墙上配置规则，阻止外部的ICMP时间戳请求（类型13）和地址掩码请求（类型17）数据包。对于Linux系统，使用iptables规则丢弃此类报文；对于Windows系统，通过高级安全防火墙创建入站规则拦截ICMPv4类型13和17的流量。"
+remediation = "升级到 Windows NT 最新版本并安装 Microsoft 安全公告 MS99-008 提供的安全补丁，同时限制本地用户对系统的物理访问权限。"
 
 [references]
-urls = [
-    "https://nvd.nist.gov/vuln/detail/CVE-1999-0524",
-    "https://exchange.xforce.ibmcloud.com/vulnerabilities/306",
-    "https://exchange.xforce.ibmcloud.com/vulnerabilities/322",
-    "https://support.f5.com/csp/article/K15277",
-    "http://kb.juniper.net/InfoCenter/index?page=content&id=JSA10705",
-    "http://kb.vmware.com/selfservice/microsites/search.do?cmd=displayKC&externalId=1434",
-]
+urls = ["https://docs.microsoft.com/en-us/security-updates/securitybulletins/1999/ms99-008", "https://nvd.nist.gov/vuln/detail/CVE-1999-0382"]
 
 [exploit]
-poc_urls = [
-    "https://github.com/threatlabindonesia/CVE-1999-0524-ICMP-Timestamp-and-Address-Mask-Request-Exploit",
-    "https://github.com/b1tsec/CVE-1999-0524",
-    "https://github.com/Ransc0rp1on/ICMP-Timestamp-POC",
-    "https://github.com/noraj/ChronoLeak",
-]
+poc_urls = []
 exp_urls = []
 
 [meta]
 status = "completed"
-collected_at = "2026-07-11T00:00:00Z"
+collected_at = "2026-07-11T00:00:00+00:00"

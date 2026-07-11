@@ -1,0 +1,30 @@
+[id]
+ave_id = "AVE-2011-0001"
+cve_id = "CVE-2011-10034"
+aliases = ["CVE-2011-10034"]
+
+[basic]
+title = "IRAI AUTOMGEN 8.0.0.7 及之前版本释放后使用远程拒绝服务漏洞"
+description = "AUTOMGEN 8.0.0.7及之前版本（也称为8.022）在处理项目文件时存在释放后使用（Use-After-Free）漏洞。程序在处理特定格式错误的字段时会释放一个对象，随后解引用悬空指针，导致攻击者可通过可控内存影响间接调用，造成拒绝服务。在某些条件下，可能实现远程代码执行。"
+severity = "MEDIUM"
+score = 6.9
+sources = ["msrc", "nvd"]
+published = "2025-11-12"
+updated = "2026-06-16"
+remediation = "建议升级至AUTOMGEN 8.0.0.7以上版本，避免打开来源不明的项目文件，并实施最小权限原则以降低风险。"
+
+[references]
+urls = [
+  "https://nvd.nist.gov/vuln/detail/CVE-2011-10034",
+  "https://en.iraifrance.com/automgen",
+  "https://www.exploit-db.com/exploits/17964",
+  "https://www.vulncheck.com/advisories/irai-automgen-use-after-free-remote-dos"
+]
+
+[exploit]
+poc_urls = ["https://www.exploit-db.com/exploits/17964"]
+exp_urls = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-11T12:00:00Z"
