@@ -17,7 +17,7 @@ aliases = ["CVE-2022-37700"]
 ave_id = "AVE-2022-0001"
 
 [meta]
-collected_at = "2026-07-11T19:23:21.720347811+00:00"
+collected_at = "2026-07-11T19:27:35.163321014+00:00"
 status = "completed"
 
 [references]
