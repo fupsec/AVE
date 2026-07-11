@@ -1,0 +1,30 @@
+[basic]
+description = "NFS服务中的mountd组件存在缓冲区溢出漏洞，远程攻击者无需身份认证即可利用该漏洞发送特制请求触发缓冲区溢出，从而获得目标系统的root权限。该漏洞主要影响Linux系统，包括RedHat Linux 5.1和Caldera OpenLinux Standard 1.2等版本。"
+published = "1998-10-12"
+remediation = "建议升级到已修复此漏洞的Linux系统版本，或安装厂商提供的安全补丁。对于SGI系统，可参考其安全公告19981006-01-I获取相应补丁。"
+score = 10.0
+severity = "CRITICAL"
+sources = [
+    "NVD",
+    "exploitdb",
+]
+title = "Linux NFS Mountd 缓冲区溢出漏洞"
+updated = "1998-10-12"
+
+[exploit]
+exp_urls = []
+poc_urls = ["https://www.exploit-db.com/exploits/19096"]
+
+[id]
+aliases = ["CVE-1999-0002"]
+ave_id = "AVE-1999-0080"
+
+[meta]
+collected_at = "2026-07-11T22:47:42.096105450+00:00"
+status = "completed"
+
+[references]
+urls = [
+    "http://www.securityfocus.com/bid/121",
+    "http://www.ciac.org/ciac/bulletins/j-006.shtml",
+]
