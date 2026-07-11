@@ -1,32 +1,25 @@
-[id]
-ave_id = "AVE-2006-0001"
-cve_id = "CVE-2006-10002"
-aliases = ["CVE-2006-10002"]
-
 [basic]
-title = "Perl XML::Parser 解析器堆缓冲区溢出漏洞"
-description = "XML::Parser是Perl语言中用于解析XML文档的模块，其2.45及之前版本中存在堆缓冲区溢出漏洞。当使用:utf8 PerlIO层时，parse_stream()函数中Perl的read()返回解码后的Unicode字符，而SvPV()返回多字节UTF-8字节数据，导致实际写入数据超出预分配缓冲区大小，引发堆内存损坏（double free或内存破坏）。攻击者可构造特制XML文件触发此漏洞，造成拒绝服务或潜在代码执行。"
-severity = "HIGH"
-score = 7.5
-sources = ["msrc", "nvd"]
-published = "2026-03-19"
-updated = "2026-06-16"
-remediation = "升级XML::Parser至2.46或更高版本；及时安装操作系统发行版提供的perl-XML-Parser安全更新补丁；避免使用:utf8 PerlIO层解析不可信XML数据。"
-
-[references]
-urls = [
-    "http://www.openwall.com/lists/oss-security/2026/03/19/1",
-    "http://www.openwall.com/lists/oss-security/2026/03/22/3",
-    "https://github.com/cpan-authors/XML-Parser/commit/56b0509dfc6b559cd7555ea81ee62e3622069255.patch",
-    "https://github.com/cpan-authors/XML-Parser/issues/64",
-    "https://metacpan.org/release/TODDR/XML-Parser-2.46/changes",
-    "https://rt.cpan.org/Ticket/Display.html?id=19859",
-]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["msrc"]
+title = "CVE-2006-10002 漏洞"
+updated = ""
 
 [exploit]
-poc_urls = []
 exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2006-10002"]
+ave_id = "AVE-2006-0001"
+cve_id = "CVE-2006-10002"
 
 [meta]
+collected_at = "2026-07-11T04:06:34.271742960+00:00"
 status = "completed"
-collected_at = "2026-07-11T00:00:00Z"
+
+[references]
+urls = []
