@@ -1,12 +1,15 @@
 [basic]
-description = "Vulnerability identified as CVE-2009-0238. Please refer to vendor advisory for details."
-published = "2026-07-10"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 5.0
-severity = "MEDIUM"
-sources = ["kev"]
-title = "CVE-2009-0238 vulnerability"
-updated = "2026-07-10"
+description = "Microsoft Office Excel 2000 SP3、2002 SP3、2003 SP3、2007 SP1 及 Excel Viewer 等多个版本中存在远程代码执行漏洞。当用户打开包含畸形对象的特制 Excel 文档时，攻击者可触发对无效对象的访问，从而在当前用户权限下执行任意代码。该漏洞已在 2009 年 2 月被 Trojan.Mdropper.AC 恶意软件在野外活跃利用，无需身份验证，用户交互仅需打开恶意文件即可完成攻击。"
+published = "2009-04-14"
+remediation = "安装 Microsoft 安全公告 MS09-009（KB968272）提供的安全更新，将 Excel 升级至不受影响的版本。对于无法立即修补的系统，建议禁用 Excel 中的对象链接与嵌入（OLE）功能，并避免打开来自不受信任来源的 Office 文档。"
+score = 8.8
+severity = "HIGH"
+sources = [
+    "kev",
+    "nvd",
+]
+title = "Microsoft Office Excel 远程代码执行漏洞"
+updated = "2026-06-16"
 
 [exploit]
 exp_urls = []
@@ -18,8 +21,13 @@ ave_id = "AVE-2009-0001"
 cve_id = "CVE-2009-0238"
 
 [meta]
-collected_at = "2026-07-10T12:52:04.405431204+00:00"
+collected_at = "2026-07-10T12:52:04.481623289+00:00"
 status = "completed"
 
 [references]
-urls = []
+urls = [
+    "https://nvd.nist.gov/vuln/detail/CVE-2009-0238",
+    "https://docs.microsoft.com/en-us/security-updates/securitybulletins/2009/ms09-009",
+    "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2009-0238",
+    "http://www.us-cert.gov/cas/techalerts/TA09-104A.html",
+]

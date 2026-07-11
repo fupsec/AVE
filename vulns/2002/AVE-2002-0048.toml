@@ -1,0 +1,40 @@
+[affected]
+product = "fetchmail"
+vendor = "fetchmail"
+
+[basic]
+cvss_v2 = 7.5
+description = "Fetchmail 6.0.0 及之前版本中存在缓冲区溢出漏洞。远程攻击者可通过向邮件服务器发送特制的长邮件头或长 Received 头，触发 readheaders 函数或 parse_received 函数中的缓冲区溢出，导致服务拒绝（崩溃）或执行任意代码。攻击无需身份认证，风险等级高。"
+published = "2002-10-11"
+remediation = "升级 Fetchmail 至 6.1.0 或更高版本，修复 readheaders 和 parse_received 函数中的缓冲区溢出问题。如无法升级，应在网络边界限制对邮件服务器的访问。"
+score = 7.5
+severity = "HIGH"
+sources = [
+    "osv",
+    "nvd",
+]
+title = "Fetchmail 远程缓冲区溢出代码执行漏洞"
+updated = "2026-06-16"
+
+[exploit]
+exp_urls = []
+nuclei_templates = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2002-1174"]
+ave_id = "AVE-2002-0048"
+cve_id = "CVE-2002-1174"
+
+[meta]
+collected_at = "2026-07-11T12:00:00Z"
+status = "completed"
+
+[references]
+urls = [
+    "https://nvd.nist.gov/vuln/detail/CVE-2002-1174",
+    "http://rhn.redhat.com/errata/RHSA-2002-215.html",
+    "http://www.debian.org/security/2002/dsa-171",
+    "http://www.securityfocus.com/bid/5825",
+    "http://www.securityfocus.com/bid/5827",
+]
