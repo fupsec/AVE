@@ -1,43 +1,25 @@
-[id]
-ave_id = "AVE-1999-0018"
-cve_id = "CVE-1999-0025"
-aliases = ["CVE-1999-0025", "EUVD-1999-0025", "BID-346", "EDB-19274"]
-
 [basic]
-title = "SGI IRIX df命令缓冲区溢出本地提权漏洞"
-description = "SGI IRIX系统中的df命令存在缓冲区溢出漏洞。由于df程序默认以setuid root权限安装，且对用户输入参数（特别是-f选项）缺乏边界检查，本地攻击者可通过构造超长参数覆盖程序栈空间，注入并执行任意shellcode，从而获取root权限。该漏洞影响IRIX 5.0至6.4等多个版本。"
-severity = "HIGH"
-score = 7.2
-cvss_v2 = "AV:L/AC:L/Au:N/C:C/I:C/A:C"
-published = "1997-07-16"
-updated = "2026-04-16"
-remediation = "立即移除df程序的setuid权限：执行 chmod 500 /sbin/df。如需非root用户使用df功能，可部署AUSCERT提供的溢出包装器（overflow_wrapper），该包装器会检查命令行参数长度并阻止超长参数执行。等待厂商发布正式补丁后及时升级。"
-sources = ["nvd", "exploitdb", "bugtraq", "auscert"]
-
-[affected]
-vendor = "SGI"
-product = "IRIX"
-versions = ["5.0", "5.0.1", "5.1", "5.1.1", "5.2", "5.3", "6.0", "6.0.1", "6.1", "6.2", "6.3", "6.4"]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["exploitdb"]
+title = "CVE-1999-0025 漏洞"
+updated = ""
 
 [exploit]
-poc = [
-    {url = "https://www.exploit-db.com/exploits/19274", description = "SGI IRIX 6.3 df本地提权exploit，由David Hedley编写，利用-f选项缓冲区溢出执行shellcode获取root权限", source = "exploit-db"}
-]
-exp = [
-    {url = "https://www.exploit-db.com/raw/19274", description = "exploit源代码，包含MIPS架构shellcode和栈地址定位代码", source = "exploit-db"}
-]
-nuclei_templates = []
+exp_urls = []
+poc_urls = []
 
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-1999-0025"
-avd = ""
-other = [
-    "https://seclists.org/bugtraq/1997/May/161",
-    "http://ftp.carnet.hr/pub/CARNet/CCERT/csir/auscert/advisory/AA-97.19.IRIX.df.buffer.overflow.vul",
-    "https://cliplab.org/Users/alopez/bugs/bugtraq4/0170.html",
-    "https://app.opencve.io/cve/CVE-1999-0025"
-]
+[id]
+aliases = ["CVE-1999-0025"]
+ave_id = "AVE-1999-0018"
+cve_id = "CVE-1999-0025"
 
 [meta]
-collected_at = "2026-07-11T00:00:00Z"
+collected_at = "2026-07-10T23:19:13.114565072+00:00"
 status = "completed"
+
+[references]
+urls = []
