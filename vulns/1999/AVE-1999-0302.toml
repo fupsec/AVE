@@ -1,0 +1,27 @@
+[basic]
+description = "Netscape Communicator 4.5 中的 talkback 功能存在安全漏洞。当本地用户的 Netscape 浏览器崩溃时，攻击者可利用该漏洞覆盖其他用户的任意文件，导致信息泄露或系统异常。"
+published = "1999-03-18"
+remediation = "建议升级 Netscape Communicator 至更高版本以修复此漏洞。由于该产品已停止维护，建议迁移至现代浏览器。"
+score = 2.1
+severity = "LOW"
+sources = [
+    "NVD",
+    "CVE",
+]
+title = "Netscape Communicator 4.5 talkback 本地文件覆盖漏洞"
+updated = "2026-06-16"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0424"]
+ave_id = "AVE-1999-0302"
+
+[meta]
+collected_at = "2026-07-11T23:25:55.949183074+00:00"
+status = "completed"
+
+[references]
+urls = ["https://exchange.xforce.ibmcloud.com/vulnerabilities/CVE-1999-0424"]
