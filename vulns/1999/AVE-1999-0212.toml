@@ -1,0 +1,31 @@
+[basic]
+description = "FLEXlm License Manager 4.0至5.0版本在SGI IRIX与Sun Solaris操作系统中存在本地权限提升漏洞。License Manager在/var/tmp目录下创建root属主且权限为666的锁文件，并会跟随符号链接。本地攻击者可通过创建符号链接指向目标文件，使License Manager将内容写入目标文件，从而获取root权限并执行任意代码。"
+published = "1997-01-06"
+remediation = "升级FLEXlm License Manager至5.0以上版本；限制本地用户对/var/tmp目录写入权限，监控并阻止针对License Manager锁文件的符号链接攻击行为。"
+score = 7.2
+severity = "HIGH"
+sources = [
+    "nvd",
+    "exploitdb",
+]
+title = "SGI IRIX与Sun Solaris FLEXlm License Manager本地权限提升漏洞"
+updated = "2024-11-20"
+
+[exploit]
+exp_urls = []
+poc_urls = ["https://www.exploit-db.com/exploits/19350"]
+
+[id]
+aliases = ["CVE-1999-0051"]
+ave_id = "AVE-1999-0212"
+
+[meta]
+collected_at = "2026-07-11T23:23:57.486407370+00:00"
+status = "completed"
+
+[references]
+urls = [
+    "https://nvd.nist.gov/vuln/detail/CVE-1999-0051",
+    "https://www.exploit-db.com/exploits/19350",
+    "https://exchange.xforce.ibmcloud.com/vulnerabilities/CVE-1999-0051",
+]
