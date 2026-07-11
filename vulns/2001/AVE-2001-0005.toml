@@ -1,0 +1,30 @@
+[basic]
+description = "CVE-2001-0798 是一个已被撤销的 CVE 编号。该编号在 2001 年被 Silicon Graphics (SGI) 预留，但从未与任何实际漏洞关联。根据 MITRE 和 NVD 的官方说明，此编号不应被用于任何安全评估或漏洞管理用途。该条目仅为记录此 CVE 编号的撤销状态而存在。"
+published = "2017-05-11"
+remediation = "此CVE编号已被撤销，不存在实际漏洞，无需执行任何修复操作。"
+score = 3.5
+severity = "LOW"
+sources = [
+    "nvd",
+    "mitre",
+]
+title = "Silicon Graphics (SGI) 预留CVE编号已被撤销（未关联实际漏洞）"
+updated = "2023-11-06"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2001-0798"]
+ave_id = "AVE-2001-0005"
+
+[meta]
+collected_at = "2026-07-11T22:34:51.876015201+00:00"
+status = "completed"
+
+[references]
+urls = [
+    "https://nvd.nist.gov/vuln/detail/CVE-2001-0798",
+    "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2001-0798",
+]
