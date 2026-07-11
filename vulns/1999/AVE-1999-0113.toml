@@ -1,0 +1,30 @@
+[basic]
+description = "SGI IRIX 6.2系统中的eject命令存在缓冲区溢出漏洞，本地攻击者可通过向该命令发送特制输入触发缓冲区溢出，从而获得root权限。该漏洞影响SGI IRIX系统，攻击者无需用户交互即可利用，成功利用后可完全控制受影响的系统，造成机密性、完整性和可用性的完全丧失。"
+published = "1997-07-16"
+remediation = "建议升级到SGI IRIX的最新安全版本或应用厂商发布的相关补丁。由于该系统版本已停止维护，建议迁移至受支持的操作系统。"
+score = 7.2
+severity = "HIGH"
+sources = [
+    "nvd",
+    "exploitdb",
+]
+title = "SGI IRIX 6.2 eject命令缓冲区溢出本地提权漏洞"
+updated = "2026-06-16"
+
+[exploit]
+exp_urls = ["https://www.exploit-db.com/exploits/19277"]
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0027"]
+ave_id = "AVE-1999-0113"
+
+[meta]
+collected_at = "2026-07-11T23:09:11.417882159+00:00"
+status = "completed"
+
+[references]
+urls = [
+    "https://exchange.xforce.ibmcloud.com/vulnerabilities/CVE-1999-0027",
+    "https://www.exploit-db.com/exploits/19277",
+]
