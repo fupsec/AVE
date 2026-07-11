@@ -4,8 +4,8 @@ published = ""
 remediation = "Refer to vendor advisory and upgrade to fixed version."
 score = 0.0
 severity = "UNKNOWN"
-sources = ["nuclei"]
-title = "NUCLEI-HTTP-CNVD-2020-CNVD-2020-46552-YAML 漏洞"
+sources = ["github"]
+title = "CVE-2026-1731"
 updated = ""
 
 [exploit]
@@ -13,12 +13,12 @@ exp_urls = []
 poc_urls = []
 
 [id]
-aliases = ["NUCLEI-HTTP-CNVD-2020-CNVD-2020-46552-YAML"]
+aliases = ["CVE-2026-1731"]
 ave_id = "AVE-2026-0088"
-cve_id = "NUCLEI-HTTP-CNVD-2020-CNVD-2020-46552-YAML"
+cve_id = "CVE-2026-1731"
 
 [meta]
-collected_at = "2026-07-11T00:08:04.040601347+00:00"
+collected_at = "2026-07-11T00:07:57.616484720+00:00"
 status = "completed"
 
 [references]
