@@ -1,76 +1,43 @@
-[affected]
-product = "django-helpdesk"
-vendor = "Django-helpdesk Project"
-
-[authenticity]
-cve_confidence = "high"
-notes = "该漏洞为本地权限提升类型（AV:L），需要本地文件系统访问才能利用。目前无公开的 PoC 或 Nuclei 检测模板。修复已合入 v1.0.0 release。"
-poc_confidence = "low"
-
-[basic]
-description = "django-helpdesk 1.0.0 之前的版本因 models.py 中使用 os.umask(0) 而存在敏感数据泄露漏洞。该函数调用将文件创建掩码设置为 0，禁用了默认权限限制，导致应用程序创建的文件可能继承过度宽松的访问控制，从而使工单附件、用户详情或系统日志等敏感数据暴露给未授权用户。攻击者可利用此不安全的权限设置读取或修改敏感信息。"
-published = "2025-05-31"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 5.5
-severity = "MEDIUM"
-source = "nvd"
-sources = ["unknown"]
-title = "Django-Helpdesk 允许敏感数据暴露（CVE-2018-25111）"
-updated = "2025-06-17"
-
-[exploit]
-exp = []
-nuclei_templates = []
-poc = []
-
 [id]
-avd_id = "CVE-2018-25111"
 ave_id = "AVE-2018-0040"
 cve_id = "CVE-2018-25111"
-other_ids = [
-    "GHSA-m4jx-m5hg-qrxx",
-    "SNYK-PYTHON-DJANGOHELPDESK-10291053",
+aliases = ["CVE-2018-25111", "GHSA-m4jx-m5hg-qrxx", "EUVD-2025-16536", "SNYK-PYTHON-DJANGOHELPDESK-10291053"]
+
+[basic]
+title = "Django-Helpdesk os.umask(0) 敏感数据暴露漏洞"
+description = "django-helpdesk 1.0.0 之前的版本因在 models.py 中使用 os.umask(0) 导致敏感数据暴露。该函数将文件创建掩码设为 0，禁用了默认的权限限制，使得应用创建的文件继承过于宽松的访问控制。攻击者可利用此配置读取或修改工单附件、用户详情或系统日志等敏感数据，造成未授权的信息泄露或数据篡改。攻击条件为本地访问，无需特殊权限。"
+severity = "MEDIUM"
+score = 5.1
+cvss_v3 = "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N"
+published = "2025-05-31"
+updated = "2025-06-02"
+remediation = "将 django-helpdesk 升级至 1.0.0 或更高版本。若暂时无法升级，可在部署后手动执行 chmod -R o-rwx /path/to/helpdesk_media/ 限制文件权限，并审查 models.py 中 os.umask(0) 的使用，替换为安全的掩码值（如 0o077）以确保文件仅限所有者访问。"
+sources = ["nvd", "avd", "github", "snyk"]
+
+[affected]
+vendor = "django-helpdesk Project"
+product = "django-helpdesk"
+
+[exploit]
+poc_urls = [
+  { url = "https://github.com/django-helpdesk/django-helpdesk/pull/1120", description = "修复 os.umask(0) 问题的补丁 PR", source = "github" }
+]
+exp_urls = []
+nuclei_templates = []
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2018-25111"
+avd = "https://avd.xianjincard.com/avd/CVE-2018-25111"
+other = [
+  "https://github.com/django-helpdesk/django-helpdesk/issues/591",
+  "https://github.com/django-helpdesk/django-helpdesk/pull/1120",
+  "https://github.com/django-helpdesk/django-helpdesk/releases/tag/v1.0.0",
+  "https://github.com/advisories/GHSA-m4jx-m5hg-qrxx",
+  "https://security.snyk.io/vuln/SNYK-PYTHON-DJANGOHELPDESK-10291053",
+  "https://app.opencve.io/cve/CVE-2018-25111",
+  "https://cvefeed.io/vuln/detail/CVE-2018-25111"
 ]
 
 [meta]
-collected_at = "2026-07-10T00:00:00Z"
+collected_at = "2025-07-11T00:00:00Z"
 status = "completed"
-
-[references]
-avd = "https://avd.aliyun.com/detail?id=CVE-2018-25111"
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2018-25111"
-other = [
-    "https://github.com/advisories/GHSA-m4jx-m5hg-qrxx",
-    "https://github.com/django-helpdesk/django-helpdesk/issues/591",
-    "https://github.com/django-helpdesk/django-helpdesk/pull/1120",
-    "https://github.com/django-helpdesk/django-helpdesk/commit/90bcac954f4713ddfcf388cf9ec5ddd12bf1b632",
-    "https://github.com/django-helpdesk/django-helpdesk/releases/tag/v1.0.0",
-    "https://security.snyk.io/vuln/SNYK-PYTHON-DJANGOHELPDESK-10291053",
-    "https://cvefeed.io/vuln/detail/CVE-2018-25111",
-]
-
-[remediation]
-fix = "升级 django-helpdesk 到 1.0.0 或更高版本。修复 PR #1120 已合入，移除了 models.py 中不安全的 os.umask(0) 调用。"
-steps = [
-    "步骤1: 确认当前 django-helpdesk 版本（pip show django-helpdesk）",
-    "步骤2: 升级到 1.0.0 或更高版本（pip install --upgrade django-helpdesk）",
-    "步骤3: 检查 models.py 中是否仍存在 os.umask(0) 调用",
-    "步骤4: 审计已生成文件的权限，对媒体目录执行 chmod -R o-rwx 修复",
-]
-workaround = "如无法立即升级，可手动设置限制性权限：chmod -R o-rwx /path/to/helpdesk_media/，确保 Django-helpdesk 上传目录及媒体文件仅允许属主访问。"
-
-[score]
-cvss_v2 = 5.0
-cvss_v2_vector = "AV:N/AC:L/Au:N/C:P/I:N/A:N"
-cvss_v3 = 5.1
-cvss_v3_vector = "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N"
-cvss_v4 = 0.0
-cvss_v4_vector = ""
-
-[tags]
-tags = [
-    "CWE-277",
-    "Sensitive-Data-Exposure",
-    "Insecure-Permissions",
-    "Django",
-]

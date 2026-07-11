@@ -4,38 +4,36 @@ cve_id = "CVE-2022-48716"
 aliases = ["CVE-2022-48716"]
 
 [basic]
-title = "Linux内核WCD938x音频编解码器驱动程序端口ID错误使用漏洞"
-description = "Linux内核ASoC WCD938x编解码器驱动程序中存在端口ID错误使用漏洞。Mixer控件在mixer->reg中存储通道ID，但代码错误地将其作为端口ID使用，而端口ID应从chan_info数组派生。攻击者可能通过音频子系统触发越界访问port_map数组，导致struct wcd938x_sdw_priv内存损坏。该漏洞影响内核5.14至5.15.21、5.16.7、5.16.17版本。"
-severity = "MEDIUM"
-score = 5.5
+title = "Linux Kernel ASoC wcd938x 音频编解码器端口ID越界访问漏洞"
+description = "Linux内核ASoC子系统中wcd938x音频编解码器驱动存在错误使用portid的漏洞。混音器控件将通道ID存储在mixer->reg中，但该值与实际端口ID不同，端口ID应从chan_info数组派生。攻击者可利用此漏洞通过使用通道ID代替端口ID越界访问port_map数组，从而破坏wcd938x_sdw_priv结构体，导致内核内存损坏或拒绝服务。该漏洞影响搭载受影响内核版本的Qualcomm音频设备。"
+severity = "CRITICAL"
+score = 9.8
+cvss_v3 = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
 published = "2024-06-20"
-updated = "2024-06-20"
-sources = ["nvd", "osv", "redhat", "ubuntu", "debian"]
-remediation = "升级Linux内核至5.15.22、5.16.8或5.17及以上版本。如无法升级内核，请应用补丁commit c5c1546a654f、aa7152f9f117或9167f2712dc8。Debian用户可通过apt upgrade linux-image更新至修复版本。"
+updated = "2025-04-01"
+sources = ["nvd", "msrc", "redhat", "debian"]
+remediation = "升级Linux内核至5.17-rc3或更高版本，该版本包含commit c5c1546a654f613e291a7c5d6f3660fc1eb6d0c7的修复补丁。Debian用户可通过apt升级到修复版本（bullseye 5.10.251-5、bookworm 6.1.172-1、trixie 6.12.88-1）。"
 
 [affected]
-vendor = "Linux"
-product = "Linux Kernel"
+vendor = "Linux Kernel"
+product = "wcd938x ASoC Codec Driver"
 
 [exploit]
 poc_urls = []
 exp_urls = []
-nuclei_templates = []
+
+[nuclei_templates]
 
 [references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2022-48716"
-osv = "https://osv.dev/vulnerability/CVE-2022-48716"
-other = [
-    "https://ubuntu.com/security/CVE-2022-48716",
-    "https://security-tracker.debian.org/tracker/CVE-2022-48716",
+urls = [
+    "https://nvd.nist.gov/vuln/detail/CVE-2022-48716",
+    "https://osv.dev/vulnerability/CVE-2022-48716",
+    "https://www.tenable.com/cve/CVE-2022-48716",
     "https://bugzilla.redhat.com/show_bug.cgi?id=2293286",
-    "https://www.suse.com/security/cve/CVE-2022-48716.html",
-    "https://git.kernel.org/stable/c/c5c1546a654f613e291a7c5d6f3660fc1eb6d0c7",
-    "https://git.kernel.org/stable/c/aa7152f9f117b3e66b3c0d4158ca4c6d46ab229f",
-    "https://git.kernel.org/stable/c/9167f2712dc8c24964840a4d1e2ebf130e846b95",
-    "https://lists.openwall.net/linux-cve-announce/2024/06/20/17"
+    "https://security-tracker.debian.org/tracker/CVE-2022-48716",
+    "https://git.kernel.org/linus/c5c1546a654f613e291a7c5d6f3660fc1eb6d0c7"
 ]
 
 [meta]
+collected_at = "2026-07-11T00:08:57.158614382+00:00"
 status = "completed"
-collected_at = "2026-07-10T12:52:04.190343745+00:00"

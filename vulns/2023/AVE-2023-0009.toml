@@ -1,43 +1,58 @@
 [id]
 ave_id = "AVE-2023-0009"
-cve_id = "CVE-2023-0009"
-aliases = ["HWPOC-2023-000f79a9", "GPC-16078"]
+cve_id = "CVE-2023-46747"
+aliases = [
+    "HWPOC-2023-000f79a9",
+    "CVE-2023-46747",
+    "K000137353",
+]
 
 [basic]
-title = "Palo Alto GlobalProtect Windows客户端本地权限提升漏洞"
-description = "Palo Alto Networks GlobalProtect VPN客户端的Windows版本存在本地权限提升漏洞。该漏洞源于PanGPA（用户态进程）与PanGPS（SYSTEM服务）之间的IPC通信缺乏输入验证，攻击者可通过Frida等工具篡改XML格式的IPC数据中的<path>元素，将其重定向至恶意命名管道（Named Pipe）或远程SMB共享。对于具备SeImpersonate特权的用户，可利用命名管道令牌模拟获取SYSTEM权限；对于普通用户，可将路径指向远程SMB服务器以捕获NTLMv1/NTLMv2哈希，进而进行中继攻击（如Shadow Credentials）。该漏洞影响GlobalProtect App 5.2.13之前、6.0.5之前及6.1.1之前的Windows版本。"
-severity = "HIGH"
-score = 7.8
-remediation = "立即将GlobalProtect App升级至5.2.13、6.0.5、6.1.1或更高版本。在无法立即升级的情况下，建议限制本地用户安装VPN客户端的权限，并监控PanGPA进程的异常IPC通信行为。企业环境应启用Windows Defender攻击面减少规则（ASR）阻止命名管道滥用。"
-published = "2023-06-14"
-updated = "2024-04-10"
-sources = ["hwpoc", "nvd", "paloalto"]
+title = "F5 BIG-IP TMUI 未认证远程代码执行漏洞"
+description = "F5 BIG-IP 配置工具（TMUI）中存在 AJP 请求走私漏洞，未认证的攻击者可通过管理端口或 Self IP 地址访问 BIG-IP 系统，利用 Apache 前端与 AJP 后端之间对 Transfer-Encoding 头的处理缺陷，构造恶意 AJP 请求绕过身份验证，创建管理员用户并执行任意系统命令，最终实现设备完全控制。该漏洞与 CVE-2022-26377（Apache HTTP Server AJP 走私）密切相关。攻击者可利用该漏洞在无需任何凭据的情况下获取 root 权限 shell。"
+severity = "CRITICAL"
+score = 9.8
+cvss_v3 = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+published = "2023-10-26"
+updated = "2023-11-02"
+sources = ["hwpoc", "nvd", "f5", "praetorian", "rapid7", "tenable", "nuclei", "github"]
+remediation = "立即应用 F5 提供的安全热修复补丁。受影响版本包括 BIG-IP 17.1.0、16.1.0-16.1.4、15.1.0-15.1.10、14.1.0-14.1.5 和 13.1.0-13.1.5。如无法立即打补丁，请将 TMUI 访问限制为仅受信任的网络或设备。检查审计日志中是否存在异常的用户创建事件（client tmui, user admin），并排查可疑新增用户。"
 
 [affected]
-vendor = "Palo Alto Networks"
-product = "GlobalProtect App"
-platforms = ["Windows"]
+vendor = "F5 Networks"
+product = "BIG-IP"
 versions = [
-    { version = "< 5.2.13", status = "affected" },
-    { version = ">= 5.2.13, < 6.0.5", status = "affected" },
-    { version = ">= 6.0.5, < 6.1.1", status = "affected" },
-    { version = ">= 6.1.1", status = "unaffected" },
-    { version = ">= 6.2.0", status = "unaffected" }
+    "17.1.0",
+    "16.1.0 - 16.1.4",
+    "15.1.0 - 15.1.10",
+    "14.1.0 - 14.1.5",
+    "13.1.0 - 13.1.5",
 ]
 
 [exploit]
-poc_urls = []
-exp_urls = [
-    { url = "https://arman.sh/archives/1/", description = "漏洞发现者Mohammad Arman发布的详细技术分析，包含Frida脚本和命名管道模拟攻击的完整流程", source = "researcher" }
+poc_urls = [
+    { url = "https://github.com/AliBrTab/CVE-2023-46747-POC", description = "F5 BIG-IP 未认证 RCE PoC 脚本", source = "github" },
+    { url = "https://github.com/W01fh4cker/CVE-2023-46747-RCE", description = "F5 BIG-IP RCE 漏洞利用脚本", source = "github" },
+    { url = "https://github.com/cediegreyhat/BigFinger", description = "CVE-2023-46747 多线程批量检测与交互式 shell 工具", source = "github" },
+    { url = "https://github.com/sanjai-AK47/CVE-2023-46747", description = "RevoltSecurities 开发的 CVE-2023-46747 漏洞利用与检测脚本", source = "github" },
 ]
-nuclei_templates = []
+exp_urls = [
+    { url = "https://github.com/rapid7/metasploit-framework/pull/18497", description = "Metasploit 模块：exploit/linux/http/f5_bigip_tmui_rce_cve_2023_46747", source = "metasploit" },
+]
+nuclei_templates = [
+    { url = "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cves/2023/CVE-2023-46747.yaml", description = "Nuclei 模板：F5 BIG-IP 未认证 AJP Smuggling RCE 检测", source = "nuclei-templates" },
+]
 
 [references]
-nvd = ["https://nvd.nist.gov/vuln/detail/CVE-2023-0009"]
-avd = []
+nvd = "https://nvd.nist.gov/vuln/detail/cve-2023-46747"
+avd = ""
 other = [
-    "https://security.paloaltonetworks.com/CVE-2023-0009",
-    "https://arman.sh/archives/1/"
+    "https://my.f5.com/manage/s/article/K000137353",
+    "https://www.praetorian.com/blog/refresh-compromising-f5-big-ip-with-request-smuggling-cve-2023-46747/",
+    "https://www.rapid7.com/blog/post/ra-cve-2023-46747-analysis/",
+    "https://www.tenable.com/blog/cve-2023-46747-critical-authentication-bypass-vulnerability-in-f5-big-ip",
+    "https://www.helpnetsecurity.com/2023/10/30/cve-2023-46747/",
+    "https://www.cve.org/CVERecord?id=CVE-2023-46747",
 ]
 
 [meta]
