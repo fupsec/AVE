@@ -1,0 +1,24 @@
+[basic]
+description = "CVE-2002-1299 是已被撤销的候选编号。根据 NVD 记录，该编号的申请者并未在 2002 年将其关联到任何实际漏洞，因此该编号不可使用，不代表任何已知安全漏洞。"
+published = "2017-05-12"
+remediation = "该编号已被撤销，不指向任何实际漏洞，无需进行修复操作。"
+score = 0.1
+severity = "INFO"
+sources = ["nvd"]
+title = "已撤销候选编号 CVE-2002-1299 未关联任何实际漏洞"
+updated = "2023-11-06"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2002-1299"]
+ave_id = "AVE-2002-0008"
+
+[meta]
+collected_at = "2026-07-11T23:17:01.708913744+00:00"
+status = "completed"
+
+[references]
+urls = ["https://nvd.nist.gov/vuln/detail/CVE-2002-1299"]
