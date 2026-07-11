@@ -1,25 +1,38 @@
-[basic]
-description = "Vulnerability identified as CVE-2022-49043. Please refer to vendor advisory for details."
-published = "2026-07-10"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 5.0
-severity = "MEDIUM"
-sources = ["msrc"]
-title = "CVE-2022-49043 vulnerability"
-updated = "2026-07-10"
-
-[exploit]
-exp_urls = []
-poc_urls = []
-
 [id]
-aliases = ["CVE-2022-49043"]
 ave_id = "AVE-2022-0004"
 cve_id = "CVE-2022-49043"
+aliases = ["CVE-2022-49043"]
 
-[meta]
-collected_at = "2026-07-10T12:52:04.248072090+00:00"
-status = "completed"
+[basic]
+title = "libxml2 xmlXIncludeAddNode 释放后重用漏洞"
+description = "libxml2 的 xmlXIncludeAddNode 函数在处理 XML XInclude 时存在释放后重用（Use-After-Free）漏洞。当处理特制的 XML 文档时，已释放的内存仍被引用，可能导致攻击者利用精心构造的 XML 文件造成堆破坏，进而实现任意代码执行或拒绝服务。攻击者可诱导用户或服务解析恶意 XML 文件来触发漏洞。"
+severity = "HIGH"
+score = 7.8
+cvss_v3 = "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H"
+remediation = "升级 libxml2 至 2.11.0 或更高版本。对于无法立即升级的系统，应避免解析来自不可信来源的 XML 文件，尤其是包含 XInclude 指令的文档。"
+published = "2025-01-26"
+updated = "2026-06-17"
+sources = ["msrc", "nvd", "gitlab"]
+
+[affected]
+vendor = "xmlsoft"
+product = "libxml2"
 
 [references]
-urls = []
+urls = [
+    "https://gitlab.gnome.org/GNOME/libxml2/-/commit/5a19e21605398cef6a8b1452477a8705cb41562b",
+    "https://github.com/php/php-src/issues/17467",
+    "https://lists.debian.org/debian-lts-announce/2025/02/msg00028.html",
+    "https://nvd.nist.gov/vuln/detail/CVE-2022-49043",
+]
+
+[exploit]
+poc_urls = [
+    "https://github.com/php/php-src/issues/17467",
+]
+exp_urls = []
+nuclei_templates = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-11T00:00:00+00:00"
