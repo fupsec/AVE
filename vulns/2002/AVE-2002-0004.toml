@@ -1,0 +1,24 @@
+[basic]
+description = "CVE-2002-0634 是 Silicon Graphics（SGI）申请的候选编号，但未关联任何实际安全漏洞。该候选编号于2002年提出，MITRE于2017年将其标记为已撤销（REJECTED），建议不要使用该编号记载任何漏洞。"
+published = "2017-05-11"
+remediation = "该编号已被CVE组织撤销，无实际漏洞需要修复，无需采取任何安全措施。"
+score = 1.0
+severity = "INFO"
+sources = ["nvd"]
+title = "SGI（Silicon Graphics）CVE-2002-0634 候选编号已被撤销"
+updated = "2023-11-06"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2002-0634"]
+ave_id = "AVE-2002-0004"
+
+[meta]
+collected_at = "2026-07-11T23:12:28Z"
+status = "completed"
+
+[references]
+urls = ["https://nvd.nist.gov/vuln/detail/CVE-2002-0634"]
