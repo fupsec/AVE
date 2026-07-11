@@ -1,0 +1,27 @@
+[basic]
+description = "该漏洞编号由 Red Hat, Inc.（CNA）分配后撤销，未关联任何实际安全漏洞。CVE-2000-1251 最初作为候选编号被预留，但经评估后被 CNA 撤回，不再代表任何具体产品的安全缺陷。该编号不应用于安全评估或漏洞管理工作，应直接从漏洞列表中排除。"
+published = "2020-11-05"
+remediation = "此 CVE 编号已被 CNA（Red Hat, Inc.）撤销，不关联任何实际漏洞，无需采取修复措施。建议直接从漏洞库中标记排除该编号。"
+score = 0.1
+severity = "INFO"
+sources = [
+    "nvd",
+    "redhat",
+]
+title = "Red Hat 已撤销的 CVE 预留候选编号"
+updated = "2023-11-06"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2000-1251"]
+ave_id = "AVE-2000-0007"
+
+[meta]
+collected_at = "2026-07-11T22:25:17.544449894+00:00"
+status = "completed"
+
+[references]
+urls = ["https://nvd.nist.gov/vuln/detail/CVE-2000-1251"]
