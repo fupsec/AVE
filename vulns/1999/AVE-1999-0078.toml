@@ -1,7 +1,7 @@
 [basic]
-description = "SGI IRIX 操作系统中 webdist.cgi CGI 程序存在命令注入漏洞，远程攻击者可通过向 distloc 参数注入 shell 元字符来执行任意命令。攻击者无需身份验证即可利用该漏洞，成功利用后可获取 httpd 守护进程权限，执行任意系统命令，导致敏感信息泄露和系统控制权受损。"
+description = "SGI IRIX 操作系统中的 webdist.cgi CGI 程序存在命令注入漏洞，远程攻击者可通过向 distloc 参数传递包含 shell 元字符的恶意数据，在目标服务器上执行任意命令，导致信息泄露、权限提升或系统完全受控。该漏洞影响 IRIX 6.3 版本，攻击无需身份认证，利用难度低。"
 published = "1997-05-06"
-remediation = "建议升级 SGI IRIX 系统至最新版本，应用 SGI 安全公告 19970501-02-PX 提供的补丁程序。如无法升级，应限制 webdist.cgi 脚本的访问权限或从 Web 服务器中移除该 CGI 程序。"
+remediation = "升级 SGI IRIX 至安全版本或应用 SGI 安全公告 19970501-02-PX 提供的补丁，限制对 webdist.cgi 的访问权限，并过滤 distloc 参数中的 shell 元字符。"
 score = 7.3
 severity = "HIGH"
 sources = [
@@ -9,7 +9,7 @@ sources = [
     "exploitdb",
     "cert",
 ]
-title = "SGI IRIX webdist.cgi 命令执行漏洞"
+title = "SGI IRIX webdist.cgi 命令注入漏洞"
 updated = "2024-11-20"
 
 [exploit]
@@ -21,13 +21,12 @@ aliases = ["CVE-1999-0039"]
 ave_id = "AVE-1999-0078"
 
 [meta]
-collected_at = "2026-07-11T22:43:19.938153372+00:00"
+collected_at = "2026-07-11T22:44:56.869226607+00:00"
 status = "completed"
 
 [references]
 urls = [
+    "https://nvd.nist.gov/vuln/detail/CVE-1999-0039",
     "http://www.cert.org/advisories/CA-1997-12.html",
-    "http://www.securityfocus.com/bid/374",
-    "https://exchange.xforce.ibmcloud.com/vulnerabilities/333",
-    "http://www.osvdb.org/235",
+    "https://www.exploit-db.com/exploits/19299",
 ]
