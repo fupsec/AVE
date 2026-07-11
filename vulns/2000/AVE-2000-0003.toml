@@ -1,0 +1,29 @@
+[basic]
+description = 'Apache JServ 1.1.2的jserv.conf配置文件中，jserv-status处理器的默认配置包含"allow from 127.0.0.1"规则，导致本地用户可通过直接向jserv/URI发送请求来发现JDBC密码或其他敏感信息。此漏洞源于不正确的访问控制配置，影响系统信息安全。'
+published = "2011-10-04"
+remediation = "修改jserv.conf中jserv-status处理器的配置，移除或严格限制allow from 127.0.0.1规则，建议禁用jserv-status处理器或添加身份验证机制。"
+score = 2.1
+severity = "LOW"
+sources = ["nvd"]
+title = "Apache JServ 1.1.2 jserv-status处理器配置错误漏洞"
+updated = "2026-06-16"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2000-1247"]
+ave_id = "AVE-2000-0003"
+
+[meta]
+collected_at = "2026-07-11T22:19:32.028894239+00:00"
+status = "completed"
+
+[references]
+urls = [
+    "http://archive.apache.org/dist/java/java.apache.org-www.tar.gz",
+    "http://marc.info/?l=java-apache-users&m=97036799917909&w=2",
+    "http://securityreason.com/securityalert/8412",
+    "https://exchange.xforce.ibmcloud.com/vulnerabilities/51946",
+]

@@ -1,12 +1,12 @@
 [basic]
-description = ""
-published = ""
-remediation = "请参考官方安全公告，及时安装安全更新或升级到最新版本。"
-score = 5
-severity = "MEDIUM"
-sources = ["avd"]
-title = "** REJECT **"
-updated = ""
+description = "CVE-1999-1596 是一个已被其 CNA（Red Hat, Inc.）撤销的无效漏洞编号。该候选编号没有关联任何实际漏洞信息，已于2020年11月5日被标记为REJECTED状态，不建议继续使用此编号进行漏洞追踪或评估。"
+published = "2020-11-05"
+remediation = "此CVE编号已被CNA撤销，不存在实际漏洞，无需进行任何修复操作。请忽略此无效编号，转而关注其他有效CVE条目。"
+score = 1.0
+severity = "INFO"
+sources = ["nvd"]
+title = "无效漏洞编号——CVE-1999-1596 已被 CNA 撤销（REJECTED）"
+updated = "2023-11-06"
 
 [exploit]
 exp_urls = []
@@ -21,4 +21,4 @@ collected_at = "2026-07-11T22:02:05.950292239+00:00"
 status = "completed"
 
 [references]
-urls = []
+urls = ["https://nvd.nist.gov/vuln/detail/CVE-1999-1596"]
