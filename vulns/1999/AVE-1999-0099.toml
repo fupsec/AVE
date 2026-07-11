@@ -1,0 +1,27 @@
+[basic]
+description = "Windows NT 的屏幕保护程序在切换安全上下文时未能正确验证权限变更，导致本地攻击者可通过精心构造的操作以提升的权限执行任意程序，完全控制系统。该漏洞影响 Windows NT 3.5.1 SP1 至 SP4 版本。"
+published = "1999-03-12"
+remediation = "微软已发布 MS99-008 安全公告及补丁，建议用户立即安装补丁程序，或升级至不受影响的 Windows 版本。"
+score = 7.2
+severity = "HIGH"
+sources = [
+    "nvd",
+    "microsoft",
+]
+title = "Microsoft Windows NT 屏幕保护程序权限提升漏洞"
+updated = "2026-06-16"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0382"]
+ave_id = "AVE-1999-0099"
+
+[meta]
+collected_at = "2026-07-11T22:53:29.538588854+00:00"
+status = "completed"
+
+[references]
+urls = ["https://docs.microsoft.com/en-us/security-updates/securitybulletins/1999/ms99-008"]
