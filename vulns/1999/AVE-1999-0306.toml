@@ -1,0 +1,27 @@
+[basic]
+description = "Linux 内核 2.0.36 之前版本中，/dev/kmem 设备文件的默认权限设置存在缺陷，导致非特权用户可读取和写入内核内存空间。攻击者利用此漏洞能够获取内核敏感信息、篡改内核关键数据结构，进而实施 IP 欺骗等网络攻击，并可能导致系统完全被控制，造成信息泄露、权限提升和拒绝服务等严重后果。"
+published = "1999-03-01"
+remediation = "升级 Linux 内核至 2.0.36 或更高版本，并确保 /dev/kmem 设备文件的权限设置为 root 用户只读或不可访问，限制非授权用户对内核内存空间的访问。"
+score = 9.8
+severity = "CRITICAL"
+sources = [
+    "nvd",
+    "cve",
+]
+title = "Linux 内核 2.0.36 之前版本 /dev/kmem 默认权限漏洞"
+updated = "2026-06-16"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0426"]
+ave_id = "AVE-1999-0306"
+
+[meta]
+collected_at = "2026-07-11T23:27:01.389373188+00:00"
+status = "completed"
+
+[references]
+urls = ["https://exchange.xforce.ibmcloud.com/vulnerabilities/CVE-1999-0426"]
