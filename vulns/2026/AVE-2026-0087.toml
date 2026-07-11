@@ -1,0 +1,33 @@
+[id]
+ave_id = "AVE-2026-0087"
+cve_id = "CVE-2026-49463"
+aliases = ["GHSA-qpm9-h556-mwxm"]
+
+[basic]
+title = "NL Portal 后端库 GraphQL 文档与决策数据越权访问漏洞"
+description = "NL Portal 后端库 nl-portal-backend-libraries 中 GraphQL API 存在越权漏洞。DocumentContentQuery 解析器缺少身份验证参数，任意登录用户可通过文档ID下载其他用户的文档内容；BesluitenQuery 的六个查询操作均未进行用户级授权检查，攻击者可枚举并读取其他用户的决策记录及附件。两个接口可链式利用，导致敏感个人信息泄露。"
+severity = "MEDIUM"
+score = 6.5
+remediation = "升级 nl.nl-portal:documenten-api 和 nl.nl-portal:besluiten 至 3.0.1 或更高版本。如无法立即升级，在 API 网关上阻断 getDocumentContent、getBesluiten 等 GraphQL 操作请求。"
+published = "2026-07-08"
+updated = "2026-07-08"
+sources = ["ghsa"]
+
+[affected]
+vendor = "NL Portal"
+product = "nl-portal-backend-libraries"
+
+[references]
+urls = [
+    "https://github.com/advisories/GHSA-qpm9-h556-mwxm",
+    "https://github.com/nl-portal/nl-portal-backend-libraries/security/advisories/GHSA-qpm9-h556-mwxm"
+]
+
+[exploit]
+poc_urls = []
+exp_urls = []
+nuclei_templates = []
+
+[meta]
+status = "completed"
+collected_at = "2026-07-11T00:00:00Z"
