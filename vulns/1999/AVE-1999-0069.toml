@@ -1,0 +1,31 @@
+[basic]
+description = "SGI IRIX 系统中的 eject 命令存在缓冲区溢出漏洞，本地攻击者可通过向 eject 命令传递超长参数触发缓冲区溢出，从而获取 root 权限。该漏洞由 LSD-PLaNET 发现并公开利用代码，影响 SGI IRIX 多个版本，攻击者可在拥有本地访问权限的情况下完全控制系统机密性、完整性和可用性。"
+published = "1997-07-16"
+remediation = "升级 SGI IRIX 系统至不受影响的版本，或应用厂商提供的安全补丁。如无法升级，建议限制 eject 命令的 setuid 权限以减少攻击面。"
+score = 7.2
+severity = "HIGH"
+sources = [
+    "cve",
+    "nvd",
+    "exploitdb",
+]
+title = "SGI IRIX eject 命令缓冲区溢出导致本地权限提升漏洞"
+updated = "1997-07-16"
+
+[exploit]
+exp_urls = []
+poc_urls = ["https://www.exploit-db.com/exploits/334"]
+
+[id]
+aliases = ["CVE-1999-0027"]
+ave_id = "AVE-1999-0069"
+
+[meta]
+collected_at = "2026-07-11T22:38:22.932004917+00:00"
+status = "completed"
+
+[references]
+urls = [
+    "https://www.exploit-db.com/exploits/334",
+    "https://exchange.xforce.ibmcloud.com/vulnerabilities/CVE-1999-0027",
+]
