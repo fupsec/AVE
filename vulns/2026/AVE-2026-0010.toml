@@ -1,0 +1,25 @@
+[basic]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["github"]
+title = "CVE-2026-1056"
+updated = ""
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2026-1056"]
+ave_id = "AVE-2026-0010"
+cve_id = "CVE-2026-1056"
+
+[meta]
+collected_at = "2026-07-11T17:12:56.493170626+00:00"
+status = "completed"
+
+[references]
+urls = []
