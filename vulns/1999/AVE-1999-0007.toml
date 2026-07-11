@@ -1,0 +1,25 @@
+[basic]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["exploitdb"]
+title = "CVE-1999-0014 漏洞"
+updated = ""
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0014"]
+ave_id = "AVE-1999-0007"
+cve_id = "CVE-1999-0014"
+
+[meta]
+collected_at = "2026-07-11T16:25:51.068260319+00:00"
+status = "completed"
+
+[references]
+urls = []
