@@ -1,35 +1,25 @@
-[id]
-ave_id = "AVE-1999-0216"
-cve_id = "CVE-1999-0894"
-aliases = ["CVE-1999-0894"]
-
 [basic]
-title = "Red Hat Linux screen 程序未使用 Unix98 pty 导致本地用户可写入其他终端"
-description = "Red Hat Linux 系统中 bundled 的 screen 程序未使用 Unix98 ptys（伪终端），而是使用了传统终端模式，导致本地用户能够向其他用户的终端设备写入数据。攻击者可通过此漏洞向其他终端会话发送任意内容，实现信息窃取或命令注入，破坏系统完整性和机密性。该漏洞影响 Red Hat Linux 发行版中的 screen 程序，利用需要本地系统访问权限。"
-severity = "CRITICAL"
-score = 10.0
-cvss_v2 = 10.0
-cvss_v2_vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C"
-published = "2000-01-04"
-updated = "2026-06-16"
-sources = ["redhat", "nvd"]
-remediation = "升级 Red Hat Linux 系统中的 screen 软件包至包含 Unix98 pty 支持的修复版本，或应用 Red Hat 提供的官方安全补丁。作为临时缓解措施，限制不可信用户的本地登录权限，并监控异常的终端写入行为。"
-
-[affected]
-vendor = "Red Hat"
-product = "Red Hat Linux"
-
-[references]
-urls = [
-    "https://nvd.nist.gov/vuln/detail/CVE-1999-0894",
-    "https://access.redhat.com/security/cve/CVE-1999-0894",
-    "https://exchange.xforce.ibmcloud.com/vulnerabilities/CVE-1999-0894"
-]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["exploitdb"]
+title = "CVE-1999-0034 漏洞"
+updated = ""
 
 [exploit]
-poc_urls = []
 exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0034"]
+ave_id = "AVE-1999-0216"
+cve_id = "CVE-1999-0034"
 
 [meta]
+collected_at = "2026-07-11T00:16:44.580425735+00:00"
 status = "completed"
-collected_at = "2026-07-11T00:00:00Z"
+
+[references]
+urls = []
