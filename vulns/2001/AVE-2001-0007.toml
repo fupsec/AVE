@@ -1,0 +1,24 @@
+[basic]
+description = "CVE-2001-0810 是由 MITRE 于 2001 年为 Silicon Graphics（SGI）分配的候选漏洞编号，但申请方 SGI 最终未将任何真实存在的安全缺陷与此编号关联。因此该候选编号于 2017 年被 CVE 官方标记为已撤销（REJECTED）状态，并于 2023 年由 SGI 更新确认。该编号不代表任何真实安全漏洞，不应被纳入漏洞追踪或风险评估体系。"
+published = "2017-05-12"
+remediation = "该编号已被 CVE 官方撤销，申请方 Silicon Graphics（SGI）未关联任何实际安全漏洞，无需执行修复操作。"
+score = 0.1
+severity = "LOW"
+sources = ["nvd"]
+title = "Silicon Graphics（SGI）未关联实际安全漏洞的已撤销候选编号"
+updated = "2023-11-06"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2001-0810"]
+ave_id = "AVE-2001-0007"
+
+[meta]
+collected_at = "2026-07-11T22:37:21.712530302+00:00"
+status = "completed"
+
+[references]
+urls = ["https://nvd.nist.gov/vuln/detail/CVE-2001-0810"]
