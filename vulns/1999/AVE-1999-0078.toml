@@ -1,0 +1,33 @@
+[basic]
+description = "SGI IRIX 操作系统中 webdist.cgi CGI 程序存在命令注入漏洞，远程攻击者可通过向 distloc 参数注入 shell 元字符来执行任意命令。攻击者无需身份验证即可利用该漏洞，成功利用后可获取 httpd 守护进程权限，执行任意系统命令，导致敏感信息泄露和系统控制权受损。"
+published = "1997-05-06"
+remediation = "建议升级 SGI IRIX 系统至最新版本，应用 SGI 安全公告 19970501-02-PX 提供的补丁程序。如无法升级，应限制 webdist.cgi 脚本的访问权限或从 Web 服务器中移除该 CGI 程序。"
+score = 7.3
+severity = "HIGH"
+sources = [
+    "nvd",
+    "exploitdb",
+    "cert",
+]
+title = "SGI IRIX webdist.cgi 命令执行漏洞"
+updated = "2024-11-20"
+
+[exploit]
+exp_urls = []
+poc_urls = ["https://www.exploit-db.com/exploits/19299"]
+
+[id]
+aliases = ["CVE-1999-0039"]
+ave_id = "AVE-1999-0078"
+
+[meta]
+collected_at = "2026-07-11T22:43:19.938153372+00:00"
+status = "completed"
+
+[references]
+urls = [
+    "http://www.cert.org/advisories/CA-1997-12.html",
+    "http://www.securityfocus.com/bid/374",
+    "https://exchange.xforce.ibmcloud.com/vulnerabilities/333",
+    "http://www.osvdb.org/235",
+]
