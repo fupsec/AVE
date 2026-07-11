@@ -1,0 +1,27 @@
+[basic]
+description = "Apache HTTP Server的Win32版本存在信息泄露漏洞。攻击者通过在请求URL末尾附加一个点号（.），可以绕过访问控制规则，读取本应受限的敏感文件。该漏洞影响运行于Microsoft Windows平台上的Apache HTTP Server。"
+published = "1999-12-12"
+remediation = "建议升级Apache HTTP Server至1.3.9及以上版本，该版本已修复点号附加请求路径导致的文件访问绕过问题。"
+score = 5.0
+severity = "MEDIUM"
+sources = [
+    "cve",
+    "nvd",
+]
+title = "Apache HTTP Server Win32版本点号附加请求路径信息泄露漏洞"
+updated = "1999-12-12"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0289"]
+ave_id = "AVE-1999-0023"
+
+[meta]
+collected_at = "2026-07-11T22:30:15.277312512+00:00"
+status = "completed"
+
+[references]
+urls = ["https://www.cve.org/CVERecord?id=CVE-1999-0289"]

