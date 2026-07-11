@@ -1,32 +1,25 @@
 [basic]
-description = "Heartbeat 0.4.9 及更早版本中存在多个格式化字符串漏洞（部分来源将其描述为缓冲区溢出）。远程攻击者可以通过向 UDP 端口 694 发送特制的数据包，利用该漏洞在目标系统上执行任意代码，从而完全控制服务器。"
-published = "2002-01-01T00:00:00Z"
-remediation = "请立即升级 Heartbeat 到 0.5.0 或更高版本，或根据发行版（如 Debian DSA-174）的安全更新补丁进行修复。"
-score = 9.8
-severity = "CRITICAL"
-sources = ["osv"]
-title = "Heartbeat 0.4.9 及更早版本格式化字符串漏洞"
-updated = "2026-07-11T00:00:00Z"
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["kev"]
+title = "CVE-2002-0367 漏洞"
+updated = ""
 
 [exploit]
 exp_urls = []
 poc_urls = []
 
 [id]
-aliases = ["CVE-2002-1215"]
+aliases = ["CVE-2002-0367"]
 ave_id = "AVE-2002-0004"
-cve_id = "CVE-2002-1215"
+cve_id = "CVE-2002-0367"
 
 [meta]
-collected_at = "2026-07-11T00:00:00Z"
+collected_at = "2026-07-11T05:05:48.782756813+00:00"
 status = "completed"
 
 [references]
-urls = [
-    "http://www.debian.org/security/2002/dsa-174",
-    "http://www.iss.net/security_center/static/10357.php",
-    "http://www.novell.com/linux/security/advisories/2002_037_heartbeat.html",
-    "http://www.securityfocus.com/bid/5955",
-    "http://distro.conectiva.com.br/atualizacoes/?id=a&anuncio=000540",
-    "http://linux-ha.org/security/sec01.txt",
-]
+urls = []
