@@ -1,27 +1,30 @@
 [basic]
-description = "Netscape Communicator 4.5 中的 talkback 功能存在安全漏洞，当目标用户的 Netscape 浏览器崩溃时，本地攻击者可利用 talkback 功能终止其他用户的任意进程，导致拒绝服务或进程异常终止。该漏洞影响系统的可用性和完整性，攻击复杂度较低。"
-published = "1999-03-18"
-remediation = "建议升级 Netscape Communicator 至最新安全版本，或禁用 talkback 功能以防止本地用户利用该漏洞终止其他进程。"
-score = 6.4
-severity = "MEDIUM"
+description = "AIX 操作系统中的 lquerylv 程序存在缓冲区溢出漏洞，本地攻击者可利用该漏洞通过精心构造的参数触发缓冲区溢出，从而获取 root 权限。该漏洞由 Georgi Guninski 发现并公布了利用代码。"
+published = "1997-05-26"
+remediation = "建议升级到 IBM 官方发布的最新 AIX 版本，或应用相关安全补丁。若无官方补丁，建议限制 lquerylv 程序的 SUID 权限。"
+score = 7.2
+severity = "HIGH"
 sources = [
     "nvd",
-    "cve",
+    "exploitdb",
 ]
-title = "Netscape Communicator 4.5 talkback 本地任意进程终止漏洞"
+title = "AIX lquerylv 本地缓冲区溢出权限提升漏洞"
 updated = "2026-06-16"
 
 [exploit]
-exp_urls = []
-poc_urls = []
+exp_urls = ["https://www.exploit-db.com/exploits/335"]
+poc_urls = ["https://www.exploit-db.com/exploits/335"]
 
 [id]
-aliases = ["CVE-1999-0425"]
+aliases = ["CVE-1999-0064"]
 ave_id = "AVE-1999-0303"
 
 [meta]
-collected_at = "2026-07-11T23:26:26.111525180+00:00"
+collected_at = "2026-07-11T23:26:28.344106192+00:00"
 status = "completed"
 
 [references]
-urls = ["https://exchange.xforce.ibmcloud.com/vulnerabilities/CVE-1999-0425"]
+urls = [
+    "https://marc.info/?l=bugtraq&m=87602167418428&w=2",
+    "https://www.exploit-db.com/exploits/335",
+]
