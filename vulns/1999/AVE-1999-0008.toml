@@ -1,0 +1,32 @@
+[basic]
+description = "Netscape Messaging Server 3.55 和 University of Washington IMAPD 10.234 及其之前版本中存在缓冲区溢出漏洞。IMAP 协议支持 AUTHENTICATE 命令用于指定认证机制打开邮箱，但该命令的参数被复制到一个 1024 字节的固定缓冲区时未做边界检查，允许最大 8192 字符的输入，攻击者可远程发送特制请求触发栈溢出，实现任意代码执行。"
+published = "1998-07-20"
+remediation = "升级 Netscape Messaging Server 至安全版本或应用 Sun 安全公告 SecBull 177 提供的补丁；University of Washington IMAPD 应升级至 10.234 之后的安全版本。"
+score = 10.0
+severity = "CRITICAL"
+sources = [
+    "exploitdb",
+    "nvd",
+    "securityfocus",
+]
+title = "Netscape Messaging Server 3.55 及 UW imapd 10.234 IMAP 缓冲区溢出远程代码执行漏洞"
+updated = "2026-07-11"
+
+[exploit]
+exp_urls = ["https://www.exploit-db.com/exploits/19107"]
+poc_urls = ["https://www.exploit-db.com/exploits/19107"]
+
+[id]
+aliases = ["CVE-1999-0005"]
+ave_id = "AVE-1999-0008"
+
+[meta]
+collected_at = "2026-07-11T22:16:45.165355605+00:00"
+status = "completed"
+
+[references]
+urls = [
+    "http://sunsolve.sun.com/pub-cgi/retrieve.pl?doctype=coll&doc=secbull/177",
+    "http://www.securityfocus.com/bid/130",
+    "https://www.exploit-db.com/exploits/19107",
+]
