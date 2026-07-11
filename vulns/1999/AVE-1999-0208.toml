@@ -1,0 +1,30 @@
+[basic]
+description = "Solaris 7 64位系统中的 procfs 文件系统存在安全漏洞，允许本地用户通过 procfs 接口执行拒绝服务攻击，导致系统服务异常终止或资源不可用。该漏洞需要攻击者具有本地系统访问权限，利用过程无需认证，攻击复杂度较低，主要影响系统的可用性。"
+published = "1999-03-09"
+remediation = "建议升级 Sun Solaris 7 至最新的补丁版本（如 Solaris 7 64-bit 补丁包），或迁移至受支持的 Solaris 更高版本。同时应限制本地用户对 procfs 文件系统的非必要访问权限。"
+score = 2.1
+severity = "LOW"
+sources = [
+    "NVD",
+    "CVE",
+]
+title = "Sun Solaris 7 procfs 本地拒绝服务漏洞"
+updated = "2026-06-16"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0417"]
+ave_id = "AVE-1999-0208"
+
+[meta]
+collected_at = "2026-07-11T23:21:42+00:00"
+status = "completed"
+
+[references]
+urls = [
+    "http://www.securityfocus.com/bid/448",
+    "http://www.osvdb.org/1001",
+]
