@@ -1,0 +1,25 @@
+[basic]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["kev"]
+title = "CVE-2006-2492 漏洞"
+updated = ""
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2006-2492"]
+ave_id = "AVE-2006-0003"
+cve_id = "CVE-2006-2492"
+
+[meta]
+collected_at = "2026-07-11T16:25:51.292393133+00:00"
+status = "completed"
+
+[references]
+urls = []
