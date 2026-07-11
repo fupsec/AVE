@@ -4,8 +4,8 @@ published = ""
 remediation = "Refer to vendor advisory and upgrade to fixed version."
 score = 0.0
 severity = "UNKNOWN"
-sources = ["github"]
-title = "CVE-2026-1731"
+sources = ["ghsa"]
+title = "CVE-2026-49463"
 updated = ""
 
 [exploit]
@@ -13,12 +13,15 @@ exp_urls = []
 poc_urls = []
 
 [id]
-aliases = ["CVE-2026-1731"]
+aliases = [
+    "CVE-2026-49463",
+    "GHSA-qpm9-h556-mwxm",
+]
 ave_id = "AVE-2026-0012"
-cve_id = "CVE-2026-1731"
+cve_id = "CVE-2026-49463"
 
 [meta]
-collected_at = "2026-07-11T17:15:29.752305327+00:00"
+collected_at = "2026-07-11T17:15:39.513284919+00:00"
 status = "completed"
 
 [references]
