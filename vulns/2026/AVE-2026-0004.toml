@@ -17,7 +17,7 @@ aliases = ["NUCLEI-HTTP-CNVD-2017-CNVD-2017-03561-YAML"]
 ave_id = "AVE-2026-0004"
 
 [meta]
-collected_at = "2026-07-11T19:21:37.699332896+00:00"
+collected_at = "2026-07-11T19:24:00.017096001+00:00"
 status = "completed"
 
 [references]
