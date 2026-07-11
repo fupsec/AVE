@@ -1,0 +1,83 @@
+[id]
+ave_id = "AVE-2018-0046"
+cve_id = "CVE-2018-25117"
+avd_id = "CVE-2018-25117"
+other_ids = ["VulnCheck:VESTACP-DEBIAN-INSTALLER-MALICIOUS-BACKDOOR"]
+aliases = ["CVE-2018-25117"]
+
+[affected]
+vendor = "Vesta"
+product = "VestaCP Control Panel (Debian/Ubuntu Installer)"
+
+[basic]
+title = "VestaCP Debian 安装程序恶意后门供应链危害"
+description = "VestaCP 托管控制面板的 Debian/Ubuntu 安装程序在 2018 年 5 月 31 日至 6 月 13 日期间被嵌入了恶意代码，导致供应链攻击。受感染的安装程序会在安装过程中将管理员密码（Base64 编码）和服务器域名泄露至外部 URL，同时植入 Linux/ChachaDDoS 多阶段 DDoS 僵尸网络木马。该木马使用 ChaCha 加密算法保护二阶段载荷，通过 Lua 解释器执行 DDoS 攻击任务，受感染服务器被用于发起大规模 SYN Flood DDoS 攻击。CWE-506 嵌入式恶意代码。"
+published = "2025-10-14"
+updated = "2025-10-14"
+severity = "CRITICAL"
+score = 9.3
+sources = ["avd", "nvd", "vulncheck"]
+
+[remediation]
+fix = "立即更换所有 VestaCP 管理员密码，重新从官方源安装未受感染的 VestaCP 版本（commit ee03eff 之后），并扫描服务器是否存在 Linux/ChachaDDoS 木马。"
+steps = [
+    "确认安装时间是否在 2018-05-31 至 2018-06-13 之间",
+    "检查 /usr/bin/dhcprenew 或 /etc/init.d/dhcprenew 等恶意文件是否存在",
+    "使用 ESET 检测工具扫描 Linux/ChachaDDoS 木马（检测名 Linux/Xorddos.Q/R）",
+    "更改 VestaCP admin 密码及服务器所有账户密码",
+    "从 GitHub 重新拉取修复后的 VestaCP 源码（commit >= ee03eff）并重新安装",
+    "检查服务器是否被用于发起 DDoS 流量（异常带宽使用）",
+]
+workaround = "如无法立即重装，建议关闭 VestaCP 的远程管理接口，限制出站流量，并监控 /var/tmp 目录的可疑文件。"
+
+[score]
+cvss_v2 = 0.0
+cvss_v2_vector = ""
+cvss_v3 = 0.0
+cvss_v3_vector = ""
+cvss_v4 = 9.3
+cvss_v4_vector = "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:A/VC:H/VI:H/VA:N/SC:H/SI:H/SA:N"
+
+[authenticity]
+cve_confidence = "high"
+poc_confidence = "confirmed"
+notes = "CVE-2018-25117 于 2025 年 10 月由 VulnCheck 正式分配并公开。该漏洞为 VestaCP 安装程序被植入恶意代码的供应链攻击事件，ESET 于 2018 年 10 月发布详细分析报告并公开解密脚本。VestaCP 官方论坛承认被入侵。CVSS v4.0 评分 9.3（CRITICAL），CISA ADP 评估利用可能性为 PoC、技术影响为 total。"
+
+[references]
+nvd = "https://nvd.nist.gov/vuln/detail/CVE-2018-25117"
+avd = "https://avd.aliyun.com/detail?id=CVE-2018-25117"
+other = [
+    "https://github.com/outroll/vesta",
+    "https://github.com/outroll/vesta/commit/a3f0fa1501d424477786e3e7150bb05c0b99518f",
+    "https://github.com/outroll/vesta/commit/ee03eff016e03cb76fac7ae3a0f9d1ef0f8ee35b",
+    "https://www.vulncheck.com/advisories/vestacp-debian-installer-malicious-backdoor-supply-chain-compromise",
+    "https://www.welivesecurity.com/2018/10/18/new-linux-chachaddos-malware-distributed-servers-vestacp-installed/",
+    "https://forum.vestacp.com/viewtopic.php?f=10&t=17641&p=73282",
+    "https://forum.vestacp.com/viewtopic.php?f=10&t=17641&start=180#p73907",
+]
+
+[exploit]
+poc = [
+    {url = "https://github.com/eset/malware-research/blob/master/chachaddos/decrypt_second_stage.py", description = "ESET 发布的 Linux/ChachaDDoS 二阶段载荷 ChaCha 解密脚本", source = "ESET"},
+]
+exp = []
+nuclei_templates = []
+
+[meta]
+collected_at = "2026-07-11T00:00:00Z"
+status = "completed"
+
+[tags]
+tags = [
+    "CWE-506",
+    "供应链攻击",
+    "Supply Chain",
+    "后门",
+    "Backdoor",
+    "DDoS",
+    "ChachaDDoS",
+    "VestaCP",
+    "Linux",
+    "恶意代码",
+    "Embedded Malicious Code",
+]
