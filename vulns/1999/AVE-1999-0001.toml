@@ -15,7 +15,6 @@ poc_urls = []
 [id]
 aliases = ["CVE-1999-0002"]
 ave_id = "AVE-1999-0001"
-cve_id = "CVE-1999-0002"
 
 [meta]
 collected_at = "2026-07-11T18:56:45.802868410+00:00"

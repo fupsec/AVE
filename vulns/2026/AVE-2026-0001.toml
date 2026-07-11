@@ -18,7 +18,6 @@ aliases = [
     "GHSA-mc85-72gr-vm9f",
 ]
 ave_id = "AVE-2026-0001"
-cve_id = "CVE-2026-48594"
 
 [meta]
 collected_at = "2026-07-11T18:56:45.813367116+00:00"
