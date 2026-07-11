@@ -4,8 +4,8 @@ published = ""
 remediation = "Refer to vendor advisory and upgrade to fixed version."
 score = 0.0
 severity = "UNKNOWN"
-sources = ["ghsa"]
-title = "CVE-2026-48862"
+sources = ["nuclei"]
+title = "NUCLEI-HTTP-CNVD-2019-CNVD-2019-06255-YAML 漏洞"
 updated = ""
 
 [exploit]
@@ -13,15 +13,12 @@ exp_urls = []
 poc_urls = []
 
 [id]
-aliases = [
-    "CVE-2026-48862",
-    "GHSA-g586-ccqf-7x4r",
-]
+aliases = ["NUCLEI-HTTP-CNVD-2019-CNVD-2019-06255-YAML"]
 ave_id = "AVE-2026-0008"
-cve_id = "CVE-2026-48862"
+cve_id = "NUCLEI-HTTP-CNVD-2019-CNVD-2019-06255-YAML"
 
 [meta]
-collected_at = "2026-07-11T17:10:54.962636892+00:00"
+collected_at = "2026-07-11T17:10:55.022723579+00:00"
 status = "completed"
 
 [references]
