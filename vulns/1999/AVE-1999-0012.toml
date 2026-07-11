@@ -1,0 +1,27 @@
+[basic]
+description = "BSD操作系统中in.comsat服务存在拒绝服务漏洞。in.comsat（又称biff服务）用于向用户发送新邮件通知。远程攻击者可通过网络发送特制的消息报文，导致comsat服务耗尽系统资源或崩溃，使得系统无法正常向用户发送邮件到达通知，影响系统可用性。该漏洞无需认证即可远程触发。"
+published = "1999-05-01"
+remediation = "建议禁用comsat/biff服务，或升级到已修复该漏洞的操作系统版本。在关键系统中应关闭不必要的网络服务，限制对comsat服务的网络访问。"
+score = 5.0
+severity = "MEDIUM"
+sources = [
+    "nvd",
+    "cve",
+]
+title = "BSD comsat(in.comsat)服务拒绝服务漏洞"
+updated = "2026-06-16"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0194"]
+ave_id = "AVE-1999-0012"
+
+[meta]
+collected_at = "2026-07-11T22:23:19.978107642+00:00"
+status = "completed"
+
+[references]
+urls = ["https://www.cve.org/CVERecord?id=CVE-1999-0194"]
