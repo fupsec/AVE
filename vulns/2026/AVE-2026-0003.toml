@@ -1,25 +1,25 @@
 [id]
 ave_id = "AVE-2026-0003"
-cve_id = "CVE-2026-0047"
-aliases = ["CVE-2026-0047"]
+cve_id = ""
+aliases = ["NUCLEI-HTTP-CNVD-2017-CNVD-2017-06001-YAML", "CNVD-2017-06001"]
 
 [basic]
-title = "Google Android 16 QPR2 Beta ActivityManagerService 权限缺失导致UI位图泄露漏洞"
-description = "Android 16 QPR2 Beta (Baklava) 中的 ActivityManagerService.dumpBitmapsProto() 方法缺少权限检查，导致未授权应用可以通过 Binder 事务直接调用该方法，窃取所有正在运行应用的界面位图。攻击者无需任何权限即可利用该漏洞获取其他进程的屏幕内容，造成敏感信息泄露，并可能导致本地权限提升。"
+title = "大华 DSS 存在 SQL 注入漏洞"
+description = "大华 DSS（数字监控系统）的 portal 模块中 attachment_clearTempFile.action 和 attachment_getAttList.action 接口存在 SQL 注入漏洞。攻击者可通过构造特制的 bean.RecId 参数，利用 EXTRACTVALUE 函数触发报错注入，从而获取数据库中的敏感信息。该漏洞无需身份认证即可远程利用，影响大华 DSS 系统的数据安全性。"
 severity = "HIGH"
-score = 8.4
-sources = ["github", "nvd"]
-published = "2026-03-02"
-updated = "2026-06-17"
-remediation = "升级至 Android 安全公告 2026-03-01 及之后的安全补丁级别，Google 已在 dumpBitmapsProto() 方法首行添加 enforceCallingOrSelfPermission(DUMP) 权限检查以修复此漏洞。"
+score = 7.5
+sources = ["nuclei"]
+published = "2017-01-01"
+updated = "2017-01-01"
+remediation = "联系大华厂商获取安全补丁，升级 DSS 系统至最新版本。对 portal 模块的输入参数进行严格的过滤和参数化查询处理，避免直接将用户输入拼接到 SQL 语句中。"
 
 [references]
-urls = ["https://source.android.com/docs/security/bulletin/2026/2026-03-01", "https://nvd.nist.gov/vuln/detail/CVE-2026-0047", "https://github.com/mobilehackinglab/CVE-2026-0047-poc"]
+urls = ["https://www.cnvd.org.cn/flaw/show/CNVD-2017-06001", "https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2017/CNVD-2017-06001.yaml"]
 
 [exploit]
-poc_urls = ["https://github.com/mobilehackinglab/CVE-2026-0047-poc"]
+poc_urls = ["https://github.com/projectdiscovery/nuclei-templates/blob/main/http/cnvd/2017/CNVD-2017-06001.yaml"]
 exp_urls = []
 
 [meta]
 status = "completed"
-collected_at = "2026-07-11T00:00:00Z"
+collected_at = "2026-07-11T08:00:00Z"
