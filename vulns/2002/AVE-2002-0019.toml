@@ -1,0 +1,24 @@
+[basic]
+description = "GoAhead WebServer 2.1.1之前版本存在资源管理错误漏洞（CWE-399）。远程攻击者无需认证即可通过提前断开套接字连接，在服务器完全处理请求前终止请求，导致服务器CPU使用率升至100%，造成拒绝服务。该漏洞影响GoAhead WebServer 2.0及2.1版本。"
+published = "2009-02-06"
+remediation = "升级GoAhead WebServer至2.1.1或更高版本，该版本修复了因套接字断开导致CPU占用率100%的问题。"
+score = 5.0
+severity = "MEDIUM"
+sources = ["nvd"]
+title = "GoAhead WebServer 2.1.1之前版本套接字断开拒绝服务漏洞"
+updated = "2009-02-06"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2002-2430"]
+ave_id = "AVE-2002-0019"
+
+[meta]
+collected_at = "2026-07-11T23:34:27.248681005+00:00"
+status = "completed"
+
+[references]
+urls = ["http://data.goahead.com/Software/Webserver/2.1.8/release.htm#cpu-utilization-hangs-at-100-on-a-socket-disconnect-bug01865"]
