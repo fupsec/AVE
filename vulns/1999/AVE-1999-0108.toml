@@ -1,0 +1,27 @@
+[basic]
+description = "MailMax SMTP Server for Windows 存在缓冲区溢出漏洞。远程攻击者可通过向SMTP服务发送特制请求触发缓冲区溢出，导致远程代码执行。该漏洞影响SmartMax Software MailMax SMTP Server，攻击者无需身份验证即可通过网络远程利用此漏洞获取系统控制权。"
+published = "1999-02-14"
+remediation = "建议升级MailMax SMTP Server至最新版本或更换为其他受支持的邮件服务器软件，同时配置防火墙限制对SMTP端口的非授权访问。"
+score = 7.5
+severity = "HIGH"
+sources = [
+    "cve",
+    "nvd",
+]
+title = "SmartMax Software MailMax SMTP Server 缓冲区溢出漏洞"
+updated = "2026-06-16"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0404"]
+ave_id = "AVE-1999-0108"
+
+[meta]
+collected_at = "2026-07-11T23:03:02.788605683+00:00"
+status = "completed"
+
+[references]
+urls = ["https://exchange.xforce.ibmcloud.com/vulnerabilities/CVE-1999-0404"]
