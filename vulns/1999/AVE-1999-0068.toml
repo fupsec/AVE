@@ -1,0 +1,30 @@
+[basic]
+description = "Network Flight Recorder (NFR) 2.0.2-Research 中的 webd 组件存在缓冲区溢出漏洞。远程攻击者无需身份验证即可通过发送特制网络请求触发缓冲区溢出，成功利用该漏洞可在目标系统上执行任意命令，完全控制系统安全性。"
+published = "1999-02-16"
+remediation = "建议联系厂商获取修复版本，或限制对 webd 组件的网络访问权限以降低安全风险。"
+score = 7.5
+severity = "HIGH"
+sources = [
+    "NVD",
+    "CVE",
+]
+title = "Network Flight Recorder (NFR) 2.0.2-Research webd 组件缓冲区溢出漏洞"
+updated = "2026-06-16"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0375"]
+ave_id = "AVE-1999-0068"
+
+[meta]
+collected_at = "2026-07-11T22:36:28.269516012+00:00"
+status = "completed"
+
+[references]
+urls = [
+    "https://nvd.nist.gov/vuln/detail/CVE-1999-0375",
+    "https://exchange.xforce.ibmcloud.com/vulnerabilities/CVE-1999-0375",
+]
