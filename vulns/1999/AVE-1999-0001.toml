@@ -4,7 +4,7 @@ published = ""
 remediation = "Refer to vendor advisory and upgrade to fixed version."
 score = 0.0
 severity = "UNKNOWN"
-sources = ["redhat"]
+sources = ["exploitdb"]
 title = "CVE-1999-0002 漏洞"
 updated = ""
 
@@ -18,7 +18,7 @@ ave_id = "AVE-1999-0001"
 cve_id = "CVE-1999-0002"
 
 [meta]
-collected_at = "2026-07-11T04:06:19.256138245+00:00"
+collected_at = "2026-07-11T04:06:44.281798703+00:00"
 status = "completed"
 
 [references]
