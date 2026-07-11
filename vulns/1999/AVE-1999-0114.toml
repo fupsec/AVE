@@ -1,0 +1,30 @@
+[basic]
+description = "SGI IRIX 5.3及6.2系统中ordist命令存在缓冲区溢出漏洞，本地攻击者可通过向ordist发送特制输入触发缓冲区溢出，从而获取root权限。该漏洞影响SGI IRIX 5.0至6.4多个版本，攻击者无需身份验证即可利用，造成系统机密性、完整性和可用性的完全丧失。"
+published = "1997-07-16"
+remediation = "升级到SGI IRIX最新版本或应用厂商发布的安全补丁；如无法升级，建议限制本地用户对ordist命令的访问权限。"
+score = 8.4
+severity = "HIGH"
+sources = [
+    "nvd",
+    "exploitdb",
+]
+title = "SGI IRIX ordist命令缓冲区溢出导致本地权限提升漏洞"
+updated = "2024-08-01"
+
+[exploit]
+exp_urls = []
+poc_urls = ["https://www.exploit-db.com/exploits/19317"]
+
+[id]
+aliases = ["CVE-1999-0029"]
+ave_id = "AVE-1999-0114"
+
+[meta]
+collected_at = "2026-07-11T23:10:34.076281286+00:00"
+status = "completed"
+
+[references]
+urls = [
+    "https://exchange.xforce.ibmcloud.com/vulnerabilities/CVE-1999-0029",
+    "https://www.exploit-db.com/exploits/19317",
+]
