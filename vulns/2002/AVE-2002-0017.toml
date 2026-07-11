@@ -1,0 +1,24 @@
+[basic]
+description = "GoAhead WebServer 2.0至2.1.3版本的webs.c文件中存在输入验证不当漏洞。远程攻击者可通过发送一个包含Content-Length头但无请求体的HTTP POST请求，触发空指针解引用，导致Web服务器进程崩溃，造成拒绝服务。"
+published = "2009-02-06"
+remediation = "升级GoAhead WebServer至2.1.4或更高版本，该版本已在webs.c中修复了空指针解引用导致的拒绝服务问题。"
+score = 5.0
+severity = "MEDIUM"
+sources = ["nvd"]
+title = "GoAhead WebServer 2.0至2.1.3 webs.c 拒绝服务漏洞"
+updated = "2009-02-07"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2002-2428"]
+ave_id = "AVE-2002-0017"
+
+[meta]
+collected_at = "2026-07-11T23:30:32+00:00"
+status = "completed"
+
+[references]
+urls = ["http://data.goahead.com/Software/Webserver/2.1.8/release.htm#fixed-vulnerability-to-malicious-code-in-webs-c"]
