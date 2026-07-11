@@ -4,12 +4,20 @@ published = "2008-10-23"
 remediation = "安装 Microsoft 安全公告 MS08-067（KB958644）提供的安全更新，或升级至不受影响的 Windows 版本。对于无法立即修补的系统，应在防火墙层面阻止 SMB（TCP 445）和 RPC（TCP 135）端口的入站流量，并限制网络暴露面以降低被利用风险。"
 score = 9.8
 severity = "CRITICAL"
-sources = ["kev", "nvd"]
-title = "Microsoft Windows 服务器服务远程代码执行漏洞"
+sources = [
+    "kev",
+    "nvd",
+]
+title = "Microsoft Windows 服务器服务远程代码执行漏洞（MS08-067/Conficker）"
 updated = "2026-05-20"
 
 [exploit]
-exp_urls = ["https://www.exploit-db.com/exploits/6824", "https://www.exploit-db.com/exploits/6841", "https://www.exploit-db.com/exploits/7104", "https://www.exploit-db.com/exploits/7132"]
+exp_urls = [
+    "https://www.exploit-db.com/exploits/6824",
+    "https://www.exploit-db.com/exploits/6841",
+    "https://www.exploit-db.com/exploits/7104",
+    "https://www.exploit-db.com/exploits/7132",
+]
 poc_urls = ["https://www.exploit-db.com/exploits/6824"]
 
 [id]
@@ -22,4 +30,8 @@ collected_at = "2026-07-11T00:00:00+00:00"
 status = "completed"
 
 [references]
-urls = ["https://docs.microsoft.com/en-us/security-updates/securitybulletins/2008/ms08-067", "https://nvd.nist.gov/vuln/detail/CVE-2008-4250", "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2008-4250"]
+urls = [
+    "https://docs.microsoft.com/en-us/security-updates/securitybulletins/2008/ms08-067",
+    "https://nvd.nist.gov/vuln/detail/CVE-2008-4250",
+    "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2008-4250",
+]
