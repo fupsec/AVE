@@ -1,0 +1,25 @@
+[basic]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["github"]
+title = "CVE-2026-0828"
+updated = ""
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2026-0828"]
+ave_id = "AVE-2026-0009"
+cve_id = "CVE-2026-0828"
+
+[meta]
+collected_at = "2026-07-11T17:11:18.924170431+00:00"
+status = "completed"
+
+[references]
+urls = []
