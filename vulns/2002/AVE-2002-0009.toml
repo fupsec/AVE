@@ -1,0 +1,24 @@
+[basic]
+description = "CVE-2002-1300 是一个已被驳回的候选编号，该编号在2002年并未与任何实际漏洞关联，申请方未提供任何漏洞信息，因此该编号已被标记为REJECT状态，不代表任何实际安全漏洞。"
+published = "2017-05-11"
+remediation = "该CVE编号已被驳回，不存在实际关联漏洞，无需进行任何修复操作。"
+score = 0.1
+severity = "LOW"
+sources = ["nvd"]
+title = "已驳回的CVE候选编号CVE-2002-1300，申请方未提供任何漏洞信息"
+updated = "2023-11-06"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2002-1300"]
+ave_id = "AVE-2002-0009"
+
+[meta]
+collected_at = "2026-07-11T23:18:38+00:00"
+status = "completed"
+
+[references]
+urls = []

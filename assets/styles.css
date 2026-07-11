@@ -238,8 +238,9 @@ body {
 
 .vuln-table {
   width: 100%;
-  min-width: 600px;
+  min-width: 720px;
   border-collapse: collapse;
+  table-layout: fixed;
 }
 
 .vuln-table thead th {
@@ -248,20 +249,31 @@ body {
   font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.03em;
-  padding: 0.6rem 0.7rem;
+  padding: 0.6rem 0.5rem;
   border-bottom: 1px solid #334155;
   background: linear-gradient(180deg, #0d1a2d, #0b1220);
 }
+
+.vuln-table thead th:nth-child(1) { width: 13%; }  /* AVE */
+.vuln-table thead th:nth-child(2) { width: 30%; }  /* 标题 */
+.vuln-table thead th:nth-child(3) { width: 11%; }  /* 严重性 */
+.vuln-table thead th:nth-child(4) { width: 14%; }  /* 日期 */
+.vuln-table thead th:nth-child(5) { width: 8%; }   /* 评分 */
+.vuln-table thead th:nth-child(6) { width: 7%; }   /* PoC */
+.vuln-table thead th:nth-child(7) { width: 7%; }   /* EXP */
+.vuln-table thead th:nth-child(8) { width: 10%; }  /* 操作 */
 
 .vuln-table tbody tr:nth-child(even) {
   background: rgba(15, 23, 42, 0.4);
 }
 
 .vuln-table tbody td {
-  padding: 0.52rem 0.7rem;
+  padding: 0.52rem 0.5rem;
   border-bottom: 1px solid rgba(51, 65, 85, 0.3);
-  vertical-align: top;
+  vertical-align: middle;
   font-size: 0.88rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
   transition: background 0.15s;
 }
 
@@ -271,7 +283,6 @@ body {
 
 .table-title {
   color: #e5e7eb;
-  max-width: 520px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
