@@ -1,0 +1,30 @@
+[basic]
+description = "WebCom CGI Guestbook的wguest CGI程序存在安全漏洞，远程攻击者无需认证即可通过网络访问该程序，利用该漏洞可能造成部分机密性、完整性和可用性受损。该漏洞影响所有版本的WebCom CGI Guestbook软件，攻击者可对受影响系统进行未授权访问。"
+published = "1999-04-09"
+remediation = "建议升级WebCom CGI Guestbook至最新版本，或移除存在漏洞的wguest CGI程序，并对用户输入数据进行严格的过滤和验证。"
+score = 7.5
+severity = "HIGH"
+sources = [
+    "cve",
+    "nvd",
+]
+title = "WebCom CGI Guestbook wguest CGI程序远程漏洞"
+updated = "2026-06-16"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0287"]
+ave_id = "AVE-1999-0022"
+
+[meta]
+collected_at = "2026-07-11T22:28:56.905262849+00:00"
+status = "completed"
+
+[references]
+urls = [
+    "https://marc.info/?l=ntbugtraq&m=92368828704896&w=2",
+    "https://nvd.nist.gov/vuln/detail/CVE-1999-0287",
+]
