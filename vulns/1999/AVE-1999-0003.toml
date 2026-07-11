@@ -1,15 +1,12 @@
 [basic]
-description = "CVE-1999-0199: 目前没有详细的漏洞描述。请参考相关安全公告获取更多信息。"
-published = "unknown"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
-score = 5.0
+description = ""
+published = ""
+remediation = "请参考官方安全公告，及时安装安全更新或升级到最新版本。"
+score = 5
 severity = "MEDIUM"
-sources = [
-    "avd",
-    "osv",
-]
-title = "CVE-1999-0199 漏洞详情"
-updated = "unknown"
+sources = ["avd"]
+title = "gnu glibc 未加检查的返回值"
+updated = ""
 
 [exploit]
 exp_urls = []
@@ -20,7 +17,7 @@ aliases = ["CVE-1999-0199"]
 ave_id = "AVE-1999-0003"
 
 [meta]
-collected_at = "2026-07-11T20:57:55.544942478+00:00"
+collected_at = "2026-07-11T21:37:09.134176237+00:00"
 status = "completed"
 
 [references]

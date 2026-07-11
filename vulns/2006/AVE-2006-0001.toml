@@ -1,11 +1,11 @@
 [basic]
-description = ": 目前没有详细的漏洞描述。请参考相关安全公告获取更多信息。"
+description = "CVE-2006-10002: 目前没有详细的漏洞描述。请参考相关安全公告获取更多信息。"
 published = "unknown"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
+remediation = "请参考官方安全公告，及时安装安全更新或升级到最新版本。"
 score = 5.0
 severity = "MEDIUM"
 sources = ["msrc"]
-title = " 漏洞详情"
+title = "CVE-2006-10002 漏洞详情"
 updated = "unknown"
 
 [exploit]

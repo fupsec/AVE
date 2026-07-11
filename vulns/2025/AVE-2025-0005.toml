@@ -1,11 +1,11 @@
 [basic]
-description = ": 目前没有详细的漏洞描述。请参考相关安全公告获取更多信息。"
+description = "CVE-2025-46571: 目前没有详细的漏洞描述。请参考相关安全公告获取更多信息。"
 published = "unknown"
-remediation = "Refer to vendor advisory and upgrade to fixed version."
+remediation = "请参考官方安全公告，及时安装安全更新或升级到最新版本。"
 score = 5.0
 severity = "MEDIUM"
 sources = ["ghsa"]
-title = " 漏洞详情"
+title = "CVE-2025-46571 漏洞详情"
 updated = "unknown"
 
 [exploit]
