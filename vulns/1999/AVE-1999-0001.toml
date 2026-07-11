@@ -1,20 +1,20 @@
 [id]
 ave_id = "AVE-1999-0001"
-cve_id = "CVE-1999-1594"
-aliases = ["CVE-1999-1594"]
+cve_id = "CVE-1999-0147"
+aliases = ["CVE-1999-0147"]
 
 [basic]
-title = "CVE-1999-1594 被撤销的漏洞编号"
-description = "此CVE编号已被其CNA（Red Hat, Inc.）撤销。根据NVD记录，该候选编号因CNA撤回而作废，无实际关联的漏洞信息或安全问题。该编号不应被用于任何漏洞追踪或评估场景。"
-severity = "INFO"
-score = 0.1
-sources = ["avd", "nvd"]
-published = "2020-11-05"
-updated = "2023-11-06"
-remediation = "此CVE编号已被CNA撤销，不存在实际漏洞，无需进行任何修复操作。"
+title = "Glimpse HTTP aglimpse CGI 远程命令执行漏洞"
+description = "Glimpse HTTP 服务器中的 aglimpse CGI 程序存在远程命令执行漏洞。攻击者可以通过向 aglimpse 发送特制请求，在无需认证的情况下远程执行任意系统命令，获取服务器完全控制权。该漏洞影响所有运行 aglimpse CGI 的 Glimpse HTTP 服务器版本，危害严重。"
+severity = "HIGH"
+score = 7.5
+sources = ["nvd", "tenable"]
+published = "1997-07-01"
+updated = "2026-06-16"
+remediation = "由于 Glimpse HTTP 已停止维护，建议立即从 Web 服务器上删除或禁用 aglimpse CGI 脚本，并迁移至其他受支持的 HTTP 服务器软件。若必须使用，应限制 CGI 目录的访问权限并部署 WAF 规则进行防护。"
 
 [references]
-urls = ["https://nvd.nist.gov/vuln/detail/CVE-1999-1594"]
+urls = ["https://exchange.xforce.ibmcloud.com/vulnerabilities/CVE-1999-0147"]
 
 [exploit]
 poc_urls = []
@@ -22,4 +22,4 @@ exp_urls = []
 
 [meta]
 status = "completed"
-collected_at = "2026-07-11T00:00:00Z"
+collected_at = "2026-07-11T04:15:11Z"
