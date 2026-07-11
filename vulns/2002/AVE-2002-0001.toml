@@ -1,0 +1,27 @@
+[basic]
+description = "CVE-2002-0035 是 MITRE 在 2002 年预留的候选漏洞编号，但最终未与任何实际安全漏洞关联，已于 2017 年被标记为 REJECTED 状态，属于无效废弃编号，不应继续使用。"
+published = "2017-05-11"
+remediation = "CVE-2002-0035 为废弃候选编号，未关联任何实际安全漏洞，无需进行版本升级或配置修改等修复操作。"
+score = 0.5
+severity = "INFO"
+sources = [
+    "nvd",
+    "mitre",
+]
+title = "MITRE 废弃候选编号 CVE-2002-0035"
+updated = "2023-11-06"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2002-0035"]
+ave_id = "AVE-2002-0001"
+
+[meta]
+collected_at = "2026-07-11T23:06:02.467503668+00:00"
+status = "completed"
+
+[references]
+urls = ["https://nvd.nist.gov/vuln/detail/CVE-2002-0035"]
