@@ -4,7 +4,10 @@ published = ""
 remediation = "Refer to vendor advisory and upgrade to fixed version."
 score = 0.0
 severity = "UNKNOWN"
-sources = ["avd"]
+sources = [
+    "avd",
+    "osv",
+]
 title = "CVE-1999-0199 漏洞"
 updated = ""
 
@@ -17,7 +20,7 @@ aliases = ["CVE-1999-0199"]
 ave_id = "AVE-1999-0003"
 
 [meta]
-collected_at = "2026-07-11T19:12:03.522361794+00:00"
+collected_at = "2026-07-11T19:20:48.179057470+00:00"
 status = "completed"
 
 [references]
