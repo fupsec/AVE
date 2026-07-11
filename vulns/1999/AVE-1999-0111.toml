@@ -1,0 +1,27 @@
+[basic]
+description = "Sun Cobalt RaQ 微服务器中，用户通过交互式 Shell 会话创建的文件（如 .bash_history 等历史记录文件）被设置为全局可读权限，导致攻击者可通过 Web 服务器远程读取这些敏感文件，获取系统用户的命令执行历史、密码信息等敏感数据，造成信息泄露。"
+published = "1999-02-25"
+remediation = "建议限制 Web 服务器对用户主目录的访问权限，将 .bash_history 等敏感文件权限设置为仅所有者可读，或禁用交互式 Shell 会话历史记录功能以避免敏感数据残留。"
+score = 10.0
+severity = "CRITICAL"
+sources = [
+    "cve",
+    "nvd",
+]
+title = "Sun Cobalt RaQ 微服务器交互式 Shell 会话文件信息泄露漏洞"
+updated = "2026-06-16"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0408"]
+ave_id = "AVE-1999-0111"
+
+[meta]
+collected_at = "2026-07-11T23:06:50.847678591+00:00"
+status = "completed"
+
+[references]
+urls = ["http://www.securityfocus.com/bid/337"]
