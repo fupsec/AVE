@@ -1,37 +1,25 @@
-[id]
-ave_id = "AVE-2018-0040"
-cve_id = "CVE-2018-25111"
-aliases = ["CVE-2018-25111"]
-
 [basic]
-title = "Django-Helpdesk 敏感数据暴露漏洞"
-description = "Django-Helpdesk 在 1.0.0 版本之前存在敏感数据暴露漏洞。由于 models.py 中使用了 os.umask(0) 创建附件目录，导致新创建的文件和目录权限被设置为 0777，攻击者可通过本地访问读取敏感附件文件或获取未授权信息。"
-severity = "MEDIUM"
-score = 4.4
-remediation = "升级 django-helpdesk 至 v1.0.0 或更高版本。如无法立即升级，可在 models.py 中移除 os.umask(0) 调用，并将附件目录权限模式设置为 0755。"
-published = "2025-05-30"
-updated = "2025-06-16"
-sources = ["nvd", "avd"]
-
-[affected]
-vendor = "django-helpdesk Project"
-product = "django-helpdesk"
-
-[references]
-nvd = "https://nvd.nist.gov/vuln/detail/CVE-2018-25111"
-avd = "https://avd.aegisinfo.com/CVE-2018-25111"
-other = [
-    "https://github.com/django-helpdesk/django-helpdesk/issues/591",
-    "https://github.com/django-helpdesk/django-helpdesk/pull/1120",
-    "https://github.com/django-helpdesk/django-helpdesk/releases/tag/v1.0.0"
-]
+description = ""
+published = ""
+remediation = "Refer to vendor advisory and upgrade to fixed version."
+score = 0.0
+severity = "UNKNOWN"
+sources = ["avd"]
+title = "CVE-2018-25111 漏洞"
+updated = ""
 
 [exploit]
-poc_urls = [
-    "https://github.com/django-helpdesk/django-helpdesk/pull/1120"
-]
 exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-2018-25111"]
+ave_id = "AVE-2018-0040"
+cve_id = "CVE-2018-25111"
 
 [meta]
+collected_at = "2026-07-11T00:10:15.324678431+00:00"
 status = "completed"
-collected_at = "2026-07-11T00:00:00+00:00"
+
+[references]
+urls = []
