@@ -1,43 +1,37 @@
 [id]
 ave_id = "AVE-2018-0040"
 cve_id = "CVE-2018-25111"
-aliases = ["CVE-2018-25111", "GHSA-m4jx-m5hg-qrxx", "EUVD-2025-16536", "SNYK-PYTHON-DJANGOHELPDESK-10291053"]
+aliases = ["CVE-2018-25111"]
 
 [basic]
-title = "Django-Helpdesk os.umask(0) 敏感数据暴露漏洞"
-description = "django-helpdesk 1.0.0 之前的版本因在 models.py 中使用 os.umask(0) 导致敏感数据暴露。该函数将文件创建掩码设为 0，禁用了默认的权限限制，使得应用创建的文件继承过于宽松的访问控制。攻击者可利用此配置读取或修改工单附件、用户详情或系统日志等敏感数据，造成未授权的信息泄露或数据篡改。攻击条件为本地访问，无需特殊权限。"
+title = "Django-Helpdesk 敏感数据暴露漏洞"
+description = "Django-Helpdesk 在 1.0.0 版本之前存在敏感数据暴露漏洞。由于 models.py 中使用了 os.umask(0) 创建附件目录，导致新创建的文件和目录权限被设置为 0777，攻击者可通过本地访问读取敏感附件文件或获取未授权信息。"
 severity = "MEDIUM"
-score = 5.1
-cvss_v3 = "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N"
-published = "2025-05-31"
-updated = "2025-06-02"
-remediation = "将 django-helpdesk 升级至 1.0.0 或更高版本。若暂时无法升级，可在部署后手动执行 chmod -R o-rwx /path/to/helpdesk_media/ 限制文件权限，并审查 models.py 中 os.umask(0) 的使用，替换为安全的掩码值（如 0o077）以确保文件仅限所有者访问。"
-sources = ["nvd", "avd", "github", "snyk"]
+score = 4.4
+remediation = "升级 django-helpdesk 至 v1.0.0 或更高版本。如无法立即升级，可在 models.py 中移除 os.umask(0) 调用，并将附件目录权限模式设置为 0755。"
+published = "2025-05-30"
+updated = "2025-06-16"
+sources = ["nvd", "avd"]
 
 [affected]
 vendor = "django-helpdesk Project"
 product = "django-helpdesk"
 
-[exploit]
-poc_urls = [
-  { url = "https://github.com/django-helpdesk/django-helpdesk/pull/1120", description = "修复 os.umask(0) 问题的补丁 PR", source = "github" }
-]
-exp_urls = []
-nuclei_templates = []
-
 [references]
 nvd = "https://nvd.nist.gov/vuln/detail/CVE-2018-25111"
-avd = "https://avd.xianjincard.com/avd/CVE-2018-25111"
+avd = "https://avd.aegisinfo.com/CVE-2018-25111"
 other = [
-  "https://github.com/django-helpdesk/django-helpdesk/issues/591",
-  "https://github.com/django-helpdesk/django-helpdesk/pull/1120",
-  "https://github.com/django-helpdesk/django-helpdesk/releases/tag/v1.0.0",
-  "https://github.com/advisories/GHSA-m4jx-m5hg-qrxx",
-  "https://security.snyk.io/vuln/SNYK-PYTHON-DJANGOHELPDESK-10291053",
-  "https://app.opencve.io/cve/CVE-2018-25111",
-  "https://cvefeed.io/vuln/detail/CVE-2018-25111"
+    "https://github.com/django-helpdesk/django-helpdesk/issues/591",
+    "https://github.com/django-helpdesk/django-helpdesk/pull/1120",
+    "https://github.com/django-helpdesk/django-helpdesk/releases/tag/v1.0.0"
 ]
 
+[exploit]
+poc_urls = [
+    "https://github.com/django-helpdesk/django-helpdesk/pull/1120"
+]
+exp_urls = []
+
 [meta]
-collected_at = "2025-07-11T00:00:00Z"
 status = "completed"
+collected_at = "2026-07-11T00:00:00+00:00"
