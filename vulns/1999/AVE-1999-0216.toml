@@ -1,37 +1,35 @@
 [id]
 ave_id = "AVE-1999-0216"
-cve_id = "CVE-1999-0034"
-aliases = ["CVE-1999-0034"]
+cve_id = "CVE-1999-0894"
+aliases = ["CVE-1999-0894"]
 
 [basic]
-title = "多个Unix系统Perl suidperl本地缓冲区溢出漏洞"
-description = "Perl 4.x和5.x中的suidperl(sperl)程序存在缓冲区溢出漏洞。当该程序以setuid root方式安装时，本地攻击者可利用溢出漏洞提升权限至root，完全控制受影响的系统。受影响系统包括BSD/OS 2.1/3.0、RedHat Linux 4.0/4.1、SGI Freeware 1.0/2.0以及Larry Wall Perl 5.0.3等。攻击者通过精心构造的数据触发缓冲区溢出，从而以root权限执行任意代码。"
-severity = "HIGH"
-score = 7.2
-remediation = "升级Perl至最新版本，或移除suidperl程序的SUID权限位。同时限制本地用户对受影响系统的访问权限。"
-published = "1997-05-29"
+title = "Red Hat Linux screen 程序未使用 Unix98 pty 导致本地用户可写入其他终端"
+description = "Red Hat Linux 系统中 bundled 的 screen 程序未使用 Unix98 ptys（伪终端），而是使用了传统终端模式，导致本地用户能够向其他用户的终端设备写入数据。攻击者可通过此漏洞向其他终端会话发送任意内容，实现信息窃取或命令注入，破坏系统完整性和机密性。该漏洞影响 Red Hat Linux 发行版中的 screen 程序，利用需要本地系统访问权限。"
+severity = "CRITICAL"
+score = 10.0
+cvss_v2 = 10.0
+cvss_v2_vector = "AV:N/AC:L/Au:N/C:C/I:C/A:C"
+published = "2000-01-04"
 updated = "2026-06-16"
-sources = ["nvd", "exploitdb"]
+sources = ["redhat", "nvd"]
+remediation = "升级 Red Hat Linux 系统中的 screen 软件包至包含 Unix98 pty 支持的修复版本，或应用 Red Hat 提供的官方安全补丁。作为临时缓解措施，限制不可信用户的本地登录权限，并监控异常的终端写入行为。"
 
 [affected]
-vendor = "Perl"
-product = "suidperl"
+vendor = "Red Hat"
+product = "Red Hat Linux"
 
 [references]
 urls = [
-    "https://nvd.nist.gov/vuln/detail/CVE-1999-0034",
-    "https://exchange.xforce.ibmcloud.com/vulnerabilities/CVE-1999-0034",
-    "https://www.exploit-db.com/exploits/19547",
-    "https://gitlab.com/exploit-database/exploitdb-bin-sploits/-/raw/main/bin-sploits/19547.tgz"
+    "https://nvd.nist.gov/vuln/detail/CVE-1999-0894",
+    "https://access.redhat.com/security/cve/CVE-1999-0894",
+    "https://exchange.xforce.ibmcloud.com/vulnerabilities/CVE-1999-0894"
 ]
 
 [exploit]
 poc_urls = []
-exp_urls = [
-    "https://www.exploit-db.com/exploits/19547",
-    "https://gitlab.com/exploit-database/exploitdb-bin-sploits/-/raw/main/bin-sploits/19547.tgz"
-]
+exp_urls = []
 
 [meta]
 status = "completed"
-collected_at = "2026-07-11T12:00:00Z"
+collected_at = "2026-07-11T00:00:00Z"
