@@ -1,0 +1,27 @@
+[basic]
+description = "Microsoft Internet Information Server (IIS) 2.0、3.0及4.0版本中存在一个远程命令执行安全漏洞。当IIS以SYSTEM账户权限运行时，攻击者可以通过加载恶意的ISAPI扩展组件，以SYSTEM权限执行任意系统命令。该漏洞可被远程利用，无需用户认证，可能导致服务器被完全控制。"
+published = "1999-02-19"
+remediation = "避免以SYSTEM账户运行IIS服务，将应用程序池标识改为具有最低权限的专用账户。限制ISAPI扩展目录的写入权限，及时安装Microsoft官方安全更新。"
+score = 7.5
+severity = "HIGH"
+sources = [
+    "NVD",
+    "MITRE",
+]
+title = "Microsoft Internet Information Server ISAPI扩展远程命令执行漏洞"
+updated = "2024-11-20"
+
+[exploit]
+exp_urls = []
+poc_urls = []
+
+[id]
+aliases = ["CVE-1999-0412"]
+ave_id = "AVE-1999-0199"
+
+[meta]
+collected_at = "2026-07-11T23:13:49.092510124+00:00"
+status = "completed"
+
+[references]
+urls = ["http://www.securityfocus.com/bid/501"]
