@@ -4,8 +4,8 @@ published = ""
 remediation = "Refer to vendor advisory and upgrade to fixed version."
 score = 0.0
 severity = "UNKNOWN"
-sources = ["avd"]
-title = "CVE-1999-1598 漏洞"
+sources = ["redhat"]
+title = "CVE-1999-0493 漏洞"
 updated = ""
 
 [exploit]
@@ -13,12 +13,12 @@ exp_urls = []
 poc_urls = []
 
 [id]
-aliases = ["CVE-1999-1598"]
+aliases = ["CVE-1999-0493"]
 ave_id = "AVE-1999-0009"
-cve_id = "CVE-1999-1598"
+cve_id = "CVE-1999-0493"
 
 [meta]
-collected_at = "2026-07-11T17:11:58.562986240+00:00"
+collected_at = "2026-07-11T17:12:20.864276660+00:00"
 status = "completed"
 
 [references]
